@@ -1,0 +1,74 @@
+Abstract
+Several centuries of manuscript music sit on the shelves of libraries, churches, and museums around the globe. On-line digitization programs are opening these collections to a global audience, but digital images are only the beginning of true accessibility since the musical content of these images cannot be searched by computers. In the SIMSSA (Single Interface for Music Score Searching and Analysis) project (Fujinaga, Hankinson, and Cumming, 2014) we aim at teaching computers to read music and assemble the data on a single website. However, the automatic retrieval and encoding of music from score images has many complexities. In this paper, we describe our current workflow to perform end-to-end optical music recognition (OMR) of early music sources.
+1 Introduction
+The process of reading, extracting, and encoding the content from digitized images of music documents is called optical music recognition (OMR). Despite more than 50 years of research, OMR is still a complex problem. Some characteristics of music notation—such as the graphical properties of musical objects and the layout and superimposition of musical features—make OMR a remarkably difficult problem (Bainbridge and Bell, 2001). The slow development in OMR, particularly when dealing with early music, also lies in the variability of documents. Since most OMR systems have been developed using heuristic approaches, they usually do not generalize well to documents of a different type.
+2 End-to-end OMR workflow for medieval and renaissance music
+For high scalability, we are taking a machine learning-based approach to OMR. The computer is trained with a large number of examples for each category of musical element to be classified and creates a model. Once a model is created, it is used to classify new examples that the computer has not yet seen. We have implemented this approach in a workflow that performs OMR in medieval and renaissance music scores images. The workflow is divided into four stages: document analysis, symbol classification, music reconstruction and encoding, and symbolic score generation and correction. The entire workflow is depicted in Figure
+1
+.
+Figure 1. End-to-end optical music recognition workflow for early music. Boxes indicate the software applications on each step. Human symbols indicate interactive, adaptive stages.
+2.1 Document analysis
+Digitized music scores are the input to the system and document analysis is applied to segment the music document into layers. We developed Pixel.js (Saleh et al., 2017), an open source, web-based, pixel-level classification application to label pixels into their corresponding category or to correct the output of other image segmentation processes. We use this tool interactively with a convolutional neural network (Calvo-Zaragoza et al., 2018) to segment the document into a number of user-defined layers. After a few iterations of training and classification for optimizing the classifier, we obtain a number of image files corresponding to the segmented layers of the original score. For example, these layers may contain notes, staff lines, lyrics, annotations, or ornamental letters. The recognition of the music symbols and the analysis of their relationship is achieved once the symbols are isolated and classified in the found layers.
+2.2 Symbol classification
+The application we developed for the symbol classification stage is called Interactive Classifier (IC). IC is a web-based version of the Gamera classifier (Droettboom, MacMillan, and Fujinaga, 2003). We use it to automatically group the connected components of a specific layer into glyphs. Then, we manually label a series of these musical glyphs into classes. For neume music notation we implement neume-based and neume component-based classification. In either case, IC will extract a set of features for describing each of the neume or neume component classes and will model a classifier. With this model, new glyphs will be classified based on k-nearest neighbours. Once the symbols of the score are classified, we proceed to add their musical context and encode them into a symbolic music format.
+2.3 Music reconstruction and encoding
+We obtain the pitches of neumes or neume components by finding their absolute position in the corresponding staves and use the recognized clef of each system to assign a relative pitch (Vigliensoni et al., 2011). The output of IC conveys the position and size of each musical element in the original image, and so we add this information to the estimated pitch as well as the staff number to which each neume belongs. Finally, this musical information is encoded into the Music Encoding Initiative (MEI) machine-readable symbolic music format (Roland, 2002).
+2.4 Symbolic score generation and correction
+The last two stages of our OMR workflow, music reconstruction and encoding and symbolic score generation have a common interactive breakpoint for visualizing and correcting the output of the automatized OMR process. This human-driven checkpoint is embedded as a web-based interface called Neon (Neume Editor Online) (Burlet et al., 2012). Neon overlays the original music score image and the rendered version of the output of the OMR process. By visual inspection, the user can assess the differences between the layers, and manually add, edit, or delete music symbols in the browser. So far, however, corrections entered by the user are not fed back into the learning system, but they change the encoded music file output.
+2.5 Workflow management system
+All the constituent parts of our OMR workflow are handled by Rodan (Hankinson, 2015), a distributed, collaborative, and networked adaptive workflow management system that allows specifying interactive and non-interactive tasks.
+3 Future work
+In future iterations of the project we will focus on: (i) implementing a non-heuristic, machine learning-based approach for pitch finding (similar to the approach proposed by Pacha and Calvo-Zaragoza (2018)); (ii) appending neumes to syllables (since most neume notation is used to set music to an existing text); and (iii) devising a way of feeding back into the workflow the corrected output in Neon. We hope that this infrastructure, in combination with the proper teaching strategies and tactics developed by human teachers in the interfaces for training OMR systems (Vigliensoni, Calvo-Zaragoza, and Fujinaga, 2018), will enable the end-to-end recognition and encoding of music from music score images.
+Bibliography
+Bainbridge, D. and Bell, T.
+(2001). The challenge of optical music recognition.
+Computers and the Humanities
+,
+35
+(2): 95–121.
+Burlet, G., Porter, A., Hankinson, A. and Fujinaga, I.
+(2012). Neon.js: Neume editor online.
+Proceedings of the 13
+th
+International Society for Music Information Retrieval Conference
+, pp. 121–6.
+Calvo-Zaragoza, J., Castellanos, F. J., Vigliensoni, G. and Fujinaga, I.
+(2018). Deep neural networks for document processing of music score images.
+Applied Sciences
+,
+8
+(5): 654–74.
+Droettboom, M., Macmillan, K. and Fujinaga, I.
+(2003). The Gamera framework for building custom recognition systems.
+Proceedings of the 2003 Symposium on Document Image Understanding Technologies
+, pp. 275–86.
+Fujinaga, I., Hankinson, A. and Cumming, J. E.
+(2014). Introduction to SIMSSA (Single Interface for Music Score Searching and Analysis).
+Proceedings of the 1st International Workshop on Digital Libraries for Musicology
+, pp. 1–3.
+Hankinson, A.
+(2015). Optical music recognition infrastructure for large-scale music document analysis. Ph.D. Dissertation. McGill University, Montréal, QC.
+Pacha, A. and Calvo-Zaragoza, J.
+(2018). Optical Music Recognition in Mensural Notation with Region-Based Convolutional Neural Networks.
+Proceedings of the 19
+th
+International Society for Music Information Retrieval Conference
+, pp. 23–7.
+Roland, P.
+(2002). The music encoding initiative (MEI).
+Proceedings of the First International Conference on Musical Applications Using XML
+, pp. 55–9.
+Saleh, Z., Zhang, K., Calvo-Zaragoza, J., Vigliensoni, G. and Fujinaga, I.
+(2017). Pixel.js: Web-based pixel classification correction platform for ground truth creation.
+Proceedings of the 14th IAPR International Conference on Document Analysis and Recognition
+, pp. 39–40.
+Vigliensoni, G., Burgoyne, J. A., Hankinson, A. and Fujinaga, I.
+(2011). Automatic pitch recognition in printed square-note notation.
+Proceedings of the 12
+th
+International Society for Music Information Retrieval Conference
+, pp. 423–8.
+Vigliensoni, G., Calvo-Zaragoza, J. and Fujinaga, I.
+(2018). An environment for machine pedagogy: Learning how to teach computers to read music.
+Proceedings of the IUI Workshop on Music Interfaces for Listening and Creation
+.

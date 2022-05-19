@@ -1,0 +1,186 @@
+The contributors to this panel are jointly participating in the development of the
+Amsterdam Time Machine
+- an integrated platform to present historical information about people, places, relations, events, and objects in its spatial and temporal context, focusing on the city of Amsterdam. The web of data on the history of Amsterdam is created by systematically linking existing datasets from social and humanities research with municipal and cultural heritage data, where possible in the form of Linked Open Data. The linked data can then be organized and presented in spatial representations, such as geographical and 3D visualizations. The result is a ‘Google Earth’ for the past, which allows users to explore the city through space and time, at the level of neighbourhoods, streets and even individual houses. Recently, a first proof of concept was developed that connects linked data from the Amsterdam cultural heritage institutions and various scholarly research projects to a GIS infrastructure that provides the historical geographical and topological context for these linked datasets.
+The conceptual framework offers an instrument for research into urban space as a connecting factor for social and cultural processes. Charles Tilly described the city as a "privileged site for study of the interaction between large social processes and routines of local life." (Tilly, 2015: 161) We offer a research platform that operationalizes Tilly’s description by investigating the urban history of Amsterdam on a scale that varies from the micro level of a plot, person or place to the macro level of broader societal processes in the city as a whole - a microscope and telescope in one. Such a research environment offers an unprecedented opportunity to explore the relationship between physical and social space and how this connection was experienced over time (White, 2010; Bodenhamer et al., 2010 and 2015). With space as a connecting factor, we provide a concrete illustration of the research potential of linking social and economic data to cultural data, allowing researchers to study specific historical and cultural phenomena against the background of broader societal developments. As such, it facilitates ‘scalable digital humanities research’, smoothly navigating historical data from the micro level of one location, anecdote or document to the macro level of patterns in large, linked datasets that expose broader social and cultural processes.
+This panel focuses on the use of the Amsterdam Time Machine as an infrastructure for scalable digital humanities research. The first contribution outlines the development of the plot-based geographical infrastructure, including the ways in which spatial semantics have been linked up with topological structures and their relation with geometries. The following contributions present use cases that focus on developments in language, social mobility and leisure activities, in particular going to the theatre and cinema. On the one hand, these use cases demonstrate the potential of the Amsterdam Time Machine for innovating disciplinary research in Linguistics, History and Media Studies. On the other hand, they show how the research infrastructure also supports interdisciplinary research, by making a connection between the social development of Amsterdam’s historical population groups, their language development and their leisure activities in local theatres and cinemas. The panel is concluded with a discussion, initiated by Frédéric Kaplan.
+1. A Geographical Data-infrastructure for Historical Amsterdam
+Thomas Vermaut, Mark Raat and Hans Mol
+If the Amsterdam Time Machine wants to uphold its claim that it can process all kinds of historical data through space and time, it cannot do without a proper Geographical Information System (GIS) consisting of viewers, data entry environments and 3D visualizations. Such an infrastructure has to be based on the smallest geographical unit: the plot or parcel, which can be considered as ‘the atom’ of space. In the last decade, much effort has been devoted to georeferencing, vectorizing and digitizing the Napoleonic cadastre of 1812-1832 for a series of Dutch provinces and cities (Mol, 2015), including Amsterdam. However, since most administrative sources for urban history are not listed per plot but per house number, it is necessary to connect the house numbers to the cadastral plots. For Amsterdam, this meant that the address system of the 1851 census had to be tuned to the parcel units of 1832 and to the lists of 1879/1880 with which the current Amsterdam street and house numbering system was introduced. All these parcel and house numbers are eventually connected to an unique georeferenced point location, in order to forestall historical parcel mutations trough time - such as the splitting, merge, demolition or construction of buildings. A provisional draft of this combined system was already presented in 2013 and could be brought in as the first building block for our infrastructure (
+www.hisgis.nl/amsterdam
+).
+It may seem that these tracks of data processing and homogenizing consecutive address systems would lead to a simple historical geometrical tool or ‘coat rack’ to which many types of address systems can be hung. Dealing with house numbers, plots and persons in a digital way however, poses some serious problems as to addressing the spatial uncertainty and the fuzziness of temporal dynamics. Numbering schemes can be very complicated in their sequence, with all kinds of relationships between a person and a location, distinctions between buildings and residential units, and the possible differences between locations and geometries. In our research we have tried to solve these problems by using a semantic way of describing relations throughout space and time. This is based on a Linked Open Data ontology in which spatio-temporal entities (e.g., addresses or cadastral plots) can be related to other such units. Abstracting from the spatial implementation of the unit by describing it on a semantic level provides an opportunity to link multiple geometrical features (point, line and polygon) to it. In our infrastructure, therefore, unique georeferenced ID-numbers can be semantically joined to the unit, regardless of spatio-temporal fuzziness that may exists towards other geometries. Moreover, the LOD approach enabled us to link geographical concepts for streets and neighbourhoods introduced at AdamLink (
+adamlink.nl/data
+).
+2. A Reconstruction of 19th-Century Amsterdam Dialects and Sociolects
+Marieke van Erp, Kristel Doreleijers and Nicoline van der Sijs
+According to the nineteenth-century linguist Johan Winkler (1874) a whopping 19 dialects were spoken in 19th-century Amsterdam, distributed over the various neighbourhoods. Alongside these dialects various sociolects were spoken throughout the city: those of the lower, middle and higher classes, and the slang language Bargoens. In our project, we are attempting to reconstruct the 19th-century Amsterdam dialect and social variation and by doing so we will test if the variation is indeed as high as Winkler claimed.
+For this purpose, we have collected over 8,000 phonological and lexical data points from sources dating from the end of the 18th century until the beginning of the 20th century. Our starting point were the lexical sources on Dutch Bargoens (the argot of thieves, beggars and tramps), collected by J.G.M. Moormann (2002). To this we added primary and secondary sources about Amsterdam dialects in the 19th century, e.g., glossaries or historical descriptions of the city, the results of a survey on the pronunciation and words of the Amsterdam dialect, conducted in 1877, and finally recordings of dialect speakers born in the late 19th or early 20th century from the Meertens Nederlandse Dialectenbank (
+www.meertens.knaw.nl/ndb/
+) and Nederlandse Liederenbank (
+www.liederenbank.nl/
+).
+The lexical data is converted to Linked Open Data using an adaptation of prior work on modelling diachronic data as RDF (Maks et al., 2016) which follows open standards such as the Lemon lexicon model for ontologies (Cimiano et al., 2016). For our use case, we extend this model with fine grained geographical information from AdamLink (
+adamlink.nl/
+), the Amsterdam georeference dataset. The data model is shown in Figure 1.
+Figure 1: Diachronic language model
+Besides modelling challenges, we also face several technical challenges in this conversion. One such challenge is for example the fact that dialectologists who have first identified the different dialects did not fully specify exactly where each dialect was spoken, but rather roughly identified areas as “between streets X and Y including their cross-streets.” Anchoring these areas geographically involves identifying the locations and lay of these streets in 1874, drawing the areas in a GIS system, and mapping the 1874 areas to coordinates. In all of these tasks, we benefit from prior GIS work.
+By connecting our language data to other data in the project, we can approach our research on the use and spread of data from different angles; for example, by investigating the connection to house prices and ‘higher’ sociolects.
+3. Amsterdam Elite in Geographical Context
+Ivo Zandhuis and Richard Zijdeman
+Recently, research has been done into the persistence of the elite over time, in studies such as Thomas Piketty's
+Capital in the 21st Century
+(2013) or Gregory Clark's
+The Son also Rises
+(2014). This subject has also been studied in the Netherlands, in particular by Boudien de Vries (1986), who conducted research into social mobility among the Amsterdam elite. Although innovative for the time, there are two major omissions in this study. It only looks at social and economic characteristics and does not take into account geographical or cultural context. In this contribution we suggest a method to fill this gap by combining existing datasets on elite, status and geography.
+In our research, we used the dataset by Boudien de Vries (1986), containing a sample of persons from the Amsterdam electoral rolls of respectively 1854 and 1884 (available at the City Archives of Amsterdam, finding aid 30272, inventory numbers 1 and 7, digitally available at
+https://archief.amsterdam/inventarissen/inventaris/30272.nl.html
+). We converted it into Linked Data and standardized three factors: the neighbourhood, the address and the occupation. Thanks to this standardization we were able to link three datasets already available on the web.
+Via the neighbourhood we related our observations to the population size per neighbourhood, created in the CEDAR project (Meroño Peñuela et al., 2016). Secondly, via the addresses we related both a geographical location on the map as well as a street name (
+data.adamlink.nl/adamnet/Heritage/
+). Finally, via the standardized occupation (in HISCO) we related a status value of the occupation (in HISCAM) (Zijdeman and Lambert, 2010). Standing on the shoulders of other data-giants we: (a) visualised the distribution of the elite (b) compared the elite density of neighbourhoods in 1854 and 1884, (c) studied the relation between status and elite density per neighbourhood. In addition, because of the same underlying geographical data we were able to relate our data to other datasets in this panel. By incorporating paintings and photographs from heritage collections of the City Archives, the Amsterdam Museum and the Rijksmuseum via the street name, we can paint a picture of the life of the elite, facilitating a presentation of our research for a broader audience.
+4. Entertainment Culture in Amsterdam From the 19
+th
+to the 20
+th
+Century
+Vincent Baptist, Julia Noordegraaf, Claartje Rasterhoff, Thunnis van Oort and Charlotte Vrielink
+Recent investigations into the circulation, exhibition and reception of film have benefited from the increasing availability of (digitized) data and the adjacent development of new, computational research methods (Ross et al., 2009), allowing scholars to place film within the broader socio-cultural and economic contexts in which it emerged (Maltby et al., 2011). Nevertheless, the social composition of early cinema audiences has remained hard to grasp, since relevant sources were sparse and difficult to analyse in combination. Even less is known about the extent to which cinema audiences overlapped with audiences of earlier performing arts, such as theatre and music.
+The potential of geospatial research and digital mapping practices has allowed us to develop more thorough insights into the historical audiences that flocked to local places of entertainment (Horak, 2016), in this case in Amsterdam. The Amsterdam Time Machine project has opened up new, integrated research approaches to identify and understand the notoriously ephemeral audiences of urban amusements, by providing the opportunity to combine heterogeneous cultural datasets (on cinema, theatre and nightlife) with social, economic and demographic data to explore correlations between venue locations, their cultural offer and the composition of potential local audiences.
+Within the collaborative framework of the Amsterdam Time Machine project, georeferenced and vectorised historical maps of Amsterdam were made available, on which we projected data concerning cinema, theatre and nightlife locations. While the online Dutch database
+Cinema Context
+contains information on cinemas and screened film programmes in the early 20
+th
+century (Dibbets, 2010), the Special Collections department of the Amsterdam University Library published an extensive overview of past theatre locations (Logger, 2007). By converting these data into Linked Open Data, the locations of entertainment venues were connected to lists of historical Amsterdam neighbourhoods and addresses made available within the overarching Amsterdam Time Machine project.
+In order to gain a more complete view of the entertainment culture and nightlife that existed in Amsterdam, we further mapped fine-grained historical data contained in address books and registers of night licenses, that were originally held in the Amsterdam City Archives. By additionally combining this with data on the socio-economic composition of city neighbourhoods, we traced the correlations between the cultural programming of venues, the locations and characteristics of bars and restaurants, and the socio-demographic profiles of the neighbourhoods in which they were located for selected sample years.
+The establishment of the entertainment areas that we identify, both in the historical city’s centre and periphery, can be traced back through time. By investigating how sites of public entertainment were formed throughout the 19
+th
+century and persisted in the early 20
+th
+century, we further characterize these areas according to the diversity of culture, consumption and amusement that they offered. Additionally, this enables us to connect the emergence and distribution of entertainment sites to the socio-economic developments of the city’s neighbourhoods from the 19
+th
+to the 20
+th
+century, and to the findings on class and status in Amsterdam that are uncovered in the other Amsterdam Time Machine use cases.
+5. Uncovering Everyday Mobility and Street Use in Early Modern Amsterdam Through GIS and 3D
+Ivan Kisjes, Bob Pierik and Danielle van den Heuvel
+Throughout history and across cultures, women are seen as destined for the home instead of the street. At the same time, women ventured out regularly to shop, work, pray, and play. The project investigates the relationship between women and the urban environment in a time when historians believe restrictions on female movement greatly intensified, by comparing gendered street use in early modern Amsterdam and Tokyo (Edo) between 1600 and 1850 (Van den Heuvel, 2018). It employs an innovative approach to studying the gendering of urban space by digitally reconstructing street use. This paper discusses the data model and first outcomes of the research on Amsterdam.
+Information is gathered from a large variety of sources (notarial archives, diaries, historic prints and paintings etc.). To accommodate such disparate information, an event-based, tripartite data model is used: events, people and locations. This makes it possible to enter all relevant information from the sources and provides a flexible way to coherently connect such complex data in a way that makes quantitative analysis possible (Carus and Ogilvie, 2009; Fiebranz et al., 2011).
+All this information is put into a spatial database (PostgreSQL/PostGIS), making it possible to analyse movement of people and events through space and time (Kim, 2015). Interfaces specific to the source type (an annotation interface for images, a transcription one for notarial sources) were developed for entering the data, and connected to the same database. Additional GIS techniques (such as automatic vectorization of maps) provides contextual data to which the events can be related.
+The data model facilitates a long-term intersectional analysis of gendered mobility and street use. We are able to show to what extent men and women stuck to areas of the same social class as those where they themselves resided. This provides important insights into how gendered (im)mobility was dependent on social segregation (Lesger and Van Leeuwen, 2012). We can also reconstruct seasonality in movement, as well as how Amsterdam’s street life changed during the course of a day.
+Finally, 3D models of early modern Amsterdam allow for an investigation of the relationship between the urban form and activities in certain urban spaces. For instance, it helps determine the ‘hiddenness’ of streets, to be able to investigate if particular events types occurred predominantly in unobserved spaces (Cowan, 2011). A reconstruction of the early modern street network furthermore makes it possible to do spatial network queries like shortest path analysis (how far did men and women venture from their residences at various times of day?) and makes it possible to estimate how busy a particular street was at a certain time of day (Dijkstra, 1959).
+The project uniquely records the events and people hitherto largely unmentioned in history because of their peripheral appearance in historic documents, and provides new insight into the historic urban environment in a quantitative way. The data gathered in the project is essential to the framework, as it consists of the daily goings-on in the streets of the historic city.
+Bibliography
+Bodenhamer, D. J., Corrigan, J. and Harris, T. M.
+(2010).
+The Spatial Humanities: GIS and the Future of Humanities scholarship
+. Bloomington, IN: Indiana University Press.
+Bodenhamer, D. J., Corrigan, J. and Harris, T. M.
+(2015).
+Deep Maps and Spatial Narratives
+. Bloomington, IN: Indiana University Press.
+Carus, A. W. and Ogilvie, S.
+(2009). Turning Qualitative into Quantitative Evidence: A Well-Used Method Made Explicit.
+The Economic History Review
+, 62(4): 893–925.
+Cimiano, Ph., McCrae, J.P. and Buitelaar, P.
+(2016).
+Lexicon Model for Ontologies: Community Report
+. W3C
+Clark, G.
+(2014).
+The son also rises: Surnames and the history of social mobility.
+Princeton, NJ: Princeton University Press.
+Cowan, A.
+(2011). Seeing is believing: Urban gossip and the balcony in early modern Venice.
+Gender & History
+, 23: 721-38.
+De Vries, B.M.A.
+(1986).
+Electoraat en elite: Sociale structuur en sociale mobiliteit in Amsterdam, 1850-1895.
+Amsterdam: Bataafsche Leeuw. Dataset: DANS.
+https://doi.org/10.17026/dans-xez-eqdv
+Dibbets, K.
+(2010).
+Cinema Context
+and the Genes of Film History.
+New Review of Film and Television Studies
+, 8(3): 331-42.
+Dijkstra, E. W.
+(1959). A note on two problems in connexion with graphs.
+Numerische Mathematik
+, 1: 269–71.
+Fiebranz, R., Lindberg, E., Lindström, J. and Ågren, M.
+(2011). Making Verbs Count: The Research Project ‘Gender and Work’ and Its Methodology.
+Scandinavian Economic History Review
+, 59(3): 273–93.
+Horak, L.
+(2016). Using Digital Maps to Investigate Cinema History. In Acland, Ch.R. and Hoyt, E. (eds),
+The Arclight Guidebook to Media History and the Digital Humanities
+. Falmer: REFRAME Books, pp. 65-102.
+Kim, A.M.
+(2015).
+Sidewalk City: Remapping Public Space in Ho Chi Minh City
+. Chicago and London: The University of Chicago Press.
+Lesger, C. and Van Leeuwen, M.H.D.
+(2012). Residential Segregation from the Sixteenth to the Nineteenth Century: Evidence from the Netherlands.
+The Journal of Interdisciplinary History
+, 42(3): 333–69.
+Logger, B.
+(2007).
+Theaters in Nederland sinds de zeventiende eeuw
+. Amsterdam: Theater Instituut Nederland.
+Maks, I., Van Erp, M., Vossen, P., Hoekstra, R. and Van der Sijs, N.
+(2016). Integrating Diachronous Conceptual Lexicons through Linked Open Data.
+DHBenelux 2016
+,
+http://2016.dhbenelux.org/wp-content/uploads/sites/4/2016/05/79_Maks-etal_FinalAbstract_DHBenelux2016_demo.pdf
+.
+Maltby, R., Biltereyst, D. and Meers, Ph. (eds)
+(2011).
+Explorations in New Cinema History: Approaches and Case Studies
+. Chichester, Malden and Oxford: Blackwell Publishing.
+Meroño Peñuela, A., Ashkpour, A. and Guéret, C.
+(2016).
+CEDAR RDF database, the Dutch historical censuses (1795-1971) as Linked Open Data.
+The Hague: DANS.
+https://doi.org/10.17026/dans-xpk-wj5w
+Mol, J.A.
+(2015). Building a parcel based historical GIS for the Netherlands with the cadastre of 1812-1832: results, problems and perspectives. In Busch, M., Kroll, S., Olesen, J.E., Schoedel, M. and Zölitzer, R. (eds.),
+Die Schwedische Landesaufnahme von Vorpommern 1692-1709: Ergebnisse eines Editionsprojektes im Kontext der Forschung.
+Kiel: Ludwig, pp. 35-54, 160-64.
+Moormann, J.G.M.
+(2002).
+De ge­heimta­len: Het Bargoense standaardwerk met een nieuw, nagelaten deel
+. Bezorgd door N. van der Sijs, met een in­leiding van E. Endt. Amsterdam: L.J. Veen.
+Piketty, T. and Goldhammer, A.
+(2013).
+Capital in the twenty-first century.
+Cambridge, MA: Harvard University Press.
+Ross, M., Grauer, M. and Freisleben, B. (eds)
+(2009).
+Digital Tools in Media Studies: Analysis and Research
+. Bielefeld: Transcript.
+Tilly, Ch.
+(2015).
+Explaining Social Processes
+. London: Routledge.
+Van den Heuvel, D.
+(2018). Gender in the Streets of the Premodern City.
+Journal of Urban History
+, first published May 21,
+https://doi.org/10.1177/0096144218768493
+.
+White, R.
+(2010). What is Spatial History?
+Spatial History Lab: Working paper
+, 1 February 2010.
+https://web.stanford.edu/group/spatialhistory/cgi-bin/site/pub.php?id=29
+Winkler, J.
+(1874).
+Algemeen Nederduitsch en Friesch Dialecticon
+. ’s-Gravenhage: Martinus Nijhoff
+.
+Zijdeman, R. and Lambert, P.
+(2010). Measuring Social Structure in the Past: A Comparison of Historical Class Schemes and Occupational Stratification Scales on Dutch 19th and Early 20th Century Data.
+Journal of Belgian History
+, 40: 111–41.

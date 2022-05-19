@@ -1,0 +1,98 @@
+1. Introduction
+For nearly a decade, Brian Vickers has been championing a method of authorship attribution for Early Modern Drama based on the number of rare 3-6-word Ngram matches between an authorial corpus and an anonymous play that are found nowhere else in a reference corpus (Vickers, 2008, 2009, 2010, 2011, 2012). He has consistently argued that word-Ngrams are more appropriate than simple words because of the idiomatic nature of language, but he has recently intensified his attack in “The Misuse of Function Words in Shakespeare Authorship Studies” (2016). Although Vickers claims conclusive results on plays and even parts of plays, his method has been challenged (Burrows, 2012, Craig and Kinney, 2009, Hoover, 2011, 2012, Jackson, 2008, 2010). Three more recent challenges are especially significant.
+Antonia, Craig, and Elliott assess “the quality and quantity of authorial markers . . . , rather than success in classification” (2014: 152). They show that, in spite of the inherent sequentiality of language, single words are sometimes the most powerful variables, including in a test on Early Modern Drama. They test only words and word-Ngrams, but their study confirms the effectiveness of frequent words for authorship attribution of drama and offers no significant support for the effectiveness of rare Ngrams.
+Jackson accepts the potential usefulness of rare Ngrams while criticizing Vickers’s method (2014). He shows that the presence of many rare word-Ngram matches between Kyd’s corpus and
+Arden of Faversham
+that are found nowhere in other plays of the period does not provide conclusive evidence of Kyd’s authorship because Vickers has not compared the numbers of such matches in plays by other authors. He reports that two Shakespeare plays each “afford considerably more unique matches than any of the three canonical Kyd plays” (2014: 54). Jackson’s work is impressive, but the Early Modern Drama corpus is so problematic that it cannot provide clarity on the question of Vickers’s method. Early Modern spelling variability makes fully automated methods impossible, many of the plays are anonymous, many are not reliably dated, and the majority have been lost entirely (Vickers, 2008: 13).
+Finally, Hoover’s tests of the Vickers method on Victorian drama show that some tests fail and that strong false positives can occur (2015). These results are similar to his earlier results on narrative fiction and Modern American poetry (2010, 2011). Unfortunately, he does not include testing with frequent words, frequent character-Ngrams, or frequent word-Ngrams, and crucially does not test the methods head-to-head on exactly the same texts.
+2. The Vickers attack on frequent function words
+Vickers’s recent attack on function words adds somewhat contradictory arguments to his usual argument based on the idiomatic nature of language. First, contrary to the widely-shared view that function words are appropriate variables because their relatively unconscious makes intentional manipulation unlikely, he argues that they are not necessarily used unconsciously (2016, 6-9). Second, he argues that “they are minutiae of usage, of no appreciable significance; and . . . , they exist below the threshold of our unaided perception” (18). He ignores the fact that many analysts use longer word lists including many lexical words. He also argues that authors of drama create distinct idioms for their characters, so that word frequencies cannot capture the author’s own idiom (16). This criticism applies to most genres, and seems to apply to his own method as well, as he accepts rare Ngram matches with any character in a play as evidence of authorial identity. Its chief weakness, however, is that the effectiveness of (function) words as variables for the attribution of drama can be tested empirically, so that this argument, like his other a priori arguments, seems largely irrelevant. It is to such testing that I now turn.
+3. Frequent words, frequent word-ngrams, and frequent character-ngrams and Victorian drama
+I began with a corpus of 125 Victorian plays and 2,600-word sections of plays that mirrors Vickers’s corpus–with Hoover’s extensions (2015)–as closely as possible. I selected 6 authors with corpora of 7 or more plays and treated 4 plays and a 2600-word section from each as if they were anonymous. Using the remaining plays as knowns, I tested these 30 test texts using words, character-2grams, -3grams, and -4grams, and word-2grams, -3grams, and -4grams, using 6 of the methods implemented in JGAAP (Juola, 2009): Burrows’s Delta, Linear Discriminant Analysis, Nearest Neighbor Driver with metric Kendall Correlation TauB, WEKA Linear Regression, WEKA Multilayer Perceptron, and WEKA SMO r: Polynomial. JGAAP was chosen because of its wide variety of methods and variables; testing with Stylo (Eder et. al., 2016) and other methods gave similar results. The best results were 93.3% correct for the 300 most frequent words and the 300 most frequent character-4grams, though words performed better overall. Character-2grams and 3grams were weaker, and word-Ngrams were weaker still (4grams weaker than 3grams, which were weaker than 2grams).
+The best results for 7 authors with smaller corpora were 95% correct, but this was achieved just once, based on the 300 most frequent words, and results were weaker overall, presumably because of the smaller corpora (2-4 plays) and because a higher proportion of the test texts were 2600-word sections. Words again gave the best results, then character-2grams, character-4grams, and word-2grams. Longer word-Ngrams gave much weaker results.
+These results clearly refute Vickers’s arguments that frequent words are inappropriate for the attribution of drama. Although character-Ngrams are effective for these texts, words alone are even more effective, and increasingly longer word-Ngrams are increasingly ineffective. These results are quite strong, especially considering that 6 of the 30 test texts in the first test and 9 of the 20 in the second are 2,600-word sections.
+4. Rare ngrams and Victorian drama
+How well does Vickers’s rare Ngram method perform on these same texts? I collected all the 3- to 6-word Ngrams that occur at least twice in the 125-text corpus. I established a reference corpus of 86 plays by 14 authors (minimum 3 plays each), and a set of 14 plays and 8 sections of 2,600 words by authors outside the reference corpus, and 2 additional plays and 15 sections of 2,600 words by reference set authors. These 39 additional texts allow a comparison of the frequencies of Ngram matches between the authorial corpus and the author’s test texts and between the authorial corpus and texts by other authors. If Vickers is right, the test texts should contain many more rare Ngram matches with the authorial corpus than texts by other authors do.
+To test an author from the reference corpus, I remove that author’s plays and delete all the 3- to 6-grams that occur in the remaining reference corpus. I then create an authorial corpus that matches the known texts tested in JGAAP and delete all the 3- to 6-grams that are absent from it. Because the texts differ greatly in length, I divide the total number of occurrences of each Ngram by the length of the text in words to give a measure of frequency relative to text-length, and then sort the test texts and sections on this frequency. (Vickers gives raw numbers, ignoring the effect of the lengths of the plays; Jackson uses matches per 1,000 lines as a measure of relative frequency [2008: 123-25].) The most favorable measure of success is to count just one error for each of the author’s test texts that is outscored by any text by another author. By this measure, the overall success of Vickers’s method for the 30 test texts 63.3%. All 5 texts by Byron and Phillips are correctly attributed, showing that the test is sometimes effective. Unfortunately, the four other authors show errors for 1, 2, 3, and all 5 test texts. For the 7 authors with smaller corpora, the results are much worse: no author’s texts outscore all texts by other authors, and the overall success rate is just 45%. (Many of these small corpora are the same size as Vickers’s Kyd corpus.) Yet, even these poor results underestimate just how badly the method fails: 20 or more plays or sections by other authors (more than half) outscore 3 of the test texts in the 2 sets, and 10 or more outscore another 5 of the test texts.
+5. Conclusion
+As attractive as Vickers’s rare Ngram method initially seems, and in spite of its apparent effectiveness for some authors, it cannot offer the conclusive proof of authorship that Vickers claims. Frequent words, contrary to Vickers’s a priori arguments, are quite effective in attributing plays and even short sections of plays to their authors, and very much more effective than rare Ngrams (as are frequent character-Ngrams). It is presumably possible that Early Modern Drama is different enough from Victorian drama that the method works better there. However, the results presented here, combined with those for narrative fiction and modern American poetry (Hoover, 2011, 2012), strongly suggest that rare Ngram matching is not a sound method of authorship attribution.
+Bibliography
+Antonia, A., Craig, H. and Elliott, J.
+(2014). Language chunking, data sparseness, and the value of a long marker list: explorations with word n-grams and authorial attribution.
+Literary and Linguistic Computing
+,
+29
+(2): 147–63.
+Burrows, J.
+(2012). A second opinion on ‘Shakespeare and authorship studies in the twenty-first century’.
+Shakespeare Quarterly
+,
+63
+(3): 355–92.
+Craig, H., and Kinney, A., eds.
+(2009).
+Shakespeare, Computers, and the Mystery of Authorship
+. Cambridge: Cambridge University Press.
+Eder, M., Rybicki, J., and Kestemont, M.
+(2016). Stylometry with R: a package for computational text analysis.
+R Journal
+, 8(1): 107-121
+Hoover, D. L.
+(2011). Delta, Zeta, and Iota: An ngrammatical investigation.
+Language Individuation: A Symposium in Honour of John Burrows
+, University of Newcastle, Australia, July 4-8.
+----.
+(2012). The rarer they are, the more there are, the less they matter.
+Digital Humanities 2012.
+Hamburg: Hamburg University Press: 218-21.
+----.
+(2015). Rare n-Grams, Victorian drama, and authorship attribution.
+Digital Humanities 2015: Global Digital Humanities
+, Sydney: University of Western Sydney, n.p.
+Jackson, MacD. P.
+(2008). New research on the dramatic canon of Thomas Kyd.
+Research Opportunities in Medieval & Renaissance Drama
+, 47: 107-127.
+----.
+(2010). Parallels and poetry: Shakespeare, Kyd, and
+Arden of Faversham
+.
+Medieval & Renaissance Drama in England,
+23: 17-33.
+----.
+(2014).
+Determining the Shakespeare Canon: Arden of Faversham and A Lover’s Complaint.
+Oxford: Oxford University Press.
+Juola, P.
+(2009). JGAAP: A system for comparative evaluation of authorship attribution.
+Journal of the Chicago Colloquium on Digital Humanities and Computer Science
+, 1(1): 1-5.
+Literature Online (LION)
+.
+Vickers, B.
+(2008). Thomas Kyd, secret sharer.
+Times Literary Supplement,
+18 April: 13-15.
+----.
+(2009). The marriage of philology and informatics.
+British Academy Review,
+14: 41-44.
+----.
+(2010). Disintegrated: Did Thomas Middleton really adapt Macbeth?
+Times Literary Supplement
+, 28 May: 13-14.
+----.
+(2011). Shakespeare and authorship studies in the twenty-first century.
+Shakespeare Quarterly,
+62
+(1): 106-42.
+----.
+(2012). Identifying Shakespeare’s additions to
+The Spanish Tragedy
+(1602): A new(er) approach.
+Shakespeare
+, 8: 13-43.
+----.
+(2012) The misuse of function words in Shakespeare authorship studies, full paper version of what is the appropriate authorship attribution method for Elizabethan drama?
+Göttingen Dialog in Digital Humanities
+, November 30.

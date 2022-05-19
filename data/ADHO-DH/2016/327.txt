@@ -1,0 +1,232 @@
+Tracing the "origins of pictorial species" (to borrow Larry Silver's turn of phrase) has long been an interest of art historians. (Silver, 2006) The emergence of distinct genres of painting (e.g. dedicated landscapes or still-lifes) in the sixteenth and seventeenth centuries in Europe, and in the Netherlands in particular, has proven especially fascinating. Historians of art and economics have hypothesized that, by specializing in standalone still-lifes, landscapes, or so-called "genre scenes" of everyday life, painters may have reaped two advantages: an opportunity to distinguish themselves in the uniquely competitive art market in the sixteenth- and seventeenth-century Netherlands; and the ability to efficiently paint similar compositions over and over again. (Chong, 1987; Montias, 1988) But would professional printmakers also have adopted this specialization strategy? Or did the medium, which was often put to use making reproductions after other artists' designs, instead favor etchers and engravers willing to render the works of a wide variety of artists? Existing case studies present conflicting evidence. How can we test this question at scale?
+While Silver only invokes speciation as a metaphor, ecology may offer a useful quantitative model for thinking about genre specialization. A common measurement of species diversity (Shannon's diversity metric) can be used to characterize artists' relative specialization or diversification in genre, thus allowing us to gain a broader perspective on printmakers' specialization or diversification strategies. I will first demonstrate how this index can detect Dutch painters' trend towards genre specialization from a database of paintings seventeenth-century Dutch household inventories, and a comprehensive database of Dutch paintings in modern-day museum collections. I will then use it to test whether or not we can detect similar results in a database of prints maintained by the Rijksmuseum.
+Methodology
+Whether looking at the diversity of species within an ecosystem, or the variety of different industries within a state, diversity measures have to account for two dimensions:
+Categorical: How many discrete classes are observed?
+Allocation: How even is the distribution of units among categories?
+Shannon's measurement of diversity (
+D
+s
+), a widely-used metric, captures both of these dimensions of diversity.
+Shannon's diversity index
+D
+s
+is defined as the negative sum of the proportions of every class size within the population multiplied by their logged equivalents, where
+n
+i
+is the number of observations in class
+i
+, and
+N
+is the total population size:
+D
+s
+=
+-
+∑
+n
+i
+N
+l
+n
+n
+i
+N
+For the original derivation of Shannon's diversity, see (Shannon and Weaver, 1949); for the R implementation of this formula, see (Oksanen et al., 2015).
+Originally developed to characterize entropy in information transmission, this metric of diversity has been applied to the studies as diverse as ecological diversity, economic specialization, and racial segregation. (Gibbs and Martin, 1962; Ottaviano et al., 2003) To measure whether specialization or generalization was more favored by painters and printmakers, each artist's oeuvre is treated as a "population" with a single diversity score calculated per artist. By this measure, a population whose members are distributed evenly across several different species/categories will have a higher diversity index than a population whose members are largely concentrated in just one category.
+Data
+Figure The number of unique artists and artworks represented in each dataset, subdivided by birth year
+This study is based on two sources of information about paintings, and one source for prints.
+The first, a modern resource, is the
+RKDimages
+database compiled by the Rijksbureau voor Kunsthistorische Documentatie.
+https://rkd.nl/en/explore/images
+This catalog of Dutch and Flemish artworks extant in collections around the world contains approximately 13,000 dated and attributed paintings that have each been tagged with a series of keywords (on average between 6 to 7 keywords per painting) describing their subject matter.
+These keywords have been assigned by hand by researchers at the RKD, building on the index cards typewritten by Hofstede de Groot (1863--1930) that have served as the foundation of the RKD's current digital databases.
+The scale of the RKD database makes it unfeasible for the individual researcher to manually categorize each artwork into a single broad subject category. Therefore, I identified clusters of artworks that shared groups of keywords though community detection on a constructed graph where each object was connected to others based on shared RKD subject keywords.
+On the community detection algorithm, see (Blondel et al. ,2008); implemented in R by (Csardi and Nepusz, 2006).
+I then checked the resulting groups manually to confirm that they did, in fact, corresponded relatively well to common genre categories. The resulting groups roughly encompassed: 1) portraits, 2) still lifes, 3) landscapes, 4) religious paintings, and 5) a looser array of other works that featured multiple figures (generally genre scenes or history subjects).
+Because the surviving paintings in the RKD database are a biased proxy of the
+actual
+patterns of paintings produced in the seventeenth century, it is crucial to compare the trends derived from the RKD's modern database against contemporary archival records. The Montias Database of 17th Century Dutch Art Inventories, maintained by the Frick Art Reference Library, contains information on household inventories from Amsterdam that were recorded between 1575 and 1700.
+http://research.frick.org/montias/home.php
+Of these inventories, 1153 contained at least two paintings The Montias Database has 86 different subject headings, which have been manually grouped into the same general set of subject headings that we used for the RKD database.
+The number of subject headings detailed by Montias are small enough that it was feasible to manually generate a concordance between the 86 original subject headings and the ten subject headings used by Van der Woude in his study of the same database: "old testament", "new testament", "other religious", "mythology-allegory", "history", "landscape", "genre", "still life", "portrait", "animals", "other", and "unknown"; (van der Woude, 1991).
+The MDI describes 34,147 paintings, of which 26,349 (about 77% of the total) have an identified subject (the rest are labeled "unknown"), with 4,377 of those described paintings (about 13% of the total) attributed to a specific artist.
+This limited level of description common in collection inventories from the seventeenth century. While it was common to describe the subject of the painting and its size, notaries generally did not make an attribution of an artwork unless its painter was well-known enough that its attribution would have impacted the painting's monetary value.
+The Montias inventories are also an imperfect reflection of seventeenth-century painting production, being biased towards rich collectors, mostly in Amsterdam, who died with outstanding debt. However, if both the modern and contemporary datasets reveal similar patterns in specialization, this would strengthen the case for claiming that a trend towards specialization existed historically. (De Vries, 1991:259--260.)
+Unfortunately, there are virtually no seventeenth-century inventories that catalog individual prints. Instead, we rely solely on the surviving prints in the collection of the Rijksmuseum
+https://www.rijksmuseum.nl/
+: an imperfect source, though one that is also unparalleled in its coverage of known surviving prints from this period. The Rijksmuseum has classified their artworks based on the ICONCLASS system for tagging iconography in European art
+http://iconclass.org/
+, and this has also been mapped to the same broader categories used in the Montias database. Multiple impressions of the same print have been roughly disambiguated by removing prints with a duplicate engraver, title, and dates. This study is also only considering reproductive prints, so prints made by engravers or etchers after their own designs are excluded from this analysis.
+Results
+Figure The oeuvre diversity ranges of painters (Montias and RKD datasets) and printmakers (RKM dataset) born at different points between 1500 and 1700
+We find that, although both the Montias and RKD paintings datasets show wide variation, with both highly specialized painters and highly diversified ones, both datasets reflect an increasing number of specialized painters born after 1600, as shown by a decreasing median oeuvre diversity. On the other hand, the median oeuvre diversity of printmakers in the Rijksmuseum dataset remains consistent during the entire period of study. This confirms the widely-held hypothesis that an increasing number of Dutch painters defined a niche for themselves by specializing in a particular genre. The results also appear to support the previously-unexamined hypothesis that reproductive printmakers instead favored making prints after a wide array of artworks; printmakers who did define highly specialized niches appear to have been the exception, rather than the norm.
+So what subjects did these specialists prefer? Prolific specialized painters overwhelmingly favored landscapes: of those artists in the bottom diversity quartile (i.e. the 25% most specialized painters in the Montias database), almost 85% of their paintings are described as landscapes, followed in a distant second by still-life paintings. Landscape was a genre that was both highly conventionalized - it was easy to produce endless variations on the same general set of topographical motifs - and also amenable to a very efficient technique - a landscape could be rendered in broad brushwork with a limited palette and still be an aesthetic success. (Goedde, 1997) Still-life paintings in this period were also, by in large, the purview of specialists. They may comprise a much smaller share of the total number of paintings in the Montias database because, unlike landscapes, the aesthetic effect of still lifes was often dependent on the painter's mimetic skill and illusionistc finish - not a technique conducive to speedy production.
+On the other hand, of those printmakers who
+did
+specialize in particular genres of prints, we do not find a single dominant theme. Rather, a few specialties rise to the top: "news" prints depicting current events, architectural illustrations, and allegorical or biblical series prints. Those printmakers who did specialize (Table 1) did not rely on prints as their main means of support; many were specialist painters who happened to produce prints as well. But these printmakers were outnumbered by those professional printmakers (Table 2) who were willing and able to render reproductions after a wide variety of artists. This flexibility could have presented an attractive insurance policy for print publishers, who had to continually react to the demands of a quickly-moving market for artistic prints and illustrations, while also appealing to the seventeenth-century function of prints as encyclopedic sources of knowledge. (MacGregor, 1999:395)
+artist name
+works
+div
+subjects
+Abraham Dircksz Santvoort
+123
+0.74
+topographical views, history prints
+Allaert van Everdingen
+113
+0.77
+landscape, animals
+Adriaen van Ostade
+85
+0.67
+genre, low-life
+Isaac Vincentsz van der Vinne
+82
+0.23
+heraldry
+Reinier Nooms
+72
+0.58
+seascape
+Cornelis Dusart
+57
+0.76
+portraiture
+Theodoor van Thulden
+52
+0.68
+antiquity, mythology
+Cornelis Pietersz Bega
+36
+0.62
+genre
+Anthonie Waterloo
+35
+0.67
+landscape
+Table 1: The most productive Dutch and Flemish specialist printmakers (those falling below the 45th diversity percentile). Note that the count of "works" treats print series as a single work
+artist name
+works
+div
+subjects
+Jan Luyken
+2,047
+1.64
+bible scenes, seascape, genre, historical, architecture, titlepages
+Caspar Luyken
+454
+1.74
+bible, landscape, historical, genre, maps
+Aegidius Sadeler
+238
+1.80
+landscape, portraiture, allegory, mythology, religious
+Jacob Matham
+229
+1.73
+allegory, mythology, portraiture, biblical
+Hendrick Goltzius
+228
+1.80
+biblical, portraiture, allegory, antiquity, mythology, landscape
+Crispin van de Passe (I)
+203
+1.80
+moralizing allegories, portraiture, devotional, botanical, biblical
+Johannes Wierix
+215
+1.54
+portraiture, biblical, allegory, genre, mythology, devotional,
+Abraham Bloteling
+188
+1.72
+landscape, genre scenes, portraiture, mythological
+Cornelis Bloemaert (II)
+180
+1.69
+saints & other religious, biblical, portraiture
+Raphaël Sadeler (I)
+156
+1.57
+devotional series, biblical, allegory, mythology, titlepages
+Table 2: The most generalist Dutch and Flemish printmakers (those falling above the 85th diversity percentile)
+Bibliography
+Blondel, V. D., Guillaume, J.-L., Lambiotte, R. and Lefebvre, E.
+(2008). Fast Unfolding of Communities in Large Networks.
+Journal of Statistical Mechanics: Theory and Experiment
+,
+2008
+(10): P10008 doi:
+10.1088/1742-5468/2008/10/P10008
+.
+Chong, A.
+(1987). The Market for Landscape Painting in Seventeenth-Century Holland. In Sutton, P. C. and Blankert, A. (eds),
+Masters of Seventeenth-Century Dutch Landscape Painting
+. Boston: Museum of Fine Arts, pp. 104–20.
+Csardi, G. and Nepusz, T.
+(2006). The igraph Software Package for Complex Network Research.
+InterJournal
+: 1695.
+http://igraph.org
+.
+De Vries, J.
+(1991). Art History. In Freedberg, D. and De Vries, J. (eds),
+Art in History, History in Art: Studies in Seventeenth-Century Dutch Culture
+. Santa Monica: Getty Center for the History of Art & the Humanities, pp. 249–71.
+Gibbs, J. P. and Martin, W. T.
+(1962). Urbanization, Technology, and the Division of Labor: International Patterns.
+American Sociological Review
+,
+27
+(5): 667–77. doi:
+10.2307/2089624
+.
+Goedde, L. O.
+(1997). Naturalism as Convention: Subject, Style, and Artistic Self-Consciousness in Dutch Landscape. In Franits, W. E. (ed),
+Looking at Seventeenth-Century Dutch Art: Realism Reconsidered
+. Cambridge: Cambridge University Press, pp. 129–43.
+MacGregor, W. B.
+(1999). The Authority of Prints: An Early Modern Perspective.
+Art History
+,
+22
+(3): 389–420. doi:
+10.1111/1467-8365.00163
+.
+Montias, J. M.
+(1988). Art Dealers in the Seventeenth-Century Netherlands.
+Simiolus: Netherlands Quarterly for the History of Art
+,
+18
+(4): 244–56. doi:
+10.2307/3780702
+.
+Montias, J. M.
+(2015). The Montias Database of 17th Century Dutch Art Inventories. Frick art reference library Database.
+http://research.frick.org/montias/home.php
+.
+Oksanen, J., Blanchet, F. G., Kindt, R., Legendre, P., Minchin, P. R., O’Hara, R. B., Sipson, G. L., Solymos, P., Stevens, M. H. H. and Wagner, H.
+(2015). Vegan: Community Ecology Package R Package (version 2.2-1) R Package (version 2.2-1), ms
+http://cran.r-project.org/package=vegan
+.
+Ottaviano, G. I. P., Pinelli, D., Maignan, C. J. and Rullani, F.
+(2003).
+Bio-Ecological Diversity Vs. Socio-Economic Diversity: A Comparison of Existing Measures
+. SSRN Scholarly Paper.
+http://papers.ssrn.com/abstract=389043
+.
+Shannon, C. E. and Weaver, W.
+(1949).
+The Mathematical Theory of Communication
+. Urbana: University of Illinois Press.
+Silver, L.
+(2006).
+Peasant Scenes and Landscapes: The Rise of Pictorial Genres in the Antwerp Art Market
+. Philadelphia: University of Pennsylvania Press.
+Woude, A. M. van der
+(1991). The Volume and Value of Paintings in Holland at the Time of the Dutch Republic. In Freedberg, D. and De Vries, J. (eds),
+Art in History, History in Art: Studies in Seventeenth-Century Dutch Culture
+. Santa Monica: Getty Center for the History of Art & the Humanities, pp. 285–329.

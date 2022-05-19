@@ -1,0 +1,91 @@
+The French-Israeli project
+Tikkoun Sofrim
+is part of a network of projects (
+,
+Sofer Mahir
+,
+eRabbinica
+,
+Scribes of the Cairo Genizah
+,
+Scripta-PSL
+) aimed at developing a future framework for comprehensive and systematic textual availability, editions and deep annotation of (Hebrew) manuscripts via a pipeline that combines HTR with crowdsourcing the corrections and validation by scholars. End uses are scholarly editions (with
+TEI-Publisher
+), library service (integration via
+mirador
+), automatic annotation, distant-reading and big-data studies.
+The sample
+The project focuses on Tanhuma-Yelamdenu Midrashim, late rabbinic exegetical works without full scholarly critical edition, even thought vulgate editions in two recensions [1,2] and translations exist [3]. Unlike other classical works, they were not subject to formal canonization, but went through a long period of fluid transmission [4]. Manuscripts differ significantly from each other on the micro- and macro-levels. The texts reflect different possible hierarchies following the biblical text, liturgical rites or divisions in early print editions. Hence, the envisaged data structure will need to go beyond a simple canonical structure to support flexible accessibility to the texts both from library and critical edition perspectives.
+HTR
+The current Layout analysis is based on the z-profile-method for column detection [5] and the heartbeat-seam-carve algorithm for line detection [6], well adapted for literary manuscripts with regular layout. Textual ground truth was created by manual transcription from scratch or through the adaptation of transcriptions sent by scholars who had worked on manuscript-parts. Using the open-source kraken engine [7], we trained models for four large manuscripts (
+Geneva Com. Lat. 146
+,
+BNF Cod. Héb 150
+,
+Bibl. Vaticana ebr. 44 vol. 1
+and
+2
+,
+Parma, Palatina, Cod. Parm. 312
+2
+) [8]. The CERs vary between 2.8% (BNF), 2.9% (Parma), 6.9% (Vatican) and 8.9% (Geneva). The likely reasons for the weaker results for Vatican and Geneva were the use of low resolution images (Vatican) as well as binarization issues, curved lines and superposed words (Geneva). These issues will be dealt with in an upcoming, much improved layout analysis based on state-of-the-art CNNs part of
+kraken@eScriptorium
+at PSL [9,10,11].
+Crowdsourcing
+Our
+crowdsourcing platform
+opened on Feb. 13th, 2019 [12]. To maximise our reach, we offer a designated UI for mobile and desktop. The technological stack used for development was selected to simplify future code contribution and collaboration with other platforms: Vue.js / Google-Firebase for the operational site and MySQL for analytical purposes.
+Since classical rabbinic literature is still thriving in contemporary ritual and religious study cycles, we based community recruitment and engagement on links to websites for daily studies following annual and other cycles of studies. The launching was set to the beginning of Deuteronomy in
+929
+, a community daily Hebrew Bible chapter project, and we assigned fitting pages to each biblical chapter.
+While the link with 929 proved very fruitful for a first broad exposure to the public, by and large ongoing traffic mainly came from intensive facebook activity in relevant groups and pages.
+Attracted first by hilarious mistakes in the automatic transcription, users continued into long term engagement. Other crowd-engagement methods involved presentations in schools, synagogues, universities and homes for senior citizens Israel, France and the US. Two articles in the press, one of which included the URL of our website, greatly augmented the number of users in week 6 [13,14].
+Results
+Until April 26, we received on the average 5005 lines per week:
+Mega-users (>1000 lines) and super-users (>100 lines), presenting 4.6% and 19.3% of the number of user, provided almost 80% of the total amount of transcriptions.
+Based on the submitted transcriptions, we produced an alignment on the word level with
+collatex
+[15,16]. With a majority vote, we established a preliminary complete text for the 590 pages of Geneva 146. According to manual check, the automatic reconstruction results in about two mistakes per page (ca. 1700 glyphs/page), i.e. an accuracy of ca. 99.8%, most of which concern markup for additions or deletions.
+A transcription based on collating contributions of 5 users/line.
+Conclusions and outlook
+We now have the tools and know-how for high-quality automatic transcription of Hebrew manuscripts. Crowdsourcing is a promising mechanism for correcting remaining errors. Future versions of the platform should include embedded community engagement, feedback elements to ensure continuity and optimize social media engagement activity.
+The project [17] provides PoC for future large scale production of manuscript texts, based on combined deep learning and crowdsourcing mechanisms. These will be based on optimizing the performance of HTR engines and crowd task-assignment, using crowd based transfer learning and weak supervision
+.
+Bibliography
+N.N. (1960). Midrash Tanhuma, Jerusalem. [standard ‘print-edition’]
+Buber, S. (1885).
+Midrash Tanhuma
+, Jerusalem 1964=Vilna 1885 [‘Buber-edition’]
+Townsend, J. (1989-2003). Midrash Tanhuma. Translated into English with Introduction, Indices and Brief Notes, Hoboken, NJ, New York.
+Bregman, M. (2003). The Tanhuma-Yelammedenu Literature: Studies in the Evolution of the Versions. Piscataway, NJ (Hebrew).
+Stökl Ben Ezra, D., Lapin, H. (2019). Z-profile: Holistic Preprocessing Applied to Hebrew Manuscripts for HTR with Ocropy and Kraken. Submitted. Code available at:
+https://github.com/ephenum/z-profile_column_segmentation
+.
+Seuret, M., Stökl Ben Ezra, D., Liwicki. M. (2017). Robust Heartbeat-based Line Segmentation Methods for Regular Texts and Paratextual Elements. HIP@ICDAR: 71-76. Code available at:
+https://github.com/ephenum/heartbeat_seamcarve_line_segmentation
+Kiessling, B. (2019). Kraken - an Universal Text Recognizer for the Humanities, DH2019, in preparation. Kraken github :
+Geneva Com. Lat. 146
+,
+BNF Cod. Héb 150
+,
+Bibl. Vaticana ebr. 44 vol. 1
+and
+2
+,
+Parma, Palatina, Cod. Parm. 3123
+.
+Kiessling B., Stoekl Ben-Ezra D., Miller M. T., BADAM: A Public Dataset for Baseline Detection in Arabic-script Manuscripts, submitted to ICDAR 2019.
+Stokes, P., Stökl Ben Ezra, D., Kiessling, B., Tissot R. (2019). A New Digital Platform for the Study of Historical Texts and Writing. Digital Humanities 2019 Book of Abstracts. Utrecht.
+eScriptorium gitlab :
+https://gitlab.inria.fr/scripta/escriptorium
+Wecker, A., Stökl Ben Ezra, D., Raziel-Kretzmer, V., Schor, U., Kuflik, T., Ohali, A., Elovits, D., Lavee, M., Stevenson, P. (2019). Tikkoun Sofrim: A WebApp for Personalization and Adaptation of Crowdsourcing Transcriptions. Poster at UMAP’19 Adjunct, June 9-12, 2019, Larnaca. New York: ACM Press.
+https://doi.org/10.1145/3314183.3324972.
+Tikkoun Sofrim website:
+https://tikkoun-sofrim.firebaseapp.com/
+. Tikkoun Sofrim github:
+https://github.com/drore/tikkoun
+Dvir, N. (2019). חוכמת ההמונים תעזור לפענח טקסטים עבריים עתיקים, Israel Hayom. 21.3.2019
+Harari, O. (2019). בואו לעזור: שומרים על האוצר היהודי. Arutz 7, 21.3.2019.
+Dekker, R. H., van Hulle, D., Middell, G., Neyt, V. and van Zundert, J. (2015). Computer-supported collation of modern manuscripts: CollateX and the Beckett Digital Manuscript project. Literary and Linguistic Computing, 30: 452-470.
+Dekker, R. H. and Middell, G. (2011). Computer-Supported Collation with CollateX: Managing Textual Variance in an Environment with Varying Requirements. Supporting Digital Humanities 2011. University of Copenhagen, Denmark. 17-18 November 2011.
+PHC Maimonide 41146YC (2019-2020)

@@ -1,0 +1,71 @@
+Introduction
+As more and more libraries, museums, galleries and archives are making their collections available online, it is becoming essential to develop methods for accessing these vast and valuable collections of cultural heritage easily and thoroughly. One of the promising approaches is to automatically identify the database records that refer to the same entity across different collections, which is called “record linkage”. In the past, numerous approaches (Elmagarmid et al., 2007) have been proposed. Most of the existing approaches targeted to identify the same records in the same language. However, we aim to identify the same artworks in different languages.
+In our recent work, we have developed a method for identifying the same Ukiyo-e prints from databases in English and Japanese (Batjargal et al., 2014). This method is particularly useful since Ukiyo-e, the Japanese traditional woodblock printing, is engraving and many copies or variants of one particular work were made from the same woodblock, and most of these copies were scattered around Western countries in the 19th century, and now stored in museums and galleries in these countries. Most of the metadata of these databases are available only in English or in the native language of that country. Titles are mostly written either as the transliteration of the original Japanese title, or a translation in that language. Table 1 shows an example of an Ukiyo-e print whose copies are stored in databases around the world with titles in different languages.
+One of the effective approaches for identifying the same artworks from multiple image databases is to utilize image similarity calculations. Ukiyo-e.org (Resig, 2012; Resig, 2013) is the most successful example of identifying the same Ukiyo-e prints, which purely uses image similarities rather than textual data. The advantage of our approach is that we do not have to harvest all the data from the databases beforehand. This paper discusses the method for identifying the same Ukiyo-e records between Japanese and Dutch databases using textual metadata written in different languages.
+Table 1. The same Ukiyo-e print in different databases with titles in different languages
+Original Ukiyo-e print
+Title
+Database
+凱風快晴 (original title in Japanese)
+The Edo-Tokyo Museum, Japan
+Gaifū kaisei (transliteration)
+The Library of Congress, USA
+South Wind, Clear Sky (in English)
+The Metropolitan Museum of Art, USA
+Vent frais par matin clair (in French)
+French Photo Agency, France
+Helder weer en een zuidelijke wind (in Dutch)
+Rijksmuseum, Netherlands
+Fuji bei schönem Wetter von Süden gesehen (in German)
+Bildarchiv Foto Marburg, Germany
+Proposed approach
+Here we explain our method for identifying the same Ukiyo-e records between Japanese and Dutch databases. The proposed method is divided into two main parts as shown in Figure 1. One is the literal translation of original Japanese titles into Dutch, and the other is to find the English title of the same artwork and then translate it into Dutch. The reason of having two different parts is that the translated titles of Ukiyo-e can be classified into two types, a literal translation of the original title, and a translated title, which depicts the scene or objects portrayed in the print that is not necessarily related to the original title. There are a considerable numbers of depictive titles in the translated English and Dutch titles of Ukiyo-e prints.
+In the process of literal translation of original titles, first we translate the original Japanese title into Dutch by using a machine translation service (e.g. Google Translate or Microsoft Translator), and then we calculate the similarities between the literal translation and candidate Dutch titles using the similarity measure proposed in our previous approach (Kimura et al., 2015). Identified candidates are narrowed down from a Dutch database using the artist name of the original title.
+In the process of using English titles, first we identify the corresponding English title(s) of the original title using the method proposed in our previous approach, then we translate the English title(s) into Dutch using a machine translation service, and then we calculate the similarities between translated Dutch title(s) and candidate Dutch titles using the same similarity measure as the literal translation process. Finally, we integrate the results of two processes and identify the same artworks that exceed a certain threshold of the similarity degree.
+Figure 1. An illustration of the proposed method. Red arrows are the literal translation process and blue arrows are the process of using English titiles.
+Experimental evaluation
+We have conducted experiments to evaluate the proposed method. The experimental data is shown in Table 2 and the experimental results are shown in Table 3. In these experiments, we utilized the artworks of Hiroshige Utagawa.
+Table 2. Experimental data
+Language
+Database
+Number of available Ukiyo-e prints of Hiroshige Utagawa
+Japanese
+The Edo-Tokyo Museum
+32
+English
+The Metropolitan Museum of Art
+133
+Dutch
+Rijksmuseum
+207
+Table 3. Experimental results
+By employing the literal translation of original titles
+By employing the English titles
+Combining the literal translation and English titles
+Number of correctly identified titles within top 5 ranks (percentage)
+20/32 (0.6250)
+14/32 (0.4375)
+22/32 (0.6875)
+Conclusion
+We proposed a method for identifying the same Ukiyo-e prints across multiple databases using textual metadata written in different languages, particularly Japanese and Dutch. By using English titles as an intermediate text, we can find not only literally translated titles but also “depictive” titles, which are common in translation of Ukiyo-e prints’ titles that cannot be identified by a simple word-to-word matching. Our preliminary experiments showed reasonable results in identifying both literally translated titles and depictive titles. As the future work, we plan to extend the proposed method to other humanities databases.
+Bibliography
+Batjargal, B., Kuyama, T., Kimura, F. and Maeda, A.
+(2014). Identifying the same records across multiple Ukiyo-e image databases using textual data in different languages,
+Proceeding of the 2014 IEEE/ACM Joint Conference on Digital Libraries (JCDL)
+. London, United Kingdom, pp. 193–96.
+Elmagarmid, A. K., Ipeirotis, P. G. and Verykios, V. S.
+(2007). Duplicate Record Detection: A Survey.
+IEEE Transactions on Knowledge and Data Engineering
+.
+19
+: 1–16.
+Resig, J.
+(2013). Aggregating and analyzing digitized Japanese woodblock prints. Presented at the 3rd Annual Conference of the Japanese Association for Digital Humanities, Kyoto, Japan, September 2013.
+Resig, J.
+(2012). Japanese Woodblock Print Search
+.
+http://ukiyo-e.org/ (accessed 26 February 2016).
+Kimura, T., Batjargal, B., Kimura, F. and Maeda, A.
+(2015). Finding the Same Artworks from Multiple Databases in Different Languages.
+Digital Humanities 2015: Conference Abstracts
+. Sydney, Australia, June 2015.

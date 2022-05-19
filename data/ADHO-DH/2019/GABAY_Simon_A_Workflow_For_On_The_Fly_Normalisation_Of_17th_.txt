@@ -1,0 +1,262 @@
+Normalisation can be produced with various solutions (Baron and Rayson, 2008; Bollmann et al., 2011; Pettersson et al., 2013a; Pettersson et al., 2013b; Sánchez-Martínez et al., 2013; Porta et al., 2013; Scherrer and Erjavec, 2013; Pettersson et al., 2014; Bollmann and Søgaard, 2016; Ljubešic et al., 2016; Tjong Kim Sang et al., 2017; Domingo et al., 2017), but recent research have demonstrated that neural machine translation (NMT) is the most efficient (Korchagina, 2017; Domingo and Casacuberta, 2018a). However, moving from test to production of a working tool is not an easy task, because of the amount of training data required for machine learning. This paper present a solution to create a parallel corpus and deliver an NMT-based normaliser for early modern French.
+A first test corpus
+A first test has been made with the 1668 edition of
+Andromaque
+of Jean Racine (Racine, 1668) and the 1624 edition of the
+Lettres
+of Jean-Louis Guez de Balzac (Guez de Balzac, 1624).
+Author
+Text
+Date
+Lines
+Tokens
+Characters
+Corpus
+Guez de Balzac
+Correspondance
+1624
+1723
+49,589
+298,486
+Racine
+Andromaque
+1664
+1756
+13,884
+86,612
+Total
+3479
+63,473
+385,098
+This proto-corpus is deliberately heterogeneous to test our workflow. Guez’s
+Correspondance
+is a collection of short letters in prose using a graphic system from the first half of the 17 th c. Racine’s
+Andromaque
+is a play in verse with a graphic system from the second half of the 17 th c.
+Transcriptions have been produced directly from PDF files (Fig. 1) with a model specifically designed for 17 th c. prints (Gabay, 2019). It has been trained on both low-quality (72 DPI) and high-quality (400 DPI) images of books using various fonts and the extracted text preserves abbreviations (
+ẽ
+…) and special characters (
+s…
+) but not ligatures (
+ﬁ
+…).
+Fig. 1 Racine,
+Andromaque
+, Paris, BNF, RES-YF-3206, p. 2
+Pre-processing
+Following previous successful experiments (Bollmann, 2012), a rule-based system for pre-orthographic French has been developed (Riguet, 2019). It is based on two lexical resources: Morphalou, an open lexical database of inflected forms of contemporary French (Romary et al., 2004), and LGeRM, an open morphological lexicon for middle French (Souvay and Pierrel, 2009) now covering also 17 th c. French (Diwersy et al., 2017). Based on these two databases, the normaliser applies transformations on each token, before a manual correction of the result.
+Normalisation consists of aligning 17 th c. graphic systems (source) to 21 st c. orthography (target)
+Source
+Target
+Sur tout i
+e redout
+o
+is cette Mélancolie
+Surtout j
+e redout
+a
+is cette Mélancolie
+Où j’a
+y
+v
+eu
+s
+i long
+-
+temps v
+os
+tre
+A
+me ense
+u
+elie.
+Où j’a
+i
+v
+u
+s
+i longtemps v
+o
+tre
+Â
+me ensevelie.
+I
+e craign
+o
+is que le Ciel, par
+v
+n cruel
+s
+ecours,
+J
+e craign
+a
+is que le Ciel, par
+u
+n cruel
+s
+ecours,
+First results with an NMT-based normaliser
+We have decided to use NMTPYTORCH (Caglayan et al., 2017). The baseline model is composed of a 2-layer bi-directional GRU (Cho et al., 2014) encoder and a 2-layer conditional GRU (Sennrich et al., 2017) decoder with MLP attention (Bahdanau et al., 2015). The encoder and the decoder both have 256 hidden units and their initial hidden state is initialised to 0. The embedding dimensionality is also set to 256. Two versions of the system have been trained. The first one is a word level system and the second one uses the byte pair encoding (BPE) (Sennrich et al., 2015) which operates at the subword level. The corpus has been divided into two parts: 90% of the lines have been used for training and 10% for testing.
+Lines
+Tokens
+Characters
+Train
+3,133
+5,6825
+348,098
+Test
+346
+5,959
+37,000
+Total
+3,479
+62,784
+385,098
+Five trainings have been made with different initialisations on the two different models: words and subwords (
+i.e.
+BPE units). Accuracy of the result is calculated with BLEU scores (Papineni et al., 2002).
+Model
+Average BLEU
+Best BLEU
+Words
+79.27
+82.960
+BPE
+75.79
+77.070
+These BLEU scores still have to be used with extreme care considering the limited size of our corpus. They are however promising enough to engage in the production of a large-scale corpus for a NMT-based normaliser.
+Future developments
+To be as universal as possible, our training data must reflect all the lexical and graphic variety of 17 th c. French. We are therefore engaging in the construction of a representative corpus of early modern French, including excerpts of literary (plays, novel, poems…) and non-literary texts (theology, medicine, law, science…), in verse and in prose, spread diachronically across the century, and taken from original editions, reprints or illegal prints. Along this compilation phase, the OCR model and the rule-based normalising solution will be regularly improved to increase their efficiency before a final open source release.
+The final corpus, expanded with back translation (Domingo and Casacuberta, 2018b), will be used for the training of an NMT-based solution. On top of words and subwords, character-level NMT will also be tested to provide the most efficient tool. A special model, trained to normalise the results of the rule-based system rather than the raw OCRised text will be tested, to evaluate the efficiency of a hybrid system using both technologies.
+Bibliography
+Bahdanau, D., Cho, K. and Bengio, Y.
+(2015). Neural Machine Translation by Jointly Learning to Align and Translate.
+Proceedings of the International Conference on Learning Representations (ICLR 2015)
+. San Diego, CA.
+Baron, A. and Rayson, P.
+(2008). VARD2 : a Tool for Dealing with Spelling Variation in Historical Corpora.
+Postgraduate Conference in Corpus Linguistics
+. Birmingham, UK.
+Bollmann, M.
+(2012). (Semi-)Automatic Normalization of Historical Texts using Distance Measures and the Norma tool.
+Proceedings of the Second Workshop on Annotation of Corpora for Research in the Humanities (ACRH-2)
+. Lisbon, Portugal, pp. 3–14.
+Bollmann, M., Petran, F. and Dipper, S.
+(2011). Rule-Based Normalization of Historical Texts.
+Proceedings of the Workshop on Language Technologies for Digital Humanities and Cultural Heritage (DigHum 2011)
+. Hissar, Bulgaria, pp. 34–42.
+Bollmann, M. and Søgaard, A.
+(2016). Improving Historical Spelling Normalization With Bi-Directional LSTMs and Multi-Task Learning.
+Proceedings of COLING 2016, the 26th International Conference on Computational Linguistics: Technical Papers
+. Osaka, Japan, pp. 131–39.
+Caglayan, O., García-Martínez, M., Bardet, A., Aransa, W., Bougares, F. and Barrault, L.
+(2017). NMTPY: A Flexible Toolkit for Advanced Neural Machine Translation Systems.
+The Prague Bulletin of Mathematical Linguistics
+,
+109
+(1): 15–28.
+Cho, K., Merrienboer, B. van, Gulcehre, C., Bahdanau, D., Bougares, F., Schwenk, H. and Bengio, Y.
+(2014). Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation.
+Proceedings of the 2014 Conference on Empirical Methods in Natural Language Processing (EMNLP)
+. Doha, Qatar, pp. 1724–34.
+Diwersy, S., Falaise, A., Lay, M.-H. and Souvay, G.
+(2017). Ressources et méthodes pour l’analyse diachronique.
+Langages
+,
+N° 206
+(2): 21–44.
+Domingo, M. and Casacuberta, F.
+(2018a). Spelling Normalization of Historical Documents by Using a Machine Translation Approach.
+Proceedings of the 21st Annual Conference of the European Association for Machine Translation (EAMT 2018)
+. Alicante, Spain, pp. 129–37.
+Domingo, M. and Casacuberta, F.
+(2018b). A Machine Translation Approach for Modernizing Historical Documents Using Back Translation.
+Proceedings of the 15th International Workshop on Spoken Language Translation (IWSLT 2018)
+. Bruges, Belgium, pp. 39–47.
+Domingo, M., Chinea-Rios, M. and Casacuberta, F.
+(2017). Historical Documents Modernization.
+The Prague Bulletin of Mathematical Linguistics
+,
+108
+: 295–306.
+Gabay, S.
+(2019). OCRising 17th French prints.
+E-Ditiones
+https://editiones.hypotheses.org/1958 (accessed 28 April 2019).
+Guez de Balzac, J.-L.
+(1624).
+Lettres Du Sieur de Balzac
+. Paris: T. Du Bray https://catalogue.bnf.fr/ark:/12148/cb300515241.
+Korchagina, N.
+(2017). Normalizing Medieval German Texts: from rules to deep learning.
+Proceedings of the NoDaLiDa 2017 Workshop on Processing Historical Language
+. Gothenburg, Sweden, pp. 12–17.
+Ljubešic, N., Zupan, K., Fišer, D. and Erjavec, T.
+(2016). Normalising Slovene data: historical texts vs. user-generated content.
+Proceedings of the 13th Conference on Natural
+Language Processing (KONVENS 2016)
+. Bochum, Germany, pp. 146–155.
+Papineni, K., Roukos, S., Ward, T. and Zhu, W.-J.
+(2002). BLEU: A Method for Automatic Evaluation of Machine Translation.
+Proceedings of the 40th Annual Meeting on Association for Computational Linguistics
+. Philadelphia, USA, pp. 311–318.
+Pettersson, E., Megyesi, B. and Nivre, J.
+(2013a). Normalisation of Historical Text Using Context-Sensitive Weighted Levenshtein Distance and Compound Splitting.
+Proceedings of the 19th Nordic Conference of Computational Linguistics (NoDaLiDa 2013)
+. Oslo, Norway, pp. 163–79.
+Pettersson, E., Megyesi, B. and Nivre, J.
+(2014). A Multilingual Evaluation of Three Spelling Normalisation Methods for Historical Text.
+Proceedings of the 8th Workshop on Language Technology for Cultural Heritage, Social Sciences, and Humanities (LaTeCH)
+. Gothenburg, Sweden, pp. 32–41.
+Pettersson, E., Megyesi, B. and Tiedemann, J.
+(2013b). An SMT approach to automatic annotation of historical text.
+Proceedings of the Workshop on Computational Historical Linguistics at NoDaLiDa 2013
+. Oslo, Norway, pp. 54–69.
+Porta, J., Sancho, J.-L. and Gomez, J.
+(2013). Edit Transducers for Spelling Variation in Old Spanish.
+Proceedings of the Workshop on Computational Historical Linguistics (NoDaLiDa 2013)
+. Oslo, Norway, pp. 70–79.
+Racine, J.
+(1668).
+Andromaque
+. Paris: Barbin https://catalogue.bnf.fr/ark:/12148/cb38651697n.
+Riguet, M.
+(2019).
+Normalisa, Script à Base de Règles Pour Normaliser Les Textes Français Du XVIe Au XIXe Siècle
+. https://mriguet.github.io/Normalisa (accessed 28 April 2019).
+Romary, L., Salmon-Alt, S. and Francopoulo, G.
+(2004). Standards going concrete: from LMF to Morphalou.
+The 20th International Conference on Computational Linguistics (COLING 2004) - ElectricDict ’04 Proceedings of the Workshop on Enhancing and Using Electronic Dictionaries
+. Geneva, Switzerland, pp. 22–28.
+Sánchez-Martínez, F., Martínez-Sempere, I., Ivars-Ribes, X. and Carrasco, R. C.
+(2013). An open diachronic corpus of historical Spanish: annotation criteria and automatic modernisation of spelling.
+CoRR
+,
+abs/1306.3692
+.
+Scherrer, Y. and Erjavec, T.
+(2013). Modernizing Historical Slovene Words with Character-Based SMT.
+4th Biennial Workshop on Balto-Slavic Natural Language Processing (BSNLP 2013)
+. Sofia, Bulgaria, pp. 58–62.
+Sennrich, R., Firat, O., Cho, K., Birch, A., Haddow, B., Hitschler, J., Junczys-Dowmunt, M., et al.
+(2017). Nematus: a Toolkit for Neural Machine Translation.
+Proceedings of the
+EACL 2017 Software Demonstrations
+. Valencia, Spain, pp. 65–68.
+Sennrich, R., Haddow, B. and Birch, A.
+(2015). Neural Machine Translation of Rare Words with Subword Units.
+Proceedings of the 54th Annual Meeting of the Association for Computational Linguistics
+. Berlin, Germany, pp. 1715–1725.
+Souvay, G. and Pierrel, J.-M.
+(2009). LGeRM Lemmatisation des mots en Moyen Français.
+Traitement Automatique Des Langues
+,
+50
+(2): 149–72.
+Tjong Kim Sang, E., Bollman, M., Boschker, R., Casacuberta, F., Dietz, F. M., Dipper, S., Domingo, M., et al.
+(2017). The CLIN27 Shared Task : Translating Historical Text to Contemporary Language for Improving Automatic Linguistic Annotation.
+Computational Linguistics in The Netherlands Journal
+,
+7
+: 53–64.

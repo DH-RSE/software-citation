@@ -1,0 +1,82 @@
+Introduction
+Las estrategias de análisis que se abordan en esta presentación se inscriben en el marco del proyecto Exhibitium, financiado por la Fundación BBVA. El proyecto Exhibitium estudia el fenómeno cultural de las exposiciones artísticas desde la teoría de redes, por lo cual centra su atención en las conexiones que mantienen entre sí los actores que constituyen este complejo ámbito a fin de desvelar cuáles son las redes que configuran la estructura del sistema expositivo.
+Para cumplir con este objetivo, en el proyecto Exhibitium estamos aplicando un amplio rango de estrategias de análisis a un exhaustivo repositorio de datos construido ad hoc (Cruces
+Rodríguez et al., 2016)
+. Entre ellas, que son las que nos ocupan en esta presentación, se encuentran un conjunto de técnicas de minería de textos y estadística descriptiva multidimensional lexical, como son la clasificación jerárquica ascendente de clústeres (hierarchical clustering) y su visualización gráfica en dendrogramas; el análisis factorial de correspondencias (correspondence analysis)-tanto la clasificación jerárquica de clústeres como el análisis de correspondencias se ha realizada con el software R.Text Mining Solution (Bouchet-Valat y Bastin, 2013)-y el análisis de palabras asociadas (co-word analysis). Este análisis se ha realizado con los sistemas de conocimiento desarrollados por
+Bailón-Moreno (2003)
+. Estas técnicas se han revelado de sumo interés para extraer conocimiento no explícito sobre la lógica de funcionamiento de las exposiciones artísticas, como explicaremos a continuación. En concreto, la pregunta que tratamos de responder con las estrategias de aná-lisis anteriormente mencionadas es la siguiente: ¿qué conocimientos podemos extraer de la medición algorítmica de las asociaciones establecidas entre artistas que ocurren y co-aparecen en unas mismas exposiciones en relación con la configuración del sistema expositivo general?
+Metodología y desarrollo del estudio
+El repositorio de datos Expofinder, que es el que se ha utilizado como base del análisis, comprende más de 6.000 exposiciones celebradas en España entre 2010 y 2016, dando un conjunto de más de 35.000 actores. No obstante, para concretar el análisis, este se ha llevado a cabo a partir de subcorpus específicos de exposiciones.
+De acuerdo con la lógica de funcionamiento de la clasificación ascendente jerárquica, en el dendrograma se visualiza la agrupación de exposiciones del subcorpus que se esté analizando según su similitud, que en el caso que nos ocupa viene dada por la co-aparición de los artistas en las exposiciones que lo constituyen (las exposiciones que comparten más artistas quedan agrupadas en un mismo clúster), y va anidando estas agrupaciones en niveles ascendentes de varianza. El eje Y representa el nivel de varianza, por lo que cuanto mayor sea la diferencia entre las agrupaciones de exposiciones, más elevado será el nivel en el que los clústeres o branches se unen. En el caso que estamos analizando, el nivel de varianza viene determinado por la frecuencia con la que los artistas co-aparecen en determinadas exposiciones, por lo que los clústeres con nivel de varianza menor serán aquellos cuyos artistas repiten con mayor frecuencia en las exposiciones que lo constituyen. Por el contrario, los clústeres situados en un nivel de varianza más elevado serán aquellos cuyos artistas co-aparecen con menor frecuencia, o no co-aparecen en ningún caso (solo son objeto de exposiciones individuales) o coaparecen con artistas que únicamente exponen con ellos.
+Así se puede apreciar en los dendrogramas de la
+fig. 1
+, que muestra la clasificación de las exposiciones del subcorpus de la institución Artium (el Centro-Mueso Vasco de Arte Contemporáneo, una de las instituciones que más grado de salida tienen en la red del sistema expositivo español); y de la
+fig. 2
+, dendrograma del subcorpus asociado al comisario Fernando Francés (director-gerente del Centro de Arte Contemporáneo de Málaga). Se ha elegido para este estudio porque es uno de los comisarios que más exposiciones tiene en su haber en el periodo temporal que comprende el corpus Exhibitium. En ambos dendrogramas, el clúster 1 situado en la parte izquierda agrupa las exposiciones con mayor número de artistas comunes entre ellas; mientras que en la parte derecha se agrupan las exposiciones de aquellos artistas que tienen un menor ín-dice de co-aparición o que no tienen ninguno. De este modo, la clasificación ascendente jerár-quica nos permite descubrir dos aspectos del dominio expositivo que se esté estudiando: en primer lugar, el conjunto de artistas que constituyen lo que podríamos considerar el corpus esencial de dicho dominio, en la medida en que son los autores que combinan un mayor índice de presencia y un mayor índice de co-aparición (esto es, aquellos que se exhiben de manera más reiterativa) (cfr.
+figs. 3 y 4)
+; y en segundo lugar, los artistas que se distinguen según lo que vamos a denominar su grado de singularidad específica, la cual viene determinada en estos análisis por su menor ín-dice de co-aparición con otros artistas (cuanto menor sea su co-ocurrencia con otros artistas, mayor es el grado de singularidad específica).
+. 2)
+. © Exhibitium Project La observación del diagrama de correspondencias -que en este estudio denominaremos mapa de exposiciones- confirma esta dinámica. En el caso del diagrama de correspondencias del subcorpus Artium (cfr.
+fig. 5
+), vemos claramente que los clústeres conformados por las exposiciones de Nerea Lekuona y Elena Aitzkoa son los más alejados, mientras que el resto se concentran en un espacio de alta densidad. El mapa de exposiciones del subcorpus Fernando Francés queda, asimismo, polarizado en dos clústeres muy alejados entre sí (cfr.
+fig. 6
+). Obsérvese cómo en el mapa del clúster 1 (cfr.
+fig. 7
+) las exposiciones (colectivas e individuales) quedan perfectamente agrupadas según los autores que participan en ellas, configurando 3 subconjuntos diferenciados. El análisis de correspondencias también nos permite ir profundizando progresivamente en la estructura interna del sistema. Así, aumentando el valor de ocurrencia mínima de los autores en el subcorpus, tal como si aumentáramos el zoom de una cámara fotográfica, observamos cómo otros autores (Aballí, Oteiza, Amondarain, etc.) (cfr.
+fig. 8
+) empiezan a alejarse del espacio de alta densidad del mapa expositivo Artium, donde se concentran los clústeres que agrupan a los artistas con más alta ocurrencia. Por tanto, indagar en este sentido nos permite averiguar cuál es el conjunto de artistas que constituye el núcleo esencial que sustenta el sistema expositivo que se esté analizando.
+) © Exhibitium Project
+La elevada proximidad que mantienen entre sí las exposiciones -como revelan los mapas anteriores-, consecuencia de la alta frecuencia con la que los artistas suelen co-ocurrir entre ellos, también es indicativo de la existencia de estructuras de asociación muy definidas y, por tanto, de la existencia de redes estables de artistas que co-aparecen de manera continuada y recurrente. ¿Cuáles son estas redes de artistas? Esta pregunta se puede responder aplicando el análisis de palabras asociadas (co-word analysis)
+[1]
+basada en el ín-dice de equivalencia o de asociación
+(He, 1999)
+, que mide la fortaleza de las asociaciones de los nodos-palabras (en nuestro caso, los artistas) que co-aparecen en determinadas exposiciones. El índice de equivalencia detecta las asociaciones más fuertes entre artistas -medidas según su frecuencia de co-aparición-y las representa en un grafo. A su vez, estos grafos, nombradas por el autor que las nuclea, se sitúan en un diagrama estratégico, en el que se distribuyen según grados de densidad y centralidad (cfr.
+fig. 9
+). Max. nº nodos: 14) © Exhibitium Project En la
+fig. 10
+se muestra el grafo más denso del subcorpus Artium (Miquel Barceló) y el menos denso (Santiago Sierra), a través de las cuales se puede conocer cuáles son los autores que constituyen estas estructuras estables de asociación. A su vez, estos grafos también desvelan en su estructura la existencia de subredes de artistas que mantienen fuertes conexiones entre sí (visibles por el grosor de sus aristas), como es el caso de la conformada por Carlos Aires, Federico Solmi o Bill Balaskas (red Santiago Sierra).
+Conclusiones
+La conjugación de estas técnicas de análisis se revela como una interesante herramienta descriptiva de las dinámicas de asociación de artistas que articulan el dominio expositivo que se esté analizando, pero también como potentes instrumentos para configurar nuevas «fuentes» y metodologías de exploración.
+Por una parte, estos análisis nos permiten revelar las estructuras que subyacen a los procesos de asociación de artistas en cada dominio expositivo utilizando como parámetro articulador las nociones de ocurrencia y co-aparición computadas algorítmicamente; nociones independientes de las categorías que tradicionalmente se emplean para definir el perfil expositivo de instituciones o comisarios. Por otra, este paráme-tro también nos permite delinear el concepto de singularidad específica sobre criterios distintos a los habituales, basados por lo general en el grado de excelencia o relevancia artística conferida por la crítica y/o la historiografía.
+Naturalmente, la potencialidad de estos análisis se incrementará exponencialmente en la medida en que se establezcan estudios comparativos sistemáticos con otros subcorpus. Esto nos permitirá observar las diferencias existentes entre ellos, fundamental para definir el ámbito expositivo en su intrínseca heterogeneidad, pero también para descubrir la existencia de dinámicas y/o patrones que lo articulen de manera sistémica.
+Notas
+[1] E = co-ocurrencia al cuadrado dividido por el producto de las ocurrencias de cada uno de los descriptores. El índice obtiene valores que van de 0 a 1, con independencia del tamaño de la muestra. Los clusters se han obtenido aplicando el algoritmo de centro simple.
+Fig. 1 .
+1
+Fig 3 .
+3
+Fig. 5 .
+5
+Fig. 6 .
+6
+Fig. 8 .
+8
+Fig. 9 .
+9
+Fig. 10 .
+10
+Ingeniería del conocimiento y vigilancia tecnológica aplicada a la investigación en el campo de los tensioactivos
+R
+Bailón-Moreno
+Consulta: 30/10/2016
+PhD thesis
+Granada: Universidad de Granada
+«Rcmdr-Plugin.temis, a Graphical Integrated Text Mining Solution in R
+M
+Bouchet-Valat
+G
+Bastin
+The R Journal
+5
+«WordPress as framework for automated data capture, filtering and structuring processes»
+A
+Cruces Rodríguez
+Consulta: 30/10/2016
+Digital Humanities 2016: Conference Abstracts
+Cracow; Kraków
+Jagiellonian University & Pedagogical University
+Digital Humanities Annual Conference´2016
+«Knowledge Discovery Through Co-Word Analysis
+Q
+He
+» Library Trends

@@ -1,0 +1,135 @@
+The problems at hand
+In the context of the current onslaught cultural artefacts in the Middle East face from the iconoclasts of the Islamic State, from the institutional neglect of states and elites, and from poverty and war, digital preservation efforts promise some relief as well as potential counter narratives. They might also be the only resolve for future education and rebuilding efforts once the wars in Syria, Iraq or Yemen come to an end; and while the digitisation of Archaelogical artefacts has recently received some attention from well-funded international and national organisations, particularly vulnerable collections of texts in libraries, archives, and private homes are destroyed without the world having known about their existence in the first place.
+For a good example of crowd-sourced conservation efforts targetted at the Armenian communities of the Ottoman Empire see the
+Houshamadyan project
+, which was established by Elke Hartmann and Vahé Tachjian in Berlin in 2010 and launched an “Open Digital Archive” in 2015. Other digitisation projects worth mentioning are the
+Yemen Manuscript Digitisation Project
+(University of Oregon, Princeton University, Freie Universität Berlin) and the recent “Million Image Database Project” of the
+Digital Archaeology Institute
+(UNESCO, University of Oxford, government of the UAE) that aims at delivering 5000 3D cameras to the MENA region in spring 2016.
+Early Arabic periodicals, such as Butrus al-Bustānī’s
+al-Jinān
+(Beirut, 1876–86), Yaʿqūb Ṣarrūf, Fāris Nimr, and Shāhīn Makāriyūs’
+al-Muqtaṭaf
+(Beirut and Cairo, 1876–1952), Muḥammad Kurd ʿAlī’s
+al-Muqtabas
+(Cairo and Damascus, 1906–18/19) or Rashīd Riḍā’s
+al-Manār
+(Cairo, 1898–1941) are at the core of the Arabic renaissance (
+al-nahḍa
+), Arab nationalism, and the Islamic reform movement. These better known and—at the time—widely popular journals do not face the ultimate danger of their last copy being destroyed. Yet, copies are distributed throughout libraries and institutions worldwide. This makes it almost impossible to trace discourses across journals and with the demolition and closure of libraries in the Middle East, they are increasingly accessible to the affluent Western researcher only.
+In many instances libraries hold incomplete collections and only single copies. This, for instance, has caused even scholars working on individual journals to miss the fact that the very journal they were concerned with appeared in at least two different editions (e.g. (Glaß, 2004) see (Grallert, 2013; Grallert, 2014)).
+Digitisation seemingly offers an “easy” remedy to the problem of access and some large-scale scanning projects, such as
+Hathitrust
+,
+It must be noted that the US-based HathiTrust does not provide public or open access to its collections even to material deemed in the public domain under extremely strict US copyright laws to users outside the USA. Citing the absence of editors able to read many of the languages written in non-Latin scripts, HathiTrust tends to be extra cautious with the material of interest to us and restricts access by default to US-IPs. These restrictions can be lifted on a case-by-case basis, which requires at least an English email conversation and prevents access to the collection for many of the communities who produced these cultural artefacts; see
+https://www.hathitrust.org/access_use
+for the access policies.
+the
+British Library’s “Endangered Archives Programme” (EAP)
+,
+MenaDoc
+or
+Institut du Monde Arabe
+produced digital facsimiles of numerous Arabic periodicals. But due to the state of Arabic OCR and the particular difficulties of low-quality fonts, inks, and paper employed at the turn of the twentieth century, these texts can only reliably be digitised by human transcription (c.f. Märgner and El Abed, 2012).
+For the abominable state of Arabic OCR even for well-funded corporations and projects, try searching inside Arabic works on Google Books or HathiTrust.
+Funds for transcribing the tens to hundreds of thousands of pages of an average mundane periodical are simply not available, despite of their cultural significance and unlike for valuable manuscripts and high-brow literature. Consequently, we still have not a single digital scholarly edition of any of these journals.
+On the other hand, gray online-libraries of Arabic literature, namely
+al-Maktaba al-Shāmila
+,
+Mishkāt
+,
+Ṣayd al-Fawāʾid
+or
+al-Waraq
+, provide access to a vast body of, mostly classical, Arabic texts including transcriptions of unknown provenance, editorial principals, and quality for some of the mentioned periodicals. In addition, these gray “editions” lack information linking the digital representation to material originals, namely bibliographic meta-data and page breaks, which makes them almost impossible to employ for scholarly research.
+Our proposed solution
+With the
+GitHub-hosted TEI edition of
+Majallat al-Muqtabas
+For a history of Muḥammad Kurd ʿAlī’s journal
+al-Muqtabas
+(The Digest) see (Seikaly, 1981) and the readme.md of the project’s
+GitHub repository
+.
+we want to show that through re-purposing well-established open software and by bridging the gap between immensely popular, but non-academic (and, at least under US copyright laws, occasionally illegal) online libraries of volunteers and academic scanning efforts as well as editorial expertise, one can produce scholarly editions that offer solutions for most of the above-mentioned problems—including the absence of expensive infrastructure: We use
+digital texts from
+shamela.ws
+, transform them into TEI XML, add light structural mark-up for articles, sections, authors, and bibliographic metadata, and link each page to facsimiles provided through
+EAP
+and
+HathiTrust
+; the latter step, in the process of which we also make first corrections to the transcription, though trivial, is the most labour-intensive, given that page breaks are commonly ignored by
+shamela.
+ws’s anonymous transcribers. The digital edition (TEI, markdown, and a web-display) is then hosted as a GitHub repository with a
+CC BY-SA 4.0 licence
+for reading, contribution, and re-use.
+The text of
+al-Muqtabas
+itself is in the public domain even under the most restrictive definitions (i.e. in the USA); the anonymous original transcribers at
+shamela.ws
+do not claim copyright; and we only link to publicly accessible facsimile’s without copying or downloading them.
+We argue that by linking facsimiles to the digital text, every reader can validate the quality of the transcription against the original we can remove the greatest limitation of crowd-sourced or gray transcriptions and the main source of disciplinary contempt among historians and scholars of the Middle East. Improvements of the transcription and mark-up can be crowd-sourced with clear attribution of authorship and version control using .git and GitHub’s core functionality. Such an approach as proposed by Christian Wittern (2013) has recently seen a number of concurrent practical implementations such as project
+GITenberg
+led by Seth Woodworth, Jonathan Reeve’s
+Git-lit
+, and others.
+In addition to the TEI XML files we provide structured bibliographic metadata for every article in
+al-Muqtabas
+(currently as BibTeX). The TEI edition will be referencable down to the word level for scholarly citations, annotation layers, as well as web-applications through a documented and persistent URI scheme.
+In order to contribute to the improvement of Arabic OCR algorithms, we will provide corrected transcriptions of the facsimile pages as ground truth to interested research projects starting with
+transkribus.eu
+.
+To ease access for human readers (the main projected audience of our edition) and the correction process, we also provide a
+basic web-display
+that adheres to the principles of
+GO::DH’s Minimal Computing Working group
+. This web-display is implemented through an adaptation of the
+TEI Boilerplate XSLT stylesheets
+to the needs of Arabic texts and the parallel display of facsimiles and the transcription. Based solely on XSLT 1 and CSS, it runs in most internet browsers and can be downloaded, distributed and run locally without any internet connection—an absolute necessity for societies outside the global North.
+Figure 1: The web-display of
+Digital Muqtabas
+based on TEI Boilerplate.
+Finally, by sharing all our code, we hope to facilitate similar projects and digital editions of further periodicals. For this purpose, we successfully tested adapting the code to
+ʿAbd al-Qādir al-Iskandarānī’s monthly journal
+al-Ḥaqāʾiq
+(1910–12, Damascus)
+On the history of
+al-Ḥaqāʾiq
+and some of its quarrels with
+al-Muqtabas
+see (Commins, 1990:118–22).
+in February 2016.
+Conclusion
+The paper will discuss the challenges cultural artefacts, and particularly texts, face in the Middle East. We will propose a solution to some of these problems based on the principles of openness, simplicity, and adherence to scholarly and technical standards. Applying these principles, our edition of
+Majallat al-Muqtabas
+improves already existing digital artefacts and makes them accessible for reading and re-use to the scholarly community as well as the general public. Finally, we will discuss the particular challenges and experiences of this still very young project (since October 2015).
+Bibliography
+Commins, D.
+(1990).
+Islamic Reform: Politics and Social Change in Late Ottoman Syria
+. Oxford: Oxford University Press.
+Glaß, D.
+(2004).
+Der Muqtaṭaf Und Seine Öffentlichkeit. Aufklärung, Räsonnement Und Meinungsstreit in Der Frühen Arabischen Zeitschriftenkommunikation
+. Würzburg: Ergon Verlag.
+Grallert, T.
+(2013). The puzzle continues: al-Muqtaṭaf was printed in two different and unmarked editions,
+Sitzextase,
+http://tillgrallert.github.io/blog/2013/08/19/the-puzzle-continues/ (accessed 6 February 2016).
+Grallert, T.
+(2014). The puzzle continues II: in addition to al-kabīr and al-ṣaghīr, al-Muqtaṭaf published slightly different editions in Beirut and Kairo,
+Sitzextase,
+http://tillgrallert.github.io/blog/2014/01/19/the-puzzle-continues-2/ (accessed 6 February 2016).
+Märgner, V. and El Abed, H.
+(Eds) (2012).
+Guide to OCR for Arabic Scripts
+. London: Springer http://link.springer.com/book/10.1007/978-1-4471-4072-6.
+Seikaly, S.
+(1981). Damascene Intellectual Life in the Opening Years of the 20th Century: Muhammad Kurd ʿAli and Al-Muqtabas. In Buheiry, M. R. (ed),
+Intellectual Life In The Arab East, 1890-1939
+. Beirut: American University Of Beirut, pp. 125–53.
+Wittern, C.
+(2013). Beyond TEI: Returning the Text to the Reader.
+Journal of the Text Encoding Initiative
+, 4: Selected Papers from the 2011 TEI Conference. http://jtei.revues.org/691.

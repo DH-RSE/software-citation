@@ -1,0 +1,62 @@
+Introduction
+This paper explores the development of a prosopographical database for the field of Syriac studies called SPEAR: Syriac Persons, Event, and Relations. Syriac is a dialect of Aramaic used in the Near East and South and Central Asia between the 3rd and 8th centuries and continues to be used liturgically by Christians in the Middle East and India as well as expatriate communities in Europe and North America. This project employs a factoid-based approach to prosopography. Where most factoid-based prosopographies organize data in a relational database, SPEAR encodes prosopographical data from primary source texts in Text Encoding Initiative (TEI) XML using a customized schema designed to facilitate linking this propopographical data to other linked data resources and for serialization into RDF (Resource Description Framework). The
+Srophé Application
+employing eXist DB ingests the TEI documents and allows for visualization and querying of data.
+From text to factoids
+SPEAR has looked for inspiration to the Prosopography of Anglo-Saxon England (
+PASE
+) and other factoid prosopographies coming out of the Department of Digital Humanities at King’s College London. Where traditional print prosopographies distill short narrative summaries of known information about historical individuals, factoid-based prosopographies collect and tag discrete pieces of information asserted in primary source texts (Bradley and Short, 2005; Tinti, 2007). The result is a text-based persons database. Encoders work text-by-text to encode relevant prosopographical material that can be sourced to that text such as name variants, genders, occupations, physical characteristics, personal relationships, and historical events. Each factoid is encoded in a unique <div> element with a TEI customization to add a @uri attribute, thus assigning a Uniform Resource Identifier (URI) to each factoid <div>. Every factoid also includes one or more <bibl> elements pointing to a Syriaca.org bibliography URI for a specific edition of the work. TEI encoding provides an XML structure and the shared semantic content of elements and attributes.
+Sample SPEAR factoid
+Linked open data framework
+The SPEAR data model integrate the TEI encoding of prosopographical data with the Linked Open Data (LOD) framework of Syriaca.org. Syriaca.org provides URIs and disambiguating information for entities in the field of Syriac studies:
+persons
+,
+places
+,
+works
+, and
+bibliography
+. This system of URIs facilitates the production of a data graph out of the discrete pieces of prosopographical data contained in each factoid; the data about a particular person, the references to a particular location, or the persons with a particular occupation. SPEAR uses the relationship
+ontology
+produced by Standard for Networking Ancient Prosopographies (
+SNAP
+) when possible. Modern ontologies generally do not accommodate important ancient social relationships, such as those constituted by slaveholding. Employing SNAP relationships enables SPEAR to encode the relationships present in the source base according to a standard used by related projects likely to be interested in the data produced by SPEAR.
+Transforming personal information gleaned from ancient textual historical sources into machine-readable and queryable data has required the development of a robust controlled vocabulary for systematically describing personal information and events. Out of a desire to use a vocabulary familiar to scholars in the field, SPEAR modified and expanded the keyword list used by the Comprehensive Bibliography on Syriac Christianity (
+CBSC
+), a list that has evolved over almost fifty years to describe scholarly work in the field of Syriac studies (Simpson and Brown, 2013). Though in an early stage of development, Syriaca.org has encoded the
+Syriac Taxonomy
+in TEI, assigned URIs to each term, and provided minimal hierarchical structuring. This rich encoding and RDF serialization will facilitate faceted browse and search by multiple fields. It will also allow the display of links between individual factoids and scholarly bibliography described with the same controlled vocabulary.
+From factoids to text
+SPEAR’s use of LOD facilitates another important aspect of the project, the ability for users to return to the primary sources from which factoids have been derived. SPEAR bibliographic references use the system of
+DTS:URNs
+developed by the Homer Multitext Project to cite specific portions of a text. A shared URN standard is also employed by the
+Digital Syriac Corpus
+, a partner project offering TEI encoded Syriac texts. Each factoid page containing a URN in the bibliography displays the portion of text corresponding to the reference. The page also includes a link to take users to the full Corpus text as well.
+A factoid viewed in HTML
+Conclusion
+SPEAR shows how a prosopography project can employ TEI, field-specific scholarly standards, and Linked Open Data to produce a highly structured and semantically rich database that maintains close ties to the texts from which it is derived. The work speaks to recent discussions on the need for TEI to engage more fully with semantic web technology (Ciotti and Tomasi, 2016). Future developments for this project include: encoding data from additional texts, developing the current taxonomy into a structured domain ontology for use by the field of Syriac studies more broadly, exploring different approaches to data visualization, and developing protocols for serializing this data into the RDF standards of SNAP, the Advanced Research Consortium (
+ARC
+), and
+CIDOC-CRM
+(Pasin and Bradley, 2015).
+Bibliography
+Bradley, J. and Short, H.
+(2005). Texts into databases: the Evolving Field of New-style Prosopography.
+Literary and Linguistic Computing
+, 20(1): 3–24.
+Ciotti, F. and Tomasi, F.
+(2016). Formal Ontologies, Linked Data, and TEI Semantics.
+Journal of the Text Encoding Initiative
+, 9.
+Pasin, M. and Bradley, J.
+(2015). Factoid-Based Prosopography and Computer Ontologies: Towards an Integrated Approach.
+Digital Scholarship in the Humanities
+, 30(1): 86–97.
+Simpson, J. and Brown, S.
+(2013). From XML to RDF in the Orlando Project.
+2013 International Conference on Culture and Computing
+. Kyoto: IEEE, pp. 194–95.
+Tinti, F.
+(2007). The Prosopography of Anglo-Saxon England: Facts and Factoids. In Keats-Rohan, K. S. B. (ed),
+Prosopography Approaches and Applications: A Handbook
+. Oxford: Unit for Prosopographical Research, Linacre College, pp. 197–210.

@@ -1,0 +1,160 @@
+Introduction
+In recent years, the term
+tool criticism
+found its way into the Digital Humanities. Blog posts, journal articles
+E.g., Underwood: New methods need a new kind of conversation. 28 February 2018. URL: https://tedunderwood.com/2018/02/28/raising-the-standards-for-computation-in-the-humanities/; Van Es (et al.): Tool criticism: From digital methods to digital methodology. Datafied Soiety Working Paper Series. 28 May 2018. URL: https://datafiedsociety.wp.hum.uu.nl/tool-criticism/.
+and workshops
+E.g., Tool Criticism in the Digital Humanities co-organized by the Centrum Wiskunde & Informatica, the eHumanities group of KNAW and the Amsterdam Data Science Center (2015); DH Benelux workshop on Digital Tool Criticism (2017).
+discuss the necessity of the deliberated exposure to computational methods. The aim is to understand the potential and limitations as well as the scope of application of the tools, leading to a sharpened awareness of the methodology. Sentiment analysis is one of the most popular methods among humanists expanding their research into the digital field. The technique can be easily implemented with tools developed for scholars without programming skills. While such tools are alluring in their applicability, their performance must be interpreted with caution which, in return, can contribute to developing new standards within the field and beyond. This research provides a case study which illustrates the complementation of manual and automated analyses when the possibilities and limitations of both approaches are considered.
+Research objectives
+To establish tool criticism within DH, the project serves as a basis for discussing certain computational tools frequently used for literary research. In more detail, experiments with different sentiment analysis tools are conducted on a self-designed corpus of dystopian novels; the outputs, then, complement the manual investigations of the texts and lead to further experiments.
+Data
+The corpus is composed of 102 dystopian novels dating from 1836 to 1979 in the languages American English, British English and German
+These languages were chosen because the dystopian genre emerged simultaneously in America and England and inspired German authors decades later (Zeißler 2008, Kumar 1987).
+(Table 1). A comprehensive body of secondary literature constitutes the background for deciding which novels were incorporated into the corpus. The categorisation of the works can be unclear, though, because there is no consensus about the texts containing enough distinctive features. Reading into the novels, therefore, was another necessary step in designing the corpus. The most prominent concepts of dystopian novels are a totalitarian regime, an oppressed society, the protagonist(s) rebelling against the authorities and surveillance (Mohr 2005, Baccolini, Moylan 2003, Zeißler 2008, Kumar 1987). The genre was chosen because it carries both distinctive features, e.g. a totalitarian society, as well as debatable characteristics, e.g., the exploitation of extraterrestrial life. This arouses certain assumptions which point the analysis in a specific direction, while also leaving room for findings that have not been prioritised by literary researchers yet.
+Language
+Novels
+Tokens
+Types
+Token-type ratio
+American English
+39
+3,167,702
+136,954
+23.1
+British English
+35
+2,660,983
+112,012
+23.8
+German
+28
+1,872,969
+98,479
+19.1
+TOTAL
+102
+7,701,654
+331,391
+4
+23.2
+Table 1: Overview of the research data.
+Methodology
+Manual analysis
+Studying dystopian fiction qualitatively includes the thorough investigation of both secondary literature as well as other extensive sources like the frequently updated
+The Encyclopaedia of Science Fiction
+(Clute et al. 2018). The concepts defined within all secondary sources are the background for interpreting the output obtained through the quantitative analyses.
+Sentiment analysis
+Dystopian works are characterised as pessimistic narratives, thus, we hypothesise that sentiment analyses will provide empirical evidence for dystopian novels being a ‘negative’ genre. The Stanford Sentiment Annotator (Socher et al. 2013) and the Berlin Affective Word List Reloaded (Võ et al. 2009) were used to investigate the research data.
+Results
+Stanford Sentiment Annotator
+Analyses undertaken using the Stanford Sentiment Annotator show the ratio between five classifications of V
+ery positive
+,
+Positive
+,
+Neutral
+,
+Negative
+and
+Very negative
+sentences in the English part of the corpus due to the tool only correctly identifying English texts. The method works sentence-based: A deep learning model computes the sentiment based on how words compose the meaning of longer phrases which delivers an analysis with an accuracy of 80.7% (Socher et al. 2013).
+Figure 1 and 2 represent the sentiment analyses for the novels written in American (Fig. 1) and British English (Fig. 2). The outputs are similar: Slightly more than half of all sentences are defined as
+Negative
+, which proves true the classification of dystopian novels as primarily pessimistic. Besides, less than 20% of all sentences are classified as
+Positive
+and close to 30% as
+Neutral
+, while the percentages for
+Very positive
+and
+Very negative
+sentences are comparatively low. It is noticeable, though, that the British texts have a tendency of being slightly more positive than the American ones. The rare occurrence of ‘extreme’ emotions can be explained due to not every utterance carrying a strong sentiment as well as the authors’ aims of primarily telling a story and not inculcating the readers with strong statements.
+Berlin Affective Word List – Reloaded
+The Berlin Affective World List Reloaded (BAWL-R) is a dictionary of more than 2,900 German words. These words were chosen by Võ and her colleagues based on their representation potential for negative, neutral and positive affective valences. The dataset was then annotated by 200 psychology students. Since the BAWL-R is a word list and not a tool per se, we wrote an algorithm to analyse the German part of the corpus. It scans the texts and searches for the terms the BAWL-R consists of. Then, it analyses the terms in the different categories based on the annotation in the list.
+For the current research, the values for emotionality, arousal and imageability are of interest. Emotionality is rated between -3 (
+very negative
+) and 3 (
+very positive
+), arousal ranges between 1 (
+low arousal
+) and 5 (
+high arousal
+) and the imageability is measured on a scale from 1 (
+low imageability
+) to 7 (
+high imageability
+) (Võ et al. 2009). With an emotionality mean of 0.50, the novels are categorised as rather positive texts, but the dictionary’s emotionality mean is still higher. The arousal value of the novels is higher than in the dictionary, which hints at dystopian texts issuing themes the reader feels personally connected with and touched by. It could be assumed that a relatively high arousal value is attended by a rather high imageability value, too. In the case of our German dystopian novels, this assumption holds true partially: The mean value is slightly below the dictionary’s imageability mean, but still relatively high (4.3). This can be interpreted in the direction of German dystopian novels being written in a relatively vivid manner, so that the reader can imagine the contents well.
+Outlook
+Based on the findings presented above, an experiment with test persons will be conducted. This experiment is further grounded on the hypothesis that sentiments depend on a person’s cultural and social background (Scollon 2011, Chodorow 1999). Moreover, the emotionality a text can potentially arouse is never isolated, but it is tightly connected to a recipient’s personality and emotional state (Kagan 2007, Sergerie & Armony 2006). With the example of Aldous Huxley’s dystopian novel
+Brave New World
+(1932) we can illustrate these hypotheses: A person who values personal freedom is more likely to interpret the novel negatively than a person who enjoys living in a well-structured society that cares for its citizens while simultaneously cutting off their individuality. To prove the aforementioned assumptions, the experiment will be designed as follows: Parts of the novel
+Brave New World
+will be annotated by test persons. Through a crowd sourcing platform, people will be reached globally. Like that, it is possible to work with a diverse group of annotators, representing different parts of different societies. The task will be twofold: The probands are asked to assign their sentiments, ranging between
+Very negative
+,
+Negative
+,
+Neutral
+,
+Positive
+and
+Very positive
+, to each sentence. The sentence-based method enables the reader to take textual context into account. Besides, they are asked to give some demographic information, which covers the aspect of the non-textual context. This information will help us to interpret the correlation between a proband’s background and his or her annotation.
+Bibliography
+Baccolini, R.; Moylan, T.
+(2003).
+Dark Horizons: Science Fiction and the Dystopian Imagination
+. Routledge, New York.
+Chodorow,
+N. J.
+(1999).
+Personal Meaning in Psychoanalysis, Gender, and Culture
+. Yale University Press, pp. 239-274).
+Clute, J. et al.
+(2011-). The Encyclopaedia of Science Fiction. URL: http://www.sfencyclopedia.com/ (Accessed: June 2018).
+Huxley, A
+. (1932).
+Brave New World
+. United Kingdom.
+Kagan, J
+. (2007).
+What Is Emotion?
+Yale University Press, pp. 142-189.
+Kumar, K
+. (1987).
+Utopia and anti-utopia in modern times
+. Oxford: Blackwell, pp. 99-130.
+Mohr, D.
+(2005). Worlds Apart? Dualism and Transgression, in
+Contemporary Female Dystopias
+. Jefferson, NC: McFarland, pp. 11-40.
+Moylan, T.
+(2000).
+Scraps of the Untainted Sky: Science Fiction, Utopia, Dystopia
+. Westview Press: Boulder, Colorado, pp. 111-195.
+Scollon, C. N
+. (2011). Cultural differences in the subjective experience of emotion: When and why they occur. Social and Personality Psychology Compass, 5(11), 853-864.
+Sergerie, K, Armony, J. L.
+(2006). Interactions Between Emotion and Cognition: A Neurobiological Perspective. In: Mancia M. (eds)
+Psychoanalysis and Neuroscience
+. Springer: Milano, pp. 125-149.
+Socher, R. et al.
+(2013). Recursive Deep Models for Semantic Compositionality Over a Sentiment Treebank.
+Proceedings of the 2013 Conference on Empirical Methods in Natural Language Processing
+, Seattle/Washington, pp. 1631–1642.
+Traub, M.C, & van Ossenbruggen, J.R.
+(2015). Workshop on Tool Criticism in the Digital Humanities. Information Access [IA]. CWI. URL: https://ir.cwi.nl/pub/23500 (Accessed: June 2018).
+Underwood, T
+. (2018). New methods need a new kind of conversation. 28 February 2018. In: Underwood, T.: The Stone and the Shell (2011-). URL:
+https://tedunderwood.com/2018/02/28/raising-the-standards-for-computation-in-thehumanities/ (Accessed: June 2018).
+Van Es, K. et al.
+(2018). Tool criticism: From digital methods to digital methodology. Datafied Soiety Working Paper Series. 28 May 2018. URL: https://datafiedsociety.wp.hum.uu.nl/toolcriticism/ (Accessed: June 2018).
+Van Ossenbruggen, J. et al.
+(2017). Tool Criticism. Workshop at the Digital Humanities Benelux Conference 2017. URL: https://dhbenelux2017.eu/programme/pre-conferenceevents/workshop-8-tool-criticism-workshop-dh-benelux-2017/ (Accessed: June 2018).
+Võ, M. L.-H., Conrad, M., Kuchinke, L., Urton, K., Hofmann, M.J., & Jacobs, A.M.
+(2009). THE BERLIN AFFECTIVE WORD LIST RELOADED (BAWL-R). Behavior Research Methods, 41(2), 534-539.
+Zeißler, E.
+(2008).
+Dunkle Welten: die Dystopie auf dem Weg ins 21
+. Jahrhundert: Marburg.

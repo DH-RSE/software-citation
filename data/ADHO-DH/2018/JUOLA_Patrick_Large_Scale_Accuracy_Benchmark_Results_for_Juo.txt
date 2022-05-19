@@ -1,0 +1,69 @@
+Authorship attribution, the analysis of a document’s contents to determine its author, is an important issue in the digital humanities. An accurate answer to this question is important, as not only do scholars rely on this type of analysis, but they are also used, for example, to help settle real disputes in the court system (Solan, 2012). It is thus important both to have analyses that are as accuracy, and to know what the expected accuracy levels are.
+In keeping with good forensic practice, scholars such as Juola (2015) have proposed formal protocols for addressing authorship questions such as “were these two documents written by the same person?” Juola (2015) described a simple and understandable protocol based on a relatively small number of distractor authors, multiple independent analyses (e.g, separate analyses based on character n-grams, on word lengths, and on distributions of function words), and a data fusion step based on the assumption that the analyses were biased towards giving correct answers. Juola (2016) proposed minor revisions using Fisher’s exact test to formalize the probability of a spurious match. The revised protocol has been formalized into a software-as-a-service product called Envelope to provide a standard (and low cost) authorship verification service.
+We reimplemented Juola’s (2016) protocol on a corpus of blog posts to determine whether, in fact, the protocol yields acceptable accuracy rates. Our reimplementation used the JGAAP open-source software package, an ad-hoc distractor set of ten authors (plus the author of interest), and the five analyses listed in Juola (2016): Vocabulary overlap, word lengths, character 4-grams, 50 MFW, and punctuation.
+Blog data was taken from the Blog Authorship Corpus [Schler et al. (2006)] a collection of collected roughly 140 million words of blog text from 20,000 bloggers collected in August 2004. From this collection, we gathered 4000 examples of authors who had written 300 or more sentences. Ten of these authors were reserved, following Juola (2015;2016) as fixed distractor authors, while the others were randomly paired to create wrong-author test sets.
+To test same-author accuracy, the first hundred sentences of each of the remaining 3990 blogs were used as “known documents” in the Envelope protocol, while the last hundred sentences of that author were used as “unknown documents.” Perhaps obviously, the correct answer for these tests is that the documents should verify as the same author. To test different-author accuracy, the first hundred sentences of every author in the set was used as a “known document” and compared to the last hundred sentences of the other, paired, author. This procedure generated nearly four thousand test cases of both same and different authors. Each test case was analyzed five times and the rank sum of the known document within the eleven candidate authors calculated as an overall similarity measure from 5..55. This was converted to a
+p
+-value using Fisher’s exact test.
+Juola (2016) recommends a seven-point evaluative scale, as follows:
+p < 0.05 (Strong indications of same authorship)
+p < 0.10
+p < 0.20
+p < 0.80 (Inconclusive)
+p < 0.90
+p < 0.95
+p >= 0.95 (Strong indications of different authorship)
+The results of these experiments are presented in table 1. The final column indicates the odds ratio; the likelihood that any particular finding at that level corresponds to an actual correct author.
+p-value
+Same Author
+Different author
+Odds
+< 0.05
+2948
+748
+3.941
+< 0.10
+246
+359
+0.686
+< 0.20
+195
+396
+0.492
+< 0.80
+409
+1390
+0.294
+< 0.90
+54
+234
+0.231
+< 0.95
+47
+230
+0.204
+> 0.95
+91
+663
+0.137
+These results show that, in the same-author case, the proposed protocol is very good at identifying same-authors; roughly 3/4 of the actual same-author cases tested at the 0.05 level or better. Because of this, any result less stringent than “strong indications of same authorship” is actually evidence
+against
+same-authorship. The different-author case is more problematic; in theory, if there is no relationship between the known and questioned documents, the p-value should be uniformly distributed, representing a variety of chance relationships. However, the 0.20 < p < 0.80 range (“inconclusive”) contains 60% of the probability space, but only 1390/3990 = 35% of the different-author analyses. By contrast, the 0 < p < 0.05 contains 19% of the analyses, while 0.95 < p < 1.00 contains 17% of the different-author analyses. The observed distribution is thus highly weighted to the extremes of the probability space.
+These results indicate that the underlying independence assumptions -- that (e.g.) similarity measured by analysis of word lengths is independent of similarity derived from the most common (function) words -- are not held generally. If a set of genuinely independent analyses could be found, the accuracy of this protocol would be greatly enhanced. Assuming the same distribution for the same author case, the odds ratio for the “strongly indications of same authorship” would be closer to 15:1 rather than 4:1.
+Nevertheless, these results do show that, suitably interpreted, Juola’s proposed protocol yields accurate results in a high proportion of test cases. We continue to work both on the development of a better analysis suite (with better independence properties) as well as continuing to replicate this experiment to obtain more accurate estimates.
+Bibliography
+Juola, Patrick. (201
+5). The Rowling Case: A Proposed Standard Analytic Protocol for Authorship Questions.
+Digital Scholarship in the Humanities. Vol
+ume
+30, Issue suppl_1, 1 December 2015, Pages i100–i113, 
+https://doi.org/10.1093/llc/fqv040
+Juola, Patrick. (2016). Did Aunt Prunella Really Write That Will? A Simple and Understandable Computational Assessment of Authorial Likelihood.
+Workshop on Legal Text, Document, and Corpus Analytics - LTDCA 2016
+, San Diego, California.
+J. Schler, M. Koppel, S. Argamon and J. Pennebaker. (2006). Effects of Age and Gender on Blogging in 
+Proceedings of 2006 AAAI Spring Symposium on Computational Approaches for Analyzing Weblogs
+. 
+Solan, Lawrence M. "Intuition versus algorithm: The case of forensic authorship attribution." 
+JL & Pol'y
+ 21 (2012): 551.

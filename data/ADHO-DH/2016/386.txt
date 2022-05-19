@@ -1,0 +1,145 @@
+Introduction
+In the ever-expanding world of digital libraries and cultural heritage collections, bibliographic metadata standards provide a structured approach to managing resources. The capture of additional contextual information further supports the identification, selection, and use of the resources described. As the problem spaces and areas of study of Humanities scholars are increasingly diversified (Henry and Smith, 2010) and supported by digital material and methods, existent approaches and systems are falling short of the needs of users (Fenlon et al., 2014; Varvel and Thomer, 2011). In short, research agendas and investigations have begun to evolve beyond searches based on traditional metadata parameters (author, date, publication place, genre).
+Semantic Web technologies have been identified as a potential solution (Bair and Carlson, 2008). They augment keyword-based, full-text approaches to discovery, with methods that rely on named entity identification, relationships between entities, and the potential to leverage interlinked data from a variety of repositories and corpora. A number of different, well-defined ontologies (structural frameworks capturing domain information) created by various bodies within the wider context of the Digital Humanities (DH) have emerged (Isaac, 2013; Stead, 2006). A critical evaluation and comparison between these different structures has, however, been lacking.
+In this paper, we provide a summary of four bibliographical metadata ontologies, and expand on an earlier initial comparative analysis between them. What follows is a more in-depth discussion of complementary differences and parallels in terms of expressiveness, rather than domain, focus, or perspective. The strengths and weaknesses of these vocabularies are of interest and importance to anyone working with any type of Humanities dataset or research output, whether it be interacting with metadata that describes the resource, features that have been extracted from it, or the resource itself.
+Bibliographic Ontologies
+To date digital libraries have relied heavily on traditional library bibliographic standards, such as MARC
+http://www.loc.gov/marc/bibliographic/
+. As new research questions have arisen in DH, the limitations of earlier standards have become more pronounced (see Ramesh et al., 2015; Sfakakis and Kapidakis, 2009; Park, 2006; Cantara, 2006; Shreeves et al., 2005), and a number of ontologies designed to map the entities and relationships inherent in bibliographical metadata have emerged.
+Rather than aiming to provide a comprehensive analysis of all known examples, we extended a preliminary evaluation of a small number of bibliographic ontologies. Earlier research
+http://www.oerc.ox.ac.uk/projects/elephant
+bridging the large general corpus of the HathiTrust Digital Library
+https://www.hathitrust.org/htrc
+with the specialist Early English Books Online - Text Creation Partnership
+http://www.textcreationpartnership.org/tcp-eebo/
+assessed the different needs of three distinct case study examples and analysed the suitability of existing ontologies to adequate capture associated information, including publication facts and object biographies (Nurmikko-Fuller et al., 2015a). This preliminary analysis examined four ontologies: MODS RDF
+http://www.loc.gov/standards/mods/modsrdf/v1/
+/ MADS RDF
+http://www.loc.gov/standards/mads/rdf/v1.html
+, BIBFRAME (Miller, et al., 2012), Schema.org
+http://schema.org/docs/full.html
+, and FRBRoo (Bekiari, et al., 2013). BiBo
+http://bibliontology.com/
+was originally considered, but excluded from the final comparison as it operates on a finer level of granularity.
+In this paper, we elaborate on that initial analysis, and provide access to the entirety of the comparative table (Nurmikko-Fuller et al., 2015b)
+http://hdl.handle.net/2142/88356
+of which only a representative sample has previously been made available. We summarise the main characteristics of each structure in order to provide context for the detailed discussion outlining the parallels and differences between the models.
+Methodology
+Based on available documentation and extant examples, we conducted an extensive review of the expressiveness of each ontology. Comparing each property and class against possible alignments in the other three led to the identification of parallels and differences between these models. One revelation was the differing extent to which documentation had been left incomplete, highlighting the lack of workflow standardisation in ontology-development even within a shared domain. At times the absence of extensive documentation complicated our ability to confidently assert parallels between the models.
+The comparative analysis led to the insertion of all classes and properties of each ontology into one cohesive table, aligned wherever the same data could be represented regardless of how the mapping was achieved, and resulting in a table of exactly 500 rows. Five types of alignment were identified:
+equivalent
+, where the same data can be mapped in each ontology using a single class. An example of this is location information (such as publication place), captured via madsrdf:Geographic, bf:Place, sc:Place, and frbroo:F9_Place (equivalent to cidoc:E53) in MODS/MADS, BIBFRAME, Schema.org and FRBRoo respectively.
+alternative
+, which encompasses situations where properties were used in one ontology, but classes in another to talk about the same attribute. An example of this is Schema.org’s sc:birthDate. It takes an entire grouping of entities and relationships to express this same information in FRBRoo (frbroo:P98B_wasBorn frbroo:E67_Birth frbroo:P4_hasTime-Span frbroo:E52_Time-Span frbroo:P78_isIdentifiedBy frbroo:E50_Date).
+parallel
+, where the same data can be mapped using a combination of classes and properties. In the case of the date of creation for a work, MODS/MADS, BIBFRAME and Schema.org all have a single property (mods:dateCreated, bf:creationDate, CreativeWork:dateCreated), whilst FRBRoo necessitates a cluster of classes and properties: F1_Work R19b_wasRealisedThrough F28_ExpressionCreation P2_hasType E55_Type{“Earliest known externalisation”}. We consider these approaches as aligned because the same data can be mapped against them, but parallel rather than exactly equivalent due to different approaches.
+partial
+, where the same data could be mapped using different ontologies to a greater or lesser extent. As an example of this, we cite the assignment of a unique identifiers, captured using a single property in MODS/MADS (modsrdf:identifier) and FRBRoo (which uses a CIDOC property cidoc:P48_hasPreferredIdentifier), but through several possible options in Schema.org  (Thing:sameAs, Book:isbn, Periodical:issn), and via a total of 13 possible properties in BIBFRAME (such as bf:doi, bf:isbn, bf:uri).
+granular
+, which captures differences in levels of granularity. This is illustrated by entity types such sc:CreativeWork and sc:Book, and showcases how categorical alignment across all four ontologies is not always possible. In the case of frbr:F1_Work (a conceptual version of a work, of which digital and physical manifestation are carriers), an equivalent alignment can be drawn to bf:Work, but MODSRDF/MADSRDF has no entity type that fulfills the role of representing that notion.
+Comparative Analysis
+The bibliographic metadata ontologies discussed here differ in their approach and expressiveness. Of the four, MODS RDF/MADS RDF was found to be most descriptive, with FRBRoo an event-based model, and BIBFRAME bridging the two by virtue of containing characteristics typical of either. Schema.org stands out as an ontology that promulgates a model at the crossroads between the other four; however, its focus on instrumenting marketplace transactions also detracts from much of its descriptive power and leaves it orthogonal to the purposes of the others. It has some generic properties that are useful in each of the other ontologies, but also possesses properties and classes that end users do not require outside of point of service systems.
+From the perspective of a DH user of these ontologies, each is (to some degree) a victim of its provenance and the motivations of its designers. The benefits and failings of each are different, and they all incorporate a number of idiosyncrasies:
+MODS/MADS has a data structure that replicates the XML serialization format and is frequently realized in RDF as empty nodes.
+Schema.org affords humanists with a vocabulary that combines events and descriptions but differs from the other models in its focus.
+FRBRoo spans beyond the remit of bibliographical metadata by mapping relationships via temporal entities; this results in greater complexity for the representation of the same data, often necessitating a cluster of classes and properties.
+BIBFRAME adopts a different method, recreating MARC in RDF using methods and approaches more in line with graphical thinking, as well as extending beyond that format.
+Conclusion
+Our review examines the structure and scope of four ontologies designed for the representation of bibliographic metadata as applied to cataloguing digital source material in the Humanities. From this analysis direct equivalences, parallels, and complementary differences have emerged: there are many similarities in aim, scope, and expressiveness, but none of the considered ontologies completely satisfy scholarly needs on their own. Moving between them is feasible, but not achievable without some lossiness, as illustrated by the examples for
+granular alignment
+(see
+Methodology
+). For the comprehensive mapping of all the aspects of a given dataset, these models need to be supplemented with less bibliographically-focused ontologies. Our analysis has highlighted the need to formalize the mappings, best practices, and transformations, as these are key to the correct (re)use of ontologies across projects and domains.
+We have provided DH researchers with a window into the digital corpora design process. Knowing the requirements of domain scholars to have interactions with finer-grained research objects, we will be looking at standards like BiBo, Web Annotation, and others during the next round of research.
+Acknowledgement
+The authors gratefully acknowledge their colleagues Pip Willcox, Bodleian Libraries, University of Oxford; Colleen Fallaw, and Megan Senseney, Graduate School of Library and Information Science University of Illinois at Urbana-Champaign, for their invaluable contributions to the creation of the Bibliographic Ontologies Comparative Features Dataset, available at
+https://www.ideals.illinois.edu/handle/2142/88356
+.
+Bibliography
+Bair, S. and Carlson, S.
+(2008). Where keywords fail: Using metadata to facilitate digital humanities scholarship.
+Library Metadata
+8
+(3): 249-62.
+Bekiari, C., Doerr, M., Le Bœuf, P. and Riva, P.
+(2013).
+FRBR object-oriented definition and mapping from FRBR
+ER
+, FRAD and FRSAD
+(version 2). International Working Group on FRBR and CIDOC CRM Harmonisation.
+Cantera, L.
+(2006). Long-term preservation of digital humanities scholarship.
+OCLC Systems & Services
+22
+(1): 38-42.
+Fenlon, K., Senseney, M., Green, H., Bhattacharyya, S., Willis, C. and Downie, J. S.
+(2014). Scholar-built collections: A study of user requirements for research in large-scale digital libraries.
+Proceedings of the 77th ASIS&T Annual Meeting
+, Seattle, WA, 31 October – 5 November 2014.
+Henry, C. and Smith, K.
+(2010). Ghostlier demarcations: large-scale text digitization projects and their utility for contemporary humanities scholarship.
+The idea of order : transforming research collections for 21st century scholarship
+:106–115. Council on Library and Information Resources.
+http://www.clir.org/pubs/reports/reports/pub147/pub147.pdf
+(accessed March 3 2016).
+Isaac, A. (ed.)
+(2013).
+Europeana Data Model Primer
+.
+http://pro.europeana.eu/files/Europeana_Professional/Share_your_data/Technical_requirements/EDM_Documentation/EDM_Primer_130714.pdf
+(accessed March 3 2016).
+Miller, E., Ogbuji, U., Mueller, V. and MacDougall, K.
+(2012).
+Bibliographic Framework as a Web of Data: Linked Data Model and Supporting Services
+. Report. Library of Congress.
+Nurmikko-Fuller, T., Fallaw, C., Jett, J., Page, K. R., Cole, T. W., Maden, C., Senseney, M. and Downie, J. S.
+ 
+(2015a). Bibliographic Ontologies Comparative Features Dataset. Champaign, IL: University of Illinois.
+http://hdl.handle.net/2142/88356
+Nurmikko-Fuller, T., Page, K. R., Willcox, P., Jett, J., Maden, C., Cole, T., Fallaw, C., Senseney, M. and Downie, J. S.
+(2015b). Building Complex Research Collections in Digital Libraries: A Survey of Ontology Implications.
+Proceedings of the 15th ACM/IEEE-CS Joint Conference on Digital Libraries
+, New York, NY, USA, 21–25 June 2015. DOI=
+http://dx.doi.org/10.1145/2756406.2756944
+Park, J.-R.
+(2006). Semantic interoperability and metadata quality: An analysis of metadata item records of digital image collections.
+Knowledge Organization
+33
+(1): 20-34.
+Poulter, A.
+(2010). One ring to rule them all: CIDOC CRM.
+Catalogue & Index
+161, pp. 31-33.
+Ramesh, P., Vivekacardhan, J. and Bharathi, K.
+(2015). Metadata diversity, interoperability and resource discovery issues and challenges.
+DESIDOC Journal of Library & Information Technology
+,
+35
+(3): 193-99.
+Sfakakis, M. and Kapidakis, S.
+(2009). Eliminating query failures in a work-centric library meta-search environment.
+Library Hi Tech
+27
+(2): 286-307.
+Shreeves, S. L., Knutson, E. M., Stvilia, B., Palmer, C. L., Twidale, M. B. and Cole, T. W.
+(2005). Is “quality” metadata “shareable” metadata? The implications of local metadata practices for federated collections. In H.A. Thompson (Ed.)
+Proceedings of the Twelfth National Conference of the Association of College and Research Libraries
+, April 7-10 2005, Minneapolis, MN. Chicago, IL: Association of College and Research Libraries. pp. 223-37.
+Stead, S.
+(2006).
+The CIDOC CRM: a standard for the integration of cultural information
+.
+http://www.cidoc-crm.org/cidoc_tutorial/index.html
+(accessed November 15 2010).
+Varvel, V. E. J. and Thomer, A.
+(2011).
+Google digital humanities awards recipient interviews report (CIRSS Report No. HTRC1101)
+. Technical report prepared for the HathiTrust Digital Library. Champaign, IL: Center for Informatics Research in Science and Scholarship.
+http://www.loc.gov/marc/bibliographic/
+http://www.oerc.ox.ac.uk/projects/elephant
+https://www.hathitrust.org/htrc
+http://www.textcreationpartnership.org/tcp-eebo/
+http://www.loc.gov/standards/mods/modsrdf/v1/
+http://www.loc.gov/standards/mads/rdf/v1.html
+http://schema.org/docs/full.html
+http://hdl.handle.net/2142/88356

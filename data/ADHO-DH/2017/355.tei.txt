@@ -1,0 +1,96 @@
+Introduction
+When an earthquake struck Nepal in 2015, the band One Direction sent tweets encouraging their fans to donate to relief efforts, while an Indian activist tweeted accusations of Christian missionaries trading conversions for aid. While Twitter users were quick to bring their own agendas to the Nepal earthquake, does the same hold true for earthquakes in other parts of the world? A series of earthquakes that struck Kumamoto, Japan, and then Muisne, Ecuador in 2016 attracted a substantial amount of Twitter attention as well, yet as far as we are aware, the One Direction fans and the Indian activist made no comment. These users are onlookers to all three earthquakes: in other words, they are not directly affected by these events, but they tweet about them. This paper explores onlookers' responses across three different earthquakes: the 2015 Nepal earthquake, and the nearly-simultaneous earthquakes in Kumamoto and Ecuador in 2016, which we treat as a single event. This present work expands on our previous conclusion that onlookers tend to bring their own agendas to disasters. This paper shows that users who tweeted about the Kumamoto and Ecuador earthquakes were generally more interested in the earthquake or the affected areas than their own agendas, as their interest in the earthquake could not be predicted by interests in other topics.
+Background
+A substantial amount of research has explored how social media causes users to engage with political, social, and humanitarian problems; however, opinions on social media's effectiveness-whether it causes users to donate money or participate in campaignsare mixed. Some argue that displaying concern in social media is more about acquiring social capital than effecting change (Shulman; Gladwell; Morozov, The Net Delusion; Morozov, To Save Everything, Click Here), while a Pew Research Center survey finds that social media does create change (Raine, Purcell, and Smith). One analysis found that charities' use of social media does not increase donations (Malcolm), while another finds that certain tweeting strategies do (Gasso Climent) although tweets may not raise awareness about the charity's causes (Bravo and Hoffman-Goetz). All these studies concur that social media enable substantial discourse about crises. The question we explore here is how much of this conversation is predicted by a user's preexisting interests, and how this varies even among the same type of event in different areas.
+Methodology
+We followed a similar data collection process for both Nepal and the Kumamoto and Ecuadorean earthquakes: we sampled data from Twitter's REST API to attain a broad sample of onlookers. For Nepal, we had gathered a dataset of tweets sent during the three weeks following the Nepal earthquake by searching for any tweets that mentioned the word "Nepal" from April 24, 2015 to
+May 8, 2015
+. We then randomly selected 15,000 users from this set and harvested all tweets they sent between
+April 24, 2014 and
+May 8, 2015
+. We attempted to capture only English-speaking users to increase the likelihood that we would capture users not directly affected by the earthquake, but we still found some users who tweeted in multiple languages. This left roughly 11,000 onlookers for Nepal. For Kumamoto and Ecuador, we gathered a dataset of tweets sent in the two weeks following the Kumamoto earthquake that mentioned "Kumamoto" or "earthquake." We randomly selected 30,000 users and harvested every tweet they sent between March 16 and May 16, 2016. We collected more users, but fewer tweets for each user, than we did in the Nepal dataset so as to look for users who displayed a broader set of interests. This left around 25,000 onlookers in Kumamoto and Ecuador. We were able to filter out non-English tweets much more effectively in the latter dataset than the Nepal dataset.
+For the tweets for each event, we made a bipartite graph of users to words, and performed community detection using a method proposed by
+Okamoto and Qiu (2015)
+[2]
+, which allows for overlapping communities. Okamoto and Qui's method takes a single parameter, alpha, which controls the resolution of community detection: the smaller its magnitude, the larger the number of detected communities. We set alpha to 0.001 in both cases. The output of this method was a list of each node (users and words), and a percentage ranking rating its affinity with each community. We used these results to generate a list of top words in each community, which told us what users who tweeted about that community were interested in. From this process, a number of topics emerged, which we labelled manually according to our interpretations of the top words in each.
+Since this method also gave us a ranking for users' affinities to each community, it allowed us to examine the influence of other topics on a user's likelihood to tweet about either event. We wanted to examine how much a user's propensity to tweet about other topics predicted the probability that he or she would tweet about topics related to the earthquake. We ran multivariate linear regressions on each topic in the dataset using the Python sklearn module (Pedregosa et al.). We ran one regression for each topic, in which we treated a user's propensity to tweet about the topic under consideration as a dependent variable predicted by his or her propensity to tweet about other topics.
+Results
+Our analysis demonstrated a certain predictive power for some topics in each dataset. Applying this process to the Nepal tweets produced 17 topics about a variety of concerns, from entertainment to world events.
+Table 1
+shows these topics. Two of them, topics 5 and 15, treat the earthquake directly.
+A correlation exists between tweeting about entertainment topics and tweeting about the earthquake. Tweeting about topic 15 predicts that a user will tweet about topic 2, which is about pop music: the top words include "fifth," "harmony," "video," and "Justin." This correlation is the strongest in the dataset; few other topics show nearly as much correlation. Consequently, we observe a degree of correlation between tweeting about entertainment topics and tweeting about the disaster in Nepal. While the more targeted topics, like the One Direction topic, do not show much correlation with other topics, the more general entertainment topic does.
+Table 1
+: Topics for Nepal, showing probability of tweeting about one topic (X-axis) given likelihood of tweeting about other topics (Y-axis) In summary, we observe correlation between tweeting about entertainment topics and tweeting about the Nepal earthquake. Those who bring other agendas such as an interest in a particular musical group to the disaster tend to tweet mostly about those topics.
+Does the same hold true for Kumamoto and Ecuador?
+Table 2
+shows a few topics from the Kumamoto and Ecuador earthquakes. Our analysis demonstrates that an onlooker's propensity to tweet about some topics could be predicted by interest in others. For example, a user who tweeted about news topics, such as U.S. politics (specifically, topic 43) or Asian news (topic 4), was likely to tweet about Nigerian politics (topic 2). Likewise, a user who tweeted about Japanese Entertainment (37) was also likely to tweet about other entertainment topics. On the other hand, no such correlation was observed in the opposite direction: no topic predicted a user's tendency to tweet about topics 6 and 22, the earthquake topics. All coefficients in those regressions were under 0.01. The two topics that focus on Kumamoto are relatively closed: users who tweet most about the Kumamoto earthquake tweet about little else during this period.
+Our interpretation is that users who tweeted about Kumamoto or Ecuador were specifically interested in earthquakes, Japanese culture, or the affected regions. The majority of users who tweeted about the Kumamoto and Ecuador earthquake topics were interested in specialized topics relevant to the events: they were not, for example, One Direction fans. We therefore conclude that while some users tweeting about Kumamoto and Ecuador were motivated by general interests in news or entertainment, they were a much smaller group than in the Nepal dataset.
+Conclusions
+We find that while users often brought their own agendas to tweeting about Nepal, fewer did so when tweeting about Ecuador and Japan. Users who tweeted about Kumamoto and Ecuador tended to focus on topics related to the earthquakes, and less on issues that the earthquakes might demonstrate.
+Our future work will test these conclusions with other earthquakes. In particular, we will examine the 2011 Tohoku Earthquake which raised serious political issues. Additionally, in our present work, we treat the Kumamoto and Ecuador earthquakes as a single event because distinct "Kumamoto" and "Ecuador" topics did not emerge from our text mining, which itself is suggestive of how Twitter users understood them. In our future work, we will probe more deeply for differences between the two earthquakes.
+Table 2 :
+2
+Topics for Kumamoto and Ecuador, showing probability of tweeting about one topic (X-axis) given likelihood of tweeting about other topics (Y-axis) (truncated for space)
+Tweeting About Prostate and Testicular Cancers: What Are Individuals Saying in Their Discussions About the
+C
+A
+Bravo
+L
+Hoffman-Goetz
+Journal of Cancer Education. 1-8. link.springer.com. Web
+Movember Canada Campaign?
+Twitter as a Social Marketing Tool : Modifying Tweeting Behavior in Order to Encourage Donations
+C
+Gasso Climent
+info:eurepo/semantics/bachelorThesis. N.p.
+Outliers: The Story of Success
+M
+Gladwell
+Back Bay Books. Print
+Reprint edition
+How Social Media Affects the Annual Fund Revenues of Nonprofit Organizations
+K
+Malcolm
+n. pag. Web
+Walden Dissertations and Doctoral Studies
+The Net Delusion: The Dark Side of Internet Freedom
+E
+Morozov
+PublicAffairs. Print
+New York
+Reprint edition
+To Save Everything, Click Here: The Folly of Technological Solutionism
+E
+Morozov
+PublicAffairs. Print
+New York
+First Trade Paper Edition edition
+Modular Decomposition of Markov Chain: Detecting Overlapping and Hierarchically Organized Communities in Networks
+H
+Okamoto
+X.-L
+Qiu
+Brasil
+Abstracts of NetSci-X. Rio de Janeiro
+N.p. Print
+Scikit-Learn: Machine Learning in Python
+F
+Pedregosa
+Journal of Machine Learning Research
+12
+Print
+Pew Research Center: Numbers, Facts and Trends Shaping Your World
+L
+Raine
+K
+Purcell
+A
+Smith
+The Social Side of the Internet | Pew Research Center
+The Case Against Mass E-Mails: Perverse Incentives and Low Quality Public Participation
+S
+W
+Shulman
+Policy & Internet
+1
+Wiley Online Library. Web

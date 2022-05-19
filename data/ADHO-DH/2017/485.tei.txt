@@ -1,0 +1,245 @@
+Introduction
+Enjambment takes place when a syntactic unit is broken up across two lines of poetry (
+Domínguez Ca- parrós, 2000: 103)
+, giving rise to different stylistic effects (e.g. increased emphasis on elements of the broken-up phrase, or contrast between those elements), or creating double interpretations for the enjambed lines (
+García-Paje, 1991)
+.
+In Spanish poetry, the syntactic configurations under which enjambment takes place have been described extensively, and detailed studies on the use of enjambment by individual authors exist (see
+Martínez Cantón, 2011
+for an overview) including, among others
+Quilis (1964)
+,
+Domínguez Caparrós, (2000)
+, Paraíso,
+(2000)
+,
+Spang (1983)
+for a description of enjambment, and
+Alarcos (1966)
+,
+Senabre (1982)
+,
+Luján (2006)
+, Martínez
+Fernández (2010)
+for case-studies on a single author. However, a larger-scale study to identify enjambment across hundreds of authors spanning several centuries, enabling distant reading
+(Moretti, 2013)
+, was not previously available.
+Given that need, we have developed software, based on Natural Language Processing, that automatically identifies enjambment in Spanish, and applied it to a corpus of approx. 3750 sonnets by ca. 1000 authors, from the 15th to the 19th century. What is the interest of such large-scale automatic analyses of enjambment? First, the literature shows a debate about which specific syntactic units can be considered to trigger enjambment, if split across two lines, and whether lexical and syntactic criteria are sufficient to identify enjambment. Second, the stylistic effects that enjambment permits are also an object of current research
+(Martínez Fernández, 2010)
+. Systematically collecting large amounts of enjambment examples provides helpful evidence to assess scholars' current claims, and may stimulate novel analyses. Finally, our study complements
+Navarro's (2016)
+automatic metrical analyses of Spanish Golden Age sonnets, by covering a wider period and focusing on enjambment.
+The abstract is structured thus: First we provide the definition of enjambment adopted. Then, our corpus and system are described, followed by an evaluation of the system. Finally, findings on enjambment in our diachronic sonnet corpus are discussed. The project's website provides details omitted here for space reasons, including samples for the corpus, results, and other details.
+Enjambment in Spanish
+Syntactic and metrical units often match in poetry. However, this trend has been broken since antiquity for various reasons
+(Parry (1929)
+on Homer, or Flores Gómez (1988) on early classical poetry).
+In Spanish tradition, enjambment (in Spanish, "encabalgamiento") is considered to take place when a pause suggested by poetic form (e.g. at the end of a line or across hemistichs) occurs between strongly connected lexical or syntactic units, triggering an unnatural cut between those units. Quilis (1964) performed poetry reading experiments, proposing that the following strongly connected elements give rise to enjambment, should a poetic-form pause break them up:
+• Lexical enjambment: Breaking up a word.
+We translated "lexical enjambment" from Quilis's terms "encabalgamiento léxico" or "tmesis".
+• Phrase-bounded enjambment: Within a phrase, breaking up sequences like "noun + adjective", "verb + adverb", "auxiliary verb + main verb", among others. We translated "phrase-bounded enjambment" from "encabalgamiento sirremático".
+• Cross-clause enjambment: Between a noun antecedent and the pronoun heading the relative clause that complements the antecedent. We translated "cross-clause enjambment" from Quilis's "encabalgamiento oracional".
+The project site includes Quilis's complete list of syntactic environments that can trigger enjambment, as well as the types identified by our system. Besides the enjambment types above,
+Spang (1983)
+noted that if a subject or direct object and their related verbs occur in two different lines of poetry, this can also feel unusual for a reader, even if the effect is less pronounced than in the environments identified by Quilis. To differentiate these cases from enjambment proper, Spang calls these cases "enlace", translated here as "expansion".
+Quilis (1964) was the only author so far to gather recitation-based experimental evidence on enjambment. His typology is still considered current, and was adopted by later authors, although complementary enjambment typologies have been proposed, as Martínez Cantón (2011) reviews. Our system identifies Quilis' types, besides Spang's expansion cases.
+Corpus
+The corpus is based on two public online collections from Biblioteca Virtual Cervantes (García Gonzá-lez, R. (ed.), 2006a, 2006b). The first one covers 1088 sonnets by 477 authors from the 15th-17th centuries. The second one contains 2673 sonnets by 685 authors from the 19th century. We created scripts to download the poems, remove HTML and extract dates of birth and death for the authors (About 30% of the 15th to 17th century authors had exact dates of birth and death, for the rest only the centuries were available. Among the 19th century authors, ca. 45% had exact dates of birth and death).
+Table 1
+shows the distribution of authors and poems by century. The corpus covers canonical as well as minor authors, inspired in distant reading approaches
+(Moretti, 2007
+(Moretti, , 2013
+. * Exact dates of birth and death are available for a minority of authors; often only the century was provided in the corpus sources. Periods ending in ".5" cover authors who lived in two centuries. E.g. period "15.5" covers authors born in the 15th and deceased in the 16th century
+System description
+The system has three components: a preprocessing module to format input poems uniformly, an NLP pipeline, and the enjambment-detection module itself.
+The NLP pipeline is IXA Pipes (
+Agerri et al., 2014
+). Its results for contemporary Spanish are competitive. Our system uses it to obtain part-of-speech tags, syntactic constituency (e.g. verb-phrase, noun-phrase) and syntactic dependencies (e.g. direct object).
+The enjambment detection module is rule and dictionary-based, and exploits the information provided by the NLP pipeline. Rules (30 in total) of different characteristics identify enjambed lines, assigning them a type among a list of 12 types, based on the typology in Section 2 (the full list of types identified by the system is available on the project site).
+• Some rules are very shallow and only take parts of speech into account.
+• Some rules additionally exploit constituency info.
+• Some rules use dependency information, e.g. to detect "subject / object / verb" relations.
+• For any type of rule, custom dictionaries can restrict rule application to a set of terms. E.g. certain verbs govern arguments introduced by one specific preposition; we itemized these verbs and their prepositions in a dictionary, to complement information provided by the NLP pipeline or correct parsing errors.
+Enjambment annotations are output in standoff format. Further details can be found on the project's site.
+System evaluation and discussion
+Test-corpus
+To evaluate the system, we created two referencesets (SonnetEvol and Cantos20th), manually annotating enjambment in them.
+SonnetEvol: 100 sonnets (1400 lines) from
+our diachronic sonnet corpus of ca. 3750 sonnets
+(Table Table)
+. This test-set contains 260 pairs of enjambed lines (in other words, if there is an enjambment between lines 1 and 2, we consider that as "pair of enjambed lines" in the reference corpus). 2. Cantos20th: 1000 lines of 20 th century poetry
+(Colinas, 1983)
+, showing natural contemporary syntax. We identified 277 pairs of enjambed lines.
+The distribution of enjambment types in the testcorpora is balanced (
+Table 2
+). The SonnetEvol diachronic test-corpus is balanced across periods (Table 3). It should be noted that balancing across periods does not apply to the Cantos20th test-corpus: it covers the 20 th century only.
+We annotated the Cantos20th corpus in order to assess the system's performance on contemporary Spanish with natural diction, compared to its behaviour with the SonnetEvol corpus, which includes some archaic constructions and often shows an elevated register.
+For the evaluation reported here, each sonnet was annotated by a single annotator. Obtaining multiple annotators' input on the same sonnet to assess interannotator agreement
+(Artstein and Poesio, 2008
+) is part of our ongoing work.
+Table 2
+: Distribution of enjambment types in the manually annotated reference corpora, providing counts and each type's percentage of the total enjambments per corpus.
+Counts refer to pairs of enjambed lines. *The project site includes a description of each enjambment type.
+Table 3
+: Distribution of sonnets by period in the manually annotated SonnetEvol corpus. The 16th, 17th and 19th centuries cover ca. 30% of the corpus each, and the 15th century covers ca. 10% of the sonnets **Exact dates of birth and death are available for a minority of authors; often only the century was provided in the corpus sources. Periods ending in ".5" cover sonnets for authors who lived in two centuries. E.g. period "15.5" covers sonnets for authors born in the 15th and deceased in the 16th century
+Enjambment-detection tasks evaluated
+We defined two enjambment-detection tasks:
+• Span-match: the positions of enjambed lines proposed by the system must match the positions in the reference corpus for a correct result to be counted.
+• Typed span-match: for a correct result, both the positions and the enjambment type assigned by the system to those positions must match the reference.
+System results and discussion
+Precision, recall and F1 were obtained. The definitions for Precision (P), Recall (R) and F1 were the usual:
+Table 4
+provides overall results for both corpora.
+Table 5
+provides the per-type results on the diachronic test-corpus (SonnetEvol). The project's site contains more detailed results (e.g. per-type results for the Cantos20th corpus, or breakdowns for SonnetEvol per period).
+Table 4
+: Overall enjambment detection results. Number of test-items, Precision (P), Recall (R) and F1 in our two testcorpora, for the span-match and typed span-match enjambment detection tasks
+Table 5
+: Enjambment detection results per type. On the SonnetEvol corpus. Number of items per type, Precision (P), Recall (R) and F1 on the typed span-match enjambment detection task. * The types are described on our site: http://sites.google.com/site/spanishenjambment/enjambmen t-types
+For untyped detection (span-match), F1 reaches 80% in the SonnetEvol corpus, whereas F1 for typed detection is 66.31%. For the contemporary Spanish corpus (Cantos20th), F1 is higher: 80.63% typed detection, 86.51% span-match. This reflects additional difficulties posed by archaic language and historical varieties for the NLP system whose outputs our enjambment detection relies on. Expansions get lower F1 than phrase-bounded types overall. But we do not think that the F1 difference between SonnetEvol and Cantos20th is due to the higher proportion of expansions in SonnetEvol
+(Table 2)
+: Results per-type (see the evaluation page of the project's site) show that phrase-bounded enjambment detection is 10 points of F1 lower in SonnetEvol than in Cantos20th. Also, phrase-bounded enjambment results for the 15 th -17 th period (with more archaic language) are 10 points of F1 lower than in the 19 th century.
+A common source of error was hyperbaton: the displacement of phrases triggers constituency and dependency parsing errors. Prepositional phrase (PP) attachment also posed challenges: Verbal adjuncts get mistaken for PPs complementing nouns or adjectives. This is a common problem in syntactic parsing, even for contemporary languages (see
+Agirre et al, 2008
+, for English). For historical varieties, Stein's (2016) results for verbal adjuncts and prepositional complements in Old French also suggest the difficulties posed by prepositional phrases.
+Creating a reparsing module to manage hyperbaton and improve PP attachment results may be fruitful future work.
+Scholarly results and discussion
+The system's goal is detecting enjambment to help literary research on the phenomenon, via providing systematic evidence for its analysis.
+We consider our untyped enjambed-line detection results helpful, given an F1 of ca. 80% on the diachronic test-set. As an example application, we examined the distribution of enjambment according to position in the poem, particularly in positions across a verse-boundary (lines 4-5, 8-9 and 11-12). Comparing the results for the 15 th -to-17 th centuries vs. the 19 th century
+(Table 6
+and
+Figure 1)
+, we see that enjambment across the tercets increases clearly in the 19 th century, with a small increase of enjambment across the quatrains (lines 4-5) and across the octave-sestet divide (lines 8-9). Given the manageable data volume, we validated the counts for enjambment across a verse boundary
+(Table 6
+) manually (but not the more voluminous data for all other positions).
+The value of the tool is helping perform such analyses on a large corpus. This opens the door for scholars to assess the literary relevance of the findings, and search for the best interpretation. with a small increase in the 19 th century. The division between the tercets blurs in the 19 th century, in the sense that enjambment across them is clearly higher than in the previous period
+Outlook
+The characterization of enjambment in Spanish literary theory has unclear points. Systematically obtaining enjambment examples is helping us find additional evidence to analyze these unclear points. Moreover, we are not aware of a systematic large-sample study of enjambment across periods, literary movements, or versification types in Spanish, or other languages. Automatic detection can help answer interesting questions in verse theory, which would benefit from a quantitative approach, complementing small-sample analyses. e.g.: To what an extent is enjambment used differently in free verse vs. traditional versification? Students in our metrics classes are currently annotating enjambment for 450 sonnets. These annotations will permit inter-annotator agreement computation. We will also examine the possibility of using supervised machine learning to train a sequence labeling and classification model to complement our current detection rules.
+6 :
+6
+Table 1 :
+1
+Table
+Acknowledgements
+Pablo Ruiz Fabo was supported by a PhD scholarship from Région Île-de-France. We also thank Clara Martínez Cantón's and Borja Navarro's metrics students for their ongoing sonnet annotation work, and Borja Navarro for introducing his students to the annotations required.
+Bibliography
+Ipsum, L. (2017) "Lorem ipsum dolor sit amet, consectetur
+adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua". Lorem Ipsum Quarterly.
+13.1: 27-45
+Lorem, I. (2014) "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua". Lorem Ipsum Quarterly. 7.1: 46-55 Amet, C. (1887) "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua". Lorem Ipsum Quarterly. 3.1: 56-71
+IXA Pipeline: Efficient and ready to use multilingual NLP tools
+R
+Agerri
+J
+Bermudez
+G
+Rigau
+Proceedings of LREC 2014, the 9 th International Language Resources and Evaluation Conference
+LREC 2014, the 9 th International Language Resources and Evaluation Conference
+Reykjavik, Iceland
+Improving Parsing and PP Attachment Performance with Sense Information
+E
+Agirre
+T
+Baldwin
+D
+Martinez
+Proceedings of ACL 2008, Conference of the Association for Computational Linguistics
+ACL 2008, Conference of the Association for Computational Linguistics
+Ohio, US
+La Poesía de Blas de Otero [por] E. Alarcos Llorach
+Alarcos
+Llorach
+E
+Madrid, Anaya
+Inter-coder agreement for computational linguistics
+R
+Artstein
+M
+Poesio
+Computational Linguistics
+34
+Noche más allá de la noche
+A
+Colinas
+Madrid, Visor Libros
+Métrica española
+J
+Domínguez Caparrós
+UNED, Spain
+Sonetos del siglo XV al XVII. Alicante, Biblioteca Virtual Miguel de Cervantes
+R
+García González
+Sonetos del siglo XIX. Alicante, Biblioteca Virtual Miguel de Cervantes
+R
+García González
+En torno al encabalgamiento. Pausa virtual y duplicidad de lecturas
+M
+García-Page
+Revista de literatura
+53
+Coincidencia y distorsión (encabalgamiento) de la unidad rítmica verso y las unidades sintácticas
+M
+E
+Flores Gómez
+Estudios clásicos
+30
+94
+Desde las márgenes de un río: la poesía coral de Diego Jesús Jiménez
+Á
+L
+Luján Atienza
+Métrica y poética de Antonio Colinas
+Córdoba, Litopress. Martínez Cantón, C.; Sevilla, Padilla Libros
+PhD Dissertation from UNED, Spain
+J
+E
+Martínez Fernández
+La voz entrecortada de los versos
+Barcelona, Davinci Continental
+Graphs, Maps, Trees. Abstract Models for Literary History
+F
+Moretti
+Metrical Annotation of a Large Corpus of Spanish Sonnets: Representation, Scansion and Evaluation. Proceedings of LREC
+F
+Moretti
+Verso
+Navarro-Colorado
+Borja
+M
+R
+Lafoz
+N
+Sánchez
+Tenth International Conference on Language Resources and Evaluation
+Portorož, Slovenia. Paraíso, I; Madrid, Arco Libros
+La métrica española en su contexto románico
+The distinctive character of enjambement in Homeric verse
+M
+Parry
+Transactions and Proceedings of the American Philological Association
+Johns Hopkins University Press
+60
+La estructura del encabalgamiento en la métrica española: Contribución a su estudio experimental
+A
+Quilis
+Consejo Superior de Investigaciones Científicas
+El encabalgamiento en la poesía de Fray Luis de León
+R
+Senabre
+Revista de Filología Española
+1
+62
+Consejo Superior de Investigaciones Científicas
+Ritmo y versificación. Teoría y práctica del análisis métrico
+K
+Spang
+Spain
+Universidad de Murcia
+Old French dependency parsing: Results of two parsers analyzed from a linguistic point of view
+A
+Stein
+Proceedings of LREC the 11th International Language Resources and Evaluation Conference
+LREC the 11th International Language Resources and Evaluation Conference
+Portorož, Slovenia

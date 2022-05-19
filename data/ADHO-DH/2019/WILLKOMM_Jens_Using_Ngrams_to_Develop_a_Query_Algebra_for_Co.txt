@@ -1,0 +1,89 @@
+The digitization of large time-labeled bibliographies has resulted in corpora such as the Google Ngram data set (Lin et al., 2012) which are expected to reveal novel insights into the evolution of language and society. We present our project of developing a query algebra to unlock this potential, the Conceptual History Query Language (CHQL). It is inspired by the German tradition of
+Begriffsgeschichte
+as exemplified by the work of Koselleck (Olsen, 2012).
+Conceptual history claims that pragmatic properties of historical, cultural and economic relevance are incorporated in concepts and attempts to track any changes over time to determine how their pragmatic relevance changes (“socialism” might express hopes at some moment and fears at some other). Thus, concepts will be categorized as belonging to a particular
+concept type
+at a particular moment in time.
+To determine the type of a particular concept, scholars commonly make use of word-usage frequencies, word contexts, sentiment analysis, how words refer and relate to and contrast with each other, or they look for word pairs or word families whose usage is correlated etc. (Brunner et al., 2004; Ritter and Gründer, 1971). They closely read and interpret large masses of texts, but because we want to do the same using
+Distant Reading
+techniques (Moretti, 2013), these information types need to be translated into observable data characteristics for which individual operators in the query language are defined. Finding these information types and building computable items is the main challenge of our project.
+Since there is no accepted definition of information types, we describe an interpretation of them in order to map them on to data characteristics. Data characteristics are quantitative feature either directly present (e.g., the frequency of the word “socialism” in 1848), or a derived piece of information (e.g. the difference between the frequency of “socialism” and “communism” from 1848 to 1989). We describe which data characteristics are needed to simulate Koselleck’s information needs and explain our realization of all data characteristics and their implementation as operators.
+The relationship between concept types, information types, data characteristics and operators to hypothesize concept types
+The assumption is that each concept type has specific characteristics, that is, any concept type can be described using a specific combination of information types. For example, Koselleck may plausibly be read as claiming that word pairs that form
+parallel concepts
+(concept type) would have “similar”
+word frequencies
+and have a significant number of identical
+surrounding words
+(information types). By contrast,
+counter concepts
+would also have similar word frequencies yet their surrounding words would behave differently. For instance, if “enlightenment” and “reason” are parallel concepts for a particular period, their relative word frequencies should be similar, and if “emancipation” occurs near “enlightenment”, it should occur near “reason” too, and both concepts should be endorsed rather than criticized (in some sense). By contrast, if “East” and “West” are counter concepts, their word contexts should contain different words, and there should be some sort of contrast in attitude between them.
+We are developing a system that finds these information types in large corpora that are not amenable to conventional close reading (Willkomm et al., 2018). We present a selection of some of the data characteristics with the information type they are intended to represent:
+Individual Context:
+Our
+surroundingwords
+and
+sentiment
+operators search for surrounding words and sum the associated sentiment, using sentiment analysis (e.g. LIWC (Wolf et al., 2008))
+Topic Grouping:
+Using
+topic modeling
+, groups of words may be classified as belonging to a particular topic.
+Sentence Structure:
+The function of a word, i.e. various parts of speech, and completing phrases, i.e., search for missing words in a phrase, are implemented by our operator
+pfilter
+and by a pattern-matching operator called
+textsearch
+.
+Frequency Data:
+Abrupt increases in word-usage frequency over time and similar characteristics are implemented with the operator
+time series-based selection
+, a
+subsequence
+operator may limit the selection to an arbitrary time interval.
+Using CHQL, we have tested the hypotheses that (1) “East” and “West” have acquired a political context after 1945, whereas “North” and “South” haven’t, and that (2) the former have turned into counter concepts in the political sphere, their contexts expressing diverging attitudes, whereas the latter have remained geographical parallel concepts. The operator trees 1 and 2 shown in Figures 2 and 4 illustrate how CHQL allows combining the operators mentioned to perform a single search, yielding the results shown in Figures 3 and 5.
+Formalisation of hypothesis 1 in CHQL
+The result of Query 1 on the Google Books Ngram Corpus
+Formalisation of hypothesis 2 in CHQL
+The result of Query 2 on the Google Books Ngram Corpus
+Bibliography
+Brunner, O., Conze, W. and Koselleck, R. (eds).
+(2004).
+Geschichtliche Grundbegriffe (Volumes 1-8)
+. Klett-Cotta Verlag.
+Englhardt, A., Willkomm, J., Schäler, M. and Böhm, K.
+(2019). Improving Semantic Change Analysis by Combining Word Embeddings and Word Frequencies.
+International Journal on Digital Libraries
+.
+Hai-Jew, S. (ed).
+(2017).
+Data Analytics in Digital Humanities
+. Springer-Verlag GmbH.
+Lin, Y., Michel, J.-B., Aiden, E. L., Orwant, J., Brockman, W. and Petrov, S.
+(2012). Syntactic annotations for the Google Books Ngram Corpus.
+Proceedings of the ACL 2012 System Demonstrations (ACL ’12)
+. Association for Computational Linguistics, pp. 169–174.
+Moretti, F.
+(2013).
+Distant Reading
+. Verso Books.
+Olsen, N.
+(2012).
+History in the Plural: An Introduction to the Work of Reinhart Koselleck
+. Berghahn Books Inc.
+Ritter, J. and Gründer, K. (eds).
+(1971).
+Historisches Wörterbuch Der Philosophie (13 Volume Set)
+. Schwabe.
+Warwick, C., Terras, M. and Nyhan, J. (eds).
+(2012).
+Digital Humanities in Practice
+. Facet Publishing.
+Willkomm, J., Schmidt-Petri, C., Schäler, M., Schefczyk, M. and Böhm, K.
+(2018). A Query Algebra for Temporal Text Corpora.
+Proceedings of the 18th ACM/IEEE on Joint Conference on Digital Libraries (JCDL ’18)
+. ACM Press, pp. 183–192 doi:10.1145/3197026.3197044.
+Wolf, M., Horn, A., Mehl, M., Haug, S., Pennebaker, J. and Kordy, H.
+(2008). Computergestützte quantitative Textanalyse.
+Diagnostica
+: 85–98 doi:10.1026/0012-1924.54.2.85.
