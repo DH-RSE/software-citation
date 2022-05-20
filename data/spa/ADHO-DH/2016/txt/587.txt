@@ -1,0 +1,597 @@
+Introducción
+Europeana
+, como biblioteca digital europea, se considera como el medio de referencia para compartir el extenso patrimonio europeo de distintas categorías y del que son depositarias instituciones de diversa índole, ya sean públicas o privadas. Desde la puesta en marcha de esta biblioteca han estado presentes instituciones relevante y entre ellas bibliotecas como la
+British Library
+.
+Para las bibliotecas también es importante su integración en Europeana ya que las dota de una visibilidad imposible de imaginar en los ámbitos más restringidos en los que se encuentran localizadas las bibliotecas y les permite compartir su extenso patrimonio.
+El proceso de adaptación de la información, tradicionalmente estructurada en bases de datos relacionales, al modelo de datos abiertos de Europeana (
+Europeana Data Model
+, EDM) es excesivamente complejo, difícil de automatizar y requiere de la intervención de expertos. La complejidad estriba fundamentalmente en la brecha semántica que existe entre la forma en la que las bibliotecas almacenan y estructuran su información, en general, y la forma de representación que requiere
+Europeana
+. Este modelo de datos es una especificación conceptual basada en etiquetas semánticas que se integran en los datos de forma que datos y metadatos forman un todo.
+Las mayoría de las bibliotecas cuentan en la actualidad con una base de datos relacional, un modelo de datos de representación en el que ya se muestran detalles que trascienden los conceptos del mundo modelado, especificando características más relacionadas con la implementación de conceptos y relaciones.
+Es necesario, pues, extraer la semántica conceptual del modelo relacional y trasladarla al modelo que Europeana define y exige para poder integrar en ella la biblioteca y dar visibilidad a su patrimonio.
+SAMEBibl
+, automatización del proceso de migración a Europeana
+SAMEBibl
+, nace con el objetivo de cubrir el proceso completo de migración de una biblioteca para su integración en la Europeana. Este proceso, que se muestra en Figura 1, parte del modelo origen de representación de la información y lo transforma en el modelo destino.
+La semántica de los dos modelos, origen y destino, es cualitativamente distinta y por tanto, el proceso requiere que se conciban modelos conceptuales intermedios que evolucionan progresivamente hasta obtener el modelo necesario para la integración de los datos en Europeana.
+SAMEBibl
+automatiza casi todo el proceso de migración, aunque se requiere la intervención del experto de la biblioteca con el objeto de establecer las correspondencias mas convenientes entre los componentes del modelo original y el modelo de
+Europeana
+, permitiendo asimismo la elección de la información que se considera más oportuno migrar. La interacción del experto con el sistema se realizará de forma amigable, presentando la información que se quiere migrar de forma independiente a su representación interna en el modelo que se ha definido, es decir, no es necesario que cuente con conocimientos técnicos en lo que a repositorios y datos abiertos se refiere.
+Figura 2. Pantalla interfaz Samebibl
+La aplicación desarrollada consta de tres componentes principales:
+Un traductor dirigido por la sintaxis que extrae la semántica del modelo relacional a partir de las estructuras sintácticas que se identifican en el esquema de la base de datos, y que dan lugar a un modelo conceptual intermedio.
+Un módulo que permite establecer las correspondencias, es decir, definir el “mapeado”, entre cada uno de los conceptos y relaciones del modelo conceptual extraído por el traductor y el modelo de Europeana. Para ello se requiere la intervención del experto de la biblioteca.
+Un traductor que, a partir de la información obtenida de los registros de la base de datos, la información facilitada en el mapeado por el experto y los elementos del modelo conceptual, genera los metadatos basados en
+EDM
+en un formato XML/RDF necesario para poblar el repositorio que será recolectado por
+Europeana
+.
+Figura 3. Casos de uso Samebibl
+El proceso de migración no sólo presenta complejidad interna. La cantidad de información manejada y transformada puede ser de tamaño considerable y por tanto, requerir de tiempo para su realización. Además, la información puede ser cambiante o se puede añadir información nueva. Es importante, por tanto que SAMEBibl dote de persistencia a la información que se ha generado de la persistencia necesaria para permitir su modificación y actualización. Debido a esto, la información relativa a los modelos y sus correspondencias, es almacenada para permitir tanto su actualización y mejora, con la revisión o incorporación de nuevas reglas de mapeado tras la incorporación de nuevos elementos semánticos.
+Esta característica facilita el mantenimiento automático del repositorio que incorporará los cambios surgidos en el entorno operacional de la base de datos relacional.
+SAMEBibl
+, por tanto, es una herramienta que cubre una necesidad detectada en muchas bibliotecas,. Esta necesidad es mayor en aquellas bibliotecas que no tienen recursos suficientes como para contar con expertos técnicos que realicen el proceso de transformación del modelo de su base de datos relacional a
+Europeana
+., y esta es la situación en la que se encuentran la mayoría de las bibliotecas europeas que son de menor envergadura pero que son depositarias de un gran patrimonio. Sus tres características más relevantes son:
+la automatización completa de las funciones de extracción de la semántica conceptual y generación de metadatos. Estas dos funciones abarcan los elementos técnicamente más complejos del proceso de migración. Su total automatización aísla al usuario de esta complejidad.
+la simplicidad y naturalidad en la operación de la funcionalidad de mapeado, al contar con una interfaz sencilla que permite al usuario de la biblioteca establecer las correspondencias semánticas entre los modelos de acuerdo a sus criterios de forma intuitiva y amigable.
+la flexibilidad del modelo adoptado en la representación del conocimiento relativo a los modelos y sus correspondencias. Esto permite proporcionar ante una herramienta de propósito general que puede ser empleada por cualquier biblioteca basada en un modelo relacional. Asimismo hará muy sencilla la adaptación de la herramienta en el futuro para soportar la migración a nuevos modelos de metadatos semánticos distintos de
+EDM
+.
+Aplicación de
+SAMEBibl
+a la Biblioteca Digotal Ovidiana
+SAMEBIbl
+ya ha sido aplicada en la
+Biblioteca Digital Ovidiana (desde ahora BDO)
+(
+www.oviduspictus.es
+) dedicada a la obra ilustrada de Ovidio y que alberga los datos y las imágenes de todos los ejemplares de las ediciones impresas entre los siglos XV al XIX que se encuentran en las bibliotecas españolas. Es un proyecto que se esta llevando a cabo en varias fases.
+Con el objeto de poder compartir la información de la BDO en Europeana, se ha utilizado SAMEBibl para llevar a cabo la migración .
+El modelo lógico relacional de la base de datos de BDO que se muestra en Figura 3 es un modelo complejo ya que refleja la rica semántica y estructuración de la información almacenada en la misma
+Tras el proceso de migración se obtienen los objetos semánticos correspondientes a los diferentes conceptos identificados a partir de la semántica extraída del modelo lógico relacional como se muestra en la Figura 5.
+Figura 5. Objetos generados para los conceptos Ejemplar y Biblioteca
+A partir del modelo de objetos generado se generan los metadatos y el archivo RDF/XML que permite la integración de la información en el repositorio., tal y como se muestra en Código 1
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+xsi:schemaLocation
+=
+"http://www.w3.org/1999/02/22-rdf-syntax-ns#http://www.europeana.eu/schemas/edm/EDM.xsd"
+>
+<edm:Place
+rdf:about
+=
+"http://www.ovidiuspictus.es/biblioteca/27"
+rdf:resource
+=
+"http://bibliotecas.usal.es/?q=biblioteca/general-historica"
+>
+<skos:prefLabel>
+Biblioteca General Histórica de la Universidad.
+</skos:prefLabel>
+<dcterms:isPartOf>
+Ciudad: Salamanca
+</dcterms:isPartOf>
+<dcterms:isPartOf>
+Provincia: Salamanca
+</dcterms:isPartOf>
+<dcterms:isPartOf>
+Comunidad autónoma: Castilla León
+</dcterms:isPartOf>
+</edm:Place>
+<edm:ProvidedCHO
+rdf:about
+=
+"http://www.ovidiuspictus.es/edicion/137"
+>
+<dc:title>
+PUBLII
+<br />
+OVIDII NASONIS
+<br />
+OPERA OMNIA
+<br />
+IV. VOLUMINIBUS COMPREHENSA;
+<br />
+CUM INTEGRIS
+<br />
+JACOBI MICYLLI, HERCULIS CIOFANI,
+<br />
+ET DANIELIS HEINSII
+<br />
+NOTIS,
+<br />
+ET
+<br />
+NICOLAI HEINSII
+<br />
+CURIS SECUNDIS,
+<br />
+ET
+<br />
+ALIORUM IN SINGULAS PARTES,
+<br />
+PARTIM INTEGRIS, PARTIM EXCERPTIS,
+<br />
+ADNOTATIONIBUS,
+<br />
+CURA ET STUDIO
+<br />
+PETRI BURMANNI,
+<br />
+QUI ET SUAS
+<br />
+IN OMNE OPUS NOTAS ADIECIT.
+<br /><br />
+(marca de impresor)
+<br /><br /><i>
+AMSTELODAMI,
+<br /></i>
+APUD FRANCISCUM CHANGUION.
+<br />
+M.D.C.C.XXVII.
+<br />
+</dc:title>
+<dc:identifier>
+OO.Changuion.Ams.1727.t1
+</dc:identifier>
+<dc:identifier>
+Obras Completas.Burmannus.Changuion.Ámsterdam.1727.t1
+</dc:identifier>
+<dc:tableOfContents>
+Anteportada;
+<br/>
+frontispicio;
+<br />
+portada de las obras completas; ENTRE PÁGINAS 322 Y 323 (COMENTARIO AL EJEMPLAR)
+<br />
+f. []4 dedicatoria al príncipe Eugenio de Saboya;
+<br />
+f. []4 v. poema dedicatorio;
+<br />
+f. *** Prefacio fechado en 1726;
+<br />
+p. 1
+<i>
+Heroidas
+</i>
+;
+<br />
+p. 321 anteportada
+<i>
+Amores
+</i>
+;
+<br />
+p. 323 epigrama de Ovidio sobre sus
+<i>
+Amores
+</i>
+;
+<br />
+p. 325 comienza los
+<i>
+Amores
+</i>
+;
+<br />
+p. 537 anteportada
+<i>
+Arte de amar
+</i>
+;
+<br />
+p. 539 comienza el
+<i>
+Arte de amar
+</i>
+;
+<br />
+p. 713 anteportada
+<i>
+Remedios contra el amor
+</i>
+;
+<br />
+p. 715 comienza el libro de los
+<i>
+Remedios contra el amor
+</i>
+;
+<br />
+p. 766
+<i>
+Sobre la cosmética del rostro femenino
+</i>
+;
+<br />
+p. 777
+<i>
+Haliéutica
+</i>
+;
+<br />
+p. 793 anteportada de
+<i>
+Consolatio ad Liviam
+</i>
+,
+<i>
+Nux y Heroidas
+</i>
+de Angelo Sabino;
+<br />
+p. 795 comienza la
+<i>
+Consolatio ad Liviam
+</i>
+;
+<br />
+p. 829 comienza la
+<i>
+Nux
+</i>
+;
+<br />
+p. 844 comienzan las
+<i>
+Heroidas
+</i>
+de Angelo Sabino;
+</dc:tableOfContents>
+<dc:description>
+Comentario: Notas de Jacobus Micyllus, Hercules Ciofano y Nicolas Hensius.
+</dc:description>
+<dc:description>
+Estructura disposición: Texto latino de ancho de página con versos numerados y notas filológicas al pie, organizadas en dos columnas.
+</dc:description>
+<dc:description>
+Ilustraciones: La edición lleva un frontispicio calcográfico diferente en cada uno de los tres primeros tomos. En este primero se representa a Ovidio, coronado de laurel y con el pecho atravesado por una flecha que le ha lanzado Cupido, que vuela por encima de él. El poeta, que está sentado, escribiendo en una tablilla, está siendo coronado por una musa que además sostiene una rama y tiene una lira y una flauta a sus pies. Frente al poeta se encuentra la Fama, representada como una dama con túnica y manto, tocada con una diadema, que lleva una tuba en la mano derecha mientras con la izquierda con una especie de puntero le indica a Ovidio lo que debe escribir. La escena tiene lugar al borde de una corriente de agua surcada por una pareja de cisnes. En el árbol que hay detrás del grupo cuelga una cartela que reza
+<i>
+P. OVIDII NASONIS OPERA OMNIA.
+</i><br />
+El grabado va firmado por el diseñador y el grabador: Bernard Picart (
+<i>
+B Picart inv.
+</i>
+) y Matthys Pool (
+<i>
+M. Pool Sculp)
+</i>
+.
+<br />
+Esta misma edición vio la luz en Ámsterdam en el mismo año en casa de tres impresores distintos: Changuion, Westein
+&
+Smith y Janssonius Waesbergius. (Cf. ediciones en la
+<i>
+Biblioteca Digital Ovidiana
+</i>
+).
+<br />
+Un ejemplar de esta edición se encuentra completamente digitalizado en la Biblioteca Nacional http://bdh.bne.es/bnesearch/detalle/bdh0000052654
+</dc:description>
+<dcterms:created>
+1727
+</dcterms:created>
+<edm:realize
+rdf:resource
+=
+"http://www.ovidiuspictus.es/ejemplar/214"
+/>
+<dc:contributor
+rdf:resource
+=
+"http://www.ovidiuspictus.es/ilustrador/22"
+/>
+<dc:contributor
+rdf:resource
+=
+"http://www.ovidiuspictus.es/ilustrador/40"
+/>
+<dc:subject
+rdf:resource
+=
+"http://viaf.org/viaf/312263158/"
+>
+Arte de amar
+</dc:subject>
+<dc:subject
+rdf:resource
+=
+"http://viaf.org/viaf/303708953/"
+>
+Remedios contra el amor
+</dc:subject>
+<dc:subject
+rdf:resource
+=
+"http://viaf.org/viaf/184346141/>Amores
+</dc:subject>
+<dc:subject>
+Sobre la cosmética del rostro femenino
+</dc:subject>
+<dc:subject>
+Haliéutica
+</dc:subject>
+<dc:subject>
+Consolatio ad Liviam
+</dc:subject>
+<dc:subject>
+Nux
+</dc:subject>
+<dc:contributor
+rdf:resource
+=
+"http://www.ovidiuspictus.es/impresor/65"
+/>
+<dcterms:spatial
+rdf:resource
+=
+"http://www.geonames.org/2759794/amsterdam.html"
+>
+Ámsterdam (Amstelodami)
+</dcterms:spatial>
+</edm:ProvidedCHO>
+<edm:WebResource
+dc:about
+=
+"http://www.ovidiuspictus.es/visualizacionejemplar.php?clave=214%20&%20clave1=OO.BGH.Ams.1727a.t1"
+>
+<dc:format>
+IMAGE
+</dc:format>
+<dcterms:created>
+Biblioteca Digital Ovidiana
+</dcterms:created>
+<dcterms:rights>
+Biblioteca Digital Ovidiana
+</dcterms:rights>
+<dcterms:hasPart
+rdef:resource
+=
+"htt://wwww.ovidiuspictus/images/images/OO.BGH.Ams.1727a.t1/OO.BGH.Ams.1727a.t1.1"
+/>
+</edm:WebResource>
+<edm:ProvidedCHO
+dc:about
+=
+"http://www.ovidiuspictus.es/ejemplar/214"
+>
+<dc:title>
+OO.BGH.Ams.1727a.t1
+</dc:title>
+<dc:type>
+BOOK
+</dc:type>
+<dc:identifier>
+BG/ 35111
+</dc:identifier>
+<dc:provenance
+rdf:resource
+=
+"http://www.ovidiuspictus.es/biblioteca/27"
+/>
+</edm:ProvidedCHO>
+<ore:Aggregation
+dc:about
+=
+"http://www.ovidiuspictus.es/ejemplarAg/214"
+>
+<edm:isShownAt
+rdf:resource
+=
+"http://www.ovidiuspictus.es/visualizacionejemplar.php?clave=214%20&%20clave1=OO.BGH.Ams.1727a.t1"
+/>
+<edm:dataProvider>
+Biblioteca Digital Ovidiana
+</edm:dataProvider>
+<edm:AggregatedCHO
+rdf:resource
+=
+"http://www.ovidiuspictus.es/ejemplar/214"
+/>
+<edm:hasView
+rdf:resource
+=
+"http://www.ovidiuspictus.es/ejemplar/214"
+/>
+</ore:Aggregation>
+<edm:WebResource
+dc:about
+=
+"http://wwww.ovidiuspictus/images/images/OO.BGH.Ams.1727a.t1/OO.BGH.Ams.1727a.t1.1"
+>
+<dc:format>
+IMAGE
+</dc:format>
+<dcterms:created>
+Biblioteca Digital Ovidiana
+</dcterms:created>
+<dcterms:rights>
+Biblioteca Digital Ovidiana
+</dcterms:rights>
+<edm:aggregatedCHO
+rdef:resource
+=
+"http://www.ovidiuspictus.es/visualizacionejemplar.php?clave=214%20&%20clave1=OO.BGH.Ams.1727a.t1"
+/>
+</edm:WebResource>
+<edm:ProvidedCHO
+dc:about
+=
+"http://www.ovidiuspictus.es/ilustracionejemplar/1696"
+>
+<edm:isShownAt
+rdf:resource
+=
+"http://wwww.ovidiuspictus/images/images/OO.BGH.Ams.1727a.t1/OO.BGH.Ams.1727a.t1.1"
+/>
+<dc:title>
+Frontispicio
+</dc:title>
+<dc:description>
+Ovidio, herido de amor por Cupido, escribiendo poesía, asistido por una Musa que lo corona y la Fama que le indica qué escribir
+</dc:description>
+</edm:ProvidedCHO>
+<edm:Agent
+dc:about
+=
+"http://www.ovidiuspictus.es/ilustrador/22>"
+>
+<rdaGr2:professionOrOccupation >
+Ilustrador
+</rdaGr2:professionOrOccupation>
+<skos:prefLabel>
+Pool, Mattys (1670-1732)
+</skos:prefLabel>
+<edm:hasMet
+rdf:resource
+=
+"http://viaf.org/viaf/13247568/"
+/>
+<owl:sameAs
+rdf:resource
+=
+"http://thesaurus.cerl.org/record/cnp01001580"
+></owl:sameAs>
+</edm:Agent>
+<edm:Agent
+dc:about
+=
+"http://www.ovidiuspictus.es/ilustrador/40>"
+>
+<rdaGr2:professionOrOccupation >
+Ilustrador
+</rdaGr2:professionOrOccupation>
+<skos:prefLabel>
+Bernard Picart
+</skos:prefLabel>
+<edm:hasMet
+rdf:resource
+=
+"http://viaf.org/viaf/64010408/"
+/>
+<owl:sameAs
+rdf:resource
+=
+"http://thesaurus.cerl.org/record/cnp01318163"
+/>
+</edm:Agent>
+<edm:Agent
+dc:about
+=
+"http://www.ovidiuspictus.es/mpresor/65>"
+>
+<rdaGr2:professionOrOccupation >
+Impresor
+</rdaGr2:professionOrOccupation>
+<skos:prefLabel>
+Changuion, François
+</skos:prefLabel>
+<edm:hasMet
+rdf:resource
+=
+"http://viaf.org/viaf/19854560/"
+/>
+<owl:sameAs
+rdf:resource
+=
+"http://thesaurus.cerl.org/record/cni00012233"
+/>
+</edm:Agent>
+</rdf:RDF>
+Conclusiones
+El proceso de migración de una biblioteca digital basada en un modelo de datos relacional a Europeana entraña una gran dificultad. Esto es debido en gran parte a la gran brecha existente entre ambos modelos, el primero de naturaleza más lógica y orientada a la representación de los datos y el segundo conceptual. Esta se constata, entre otras cosas, por el reducido número de bibliotecas que se han integrado en Europeana.
+Faltan herramientas para las bibliotecas puesto que las existentes no cubren todo el proceso, son difíciles de emplear y, o bien no son específicas para Europeana , o son muy costosas.
+El software SAMEBibl desarrollado, integra y automatiza, en la medida de lo posible, todos los procesos de la metodología. Esta herramienta lleva a cabo un proceso de traducción sintáctica y semántica del modelo origen con el establecimiento de las relaciones y reglas de transformación que da lugar a un archivo en un formato interpretable por un repositorio.
+La metodología y la herramienta cumplen con los objetivos planteados como demuestra su validación mediante un caso real, la Biblioteca Digital Ovidiana (
+http://www.ovidiuspictus.es
+).
+Bibliography
+Agenjo Bullón, X., and Hernández Carrascal, F.
+(2011).
+Perspectivas europeas en el desarrollo funcional de los sistemas de información: la agregación de datos del europeana data model. FESABID’11. Actas de Las XII Jornadas Españolas de Documentación
+.
+Aloia, N., Concordia, C., and Meghini, C.
+(2013).
+The Europeana Linked Open Data Pilot Server.
+In M. Agosti, F. Esposito, S. Ferilli, and N. Ferro (Eds.), Digital Libraries and Archives, pp. 241–48. Springer Berlin Heidelberg. Retrieved from http://link.springer.com/chapter/10.1007/978-3-642-35834-0_24
+Angjeli, A., Bayerische, M., Chambers, S., Charles, V., Clayphan, R., Deliot, C., et al.
+(2012).
+D5. 1 Report on the alignment of library metadata with the European Data Model (EDM) Version 2.0.
+Report, Europeana Project.
+An, Y., Borgida, A., and Mylopoulos, J.
+(2005).
+Refining semantic mappings from relational tables to ontologies
+. In Semantic Web and Databases pp. 84–90. Springer. Retrieved from http://link.springer.com/chapter/10.1007/978-3-540-31839-2_7
+Barrasa Rodríguez, J.
+(2007).
+Modelo para la definición automática de correspondencias semánticas entre ontologías y modelos relacionales (phd).
+Facultad de Informática (UPM). Retrieved from http://oa.upm.es/4147/
+Berners-Lee, T.
+(2013).
+Relational databases on the semantic web
+. Retrieved from http://www.citeulike.org/group/17638/article/11988241
+Charles, V., Isaac, A., Tzouvaras, V., and Hennicke, S.
+(2013).
+Mapping Cross-Domain Metadata to the Europeana Data Model (EDM).
+In T. Aalberg, C. Papatheodorou, M. Dobreva, G. Tsakonas, and C. J. Farrugia (Eds.), Research and Advanced Technology for Digital Libraries, pp. 484–85. Springer Berlin Heidelberg. Retrieved from http://link.springer.com/chapter/10.1007/978-3-642-40501-3_68
+Concordia, C., Gradmann, S., and Siebinga, S.
+(2010). Not just another portal, not just another digital library: A portrait of Europeana as an application program interface.
+IFLA Journal
+,
+36
+(1): 61–9, Retrieved from http://ifl.sagepub.com/content/36/1/61.short
+CVC
+(2014).
+El español en el mundo. Anuario del Instituto Cervantes 2010-2011. Las bibliotecas digitales del siglo siglo XXI. Rafael C. Carrasco Jiménez
+. Retrieved September 18, 2015, from
+Europeana.
+(2014).
+Europeana Data Model Mapping Guidelines
+. Retrieved from http://pro.europeana.eu:9580/documents/900548/60777b88-35ed-4bae-8248-19c3696b81fb
+European Commision.
+(2005).
+i2010: Digital libraries
+. Retrieved from http://europa.eu/legislation_summaries/information_society/strategies/l24226i_en.htm
+Hernando-De-Larramendi, L., Domínguez-Muriel, J., Viedma-Peláez, A., Hernández-Carrascal, F. and Agenjo, X.
+(2009).
+Datos y metadatos: la normalización dinámica de los elementos y de los procesos constituyentes de una Biblioteca Virtual
+. Retrieved from http://eprints.rclis.org/14342
+López, F.-A.
+(2013).
+Visibilidad e impacto de los repositorios digitales en acceso abierto. De Bibliotecas Y Bibliotecarios. Boletín Electrónico ABGRA, (5)
+. Retrieved from http://eprints.rclis.org/18940/
+Pan, Z. and Heflin, J.
+(2004).
+Dldb: Extending relational databases to support semantic web queries. DTIC Document.
+http://oai.dtic.mil/oai/oai?verb=getRecord&metadataPrefix=html&identifier=ADA451847
+Remedios Melero, E. A.
+(2009).
+The situation of open access institutional repositories in Spain: 2009
+. Retrieved September 12, 2015, from http://www.informationr.net/ir/14-4/paper415.html
+Ríos-Hilario, A., Martín-Campo, D. and Ferreras-Fernández, T
+. (2012). Linked data y linked open data: su implantación en una biblioteca digital. El caso de Europeana.
+El Profesional de La Información
+,
+21
+(3): 292–97. Retrieved from http://elprofesionaldelainformacion.metapress.com/index/712822300Q7033W3.pdf
+Saorín, T., Peset, F. and Ferrer-Sapena, A.
+(2013). Retrieved July 1, 2014, from http://eprints.rclis.org/21005/
+Sequeda, J. F., Tirmizi, S. H., Corcho, O., and Miranker, D. P.
+(2011). Survey of directly mapping sql databases to the semantic web.
+The Knowledge Engineering Review
+,
+26
+(4): 445–86. Retrieved from http://journals.cambridge.org/abstract_S0269888911000208
+Vassallo, V. and Piccininno, M.
+(2012). Aggregating Content for Europeana: A Workflow to Support Content Providers. In P. Zaphiris, G. Buchanan, E. Rasmussen, and F. Loizides (Eds.),
+Theory and Practice of Digital Libraries
+, pp. 445–54. Springer Berlin Heidelberg. Retrieved from http://link.springer.com/chapter/10.1007/978-3-642-33290-6_50
+Vega-Ramırez, A., Grangel-González, I., Sáez-Mosquera, I. and Garcıa-Castro, R.
+(2014).
+Procedimiento para la obtención de un modelo ontológico para representar la información contenida en bases de datos.
+Retrieved from http://ceur-ws.org/Vol-1219/paper5.pdf

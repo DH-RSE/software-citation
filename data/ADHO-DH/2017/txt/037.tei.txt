@@ -1,0 +1,227 @@
+Neutralizing Author Signal in Delta
+Our proposal is to neutralize the author signal directly on the Delta matrix. We use a testing corpus of texts from three Spanish authors and three subgenres. Detailed information about the corpora, files, parameters and scripts is in our GitHub repository. We applied Cosine Delta (5000 MFW) with Stylo (Eder, Rybicki and Kestemont 2016) and visualized the resulting distance matrix with Python: We see a tendency of lower Delta values for documents of the same author (below 1.0) in comparison to documents of different authors (above 1.0). But what about the closest texts written by a different author? For the historical novel in column E, they are in the rows 14 and 15 and are historical novels, as well. This pattern is found for the majority of the texts. How could we cluster the texts preferring the closest text from other authors? And if we are able to neutralize the author signal, will we see noise or subgenre clusters?
+Our proposal is to penalize the distances between the texts of the same author (cf. Lu and Leen 2007 for penalization in image clustering), making them closer to the average distance of texts of different authors, then cluster the neutralized distance matrix and measure the cluster homogeneity by author and subgenre.
+We define the set of all documents by an author a as Aa, the collection containing all documents by all authors as C and total number of documents in the collection is defined as c:
+Note that each document is in exactly one author-document set Ai.
+First, we calculate the average distance of texts of all pairwise different authors (in
+fig. 2
+, all the distances in black). We call this value the mean of different authors or M(C) and for this collection its value is 1.16.
+Second, we calculate the mean of the texts of each author a M
+(Aa) (in fig. 2, the distances in grey)
+. The values in grey are now in general above 1.0: the texts of the same author have been separated, showing relations between texts independently of authorship. Now the adventure and historical novels of Baroja in columns C and D have their closest text in works of different authors but belonging to the same subgenre. In comparison with
+Figure 1
+, this dendrogram allows us to see new text relations beyond authorship but within subgenre, showing clusters with different authors but the same subgenre: for example, the cluster of historical novels by Baroja and Valle or the two very close subclusters of erotic novels by Miró and Valle.
+Tests and Evaluation
+For the evaluation, the homogeneity of the clusters
+(Rosenberg and Hirschberg, 2007
+) was measured. This measure yields values between 0 and 1. As ground truth, the metadata about author and subgenre have been used. The results for the dummy corpus: The homogeneity of the clusters of Cosine Delta (see
+fig. 1
+) are perfect for authors and much lower for subgenre, because the author clusters contain subgenre subclusters. The homogeneity of the clusters of Neutralized Delta (see
+fig. 5
+) is lower for authorship (as expected), but not for subgenre. In this case the neutralization of the author signal only deteriorates the homogeneity for authorship but improves the homogeneity for subgenre. We have analysed different subgenres present in the whole corpus for test the method. We created subcorpora of historical, bildungsroman, erotic and adventure novels: 5
+Figure 7: Homogeneities for Spanish prose subcorpora
+As expected, the neutralization consistently deteriorates the homogeneity for author (between -0.26 and -0.1) while the homogeneity for subgenre is not deteriorated (between -0.08 and 0.06). The homogeneity for subgenre of adventure compared to erotic and bildungsroman get the best results (over 0.9) and they even improved on results with Cosine. Adventure novels are also best recognized in classification tasks
+(Het- tinger et al. 2016
+). Subgenres which are very difficult to differentiate like historical and adventure (Pedraza
+Rodríguez Cáceres 1983: 672 and
+1987: 459)
+get one of the worst results.
+The results are similar when testing other corpora, such as a corpus of French drama (
+Schöch et al. 2015
+) and a corpus of Spanish American novels:
+Figure 8
+: Homogeneity values for French drama and Spanish American novels
+Conclusion and future work
+Our main goal was to present a method to neutralize the Delta distances of the same author using the difference between the mean of the author and the mean of different authors. Tested on eight subcorpora, this procedure, as we expected, deteriorates the homogeneity of authorship clusters but maintains the subgenre homogeneity, improving it for some cases. That discovers relations between texts (see
+fig. 5
+) that were hidden by authorship. This procedure brings a new way of working with Delta beyond authorship attribution.
+Both Cosine and Neutralized Delta show very different results for the comparison of different subgenres, something which points to the different internal structure of the subgenres. The comparison of very different subgenres (like adventure against erotic or bildungsroman) gets higher subgenre cluster homogeneity. Neutralized Delta could be used for comparing different corpora of specific subgenres and test the significance of the results to better characterize these subgenres. In an ideal scenario, we would like to test on a perfect balanced corpus where a set of authors are represented in all subgenres of the same period.
+For future work, we will analyse how different parameters like versions of Delta or number of MFW affect the results. We also plan to transfer the approach to an earlier step in the Delta procedure and penalize the word z-score vectors.
+We look forward to the feedback of the international DH community about this new use of the very effective "expression of difference, pure difference" which is Delta.
+Figure 1 :
+1
+Figure 2 :
+2
+Figure 3 :
+3
+Figure 4 :
+4
+Fig. 5 :
+5
+Figure 6 :
+6
+Acknowledgements
+To avoid confusion regarding intellectual property, we would like to make it clear that the main idea and implementation are the work of the first author. Other authors have brought important remarks, feedback, some of the corpora and have helped with the redaction and the formalisations.
+Bibliography
+Interpreting Burrows's Delta: Geometric and Probabilistic Foundations. Literary and Linguistic Computing
+S
+Argamon
+23
+Delta': a Measure of Stylistic Difference and a Guide to Likely Authorship. Literary and Linguistic Computing
+J
+Burrows
+17
+A
+Büttner
+T
+Proisl
+Stilometrie interdisziplinär: Merkmalsselektion zur Differenzierung zwischen Übersetzer-und Fachvokabular. DHd 2016: Modellierung, Vernetzung, Visualisierung. Leipzig: Universität Leipzig
+Entendiendo Delta desde las Humanidades. Caracteres. Estudios culturales y críticos de la esfera digital
+Calvo
+Tello
+J
+5
+Bootstrapping Delta: a safety-net in openset authorship attribution
+M
+Eder
+Stylometry with R: A package for computational text analysis
+M
+Eder
+M
+Kestemont
+J
+Rybicki
+The R Journal
+16
+1
+Towards a better understanding of Burrows's Delta in literary authorship attribution
+S
+Evert
+T
+Proisl
+F
+Jannidis
+S
+Pielström
+C
+Schöch
+T
+Vitt
+Proceedings of the Fourth Workshop on Computational Linguistics for Literature. Denver CO: Association for Computational Linguistics
+the Fourth Workshop on Computational Linguistics for Literature. Denver CO: Association for Computational Linguistics
+Classification of Literary Subgenres
+L
+Hettinger
+I
+Reger
+F
+Jannidis
+A
+Hotho
+Leipzig
+Universität Leipzig
+Testing Burrows's Delta. Literary and Linguistic Computing
+D
+L
+Hoover
+19
+Delta Prime
+D
+L
+Hoover
+Literary and Linguistic Computing
+19
+A Conversation Among Himselves: Change and the Styles of Henry James
+D
+L
+Hoover
+Digital Literary Studies
+Hoover, D. L., Culpeper, J. and O'Halloran, K.
+New York & London
+Routledge
+Burrows's Delta and Its Use in German Literary History
+F
+Jannidis
+G
+Lauer
+Distant Readings. Topologies of German Culture in the Long Nineteenth Century
+Erlin, M. and Tatlock, L.
+Rochester
+Camden House
+Improving Burrows' Delta - An empirical evaluation of text distance measures
+F
+Jannidis
+S
+Pielström
+C
+Schöch
+T
+Vitt
+Sydney
+M
+L
+Jockers
+Macroanalysis - Digital Methods and Literary History
+Champaign, IL
+University of Illinois Press
+Penalized Probabilistic Clustering
+Z
+Lu
+T
+K
+Leen
+Neural Computation
+19
+6
+Manual de literatura española
+F
+B
+Pedraza Jiménez
+M
+Cáceres
+Época del realismo
+Pamplona
+Cénlit
+7
+Manual de Literatura Española
+F
+B
+Pedraza Jiménez
+M
+Cáceres
+Generación de Fin de Siglo: Prosistas. Pamplona: Cénlit
+9
+A
+Plasek
+Incommensurability? Authorship, Style, and the Need for Theory. DH2014: Lausanne: ADHO
+Progress through Regression
+A
+Riddell
+C
+Schöch
+Digital Humanities DH2014:. Lausanne: ADHO
+V-Measure: A conditional entropy-based external cluster evaluation measure. Prague: Association for Computational Linguistics
+A
+Rosenberg
+J
+Hirschberg
+C
+Schöch
+Corneille, Molière et les autres. Stilometrische Analysen zu Autorschaft und Gattungszugehörigkeit im französischen Theater der Klassik
+Schöch, C. and Schneider, L.
+Literaturwissenschaft im digitalen Medienwandel
+C
+Schöch
+U
+Henny
+J
+Calvo Tello
+S
+Popp
+The CLiGS Textbox
+Würzburg
+University of Würzburg
+Improving Authorship Attribution: Optimizing Burrows' Delta Method
+P
+W
+Smith
+H
+Aldridge
+W
+Journal of Quantitative Linguistics
+18
+1
+Understanding Genre in a Collection of a Million Volumes
+T
+Underwood
+Interim Report

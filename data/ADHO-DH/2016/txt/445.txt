@@ -1,0 +1,65 @@
+Figurative language poses a challenge to Natural Language Processing systems, while being a ubiquitous phenomenon that is deeply ingrained in every-day language. As corpus studies suggest, figurative language devices appear on average in every third sentence of general-domain text (Shutova, 2015), thus making the development of automatic recognition and interpretation systems play an important role in many text mining use cases, especially those aiming for a deeper semantic understanding of texts. Furthermore, acknowledging the pervasiveness of such language forms - and of the emblematic device of metaphor in particular - allows for a change in perspective, not conceiving it as a merely rhetorical device but as a genuinely cognitive mechanism that manifests itself in language in the form of surface metaphorical expressions. Such surface expressions usually follow a directionality principle common in figurative language which is to project one domain of experience (the source, e.g. war) onto another (the target, e.g. argument), the first one typically being more concrete and the second one being more abstract. Taken together, such surface expressions (e.g. She shot down all of my arguments) consitute a conceptual metaphor argument is war, a cognitive phenomenon that can be studied through its expression in language. This line of thought has been established as Conceptual Metaphor Theory (Lakoff and Johnson, 1980), by now a widely adopted and empirically grounded approach (e.g. Gibbs, 2008) that has opened up a interdisciplinary field of research, not least with involvement from computational linguistics.
+Analysing metaphorical language use from a (cognitive) anthropologic and psycholinguistic point of view has various possible applications: The approach qualifies for research questions from the fields of critical discourse analysis, media studies, and philosophy, as it sheds light on a collective subconscious, encompassing ideological subtexts, and maybe even pre-discursive existential territories (Guattari, 2008) as traced out in late 20th century philosophy. Another area of application is text classification in literary studies: Found metaphorical expressions and conceptual mappings can be used as features to describe the relative similarity of observed texts and thus lend themselves to genre identification and authorship attribution (Lodge, 1988).
+The research described here takes up this theoretical framework and builds upon a computational metaphor identification and aggregation approach as proposed by Shutova and Sun (2013). Unsupervised machine learning, namely a hierarchical soft clustering strategy known as Hierarchical Graph Factorization Clustering (HGFC), is employed to build up a graph of concepts that reflects aggregate metaphorical mappings. Using conceptual metaphor as a unit of observation allows for a sensible aggregation and tracing of surface metaphorical expressions in large scale corpora, and in this case is also used to follow diachronic developments in a corpus of historical German literature. Furthermore, as a correlate of cognitive processes it should provide an empirically grounded access to the conceptual systems, e.g. cultural and moral models, of examined texts and their times.
+The main idea of the approach is to cluster nouns - which are taken to be concepts - according to their selectional preferences, that is, "the tendency for a word to semantically select or constrain which other words may appear in a direct syntactic relation with it" (Roberts and Egg, 2014). In the resulting clustering, figurative language use becomes visible as violation of the most frequent selectional preferences representing the normal, non-figurative case. It is an approach that determines the metaphorical in relation to the normal, which also entails that a sufficient amount of non-metaphorical language use needs to be present in the data. In the case of a diachronic corpus of literature that means to balance the corpus using historical dictionaries and encyclopaedias in order to introduce more prosaic language use.
+The dataset is drawn from a large text collection (The Digital Library, 2016) and contains up to 1700 German novels from the early 16th up to the beginning of the 20th century. Preprocessing consists of POS-tagging, lemmatization, and dependency parsing, allowing for an extraction of nouns and their corresponding verbs according to certain grammatical relations - subject, direct object, and indirect object relations. Verbal constructions are only one type of realization, but they do cover a significant part of metaphors usually encountered in the wild. Furthermore, it should be straightforward to generalize the approach in order to include adjectival constructions and similes, which would allow to cover most of the possible metaphorical expressions. Preprocessing is performed using a modular pipeline (Jannidis et al., forthcoming), tailored to the processing of book-length German texts. Subsequently, a number of most frequent nouns (e.g. 2000) and corresponding verbs are extracted. The verbs act as features for the concept clustering and can come from various sources, not necessarily the same corpus as the most frequent nouns. This could be used as a way to introduce balancing text types into the model, without altering the concept graph as derived from the literary corpus. The resulting noun-verb feature matrix is then normalized for each noun vector to sum to 1 and the Jensen-Shannon divergence between pairs of noun vectors is used as a measure to calculate the similarity matrix (the initial concept graph).
+With the similarity matrix in place, clustering methods can be applied in order to generate a suitable tree of concepts. Different approaches were tested at this point (using implementations from Python machine learning library scikit-learn, cf. Pedregosa et al., 2011): 1) connectivity-based or agglomerative clustering, which includes average, complete, and - the baseline from Shutova and Sun (2013) - Ward linkage 2) density-based clustering, namely DBSCAN and HDBSCAN, and 3) for subspace-based methods, spectral clustering, as well as spectral bi- and co-clustering. Results where manually reviewed and an internal evaluation measure, the silhouette coefficient, was used to assess the quality of generated clusterings. Results indicate that in this setting, spectral clustering performs very similar to the baseline, while the other methods produce clusterings of inferior quality. This exploration of readily available methods shed some light onto the requirements for unsupervised metaphor identification and aggregation. In addition, tests with balancing and pruning were performed on smaller development corpora: Solely using encyclopedias produces a model that contains mostly synonym and antonym relations but no metaphorical mappings. Similarly, models consisting only of literary texts can lack non-figurative uses for concepts. What can also be observed is that the balancing leads to deeper models, e.g. concepts accumulate more features and aggregate better.
+To give an intuition, example clusters from the baseline results on a subset of 383 novels are reproduced here, showing the top ten features for each concept:
+IDEAS ARE FOOD
+education / bildung (10): geben-dobj beanspruchen-dobj taxieren-dobj voraneilen-subj überstrahlt-dobj ausspräch-subj nahestehen-subj heraustreiben-dobj ermangelnd-dobj abschöpfen-dobj
+memory / erinnerung (48): geben-dobj wachzurufen-dobj stören-dobj mahnen-dobj aufgrischen-dobj verlöschen-subj wiederzuerwecken-dobj neubeleben-dobj frischen-dobj hervorschießen-subj
+hunger / hunger (10): geben-dobj erweren-dobj büssen-dobj schaben-subj überhen-iobj verschmachten-dobj stärkern-dobj bittern-subj hinausgetreiben-subj trainieren-iobj
+EMOTIONS ARE PLANTS
+flower / blume (47): pflücken-dobj liegen-subj lieben-dobj begießen-dobj welken-dobj duften-dobj duftet-subj durchhauten-subj hingesenken-subj erblüht-dobj
+emotion / gefühl (90): liegen-subj ersticken-dobj abstumpfen-dobj hervorraufen-dobj halten-iobj entspinnen-dobj hinausdehnen-dobj aufwekken-dobj anhielen-subj arten-subj
+In principle, cluster labels are manually assigned using categories from Lakoff’s master metaphor list (Lakoff et al., 1991). Such is the case with the first example, IDEAS ARE FOOD, while the second one, EMOTIONS ARE PLANTS, is not present in the list and was created to appropriately describe the cluster.
+Pending work includes testing HGFC and providing means to include metadata for modeling the diachronicity of the data. Considering the time span covered by the corpus, some orthographic and lexical variation will have to be handled, either by use of a specialized spelling normalization system or a more rigoros treatment such as stemming. It can be noted that HGFC combines some of the characteristics exhibited by the surveyed approaches and running it on the full size corpus will significantly improve on the baseline in terms of the amount of metaphorical expressions and conceptual mappings induced. The system will be evaluated using either a small gold standard of annotated sample sentences or manually compiled conceptual mappings in a confined domain (e.g. using Lakoff et al., 1991), which should give some indication of its precision in the domain of historical German literary texts.
+Bibliography
+Gibbs, R. W.
+(2008). Metaphor and Thought. The State of the Art. In Gibbs, R.W. (Ed),
+The Cambridge Handbook of Metaphor and Thought.
+Cambridge University Press, pp. 3-14.
+Guattari, F.
+(2008).
+The Three Ecologies
+. Continuum.
+Jannidis, F., Reimers, N., Vitt, T., Pernes, S. and Pielström, S.
+(forthcoming). DARIAH-DKPro-Wrapper Output Format (DOF) Specification.
+DARIAH-DE Working Papers
+.
+Lakoff, G. and Johnson, M.
+(1980).
+Metaphors We Live by
+. University of Chicago Press.
+Lakoff, G., Espenson, J. and Schwartz, A.
+(1991).
+The Master Metaphor List
+. University of California at Berkeley.
+Lodge, D.
+(1988).
+The Modes of Modern Writing: Metaphor, Metonymy, and the Typology of Modern Literature
+. University of Chicago Press.
+Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel, O., Blondel, M., Prettenhofer, P., Weiss, R., Dubourg, V. and Vanderplas, J.
+(2011). Scikit-learn: Machine learning in Python.
+The Journal of Machine Learning Research
+,
+12
+: 2825-30.
+Roberts, W. and Egg, M.
+(2014). A Comparison of Selectional Preference Models for Automatic Verb Classification.
+Proceedings of EMNLP 2014
+, pp. 511-22.
+Shutova, E.
+(2015). Design and Evaluation of Metaphor Processing Systems.
+Computational Linguistics
+,
+41
+(4): 579-623.
+Shutova, E. and Sun, L.
+(2013). Unsupervised Metaphor Identification Using Hierarchical Graph Factorization Clustering.
+Proceedings of NAACL-HLT 2013
+, pp. 978–88.
+The Digital Library
+(2016).
+The Digital Library in TextGrid
+. https://textgrid.de/en/digitale-bibliothek

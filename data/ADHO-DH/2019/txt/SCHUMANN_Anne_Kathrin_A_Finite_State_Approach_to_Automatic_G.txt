@@ -1,0 +1,93 @@
+Abstract
+This paper presents a fully automatic approach to the scansion of Ancient Greek hexameter verse. In particular, we describe how finite-state automata can be used to discriminate between the 32 variants of Ancient Greek hexameter. We evaluate the performance of our annotation algorithm against hand-annotated scansion data. The project code is available online
+https://github.com/anetschka/greek_scansion.
+.
+Introduction
+Greek literature has, for centuries, served as a paradigm and model for literary writing all over Europe. The epitomes of Ancient Greek literature, the Odyssey and the Iliad, are epic poems that share the same metre: hexameter. Hexameter annotation is crucial for large-scale and data-driven investigations dedicated to these poems, and automatic annotation algorithms open up new opportunities for research in this field.
+Ancient Greek hexameter verses can be described as regular sequences of long and short syllables, with the length of each syllable being determined by the length of the syllable’s vowel. Long and short syllables are organised in
+feet
+of the following form:
+Dactyl
+: The foot is composed of three syllables, the first of which is long, while the others are short.
+Spondee
+: The foot is composed of two long syllables.
+Six feet make a complete hexameter. Feet 1-5 can be either spondees or dactyls, only the last foot is restricted with respect to its metric form: It is composed of a long syllable and the so-called anceps the length of which is variable. Figure 1 is a generic depiction of the resulting 32 variants of Ancient Greek hexameter. Due to the free flow of either dactyls or spondees, hexameter can accommodate varying syllable counts (from 12 to 17 syllables) and produce a broad range of rhythmic effects.
+Section 2 of this paper provides an overview of related work. Section 3 describes the annotation algorithm. Section 4 gives the evaluation results and section 5 concludes this paper.
+Figure 1. Generic hexameter scheme. Vertical bars separate feet. Horizontal bars indicate long syllables, bows indicate short syllables. Vertical stacks of symbols indicate that both variants are possible. X marks the
+anceps
+.
+Related Work
+An early, rule-based approach to the semi-automatic scansion of Greek hexameter has been developed by Höflmeier (1982). Höflmeier combines two different kinds of knowledge to resolve hexameter verses:
+Local linguistic rules that establish which vowels are short, and which vowels are long.
+Knowledge about the overall structure of the verse for the resolution of partially annotated verses.
+The approach is semi-automatic since the resolution of verses that possibly exhibit complex linguistic phenomena such as
+synizesis
+(the metric contraction of normally distinct vowels) is delegated to the user. A similar approach has later been proposed by Pavese and Boschetti (2003).
+An advanced study in the automatic scansion of metric poetry is the work by Greene, Bodrumlu, and Knight (2010) who use weighted finite-state transducers, trained on a small corpus of manually annotated data, to analyse Shakespearean sonnets. The authors report accuracy values of up to 81.4 %.
+An interesting approach to the problem of Greek hexameter scansion is presented by Papakitsos (2011). Papakitsos performs syllabification and then employs a search strategy to identify dactyls, that is, the verses are not analysed left-to-right. Rather, the search starts in the fifth foot where dactyls are particularly likely. Once the appropriate – for the established number of syllables in the verse – number of dactyls has been identified, the search terminates. Dactyls are, again, identified by means of local linguistic rules. The search, however, is strongly dependent on the correctness of the syllabification. For instance, if the verse under analysis has been found to consist of 13 syllables, the search algorithm will look for exactly one dactyl. Papakitsos reports a recall of 0.98 and a precision of 0.80.
+A rule-based implementation of a fully automatic Greek hexameter scansion algorithm has been published by Hope Ranker
+https://github.com/epilanthanomai/hexameter.
+. This algorithm uses an ensemble of weighted finite-state transducers to resolve the feet one by one.
+Alternative approaches to the automatic analysis of metric poetry employ machine learning. In these studies, the problem is usually modelled as syllable-wise classification. For instance, Estes and Hench (2016) employ a Conditional Random Fields classifier to analyse Middle High German epic texts, reaching an f-measure of 0.90. Zabaletak (2017) reports on a very wide range of experiments, but achieves the best results with a combination of a sequential model and deep learning for the classification of English, Spanish, and Basque verses. N-grams, positional and length features as well as linguistic markers are used to train the models.
+Finite-State Approach to Hexameter Analysis
+Our approach to the scansion of Ancient Greek hexameter is based on the same two types of knowledge that were already used by Höflmeier (1982):
+Local search:
+We use 5 local linguistic rules to determine whether a pair of syllables can safely be considered long (that is, it forms a spondeus).
+Global analysis:
+We exploit knowledge about the overall structure of Greek hexameter to complete partially annotated verses, that is, verses that could not fully be resolved with the help of the linguistic rules.
+Moreover, the local search step follows the strategy of Papakitsos (2011) in that it searches for a fixed number of spondees that result from the syllable count established during syllabification. Figure 2 shows a visual representation of our scansion algorithm. The algorithm scans epic Greek text verse by verse:
+Pre-processing
+consists mainly of lower-casing and the removal of diacritics.
+Moreover, we have implemented a
+syllabification
+algorithm that uses regular expressions to identify syllables and to establish the syllable count of the verse.
+The
+local search
+and all following steps are then handled by dedicated deterministic finite-state automata (FSAs). There are specialised FSAs for verses of 13, 14, 15, and 16 syllables and a simpler FSA for all remaining cases. In the local search step, the active FSA performs a targeted search for a given number of spondees, using 5 simple linguistic rules. If enough spondees are found, the plausibility of the solution is checked. Otherwise, the verse is passed to the global analysis step. The FSAs were implemented using an existing Python library
+https://github.com/pytransitions/transitions
+.
+.
+For
+global analysis
+, we use a non-deterministic finite-state transducer (FST). In this transducer, each syllable corresponds to a state, and alternative solutions are modelled by means of alternative paths. The FST is weighted, but since we did not have access to an appropriate training corpus, we were not able to learn transition weights from data. Instead, they were set manually following the description provided by Papakitsos (2011). The FST was implemented using the Helsinki Finite-State Tools
+https://hfst.github.io/python/3.12.1/index.html.
+.
+If the
+plausibility check
+fails, the verse is passed over to
+error handling
+to compensate for potentially erroneous syllabification. Global analysis then completes the verse. The plausibility of the result is checked again. Depending on this result, the FSA will transition to its final state, that is, either
+success
+or
+failure
+.
+If the verse, however, passes the plausibility check immediately after the local search step, the FSA transitions directly to the
+success
+state.
+Figure 2. Visual representation of the scansion algorithm.
+Evaluation
+We have evaluated the performance of both our syllabification and our scansion module against hand-annotated verse data. The annotations were carried out by two advanced students of Greek philology, discrepancies and errors were clarified by means of group discussions. For syllabification evaluation, we randomly chose a set of 171 verses (2695 syllables) from both the Odyssey and the Iliad. For scansion evaluation, we randomly selected 346 verses from a broader range of Ancient Greek texts. Table 1 provides an overview of this data set.
+For syllabification, we achieved a syllable-wise accuracy of 0.98. Verse-wise accuracy reached 0.82. Scansion correctness was evaluated by means of precision, recall, and f-measure with the following results:
+Precision
+: 0.95
+Recall
+: 1.00
+F-measure
+: 0.98
+The evaluation scripts are included in the open-source code package of our software.
+Table . Evaluation data.
+Conclusion
+In this paper, we have presented a fully automatic approach to the analysis of Ancient Greek hexameter text. Automatic annotation tools are crucial for data-driven investigations in Greek philology. Our algorithm integrates various kinds of linguistic knowledge into a set of finite-state automata and thus makes use of well-defined concepts in the field of computational linguistics, while remaining transparent to philologists. Our evaluation results are competitive. Future work will be dedicated to the exploitation of the resulting annotations for research in Greek philology.
+Bibliography
+Estes, A. and Hench, C.
+(2016). Supervised Machine Learning for Hybrid Meter, Proceedings of the Fifth Workshop on Computational Linguistics for Literature (NAACL-HLT), San Diego, USA, June 2016.
+Greene, E., Bodrumlu, T. Knight, K.
+(2010). Automatic Analysis of Rhythmic Poetry with Applications to Generation and Translation, Proceedings of the 2010 Conference on Empirical Methods in Natural Language Processing (EMNLP), Cambridge, USA, October 2010.
+Höflmeier, J.
+(1982). Metrisches zum frühgriechischen Epos. Unpublished thesis. University of Regensburg.
+Papakitsos, E. C.
+(2011). Computerized Scansion of Ancient Greek Hexameter, Literary and Linguistic Computing 26.1: 57–69.
+Pavese, C. O. and Boschetti, F.
+(2003). Introduction: Description of the Programme. Directions for the Formular Edition. In Pavese, C. O. and Boschetti, F. (eds), A Complete Formular Analysis of the Homeric Poems. Amsterdam: Adolf M. Hakkert, Vol. 1.
+Zabaletak, M. A.
+(2017). Automatic Scansion of Poetry. Phd thesis, University of the Basque country.

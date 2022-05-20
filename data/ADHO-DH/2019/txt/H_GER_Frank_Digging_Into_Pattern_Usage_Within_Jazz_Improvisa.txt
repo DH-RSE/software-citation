@@ -1,0 +1,111 @@
+Introduction
+Music Information Retrieval offers new options for musicological research, particularly for methodologies which are hard (or impossible) to carry out manually, e.g., large corpus studies and measurings of acoustical properties. One such field of application is the mining of patterns. Patterns – and repetitions in general – play an important role in nearly all music styles and are thus of interest for many sub-fields of musicology. In particular, melodic patterns – or ‘licks’ as patterns are often called in jazz parlance - form a crucial component of jazz improvisation (Berliner, 1994; Norgaard, 2014; Owens, 1974). Given the significance of patterns and licks in jazz, several research questions arise, concerning historical issues, e.g., the oral tradition of melodic patterns and the development of a typical jazz language, or more systematic issues, e.g., the psychology of the creative process, where patterns can be regarded as necessary to accomplish the highly virtuoso feat of modern jazz improvisation:
+To what extent are patterns used to shape an improvisation?
+When and by whom are patterns created and how are they transmitted between players over time (pattern archaeology)?
+Does pattern usage change with time and styles?
+Is there an influence of jazz education on pattern usage (e.g., by published pattern collections)?
+How are patterns used to build phrases, e.g., to construct a typical bebop line?
+Which role do external musical influences such as quotes, and signifying references play in jazz improvisation?
+This paper presents three novel user interfaces for investigating the pattern usage in monophonic jazz solos and exemplifies how these interfaces could be used for research on jazz improvisation.
+Related work
+Several web-based melody search engines have been developed in the past, e.g. Themefinder (
+http://www.themefinder.org
+) which allows searching for patterns in both classical and folk music and
+Musipedia (
+https://www.musipedia.org
+), a user-generated database of melodies, providing more sophisticated and user-friendly search interfaces like a virtual piano keyboard for entering melodic patterns and a query by tapping interface for rhythm search. A more thorough overview of search engines can be found in (Frieler et al., 2018). Unfortunately, many of these projects are discontinued or use out-dated web technology. An example for an up-to-date search interface including metadata filters is the RISM catalogue search (
+https://opac.rism.info
+).
+User Interfaces
+The
+Pattern History Explorer
+is a Shiny application that allows exploring a set of 653 patterns that are most commonly used by eminent players (
+). The
+Pattern Search
+is a web interface for a general two-staged pattern search Martin2019-04-30T10:24:00
+Nicht nur dort!
+featuring regular expressions (
+https://dig-that-lick.hfm-
+weimar.de/pattern_search
+). The
+Similarity Search
+faces the challenge of finding and grouping similar patterns, i.e., patterns that differ in one or several tones (
+). The applications aim on the one hand at an expert audience of jazz researchers to facilitate generating and testing hypotheses about patterns in jazz improvisation, and on the other hand at a wider audience of jazz teachers, students, and fans.
+The main goal of the
+Pattern History Explorer
+is to enable the exploration of interval patterns in jazz solos by providing information from many different angles. It maintains an overview of interval patterns frequently used by a selected subset of performers and traces their usage in the Weimar Jazz Database (Pfleiderer, 2017), allowing for the discovery of cross-artist and cross-temporal relationships. Currently, 653 interval patterns with 11,630 instances are included. The pattern corpus was created by mining for interval patterns in solos of eminent performers using the partition mode of the
+melpat
+module from the MeloSpySuite (Frieler, 2017). Subsequently, all instances of these patterns were searched for in the Weimar Jazz Database, and the results were included in the application. In general, the user of the Pattern History Explorer selects a certain interval pattern from the overall set of 653 patterns. Several options are available in order to filter the pattern set or to change the ordering of the patterns according to several criteria (e.g., filtering by performer, length, intrinsic characteristics such as Huron contour (Huron, 1996), tonality type, or tonal content). For the selected pattern, various kinds of information can be accessed in several tabs.
+While pre-computing a set of patterns is helpful for exploratory investigations, searching for instances of arbitrary patterns of any length and frequency of occurrence within a database requires a different approach. The web-based
+Pattern Search
+interface provides most of the functionality of the
+melpat
+search module of the MeloSpySuite while also extending it with audio and score snippets (both as isolated patterns and within their melodic context) for visual and aural inspection. To execute a basic search, the user can enter a pattern on a virtual keyboard or as a space or comma separated list of elements and choose a corresponding transformation, that is, a mathematical mapping of the basic melodic representation (for details, see Frieler, 2017). Currently, ten pitch-related transformations for primary search are offered (e.g., MIDI pitch, semitone intervals, extended chordal diatonic pitch class). An additional 18 transformations, such as duration, inter-onset interval classes and various structural markers, are supplied for the optional secondary search. Additionally, the search space can be constrained by several metadata categories, like performer, style, or recording year. Search patterns can be regular expressions (in a hybrid syntax depending on the selected transformation) which allows searches for variants in a single run. The secondary search can be used to refine the result space, e.g., by filtering out certain rhythmic or metrical configurations or by confining instances to a single phrase. The underlying search algorithm is built upon the basic Python regular expression module, which is fed with virtual Unicode strings constructed from the different melodic representations (transformations) with different alphabets. Scores are generated with the help of Lilypond, while audio snippets are directly extracted from the solo audio files using
+ffmpeg
+.
+The latest addition to the web-based toolset is the
+Similarity Search
+web application. Basically, the interface follows the design and concept of the
+Pattern Search
+, however, with some significant differences. Not only identical pattern instances, but also similar patterns, that differ in one or more tones from the query, can be searched for. The calculation of search results differs from that of the
+Pattern Search
+in that the actual similarity calculation is done using the underlying PostgreSQL database system implementation of the Levenshtein
+distance (edit distance). This distance measure has been shown in various studies (e.g., Frieler & Müllensiefen, 2006; Grachten & Arcos, 2004; Gulati, 2016) to be a good approximation to similarity judgements of melodies by human experts. The similarity search operates on a database of the complete set of pitch and interval n-grams of up to 20 elements that were previously extracted from the Weimar Jazz Database using the
+melpat
+module. This amounts to about 4 million n-grams (instances) for MIDI pitch and 3.5 million for interval n-grams. By entering a pattern (n-gram) as a space or comma separated list of elements and choosing a transformation, similar n-grams can be retrieved from the database. To further control the result set, the search interface provides options for parameters such as ‘minimum similarity’ (calculated using the inverse of Levenshtein distance), ‘maximum length difference’ (allowing for n-grams of differing length), or the preservation of melodic contour and pitch range. All searches can also be refined using metadata filters for performers, instruments, etc.
+Visualizations
+Search results are presented in tabular form together with two graphical representations allowing for visual inspection – an n-gram network graph (Figure 1) and a timeline chart (Figure 2), both generated using the
+D3.js
+data visualization library (Data-Driven Documents, https://d3js.org/). In the case of the network graph utilizing a radial layout, n-grams can be grouped, e.g., by metadata attributes or same similarity value and n-gram class, resp.
+Network graph for interval pattern -1,-2,-1,3,3,3,-1,-2 grouped by performer; the biggest bunches stand for those patterns played by Charlie Parker, Dizzy Gillespie, Sonny Rollins and Dexter Gordon. Node colours denote identical patterns which are connected by edges. Node size represents the degree of similarity, where bigger means more similar.
+The timeline chart depicts when and by which performer pattern instances were played. Audio snippets for all n-grams found are generated and can be listened to by clicking on the nodes in both the network graph and the timeline chart as well as via the play buttons in the result table.
+Timeline chart for interval pattern -1,-2,-1,3,3,3,-1,-2. Node colours denote identical patterns. Node size represents the degree of similarity, where bigger means more similar.
+Discussion
+The three applications are already usable interfaces for the Weimar Jazz Database and serve as prototypes for applications to explore large databases, which are going to be automatically extracted from large collections of jazz recordings, as aimed at within the transatlantic research project “Dig That Lick: Analysing Large-Scale Data for Melodic Patterns in Jazz Performances” (DTL). All three tools can be primarily viewed as bespoke interfaces for the specific needs of jazz researchers, but could easily be transferred to other melodic corpora, too. They could also be of interest to teachers, students and music fans as well as to training courses in computational music analysis.
+Bibliography
+Berliner, P. F.
+(1994).
+Thinking in Jazz. The Infinite Art of Improvisation.
+Chicago: University of Chicago Press.
+Frieler, K.
+(2017). Computational melody analysis. In M. Pfleiderer, K. Frieler, J. Abeßer, W.-G. Zaddach, & B. Burkhart (Eds.),
+Inside the Jazzomat.
+New Perspectives for Jazz Research
+. Mainz: Schott-Campus, pp. 41–84. http://schott-campus.com/jazzomat/
+Frieler, K., Höger, F., Pfleiderer, M. and Dixon, S.
+(2018). Two web applications for exploring melodic patterns in jazz solos.
+Proceedings of the 19th International Society for Music Information Retrieval Conference (ISMIR), Paris 2018
+. Paris. http://www.mu-on.org/frieler/docs/frieler_et_al_2018_two-web-applications.pdf
+Frieler, K., & Müllensiefen, D.
+(2006). Evaluation of approaches to measuring melodic similarity. In A. Batagelij, V., Bock, H.-H., Ferligoj, A., Ziberna (Ed.),
+Data Science and Classification
+. Berlin: Springer.
+Grachten, M., & Arcos, J. L.
+(2004). Using the Implication/Realization Model for Measuring Melodic Similarity. In
+Proceedings of the 16th European Conference on Artificial Intelligence, ECAI04
+. IOS Press.
+Gulati, S.
+(2016).
+Computational Approaches for Melodic Description in Indian Art Music Corpora
+(PhD thesis). Universitat Pompeu Fabra, Barcelona.
+Huron, D.
+(1996). The Melodic Arch in Western Folksongs.
+Computing in Musicology
+,
+10
+, 3–23.
+Norgaard, M.
+(2014). How Jazz Musicians Improvise: The Central Role of Auditory and Motor Patterns.
+Music Perception: An Interdisciplinary Journal
+,
+31
+(3), 271–287. https://doi.org/10.1525/mp.2014.31.3.271
+Owens, T.
+(1974).
+Charlie Parker. Techniques of Improvisation
+. University of California, Los Angeles.
+Pfleiderer, M.
+(2017). The Weimar Jazz Database. In Pfleiderer, M., Frieler, K., Abeßer, J., Zaddach, W.-G. and Burkhart, B. (eds),
+Inside the Jazzomat.
+New Perspectives for Jazz Research.
+Mainz: Schott-Campus. http://schott-campus.com/jazzomat/

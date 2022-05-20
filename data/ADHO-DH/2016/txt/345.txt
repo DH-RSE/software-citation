@@ -1,0 +1,56 @@
+Introduction
+The relationship between action and identity is a significant element of understanding the way that characterization functions within literary works; many memorable characters are in part defined by their actions. This link between character and action raises the question of whether
+specific
+types of characters, or subjects, are consistently associated with certain types of action. Our project seeks to address this question by looking at the relationship between elements of a subject’s identity and the actions associated with that subject. Our research builds off of work begun by the University of Nebraska-Literary Lab that explores the relationship between behavior and gender in the 19
+th
+century novel. The research begun by the Lab attempts to situate questions of gender and agency within the context of 19th century notions of propriety; is the Victorian valorization of passive women and active men reflected in novels from the period?
+This project adds on to our initial foray into questions of gender; what is at stake is still very much a question of the allocation of agency. This avenue of research revolves around the question of when and why inanimate objects fill the subject position in sentences. This research also queries whether certain types of characters behave differently from others: what do kings do that peasants do not?  Our project examines the agency associated with male, female, human, and non-human actors by studying the different types of verbs used in conjunction with different types of subjects. This research explores the question of whether or not certain types of subjects
+behave
+differently in our corpus, and if so, in what ways and to what effect.
+Methodologies
+The initial foray into the study of gender and genre performed by the University of Nebraska-Literary Lab relied on POS tagging and used an R programming script to extract the ﬁrst pronoun that it encountered, along with the ﬁrst verb that followed this pronoun, and entered each as a relationship into a data frame.
+R is a statistical programming language often used in text analysis research and authorship attribution studies
+The male pronouns “him,” “his,” “he,” and “himself,” and the female pronouns “she,” “her,” “hers,” and “herself” were extracted. Thus, in the following sentence, the pronouns “she” would be extracted and grouped with the verb “walked.”
+After dinner, she walked outside.
+This approach was also our initial model for extracting non-human actors. For example, in the following sentence, we could similarly extract the pronoun “it” and the verb “howled.”
+The wind was fierce; it howled into the night.
+However, such an approach has several shortcomings. The first of which is that multiple verbs associated with a single subject in a sentence are not extracted. The second, is that this method only captures pronouns.  Instances of personification, which often rely on nouns rather than pronouns, are ignored by this model. In order to solve these issues, we turned to the Stanford Dependency Parser, a tool that provides a representation of grammatical relations between words in a sentence. For example, in the sentence “The wind is dancing and howling,” the parser would extract two subject verb pairs, “wind, dancing” and “wind, howling.” The output looks as follows:
+det(wind-2,The-1) nsubj(dancing-4,wind-2) nsubj(howling-6,wind-2) aux(dancing-4,is-3) root(ROOT-0,dancing-4) cc(dancing-4,and-5) conj:and(dancing-4, howling-6)
+Using the parser allowed us to collect subjects that were not pronouns and allowed us to correctly associate multiple verbs with a single subject. It also allowed us to easily collect gender data, since we could simply collect any nsubj pair that contained a gendered pronoun.
+While the parser does identify subject and verb pairs, it does not differentiate between human and non-human subjects. To differentiate between these subject types, we created a script that allows us to extract non-human agents and the verbs associated with them by ignoring sentences in which the subject is a gendered pronoun, a proper name, or a title. In performing our research, we realized that human subjects were indicated by either a pronoun (such as he), a proper name (such as Mary), or a title (such as the priest). If a subject did not fall into one of these three categories, the subject was most likely a non-human entity.
+Ignoring nsubj groupings in which one of the words is a gendered pronoun was straightforward. In order to block proper names, we ran the Stanford Named Entity Recognizer on the texts in order to create a list of proper names from the corpus. We then ignored nsubj groupings that contained one of these names. Finally, in order to ignore titles, we created a dictionary of titles derived from vocabulary lists for non-native english speakers. These lists contained titles such as “captain,” professions, such as “baker,” terms signalling family relationships, such as “mother,” and general terms for human agents, such as “girl.” We then recorded each subject-verb relationship that did not contain one of these three categories into a data frame. However, in a separate script, we also used this list of titles to extract nsubjs that contain any of these titles. Our process allows us to use our program to assess the frequency of recurring syntactical relationships, essentially counting the number of times each verb is associated with male, female, human, and non-human subjects.
+Observations
+The initial results observed by the Nebraska-Literary Lab in their study on gender indicate that certain verbs were strongly associated with male characters while different verbs were strongly associated with female characters. Continuing this research, Matthew Jockers and Gabrielle Kirilloff confirmed these results in their work, which used the Stanford Dependency Parser in the manner discussed above. Jockers and Kirilloff found that a verb can be used to predict the gender of the pronoun associated with it, with 89% percent accuracy. Given the high degree of accuracy obtained from this analysis, we can conclude that within our corpus of 19th century fiction, authors chose to portray male and female characters differently by associating them with divergent groups of verbs. This result is not surprising, especially given the way in which ideas about proper behavior differed for males and females within 19th century society.
+For a helpful discussion of the gender stereotypes that existing in the 19th century, please see:
+Welter, B.
+(1966). The Cult of True Womanhood: 1820-1860.
+American Quarterly
+18
+(2).
+Clark, A.
+(1995).
+The Struggle for the Breeches: gender and the making of the British working class
+. Berkeley, CA: University of California Press.
+Gilbert, M. and Gubar, S.
+(1979).
+The madwoman in the attic: the woman writer and the nineteenth-century literary imagination
+.  New Haven, CT: Yale University Press. These works were influential in our understanding of 19
+th
+century notions of gender, behavior, and propriety.
+However, this result still has several far-reaching implications, one of which is that “actions,” or verbs, are in fact an important part of creating and determining character.
+One of the shortcomings of the analysis on gendered pronouns and verbs is that it does not take into account other aspects of character identity. A princess and a witch may perform the same actions, but the implications are radically different. Similarly, certain types of characters may be associated with verbs typically associated with the opposite gender; though both are male, clerics and soldiers are no doubt associated with different actions. The data we extracted is a first step toward broadening this work; our extraction of specific subjects (such as wife, soldier, cleric) allow us to more closely look at character identity. In querying our data, our results thus far support the findings on gendered pronouns and verbs. For example, the verb “wept” was found to be strongly associated with female pronouns. In examining specific types of actors, we found that “women,” “mothers,” and “woman” were the most frequent actors associated with “weep,” “weeping,” and “weeps” respectively.
+Future work
+Our initial foray into our corpus has produced a wealth of data; at this stage our next step is to organize and query this data, asking more specific questions about the relationship between subjects and actions. For example, we have hypothesized that instances of objects performing actions occur more often in certain genres, specifically the Gothic.
+This hypothesis arose from both our own close reading of certain texts within our corpus and previous scholarship on the appearance and use of personification in the Gothic novel. For insight into the scholarly understanding of personification and the Gothic novel, please see the chapter on the Gothic novel in:
+Parrinder, P., Nash, A. and Wilson, N.
+(2015).
+New Directions in the History of the Novel
+. New York: St. Martin's.
+Over the coming months we intend to begin studying whether the actions associated with male, female, human, and non-human subjects are associated with specific genres. This type of analysis is challenging, largely because of the difficulties associated with collecting accurate Genre data. Genres are not rigid categories and many works participate in multiple genres.  In addition to exploring the effects of genre, we also intend to more thoroughly examine the types of non-human and human agency we are extracting. Man-made objects, objects found in nature, animals, and supernatural beings are just a few of the types of non-human agency we have observed. We would like to begin exploring and categorizing these differences in an attempt to better understand our data. Because the Stanford Dependency Parser allows us to look closely at syntactic relationships, we also intend to expand our research to encompass the objects of actions, essentially asking, who is doing what
+to whom
+. This question has important implications for studies of gender and character identity.
+Bibliography
+Baylog, O., Dimmit, L., Heller, T., Kirilloff, G., Smith, S., Thomas, G., Warren, C. and Wehrwein, J.
+(2014). More than Custom has Pronounced Necessary: Exploring the Correlation between Gendered Verbs and Character in the 19th Century Novel,
+UNL Digital Commons
+.

@@ -1,0 +1,177 @@
+Introduction
+Clarifying the genesis of a passed down text is of outmost importance for many scholarly disciplines within the humanities such as history, literary studies, and Bible studies. Often, historical text sources have been copied over and over for hundreds or even thousands of years, thus being subjected to paraphrasing and other kinds of modifications, repeatedly. Despite the significance of source criticism for the humanities as a whole, algorithmic support in this matter is still limited. While current approaches are able to tell
+if
+and
+how frequent
+a text has been modified—to the best of our knowledge—there has been no work on determining the
+degree
+of paraphrastic modification. To a human reader, the introduction of, say, spelling variations is indubitably a minor modification compared to substituting entire words. Yet, how can the different “degrees” of alterations, which are intuitively clear to scholars, be captured in an algorithmic way?
+To this end, we present a first approach for designing a metric for paraphrastic modification in text (henceforth paraphrasticality). Based on an English Bible corpus (three literal Hebrew and Greek translations and three standard translations) we measure the frequency of different classes of textual variations between each pair of Bibles. We then use the probability of these variations in a machine learning experiment to derive weights for these classes of modifications. Ultimately, this allows us to define a metric for paraphrasticality which we validated with promising results.
+Related work
+Measuring the
+similarity
+or
+distance
+between two spans of text is relevant to many areas in and related to natural language processing (NLP). One of the earliest approaches is Levenshtein’s (Jurafsky and Martin, 2009) edit distance which is based on character-level removal, insertion, and replacement operations. BLEU (Papineni, 2002) is the most common evaluation metric in machine translation, capturing the difference between gold and automatic translations based on (word-level) n-gram overlap. In
+stylometry
+, different kinds of delta metrics are used to compute the difference between the writing style of authors or texts (Jannidis et al., 2015). These are typically based on the frequency distribution of the most frequent words. These first three approaches have in common that they rely on surface features (token and character-level) alone and do not incorporate semantic proximity. In contrast to that, computing the
+semantic similarity
+between two sentences is a popular task within NLP (Xu et al., 2015). However, approaches in this field are typically not indented for manual inspection and are thus less suited for applications in the humanities. Lastly, Moritz et al. (2016) quantify modification operations on a parallel Bible corpus yet do not present a way to aggregate these counts into a distance metric. In contrast to these related contribution, here, we aim to develop a metric which is both semantically informed as well as human interpretable.
+Data
+We use a parallel corpus of the Old Testaments of six English Bible translations
+Note that our approach is not limited to applications on historical text and that our choice of textual material is based on technical reasons only. In fact, any paraphrastic, parallel corpus would work equally well for our proposed method.
+from the 19
+th
+century, half of them being literal translations that closely follow the primary source texts’ language and syntax while the other half are standard translations (see Table 1).
+Table 1:
+Bible editions used for investigation. Sources: bst:
+https://www.biblestudytools.com/
+; mys:
+https://www.mysword.info
+; ptp: Parallel Text Project (Mayer and Cysouw, 2014)
+Literal translations:
+Robert Young, the translator of
+YLT,
+created a highly literal translation of the original Hebrew and Greek texts. Thus, Young tried to be as consistent as possible in representing Greek tenses with English ones, e.g., he used present tense where other translations used past tense (see Young,
+1898a; Young, 1898b
+) as in: ‘In the beginning of God's preparing the heavens and the earth —’ (Genesis 1:1).
+SLT
+: Upon publication, Julia Smith’s Bible translation was considered the only one directly translating the historical source texts to contemporary English. She aimed at complete literalness and tried to translate each original word with the same English word, consistently, and tended to translate the Hebrew imperfect to English future tense (Malone, 2010).
+LXXE
+by Sir Lancelot Charles Lee Brenton is an English translation from the Codex Vaticanus version of the Greek Old Testament, which itself is a translation of the Hebrew Old Testament (Roger, 1958).
+Standard translations: WBT
+by Noah Webster is a revision of the King James Bible mainly eliminating archaic words and simplifying Grammar (Marlowe,
+2005
+).
+ERV
+is today’s only officially authorized revised version of the King James Bible in Britain (no author
+,
+1989). The most recent edition in our study is
+DBY
+, Darby’s translation of the Bible. The Old Testament was published by his students in
+1890 and is based on Darby’s German and French versions (Marlowe, 2017).
+Methods
+Preprocessing and alignment:
+We use MorphAdorner (Burns, 2013), a specialized toolkit for early modern and modern English, to tokenize and lemmatize the Bibles. After removing punctuation and verse identifiers, we pair up our six Bibles in every possible combination (15 in total). Since the different Bible versions are inherently aligned on the verse-level (by their verse identifier), our next step builds up a statistical alignment at the token level for each pair of bibles using the Berkeley Word Aligner (De Nero and Klein, 2007), a tool originally designed for machine translation.
+Counting modification operations:
+Building on these word-aligned pairs of Bibles, we can describe the divergence between a pair of verses in terms of the
+modification operations
+—such as replacing a word by its synonym—which would be necessary to convert one version into another. We automatically apply and count the modification classes introduced by Moritz et al. (2016) for each verse and Bible pair (see Table 2). Synonyms, hypernyms, hyponyms and co-hyponyms, are identified based on BabelNet (Navigli and Ponzetto, 2012).
+Table 2
+: Operations used as features together with normalized estimated weights (coefficients) of the fitted model
+Weight identification:
+By counting modification operations, we gain a fine-grained description of the
+exact
+differences between two spans of text. However, to construct a metric, we had to find a way to condense these modification frequencies down to a single number. For that we exploit the fact that we deal with two classes of Bible translations, literal and standard ones. Thus, to estimate a human judgment of deviation, we assume that standard translations are more homogenous to each other than literal translations (since the latter demand for more creative language use; see Section 3). Hence, we can train a classifier to distinguish whether a pair of Bible verses is from the same class (both Bibles being standard or literal translations, respectively) or from different classes. For this task, we train a maximum entropy classifier
+Using the scikit-learn.org implementation. Training for this binary classification task was done using 10-fold cross-validation achieving an accuracy of .68.
+where we use the relative frequencies of the modification operations as features. Now, the key part of our contribution is that we can exploit the coefficients of our fitted model as the first ever presented empirical estimate of the relative importance of these modification operations for paraphrasticality.
+Results
+Feature weights:
+Table 2 lists the final, normalized (summing up to 1) feature weights of our fitted model. Lemmatization, hyponym and synonym relations turn out to be especially important for the classification task.
+Metric:
+Based on these coefficients, we define the paraphrasticality metric
+par
+between two word-aligned text spans
+a
+and
+b
+as
+where 𝑛 is the total number of features (or classes of operations), 𝜃
+𝑖
+is the absolute weight for feature 𝑖 determined via the classifcation experiment and 𝒳
+𝑖
+a,b
+is the relative frequency of the respective operation. In order to gain face validity for this newly defined metric, we compute the paraphrasticality score for each one of the 15 Bible pairs in our corpus (as average of their verse paraphrasticality). The results are presented in Table 3.
+Table 3
+: Deviation between each pair of Bibles in terms of our newly developed paraphrasticality metric; higher values indicate higher distance
+Table 4:
+Top 3 most frequent operations (without fallback) per Bible pair
+Qualitative validation:
+We can identify three regions in the plot. The upper left triangle shows that our standard translations do not differ much from each other (as expected), especially since WBT and ERV are revisions of the same Bible. The 3x3 rectangle in the upper right corner represents pairs of one literal and one standard translation, respectively. We can see that the distance between those is about 0.3 thus displaying increasing paraphrasticality compared to pairs of
+only
+standard translations. The highest deviation however is between the literal translations by Smith (SLT) and Young (YLT) compared to the English Septuagint (LXXE). This can be explained by the choice of vocabulary by each translator and by the purpose they follow in their translations. For example, SLT and LXXE use “firmament” when YLT uses “expanse”, SLT and YLT use “rule” when LXXE uses “regulating”. We thus conclude that our metric yields valid and—perhaps even more important for applications in the humanities—interpretable results.
+Our approach also enables to judge distance on a fine-grained level based on pure operation counts. In Table 4 we show the top 3 operations for each Bible pair. As we can see, most of the top 3 operations per Bible pair relate to semantic relations between the aligned word pairs (matching lemma, synonymy, or co-hyponomy) underscoring the advantage that our metric has as opposed to more surface feature-dependent approaches (to textual similarity) such as Levenshtein distance or delta measures.
+Conclusion
+We presented the first study on designing a metric for paraphrasticality. Different from existing approaches on measuring distance or similarity between texts, we describe paraphrasticality as frequency of specific modification operations for which we tried to find empirically adequate weights via a machine learning experiment. As demonstrated, our approach is specifically useful for applications in the humanities as operation frequencies, and feature weights, as well as paraphrasticality scores are open to manual inspection. A more comprehensive comparison against existing similarity metrics and a human judgment is left for future work.
+Bibliography
+Burns, P. R.
+(2013). Morphadorner v2: A java library for the morphological adornment of English language texts.
+Northwestern University, Evanston,
+IL, no page numbers.
+De Nero, J. and Klein, D.
+(2007). Tailoring word alignments to syntactic machine translation.
+Proceedings of the 45th Annual Meeting of the Association of Computational Linguistics.
+Prague, pp. 17–24.
+Jannidis, F., Pielström, S., Schöch, C. Vitt, T.
+(2015). Improving Burrows’ Delta—An empirical evaluation of text distance measures.
+Digital Humanities Conference 2015.
+Sydney, no page numbers.
+Jurafsky, D. and Martin, J. H.
+(2009).
+Speech and language processing: An introduction to natural language processing, speech recognition, and computational linguistics.
+Englewood Cliffs: Prentice-Hall.
+Malone, D.
+(2010).
+Julia Smith bible translation (1876),
+https://recollections.wheaton.edu/2010/12/julia-smith-bible-translation-1876/
+(accessed November
+2017
+).
+Marlowe, M
+.
+(2005)
+.
+Webster’s Revision of the KJV (1833)
+,
+http://www.bible-researcher.com/webster.html
+(accessed November
+2017
+).
+Marlowe, M.
+(2017). John Nelson Darby’s Version,
+http://www.bible-researcher.com/darby.html
+(accessed November
+2017
+).
+Mayer, T. and Cysouw, M.
+(2014). Creating a massively parallel bible corpus.
+Proceedings of the Ninth International Conference on Language Resources and Evaluation.
+Reykjavik, pp. 3158–61.
+Moritz, M., Wiederhold, A., Pavlek, B., Bizzoni, Y. and Büchler, M.
+(2016). Non-literal text reuse in historical texts: An approach to identify reuse transformations and its application to bible reuse.
+Empirical Methods in Natural Language Processing.
+Austin, pp. 1849–59.
+Navigli, R. and Ponzetto, S. P.
+(2012). Babelnet: The automatic construction, evaluation and application of a wide-coverage multilingual semantic network.
+Artificial Intelligence
+, 193(2012): 217–50.
+Papineni, K., Roukos, S., Ward, T. and Zhu, W. J.
+(2002). BLEU: a method for automatic evaluation of machine translation.
+Proceedings of the 40th Annual Meeting of the Association for Computational Linguistics
+. Philadelphia, pp. 311–18.
+Roger, N
+. (1958, 1959). New Testament Use of the Old Testament. In
+Henry, C. F.H. (ed.),
+Revelation and the Bible. Contemporary Evangelical Thought.
+Grand Rapids: Baker, 1958. London: The Tyndale Press, 1959, pp. 137–51.
+Xu, W., Callison-Burch, C. and Dolan, B.
+(2015). SemEval-2015 Task 1: Paraphrase and Semantic Similarity in Twitter (PIT).
+SemEval@ NAACL-HLT.
+Denver
+,
+pp. 1–11.
+Young, R.
+(1898a). Young's Translation: Publisher's Note and Preface,
+http://www.ccel.org/bible/ylt/ylt.htm
+(accessed November 2017).
+Young, R.
+(1898b).
+Young's Literal Translation,
+http://www.bible-researcher.com/young.html
+(accessed November 2017).
+No Author
+. (
+1989). The Holy Bible.
+Revised Version
+. London:
+Cambridge University Press. Synopsis.

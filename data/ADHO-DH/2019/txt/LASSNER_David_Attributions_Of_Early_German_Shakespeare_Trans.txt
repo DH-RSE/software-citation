@@ -1,0 +1,205 @@
+Introduction
+Since it was first printed, the translation of Shakespeare's plays edited by August Wilhelm Schlegel and Ludwig Tieck has been re-edited many times (Reimer, 1832). A major reference in the first half of the 19th century, it is still regarded as a groundbreaking translation and referred to today. While there is little doubt that Schlegel translated the first edited plays, L. Tieck did not work out the edition of the final volumes by himself, but delegated the main translation work to his daughter Dorothea Tieck and Wolf Graf von Baudissin (Baillot, 2008; Paulin, 1998).
+This paper investigates the contribution of the three actors involved in this joint translation project. Machine Learning methods are used to analyse the plays and translations in order to gain quantitative insights into what may seem a peculiar authorship setting but was quite usual in the context of the 19th century. The method proposed here is hence likely to improve our understanding of co-creation conditions in the 19th century at large.
+Stylometric investigations of collaborative translations to identify translators has already been analyzed by Rybicki and Heydel (Rybicki and Heydel, 2013), who could show that Burrows’ delta features were able to distinguish between the different translators of novels by Virginia Woolf into Polish.
+Based on D. Tieck's statement of the repartition of the plays we start with the setting shown in Figure 1 (Uechtritz, Erinnerungen. Sybel, 1884). Since the manuscript of the raw translation is now lost, the sole material this paper can base its analysis on is the Shakespeare edition and the first German edition. We have no material traces allowing to easily discriminate between what D. Tieck translated, what W. Baudissin translated, and what L. Tieck corrected in the translations. We investigate two questions: firstly, the goal consists in defining the roles and tasks of the three translation partners, especially for scenes where D. Tieck and W. Baudissin collaborated. The second point of interest is to shed light on the cooperation mode between father and daughter Tieck (respective contributions and intervention scope, collaboration issues).
+In contrast to authorship attribution, translators are aiming at preserving the style of the original text – the traces of the translators should therefore be even harder to identify. This paper presents a novel approach to use methods such as Burrows’ delta in the
+multilingual
+context, to compare translation styles and attribute translators.
+Plays were written by Shakespeare and were translated by either D. Tieck or W. Baudissin. In some plays they collaborated. All translation drafts were then discussed in common, including L. Tieck.
+Method
+The first two experiments deal with the question of the individual translation properties of D. Tieck and W. Baudissin, while the third experiment assesses the question of L. Tieck's contribution. The data layout and the analysis steps of all experiments are shown in Figure 2. The English corpus is retrieved from
+First Folio (Shakespeare, 1623)
+, for the German corpus, TextGrid (TextGrid, 2018) was used. Throughout the experiments, spacy (Honnibal and Montani, 2017) for preprocessing and pyphen for syllable counts are used.
+In the first experiment, solely based on the German material, translation-stylistic characteristics are to be found that discriminate the translator. In addition to Nearest Neighbors on Burrows’ delta (Burrows, 2002; Argamon, 2008) that was used by Rybicki (Rybicki and Heydel, 2013), Bag-of-N-Gram features and also pre-trained word vectors using the Fasttext model (Grave et al., 2018) were used and classified by a Support Vector Machine with RBF kernels (Cortes and Vapnik, 1995; Müller et al., 2001). Cross validation was used to find good hyper parameters using sk-learn (Pedregosa et al., 2011).
+In the second experiment, we use the trained classifiers of Experiment 1 on the collaborative works of D. Tieck and W. Baudissin. We compute the predicted class of each scene individually and try to examine who the major translator of each part of the translation was. This explorative experiment enables us to concentrate on scenes for which the classifiers tend to agree, which we then manually evaluate.
+In Experiment 3, cross-language features are compared with respect to its translator. As shown in Figure 2, the first step for analysing the translation is to map the corresponding scenes, to be able to identify deviations on scene level. During the translation process, the scene boundaries were not always preserved and in order to compare intervals of the same contents, an automatic mapping of scenes is performed. Afterwards, two different features on scene level, namely the richness (a) and the number of syllables per line (b), and Burrows’ delta (c) on play level are compared.
+Data layout for all three experiment settings. The first experiment evaluates the possibility of classifying translators based on textual features of the translation. Experiment 2 explores the unknown parts of the corpus with the trained classifiers of Experiment 1. Experiment 3 parallelizes the corpus of the English and the German version and investigates the influence of each of the collaborators.
+Results
+Experiment 1: Classify translator scenes in validation set
+As shown in Table 1, the individual classifiers on scene level show decent performance. Burrow's delta, however, does not show convincing results. For further improvement, we combined the classifiers by filtering scenes for which all scene-classifiers agree. This results in a smaller test set (57 scenes) but also in a dramatic performance boost. For this subset of the test set, our combined classifier is on average performing with a precision and recall of ≈.93. Overall, the classifiers perform better in identifying scenes by W. Baudissin.
+Table 1: Scores on held-out test set for various features and groupings. For classification of N-Gram features and Word Vectors, an SVM with RBF Kernel has been used. The Support row denotes the number of scenes in the respective class. Parameters have been optimized using grid search and 5-fold cross validation. For Burrows’ delta, a Nearest Neighbors Classifier has been used. The optimal number of features for the delta has been cross validated.
+Method
+Burrows’ Delta
+Word N-Grams
+Char N-Grams
+Word Vectors
+Combined Classifiers
+Grouping
+Play
+Scene
+Scene
+Scene
+Scene
+D. Tieck
+F1
+.5000
+0.6216
+0.6486
+0.7952
+0.8947
+Precision
+.5000
+0.6765
+0.7059
+0.7674
+0.9444
+Recall
+.5000
+0.5750
+0.6000
+0.8250
+0.8500
+Support
+2
+40
+40
+40
+20
+W. Baudissin
+F1
+0.6667
+0.7705
+0.7869
+0.8496
+0.9474
+Precision
+0.6667
+0.7344
+0.7500
+0.8727
+0.9231
+Recall
+0.6667
+0.8103
+0.8276
+0.8276
+0.9730
+Support
+3
+58
+58
+58
+37
+Weighted average
+F1
+0.6000
+0.7097
+0.7305
+0.8274
+0.9289
+Precision
+0.6000
+0.7105
+0.7320
+0.8298
+0.9306
+Recall
+0.6000
+0.7143
+0.7347
+0.8265
+0.9298
+Support
+5
+98
+98
+98
+57
+Experiment 2: Classify translator scenes in the collaboration set
+In Figure 3, the translator attribution for the collaborative scenes are shown. Additionally, we exploit the finding of Experiment 1 that our classifiers performance is boosted when they are combined. In
+Viel Lärmen um nichts
+(
+Much adoe about Nothing
+), fourth act, first scene the highest agreement for D. Tieck, in
+Der Widerspenstigen Zähmung
+(
+The Taming of the Shrew
+) first act, second scene the highest agreement for Baudissin is observed. As it turns out, the two scenes are exceptionally long scenes with 302 and 264 speeches respectively, although the mean number of speeches per scene over the whole German corpus is only ≈118.7. The length of the scene may give the classifiers more features to distinguish the translators.
+The scene from
+The Taming of the Shrew
+alternates between Verses and Prose which may have given the translator the chance to underline their characteristic style. The scene from
+Much adoe about Nothing
+has a much more coherent rhythm which possibly fits D. Tieck's translation style better.
+This figure shows the average score of all scene-level classifiers of Experiment 1 to attribute each scene to D. Tieck or W. Baudissin for the two plays in which they collaborated.
+Experiment 3: Identify Contribution of Ludwig Tieck
+In Figure 4, the results of the cross-language comparison are shown. Points in all panels that are close to the diagonal do not deviate across language. The richness (a) of the scenes stay very close to the diagonal, however the majority of points is slightly below the diagonal. The original is slightly “richer” in the sense of our measurement than the translation, but there is no difference across translators.
+The median syllables per line (b) of the translation deviates quite significantly in that the German version often uses more syllables per line than the English version. D. Tieck stated in her letter that she also translated Sonnets even in a play that was otherwise translated by W. Baudissin. Because of this statement we originally expected D. Tieck to follow the number of syllables of the original more strictly. This expectation is also in line with the findings of Experiment 2 where most classifiers agree on D. Tieck as the translator in a scene with a coherent rhythm. However, the findings of (b) cannot verify this hypothesis, because the deviation exists for both translators.
+In (c), the points visualize Burrow's delta between the two plays in English, the vertical position is the Burrow's delta of the respective pair in German.
+Each data point for which both plays are translated by the same person is color-coded accordingly (grey otherwise). Interestingly, the green points are almost exclusively below the diagonal, with only a few exceptions for plays that already exhibit a small delta in the English version. This indicates translations by D. Tieck move closer to each other and thus may incorporate a more consistent style.
+Three different features that compare original texts and their translations across languages. For each panel, the horizontal axis corresponds to the original version in English, the vertical axis corresponds to the German translation. The richness feature (a) shows little deviation in both languages. The Syllables per line feature (b) shows deviation in the translation for both translators and the Burrow's feature (c) shows deviation especially for one translator: D. Tieck (Green). For (b) gaussian noise (with std. of .2) was added to the points to visualize overlapping points. Also, in (b), a few outliers are not visualized. The points in (c) are grey if both plays were not translated by the same person.
+Conclusion
+We proposed an ensemble of translator attribution methods that result in a very high performance on scenes where they agree (Experiment 1). We show a significant improvement over state-of-the-art methods for translator attribution. This combination of classifiers is used to suggest translators for scenes where the true translator is unknown.
+A close reading of the scenes revealed distinct characteristics that could explain the decision of the classifiers (Experiment 2). We thus argue that this method likely found scenes where the majority of translation work can be attributed to the proposed translator.
+A novel approach of comparing the material in the source language and the translations yield the result that D. Tieck has a more distinct style in her translations (Experiment 3, c). With regard to the daughter-father relationship this can be seen as a literary independence from her father.
+Also, it could be observed that there is a translation system on which the three collaborators agree (Experiment 3, a and b). In that, we identified candidate features that could signal a contribution of L. Tieck.
+For further analysis we plan to include original plays by L. Tieck in order to identify distinct characteristics that further narrow down his contribution to the translation. We also plan to include additional cross-language features that characterize a distinct style of W. Baudissin.
+Bibliography
+Argamon, S.
+(2008). Interpreting Burrows’s Delta: Geometric and probabilistic foundations.
+Literary and Linguistic Computing
+,
+23
+(2): 131–147.
+Baillot, A.
+(2008). ‘Ein Freund hier würde diese Arbeit unter meiner Beihülfe übernehmen’. Die Arbeit Dorothea Tiecks an den Übersetzungen ihres Vaters. (Ed.) Wehinger, B. & Brown, H.
+Übersetzungskultur Im 18. Jahrhundert
+: 187–206.
+Burrows, J.
+(2002). ‘Delta’: a measure of stylistic difference and a guide to likely authorship.
+Literary and Linguistic Computing
+,
+17
+(3): 267–287.
+Cortes, C. and Vapnik, V.
+(1995). Support-vector networks.
+Machine Learning
+,
+20
+(3): 273–297 doi:10.1007/BF00994018.
+Grave, E., Bojanowski, P., Gupta, P., Joulin, A. and Mikolov, T.
+(2018). Learning Word Vectors for 157 Languages.
+Proceedings of the International Conference on Language Resources and Evaluation (LREC 2018)
+.
+Honnibal, M. and Montani, I.
+(2017). spaCy 2: Natural language understanding with Bloom embeddings, convolutional neural networks and incremental parsing.
+To Appear
+.
+Müller, K.-R., Mika, S., Ratsch, G., Tsuda, K. and Schölkopf, B.
+(2001). An introduction to kernel-based learning algorithms.
+IEEE Transactions on Neural Networks
+,
+12
+(2): 181–201.
+Paulin, R.
+(1998). Luise Gottsched und Dorothea Tieck. Vom Schicksal zweier Übersetzerinnen.
+Shakespeare-Jahrbuch
+(134): 108–122.
+Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel, O., Blondel, M., et al.
+(2011). Scikit-learn: Machine Learning in Python.
+Journal of Machine Learning Research
+,
+12
+: 2825–2830.
+Reimer, G. A. (ed).
+(1832).
+Shakspeare’s Dramatische Werke. Übersetzt von August Wilhelm Schlegel. Ergänzt Und Erläutert von Ludwig Tieck
+. 1. Auflage. Berlin.
+Rybicki, J. and Heydel, M.
+(2013). The stylistics and stylometry of collaborative translation: Woolf’s Night and Day in Polish.
+Literary and Linguistic Computing
+,
+28
+(4): 708–17 doi:10.1093/llc/fqt027.
+Shakespeare
+(1623).
+First Folio Home Page. Digital Facsimile of the Bodleian First Folio of Shakespeare’s Plays
+. . Vol. Arch. G c.7 http://firstfolio.bodleian.ox.ac.uk/.
+Sybel, H. (ed).
+(1884).
+Erinnerungen an Friedrich von Uechtritz Und Seine Zeit in Briefen von Ihm Und an Ihn. Mit Einem Vorwort von Heinrich von Sybel
+. Salomon Hirzel Verlag.
+TextGrid Consortium (ed).
+(2018).
+TextGrid: A Virtual Research Environment for the Humanities
+. Göttingen: TextGrid Consortium textgrid.de.

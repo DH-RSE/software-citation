@@ -1,0 +1,35 @@
+Using LDA (Latent Dirichlet Allocation) for analyzing the content structure of digital text collections is a possibility, that aroused the interest of many digital humanists in the recent years. The method allows to generate a so called ‘topic model’ from a text corpus, each ‘topic’ in the model being represented by a probability distribution over the words in the corpus. In each of these topics, another group of semantically related words appears with high probability scores. By labeling topics with their most probable words and then calculating the relative contributions of the topics to each text or text segment, researchers can use LDA as an unsupervised method to survey the contents of a text corpus (Blei 2012, Steyvers and Griffiths 2006).
+However, to actually use LDA, technical skills lacked by the majority of humanities scholars is necessary. There is a number of accessible implementations of the LDA algorithm, the most popular being in MALLET (McCallum 2002), a Java program that has to be run and controlled from the command line and Gensim (Rehurek und Sojka 2010),  a text analysis library for the Python programming language. Basically, most existing implementations of the algorithm require programming skills to be used efficiently, and for most use cases one has to switch between systems, tools and programming languages to complete the entire workflow from preprocessing to the analysis of results.
+With the aim of lowering the threshold to use LDA for humanities scholars, we developed a programming library in Python that significantly reduces the complications to control the whole process of topic modeling from preprocessing to the visualization of results with a single Python script. The library, developed with funding from the European infrastructure project DARIAH (
+), allows to choose from three different LDA implementations (MALLET, Gensim, and the ‘LDA’ package by Allan Riddell;
+). It provides a number of interactive, extensively annotated
+jupyter notebooks (
+) that can be used as tutorials for beginners and template workflows that can be adjusted to individual needs.
+Many potential users are not yet familiar with programming at all, but interested in the method and eager to experiment with it a little before deciding if it is worth learning a new set of skills to use it to its full extent. For them the learning curve of a jupyter notebook is still too steep.  That at least was the feedback we received in our workshops which we organized to get feedback from scholars: the wish for a GUI to access at least the basic functionalities was expressed frequently. To meet this demand, we started the development of a ‘GUI Demonstrator’ that mirrors the working steps and explanations in the notebooks, and allows users to analyse their own texts using LDA with a limited set of options.
+The current version, that is implemented in the FLASK microframework (
+) and runs within a browser window (Fig 1.), includes all steps necessary to get from a number of raw text files (txt and xml file formats are supported) to a visualized output, currently an interactive heat map showing the distribution of topics over texts (Fig. 2). As the quality of results depends on removing frequent words that appear in all texts, users can decide on the number of most frequent words to remove, or provide their own stopword list. They can control the number of topics to be generated, and the number of iterations the algorithm should run. The latter is important, because a large number of iterations will produce more stable results, but the algorithm will take longer to finish the task.
+The next working steps include the implementation of standalone graphics in the Qt library (
+), and in allowing for flexibility in the choice and use of the results and outputs users are specifically interested in. The possibility to include metadata and evaluation results is another focus for upcoming developments, e.g. to sort text in the output heatmap according to different categories, or topics according their quality indicated by evaluation metrics.
+Both the library and the Demonstrator as a standalone executable for Windows and OSX are open source and available on Github (
+).
+Figure 1: Screenshot of the upper end of the input screen in the current version of the GUI Demonstrator.
+Figure 2: Example for an interactive heatmap output in the current version of the GUI Demonstrator.
+Bibliography
+Blei, David M.
+(2012): „Probabilistic Topic Models“, in
+Communication of the ACM
+55, Nr. 4 (2012): 77–84. doi:10.1145/2133806.2133826.
+McCallum, Andrew K.
+(2002):
+MALLET : A Machine Learning for Language Toolkit
+.
+http://mallet.cs.umass.edu
+.
+Rehurek, Radim/ Sojka, Petr
+(2010): "Software framework for topic modelling with large corpora."
+In Proceedings of the LREC 2010 Workshop on New Challenges for NLP Frameworks
+.
+Steyvers, Mark/ Griffiths, Tom
+(2006): „Probabilistic Topic Models“, in
+Latent Semantic Analysis: A Road to Meaning
+, herausgegeben von T. Landauer, D. McNamara, S. Dennis, und W. Kintsch. Laurence Erlbaum.

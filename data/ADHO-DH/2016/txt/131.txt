@@ -1,0 +1,94 @@
+Introduction
+In her plenary address at the 2014 Digital Humanities conference, Bethany Nowviskie urged the field to consider how “broken world thinking,” an approach equal parts ethical, ontological, and methodological, might enrich digital humanities practice (2015, n.p.). Nowviskie borrows the phrase from information theorist Steven Jackson, who argues for a reparative rather than productivist approach to the study of media and technology, and more specifically, for an increased emphasis on the “moments of breakdown” that allow us to “see and engage our technologies in new and sometimes surprising ways” (2013, 230). In this paper, we take up this shared call and extend it, elaborating an approach to broken-world thinking that is simultaneously informed by examples of historical fabrication in the digital humanities (e.g. Elliott et al. 2012, Sayers 2015) and theories of breakdown and repair from the field of design (e.g. Jackson, 2013; Gabrys, 2011). We take the time-series charts of William Playfair, the eighteenth-century data visualization pioneer, and recreate them using D3.js, a data visualization library commonly employed in digital humanities work (Bostock, 2011). In doing so, we gain valuable purchase on the historical concepts that contributed to the creation of Playfair’s charts, many of which-- such as data-- still hold sway today. But by remaining equally attentive to the “moments of breakdown” between the original artifact and our contemporary recreations, we are also able to open new perspectives on the “affordances” of our own visualization tools (Murray, 2011). Our digital “fossils,” as we term them, following the work of Jennifer Gabrys, suggest a generative new point of intersection between the fields of digital humanities and design (2011).
+Project overview
+William Playfair is widely considered the “inventor” of modern data visualization (Tufte, 32). The graphical forms that he first developed, including the bar chart and the pie chart, remain among the building blocks of visualization today (Wilkinson, 2005), and the charts he created are still employed as examples of the crystallizing power of data visualization (Klein, forthcoming). And yet, the techniques he employed, such as copperplate engraving, have long been supplanted by newer technologies. This project seeks to understand how Playfair’s techniques affected the images he created, and how our techniques, in turn, affect the images and interactions we create today.
+Figure 1: William Playfair, “Exports and Imports to and from all North-America,” from
+The Commercial and Political Atlas
+, 3rd ed. London, 1801
+To recreate Playfair’s chart, we selected D3, the javascript visualization library employed in contexts ranging from data journalism to scientific research to the digital humanities (e.g. Meeks n.d., Schmidt n.d). In comparison to off-the-shelf software such as Microsoft Excel or Tableau, D3 provides additional control over the structure and style of the data, an advantage when attempting to achieve fidelity to an original image. In addition, D3 is open source; this allowed us to consider additional aspects of the library’s design. Finally, D3 was developed in an academic context; its own design choices therefore support a conceptual as well as technical analysis.
+We took two approaches to recreating Playfair’s chart: the first by adhering to the original as closely as possible, including the use of the original data; and the second by adapting Playfair’s design for use with contemporary trade data, taking advantage of D3’s emphasis on data transformation. (We employed the US Census Bureau’s data on foreign trade). In the sections that follow, we describe these approaches in more detail, with particular attention to “moments of breakdown” and the new perspectives that they granted.
+First approach: remediating playfair’s original chart as a digital fossil
+Jennifer Gabrys, a design theorist who, like Jackson, views instances of breakdown and failure in a generative light, suggests that we view cast-off objects as “fossil forms” rather than waste (2011, 7). These digital fossils provide “evidence of more complex and contingent material events,” as well as “traces of the economic, cultural, and political contexts in which they circulate.” By recreating Playfair’s chart in D3, we also remediate its “fossil form,” granting us access to the various contexts in which the chart circulates, both historical and contemporary.
+Figure 2: True-to-form recreation of William Playfair’s original chart. The gray area emphasizes the uncertainty of the data, while the green area matches the original. Implementation and image by C. Foster
+Our interest in creating our digital fossil was to induce the moments of breakdown that might alert us to the contextual differences between past and present; the nature and status of statistical data was one such difference. When consulting the third edition of Playfair’s
+Statistical Atlas
+as a reference, we found no actual data accompanying his charts. D3 assumes that the developer will begin with data, so without it, we could not begin. To compensate, we turned to a data table from a previous edition, but it contained data for only a portion of the date range, from 1770 to 1782. We began by recreating that section of time, but to create the entire chart, we estimated the additional data points. The resultant chart resembled the original, but was premised upon two different data sources, with different degrees of accuracy.
+This instance of breakdown and repair illustrates how D3 assumes that a dataset will be presented in a certain format, and that the data will be well-defined, clean, and accurate. The context of D3 is revealed as representative of a culture fixated on data-driven solutions. Rather than present our numbers, actual and interpreted, as the same, we used a technique developed by Kevin Schaul (2013) to create dashed lines for the interpreted numbers. The code he developed, what some might view as a “hack,” might be understood as a “repair” of a breakdown within D3, one that enables the visual presentation of defined and undefined data together. By contrast, Playfair’s original chart shows us that precise data were not a necessary component of its initial success. Playfair drew his charts’ data lines freehand. In fact, there is little evidence that Playfair plotted any actual data points before engraving the lines (Klein, forthcoming).
+Second approach: creating an interactive chart in the style of playfair
+Our second recreation, an interactive version of Playfair’s chart supplemented by modern trade data, revealed additional contexts and biases encoded in D3’s design. D3 was designed to facilitate the creation of interactive visualizations (Bostock, 2011). Its built-in functions worked smoothly once we traded out the original dataset for a more consistently formatted, if substantially larger, contemporary one.
+It was when we attempted to recreate Playfair’s customized labels that we encountered a significant moment of breakdown. All Playfair did to create his labels was to pick an appropriate spot and engrave them. While less extensible than any computational method, Playfair’s technique allowed for more flexibility in the visualization’s layout. Since we were dynamically generating the charts, we weren’t able to use the human eye. Instead, we had to determine a set of rules for where to place text, and then encode them in D3. To ensure legibility, we had to verify three things: 1) that the label was not placed on a part of the chart where the import and export lines were too close; 2) that the label did not intersect with a line; and 3) that the text was placed along a part of the graph that had a consistent slope. As it turned out, determining the points of intersection was a non-trivial task. Even though the ability to illustrate the intersections between lines-- or more generally, the relations among different slices of a particular dataset-- would seem to be a basic requirement of any visualization platform, D3 was constrained by the affordances of its underlying technologies. Playfair thought hard about how to facilitate a “comparative perspective” through the design of his charts, but employing contemporary tools that are constrained for various reasons can affect the range of knowledge that is produced (1801, x).  
+Figure 3: Interactive version of Playfair’s time-series charts. The user selects the country to display through a drop-down menu. Implementation and image by E. Pramer
+Conclusions
+This project illustrates some of the insights that emerge from broken-world thinking as applied to digital humanities tools. Through the process of recreating Playfair’s charts, we introduced moments of breakdown and prompted our repairs. We became alerted to the changed relation between data and image, and to how the hidden affordances of both software and platform affect the forms of knowledge that D3 can produce. Copperplate engraving allowed greater flexibility and less reliance on the dataset. By contrast, D3 imposes limits on design and is heavily reliant on a clean dataset. This project shows how an uninterrogated reliance on popular tools can limit the creative expression of humanistic data. We have since extended this study by recreating the visualizations Elizabeth Peabody (1804-1894). Her visualization techniques are far more difficult to recreate using standard tools, underscoring how historical fabrication allows us not only to better understand the past, but also to illuminate the present.
+Bibliography
+Bostock, M.,Ogievetsky, V., and Heer, J.
+(2011). D3: Data-Driven Documents,
+IEEE Transactions of Visualization and Computer Graphics,
+17
+(12): 2301-09.
+Elliott, D., MacDougall, R. and Turkel, W. J.
+(2012). New Old Things: Fabrication, physical computing, and experiment in historical practice,
+Canadian Journal of Communication
+,
+37
+(1). Web.
+Gabrys, J..
+(2011).
+Digital Rubbish: A natural history of electronics,
+University of Michigan Press, Ann Arbor, MI.
+Jackson, S. J.
+(2013). Rethinking Repair, in T. Gillespie, P. Boczkowski, and K. Foot,
+Media Technologies: Essays on Communication, Materiality, and Society,
+MIT Press, Cambridge, MA, pp. 221-39.
+Klein, L. F.
+(forthcoming). ‘Data, Image, and D3: Recreating William Playfair,’ in S. Jackson et al., eds,
+DigitalSTS: A Handbook and Field Guide
+. University of Chicago Press, Chicago, IL.
+Meeks, E.
+(n.d).
+Digital Humanities Specialist
+, Stanford University Libraries, accessed at:
+https://dhs.stanford.edu/category/d3/
+(28 October 2015).
+Murray, J.
+(2011).
+Inventing the Medium: Principles of Interaction Design as a Cultural Practice
+, MIT Press, Cambridge, MA.
+Nowviskie, B.
+(forthcoming). Digital Humanities In The Anthropocene.
+Digital Scholarship in the Humanities
+.
+Playfair, W.
+(1801).
+The Commercial and Political Atlas
+, 3rd ed., London.
+Rosner, D. K. and Ames, M.
+(2014). Designing for Repair? Infrastructures and Materialities of Breakdown,
+Proceedings of the 17th ACM Conference on Computer Supported Cooperative Work and Social Computing
+- CSCW '14.
+Sayers, J.
+(2015). Why Fabricate?,
+Scholarly and Research Communication
+,
+6
+(3), n.p.
+Schaul, K.
+(2013).
+Tutorial: Undefined data in d3 charts,
+accessed at:
+http://kevin.schaul.io/2013/07/06/undefined-data-in-d3-charts/
+(28 October 2015).
+Schmidt, B.
+(n.d.).
+Maps and Visualization Gallery
+, accessed at:
+http://benschmidt.org/maps-visualizations-gallery/
+(28 October 2015).
+Tufte, E.
+(2001).
+The Visual Display of Quantitative Information
+, Graphics Press, Cheshire, CT.
+Wilkinson, L.
+(2005).
+The Grammar of Graphics,
+Springer-Verlag, New York, NY.

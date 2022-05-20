@@ -1,0 +1,122 @@
+Introduction
+The categorization of games into genres is one of the more complex issues in game studies (Apperley 2007; Clarke et al. 2017; Clearwater 2011; Doherty et al. 2018; Wolf 2001). Some of the most widely recognized genres, such as “Platformer”, “Beat ‘em up”, “Shooter” or “Role Playing Games” (RPG), have their roots in the renaissance of the medium in the late 80ies (Newman 2004). However, the explosive growth of the last decades in the video game industry and the community surrounding it, is also mirrored by a wild growth of video game forms and styles. As a creative as well as billion-dollar industry, developers end up copying or emulating elements of each other’s works for artistic as well as financial reasons.
+As is the case in the production and consumption of other forms of (entertainment) media (e.g. Giltrow and Stein 2009; Grant 2007), a video game’s classification is a topic of much debate among creators, critics, and consumers — see for example how and why (not) Assassin’s Creed: Odyssey is an RPG from the perspective of a
+Reddit thread
+(Anonymous 2018), a
+critical appraisal
+(Grayson 2018), and the game’s developer
+Ubisoft
+(2018). Perhaps the underlying reason for this is how games come to be defined through the experiences of its players (Anthropy and Clark 2014).
+In short, a video game genre is an example of a personal, social, cultural, and technological construct that cannot be captured by strict boundaries, but arises from the complex interplay of interactive, multi-media elements in sets of games and their appraisal by the community at large.
+Language Games with Steam Games
+This in itself is not a new idea.
+The complex classification of games was already used as a discussion of language games and generalities in language by Wittgenstein in his
+Philosophical Investigations
+(1953)
+.
+In Statement 67, he examines the commonality of (analog) games through a comparison of the elements of individual examples and concludes: ‚[W]e see a complicated network of similarities overlapping and criss-crossing: sometimes overall similarities, sometimes similarities of detail. I can think of no better expression to characterize these similarities than „family resemblances.“ ‘
+This paper will provide the results of an ongoing project that puts Wittgenstein’s concept of game families into practice as a way to explore the complexity of genre in this medium. To this end a similarity network has been created with data drawn from the industry’s leading digital distribution platform, Steam (Valve 2003). Steam uses Steam Tags as a crowd-sourced recommender system. The system allows Steam 125 million users to tag games describing an element of a game they played. Examples of such tags include overall terms, such as Indie, RPG, or Action, but can also be relatively specific, such as “Story Rich”, “Historic”, or “Choices Matter”. It bears pointing out that, like any database created in and through public discourse, these tags should not be considered to be an objective description of the game’s contents. Furthermore, which tags can be used to apply to games is curated by Valve — after a brief time in which people could create any tags they wished, a trial predictable outcomes. These tags are a first step to a computational and network scientific-driven understanding of the idea of game families. Any classification system arising from this can then be cross-referenced versus existing ideas or potential other computational genre approaches.
+Using the public SteamSpy API (Galyonkin 2018), 342 different tags applied to 23985 games on Steam (at the time of collection on 23 and 24 July of 2018) were collected in a SQL database, including not only if they were applied to a game but also how many times.
+Tag Networks as Game Families
+This data provides the basis for a network science approach to genres in the form of a two-mode (game-to-tag) network (Borgatti and Everett 1997; Brandes et al. 2013). Such two-mode networks can be transformed to either game-to-game or tag-to-tag affiliation networks and have been used in a wide range of humanity contexts, including the study of stylistic diversity (Mol 2014). Game-to-game networks would themselves be interesting for comparing overall similarities of games — and are used by Steam to suggest new games to consider for potential buyers based on their previous purchases— but will fall outside the scope of this paper.
+The tag-to-tag network can then be used to explore game families and genres using network community detection algorithms, such as Louvain Modularity (Blondel et al. 2008). To finalize this short paper and illustrate ongoing work, two case-studies can be visually explored (Figures 1 and 2): one with all tags of games that are also tagged as “historical” and another highlighting Steam’s 100 best-reviewed games.
+While families of games can be detected in this tag-database, they may only make sense in combination with an advanced understanding of a video game corpus and community. This is relatively straightforward in the case of historical games, but is less useful if the subset of the corpus itself is fuzzily defined. For example, in the case of the best-reviewed games network, it does not necessarily present the ingredients for making a universally good game — unless one is interested in making Japanese romantic visual novels or other games with small but supportive communities. Preliminary results indicate that, as Wittgenstein predicted, game families as networks are better at capturing the multi-stranded nature of this media form than the more monolithic genre classification, especially when working with subsets of games. Next steps would be to check the robustness of these models by including similarity indices or votes as link weights. Still, the notion of game genre is unlikely to be abandoned soon, as anyone familiar with the internet’s collective fascination with language games will surely agree on.
+Figure 1: The tags in this network all occur in games that have also been tagged as ‘historical’. Width of links in this network indicates how often tags co-occur together (e.g. are found in the same game). The color of nodes is based on a Louvain modularity measure and show what family of historical games they belong to. These can be broadly characterized as Strategy (image from
+Sid Meier’s Civilization 6
+), Action-Adventure (image from
+Assassin’s Creed: Odyssey
+), and Shooters (image from
+Battlefield 1
+)
+Figure 2: The tags in this network all occur in games that have the top 1% user reviews on Steam at the time of data collection (with more than 100 reviews). Width of links in this network indicates how often tags co-occur together (e.g. are found in the same game). The color of nodes is based on a Louvain modularity measure and show what types of families . There is a large amount of variability in this family, which includes (from topleft, clockwise) e.g. puzzle games (image from
+7 Wonders: Magical Mystery Tour
+), retro platformers (image from
+After Death
+), cooperative survival games (image from
+The Eden Project
+) and Japanese visual novels (image from
+The Eden of Grisaia
+).
+Bibliography
+Anonymous 2018
+. r/assassinscreed - Would You Classifcy AC Odyssey as a full rpg or not?
+https://www.reddit.com/r/assassinscreed/comments/9q2vh6/would_you_classify_ac_odyssey_as_a_full_rpg_or/
+,
+Reddit
+. (Accessed 25-11-2018).
+Anthropy, Anna, and Naomi Clark
+(2014). “A Game Design Vocabulary: Exploring the Foundations Behind Good Game Design.” Pearson Education.
+Apperley, Thomas H.
+(2006). Genre and game studies: Toward a critical approach to video game genres. Simulation & Gaming, 37, 6–23
+Borgatti, Steven P. and Martin .G. Everett.
+(1997). Network analysis of 2-mode data. Social networks 19, 243-269.
+Blondel, Vincent D; Guillaume, Jean-Loup; Lambiotte, Renaud; Lefebvre, Etienne.
+(2008) "Fast unfolding of communities in large networks". Journal of Statistical Mechanics: Theory and Experiment. 10: P10008.
+Brandes, Ulrik, Garry Robins, Ann McCranie, Stanley Wasserman
+(2013). What is Network Science?
+Network Science
+1(1): 1-5.
+Clarke, Rachel Ivy, Jin Ha Lee, and Neils Clark
+(2017). "Why Video Game Genres Fail: A Classificatory Analysis." 
+Games and Culture
+ 12, no. 5: 445-65.
+Clearwater, David A.
+(
+2011
+). 
+What defines video game genre? Thinking about genre study after the great divide
+. Loading … The Journal of the Canadian Game Studies Association, 5, 
+29
+–
+49
+. 
+Doherty, Shawn M, Joseph R Keebler, Shayn S Davidson, Evan M Palmer, and Christina M Frederick
+. (2018). "Recategorization of Video Game Genres." 
+Proceedings of the Human Factors and Ergonomics Society Annual Meeting
+ 62, no. 1: 2099-103.
+Galyonkin, Sergey
+(2018). Steam Spy API.
+https://steamspy.com/api.php
+. Data Accessed 23-11-2018,
+Steam Spy
+.
+Giltrow, Janet and Dieter Stein
+(2009).
+Genres in the Internet: Issues in the theory of genre
+. Amsterdam: John Benjamins Publishing Company.
+Grant, Barry K
+. (2007).
+Film Genre: From Iconography to Ideology
+. London: Wallflowe.
+Grayson, Nathan
+(2018). Assassin's Creed Odyssey Acts Like An RPG, But It Doesn't Go Far Enough.
+https://kotaku.com/assassins-creed-odyssey-acts-like-an-rpg-but-it-doesnt-1829922733
+, (Accessed 25-11-2018).
+Kotaku
+.
+Mol, Angus A. A.
+(2014).
+The Connected Caribbean
+: A socio-material network approach to patterns of diversity and homogeneity in the circum-Caribbean. Leiden: Sidestone Press.
+Newman, James
+(2004).
+Videogames
+. London: Routledge.
+Ubisoft
+(2018). Choose Your Path.
+https://assassinscreed.ubisoft.com/game/en-us/odyssey/rpg
+, (Accessed 25-11-2018).
+Assassin’s Creed: Odyssey - Ubisoft U.S. Website
+.
+Valve
+(2003). Steam.
+https://store.steampowered.com/
+. Data
+Accessed
+27-11-2018.
+Wittgenstein, Ludwig
+(1953). Philosophical Investigations. Translated by G.E. Anscombe. Blackwell.
+Wolf, Mark J. P.
+(2001). Genre and the video game. In Wolf, M. J. P. (Ed.),
+The medium of the video game
+(pp. 113–234). Austin: University of Texas Press. 

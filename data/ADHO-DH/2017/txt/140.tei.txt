@@ -1,0 +1,99 @@
+Level 1
+Level 1 diagnostics provide project-level, as opposed to document-level, consistency checking to establish the internal coherence of the project, primarily through ensuring referential integrity. We borrow the phrase "referential integrity" from the MLA's "Guiding Questions for Vetters of Scholarly Editions" (2011), which advises peer-reviewers of digital editions that link to multiple databases to see if "referential integrity
+[is]
+enforced within the database(s)." This includes checking for non-existent pointers, duplicate @xml:ids across the project, and erroneously encoded references (e.g. tagging a place name as a bibliography reference). Ensuring referential integrity is particularly complex for projects that use "abbreviated pointers" to facilitate internal linking (see TEI
+Consortium (2016)
+), since it may not be obvious to the encoder which resource is being referenced by a pointer. Thus, the first level of diagnostics checks both whether or not an object pointed to actually exists and whether or not the markup correctly represents the relationship between the element and the target resource. For instance, to check all instances of the relationship shown in
+Fig. 2
+, a number of different tests are actually done:
+Figure 2
+: a simple referential integrity check. 1. Every <name type="org"> points at an @xml:id which exists in the project. 2. The element pointed at by <name type="org"> is an <org> element in the ORGS1.xml document. 3. Every <name> element which points at an <org> element in ORGS1.xml has @type="org". For small-scale projects, this kind of referential integrity check could be accomplished with Schematron, since a Schematron rule using XPath 2.0 can read external documents, but for a project of any significant size, this is impractical. For example, Schematron checks to confirm the rules above may add around six seconds to document validation in the Oxygen XML Editor, causing frustration for editors, while simply checking that a linked location exists would require the processing of over a thousand files in this project, since each location is a distinct file.
+Level 2
+While Level 1 diagnostics generally focus on coherence and consistency, Level 2 is more concerned with completeness. Level 2 diagnostics provide progress analysis, generate to-do lists, and identify situations that may indicate error, but require human judgement. These include cases in which:
+• Two bibliography or personography entries appear sufficiently similar that they may be duplicates.
+• Several <name> elements point to the same authority record, but the text of one of them is significantly different from the others, so it may point at the wrong target.
+• A document in the project is not linked from anywhere else, and therefore cannot be "reached".
+Such issues cannot be automatically rectifiedthey are not necessarily errors-but they must be examined.
+Figure 3
+shows an example of the first check, which uses a similarity metric to identify potential duplicate bibliography entries. to identify duplicate bibliography entries. At Level 2, we also generate to-do lists for specific sub-projects, providing a set of tasks for the project team to focus on in order to reach a milestone or publish a particular document. The definition of "done" for a specific document may transcend the document itself. For instance, before we deem a particular edition of a text publishable, we may require that all authority records (people, places, publications) linked from that document are themselves complete, so the to-do list for a given document may require work in a variety of other documents in the project
+Level 3
+Armed with a comprehensive set of Level 1 and Level 2 diagnostics, and assuming our data is managed using a version-control repository such as Subversion or Git, we can now generate diachronic views of the project's progress. A script can check out a sequence of incarnations of the project, weekly over a period of months, for instance, and run the entire current diagnostic suite against it; we can then combine these snapshots to get a clear sense of how our work is proceeding. This also means that every time we develop a new diagnostic procedure, we can apply it to the entire history of the project to see the trajectory of project work with respect to the datapoint in question. Two examples, this time from the Nxaʔamxcín Dictionary project (an indigenous dictionary project described in detail in
+Czaykowska-Higgins, Holmes, and Kell (2014)
+) appear in Figs 4 and 5 below.
+Figure 4
+shows the number of completed dictionary entries in orange, rising steadily over a period of 18 months, and the number of occurrences of a known problem: duplicate instances of the same gloss. These duplicates rise along with the number of entries until October 2016, when this issue was added to our diagnostics process, and the encoders were able to address it.
+Fig. 5
+shows cases of broken cross-references, which also tend to increase along with the number of completed entries, but we can see from the graph that the issue was aggressively addressed in two separate campaigns in fall 2015 and summer 2016. New instances continue to appear, however. The number of broken cross-references, tracked against completed entries.
+Fig. 6
+, from a different project, shows how this approach can be used to forecast completion dates for tasks in a project based on the progress rate so far.
+Conclusion
+As Matthew Kirschenbaum (2009) tells us, there "is no more satisfying sequence of characters" than "Done." The overall purpose of a digital edition project is to finish and publish the edition, and this requires not only that the document-level encoding be valid, but also that the entire dataset be coherent, consistent, and complete. Programmed diagnostics enable projects to enforce coherence and consistency, manage the workflow effectively, and measure their progress towards completeness. Bibliography
+Figure 1 :
+1
+Figure 3 :
+3
+Figure 4 :
+4
+Figure 5 :
+5
+Figure 6 :
+6
+Using TEI for an Endangered Language Lexical Resource: The Nxaʔamxcín Database-Dictionary Project
+E
+Czaykowska-Higgins
+M
+Holmes
+S
+Kell
+Language Documentation & Conservation
+8
+Guidelines for Editors of Scholarly Editions
+Modern Language Association. Accessed
+Other-Documents/Publishing-andScholarship/Reports-from-the-MLA-Committee-onScholarly-Editions/Guidelines-for
+Guiding Questions for Vetters of Scholarly Editions
+Modern Language Association. Accessed
+Constraint specification languages : comparing XCSL, Schematron and XMLSchemas
+M
+H
+Jacinto
+G
+R
+Librelotto
+J
+C
+Ramalho
+P
+R
+Henriques
+Done: Finishing Projects in the Digital Humanities
+M
+Kirschenbaum
+DHQ
+3
+2
+Proceedings of the International Symposium on Quality Assurance and Quality Control in XML
+the International Symposium on Quality Assurance and Quality Control in XML
+. International Symposium on Quality Assurance and Quality Control in XML
+Technology Overview and Discussion: Data Capture, Editing, and Schemas
+S
+Rahtz
+Oxford
+Star Trek, the next Generation: Technical Manual
+R
+Sternbach
+M
+Okuda
+Pocket Books
+New York
+Beyond Schemas: Schema Adjuncts and the Outside World
+S
+Vorthmann
+Robie
+J
+Markup Languages: Theory & Practice
+2
+Quality Assurance in the XML World: Beyond Validation
+D
+Waldt
+Accessed September
+15

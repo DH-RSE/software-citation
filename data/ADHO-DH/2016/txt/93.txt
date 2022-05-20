@@ -1,0 +1,293 @@
+Introduction
+Many text-classification techniques have been proposed and used for authorship attribution (Holmes, 1994; Grieve, 2007; Juola, 2008; Koppel et al., 2011), genre categorization (Biber, 1988; Argamon et al., 2003), stylochronometry (Forsyth, 1999) and other tasks within computational stylistics. However, until quite recently, it has been extremely difficult to assess novel and existing techniques on comparable benchmark problems within a common framework using statistically robust methods.
+Toccata is a resource for computational stylometry which aims to address that lack, freely available at
+http://www.richardsandesforsyth.net/software.html
+under the GNU public licence.
+The main program is a test harness in which a variety of text-classification algorithms can be evaluated on unproblematic cases and, if required, applied to disputed cases. The package supplies four pre-existing classification methods as modules (including Delta (Burrows, 2002), widely regarded as a standard in this area) as well as five sample corpora (including the famous
+Federalist Papers
+) so that users who don't wish to write Python code can use it simply as an off-the-shelf classifier and those who do can familiarize themselves with the system before implementing their own algorithms.
+Noteworthy features of the system include:
+sample corpora provided for familiarization;
+test phase using random subsampling to give robust error-rate estimation;
+ability to plug in new techniques or to employ existing standards;
+option of post-hoc phase applying trained model(s) to unseen holdout data;
+empirically grounded computation of post-hoc confidence weights to deal with 'open' problems where the unseen cases may not belong to any of the training-set categories;
+accompanying export file readable by R or similar statistical packages for optional further processing.
+Sketch of the System's Operation
+Toccata performs three main functions, in sequence:
+(a) testmode: leave-n-out random resampling test of the classifier on the training corpus to provide statistics by which the classifier can be evaluated;
+(b) holdout: application of the classifier to an unseen holdout sample of texts, if given;
+(c) posthoc: re-application to the holdout sample of texts (if given) using the results from phase (a) to estimate empirical probabilities.
+Steps (b) and (c) are optional.
+Sample corpora
+Toccata is a document-oriented system. Thus a training corpus consists of a number of text files, in UTF8 encoding, without markup such as HTML tags. Each file is treated as an individual document, belonging to a particular category. Example corpora are supplied to enable users to start using the system, prior to collecting or reformatting their own corpora.
+ajps
+: ninety poems by 2 eminent 19th-century Hungarian poets, Arany József and Petőfi Sándor. Arany was godfather to Petőfi's child, so we might expect their writing styles to be relatively similar.
+cics
+: Latin texts relevant to the authorship of the
+Consolatio
+which Cicero wrote in 45 BC. This was thought to have been lost until in 1583 AD when Sigonio claimed to have rediscovered it. Background information can be found in Forsyth et al. (1999).
+feds
+: writings by Alexander Hamilton and James Madison, as well as some contemporaries of theirs. This corpus is related to another notable authorship dispute, concerning the
+Federalist Papers
+, which were published in New York in 1788. See Holmes and Forsyth (1995).
+mags
+: 144 texts from 2 different learned journals, namely
+Literary and Linguistic Computing
+and
+Machine Learning
+. Each text is an excerpt consisting of the Abstract plus initial paragraph of an article in one of those journals, written during the period 1987-1995.
+sonnets
+: 196 English sonnets, 14 each by 14 different authors, with an additional holdout sample of 24 texts, half of which are by authors absent from the main sample.
+Validation by Random Subsampling
+A major objective of the system is to assess the effectiveness of text-classification methods by a form of cross validation. For this purpose the training corpus of undisputed texts is repeatedly divided into two portions, one used to form a classification model and the other used to test the accuracy of this model. After this cycle a number of quality statistics are computed and printed, along with a confusion matrix. This helps to establish a relatively honest estimate of the likely future error rate of the classifier. After subsampling, the program will construct a model on the full training set. This may then be applied to a genuine holdout sample, if provided.
+Classifier Modules
+A classifier module is expected to develop trained models of each text category and deliver matching scores of a text to each model, with more positive scores indicating stronger matching. The category with the highest match-score relative to the average of all scores for the text, is the assigned class. Four library modules are supplied "off the shelf".
+Module
+docalib_deltoid.py
+is an implementation of Burrows's delta (Burrows, 2002) which has become a standard technique in authorship attribution studies. Module
+docalib_keytoks.py
+works by first finding the 1024 most common word tokens in the corpus, then keeping from these the most distinctive. For classification, relative word frequencies in the text being classified are correlated with relative frequencies in each class. Module
+docalib_maws.py
+is a version of what Mosteller and Wallace in their classic work (1964/1984) on the
+Federalist Papers
+call their "robust Bayesian analysis", as implemented by Forsyth (1995). Module
+docalib_topvocs.py
+implements another classifier inspired by the approach of Burrows (1992), which uses the most frequent tokens in the training corpus as features.
+The Holdout and Posthoc Phases
+The subsampling test phase (above) is primarily concerned with assessing the quality of a classification method. The holdout and posthoc phases are when that method is applied in earnest.
+If a holdout sample is given, the model developed on the training set is applied to that sample. The holdout texts may belong to categories that were not present in the training set, so each decision is categorized as correct (+), incorrect (-) or undetermined (?) and the success rate statistics computed accordingly.
+This is illustrated in Table 1, below, from an application of the MAWS (Mosteller and Wallace) method to a collection of sonnets. Here the training set consists of 196 short English poems -- 14 sonnets by 14 different authors. This is a challenging problem firstly because the median length of each text in the training corpus is 116 words, secondly because 14 is a relatively large number of candidates.
+Table 1 shows the ranking produced on a holdout sample of 24 texts, absent from the training set. Note that 12 of these 24 items are 'distractors', i.e. texts by authors not present in the training set. The program assigns these a question mark (?) in assessing its own decision.
+The listing ranks the program's decisions from most to least credible. The upper third include 6 correct assignments, 1 clear mistake and a distractor. The middle third contains 1 correct classification, 3 mistakes and 4 distractors. The last third contains no correct answers, 1 mistake and 7 distractors. (Incidentally, the distractor poem by the Earl of Oxford, ranked twentieth, is more congruent with Wordsworth than any other author, including Shakespeare, and not confidently assigned to any of the training categories.)
+This output addresses the very real problem of documents from outside the known training categories. The listing is ordered by a quantity labelled 'credit'. This is the geometric mean of the last two numbers in each line, labelled 'confidence' and 'congruity'. Confidence is derived from the preceding subsampling phase. It is computed from the differential matching score of the text under consideration as W / (W+L), where W is the number of correct answers which received a lower differential score during the subsampling phase and L is the number of wrong answers with a higher score. Congruity is simply the proportion of matching scores of the chosen category that were lower, in the subsampling phase, than the score for the case in question. It is an empirically based index of compatibility between the assigned category of the text and the training examples of that category.
+In all kinds of classification, the problem of never-before-seen categories can loom large. (See, for instance, Eder, 2013.) Like most trainable classifiers, Toccata always picks the most likely category from those it has encountered in training, but the most likely may not be very likely. The confidence and congruity scores give useful information in this regard. For example, if we only consider the classifications which obtain a score of at least 0.5 on both confidence and congruity, we find 6 correct decisions, 1 incorrect and 1 distractor. Treating the distractor (assigning a sonnet by Dylan Thomas to Edna Millay) as incorrect still represents a 75% success rate in an "open" authorship problem on texts only slightly more than a hundred word tokens in length, where the training sample for each known category consists of approximately 1600 words, with a chance expectation of 7% success. In other words, three crucial parameters -- training corpus size, text length and number of categories -- are all well "outside the envelope" of most previously reported authorship studies.
+Table 1 -- Posthoc ranking of 24 decisions on unseen texts, including 12 'distractors'
+rank
+credit
+filename
+pred:true
+conf.
+congruity
+1
+0.9163
+ChrRoss_WinterSecret.t
+ChrRoss + ChrRoss
+0.9530
+0.8810
+2
+0.8768
+WilShak_6.txt
+WilShak + WilShak
+0.9425
+0.8158
+3
+0.8142
+DylThom_Altar09.txt
+EdnMill ? DylThom
+0.8838
+0.7500
+4
+0.7664
+MicDray_Idea000.txt
+MicDray + MicDray
+0.6378
+0.9211
+5
+0.7595
+WilShak_137.txt
+WilShak + WilShak
+0.8118
+0.7105
+6
+0.6950
+JohDonn_Nativity.txt
+JohDonn + JohDonn
+0.6720
+0.7188
+7
+0.6247
+MicDray_Idea048.txt
+JohDonn - MicDray
+0.5430
+0.7188
+8
+0.5356
+WilShak_109.txt
+WilShak + WilShak
+0.5737
+0.5000
+9
+0.5225
+DylThom_Altar05.txt
+RupBroo ? DylThom
+0.4150
+0.6579
+10
+0.4684
+TomWyat_THEY_FLEE_FROM
+EdmSpen ? ThoWyat
+0.4596
+0.4773
+11
+0.4226
+PerShel_Ozymandias.txt
+EliBrow ? PerShel
+0.2217
+0.8056
+12
+0.4027
+EliBrow_SP23.txt
+DanRoss - EliBrow
+0.2237
+0.7250
+13
+0.3061
+WilShak_RomeoJuliet.tx
+WilShak + WilShak
+0.2094
+0.4474
+14
+0.2739
+PhiSidn_astel108.txt
+EliBrow - PhiSidn
+0.1080
+0.6944
+15
+0.2625
+DylThom_Altar06.txt
+EliBrow ? DylThom
+0.0992
+0.6944
+16
+0.2283
+JohDonn_Temple.txt
+EdnMill - JohDonn
+0.1179
+0.4423
+17
+0.2014
+Lincoln1863Gettysburg.
+SamDani ? AbeLinc
+0.0649
+0.6250
+18
+0.1894
+RicFors_LaBocca.txt
+RupBroo ? RicFors
+0.0649
+0.5526
+19
+0.1352
+HelFors_1958.txt
+EliBrow ? HelFors
+0.0263
+0.6944
+20
+0.1089
+oxford_13.txt
+WilWord ? Oxford
+0.0265
+0.4474
+21
+0.0977
+RicFors_Underworld.txt
+EdnMill ? RicFors
+0.0261
+0.3654
+22
+0.0755
+HelFors_1982.txt
+DanRoss ? HelFors
+0.0109
+0.5250
+23
+0.0690
+DylThom_Altar03.txt
+RupBroo ? DylThom
+0.0106
+0.4474
+24
+0.0411
+PhiSidn_astel030.txt
+EdmSpen - PhiSidn
+0.0106
+0.1591
+++?+++-+???-+-?-???????-
+Bibliography
+Argamon, S., et al.
+(2003). Gender, genre, and writing style in formal written texts.
+Text
+,
+23
+(3): 321-46.
+Biber, D.
+(1988).
+Variation across speech and writing
+. Cambridge: Cambridge University Press.
+Burrows, J.F.
+(1992). Not unless you ask nicely: the interpretive nexus between analysis and information.
+Literary and Linguistic Computing
+,
+7
+(2): 91-109.
+Burrows, J.F.
+(2002). 'Delta': a measure of stylistic difference and a guide to likely authorship.
+Literary and Linguistic Computing
+,
+17
+(3): 267-87.
+Eder, M.
+(2013). Bootstrapping Delta: a safety net in open-set authorship attribution.
+Digital Humanities 2013: Conference Abstracts
+. Lincoln: University of Nebraska-Lincoln, pp. 169-72.
+Forsyth, R.S.
+(1995).
+Stylistic Structures: a Computational Approach to Text Classification
+. Unpublished Doctoral Thesis, Faculty of Science, University of Nottingham.
+http://www.richardsandesforsyth.net/doctoral.html
+Forsyth, R.S.
+(1999). Stylochronometry with substrings, or: a poet young and old.
+Literary and Linguistic Computing
+,
+14
+(4): 467-77.
+Forsyth, R.S., Holmes, D.I. and Tse, E.K
+. (1999). Cicero, Sigonio, and Burrows: investigating the authenticity of the 'Consolatio'.
+Literary and Linguistic Computing,
+14
+(3): 1-26.
+Grieve, J.
+(2007). Quantitative authorship attribution: an evaluation of techniques.
+Literary and Linguistic Computing
+,
+22
+(3): 251-70.
+Holmes, D.
+(1994). Authorship attribution.
+Computers and the Humanities
+,
+28
+: 1-20.
+Holmes, D.I. and Forsyth, R.S.
+(1995). The 'Federalist' revisited: new directions in authorship attribution.
+Literary and Linguistic Computing
+,
+10
+(2): 111-27.
+Juola, P.
+(2006). Authorship attribution.
+Foundations and Trends in Information Retrieval
+,
+1
+(3): 233-334.
+Koppel, M., Schler, J. and Argamon, S.
+(2011). Authorship attribution in the wild.
+Language Resources and Evaluation
+,
+45
+, pp. 83-94. DOI 10.1007/s10579-009-9111-2.
+Mosteller, F. and Wallace, D.L.
+(1984).
+Applied Bayesian and Classical Inference: the Case of the Federalist Papers
+. New York: Springer. [First edition, 1964.]

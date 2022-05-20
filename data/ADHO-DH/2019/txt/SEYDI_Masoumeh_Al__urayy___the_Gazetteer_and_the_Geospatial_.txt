@@ -1,0 +1,97 @@
+Information about places whose locations are not easy to identify with certainty and whose names may vary because of cultural and historical contexts are of great importance to historians. Places of cultural meaning or administrative units meet the needs of historians, rather than physiographic landforms on which many existing digital gazetteers and data models focus (Southall et al., 2011). Al-Ṯurayyā The name al-Ṯurayyā, “Pleiades” in Arabic, is a tribute to Pleiades Gazetteer ( ), which was the main source of inspiration at the early stage of development of this project. The previous version is developed at Tufts University ( ). provides an extensive gazetteer of the early Islamic Empire with over 2,000 toponyms and almost as many route sections from Georgette Cornu’s
+Atlas
+(Cornu, 1985) It covers from western provinces in Spain and North Africa to Eastern province, Sind (modern Pakistan). —where the primary attribute of collected objects are their geographical coordinates and their place in the Empire’s administrative hierarchy. Beyond the gazetteer, al-Ṯurayyā implements a spatial model that visualizes settlements, routes, itineraries, regions, and networks; additionally, it can perform specific queries that are meant to help to analyze specific historical events and phenomena through resulting visualizations. Following the idea of
+Linked Data
+(Bizer et al., 2009), al-Ṯurayyā is designed to be connected to the primary and external sources. Its data model takes into account connectivity, spatial relations, and the additional evidence provided by the historical context from the primary sources. Al-Ṯurayyā can be used with other data sets of the same structure thus acting as a gazetteer and a geospatial model for different historical contexts.
+The minimum components of the gazetteer entry is defined by: (1) settlements—currently with toponyms in English transliteration and Arabic; (2) geographic location—latitude, longitude; (3) administrative classification of settlements—
+metropol
+,
+town
+,
+village
+, etc., which present the administrative organization of the Empire.
+Places:
+The gazetteer provides a search panel to find and visualize a place and access the relevant information that the data model provides. As in Figure
+1
+, searching for Baghdad in both Arabic and transliterated Latin characters yields a list of matches and highlights the position of a selected match in red on the map. The type of a settlement is represented in the visualization of places by different sizes of circles, which are assigned according to their type.
+According to al-Ṯurayyā data model, the toponymic data is linked to contextual information including the records from primary sources The current version provides the descriptions only from: Abū ʿAbd Allãh al-Ḥimyarī. Rawḍ al-miʿṭār fī ḫabar al-aqṭār. Ed. by Iḥsān ʿAbbās. 2nd edition. Bayrūt, 1980 . and links to secondary sources, which is shown together with the technical details when a toponym is selected (Figures
+2
+,
+3
+,
+4
+,
+5
+).
+The descriptions from the primary sources are matched automatically and the percentage value in parenthesis next to each record indicates the match certainty (Figures
+3
+,
+4
+).
+Figure 1. Toponym search
+Figure 2. Technical information on a selected place—coordinates, URI, region, sources, type, names, etc.
+Figure 3. List of records from primary sources relevant to a selected toponym
+Figure 4. Detailed description of a selected toponym from primary sources
+Figure 5. References to external sources
+Routes and Itineraries:
+The spatial model of al-Ṯurayyā currently offers two main modules that compute and visualize routes and itineraries of various complexity, using pathfinding algorithms, and networks of reachability from the selected center(s), using the network on of settlements places and routes (al-Ṯurayyā also provides information of individual route sections—Figure
+6
+).
+Figure 6 - Selected route section information
+Relevant features of the geospatial model are as follows:
+Pathfinding:
+The model computes paths between a source and a destination, the shortest and “optimal” routes. The shortest path implements Dijkstra’s algorithm (Dijkstra, 1959) while the “optimal” path computes the next shortest path with the higher number of waystations along the way (under the assumption that such routes are safer to travel). For example, in the shortest path (red) in Figure
+7
+, the sparsity of waystations makes the path dangerous across the Syrian desert while the optimal one (green)—including higher number of stations—leads around the desert through the populated regions.
+Itineraries:
+One can plot an itinerary by selecting stops (maximum ten) along the way to map more specific routes. This feature customizes the pathfinding computation model by considering the places that should be included in the itinerary. Figure
+8
+plots
+Nāṣer-e ’s Khosraw’s itinerary from Nishapur/Naysābūr to Cairo/Fusṭāṭ, as described in h
+is own travelogue titled The Book of Travel (Thackston, 1986). This model suggests not mentioned locations that he might have visited.
+Network Flood:
+To represent reachability, al-Ṯurayyā introduces a method to model the network of settlements that are reachable from a starting point within a certain number of days of travel (one day equals about 30 km). Network flooding shows the reachability as well as limitations of the reach from a selected center, which in historical contexts are of great value to find answer for questions related to spread of power, explore the viable geographical limits of a state with the seat of power in a given center, and visually measure the prominence of specific urban centers. In the context of this model, we represent network flood by coloring the places on the map based on their distance from one/multiple center(s) that the user dynamically chooses. Each color represent a network of places reachable within the same day(s) of travel. For example, Figure
+9
+depicts
+Marw al-Šāhiǧān’s network within ten days in which locations in red, orange, yellow, and green are
+reachable within ten, twenty, thirty, and fifty days respectively and places in pale colors are unreachable according to the underlying route network and criteria. Network of multiple centers represent the same reachability concept from multiple centers, which can be used to represent itinerary courts (Figure
+10
+).
+Figure 7. Shortest (red) and optimal (green) paths from ‌Baġdād to Dimašq (Damascus)
+Figure 8. Plotting the itinerary from Naysābūr to Fusṭāṭ from Nāṣer-e Khosraw’s The Book of Travel
+Regions:
+Al-Ṯurayyā models and visualizes regions, using the underlying network. The initial view makes the complete view of the whole area that the data covers and the overlap of the colored points properly shows the shape, density, and the extent of each province in the period in question, avoiding the modern idea of “borderlines”. In the “Regions” panel, the visualization highlights the selected region depicting its geographical position and administrative extent with all its settlements and routes.
+Figure 9 - Network flood wit
+h Marw al-Šāhiǧān as a center
+Figure 10. Network flood of two centers
+Figure 11. Modeling a region
+Al-Ṯurayyā is designed to serve as a starting point for the visual analysis of spatial data in written documents, and as a tool for answering meaningful, complex research questions about how the geography of premodern empires was shaped and conceptualized. For future developments we are planning to provide tools for data verification and contextualization.
+Bibliography
+Bizer, C., Heath, T., and Berners-Lee, T.
+(2009). ‘Linked data - the story so far’.
+International Journal on Semantic Web and Information Systems
+, 5 (3), pp. 1-22. (
+doi:10.4018/jswis.2009081901
+).
+Cornu, G.
+(1985).
+Atlas du monde arabo-islamique à l'époque classique: IXe-Xe siècles.
+Leiden: Brill.
+Dijkstra, E.W.
+(1959). ‘A note on two problems in connexion with graphs’.
+Numerische Mathematik
+, 1, pp. 269–271. Available at:
+http://eudml.org/doc/ 131436
+(Accessed: 10 April 2019).
+Kh
+o
+sraw, N.
+(1986).
+Nāṣer-e Khosraw's Book of Travels = (Safarnāma)
+. Translated by W. M. Thackston. New York: Bibliotheca Persica.
+Southall, H., Mostern, R., and Berman, M. L.
+(2011). ‘On historical gazetteers’.
+International Journal of Humanities and Arts Computing
+, 5 (2), pp. 127–145. (
+doi:10.3366/ijhac.2011.0028
+).

@@ -1,0 +1,73 @@
+Introduction
+The established pattern for a scholarly digital edition today is the website, which in many cases has a unique and well thought out user interface. It concentrates all information pertaining to the topic, but allows little interaction of the reader with the texts beyond what has been designed into the user interface by the developers of the site.
+Although there are also many efforts to go beyond this and experiment with new forms of reading in the digital age, for example protocols for sharing annotations or reading communities, they have not yet reached a stage where they would be available to mainstream researchers.
+In contrast to the polished and well advertised flagship editions of digital projects at prestigious institutions, there is also a continuing trend of making the source texts that feed into digital editions available in a way that not only allows, but actively encourages tinkering with the texts. The distribution for this latter type of texts is frequently on the site github.com, which is the world largest repository for software development
+The site claims: "GitHub is where people build software. More than 11 million people use GitHub to discover, fork, and contribute to over 28 million projects." (
+http://www.github.com
+, accessed 2016-03-02).
+, but as a free site for data sharing with collaborative editing it is becoming more popular for other purposes as well.
+Some of the large scale text projects using Github in this way include the
+Chinese Buddhist Electronic Text Association
+(CBETA)
+(accessed 2016-03-02), more than 4000 Chinese Buddhist texts in TEI P5 markup.
+,
+gitenberg
+(accessed 2016-03-02); a project that uploaded more than 40000 electronic texts from the Gutenberg.org project to make it possible to improve the texts that are otherwise distributed without the possibility for the readers to provide corrections.
+and
+EEBO-TCP
+(accessed 2016-03-02), which contains 25000 texts released to the public on Jan. 1, 2015.
+to name just a few.
+The presentation proposed here reports on the
+Kanseki Repository
+, a project that tries to establish a link between these two different types of text dissemination and through this combination to achieve the best of the two worlds: The texts can still be presented through a sophisticated web interface, which uses Github as a backend storage and reads the texts from there for presentation to the user. These texts can be forked (that is, cloned and copied to the user's account) which makes it possible for the user to revise or annotate them. The system is set up in a way that it will show this private copy of the text if configured so by the user.
+Methodological considerations
+The goal here is not simply to upload as many texts at possible to public archives, but rather to develop a platform that allows the basic tenets of scholarly editing to co-exist and thrieve with the possibilities and affordances of the digital medium. It is therefore of paramount importance, to consider the requirements as voiced from practioners of scholarly editing and implement them as transparently as possible.
+Record and interpretation
+In a seminal article, the Swiss scholar Hans Zeller (1995) emphasised the fact that all scholarly editing should make a clear distinction between the record of what is transmitted and the scholarly interpretation thereof. While this distinction is blurry at times, it has informed the design of the
+Kanseki Repository
+, which arranges the editions of a text it represents into those that strive to faithfully reproduce a text according to some textual witness ('record') and those that critically consider the content and make alteration to the text by adding punctuation, normalizing characters, collating from other evidence etc. ('interpretation').
+Additional requirements
+Peter Shillingsburg (2015) outlines the following requirements of a digital edition (slightly edited for clarity):
+a. Digitize images of all the documents. That will make it possible, from anywhere in the world, to see any document side-by-side with any other document without traveling from Tokyo to Marburg and New York.
+b. Prepare a table of variants to show how all the documentary texts differ from one another.
+c. Write a textual history that explains the relationships among the variant documents and explains why we should care–why it is important to know.
+d. Transcribe at least one of the documents so that the variants list can be more easily used. Or transcribe all the documents so that readers can select and read any one. Transcribing all the documents will also make machine collation possible.
+e. Edit one of the transcriptions to correct obvious errors. This will preserve the text as a historical documentary text but will help readers avoid the distractions caused by scribal or compositorial errors.
+The architecture developed in this project strives to implement as much of this as seems feasible within the limits of the current funding and other constraints. The components will be further described below.
+Main components of the project architecture
+The architecture of the project consists conceptually of two parts: (1) the text repository and (2) clients accessing this repository. Of these clients there are currently two, both developed within the project.
+Backend: Repository of texts: github.com/kanripo
+Since every text has its own unique history and witnesses, every text is allocated to its own repository (in the technical sense). These repositories, currently more than 9000, are are organized according to the traditional Chinese cataloging principles and kept under the Github account @kanripo. Since the texts are publicly accessible, they can be freely downloaded and cloned even without ever touching the client interfaces. Due to the large number of texts and the Github interface, which seems foreign and intimidating to most readers of classical Chinese texts, special clients cover most needs in interfacing with the texts.
+Client interfaces
+Web interface at www.kanripo.org
+This website provides access to the texts, including full-text search, display of transcribed text and facsimile(s) of different editions. Users can log in using their Github credentials and get access to more advanced functions such as selecting lists of text of special interest, advanced sorting functions by text category or date as well as cloning of texts to the Github user account and editing on site. The site went into testing mode in October 2015 and a first public release has taken place in March 2016.
+Mandoku, a stand alone tool for further immersive reading and study
+In addition to the website, an Emacs module called Mandoku (see Wittern, 2012, 2013, 2014a, 2014b) has been developed (as an extension to Orgmode, see Domnik et al., 2015), that uses the API of the website to provide the same search functions, but clones the texts of interest to the user to her local machine, thus providing advanced editing possibilities and offline access.
+Towards a platform for text-based Chinese studies
+All modes of interaction described above are based on the distributed version control system git, using the Github site as a 'cloud storage'. However, in addition to providing storage, Github also provides a feedback mechanism through "pull-requests", where users can flag corrections to a text for the @kanripo editors to consider for inclusion in the canonical version, thus making it available to all users.
+The model outlined here is extensible and allows other developers of websites related to Chinese studies to access the same texts, and provide specialized services to the user, for example by enhancing the text through NLP processing. These enhanced versions can be saved ("committed" in git language) in the same way to the users account and are then also visible to the client programs described here.
+This will open the door to a open platform of texts for Chinese studies, where the texts of interest to the users form the center of a digital archive, with different services and analytical tools interacting and enhancing it. The user, who makes a considerable investment in time and effort when close reading, researching, translating and annotating the text, never loses control of the text and does not need to worry about losing access to it when one of the websites goes offline.
+By providing versioned access to the texts in question, it is also possible to make any analytical results reported in research publications reproducible (Rawal, 2015) by indicating the additional tools and processes needed, ideally also in a Github repository in the same ecosystem.
+The aim is not just to provide a static, completed, definitive edition of a text, but as fertile a ground as possible for the interaction between the text and its readers, hopefully improving both through this process.
+Bibliography
+Domnik, C. et al. (2015). Org mode for Emacs — Your Life in Plain Text, at
+http://orgmode.org
+(accessed 2016-03-02).
+Rawal, V. (2015). Reproducible Research Papers using Org-mode and R: A Guide, at
+(accessed 2016-03-02).
+Shillingsburg, P. (2015). Global Textual Scholarship: An American View, paper delivered at a symposium on textual studies in Japan available online at
+(accessed 2016-03-02).
+Wittern, C. (2012). Text Representation and Interchange in the Digital Age, paper delivered at Annual conference of the Japanese Association for Digital Humanities 2012 at University of Tokyo, Sep. 15-17, 2012.
+Wittern, C. (2013). Beyond TEI: Returning the Text to the Reader.
+Journal of the Text Encoding Initiative
+[Online], 2013, 4. (
+) (accessed 2016-03-02).
+Wittern, C. (2014a). Kanripo and Mandoku: Tools for git-based distributed repositories for premodern Chinese texts. In
+Digital Humanities 2014 Book of Abstracts
+, pp. 408-409.
+Wittern, C. (2014b). Conventions for a repository of premodern Chinese texts. In: 東洋学へのコンピュータ利用第２５回セミナー, ２０１４年３月１５日, p. 73-88.
+Zeller, H. (1995). Befund und Deutung - Interpretation und Dokumentation als Ziel und Methode der Edition. In: Martens, G. and Zeller, H. (ed.),
+Texte und Varianten : Probleme ihrer Edition und Interpretation
+. München, pp. 45-89, translated as Record and Interpretation: Analysis and Documentation as Goal and Method of Editing. In: Gabler, H., Bornstein, G. and Pierce, G. B. (ed.),
+Contemporary German Editorial Theory
+, Ann Arbor, pp. 17-58.

@@ -1,0 +1,96 @@
+Introduction
+Cet article présente les résultats d'une recherche dans le cadre de laquelle nous nous sommes intéressés à l'évolution thématique de l'art contemporain dans les centres d'artistes autogérés du Québec. Nous dressons un portrait du milieu de l'art et de son discours en analysant automatiquement un ensemble de textes d'expositions. Notre approche repose sur des techniques automatisées de fouilles de textes. Notre objectif est donc de cartographier l'évolution des théma-tiques abordées dans le discours en art contemporain.
+Notre approche s'inspire de la notion de distant reading développée par Franco Moretti. Selon Moretti, l'analyse des textes devrait être effectuée non pas sur une sélection d'ouvrages (le "canon"), mais sur l'ensemble le plus exhaustif possible de documents. Un échantillon de documents trop limité ou trop spéci-fique risque d'engendrer une perte d'informations précieuses.
+Dans le domaine des arts, K. Bender s'est inspiré des travaux de Moretti afin de développer la théorie du distant viewing. Appliqué en histoire de l'art où les monographies se concentrent souvent sur les grands artistes et aux grandes oeuvres, il importe de dévelop-per, selon Bender, un "regard" permettant de saisir et
+d'analyser un très grand ensemble d'oeuvres d'ar- tistes. Bien qu'il existe des techniques informatiques permettant d'analyser des images et en extraire des mots-clés descriptifs, ces techniques ne font qu'une description visuelle de l'image.
+L'image ou l'oeuvre d'art, qu'elle soit figurative ou abstraite, ne se décode pas simplement. L'art visuel nécessite une analyse qui ne se limite pas au niveau descriptif. Interpréter une oeuvre d'art nécessite à priori certaines connaissances, notamment sur le travail et la démarche de l'artiste, le contexte socio-historique de l'oeuvre ou sur l'histoire et la théorie de l'art. Dans ce contexte, le texte d'exposition constitue un médium riche à exploiter pour extraire de l'information sur les oeuvres.
+Le texte d'exposition
+Les textes d'exposition en art ont comme objectif de situer et de contextualiser les oeuvres. Ils permettent une meilleure compréhension des oeuvres, du processus créatif de l'artiste, des thèmes, ainsi que des questionnements et des idées évoqués dans les expositions. Dans ce contexte, l'utilisation de techniques de fouille de textes, et plus spécifiquement de modélisa-tion thématique (Topic Modelling)
+(Blei et Lafferty, 2009)
+, permet d'extraire automatiquement les théma-tiques à partir de textes d'exposition qui n'auraient pu être extraites automatiquement à partir du contenu visuel et qui, à grande échelle, seraient beaucoup difficiles à identifier manuellement. En analysant tous les textes d'expositions disponibles pour une période donnée, nous pouvons poser un regard différent sur le discours en art. L'application de la modélisation thé-matique sur des textes d'exposition permet, en effet, d'extraire et de structurer automatiquement les principaux thèmes d'un corpus et d'en décrire le vocabulaire spécifique, en plus de permettre la classification d'oeuvres thématiquement comparables. (indépen-damment de leur qualités visuelles).
+Modélisation thématique et Artspeak
+Le langage propre au milieu de l'art contemporain, parfois appelé le Artspeak ou International Art English (
+Levine et Rule, 2013)
+, peut être difficile à décoder pour les non-initiés. Il a cependant comme qualité de permettre l'expression d'idées et de concepts abstraits propres à l'art contemporain, afin de lexicaliser la complexité des oeuvres. Comme le mentionne Levine, "IAE is about trying to create a more sensitive language, acknowledging the realities of how things [made by artists] work."
+La modélisation thématique la complexité des textes ou au niveau d'abstraction des phrases. Il permet, par simple calcul de distribution des mots, de regrouper des textes portant sur des thématiques communes. La modélisation thématique est fréquemment réalisée par l'algorithme LDA (Latent Direchlet Allocation), développé David M. Blei, Andrew Ng et Michael I. Jordan en 2003. Bien qu'il ait été développé, il y a plusieurs années, cette algorithme fait l'objet d'un nombre croissant d'utilisation dans le traitement des textes en humanités numériques
+(Graham, Milligan et Weingart, 2016)
+. Le principe qui sous-tend cet algorithme est qu'un corpus de textes est composé de nombreux thèmes ("topics") latents; ces thèmes étant exprimés par les différents mots qui le composent. Les thèmes sont donc des regroupements de mots effectués sur la base d'un calcul de probabilité (bayésienne). Au niveau individuel, un document est composé d'un nombre k de thèmes, lesquels sont composés d'un nombre x de mots représentés selon diffé-rentes proportions. Au niveau macro (au niveau du corpus en entier), tous les documents d'une collection partagent les mêmes thèmes. L'algorithme LDA pré-suppose donc l'existence des thèmes latents qui n'apparaissent pas explicitement dans les documents. Ce principe évoque ainsi l'idée d'une structure cachée du document qui nous permet de dégager une structure de mots sur la base de leur proximité thématique. Les mots du corpus sont tous regroupés dans différents thèmes, tout en ayant la possibilité de se retrouver dans plus d'un thème à la fois. Divers prétraitements ont été appliqués au corpus initial afin de n'en retenir que le vocabulaire spécialisé en art (suppression des mots fonctionnels, filtrage par seuils statistiques, etc.). Par la suite, le corpus a été soumis à l'algorithme LDA de manière itérative, tout en modifiant le nombre de thèmes afin d'observer les différences dans les thèmes extraits. Le défi intrinsèque à cette approche réside dans le choix du nombre optimal de thèmes à extraire à extraire. Ce paramètre doit être déterminé manuellement. Nous avons donc analysé un par un les thèmes automatiquement extraits et jugé de leur cohérence, en retournant et en remettant en contexte les termes extraits à l'intérieur des textes originaux. Nous avons finalement opté pour un total de 35 thèmes, nous permettant ainsi d'obtenir un maximum de thèmes cohérents et un minimum de thèmes peu significatifs. Les thèmes ont été étiquetés manuellement à partir des mots les plus représentatifs de chaque regroupement.
+Expérimentation
+Résultats
+Le tableau 1 et la
+figure 1
+présente les résultats gé-nérés par l'algorithme de modélisation thématique. Une analyse des résultats obtenus met en lumière que la notion de thèmes se manifeste de différentes manière dans notre corpus. Ainsi, certains thèmes sont composés de mots-clés spécialisés et très caractéris-tiques des textes d'expositions (installation résidence création recherche temps espace, par exemple). Par ailleurs, d'autres regroupements thématiques renvoient sans équivoque à une discipline ou à une technique artistique (vidéo film images vidéos cinéma image bande oeuvre). Les résultats du modèle théma-tique obtenu à partir de notre corpus de textes en art contemporain peuvent être synthétisés de la manière suivante :
+1. les mots (les thèmes étiquetés « vocabulaire ») couramment utilisés (comme les verbes voir, faire, sentir) dans les textes d'exposition ou dans le discours artistique 2. les thèmes en art contemporain (ré-volte, famille, mémoire, rêve) 3. les disciplines ou techniques en art (peinture, sculpture, vidéo, photographie) 4. les thèmes incohérents (« junk topics ») (c'est-à-dire les regroupements sans cohérence apparente). Nous avons cherché à analyser les résultats du modèle thématique en diachronie afin d'observer l'évolu-tion des thèmes dans le temps. À cette fin, nous n'avons conservé que les documents ayant été publié depuis les 16 dernières années, puisque nous ne disposions de très peu de documents dont la publication était antérieure à l'an 2 000. Nous présentons ici que certains thèmes pour lesquels une variation chronologique significative a été notée. Ainsi, les thématiques (figure 3) du "marché de l'art" et la "nature" ont fait l'objet d'un traitement croissant, alors qu'il en va inversement pour les thèmes du "rêve", de la "famille", de la "temporalité" et du "corps de la femme".
+Conclusion
+Dans le cadre de ce projet, nous avons appliqué la modélisation thématique sur un corpus de textes d'ex-positions en art contemporain dans les centres d'artistes autogérés du Québec. Les résultats témoignent de l'hétérogénéité des thématiques abordées. Ainsi, certaines thématiques concernent des techniques particulières, alors que d'autres reflètent le vocabulaire spécialisé en art contemporain. Une analyse diachronique des résultats nous a permis de constater l'évolu-tion des thématiques abordées dans les textes produits par les centres d'artistes autogérés du Québec. Cette approche basée sur la notion de "distant reading", appliqué en histoire de l'art, nous a permis d'observer d'un point de vue macro à la fois les tendances d'un milieu artistique et le vocabulaire communément utilisé dans les textes d'exposition.
+Bibliography
+À
+Tableau 1 .
+1
+Figure 1 .
+1
+Figure 2 .
+2
+Figure 3 .
+3
+Figure 4 .
+4
+Distant Viewing in Art History. A Case Study of Artistic Productivity
+K
+Bender
+Journal of Digital Art History
+1
+David
+M
+Blei
+Probabilist Topic Models. Communications of the ACM
+55
+Latent Dirichlet Allocation
+D
+M
+Blei
+A
+Y
+Ng
+M
+I
+Jordan
+Journal of Machine Learning Research
+3
+Topic Models
+D
+M
+Blei
+J
+D
+Lafferty
+Text mining: classification, clustering, and applications
+CRC Press
+Exploring big historical data: The historian's macroscope
+S
+Graham
+I
+Milligan
+S
+B
+Weingart
+Imperial College Press
+d.). MALLET homepage. Machine Learning for Language Toolkit
+Andrew
+Mccallum
+s.
+Repéré
+22
+2016
+Réseau art actuel -Répertoire des membres. (s.d.). Ré-seau Art Actuel
+Repéré
+20
+2016
+Topic Modeling and Figurative Language
+L
+M
+Rhody
+Journal of Digital Humanities. Repéré
+21
+2016
+Triple Canopy - International Art English by Alix Rule & David Levine. (s.d.). Triple Canopy. Repéré 30 octobre
