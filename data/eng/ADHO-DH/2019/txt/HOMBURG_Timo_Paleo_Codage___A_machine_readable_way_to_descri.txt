@@ -1,0 +1,153 @@
+Introduction
+Cuneiform characters have been described using various systems in the past and the varieties of systems used in the literature as well as in daily work varies from language to discipline. Commonly, sign lists (Borger 1971, Borger 2004, Ruster 1989, Deimel 1947) are created and published in the form of dictionaries in a non-machine-readable form. Similarly, for computers, the only way to distinguish cuneiform characters is currently to assign them different numbers in a list (e.g. Unicode (Unicode Staff, 1991)) and consider a distinction on this level. Therefore we are left with many systems and numbers to describe the same cuneiform sign. (Figure 4). Contrary to listing cuneiform signs, (Gottstein, 2012) took another approach in creating a searchable cuneiform character encoding based on wedge types which would be implemented in applications such as CuneiPainter
+(Homburg, 2015). Character image recognition has also been performed in the past (Mara, 2010), but never yielded a machine-readable representation of a cuneiform characters paleographic information which could have been useful as a means of validation for machine learning recognitions. This publication therefore introduces Paleo Codage, a paleographic distinct machine-readable description inspired by the Manuel de Codage encoding (Van den Berg, 1997) for Egyptian Hieroglyphs.
+Motivation
+A machine-readable paleographic description despite yet representing another encoding scheme could link all systems of cuneiform character descriptions, as it directly describes the characters shape and positioning parameters. Scholars could register newly found characters easily in a machine-readable way and provide the basis for computational analysis on the paleographic shapes of cuneiform characters. Such paleographic information would ideally be integrated into currently emerging Semantic Dictionaries for cuneiform (Homburg, 2017, 2018) to enrich linguistic linked open data and thereby profit the respective scholars. In addition a machine-readable paleographic description provides the basis to capture sign variants of characters currently described in unicode. It is very common for on unicode codepoint to have many sign variants describing the same meaning over the centuries in which cuneiform has been written. Those sign variants have never been assessed digitally (only as sketches in books) and could provide valuable insights for philologists.
+Approach
+Paleo Codage builds on the description of (Gottstein, 2012), by using simple character descriptions for certain wedge types and by extending it with a Manuel de Codage (Van den Berg, 1997) inspired set of relational descriptions.
+Cuneiform wedges are distinguished as follows:
+Vertical wedge 𒀸 (a)
+Horizontal wedge 𒁹 (b)
+Diagonal wedge 1-4 𒀹,𒀺 (c,d and mirrored e,f)
+Winkelhaken 𒌋 (w)
+The system encodes relations between wedges as shown by the following most frequent examples:
+Wedges that pass through other wedges situated right to them (-) (e.g. MIN 𒈫 -> a-a , three AŠ 𒐁 → b-b-b )
+Wedges that do not pass through other wedges situated right to them (_) (e.g. ŠU 𒋗 -> b:b:b:b:b_a , GIŠ 𒄑 -> b::b_a )
+Wedges under another wedge possibly passing through other wedges (:) (e.g. U2 𒌑 → B::B-a-a-a-a , AŠ2 𒀾 → b:b:b:b-a )
+Wedges under the current wedge not passing through other wedges (;) (e.g. BAR 𒁇 → ;b-a )
+Diagonally under another wedge (.) (e.g. GAM 𒃵 → c.c )
+Wedge inversion (!) (e.g. IDIM 𒅂 → !b:b )
+In addition size variations of cuneiform wedges are common and can be encoded as follows:
+Capital letters signify a bigger version (e.g. A instead of a), wedges prefixed with a small s a smaller version (e.g. sa instead of a)
+(e.g.
+A x A
+𒀁
+→
+a-sa-sa:sa-a:a
+,
+ŠE
+𒊺
+→
+W:W-w:w-w:w-w:w-W:W
+)
+Lastly, angles of diagonal cuneiform characters may vary between characters which required angle modifiers to be added to the encoding.
+The angle between the diagonal wedges in (e.g. IR 𒅕 → c;d-a-a-a) is bigger than the angle between the diagonal wedges in (ARKAB 𒀶 → |d;|c_A ). The angle can be halved by using the | operator.
+While the order in which cuneiform wedges were drawn is not always agreed upon by the respective scholars (Devecchi, 2015), PaleoCodages’ order independent of this dispute is from left to right and then from up to down in order to avoid ambiguities concerning cuneiform sign definitions. In order to facilicate the representation of displaced wedge groups PaleoCodage also includes the following positioning modifiers (/ half the size down, ~ half size to the left, # half size to the right, as well as < and > as rotation modifiers, rotating the whole glyph). Further operators could be added if needed by glyphs which can currently not be modeled.
+Proof Of Concept
+A proof of concept is provided on a representative subset of 200 cuneiform unicode characters
+https://en.wikipedia.org/wiki/Cuneiform_(Unicode_block)
+which were analysed to infer the relations described section Approach. Table 1 includes further encoding examples.
+Image
+Unicode
+Main Transliteration
+Borger
+Gottstein
+Paleo Codage
+𒁹
+U+12079
+DIŠ
+748
+a1
+a
+𒀸
+U+12038
+AŠ
+001
+b1
+b
+𒀹
+U+12039
+AŠ ZIDA tenû
+575
+C1
+c
+𒀺
+U+1203A
+AŠ KABA tenû
+647?
+c1
+e
+𒌋
+U+1230B
+U
+661
+d1
+w
+𒈦
+U+12226
+MAŠ
+120
+a1b1
+:b-a
+𒁇
+U+12047
+BAR
+121
+a1b1
+;b-a
+𒇲
+U+121F2
+LAL
+750
+a1b1
+a-b
+𒈨
+U+12228
+ME
+753
+a1b1
+a-:b
+𒃵
+U+120F5
+GAM
+576
+c2
+c.c
+𒋻
+U+122FB
+TAR
+009
+a1c2
+c.ca
+𒌀
+U+12300
+TIL
+114
+b1c1
+bc
+𒉽
+U+1227D
+PAP
+092
+b1c1
+C:d
+𒂢
+U+120A2
+EZEN x A
+288
+a7b6
+:sa-:sb::sb-ab;b-:sa-:sa:sa-a-:sb::sb-:sa
+𒅈
+U+12148
+IGI RI
+726
+a4b2d2
+:w-a-:b_-:b-a-a-:::w-a
+Table 1: Cuneiform Encoding Examples
+A generated similarity graph for verification purposes (Figure 2) using the new encoding method shows the applicability of the encoding to identify subglyphs that are included in other glyphs which in turn is useful information to be included in (Semantic) dictionaries. Further similarity measures on the encoding (String Similarity) could reveal additional connections between cuneiform character representations.
+Figure 2: Cuneiform Character relations as graph (excerpt): Only by verification of the encoding the computer can e.g. now recognize that the glyph IMIN3 (b:b:b_b:b:b_b) is contained by the glyph ilimmu3 (b:b:b_b:b:b_b:b:b). Using the Gottstein System such a conclusion could not be made as they would be classified as b7 and b9 respectively.
+Application
+Given the paleographic information encoded in a standardized way users have the ability to draw a rudimentary shape of the character in order to detect the character they are seeing in front of them (e.g. on a picture or a tablet). This functionality is currently being implemented in CuneiPainter
+, improves its accuracy when matching cuneiform characters and will be ready as a showcase for DH2019. A showcase in JavaScript (Figure 3) highlighting all currently encoded characters is already available for testing
+, allowing users to verify and create their own encodings easily. In addition, the testing tool allows to export created cuneiform characters as SVG and as OpenType fonts in-browser, creating the basis for an easier automated font creation for cuneiform characters.
+Figure 3: Paleo Codage Input (JavaScript Application)
+Figure 4: Cuneiform Numbering Systems: Semantic Dictionary for Ancient Languages
+Bibliography
+Biber, D.
+(1988).
+Variation Across Speech and Writing.
+Cambridge: Cambridge University Press.
+Borger, R.
+(1971).
+Akkadische zeichenliste
+. Neukirchen-Vluyn, Germany.

@@ -1,0 +1,167 @@
+Introduction
+We examine the discussions on the Facebook Page of the Czech Reality TV show
+Výměna manželek
+(
+Wife Swap
+). A commercial TV Nova acquired the originally British program for the Czech market in 2005. In 2018, the show is in its 10th season and consistently ranks among the most popular prime-time programs. We intend to find out if the show’s viewers active on social media partake in the shaming of lower class participants on the show. Specifically, we map the semantic space of “shame” in the comments associated with negative sentiment, interrogate the space for class-based content, and compare it with the alternatives.
+Related work
+The global uptake of the Reality TV format in the last decades has been associated with a “demotic turn” that allowed more people to appear in content previously exclusive to the elites (Turner, 2010), although empirical evidence suggests that the increased working class presence is coupled with overrepresentation of the upper classes (Stiernstedt and Jakobsson, 2017). By showing “ordinary people” in what appears, despite heavy scripting and editing, to be everyday situations, Reality TV shows – such as (
+Wife Swap
+), in which two wives exchange their homes for one week and both receive a reward for completion of the required swap – alter the way in which mass media represent social hierarchies. But more is not always better and a higher number of working class or poor characters does not guarantee their favorable representation. Skeptical authors relate the success of the Reality TV genre to its affinity with dominant neoliberal values, such as entrepreneurship and individual responsibility (McCarthy, 2007; Ouellette and Hay, 2008). In the framework of neoliberalism, low social status becomes a signifier not of class identity, but of individual failure.
+Various on-screen events in a reality show may trigger politically charged response among audience members (Graham and Hajru, 2011; Graham, 2012), but class issues on the Reality TV are typically not discussed explicitly despite their centrality to the orchestrated narrative of the show. Instead, class distinctions are marked through lifestyle differences and tastes (Piper, 2004; Matheson, 2007) or supposedly individual moral shortcomings (Hirdman, 2016). Purposeful positioning of individuals outside of their value system (Lyle, 2008) underscores class divisions by subjecting members of the lower class to middle-class gaze. In Swedish reality shows, working class participants systematically become an object of ridicule (Eriksson, 2016). The competitive environment in the market-driven media helps to cultivate content producers who are more likely to generate negative portrayals of welfare and poverty (De Benedictis et al., 2017).
+The treatment of lower class individuals in Reality TV effectively resembles the practice of shaming - enforcement of norms through the generation of negative collective affect and public identification of a trespasser. Originally a punitive measure (Garvey, 1998), shaming has proliferated recently thanks to the social media platforms and ranges from benign vigilantism to criminal bullying (Trottier, 2018). People with middle class status are more likely to engage in this practice (Hou et al., 2017).
+Data and methods
+Using Facebook Graph API, we collected 5-years worth of “postings” of all available types: posts by page (
+n
+=1273), comments (
+n
+=26383) and replies (
+n
+=28459) from January 2012 to March 2017 (Figure 1A). For further analysis, we obtained lemmas and part-of-speech tags using NLP tools for Czech language and retained only content-bearing words. After data collection, we used sentiment analysis to structure our corpus into groups based on the prevailing emotional polarity of postings. Next, we trained word embeddings for each of the sentiment groups. Finally, we generated the semantic neighborhood of “shame” from the trained vectors.
+To choose between the two public language resources available for sentiment analysis in the Czech language, we manually tagged 150 randomly sampled postings with sentiment on the negative-neutral-positive scale. Neural Monkey classifier (Helcl and Libovický, 2017) performed worse than the most frequent class scenario (47% against 43% accuracy). To test SubLex (Veselovská, 2012), postings were assigned to one of the three classes by the following rules: if the numbers of positive and negative words are equal (including zero) the tag is “neutral”, more positive words yield “positive” tag, and more negative words result in “negative” tag. This approach reached 52% accuracy on three classes problem. In the absence of alternatives, we chose the sub-optimal lexicon-based method. We note that the satisfactory specificity of 88% reached by SubLex ensures that we can at least be reasonably confident that the negative postings are correctly identified as such.
+After performing sentiment analysis, we trained word2vec models (Mikolov et al., 2013) of dense word vectors with the sliding window parameter set to 10, one model per sentiment segment. Reducing data and comparing word vectors across slices is effective in tracing semantic shifts (Jo and Algee-Hewitt, 2018). In the end, we added the vectors for “shame” and its several synonyms together and extracted 50 terms closest to this aggregate vector. These terms delimit the semantic spaces of “shame” in our paper.
+In future work, we will build a bespoke sentiment classifier that would provide more accurate segmentation of our corpus. We shall also test the robustness of the obtained word vectors. Currently presented results are therefore preliminary.
+Results
+Figure 1
+Figure 1B shows the results of the sentiment classification, although the proportions of the sentiment classes need to be read against the poor performance of the classifier. Still, the increase in the proportion of negative postings that corresponds to the overall influx of participants and the growing use of the “reply” feature on Facebook could indicate that a part of negative sentiment is due to the interactions of the discussants themselves (cf. Graham, 2012).
+The intersections of the semantic spaces of “shame” (
+ostuda
+in Czech) show essentially no overlap (Figure 2). In contrast, for a sanity check, we extracted 50 most frequent words in each segment, which resulted in 39 overlaps. We have therefore good reasons to believe that “shame” is constructed differently based on the dominant sentiment in the discussion.
+When “shame” occurs in connection with negative sentiment, a noticeable cluster of meanings related to hygiene emerges. Out of 50 words, more than 10 relate to dirt (“dirt”, “make dirty”, “stinky”) or cleanliness (“washed”, “clean teeth”, “hygiene”) and include interjections of disgust such as “yuck!”. Expression of disgust over mess thus appears as the main distinctive feature with which viewers can scold the participants in the Reality TV shows as inferior. This result provides support the notion of the middle class gaze, as order and tidiness are its integral components. Furthermore, in the semantic space of negative sentiment the word for “laziness” also appears and expands the discussion to neoliberal values of diligence and constant self-improvement.
+Figure 2
+We focused on a very specific aspect of social media audience response to the Reality TV genre and found that the viewers engage in the shaming of reality show characters by affirming personal hygiene as the demarcation line between acceptable and unacceptable poverty.
+Bibliography
+De Benedictis, S., Allen, K. and Jensen, T.
+(2017). Portraying Poverty: The Economics and Ethics of Factual Welfare Television.
+Cultural Sociology
+,
+11
+(3): 337–58 doi:
+10.1177/1749975517712132
+.
+Eriksson, G.
+(2016). Humour, ridicule and the de-legitimization of the working class in Swedish Reality Television.
+Journal of Language and Politics
+,
+15
+(3): 303–20 doi:
+10.1075/jlp.15.3.05eri
+.
+Garvey, S. P.
+(1998). Can Shaming Punishments Educate?
+The University of Chicago Law Review
+,
+65
+(3): 733–94 doi:
+10.2307/1600299
+.
+Graham, T.
+(2012). Beyond ‘Political’ Communicative Spaces: Talking Politics on the Wife Swap Discussion Forum.
+Journal of Information Technology & Politics
+,
+9
+(1): 31–45 doi:
+10.1080/19331681.2012.635961
+.
+Graham, T. and Hajru, A.
+(2011). Reality TV as a trigger of everyday political talk in the net-based public sphere.
+European Journal of Communication
+,
+26
+(1): 18–32 doi:
+10.1177/0267323110394858
+.
+Helcl, J. and Libovický, J.
+(2017). Neural Monkey: An Open-source Tool for Sequence Learning.
+The Prague Bulletin of Mathematical Linguistics
+(107). Prague, Czech Republic: 5–17 doi:
+10.1515/pralin-2017-0001
+.
+Hirdman, A.
+(2016). The passion of mediated shame: Affective reactivity and classed otherness in reality TV.
+European Journal of Cultural Studies
+,
+19
+(3): 283–96 doi:
+10.1177/1367549415609325
+.
+Hou, Y., Jiang, T. and Wang, Q.
+(2017). Socioeconomic status and online shaming: The mediating role of belief in a just world.
+Computers in Human Behavior
+,
+76
+: 19–25 doi:
+10.1016/j.chb.2017.07.003
+.
+Jo, E. S. and Algee-Hewitt, M.
+(2018). The Long Arc of History: Neural Network Approaches to Diachronic Linguistic Change.
+Journal of the Japanese Association for Digital Humanities
+,
+3
+(1): 1–32 doi:
+10.17928/jjadh.3.1_1
+.
+Lyle, S. A.
+(2008). (Mis)Recognition and the middle-class/bourgeois gaze: A case study of Wife Swap.
+Critical Discourse Studies
+,
+5
+(4): 319–30 doi:
+https://doi.org/10.1080/17405900802405239
+.
+Matheson, S. A.
+(2007). ‘The Cultural Politics of Wife Swap : Taste, Lifestyle Media, and the American Family’.
+Film & History: An Interdisciplinary Journal of Film and Television Studies
+,
+37
+(2): 33–47 doi:
+10.1353/flm.2007.0057
+.
+McCarthy, A.
+(2007). Reality Television: A Neoliberal Theater of Suffering.
+Social Text
+,
+25
+(4 (93)): 17–42 doi:
+10.1215/01642472-2007-010
+.
+Mikolov, T., Sutskever, I., Chen, K., Corrado, G. S. and Dean, J.
+(2013). Distributed Representations of Words and Phrases and their Compositionality. In Burges, C. J. C., Bottou, L., Welling, M., Ghahramani, Z. and Weinberger, K. Q. (eds),
+Advances in Neural Information Processing Systems 26
+. Curran Associates, Inc., pp. 3111–19.
+Ouellette, L. and Hay, J.
+(2008).
+Better Living Through Reality TV: Television and Post-Welfare Citizenship
+. 1 edition. Malden, Mass: Wiley-Blackwell.
+Piper, H.
+(2004). Reality TV, Wife Swap and the drama of banality.
+Screen
+,
+45
+(4): 273–86 doi:
+10.1093/screen/45.4.273
+.
+Stiernstedt, F. and Jakobsson, P.
+(2017). Watching reality from a distance: Class, genre and reality television.
+Media, Culture & Society
+,
+39
+(5): 697–714 doi:
+10.1177/0163443716663643
+.
+Trottier, D. D.
+(2018). Coming to terms with shame: Exploring mediated visibility against transgressions.
+Surveillance and Society
+,
+16
+(2): 170–82.
+Turner, G.
+(2010).
+Ordinary People and the Media: The Demotic Turn
+. SAGE.
+Veselovská, K.
+(2012). Sentence-level Sentiment Analysis in Czech. In,
+Proceedings of the 2Nd International Conference on Web Intelligence, Mining and Semantics
+. (WIMS ’12). New York, NY, USA: ACM, pp. 65:1–:4 doi:
+10.1145/2254129.2254208
+.

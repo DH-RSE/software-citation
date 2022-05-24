@@ -1,0 +1,145 @@
+The CITE Architecture is a generic framework for identification, retrieval, and alignment of information about things humanists study. The challenge of a
+generic
+framework lies in how it can handle the (literally) innumerable specific kinds of data likely to appear in any non-trivial digital library. CITE allows abstraction of data from specific encodings of that data, while maintaining
+scholarly identity
+. This allows a digital library an open-ended ability to incorporate new formats or retrieval methods in a self-documenting plain-text serialization that maintains backwards compatibility. This paper will describe the implementation of
+Discoverable Data Models
+and
+Extended Text Property Types
+serialized in the CEX format and implemented in applications. Specific examples will be ( a ) geo-spatial data, in which a place can be represented by a URI to a gazetteer, a latitude/longitude pair, or a geoJson string, ( b ) textual data represented as plain-text, Markdown, or as a TEI-XML fragment, and ( c ) image collections, where the same image may be exposed as a JPG on a filesystem, via the IIIF-API, or as a DeepZoom file. CEX, the plain-text exchange format, can serialize collections and allow an application or service to discover these extended types or ignore them gracefully. All tools and data for these examples will be downloadable from GitHub.
+Citation of Versioned Collections
+The acronym in the title of the CITE Architecture stands for Collections, Indices, Texts, and Extensions. ‘Texts’ are CTS-compliant texts, that is, texts canonically citable with machine-actionable CTS URNs because they implement the OHCO2 model, “an ordered hierarchy of citation objects.”(Smith and Weaver) ‘Indices’ are simple URN to URN relationships, subject-verb-object relationships akin to RDF triples, with the proviso that subject, verb, and object are canonically citable by machine-actionable URNs. ‘Collections’ are of data objects and may be ordered or unordered.
+The CITE Architecture allows collections of objects to be cited at many levels of abstraction and specificity.
+urn:cite2:botcar:catesbySpecimen:
+A citation to a notional collection of of botanical specimens collected by Mark Catesby.
+urn:cite2:botcar:catesbySpecimen.2018:
+A citation to a specific version of a collection of of botanical specimens collected by Mark Catesby.
+urn:cite2:botcar:catesbySpecimen.2018:223
+A citation to a specific specimen in a specific version of the collection.
+urn:cite2:botcar:catesbySpecimen:223
+A citation to a specific specimen in
+any
+version of the collection. This recognizes that the
+specimen
+is an object of study that might have different expressions in data.
+A version of a CITE Collection is defined by its properties and their values. Each property is citable by URN:
+urn:cite2:botcar:catesbySpecimen.2018.label:
+The
+label
+property in a specific version of a collection.
+urn:cite2:botcar:catesbySpecimen.2018.binomial:
+The
+binomial
+property in a specific version of a collection.
+An notional object is instantiated in a versioned collection by the sum of properties and their values:
+urn:cite2:botcar:catesbySpecimen.2018.label:223
+The
+label
+property for object
+223
+in a specific version of a collection.
+urn:cite2:botcar:catesbySpecimen.2018.binomial:223
+The
+binomial
+property for object
+223
+in a specific version of a collection.
+Two versions of a notional collection need not have the same properties.
+Properties are
+typed
+, at a very low level. CITE defines valid types as:
+String (optionally with a controlled vocabulary)
+Boolean
+Number
+Cite2Urn
+CtsUrn
+Compositions of Scholarly Primitives
+The CITE Architecture defines
+scholarly primitives
+: texts, or objects in versioned collections. Objects in versioned collections consist of a set of typed properties, with a very limited number of types.
+This makes the CITE Architecture flexible and relatively simple: libraries for working with two types of URN, libraries for manipulating corpora of texts, and libraries for dealing with objects in collections, libraries for managing relations of URN to URN.
+All CITE data—texts, objects, and relations—can be expressed in plain text, and CEX, the Cite Exchange format, can serialize a digital library, or a part of a digital library, as plain text. CITE-aware services or applications can load data from CEX.
+the Homer Multitext’s interactive web-application
+, the
+Homer Multitext’s microservice
+and
+more specific applications exposing digital libraries for teaching
+, all read CEX files as their input.
+Extensions I: Connecting to the Physical World
+The ‘E’ in CITE is “Extensions”, additional discoverable information providing richer interaction with the basic scholarly primitives.
+A CITE Collection can describe a collection of images. A very basic image collection might have the properties
+label
+,
+license
+, and
+caption
+.
+Clearly, while we can serialize this information easily as plain-text in CEX, resolving a URN to binary image data requires a connection to the physical world. A notional ‘image’ might be resolved to a JPG file, to data delivered by the IIIF API, to a DeepZoom file, or to any combination of these.
+CITE and CEX solve this problem by means of “discoverable data models”, additional data (expressed as generic CITE collections) that can identify specific collections of images as being served by one or more binary image services. In this case, an additional Binary Image Service collection associates a collection with:
+A type of image service (JPG file, IIIF-API, DeepZoom)
+A URL to a service hosting images from the collection
+Filepath information necessary to resolve an image’s URN to files on the server.
+A working example of this is
+the Homer Multitext’s interactive web-application
+. The
+CEX of the HMT’s data release
+identifies image collections as being expose both as DeepZoom files and via the IIIF-API. The web-application takes advantage of both of these to provide thumbnail views and interactive zooming views.
+Extensions II: Different Expressions of Textual Data
+An object in a version of a collection might have a property of type
+string
+, and that is easily discoverable with the basic CITE tools. But of course, a
+string
+might be plain text, Markdown, some form of XML, or some other encoding. It is easy to imagine a project publishing a version of a collection of comments as plain-text, and subsequently publishing a new version that adds some markup to those comments.
+Because the CITE2 URN allows identification of notional collections, versioned collections, individual properties in versioned collections, in each case across the collection or filtered by an object’s identifier, we can expose additional information about the nature of a property of type
+string
+.
+By means of a discoverable data model, just as we associated whole collections of images with different binary image services, we can associate properties with different encodings, without losing scholarly identity. This paper will demonstrate a notional Collection of comments on the text of Herodotus, expressed in three different versions: one with comments in plain-text, one with comments formatted as Markdown, and one with comments formatted as TEI-XML fragements. These
+discoverable extended string property types
+are ignored by any application that is unaware of them, but exploited for human display by applications that are aware of them.
+As a working example of
+discoverable extended string property types
+, we can point to a CITE Library of lexicon data, based on the openly licensed XML versions of the
+Liddell-Scott-Jones Greek Lexicon
+, the
+Lewis & Short Latin Dictionary
+, and
+Strong’s Hebrew Lexicon
+. Data for each of these serialized in a CEX file, and served through a Microservice. Querying the service shows that the lexicon entries, of type
+StringType
+can be read as plain-text:
+http://folio2.furman.edu/lex/objects/urn:cite2:hmt:lsj.chicago_md:n2389
+. But because this collection identifies that property as extended by
+Markdown
+, an aware application can process the plain-text expression and apply formatting:
+http://folio2.furman.edu/lsj/index.html?urn=urn:cite2:hmt:lsj.chicago_md:n2389
+.
+Extensions III: Different Expressions of Real World Data
+Digital Gazetteers such as the Pleiades project[^pleiades] have solved the problem of scholarly identity across historically diverse placenames, so ‘Naulochon’, ‘Smyrna’, and ‘Izmir’, different names for the same place, are canonically citable as
+https://pleiades.stoa.org/places/550771
+. But for very sound technological reasons, we might want to express the location of Izmir by
+550771
+, by its full Pleiades URI, by
+38.440912, 27.14781
+, by
+27.14781, 38.440912
+, by
+{"type": "FeatureCollection", "features": [{"type": "Feature", "properties": {}, "geometry": {"type": "Point", "coordinates": [27.14781, 38.440912 ] } } ] }
+, or by
+<?xml version="1.0" encoding="UTF-8"?><kml xmlns="http://www.opengis.net/kml/2.2"><Document><Placemark><ExtendedData></ExtendedData><Point><coordinates>27.14781,38.440912</coordinates></Point></Placemark></Document></kml>
+.
+A collection of, for example, “ancient places mentioned in Herodotus”, as a publication should separate the notional scholarly objects—'Sardis', ‘Athens'—from any particular technology for locating those objects on a map. The CITE extended string property types allows different versions of such a collection to record locations in any of a variety of formats, or to mix formats within a single expression,
+e.g.
+latitude and longitude for a simple point, with geoJson for describing regions. The presentation will include a demonstration dataset illustrating this.
+Conclusion
+CEX, as a line-based, plain-text serialization of diverse data—texts, collections, relations—is a convenient, future-proof, and open means of data exchange for small projects and large project. ( The
+Homer Multitext
+2018g release is published as a 73,000 line CEX file. ) With
+discoverable-data-models
+and
+extended-text-property-types
+, CEX can serve data in a variety of current and future formats; these formats are discoverable by applications that, but degrade gracefully back to generic, plain-text in generic CITE applications. The talk will point to example CEX files and applications, on GitHub, demonstrating these capabilities with scholarly data.
+Bibliography
+D. Neel Smith and Gabriel Weaver
+, “Applying Domain Knowledge from Structured Citation Formats to Text and Data Mining: Examples Using the CITE Architecture,”
+Text Mining Services
+, 2009, 129.

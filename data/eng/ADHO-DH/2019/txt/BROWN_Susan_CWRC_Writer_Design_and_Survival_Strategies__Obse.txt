@@ -1,0 +1,151 @@
+The CWRC-Writer XML/RDF editor is the centerpiece of the Canadian Writing Research Collaboratory (CWRC) platform for the production, hosting, and dissemination of digital humanities scholarship. In development since 2011 and launched with the platform in 2016, the browser-based editor has reached maturity and stability. Well prior to this, the team had begun strategizing towards sustainability. We outline this strategy while highlighting features of the editor.
+Compared to some outcomes of digital dumanities tool building – such as gaining new insights into one’s own research – the effort of turning a tool into a sustainable, generalized service is less glamorous, more laborious, and less acknowledged. Tool-building is considered part and parcel of the scholarly work of DH (Schreibman and Hanlon, 2010) and is beginning to be recognized by academic reward systems. Yet scant support and rewards accrue once software is up and running. This situation has changed little over the years, despite increasing concern regarding digital infrastructure sustainability generally (Eghbal, 2016; Maron and Pickle, 2014) and attention to “care and repair” within DH (Nowviskie, 2015; Sayers). Like all software, DH tools require maintenance, enhancement and updates, which is to say, continued funding and expertise.
+Pursuing uptake seems like a natural approach to the sustainability dilemma, since:
+it is easier to demonstrate the success of a tool and to justify further resource allocation in light of increases in use; and
+adopters of a tool are invested in its survival and might put resources towards sustainability.
+However, uptake is no guarantee of sustainability. As observed by Cameron Neylon, many scholarly infrastructures are public goods, and “Finding sustainability models to support them is a challenge due to free-loading, where someone who does not contribute to the support of an infrastructure nonetheless gains the benefit of it” (2017: 3). Nevertheless, unused tools are poorly positioned to request continued funding or support.
+The uptake or adoption of existing DH software by new users is far from guaranteed, even if it fulfills a need that it is well-documented in the research community where it originates. Fred Gibbs and Trevor Owens crystallize the ways in which tool uptake is hindered by multiple factors (2012). Significant problems include:
+managing expectations,
+while also scaling up functionality from local to more general needs (Koeser and Hicks, 2018);
+limited
+learning resources
+(examples, user documentation);
+unintuitive or complex
+user interfaces
+that discourage novice users;
+lack of support for
+standards and interoperability
+.
+community building
+Together with more mundane but important activities like code maintenance, stable hosting, and systems administration, these factors create challenges that can prove fatal to promising technologies. Some are proclaimed at digital humanities conferences but seldom heard from again, while others like Paper Machines (Guldi and Johnson-Roberson, 2012) show immense promise but do not develop into fully robust tools. Even mature tools with uptake from a wide range of users, such as Gephi, live quite precarious lives (Jacomy, 2018). In short, the challenges of sustaining tools are manifold. We use the above points as a rubric for reflecting on CWRC-Writer’s engagement with the challenges of uptake.
+Scaling features and expectations
+The modular CWRC-Writer exists in several types of installation to suit users from novices to technical experts:
+CWRC-Writer: available to researchers within the CWRC platform, where it is integrated with an Islandora repository,
+Git-Writer (
+cwrc-writer.cwrc.ca
+): uses GitHub’s file storage, versioning, and authentication to allow anyone to edit GitHub-hosted XML documents (Fig. 1).
+Installations by third parties in other software stacks.
+Fig. 1. Git-Writer document loading interface
+To support a wide variety of users, CWRC-Writer provides these core features:
+an interface that renders XML in a human-readable layout using CSS (Fig. 2);
+XML tagging, with or without tags showing, with validation and error identification;
+raw/source XML editing for experts;
+entities tagging in XML and/or Web Annotation RDF with built-in authority lookups.
+Members of the DH community, as well as literary and cultural studies scholars using XML for their texts, were involved from the beginning in the design of the tool. The user group comprises both power-users – researchers with decades of experience in markup – and novice or occasional users with little familiarity with DH. CWRC-Writer was designed from the outset as a light-weight editor to allow novices to tag XML documents and link them to named entity authorities, such as the Virtual International Authority File, in a manner that would avoid the steep learning curve associated with other, more complex editing tools (Brown, 2015).
+This lightweight usage is our main use case. CWRC-Writer does not aim to replace a full-featured XML editor for heavy-duty markup or transformations. The complexity of managing XML through an HTML front-end mean that major restructuring, for instance, is very tricky. To ensure that available affordances are aligned with the needs of the users, CWRC-Writer offers three different editing modes:
+A default combined XML & RDF mode creates both XML tags and Web Annotations identifying entities in the same span of text;
+external named entity identifiers are mapped onto the equivalent tags within supported XML schemas - which include established
+TEI customizations
+and other schemas employed by CWRC-supported projects.
+RDF-only mode for Web Annotations that leave the body of the XML file untouched.
+XML-only mode for tagging without adding any Web Annotations.
+Fig. 2. CWRC-Writer document showing application of CSS
+In conjunction with particular user communities, we are extending CWRC-Writer functionality based on a document’s schema declaration; for example, for EpiDoc files, a popup editor for translations will allow users to create or tag a translation while viewing it side-by-side with the original. To support transcription, side-by-side display of the XML and images allows transcribers to view the scanned manuscript within the tool (Fig. 3).
+Fig. 3. Editing interface (XML & RDF mode) with side-by-side display of manuscript scan
+Learning resources
+We mitigate the challenge of a new interface by providing extensive, searchable
+user documentation
+(produced with the DITA documentation standard) and
+tutorial videos
+, as well as virtual office hours for real-time support. Learning to apply markup is a major challenge for the uninitiated, so there are sandbox templates for fooling around. Projects can create customized document templates that can be used to kickstart content creation and editing. These can provide highly detailed instructions, in order to promote consistency and best practices.
+A user-friendly interface
+From 2012 on, CWRC-Writer has undergone successive rounds of user testing, which have informed feature development and UX improvements. Two extensive rounds of survey-based user-testing were conducted before 2016, followed by numerous informal consultations and feedback from users and workshop participants. CWRC-Writer code is available in GitHub and a ticketing template allows adopters to submit both feature requests and bug reports. Formal announcement of the GitHub version in 2019 will be followed by another round of systematic user testing.
+Standards and interoperability
+CWRC-Writer editor adheres to the standards for both markup and Web Annotation. An integrated XML validator allows users to validate against the declared schema as they work on the document. TEI is supported in all version of the editor. RDF annotations adhere to the Web Annotation Data model, a W3C Recommendation that is being widely adopted within DH and in the scholarly publishing community as a standard for annotation data.
+Promoting a community of users
+In addition to passive adopters, who employ CWRC-Writer as made available through CWRC or GitHub, we have projects joining CWRC primarily thanks to its integration of the editor with other tools. There is growing interest from members of the DH community considering it for use in TEI editing projects, as components of library-based DH tool suites, or for teaching XML. The Center of Digital Humanities Research at Texas A&M has produced a containerized version and has installed it on top of Fedora 4 as part of a larger toolkit. Bucknell University is installing a version of the Git-Writer to support diverse local DH projects, and other institutional installations are planned. External partners were consulted for the development of Git-Writer, and the code is configurable, modular, and well documented in order to permit installation in a range of software environments. Users currently cohere around specific projects. We hope a broader CWRC-Writer community will develop as numbers grow, and be joined by a community of developers familiar with and willing to contribute to upkeep. However, the experience of other projects indicates that this is a major challenge.
+Future developments
+CWRC-Writer has for several years now, since its launch within CWRC, been thinking hard about how to promote uptake and long-term sustainability. Our development roadmap is constructed around current and oncoming user needs. We will continue to adapt our strategy in response to insights gained from further user testing and feedback from the community following the launch of the Git-Writer to the DH community.
+Bibliography
+Brown, S.
+(2015). Remediating the Editor.
+Interdisciplinary Science Reviews
+,
+40
+(1): 78–94 doi:10.1179/0308018814Z.000000000106.
+Eghbal, N.
+(2016).
+Roads and Bridges: The Unseen Labor Behind Our Digital Infrastructure
+. Ford Foundation https://fordfoundcontent.blob.core.windows.net/media/2976/roads-and-bridges-the-unseen-labor-behind-our-digital-infrastructure.pdf.
+Gibbs, F. and Owens, T.
+(2012). Building Better Digital Humanities Tools: Toward broader audiences and user-centered designs.
+Digital Humanities Quarterly
+,
+006
+(2).
+Guldi, J. and Johnson-Roberson, C.
+(2012).
+Paper Machines
+. http://papermachines.org/.
+Jacomy, M.
+(2018). Is Gephi obsolete? Situation and perspectives.
+Gephi Blog
+https://gephi.wordpress.com/2018/11/01/is-gephi-obsolete-situation-and-perspectives/ (accessed 27 November 2018).
+Koeser, R. S. and Hicks, Benamin
+(2018). Bridging Digital Humanities Internal and Open Source Software Projects through Reusable Building Blocks. Mexico City, Mexico https://dh2018.adho.org/en/bridging-digital-humanities-internal-and-open-source-software-projects-through-reusable-building-blocks/ (accessed 27 November 2018).
+Maron, N. L. and Pickle, S.
+(2014).
+Sustaining the Digital Humanities Host Institution Support beyond the Start-Up Phase
+. ITHAKA.
+Neylon, C.
+(2017). Sustaining Scholarly Infrastructures through Collective Action: The Lessons that Olson can Teach us.
+KULA: Knowledge Creation, Dissemination, and Preservation Studies
+,
+1
+(1): 3 doi:10.5334/kula.7.
+Nowviskie, B.
+(2015). On capacity and care
+Bethany Nowviskie
+http://nowviskie.org/2015/on-capacity-and-care/ (accessed 27 November 2018).
+Sayers, J.
+From Make or Break to Care and Repair
+MLab in the Humanities.
+http://maker.uvic.ca/inke16/ (accessed 27 November 2018).
+(2015). Remediating the Editor.
+Interdisciplinary Science Reviews
+40
+, (1): 78–94 doi:10.1179/0308018814Z.000000000106.
+Eghbal, N.
+(2016).
+Roads and Bridges: The Unseen Labor Behind Our Digital Infrastructure
+. Ford Foundation https://fordfoundcontent.blob.core.windows.net/media/2976/roads-and-bridges-the-unseen-labor-behind-our-digital-infrastructure.pdf.
+Gibbs, F. and Owens, T.
+(2012). Building Better Digital Humanities Tools: Toward broader audiences and user-centered designs.
+Digital Humanities Quarterly
+,
+006
+(2).
+Guldi, J. and Johnson-Roberson, C.
+(2012).
+Paper Machines
+. http://papermachines.org/.
+Jacomy, M.
+(2018). Is Gephi obsolete? Situation and perspectives.
+Gephi Blog
+https://gephi.wordpress.com/2018/11/01/is-gephi-obsolete-situation-and-perspectives/ (accessed 27 November 2018).
+Koeser, R. S. and Hicks, Benamin
+(2018). Bridging Digital Humanities Internal and Open Source Software Projects through Reusable Building Blocks. Mexico City, Mexico https://dh2018.adho.org/en/bridging-digital-humanities-internal-and-open-source-software-projects-through-reusable-building-blocks/ (accessed 27 November 2018).
+Maron, N. L. and Pickle, S.
+(2014).
+Sustaining the Digital Humanities Host Institution Support beyond the Start-Up Phase
+. ITHAKA.
+Neylon, C.
+(2017). Sustaining Scholarly Infrastructures through Collective Action: The Lessons that Olson can Teach us.
+KULA: Knowledge Creation, Dissemination, and Preservation Studies
+,
+1
+(1): 3 doi:10.5334/kula.7.
+Nowviskie, B.
+(2015). On capacity and care
+Bethany Nowviskie
+http://nowviskie.org/2015/on-capacity-and-care/ (accessed 27 November 2018).
+Sayers, J.
+From Make or Break to Care and Repair
+MLab in the Humanities.
+http://maker.uvic.ca/inke16/ (accessed 27 November 2018).
+Schreibman, S. and Hanlon, A. M.
+(2010). Determining Value for Digital Humanities Tools: Report on a Survey of Tool Developers.
+Digital Humanities Quarterly
+,
+004
+(2).

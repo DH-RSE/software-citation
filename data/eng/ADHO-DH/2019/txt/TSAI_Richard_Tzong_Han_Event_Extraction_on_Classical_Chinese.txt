@@ -1,0 +1,166 @@
+Introduction
+Events are important historical research targets. Major events are composed of a series of smaller atomic events that involves several people and their interactions at a specific time and location. For investigating Chinese historical events, imperial historical records are one of the most reliable sources. There are two main challenges of studying imperial historical records. The first is that the records are usually quite lengthy. To systematically trace the evolution of an event or a subject such as “Qing conquest of the Ming,” historians need to mark up all mentions in relevant paragraphs in the
+Ming Shilu
+,
+The Ming Shilu (traditional Chinese: 明實錄; simplified Chinese: 明实录; literally: "Veritable Records of the Ming") contains the imperial annals of the Ming emperors (1368–1644).
+which is a tedious, time-consuming job. The second obstacle is that there is no publicly available text-mining tool that can extract person, location, time, and event mentions from Ming dynasty historical records. The aim of this work is to begin development of text-mining tools that tackle these two challenges.
+One common way to represent an atomic event is as an event frame containing an event trigger and several event arguments. An event trigger, or “predicate”, is a key action that evokes the event. An event argument is a word/phrase in the sentence related to the predicate. Event frames are therefore called predicate-argument structures (PAS) in computational linguistics. Event arguments are distinguished from one another by their relations to the event trigger. Such relations are referred to as semantic roles, including main arguments such as
+agent
+and
+patient
+, as well as adjunct arguments, such as
+time
+,
+manner
+, and
+location
+. Every predicate has its own frameset, that is, the set of sematic roles. The sentence “大寶法王 差 喃哈鎖南” can be represented by a PAS in which 差 (dispatch) is the predicate, 大寶法王(Karmapa) is the sender, and 喃哈鎖南(Nanhasuonan) is the person sent.
+The task of marking up atomic events in texts can be treated as a PAS recognition problem. PAS recognition comprises two steps: (1) locating the event trigger; (2) recognizing arguments and labeling them with semantic roles. Since the second step is the key, PAS recognition is referred to as semantic role labeling (SRL).
+In this paper, we aim to identify tributary events in the
+Ming Shilu
+automatically by using SRL techniques. We first compile a set of tributary verbs and define framesets for each verb. Then, we formulate SRL as a sequence labeling task and employ the state-of-the-art algorithm, conditional random fields (CRF) (Lafferty), to tackle this task. This work represents the first machine-learning-based attempt to extract atomic historical events from Classical Chinese as well as the first effort to solve this problem using SRL.
+Predicate Selection and Frameset Construction
+Selecting predicates and defining their framesets are the prerequisites of SRL. To reduce human effort, we first employ the clustering-based classification method (Tsai) to identify paragraphs related to tributary events. Next, to facilitate the selection of predicates and their corresponding framesets, we label these paragraphs with NEs. We select 12 tributary verbs as predicate candidates. Manually defining the frameset for a verb requires linguistic expertise and is time consuming. We base our framesets on those in PropBank,
+http://verbs.colorado.edu/chinese/cpb/
+the most widely used frameset database, revising them according to verbs’ appearance in the
+Ming Shilu
+. For each verb
+v
+, we revise its PropBank frameset by checking on average 100 tributary paragraphs containing
+v
+and NEs.
+Semantic Role Labeling
+After compiling the frameset database for tributary verbs, we perform SRL for such verbs. First, we search all tributary paragraphs for these verbs to locate event triggers. Our SRL system then recognizes arguments with semantic roles from such paragraphs. The SRL task here is formulated as a sequence labeling problem in which the system should output the most probable sequence of labels when given a sequence of tokens (each Han character is regarded as a token). Although deep learning methods such as (Qian et al., 2017) have demonstrated their effectiveness in the SRL task for modern Chinese, they are still impractical for classical Chinese because there are no word and sentence segmentation tools available for the Ming-Shilu. Without segmented sentences, we cannot train a word embedding model, making deep-SRL impossible. Therefore, we employ the CRF model, which achieves the competitive performance in the SRL task for modern Chinese (Tan et al., 2009) and does not require segmentation information
+We use the relative position in a chunk and that in an NE as features because these types of information are very informative for predicting semantic role tags. For this step, we use Tsai et al.’s NER system (Tsai). Since there is no chunking tool or annotated corpora for classical Chinese, we design a chunking algorithm that requires no training data:
+NER is used to mark NEs in all paragraphs. NEs and strings between NEs are treated as chunks. All chunks with their counts are recorded in a list
+l
+.
+For each chunk
+c
+i
+and its superstring with the same prefix or suffix
+c
+j
+, if
+c
+i
+’s count is larger than
+c
+j
+’s over a threshold
+N
+,
+c
+i
+’s count is increased by 1 and
+c
+i
+is cut off from
+c
+j
+.
+Step 2 is repeated until there is no new chunk generated.
+For each paragraph, all strings between NEs are segmented by the maximum matching algorithm with the final
+l
+as the reference dictionary.
+Experiments
+We select 500 paragraphs from the 2,874 paragraphs containing tributary events in the
+Ming Shilu
+for our experimental dataset. 12 verbs are selected as event triggers. All paragraphs are labeled with PAS’s by two experts (inner annotator agreement (Cohen, 1960)
+κ
+=.89). All experiments are conducted using 10-fold cross validation.
+The data set is divided into 10 subsets, and the holdout method is repeated 10 times. Each time, one of the 10 subsets is used as the test set and the other 9 subsets are put together to form a training set. Then the average error across all 10 trials is computed.
+The parameters are set to the default of CRF++.
+Table 1 shows the argument-recognition performance, which achieves an F1-measure of 82.90%. Table 2 shows the PAS-recognition performance. Our system achieves an F1-measure of 48.45%. Although the argument-recognition performance is satisfactory, correctly identifying every argument in a given PAS is very challenging. Therefore, PAS-recognition performance is somewhat less than ideal, though it is still comparable to the performance of other systems on modern Chinese (Xue, 2008).
+Table 1: Argument-recognition Performance
+Precision
+Recall
+F1-measure
+81.08%
+84.79%
+82.90%
+Table 2: PAS- recognition Performance
+Precision
+Recall
+F1-measure
+48.45%
+48.45%
+48.45%
+Analysis and Application
+In this section, we present a detailed breakdown of PAS recognition results for the major predicates to show the practical performance of our system to historians. In the “Analysis—Extracted Tributes and Rewards Items” subsection, we categorize the most common tributary/rewarding items extracted by our system. In the “Analysis—Extracted Envoys” subsection, we show some top-frequent envoys extracted by our system. At last, we briefly illustrate the application of our system to historical studies.
+Table 3: Tribute Categories
+Category
+Frequency
+Examples
+Animals(Slaves
+724
+駝(camel), 羊(sheep) ,馬(horse) ,象(elephant) ,人(human)
+Local Products
+178
+方物(local products)
+Luxury Goods
+58
+金(gold) ,珊瑚(coral) ,文綺(silk) ,玉石(jade)
+Buddhist Items
+40
+香(incense) ,香爐(censer) ,佛像(Buddha statue) ,舍利(sarira)
+Weapons
+29
+盔(helmet) ,甲冑(armor) ,劍(sword) ,刀(knife)
+For rewards, the extracted 401 terms can be divided into 7 categories, shown in Table 4.
+Table 4: Reward Categories
+Category
+Frequency
+Examples
+Money
+667
+銀兩(silver currency) ,鈔(banknote)
+Cloth
+580
+布(cloth) ,紗(yarn) ,素叚(white satin) ,綵緞(colorful satin)
+Banquets
+479
+宴(banquet)
+Clothing
+318
+衣服(clothes) ,蟒衣(embroidered robe)
+Buddhist Items
+53
+佛像(Buddha statue) ,袈裟(kasaya)
+Imperial Ceremonial Objects
+41
+冠帶(coronary band) ,誥印(imperial stamp) ,誥命(imperial mandate)
+Animals
+24
+馬(horse) ,駝(camel) ,羊(sheep) ,牛(oxen)
+Analysis—Extracted Tributes and Rewards Items
+We have analyzed the atomic events whose predicates are related to tributes, such as “朝貢/chao gong、貢/gong、進/jin、獻/xian,” and rewards, such as “賜/ci、賞/shang、給賞/gei shang”. For tributes, the extracted 175 items are classified into five categories, shown in Table 3.
+According to Tables 3 and 4, we can see that the tributes are quite different from the rewards. Animals and slaves are the most popular form of tribute, while money is the most common reward. The tributes and rewards reflect the diplomatic and trade relationships between Ming and its tribute states. Interestingly, we found that rewards sometimes included oxen, which was unexpected for tribute states that did not extensively practice agriculture. For example, we examined the paragraphs containing the reward oxen and found that the reward target was泰寧衛/Tai-Ning-Wei, a Ming-allied Mongolian tribe that lived a nomadic lifestyle. This reward of oxen is evidence suggesting that Tai-Ning-Wei may have practiced agriculture due to Ming influence (Yingtai).
+Analysis—Extracted Envoys
+There are 4,002 tributary events which contain 3,064 envoys. 塔卜歹/Tabudai, a Tai-Ning-Wei chief, visited Ming officials 33 times between 1500 and 1555. The secondly most frequent envoy is升合兒/Shengheer, another Tai-Ning-Wei chief. He paid tribute to the Ming authorities 25 times between 1537 and 1611. This shows that Shengheer lived more than 74 years, and may suggest that he was actually several different men.
+In addition, we can also observe chiefs who sent envoys to the Ming in extracted tributary events. There are 488 events in which envoys were sent and 313 distinct senders. The leader who sent envoys the most is孛來罕/Bolaihan, the governor of朵顏三衛/Duo-Yan-Three-Wei. He sent envoys 20 times to the Ming between 1502 and 1537, such as塔卜歹/Tabuda (8 times), 納哈出/Nahachu (3 times), 納挨/Naa (3 times).
+Application
+With a well-developed SRL tool, historians can quickly identify historical events and terms labeled with roles in events from Classical Chinese literature. The extracted PAS information can be further used to support large-scale analysis of historical events, such as the distribution of events overall or for some person or some place.
+Bibliography
+COHEN, J.
+1960. A Coefficient of Agreement for Nominal Scales.
+Educational and Psychological Measurement,
+20
+,
+37.
+LAFFERTY, J. D.
+Conditional Random Fields: Probabilistic Models for Segmenting and Labeling Sequence Data. ICML01.
+QIAN, F., SHA, L., CHANG, B., LIU, L. and ZHANG, M.
+Syntax Aware LSTM model for Semantic Role Labeling. 2017. Association for Computational Linguistics, 27-32.
+TAN, Y., WANG, X. and CHEN, Y.
+Chinese semantic role labeling using CRFs and SVMs. 2009 International Conference on Natural Language Processing and Knowledge Engineering, 24-27 Sept. 2009 2009. 1-5.
+TSAI, R.
+WeisoEvent: A Ming-Weiso Event Analytics Tool with Named Entity Markup and Spatial-Temporal Information Linking. DH2017.
+XUE, N.
+2008. Labeling Chinese Predicates with Semantic Roles.
+Computational Linguistics,
+34
+,
+225-255.
+YINGTAI, G.
+Mingshijishi benmo (The Major Events of Ming History).

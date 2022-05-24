@@ -1,0 +1,86 @@
+In Tibetan culture, treasure texts refer to those written scrolls hidden secretly centuries ago by the great master Padmasambhava in the Yarlung Dynasty (8
+th
+C.) and discovered by later generations. Those who have the ability to detect these hidden objects (
+gter ma
+) are called treasure revealers (
+gter ston
+). This practice is especially significant in the Nyingma School, one of the four major Schools in the Tibetan Buddhist tradition. It was a creative invention in response to the other three schools, who claimed that their doctrinal texts were translated from Sanskrit, and thus of pure Indian origin.  
+The
+Rin chen gter mdzod
+is a large corpus compiled by 'Jam mgon kong sprul blo gros mtha' yas (1813-1899, hereafter Kongtrul), a famous prolific writer and one of the propagators of the non-sectarian movement in the East Tibetan region in the 19
+th
+century. Kongtrul made efforts to collect scattered treasure texts to prevent their loss. It contains the works of 108 treasure revealers under the classifications of Mahayoga, Anuyoga and Atiyoga. This project focuses on texts classified in the Mahayoga section, in total, 54 out of 72 volumes. This project will shed some light on the meaning of treasure rediscovery and textual invention and reuse in Tibetan religious culture. Considering the amount of data, we try to implement digital technology to compare each phrasing in order to detect reused sentences, thus we can further interpret the so-called intertextuality of Tibetan treasure literature.
+Although Tibetan scholars have already noticed the phenomenon of text reuse in the treasure literature (
+gter ma
+), it remains difficult to conduct a large scale comparative reading and further identify repeated sentences and locate their origin. Deducing from previous studies, we estimate that there might be greater intertextuality
+embedded
+in the writings of treasure texts than has already been noted. There has been no systematic analysis of large Tibetan textual collections in academic circles so far, thus we propose to apply digital textual analysis technology to deconstruct the great corpus of Tibetan treasure— the Mahayoga section of the
+Rin chen gter mdzod
+. After a trial period spent on this research project, we find it is an approachable goal.
+Detection of Text Reuse
+The data to be analyzed in this study is the content of the
+Rin chen gter mdzod
+. We use the XML file published by the BDRC organization on its website
+The files of the
+Rin chen gter mdzod
+published on the BDRC (https://www.tbrc.org/#!rid=W1KG14) is digitalized based on the Shechen edition, which consists of 54 volumes. We numbered each document by volume and by document in each volume, and obtained a total of 2,643 files from 1-1 to 54-40.
+as the primary source. The contents of these files are in Tibetan. In order to simplify the difficulties in the subsequent processing, we have used the Wylie transliteration system (Wylie 1959) to transliterate the Tibetan texts of the documents into the Roman alphabet. Here is an example of Wylie Transliteration.
+In the Tibetan writing system, the double perpendicular stroke (Tib.
+nyis shad
+) is used to separate complete sentences (represented by // in Wylie Transliteration). Therefore, we can use the punctuation to separate the text into sentences.
+In order to be able to effectively find the part of textual reuse between sentences, we adopt the Local Alignment algorithm, which is commonly used in the field of bioinformatics to perform matching of long DNA sequences. The biggest advantage of Local Alignment is that it can efficiently find the maximum matching area of two strings, and consider possible insertions and deletions of characters in the strings. An example of the comparison result is as follows:
+The “○” in the comparison result denotes inserted characters of the string (b+h+rU~M 'od du zhu form no.22-36, sentence no.6), and “
+◎
+” denotes a deletion of original string ( here is oM form no. 4-24, Sentence no.6). After comparing all sentences, we found 14,478 paired sentences with more than 20 words repeated.
+Database and Web Interface Construction
+In order to assist other researchers who are also interested in exploring this topic, we have created a database with an easy-to-use web interface
+http://syda.dila.edu.tw/RCGM/
+. This website is still under development, yet currently provides the following two functions:
+When a user enters a complete section of a text, the system will highlight those sentences which repeatedly occur in other texts. For example, the figure below shows the content of the 401
+st
+sentence of text No.5-5 has two other repetitions: the 715
+th
+sentence of text No. 30-19 and the 350
+th
+sentence of text No. 26-20.
+�
+unable to handle picture here, no embed or link
+The user may further query the details of a compared result of two highly overlapped sentences. For example, the figure below shows the content of the 401
+st
+sentence of text No. 5-5, and the 715
+th
+sentence of text No. 30-19 in the same window. In addition, the contexts of the two sentences are also displayed on the screen, which makes it convenient for the user to assess.
+Preliminary analysis
+According to our preliminary analysis, we obtained the following results. Firstly, reused sentences do recur among the works of different revealers in different times. Taking two important revealers from the 12
+th
+-13
+th
+centuries as example, there are 242 matches between the works of Nyang ral nyi ma 'od zer (1124-92, hereafter Nyi ma 'od zer) and Gu ru chos kyi dbang phyug (1212-70, hereafter Guru chos dbang). Other detected and highly duplicated sentences are derived from works of revealers in the 14
+th
+, 15
+th
+and 17
+th
+centuries. In particular, we noticed that the
+Eight Collected Teachings of Sugata
+(
+bka' brgyad bde gshegs 'dus pa
+) was composed by Guru chos dbang, Rig 'dzin rgod ldem (1337-1408) and Gyur med rdo rje (1646-1714) respectively. This study enables us to take a closer look at their actual contents and editing methods. Secondly, regarding textual comparison, we randomly chose a sentence, as follows:
+“ 'on kyang bla med thun mong ma yin pa'i skabs 'dir dam ye gnyis med dbugs rngub pa'i sbyor ba dang bstun rang la
+◎
+pas mi shigs pa'i thig ○
+◎
+ro gcig tu ○ ○ bsams kyang legs so”.
+We notice that this sentence has appeared both in text No.14-25,
+The Pacifying Homa-teaching on splendid great bliss from the Collected Teachings of Sugata
+(
+bDe gshegs 'dus pa'i zhi ba'i sbyin sreg bde chen rab 'bar
+)
+Volume 14 (ཕ) / Pages 745-762 / Folios 1a1 to 9b4.
+and text No.31-23,
+The Blaze of the Sharp Blade of Vajrakilaya – The Homa of quick bestowal of pacification and enrichment
+(
+rDo rje phur pa yang gsang spu gri 'bar ba'i zhi rgyas kyi sbyin sreg grub gnyis myur sbyin
+)
+Volume 31 (ཀི) / Pages 489-516 / Folios 1a1 to 14b1.
+. Both can be traced back respectively to Nyi ma 'od zer’s and Guru chos dbang’s writings. It is not clear for us yet why Kongtrul classified them in different categories, nevertheless, through close reading we find that there is an entire duplicated ritual section, which is far beyond the scope of the detected sentence. Further analysis will rely on close reading. Yet it is the power of artificial intelligence that has brought us to this domain.

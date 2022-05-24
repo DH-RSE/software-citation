@@ -1,0 +1,48 @@
+Introduction
+We present work in progress to automatically extract quotation constructions. We claim that it is possible to infer markers that introduce quotation even for the languages without grammaticalized reported speech forms. The object of our study is not the quotation itself, but the canonical context of quotation. We rely on the concept of context as
+a term with a “hole” (Gabbay and Lengrand, 2008)
+. The context with a quotation as filling for the
+“hole”
+has formal features, which we consider as parameters of quotation canon in terms of the canonical typology (
+Corbett et. al, 2012)
+. We specialize in direct written quotations, which can be distinguished by the reader exactly because of its heterogenity.
+We used semi-supervised machine learning techniques to discover contribution of individual predictors to the quotation distribution in Russian nonfiction texts and to build a working prototype of quotation classifier. The classifier does not need any particular text corpora on the final stage, using it only as training data. It predicts probability of sentence to contain a quotation with accuracy of 85%. The objective of the research is to create a machine-learned model that would distinguish between citations and non-citations and arrange the quotation boundaries. The paper presents such a model trained on Russian data. As a result importance of different contextual features can be measured.
+Our model can be used both by scholars and by ordinary readers, unaware of intertextuality issues, and our achievements are undoubtedly useful for a wider class of problems, identifying heterogeneous fragments in the text.
+2 Dataset
+The material for the training sample is based on the dictionary of Russian literary quotations (Dushenko, 2005) and on the corpora of Russian nonfiction texts from the web-project “Zhurnal’ny Zal” (ZZ) (
+http://magazines.russ.ru/
+). We formed 24761 search queries and extracted approximately 1200 sentences, containing quotations from the dictionary and 1200 sentences without any of them. Semi-automatic filtering of false quotative sentences and correcting of quotations boundaries gave us the training corpora of 1000 quotation sentences with the correct boundaries, 1000 sentences without any quotations and 1000 examples of quotative sentences with false borders. At the machine learning stage we divided it to two complementary sets for training and testing respectively.
+3 Features
+We define overt quotation markers as the most relevant context features for identifying the quote. We examined these features in the tagged corpora and built a logistic regression model, providing us with the most significant markers and their combinations (pic. 1):
+(pic. 1)
+That allowed us to exclude the most unimportant features from our final model.
+4 Model
+The main learning property of the Binary Machine was distinguishing between the presence and absence of a particular marker in certain parts of a sentence. Thus, we built two classifiers:
+1) dividing the examples into quotative and non-quotative;
+2) pointing out the quotation boundaries.
+The final response was based on the cumulative response of the two classifiers. The first machine would give a positive response with a probability 0.7 and more, whereas the second classifier would activate choosing the most relevant hypothesis out of the potential set of quotation boundaries. Support Vector Machines method is commonly applied for classification tasks. We used a modification of this method, Support Vector Classification, because it
+gives
+a
+best fit
+to our binary data type.
+5 Results
+The two classifiers have shown positive results with the quotation classifier accuracy of 0.86 and borders classifier accuracy of 0.83.
+The greatest confidence in the quotativeness of the fragment results from the presence of the quotation marks. Without them the precision of the evaluations decreases, but not critically. What is important is that our model is not oriented to the quotation marks, the most obvious marker, it analyses all the relevant features in the sentence. For example, for the quotative sentence with overt quotation marks (pic. 2) probability was estimated as 99%, and the same sentence with cut quotation marks was evaluated as 98% quotative.
+(pic.2)
+The final version of the program allows one to automatically mark quotes in an untagged text with the permissible share of errors. It works best with nonfiction texts and operates either plain text, or group of texts, or one sentence. Also it can be re-learned on the following set of interchangeable input data for
+training
+sample
+: the set of relevant quotation parameters, a list of standard quotations and group of texts for context-mining. We expect this method to be rather flexible and applicable to other text corpora.
+Bibliography
+Corbett et. al
+(2012). Canonical morphosyntactic features. In Dunstan Brown, Marina Chumakina and Greville G. Corbett (eds.),
+Canonical morphology and syntax
+, 48-65. Oxford: Oxford University Press.
+Gabbay
+(2008). Gabbay M. J., Lengrand S. The λ-context calculus //Electronic Notes in Theoretical Computer Science. – Т. 196. – С. 19-35.
+Dushenko
+(2015). Citaty iz russkoj literatury: 5200 citat ot «Slova o polku.» do nashih dnej.
+ZZ.
+“Zhurnal'nyj zal”,
+http://magazines.russ.ru/
+. (accessed on 2016–03–06).

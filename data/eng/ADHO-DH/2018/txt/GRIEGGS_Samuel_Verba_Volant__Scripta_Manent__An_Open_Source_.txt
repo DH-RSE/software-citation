@@ -1,0 +1,71 @@
+Introduction
+The transcription of handwritten historical documents into machine-encoded text has always been a difficult and time-consuming task. Much work has been done to alleviate some of that burden via software packages aimed at making this task less tedious and more accessible to non-experts. Nonetheless, an automated solution would be a worthwhile pursuit to vastly increase the number of digitized documents. As part of a continuing effort to expand the footprint of digital humanities research at our institution, we have embarked on a project to automatically transcribe and perform automated analysis of Medieval Latin manuscripts of literary and liturgical significance. Optical Character Recognition (OCR) is the process of converting images containing text into a machine encoded document. Recent advances in artificial neural networks have led to software that can transcribe printed documents with near human accuracy (LeCun et al., 2015). However, this level of accuracy breaks down when working with handwritten, and especially cursive, documents except when applied to restrictively specific domains.
+Neural networks that are trained for this task require thousands of labeled examples so that their millions of parameters can be optimized. While there are thousands of high-quality scans of manuscripts available on the Internet, very few of these documents have been annotated for OCR tasks, and there is only a limited selection of ground-truth data which is annotated and segmented at the word-level (Fischer et al., 2011; Fischer et al., 2012) . There is no data available that provides annotations at the character-level. Normally, machine learning researchers would outsource the production of this ground-truth data to a platform such as Amazon's Mechanical Turk service, which allows crowdsourcing of human intelligence tasks. This is not an option for transcribing Medieval manuscripts, because it requires domain specific expertise. We put together a team of expert Medievalists and Classicists to generate the ground-truth data, and we have been developing a software platform that breaks the tedious task of producing pixel-level training data into more tractable jobs. The goals of this software go beyond just Latin manuscripts: it can be used to generate source data for any machine learning task involving document analysis. We are releasing it publicly, as free and open source software, in hopes that others can also use it to generate data, and help bring further advances in machine learning for handwritten text recognition.
+Related work
+State-of-the-art solutions to handwritten digit recognition on the MNIST dataset have achieved accuracies greater than 99% and have led some to declare handwritten OCR a solved problem (Wan et al., 2013). However, Cohen et al. have shown that adding the English alphabet to the dataset drops accuracy by more than 20% even when using the same methodology (Cohen et al., 2017). Some of the difference can be attributed to the fact that characters like ‘‘I’‘, ‘‘l’‘, and ‘‘1’‘ are often ambiguous without context --- especially when handwritten. To combat this, many handwritten text recognition algorithms will often use recurrent neural networks that look at the whole word and utilize a language model to overcome ambiguities (Fischer et al., 2009; Sánchez et al., 2016). Additionally, Convolutional Neural Networks (CNN) have been shown to have promise in segmenting biomedical images, which are also difficult to ground truth (Ronneberger et al., 2015). A similar approach could be used to segment individual letters in manuscripts. Incorporating human performance information into the machine learning process has been shown to improve the accuracy of tasks like face detection (Scheirer et al., 2014). We hypothesize that incorporating a human weighted loss function will lead to similar improvements in this task as well.
+Workflow
+Currently the software runs in Google App Engine using high-resolution source images. We are in the process of setting up the software to be run in a vagrant environment to make it available for local environments. The vagrant script will provision a Virtual Machine, either locally or to the cloud to serve the software and configure it to work with a user-provided library of documents. In either case, transcribers can access the software via a web browser. The user then proceeds to segment the document by lines and words by drawing bounding boxes, and characters by drawing over them. It also collects text annotations of the text at the word- and character-level. It stores all the information in a MySQL database.
+Line and word level
+Our process starts by having experts segment the document into lines. Transcribers use a modified version of the Image Citation Tool from the Homer Multitext Project to quickly break the document down into CITE URNs representing each line by drawing boxes around them (Blackwell and Smith, 2014). After all the lines are selected the process is repeated for each word. A screenshot of these processes is shown in Fig. 1.
+Figure 1: An example of the interface for selecting lines and words. Manuscript: Einsiedeln, Stiftsbibliothek, Codex 629(258), f. 4r – [Jacobus de Voragine]
+Legenda aurea sive lombardica
+(http://www.e-codices.unifr.ch/en/list/one/sbe/0629)
+Pixel level annotation
+After segmenting the document into words, our software prompts the expert to segment and annotate each word letter by letter. Instead of using a bounding box, we have the user trace over each character in the word using a pen tool. This gives us a pixel-by-pixel segmentation of the image that can be used to train a CNN to segment the characters automatically, much in the same way segmentation models are trained for other computer vision tasks (Ronneberger et al., 2015). At this stage the expert will also select which letter best represents each character from an array of buttons, as shown in Fig. 2.
+Figure 2: An example of the tool used to collect pixel level ground-truth at the character level.
+Psychophysical measurements
+The final stage collects psychophysical measurements of the human process of reading. The software brings up individual characters, as shown in Fig. 3, and asks the transcriber to pick an annotation for a character without word context. They will also be asked to select the difficulty of each character. The software also records how long it takes for the user to submit an answer and compares whether the user selected the same character that was selected during the word-level annotation.
+Figure 3: A screenshot of the psychometric data collection stage.
+Outcomes
+The software produces a segmented image for each document that can be used as training data for machine learning-based segmentation. Furthermore, it provides the pyschophysical measurements on the reading difficulty of each character. We also designed it to produce word-level segmented data in a similar format to the IAM Historical Document Database (Fischer et al., 2012; Fischer et al., 2011). Finally, the user will be able to export the transcribed document into a standard markup language such as TEI.
+Bibliography
+Blackwell, C. W. and Smith, D. N.
+(2014). The Homer Multitext and RDF-Based Integration.
+Papers of the Institute for the Study of the Ancient World
+,
+7
+.
+Cohen, G., Afshar, S., Tapson, J. and Schaik, A. van
+(2017). EMNIST: an Extension of MNIST to Handwritten Letters.
+CoRR
+,
+abs/1702.05373
+.
+Fischer, A., Frinken, V., Fornés, A. and Bunke, H.
+(2011). Transcription Alignment of Latin Manuscripts Using Hidden Markov Models.
+Proceedings of the 2011 Workshop on Historical Document Imaging and Processing
+. ACM, pp. 29–36.
+Fischer, A., Keller, A., Frinken, V. and Bunke, H.
+(2012). Lexicon-free Handwritten Word Spotting Using Character HMMs.
+Pattern Recognition Letters
+,
+33
+(7): 934–942.
+Fischer, A., Wuthrich, M., Liwicki, M., Frinken, V., Bunke, H., Viehhauser, G. and Stolz, M.
+(2009). Automatic Transcription of Handwritten Medieval Documents.
+Virtual Systems and Multimedia, 2009. VSMM’09. 15th International Conference on
+. IEEE, pp. 137–142.
+LeCun, Y., Bengio, Y. and Hinton, G.
+(2015). Deep Learning.
+Nature
+,
+521
+(7553): 436–444.
+Ronneberger, O., Fischer, P. and Brox, T.
+(2015). U-net: Convolutional Networks for Biomedical Image Segmentation.
+International Conference on Medical Image Computing and Computer-Assisted Intervention
+. Springer, pp. 234–241.
+Sánchez, J. A., Romero, V., Toselli, A. H. and Vidal, E.
+(2016). ICFHR2016 Competition on Handwritten Text Recognition on the READ Dataset.
+Frontiers in Handwriting Recognition (ICFHR), 2016 15th International Conference on
+. IEEE, pp. 630–635.
+Scheirer, W. J., Anthony, S. E., Nakayama, K. and Cox, D. D.
+(2014). Perceptual Annotation: Measuring Human Vision to Improve Computer Vision.
+IEEE Transactions on Pattern Analysis and Machine Intelligence
+,
+36
+(8): 1679–1686.
+Wan, L., Zeiler, M., Zhang, S., Cun, Y. L. and Fergus, R.
+(2013). Regularization of Neural Networks Using Dropconnect.
+Proceedings of the 30th International Conference on Machine Learning (ICML-13)
+. pp. 1058–1066.

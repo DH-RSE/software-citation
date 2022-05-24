@@ -1,0 +1,75 @@
+This paper examines the use of ‘visual analytic’ techniques to scrutinise and refine current approaches and algorithms for the identification of text reuse and alignment. In particular, we compare text alignment approaches using the ViTA (Visualization for Text Alignment) system we have developed in the context of a Digging into Data project that seeks to identify 18th-century commonplaces in large-scale historical datasets. By leveraging the flexibility of image processing techniques to visualize text alignments in a variety of ways and using multiple parameters, we can improve upon current alignment algorithms in an iterative and integrated process of automated text mining, multivariate visualization, and human-computer interaction.
+* * *
+Recent scholarship has demonstrated that the various rhetorical, mnemonic, and authorial practices associated with Early Modern commonplacing—the extraction and organisation of quotations and other passages for later recall and reuse—were highly effective strategies for dealing with the perceived ‘information overload’ of the period, as well as for functioning successfully in polite society (Yeo, 2001; Blair, 2001; Allan, 2010). But the 18th century was also a crucial moment in the modern construction of a new sense of self-identity, defined through the dialectic of memory (tradition) and autonomy (originality), the resonances of which persist long into the 19th century and beyond (Dacome, 2004; Bénichou, 1996). In the context of a larger Digging into Data Round 3 project, we are examining this paradigm shift in 18th-century culture from the perspective of the commonplace, a nexus of intertextual relationships that we aim to explore through the concerted application of sequence alignment algorithms and large-scale visual analytics.
+In our previous work on text reuse (Horton et al., 2010; Allen et al., 2010), we came across numerous examples of textual borrowings and shared passages that exhibited the characteristics of commonplaces. However, traditional text mining and sequence alignment approaches for the identification of text reuse in the sort of large-scale data repositories that interest us entail no small amount of methodological challenges. For this reason, data visualization is a crucial element to this project, and will be used not merely as a means of presenting the end results of text mining but rather as an analytic approach to data at all points in the text-mining process: from the initial stages of data exploration and hypothesis evaluation, to user-driven feedback for refining text-mining rules and parameters, to generating new hypotheses and questions previously unseen in the data. This type of methodological approach is known as ‘visual analytics’, and this paper outlines our attempts to leverage image processing techniques to refine our previous text-mining assumptions, practices, and rules.
+The concept of visual analytics was first proposed by Jim Thomas and his colleagues at the National Visualization and Analytics Center in 2004 (Thomas and Cook, 2005). It has become the de facto standard process for integrating data analysis, visualization, and interaction to better understand complex systems. The concept rests on the following assertions (Chen et al., 2011):
+• Statistical methods alone cannot convey an adequate amount of information for humans to make informed decisions—hence the need for visualization.
+• Algorithms alone cannot encode an adequate amount of human knowledge about relevant concepts, facts, and contexts—hence the need for interaction.
+• Visualization alone cannot effectively manage levels of details about the data or prioritize different information in the data—hence the need for analysis and interaction.
+• Direct interaction with data alone (e.g., search by queries) is not scalable to the amount of data available—hence the need for analysis and visualization.
+ViTA: Visualization for Text Alignment
+In order to benchmark and test the boundaries of our current approach to text alignment, we have developed a visual analytic system named ViTA: Visualization for Text Alignment. By comparing output from our alignment system PhiloLine
+1
+to output from the ViTA system, we can visualize text alignments on a dot-matrix image—alignments that might have been missed and/or misrecognized by our current n-gram-based approach. Using the information gained from this interface, we can then begin to construct a set of refined alignment rules that incorporate these new findings. For example, in Figure 1 we see two alignments found by the PhiloLine system.
+Figure 1.
+The red output was detected by PhiloLine as an alignment. The blue represents what might also be considered a match, but that the algorithm, for various reasons, missed. Given the strictures of our current n-gram matching model, isolated and highly frequent words (such as ‘et’ and ‘en’) are not be considered as part of potentially larger alignments. Using the ViTA visual analytics system, however, our capacity for detecting a matching pattern on a visual plane helps us identify the gaps in these longer sequences and eventually help in fine-tuning the matching algorithm. If we start with simple word-to-word matching, here is what the ViTA output for the above passages looks like, where matching words from each text (the horizontal and vertical axes) are plotted as single pixels in a dot-matrix (Figure 2):
+Figure 2. ViTA output: Any word with default settings.
+We can clearly detect the matching sequence, but the gaps in the alignment show the limits of one-to-one word matching. If we change the system’s matching parameters to look only for trigrams, we allow for more variance within each match (Figure 3):
+Figure 3. ViTA output: Any word; +1 word on each side; minimum score of 3; image darkening >.4.
+We see that much of the noise has been removed, which is to be expected as matching trigrams are relatively rare. The greyscale seen here accounts for n-grams that only have two tokens in common. While this has helped clear the image of unrelated matching unigrams, it still does not constitute the clear alignment that one sees when reading the passages. If we loosen our matching further to look for pentagrams, while also allowing for some variance in the content of matching n-grams, we can allow even more variance in n-gram matching: e.g., two tokens out of five tokens matching still constitutes a match, though not as strong as a true 5-gram, and is therefore represented in a lighter shade of grey (Figure 4):
+Figure 4. ViTA output: Any word; +2 words on each side; minimum score of 5; image darkening > .2).
+As you can see, the alignment has stretched even further, with very little additional noise. If we try to loosen our parameters further, and use heptagrams, we can allow an even greater variance in the n-gram matching. Since heptagrams will be extremely rare, partially matching heptagrams above a certain threshold will be displayed in a lighter shade of grey (Figure 5):
+Figure 5. ViTA output: Any word; +3 words on each side, minimum score of 7; image darkening > .2.
+What these examples demonstrate effectively is that the combination of an improbable hypothesis, such as using heptagrams for sequence alignment, with image processing tools such as darkening (a threshold determining what should constitute a match, and shading the strength of the match accordingly) can in fact provide longer visual alignments, regardless of the various gaps that could separate matching patterns. In other words, this is a perfect example of how visual analytic tools can build upon our human capacity to discern hard-to-find matches visually and then leverage this information to refine our algorithms.
+This is equally true for smaller matches, or alignments that would have otherwise been missed due to certain trade-offs between match resolution and computing efficiency. One such trade-off is the elimination of high-frequency and short stopwords at the pre-processing stage of PhiloLine alignments. The assumption here is that important and relevant matches are made primarily on content words like nouns or proper nouns. When dealing with dirty OCR data, however, the challenges of pattern matching are quite different, as matches are often missed because these content words have not been properly recognized by the OCR engine. Below is an example of two shared passages that our text alignment system missed (Figure 6):
+Figure 6. Dirty OCR matches that were missed by text alignment system.
+Using the ViTA system, we can see precisely why these matches were missed by matching only on words longer than two characters (left) and/or by looking for matching trigrams (right) in Figure 7:
+Figure 7. Matching unigrams and trigrams with small words removed.
+As we can see in both cases, the matching pattern is very small and would normally be dismissed as insignificant. If we leverage the flexibility of the visual analytic system, however, we can reintroduce stopwords into the mix, extending our matches to both any matching word (left), and then to matching partial trigrams (right) (Figure 8):
+Figure 8. Matching all words and partial trigrams.
+The above alignments demonstrate forcefully that many of our text-mining assumptions, such as the removal of stopwords before matching, may not hold true when using image-based processing of text alignments. These findings suggest that further analysis will enable us to define and redefine our matching algorithms as we proceed.
+Conclusion
+To conclude, we assert that the identification of commonplaces is a non-trivial intellectual undertaking. Technical challenges arise not only with the size of our data, but also with the multifaceted nature of computational rules designed to capture the diverse aspects associated with commonplaces. These aspects may include, but are not limited to, word occurrence and co-occurrence, grammatical structure, linguistic properties, etc. Thus, to compile a global commonplace book computationally, one needs efficient and effective means for identifying appropriate rules, determining appropriate parameters, verifying text mining results, and most importantly, gaining an understanding of the relationship between different algorithmic choices (rules and parameters) and the quality of the corresponding text mining results (e.g., in terms of recall and precision). The ViTA system outlined above is designed to facilitate just such a process. We thus intend to move beyond conventional text alignment techniques by adopting an iterative development process that combines complex analytical tasks through an integrated process of automated text mining, multivariate visualization, and human-computer interaction.
+Note
+1. https://code.google.com/p/text-pair/.
+Bibliography
+Allan, D.
+(2010).
+Commonplace Books and Reading in Georgian England.
+Cambridge University Press, Cambridge.
+Allen, T., Cooney, C., Douard, S., Horton, R., Morrissey, R., Olsen, M., Roe, G. and R. Voyer.
+(2010). Plundering Philosophers: Identifying Sources of the Encyclopédie.
+Journal of the Association for History and Computing,
+13
+(1) (May).
+Bénichou, P.
+(1996).
+Le Sacre de l’écrivain (1750–1830).
+Gallimard, Paris.
+Blair, A.
+(2011).
+Too Much to Know: Managing Scholarly Information before the Modern Age.
+Yale University Press, New Haven, CT.
+Chen, M., Trefethen, A., Banares-Alcantara, R., Jirotka, M., Coecke, B., Ertl, T. and Schmidt, A.
+(2011). From Data Analysis and Visualization to Causality Discovery.
+IEEE Computer,
+44
+(10): 84–87.
+Dacome, L.
+(2004). Noting the Mind: Commonplace Books and the Pursuit of the Self in Eighteenth-Century Britain.
+Journal of the History of Ideas,
+65
+(4) (October): 603–25.
+Horton, R., Olsen, M. and G. Roe.
+(2010). Something Borrowed: Sequence Alignment and the Identification of Similar Passages in Large Text Collections.
+Digital Studies / Le Champ,
+2
+(1).
+Thomas, J. J. and Cook, K. A.
+(eds). (2005).
+Illuminating the Path: The Research and Development Agenda for Visual Analytics
+. IEEE Computer Society Press, Los Alamitos, CA.
+Yeo, R.
+(2001).
+Encyclopaedic Visions: Scientific Dictionaries and Enlightenment Culture.
+Cambridge University Press, Cambridge.

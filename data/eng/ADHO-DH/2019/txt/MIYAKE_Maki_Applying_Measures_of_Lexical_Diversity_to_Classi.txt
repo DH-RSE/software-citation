@@ -1,0 +1,308 @@
+1. Introduction
+A number of lexical diversity measures have been proposed and applied in stylometric studies (Tweedie & Baayen,1998). Covington et al. (2015) introduced three stylometric measures including moving-average type-token ratio, or MATTR (Covington and MacFall, 2010). They applied the measures to classify ten English translations of the Gospel of Mark.
+The study focuses on decision tree models based on several measures of lexical diversity, aiming at classifying genres of authorship attribution and critical types in various editions of the Greek New Testament. We extract measures of lexical diversity that do not significantly correlate with tokens and investigate specific indices that highly contribute to the performance of discriminant models. After creating training and test subsets from ten editions, we apply two classification algorithms such as Classification and Regression Tree (Breiman et al., 1984) and Random Forest (Breiman, 2001). We then figure out the classification accuracy with the token-independent measures.
+For all that the aim of the study is to classify genres of authorship attribution and critical types in various New Testament editions, we do not simply pursue higher accuracy of classification per se, especially in the edition types. We are rather focusing on the characteristics of misclassified texts and edition types. Before comparing contents among the editions, we try to identify the measures of lexical diversity contributing to classification according to purposes such as authorship and edition types in this case.
+2. Methods
+2.1. Data
+In this study, we focus on the top ten longest books over 4000 tokens in the New Testament: the four Gospels, Acts, Romans, the first and second Epistles to the Corinthians, Epistle to the Hebrew and Revelation.
+Table 1 shows the list of ten books with its abbreviated name, genres and authors. The author’s names followed the general consensus in the biblical studies. We distinguish the authors between the Gospel of John and the Revelation and we do not specify the name of the author the Epistle to the Hebrew.
+Book
+Genre
+Author
+Stephanus
+Nestle-Aland
+Tokens
+Types
+Tokens
+Types
+Matthew
+Gospel
+Matthew the Evangelist
+18769
+4281
+18348
+4190
+Mark
+Gospel
+Mark the Evangelist
+11656
+3128
+11306
+3005
+Luke
+Gospel
+Luke the Evangelist
+19949
+4977
+19490
+4858
+John
+Gospel
+John the Evangelist
+15942
+2878
+15641
+2809
+Acts
+Acts
+Luke the Evangelist
+18814
+4927
+18455
+4846
+Romans
+Epistle
+Paul
+7220
+2121
+7111
+2086
+1 Corinthians
+Epistle
+Paul
+6941
+2084
+6832
+2055
+2 Corinthians
+Epistle
+Paul
+4499
+1499
+4478
+1484
+Hebrews
+Epistle
+Unknown
+5016
+1922
+4955
+1896
+Revelation
+Revelation
+John of Patmos
+9975
+2301
+9857
+2218
+Table 1: List of top 10 longest books in the New Testament
+The ten editions we selected can be divided into three types, such as the so-called Received Text ("Textus Receptus"), critical edition and Byzantine Textform.
+Table 2 shows the list of ten editions of the Greek New Testament that are used in the study. Most of the texts are obtained from the electric texts in two biblical software such as Bible Works 9.0.12 and Accordance 11.2.5. The last column of the list represents the electric version of the text.
+We apply 100 samples in total (10 books × 10 editions) to discriminant analyses. The samples of these editions are randomly distributed into training and test subsets.
+Edition
+Date
+Type
+Electric Text Vers.
+Stephanus (R. Etienne)
+1550
+Textus Receptus
+4.8
+Tregelles
+1857-1879
+Critical Text
+1.0
+Tischendorf 8th ed.
+1869-1872
+Critical Text
+2.7
+Westcott-Hort
+1881
+Critical Text
+2.7
+Scrivener
+1894
+Textus Receptus
+-
+Von Soden
+1902-1910
+Critical Text
+1.0
+Robinson-Pierpont
+2005
+Byzantine Textform
+2.8
+Nestle-Aland 28th ed.
+2012
+Critical Text
+2.0
+BGNT
+2014
+Byzantine Textform
+-
+Tyndale House
+2014
+Critical Text
+-
+Table 2: List of the Greek New Testament editions
+2.2. Measures of Lexical Diversity
+We use measures of lexical diversity as categorical variables for classification. First of all, we calculated 16 measures including basic indices such as types, tokens and punctuation using the koRpus package (Michalke, 2018) in R version 3.5.1.
+Fig. 1 shows the Correlation Coefficients of each measure of lexical diversity with Tokens. We extract measures with no significant correlations with tokens at the 0.05 level of p-value. In this way, the following the eight measures are going to use the classification: Punctuation Ratio, Yule’s K, MATTR, Dugast’s U, Maas, Somers, MTLD, and HD-D.
+Fig. 1: Correlation Coefficients with Tokens
+2.3. Classification
+We apply two classification algorithms to classify authors and edition types in the Greek New Testament. One algorithm is Classification and Regression Tree, or CART and the other one is Random Forest, or RF. Discriminant analyses are performed in R 3.5.1 using the rpart package (Therneau, 2018) for the CART algorithm and the randomForest package (Liaw, A.& Wiener, M., 2002) for RF.
+For CART tree models, trees are split based on the Gini index and the values of variable importance are recalculated so that the sum total becomes 100. The minimum number of observations is set to 3. We prune trees based on the cost-complexity parameter and cross validated error results, if necessary. Meanwhile, the minimum size of terminal nodes in RF is varied to optimize the classification accuracy.
+The samples of the New Testament editions are randomly distributed into 50 training and 50 test subsets. Generating decision tree models from training samples, we apply the trees to test datasets and then examine the classification results. We also observe the discriminant measures of lexical diversity.
+The breakdowns of datasets are shown in Table 3 for authorship and in Table 4 for classification of edition types. The names of each authors referred to the third column in Table 1. The letter "E" of "E_(Mark/Matthew/Luke/John)" stands for the Evangelist.
+E_Mark
+E_Matthew
+E_Luke
+E_John
+Paul
+Unknown
+John of Patmos
+Training
+4
+5
+10
+4
+16
+6
+5
+Test
+6
+5
+10
+6
+14
+4
+5
+Table 3: Breakdowns for authorship classification
+Byzantine Textform
+Textus Receptus
+Critical Text
+Training
+9
+11
+30
+Test
+11
+9
+30
+Table 4: Breakdowns for classification of edition types
+3. Classification Results
+3.1. Authorship
+First, we apply CART tree models to classify authors. Fig. 2 shows the variable importance in CART classification. Although MATTR indicates the highest score among eight measures, Dugast’s U can be also regarded as important index for discrimination. There are many other relatively important measures such as Maas, Yule’s K and MTLD. Pruning trees was not needed in this model.
+Fig. 2: CART's Variable Importance
+Fig. 3: RF’s Variable Importance
+E_Mark
+E_Matthew
+E_Luke
+E_John
+Paul
+Unknown
+John of Patmos
+E_Mark
+6
+0
+0
+0
+0
+0
+0
+E_Matthew
+0
+5
+0
+0
+0
+0
+0
+E_Luke
+0
+0
+10
+0
+0
+0
+0
+E_John
+0
+0
+0
+6
+0
+0
+0
+Paul
+0
+0
+0
+0
+12
+2
+0
+Unknown
+0
+0
+0
+0
+0
+4
+0
+John of Patmos
+0
+0
+0
+0
+0
+0
+5
+Table 5: CART Classification (Accuracy: 96.0%)
+As shown in Table 5, two Pauline Epistles were misclassified as the author of Epistle to the Hebrews and the accuracy is 96.0%. Meanwhile, the RF algorithm classified with 100% accuracy. Fig. 2 plots Mean Decrease in Gini coefficient equivalent to variable importance in CART. Maas and Yule’s K highly are considered to contribute to the authorship classification.
+3.2. Edition Types
+In the CART classification, we pruned the tree where the value of complexity parameter is 0.17. Fig. 4 shows the variable importance in CART. Punctuation Rate indicates exclusively the highest score and can be regarded as the most important index for discrimination. As shown in Table 6, all editions of Byzantine textform were misclassified into both Textus Receptus and Critical Text. The classification accuracy in CART is 60.0%, while that in RF is slightly higher: 62.0% shown in Table 7, where minimum size of terminal nodes is set to 10. As shown in Table 5, the constituent ratio of Mean Decrease in Gini coefficient is very similar to that in CART in Fig. 4: distinctive importance of punctuation rate.
+Fig. 4: CART's Variable Importance
+Byzantine Textform
+Textus Receptus
+Critical Text
+Byzantine Textform
+0
+3
+8
+Textus Receptus
+0
+5
+4
+Critical Text
+0
+5
+25
+Table 6: CART Classification (Accuracy: 60.0%)
+Fig. 5: RF’s Variable Importance
+Byzantine Textform
+Textus Receptus
+Critical Text
+Byzantine Textform
+0
+3
+8
+Textus Receptus
+0
+4
+5
+Critical Text
+0
+3
+27
+Table 7: RF Classification (Accuracy: 62.0%)
+4. Discussion
+The token-independent measures of lexical diversity can be distinguished by Pearson correlation coefficients of each measure with tokens. Punctuation rate is exclusively crucial when classifying edition types, while the others are effective in the authorship classification. In both authorship and edition types, the classification accuracy in RF is higher than that in CART. For all that edition types were poorly discriminated against, that does not indicate the limitations of the techniques. We will rather focus on the misclassified texts, especially the editions of the Byzantine textform, to work out these peculiar characteristics.
+Bibliography
+Breiman, L., Friedman, J.H., Olshen, R.A., Stone, C.J.
+(1984). Classification and Regression Trees, Chapman and Hall.
+Breiman , L.
+(2001). Random Forests, Machine Learning, 45(1), pp.5–32.
+Burkett, D.
+(2002). An Introduction to the New Testament and the Origins of Christianity, Cambridge University Press.
+Covington M.A. & McFall J.D.
+(2010). Cutting the Gordian Knot: The Moving-Average Type-Token Ratio (MATTR), Journal of Quantitative Linguistics, 17(2), pp.94–100.
+Covington, M.A., Potter, I., Snodgrass, T.
+(2015). Stylometric classification of different translations of the same text into the same language, Literary and Linguistic Computing, 30(3), pp.322–325.
+Liaw, A.& Wiener, M.
+(2002). Classification and Regression by randomForest, R News, 2(3), pp.18–22.
+Michalke, M. (2018).
+koRpus: An R Package for Text Analysis, version 0.11-2.
+Therneau, T. and Atkinson, B.
+(2018). rpart: Recursive Partitioning and Regression Trees, R package version 4.1-12.
+Tweedie,F.J., Baayen, R.H.
+(1998). How Variable May a Constant be? Measures of Lexical Richness in Perspective, Computers and the Humanities, 32(5), pp.323–352.

@@ -1,0 +1,125 @@
+Introducción
+En México existen 68 lenguas indígenas oficialmente reconocidas (Diario oficial, 2013). Esta riqueza lingüística forma parte del mosaico multicultural que define la identidad de nuestro país. Sin embargo, la predominancia cultural del español y el rezago generalizado del acceso a las tecnologías de información (Sandoval-Forero, 2013) por parte de los hablantes de estas lenguas crea barreras culturales que dificultan la transferencia del conocimiento entre los pueblos indígenas.
+En los últimos años se ha consolidado el campo de traducción automática. Parte de la consolidación de la traducción automática se debe a la traducción estadística (SMT) (Koehn, 2009; Lopez, 2008). Ésta metodología usa ejemplos de oraciones en ambas lenguas (corpus paralelos) para determinar los parámetros de un modelo estadístico que permite tal traducción. Adicionalmente, en los últimos años se han abierto paso a los modelos de traducción automática basados en redes neuronales (NMT) (LeCun
+et al.
+, 2015), los cuales permiten traducción multilingüe, en donde se crea un modelo de traducción común entre múltiple lenguas, el cual se utiliza posteriormente para mejorar la traducción entre pares de lenguas (Cho
+et al., 2014
+).
+Metodología y resultados
+En este proyecto presentamos nuestros avances en la creación de traductores automáticos para cinco lenguas indígenas al español: wixarika, náhuatl, yorem nokki, purépecha y mexicanero. Para obtener una visión completa sobre el campo decidimos hacer una comparación entre SMT y NMT. En ambos casos entrenamos los modelos usando segmentación morfológica que ha mostrado mejores resultados para lenguas polisintéticas (Mager, et. Al, 2016).
+Para SMT fue utilizado el traductor por frases MOSES (Kohen,
+et. al
+., 2007) junto con el alineador GIZA++ (Och y Ney, 2003). Para los experimentos de NMT fue utilizado el modelo neuronal Codificador-Decodificador (Seq2Seq) con Redes Neuronales Recurrentes Bidireccionales (BiRNN) y con celdas de Unidades Recurrentes con Compuertas (GRU) (Cho.,
+et. al.
+, 2014). Las pruebas fueron llevadas a cabo con OpenNMT (Klein,
+et. al.
+, 2017) con un corpus que consta de 985 frases traducidas a los 5 idiomas y que incluyen notación morfológica (Gómez y López, 1999; Chamoreau, 2003; Freeze, 1989; Lastra, 1980)
+.
+Cada modelo ha sido evaluado de manera automática usando Bilingual Evaluation Understudy (BLEU) (Papineni,
+et. al.
+, 2002), y su salida fue valorada de manera manual, de tal manera que ha sido posible identificar los retos y limitaciones de las propuestas.
+NMT
+SMT
+Mexicanero-Español
+2.95
+23.47
+Náhuatl-Español
+3.04
+10.14
+Purépecha-Español
+0
+5.38
+Wixarika-Español
+0
+0
+Yorem Nokki-Español
+0
+2.44
+Tabla 1: BLEU de los resultados experimentales de traducción de los cinco pares de idiomas con NMT y SMT
+Como podemos ver en la tabla 1, los resultados de SMT superan los de NMT debido al corpus tan reducido con que se entrenaron. Mexicanero y náhuatl tuvieron un mejor desempeño que el wixarika, dado que el wixarika es una lengua con morfología con mayor cantidad de morfemas por palabra que el náhuatl (Kann, et. al. 2018).
+Discusión
+Si bien, se lograron mejorar las traducciones de manera importante, estos no son suficientes para ser usadas en la práctica cotidiana de manera autónoma o para asistencia humana. A través del desarrollo de estos traductores que hemos identificado los siguientes retos:
+Escasez de los recursos.
+Para poder generar un traductor automático es necesario contar con cientos de miles de pares de oraciones entre las dos lenguas; sin embargo, el poco uso de tecnologías de las comunidades nativo hablantes hace difícil la construcción de este corpus.
+Complejidad morfológica
+. Dada la naturaleza polisintética de estas lenguas, se necesita mejorar la segmentación morfológica automática para evitar la dispersión de datos (Kann, et. al. 2018).
+El español es una lengua distante a los idiomas indígenas
+que, en su gran mayoría tienen una topología morfológica polisintética, a diferencia del español que es fusionante y con orden Sujeto-Verbo-Objeto.
+La
+falta de estandarización de la ortografía de las lenguas y el amplio espectro dialectal interno en las lenguas
+.
+Conclusiones
+El presente trabajo expone primeros avances en traducción automática de cinco lenguas indígenas al español con SMT y NMT, identificando retos y limitaciones. Para trabajos futuros planteamos; mejorar el análisis y la segmentación morfológica de las lenguas indígenas, dada la fuerte correlación entre traducción y calidad de segmentación; la generación de corpus paralelos sintéticos a partir de modelos de aumento de datos; y la recopilación de más datos paralelos escritos para todos los idiomas indígenas trabajados, además de incorporar más idiomas.
+Bibliography
+Bahdanau, D., Cho, K., y Bengio, Y
+. (2014). ‘Neural machine translation by jointly learning to align and translate’.
+arXiv preprint arXiv:1409.0473.
+Canger, U.
+(2001).
+Mexicanero de la sierra madre occidental
+. El Colegio de México.
+Chamoreau, C.
+(2003).
+Purépecha de Jarácuaro
+(p. 162). El Colegio de México.
+Cho, K., van Merrienboer, B., Gulcehre, C., Bahdanau, D., Bougares, F., Schwenk, H., y Bengio, Y.
+(2014). Learning Phrase Representations using RNN Encoder–Decoder for Statistical Machine Translation.
+In Proceedings of the 2014 Conference on Empirical Methods in Natural Language Processing (EMNLP),
+pp. 1724-1734.
+Diario Oficial.
+(2014) Programa Especial de los Pueblos Indígenas 2014-2018,
+Diario Oficial de la Federación
+, México, Distrito Federal, 20 de abril.
+Freeze, R. A.
+(1989).
+Mayo de Los Capomos, Sinaloa (Mayo of Los Capomos, Sinaloa)
+.
+Gómez, P., & López, P. G.
+(1999).
+Huichol de San Andrés Cohamiata, Jalisco
+(Vol. 22). El Colegio de México.
+Kann, K., Mager, M., Meza, I. Schütze, H.
+(2018) Fortification of Neural Morphological Segmentation Models for Polysynthetic Minimal-Resource Languages
+16th Annual Conference of NAACL-HLT 2018
+, New Orleans, Louisiana, US.
+Klein, G., Kim, Y., Deng, Y., Senellart, J., y Rush, A.
+(2017). OpenNMT: Open-Source Toolkit for Neural Machine Translation.
+En Proceedings of ACL 2017, System Demonstrations
+, pp. 67-72.
+Koehn, P.
+(2009).
+Statistical machine translation
+. Cambridge: Cambridge University Press.
+Koehn, P., Hoang, H., Birch, A., Callison-Burch, C., Federico, M., Bertoldi, N., …, y Dyer, C.
+(2007) Moses: Open source toolkit for statistical machine translation.
+En Proceedings of the 45th annual meeting of the ACL
+. Association for Computational Linguistics, pp. 177-180.
+Lastra de Suárez, Y.
+(1980). Náhuatl de Acaxochitlán (Hidalgo).
+Archivos de lenguas indígenas de México. DF: Colegio de México
+.
+LeCun, Y., Bengio, Y., y Hinton, G
+. (2015). Deep learning.
+Nature
+, 521(7553): 436.
+Lopez, A.
+(2008). Statistical machine translation.
+ACM Computing Surveys (CSUR)
+, 40(3): 8.
+Mager Hois, J. M., Barrón Romero, C., y Meza Ruiz, I. V.
+(2016). Traductor estadístico wixarika-español usando descomposición morfológica.
+Memorias de COMTEL.
+Lima, Perú,
+Och, F. J., y Ney, H.
+(2003). A systematic comparison of various statistical alignment models.
+Computational linguistics
+, 29(1): 19-51.
+Papineni, K., Roukos, S., Ward, T., y Zhu, W. J.
+(2002). BLEU: a method for automatic evaluation of machine translation. In
+Proceedings of
+the 40th annual meeting on association for computational linguistics,
+pp. 311-318.
+Sandoval-Forero, E. A.
+(2013). Los indígenas en el ciberespacio.
+Agricultura, sociedad y desarrollo
+, 10(2): 235-256.

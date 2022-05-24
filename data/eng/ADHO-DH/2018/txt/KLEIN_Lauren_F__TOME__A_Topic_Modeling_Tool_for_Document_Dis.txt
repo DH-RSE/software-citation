@@ -1,0 +1,65 @@
+1. Introduction and Overview
+In the past several years, the utility of topic modeling for the humanities has been clearly established. Scholars can now point to projects that convincingly employ topic modeling to explore the figurative language employed in ekphrastic poetry (Rhody 2012), to trace the “quiet transformations” of literary studies (Goldstone and Underwood 2014), and to distill the epistemic dimensions of novels (Erlin 2017), among others. And yet, broader applications of the technique remain limited by the computational and statistical expertise required to implement a topic model and interpret its results. While there has been some work to develop topic model “browsers” (e.g. Goldstone 2014, Murdock and Allen 2015), these projects are designed to facilitate the exploration of the model itself, rather than to leverage the affordances of topic modeling for humanities scholars. By contrast, our interface was conceived so that non-technical humanities scholars can employ a topic model of their corpus in order to discover the documents most salient to their research (Klein et al. 2015).
+The first round of research on TOME was conducted between 2013 and 2015 in collaboration with Jacob Eisenstein, Assistant Professor of Interactive Computing at Georgia Tech, funded by NEH Office of Digital Humanities Startup Grant HD-51705-13. See Klein et al. 2015.
+2. Corpus, Model, and Database
+Our corpus consists of nearly 300,000 documents drawn from a collection of nineteenth-century abolitionist newspapers. The documents were scraped from the Accessible Archives website, as per an agreement with Accessible. Additional cleaning of the data, as well as metadata creation, was performed through custom Python scripts.
+The topic model of our corpus was created using gensim, the vector space and topic modeling library (Rehurek and Sojka 2010). We employed gensim’s wrapper for Latent Dirichlet Allocation (LDA) from MALLET (McCallum 2002). We generated 100 topics after 100 iterations, filtering the 100 most common words. We printed the topics and topical composition of each document to CSV files. We then ingested the data into a MySQL database using Django’s ORM framework.
+The topic model and related processing scripts can be found at:
+https://github.com/GeorgiaTechDHLab/TOME/
+.
+4. Interface and Sample Interaction
+Our interface is the result of a several-month design process during which we considered a variety of user scenarios. Our goal was to scaffold the process of document discovery so that the user could draw new insights as they moved through each section of the interface: Topic Overview, Topic Details, Document Overview, and Document Details.
+A live version of this interface can be found at:
+http://tome.lmc.gatech.edu/
+.
+The user begins with the Topic Overview section (Figure 1), which employs a custom visualization in order to display each of the 100 topics according to its change in rank over time. The user can also filter the topics by keyword or sort according to overall prevalence.
+Topic Overview
+When the user has selected their topics of interest, they scroll to see details about those topics: change in percentage of the corpus over time; distribution in each newspaper over time; and geographic distribution (Figure 2). These visualizations work together to show which topics were most prevalent at which times; which sources were reporting on which topics at particular times; and where each topic was being reported on. From there, the user can either return to the Topic Overview to further refine the topic set (Gelman 2004), or scroll down to the Document Overview section.
+Topic Details
+The Document Overview (figure 3) section allows the user to further refine the set of documents they will eventually read. They can toggle between a standard list view of all the documents, ranked in terms of what percentage of the selected topics they contain, and a dust-and-magnets view (Yi et al. 2005).
+Document Overview
+From there, they move to Document Details (figure 4), which displays the metadata associated with each article in the corpus, ordered according to the percentage of the selected topics they contain. This allows the user to click through to the articles themselves, having narrowed down a set of articles relevant to their research.
+Document Details
+The interface is implemented using HTML and JavaScript, including D3.js, the JavaScript-based visualization library, and AJAX for client-side data retrieval.
+Initial research on TOME was conducted from 2013 to 2015 in collaboration with Jacob Eisenstein, School of Interactive Computing, Georgia Institute of Technology, funded by NEH Office of Digital Humanities Startup Grant HD-51705-13.
+Bibliography
+Erlin, M.
+(2017). Topic Modeling, Epistemology, and the English and German Novel.
+Cultural Analytics
+.
+Gelman, A.
+(2004). Exploratory Data Analysis for Complex Models.
+Journal of Computational and Graphical Statistics
+13 (4): 755–779.
+Goldstone, A., and Underwood T.
+(2014). The Quiet Transformations of Literary Studies: What Thirteen Thousand Scholars Could Tell Us.
+New Literary History
+45 (3): 359-384.
+Goldstone, A.
+(n.d.). DfR Browser.
+https://agoldst.github.io/dfr-browser/
+(accessed 25 April 2018).
+Klein, L., Eisenstein, J., and Sun, I.
+(2015). Exploratory Thematic Analysis for Digitized Archival Collections.
+Digital Scholarship in the Humanities
+30 (Supp. 1): i130-i141.
+McCallum, A.
+(2002). MALLET: A Machine Learning for Language Toolkit.
+http://mallet.cs.umass.edu
+(accessed 25 April 2018).
+Murdock, J. and Allen, C.
+(2015). Visualization Techniques for Topic Model Checking.
+AAAI Conference on Artificial Intelligence
+, Austin, TX, January 2015.
+Rehurek, R. and Sojka, P.
+(2010). Software Framework for Topic Modelling with Large Corpora.
+LREC 2010 Workshop on New Challenges for NLP Frameworks
+, Valetta, Malta, May 2010.
+Rhody, L. M.
+(2012). “Topic Modeling and Figurative Language.”
+Journal of Digital Humanities
+2 (1).
+Yi, J.S.
+(2005). Dust & Magnet: Multivariate Information Visualization Using a Magnet Metaphor.
+Information Visualization
+4 (4): 239-256.
