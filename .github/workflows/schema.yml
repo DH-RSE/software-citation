@@ -22,13 +22,13 @@ jobs:
     - name: Convert odd to rng schema
       run: |
        sudo bash utilities/odd2rng.sh
-     - name: Commit file
-          run: |
-            git config --local user.email "action@github.com"
-            git config --local user.name "GitHub Action"
-            git add schema/tei_software_annotation.rng
-            git commit -m "Add generated rng from odd"
-        - name: Push changes
-          uses: ad-m/github-push-action@master
-          with:
-            github_token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Commit file
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add schema/tei_software_annotation.rng
+        git commit -m "Add generated rng from odd"
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
