@@ -1,151 +1,159 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="en">
-    <teiHeader>
-        <fileDesc>
-            <titleStmt>
-                <title>TEI with maximal setup</title>
-                <author>Sebastian Rahtz</author>
-            </titleStmt>
-            <publicationStmt>
-                <publisher>TEI Consortium</publisher>
-                <availability status="free">
-                    <p>TEI material can be licensed differently depending on the use you intend to
-                        make of it. Hence it is made available under both the CC+BY and BSD-2
-                        licences. The CC+BY licence is generally appropriate for usages which treat
-                        TEI content as data or documentation. The BSD-2 licence is generally
-                        appropriate for usage of TEI content in a software environment. For further
-                        information or clarification, please contact the TEI Consortium
-                        (info@tei-c.org).</p>
-                </availability>
-            </publicationStmt>
-            <sourceDesc>
-                <p>Written from scratch.</p>
-            </sourceDesc>
-        </fileDesc>
-    </teiHeader>
-    <text>
-        <body>
-            <head>TEI Complete</head>
-            <p>This TEI customization describes a schema that includes <emph>all</emph> of the TEI
-                P5 modules. This is a very useful starting place for manually creating your own
-                customizations — it is much easier to delete the modules you do not want than to add
-                the modules you do. Furthermore this customization often proves helpful for testing
-                TEI software.</p>
-            <p>However, this particular TEI customization is <emph>not recommended</emph> for actual
-                use for encoding documents. It produces schemas and reference documentation that
-                will be much larger and include many more elements than almost anyone could
-                conceivably ever need. Tempting though it may be simply to have absolutely
-                everything, and <q>just ignore</q> elements not required, experience has shown that
-                their presence makes the documentation harder to read and use, and makes a schema
-                that is far more lax than desired.</p>
-            <p>The <att>n</att> attribute of each <gi>moduleRef</gi> below reflects the chapter
-                number of the TEI <title>Guidelines</title> in which the module being referenced is
-                defined. Note that the modules are generally referred to in the order defined, with
-                the exception that the module for <title level="a">Simple Analytic
-                    Mechanisms</title> is referred to before the module for <title level="a"
-                    >Dictionaries</title>. This is because the class <name type="class"
-                    >att.lexicographic.normalized</name> (which is defined in <name type="module"
-                    >analysis</name>) needs to be specified before the class <name type="class"
-                    >att.lexicographic</name> (which is defined in <name type="module"
-                    >dictionaries</name>).</p>
-            <p>The first four modules are often called the <soCalled>required</soCalled> modules.
-                However, these modules are not themselves technically required to create a TEI
-                conformant markup language (let alone a useful non-TEI conformant markup language).
-                Rather, they each contain one or more <emph>elements</emph> which are required for
-                TEI conformance.</p>
-            <schemaSpec ident="tei_all" start="TEI teiCorpus" prefix="tei_" targetLang="en"
-                docLang="en">
-                <moduleRef n="01" key="tei"/>
-                <moduleRef n="02" key="header"/>
-                <moduleRef n="03" key="core"/>
-                <moduleRef n="04" key="textstructure"/>
-                <moduleRef n="05" key="gaiji"/>
-                <moduleRef n="06" key="verse"/>
-                <moduleRef n="07" key="drama"/>
-                <moduleRef n="08" key="spoken"/>
-                <moduleRef n="17" key="analysis"/>
-                <moduleRef n="09" key="dictionaries"/>
-                <moduleRef n="10" key="msdescription"/>
-                <moduleRef n="11" key="transcr"/>
-                <moduleRef n="12" key="textcrit"/>
-                <moduleRef n="13" key="namesdates"/>
-                <moduleRef n="14" key="figures"/>
-                <moduleRef n="15" key="corpus"/>
-                <moduleRef n="16" key="linking"/>
-                <moduleRef n="18" key="iso-fs"/>
-                <moduleRef n="19" key="nets"/>
-                <moduleRef n="21" key="certainty"/>
-                <moduleRef n="22" key="tagdocs"/>
-                <elementSpec ident="rs" mode="change">
-                    <attList>
-                        <attDef ident="ana" mode="change" usage="req">
-                            <valList type="closed" mode="change">
-                                <valItem mode="add" ident="#Bib.Soft">
-                                    <desc versionDate="2022-09-26" xml:lang="de"
-                                        >Bibliographieeintrag für Software (Bib.Soft)</desc>
-                                    <desc versionDate="2022-09-26" xml:lang="de">Die Bibliographie
-                                        enthält einen Eintrag für die Software selbst. Dieser
-                                        Eintrag kann den Namen der Software selbst enthalten, Namen
-                                        von Verantwortlichen, eine URL, einen PID, Versionsangaben,
-                                        usw.</desc>
-                                </valItem>
-                                <valItem mode="add" ident="#Bib.Ref">
-                                    <desc versionDate="2022-09-26" xml:lang="de"
-                                        >Bibliographieeintrag für Referenzpublikation
-                                        (Bib.Ref)</desc>
-                                    <desc versionDate="2022-09-26" xml:lang="de">Die Bibliographie
-                                        enthält einen Eintrag mit einer Publikation über die
-                                        Software.</desc>
-                                </valItem>
-                                <valItem mode="add" ident="#Agent">
-                                    <desc versionDate="2022-09-26" xml:lang="de">Namentliche Nennung
-                                        der Verantwortlichen (Agent)</desc>
-                                    <desc versionDate="2022-09-26" xml:lang="de">Personen, Gruppen
-                                        oder Institutionen, die für die Entwicklung der Software
-                                        verantwortlich sind, werden namentlich genannt.</desc>
-                                </valItem>
-                                <valItem mode="add" ident="#URL">
-                                    <desc versionDate="2022-09-26" xml:lang="de">URL</desc>
-                                    <desc versionDate="2022-09-26" xml:lang="de">Die Zitation
-                                        enthält eine URL, die auf die Software selbst verweist (z.B.
-                                        zu einer Webseite über die Softwaree, einem
-                                        Code-Repositorium, einem Metadatensatz oder einer
-                                        ausführbaren Version). URLs zu Publikationen über die
-                                        Software (z.B. zu Zeitschriftenartikeln, Büchern oder auch
-                                        User Manuals) werden nicht gezählt.</desc>
-                                </valItem>
-                                <valItem mode="add" ident="#PID">
-                                    <desc versionDate="2022-09-26" xml:lang="de">Persistenter
-                                        Identifikator (PID)</desc>
-                                    <desc versionDate="2022-09-26" xml:lang="de">Die Zitation
-                                        enthält einen persistenten Identifikator (PID), z.B. eine
-                                        DOI, der auf die Software selbst verweist (z.B. zu einer
-                                        Webseite über die Software, einem Code-Repositorium, einem
-                                        Metadatensatz oder einer ausführbaren Version). PIDs zu
-                                        Publikationen über die Software (z.B. zu
-                                        Zeitschriftenartikeln, Büchern oder auch User Manuals)
-                                        werden nicht gezählt.</desc>
-                                </valItem>
-                                <valItem mode="add" ident="#Ver">
-                                    <desc versionDate="2022-09-26" xml:lang="de">Version
-                                        (Ver)</desc>
-                                    <desc versionDate="2022-09-26" xml:lang="de">Die Zitation
-                                        enthält die Angabe einer bestimmten Softwareversion oder
-                                        -revision und ggf. anderweitig notwendige Spezifikationen
-                                        (z.B. eine Version für ein spezifisches Betriebssystem, ein
-                                        bestimmtes Softwarepaket oder ein Datum).</desc>
-                                </valItem>
-                            </valList>
-                        </attDef>
-                        <attDef ident="key" mode="change">
-                            <valList type="closed" mode="change">
-                                <valItem mode="add" ident=""/>
-                                <valItem mode="add" ident="ANNIS"/>
-                            </valList>
-                        </attDef>
-                    </attList>
-                </elementSpec>
-            </schemaSpec>
-        </body>
-    </text>
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title>TEI with maximal setup</title>
+            <author>Sebastian Rahtz</author>
+         </titleStmt>
+         <publicationStmt>
+            <publisher>TEI Consortium</publisher>
+            <availability status="free">
+               <p>TEI material can be licensed differently depending on the use you intend to make
+                  of it. Hence it is made available under both the CC+BY and BSD-2 licences. The
+                  CC+BY licence is generally appropriate for usages which treat TEI content as data
+                  or documentation. The BSD-2 licence is generally appropriate for usage of TEI
+                  content in a software environment. For further information or clarification,
+                  please contact the TEI Consortium (info@tei-c.org).</p>
+            </availability>
+         </publicationStmt>
+         <sourceDesc>
+            <p>Written from scratch.</p>
+         </sourceDesc>
+      </fileDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <head>TEI Complete</head>
+         <p>This TEI customization describes a schema that includes <emph>all</emph> of the TEI P5
+            modules. This is a very useful starting place for manually creating your own
+            customizations — it is much easier to delete the modules you do not want than to add the
+            modules you do. Furthermore this customization often proves helpful for testing TEI
+            software.</p>
+         <p>However, this particular TEI customization is <emph>not recommended</emph> for actual
+            use for encoding documents. It produces schemas and reference documentation that will be
+            much larger and include many more elements than almost anyone could conceivably ever
+            need. Tempting though it may be simply to have absolutely everything, and <q>just
+               ignore</q> elements not required, experience has shown that their presence makes the
+            documentation harder to read and use, and makes a schema that is far more lax than
+            desired.</p>
+         <p>The <att>n</att> attribute of each <gi>moduleRef</gi> below reflects the chapter number
+            of the TEI <title>Guidelines</title> in which the module being referenced is defined.
+            Note that the modules are generally referred to in the order defined, with the exception
+            that the module for <title level="a">Simple Analytic Mechanisms</title> is referred to
+            before the module for <title level="a">Dictionaries</title>. This is because the class
+               <name type="class">att.lexicographic.normalized</name> (which is defined in <name type="module">analysis</name>) needs to be specified before the class <name type="class">att.lexicographic</name> (which is defined in <name type="module">dictionaries</name>).</p>
+         <p>The first four modules are often called the <soCalled>required</soCalled> modules.
+            However, these modules are not themselves technically required to create a TEI
+            conformant markup language (let alone a useful non-TEI conformant markup language).
+            Rather, they each contain one or more <emph>elements</emph> which are required for TEI
+            conformance.</p>
+         <schemaSpec ident="tei_all"
+                     start="TEI teiCorpus"
+                     prefix="tei_"
+                     targetLang="en"
+                     docLang="en">
+            <moduleRef n="01" key="tei"/>
+            <moduleRef n="02" key="header"/>
+            <moduleRef n="03" key="core"/>
+            <moduleRef n="04" key="textstructure"/>
+            <moduleRef n="05" key="gaiji"/>
+            <moduleRef n="06" key="verse"/>
+            <moduleRef n="07" key="drama"/>
+            <moduleRef n="08" key="spoken"/>
+            <moduleRef n="17" key="analysis"/>
+            <moduleRef n="09" key="dictionaries"/>
+            <moduleRef n="10" key="msdescription"/>
+            <moduleRef n="11" key="transcr"/>
+            <moduleRef n="12" key="textcrit"/>
+            <moduleRef n="13" key="namesdates"/>
+            <moduleRef n="14" key="figures"/>
+            <moduleRef n="15" key="corpus"/>
+            <moduleRef n="16" key="linking"/>
+            <moduleRef n="18" key="iso-fs"/>
+            <moduleRef n="19" key="nets"/>
+            <moduleRef n="21" key="certainty"/>
+            <moduleRef n="22" key="tagdocs"/>
+            <elementSpec ident="rs" mode="change">
+               <attList>
+                  <!-- To do: Pointers should point to ../taxonomy/citation-taxonomy.xml and multiple values divided by whitespaces are also allowed -->
+                  <attDef ident="ana" mode="change" usage="req">
+                     <valList type="closed" mode="change">
+                        <valItem mode="add" ident="#Bib.Soft">
+                           <desc versionDate="2022-09-26" xml:lang="de">Bibliographieeintrag für
+                              Software (Bib.Soft)</desc>
+                           <desc versionDate="2022-09-26" xml:lang="de">Die Bibliographie enthält
+                              einen Eintrag für die Software selbst. Dieser Eintrag kann den Namen
+                              der Software selbst enthalten, Namen von Verantwortlichen, eine URL,
+                              einen PID, Versionsangaben, usw.</desc>
+                        </valItem>
+                        <valItem mode="add" ident="#Bib.Ref">
+                           <desc versionDate="2022-09-26" xml:lang="de">Bibliographieeintrag für
+                              Referenzpublikation (Bib.Ref)</desc>
+                           <desc versionDate="2022-09-26" xml:lang="de">Die Bibliographie enthält
+                              einen Eintrag mit einer Publikation über die Software.</desc>
+                        </valItem>
+                        <valItem mode="add" ident="#Name.Only">
+                           <desc versionDate="2022-09-26" xml:lang="de">Nur namentliche Nennung der Software (Name.Only)</desc>
+                           <desc versionDate="2022-09-26" xml:lang="de">Die Software ist nur namentlich genannt. </desc>
+                        </valItem>
+                        <valItem mode="add" ident="#Agent">
+                           <desc versionDate="2022-09-26" xml:lang="de">Namentliche Nennung der
+                              Verantwortlichen (Agent)</desc>
+                           <desc versionDate="2022-09-26" xml:lang="de">Personen, Gruppen oder
+                              Institutionen, die für die Entwicklung der Software verantwortlich
+                              sind, werden namentlich genannt.</desc>
+                        </valItem>
+                        <valItem mode="add" ident="#URL">
+                           <desc versionDate="2022-09-26" xml:lang="de">URL</desc>
+                           <desc versionDate="2022-09-26" xml:lang="de">Die Zitation enthält eine
+                              URL, die auf die Software selbst verweist (z.B. zu einer Webseite über
+                              die Softwaree, einem Code-Repositorium, einem Metadatensatz oder einer
+                              ausführbaren Version). URLs zu Publikationen über die Software (z.B.
+                              zu Zeitschriftenartikeln, Büchern oder auch User Manuals) werden nicht
+                              gezählt.</desc>
+                        </valItem>
+                        <valItem mode="add" ident="#PID">
+                           <desc versionDate="2022-09-26" xml:lang="de">Persistenter Identifikator
+                              (PID)</desc>
+                           <desc versionDate="2022-09-26" xml:lang="de">Die Zitation enthält einen
+                              persistenten Identifikator (PID), z.B. eine DOI, der auf die Software
+                              selbst verweist (z.B. zu einer Webseite über die Software, einem
+                              Code-Repositorium, einem Metadatensatz oder einer ausführbaren
+                              Version). PIDs zu Publikationen über die Software (z.B. zu
+                              Zeitschriftenartikeln, Büchern oder auch User Manuals) werden nicht
+                              gezählt.</desc>
+                        </valItem>
+                        <valItem mode="add" ident="#Ver">
+                           <desc versionDate="2022-09-26" xml:lang="de">Version (Ver)</desc>
+                           <desc versionDate="2022-09-26" xml:lang="de">Die Zitation enthält die
+                              Angabe einer bestimmten Softwareversion oder -revision und ggf.
+                              anderweitig notwendige Spezifikationen (z.B. eine Version für ein
+                              spezifisches Betriebssystem, ein bestimmtes Softwarepaket oder ein
+                              Datum).</desc>
+                        </valItem>
+                     </valList>
+                  </attDef>
+                  <attDef ident="key" mode="change" usage="req">
+                     <valList type="closed" mode="change">
+                        <valItem mode="add" ident="Python"/>
+                        <valItem mode="add" ident="Pandas"/>
+                        <valItem mode="add" ident="Matplotlib"/>
+                        <valItem mode="add" ident="Jupyter_Notebook"/>
+                        <valItem mode="add" ident="MediaWiki"/>
+                        <valItem mode="add" ident="PoetryLab"/>
+                        <valItem mode="add" ident="OpenAPI"/>
+                        <valItem mode="add" ident="spaCy"/>
+                        <valItem mode="add" ident="Rantanplan"/>
+                        <valItem mode="add" ident="JollyJumper"/>
+                        <valItem mode="add" ident="Rolling.Classify"/>
+                        <valItem mode="add" ident="Rolling.Delta"/>
+                        <valItem mode="add" ident="ANNIS"/>
+                     </valList>
+                  </attDef>
+               </attList>
+            </elementSpec>
+         </schemaSpec>
+      </body>
+   </text>
 </TEI>
