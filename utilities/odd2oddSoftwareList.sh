@@ -3,6 +3,5 @@ unzip /tmp/saxon.zip -d /tmp/saxon
 rm /tmp/saxon.zip
 echo $(ls /tmp)
 echo $(ls)
-echo $(java -version)
-cp -r /tmp/saxon/saxon-he-11.4.jar /tmp/saxon-he.jar 
-java -jar '/tmp/saxon-he.jar' -xsl:'utilities/addSoftwareList2Odd.xsl' -s:'schema/tei_software_annotation.xml' -o:'schema/tei_software_annotation.xml'
+echo $(java -version) 
+java -jar '/tmp/saxon/saxon-he-11.4.jar' -xsl:'utilities/addSoftwareList2Odd.xsl' -s:'schema/tei_software_annotation.xml' -o:'schema/tei_software_annotation.xml'
