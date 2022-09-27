@@ -5,7 +5,8 @@
         <fileDesc>
             <titleStmt>
                 <title type="full">
-                    <title type="main">Straight Talk! Automatic Recognition of Direct Speech in Nineteenth-Century French Novels</title>
+                    <title type="main">Straight Talk! Automatic Recognition of Direct Speech in
+                        Nineteenth-Century French Novels</title>
                     <title type="sub"/>
                 </title>
                 <author>
@@ -115,73 +116,149 @@
         <body>
             <div type="div1" rend="DH-Heading1">
                 <head>
-                    <anchor xml:id="id_h.ji1azr7fcbzf"/>Introduction
-                </head>
-                <p>In fictional prose narrative such as novels and short stories, various forms of speech, thought, and writing representation are ubiquitous and have been studied in great detail in linguistics and literary studies. However, beyond quotation marks, what are linguistic markers of direct speech? And just how ubiquitous is direct speech really? Is there systematic variation in the amount of direct speech over time or across genres? Especially for the field of French literary history, where typography is not a reliable guide, we really don't know. </p>
-                <p>This is regrettable, because being able to quickly and automatically detect direct speech in large collections of literary narrative texts is highly desireable for many areas in literary studies. In the history of literary genres, this allows to observe distributions and evolutions of a fundamental, formal aspect of the novel on a large scale. In narratology, differentiating narrator from character speech is a precondition for more detailed analyses of narrator speech, e.g. with regard to text type (descriptive, narrative, argumentative text). And in authorship attribution, it hereby becomes possible to discard character speech from a set of novels and perform authorship attribution on the narrator speech only, something which may improve attribution. </p>
-                <p>Against this background, the work presented here addresses both the question of how to identify direct speech in French prose fiction and that of how prevalent direct speech is in different subgenres of the nineteenth-century French novel. </p>
+                    <anchor xml:id="id_h.ji1azr7fcbzf"/>Introduction </head>
+                <p>In fictional prose narrative such as novels and short stories, various forms of
+                    speech, thought, and writing representation are ubiquitous and have been studied
+                    in great detail in linguistics and literary studies. However, beyond quotation
+                    marks, what are linguistic markers of direct speech? And just how ubiquitous is
+                    direct speech really? Is there systematic variation in the amount of direct
+                    speech over time or across genres? Especially for the field of French literary
+                    history, where typography is not a reliable guide, we really don't know. </p>
+                <p>This is regrettable, because being able to quickly and automatically detect
+                    direct speech in large collections of literary narrative texts is highly
+                    desireable for many areas in literary studies. In the history of literary
+                    genres, this allows to observe distributions and evolutions of a fundamental,
+                    formal aspect of the novel on a large scale. In narratology, differentiating
+                    narrator from character speech is a precondition for more detailed analyses of
+                    narrator speech, e.g. with regard to text type (descriptive, narrative,
+                    argumentative text). And in authorship attribution, it hereby becomes possible
+                    to discard character speech from a set of novels and perform authorship
+                    attribution on the narrator speech only, something which may improve
+                    attribution. </p>
+                <p>Against this background, the work presented here addresses both the question of
+                    how to identify direct speech in French prose fiction and that of how prevalent
+                    direct speech is in different subgenres of the nineteenth-century French novel.
+                </p>
             </div>
             <div type="div1" rend="DH-Heading1">
                 <head>Aims and hypotheses</head>
-                <p>Our first aim has been to use machine learning to automatically identify direct character speech in a small collection of French-language fictional prose. This is less trivial than it seems to be since in the French typographical tradition, direct speech is usually not marked with opening and closing quotation marks (figure 1). Rather, a long hyphen usually indicates the beginning of direct speech, whereas the end is left unmarked. In figure 1, the first highlighted direct speech continues after the insertion revealing who has just spoken (“lui dit-il, tout bas,”; 
-                    <hi rend="italic">he quietly said to him</hi>). In the second example, the direct speech ends after the speaker has been indicated (“dit une voix à la portière”; 
-                    <hi rend="italic">said a voice at the door</hi>). Our hypothesis is that there are enough linguistic markers of direct speech to make it possible to identify it automatically and reliably (for an overview of such markers, see Durrer, 1994).
-                </p>
+                <p>Our first aim has been to use machine learning to automatically identify direct
+                    character speech in a small collection of French-language fictional prose. This
+                    is less trivial than it seems to be since in the French typographical tradition,
+                    direct speech is usually not marked with opening and closing quotation marks
+                    (figure 1). Rather, a long hyphen usually indicates the beginning of direct
+                    speech, whereas the end is left unmarked. In figure 1, the first highlighted
+                    direct speech continues after the insertion revealing who has just spoken (“lui
+                    dit-il, tout bas,”; <hi rend="italic">he quietly said to him</hi>). In the
+                    second example, the direct speech ends after the speaker has been indicated
+                    (“dit une voix à la portière”; <hi rend="italic">said a voice at the door</hi>).
+                    Our hypothesis is that there are enough linguistic markers of direct speech to
+                    make it possible to identify it automatically and reliably (for an overview of
+                    such markers, see Durrer, 1994). </p>
                 <p>
                     <figure>
                         <graphic url="132/1000000000000489000007CF1A34A5D56B198967.jpg"/>
-                        <head>Figure 1: Detail from Paul Féval, La Louve, 1857, p. 126 (Source: http://gallica.bnf.fr/ark:/12148/bpt6k6366934b)</head>
+                        <head>Figure 1: Detail from Paul Féval, La Louve, 1857, p. 126 (Source:
+                            http://gallica.bnf.fr/ark:/12148/bpt6k6366934b)</head>
                     </figure>
                 </p>
-                <p>Our second aim has been to use the best-performing algorithm to identify direct speech in a larger collection of French nineteenth-century novels and to study its distribution. Here, we hope to detect significant differences in the proportion of direct speech found in different novelistic subgenres. Research about other literary traditions supports this hypothesis (e.g. Allison et al., 2011).</p>
+                <p>Our second aim has been to use the best-performing algorithm to identify direct
+                    speech in a larger collection of French nineteenth-century novels and to study
+                    its distribution. Here, we hope to detect significant differences in the
+                    proportion of direct speech found in different novelistic subgenres. Research
+                    about other literary traditions supports this hypothesis (e.g. Allison et al.,
+                    2011).</p>
             </div>
             <div type="div1" rend="DH-Heading1">
                 <head>State of the Art</head>
-                <p>Speech, thought and writing representation are common topics in narratology and stylistics (Genette, 2008, Leech/Short, 2007). Semino and Short’s 2004 quantitative study finds that direct representation is clearly the most frequent type in their English fiction sub-corpus. Brunner 2015 confirms this trend for her corpus of German short narratives. Here, the percentage of sentences containing direct speech is about 35% and varies widely over different texts (2%-72%). </p>
-                <p>Frequently, speech representation recognition is an auxiliary step to other tasks, e.g. knowledge extraction or speaker recognition (Krestel at al., 2008, Elson and McKeown, 2010, Iosif and Mishra, 2014, Sarmento/Nunes, 2009). Weiser and Watrin 2012 used a rule-based approach to extract unmarked quotations in French newspaper texts with success rates of 0.745-0.789. Brunner 2015 focuses on speech, thought and writing representation in German short literary narratives. Using machine learning with random forests, she reports an F1 score of 0.87 for direct speech in a sentence-based cross-validation.</p>
+                <p>Speech, thought and writing representation are common topics in narratology and
+                    stylistics (Genette, 2008, Leech/Short, 2007). Semino and Short’s 2004
+                    quantitative study finds that direct representation is clearly the most frequent
+                    type in their English fiction sub-corpus. Brunner 2015 confirms this trend for
+                    her corpus of German short narratives. Here, the percentage of sentences
+                    containing direct speech is about 35% and varies widely over different texts
+                    (2%-72%). </p>
+                <p>Frequently, speech representation recognition is an auxiliary step to other
+                    tasks, e.g. knowledge extraction or speaker recognition (Krestel at al., 2008,
+                    Elson and McKeown, 2010, Iosif and Mishra, 2014, Sarmento/Nunes, 2009). Weiser
+                    and Watrin 2012 used a rule-based approach to extract unmarked quotations in
+                    French newspaper texts with success rates of 0.745-0.789. Brunner 2015 focuses
+                    on speech, thought and writing representation in German short literary
+                    narratives. Using machine learning with random forests, she reports an F1 score
+                    of 0.87 for direct speech in a sentence-based cross-validation.</p>
             </div>
             <div type="div1" rend="DH-Heading1">
                 <head>Data</head>
                 <p>
-                <figure>
-                    <graphic url="132/10000201000007CF000006401CAD3E0AED5E3C10.png"/>
-                    <head>Figure 2: Distribution of novels per subgenre and decade</head>
-                </figure>
+                    <figure>
+                        <graphic url="132/10000201000007CF000006401CAD3E0AED5E3C10.png"/>
+                        <head>Figure 2: Distribution of novels per subgenre and decade</head>
+                    </figure>
                 </p>
-                <p>Our text collection contains 127 French novels published between 1840 and 1889. Three generic subsets can be distinguished, each of which is represented by approximately 40 texts: general novelistic fiction (so-called ‘littérature blanche’) is contrasted with specific subgenres, crime fiction (‘policier’) and fantastic novels (see figure 2). The narrative perspective is largely heterodiegetic.</p>
+                <p>Our text collection contains 127 French novels published between 1840 and 1889.
+                    Three generic subsets can be distinguished, each of which is represented by
+                    approximately 40 texts: general novelistic fiction (so-called ‘littérature
+                    blanche’) is contrasted with specific subgenres, crime fiction (‘policier’) and
+                    fantastic novels (see figure 2). The narrative perspective is largely
+                    heterodiegetic.</p>
             </div>
             <div type="div1" rend="DH-Heading1">
                 <head>Methods</head>
                 <div type="div2" rend="DH-Heading2">
                     <head>Manual Annotation</head>
-                    <p>To obtain a gold standard, 40 chapters from 20 different novels were randomly chosen from the collection and annotated manually. 5734 sentences were marked as either containing direct speech or not containing any direct speech; the former also include mixed sentences.</p>
+                    <p>To obtain a gold standard, 40 chapters from 20 different novels were randomly
+                        chosen from the collection and annotated manually. 5734 sentences were
+                        marked as either containing direct speech or not containing any direct
+                        speech; the former also include mixed sentences.</p>
                 </div>
                 <div type="div2" rend="DH-Heading2">
                     <head>Preprocessing</head>
-                    <p>To prepare feature generation, preprocessing was performed, the pipeline consisting of the Stanford CoreNLP-Tokenizer and Sentence-Splitter, as well as the TreeTagger for POS-Tagging and Lemmatization.</p>
+                    <p>To prepare feature generation, preprocessing was performed, the pipeline
+                        consisting of the Stanford CoreNLP-Tokenizer and Sentence-Splitter, as well
+                        as the TreeTagger for POS-Tagging and Lemmatization.</p>
                 </div>
                 <div type="div2" rend="DH-Heading2">
                     <head>Feature generation</head>
-                    <p>We modeled 81 features which we believed to be useful cues for the classification task (see the annex for a ranked list). Features are generated on a sentence-based level and can be divided into different categories:</p>
+                    <p>We modeled 81 features which we believed to be useful cues for the
+                        classification task (see the annex for a ranked list). Features are
+                        generated on a sentence-based level and can be divided into different
+                        categories:</p>
                     <list type="unordered">
-                        <item>Character-based: e.g. long hyphen marks, exclamation marks, question marks.</item>
+                        <item>Character-based: e.g. long hyphen marks, exclamation marks, question
+                            marks.</item>
                         <item>Lexical: e.g. deictic expressions, interjections.</item>
-                        <item>Semantic: categories of verbs, from WordNet and the French equivalent WOLF: e.g. verbs of motion or perception.</item>
+                        <item>Semantic: categories of verbs, from WordNet and the French equivalent
+                            WOLF: e.g. verbs of motion or perception.</item>
                         <item>Morphological: e.g. part-of-speech, verb-tense, lemma.</item>
                         <item>Syntactic features: e.g. number of commas, sentence length. </item>
                     </list>
                 </div>
                 <div type="div2" rend="DH-Heading2">
                     <head>Classification</head>
-                    <p>For the binary classification task (sentences containing vs. not containing direct speech), we used an annotation and classification framework developed by Markus Krug (Würzburg) wrapping LibSVM Support-Vector-Machine (Chang and Lin, 2011), Maximum Entropy (Nigam et al., 1999) and Naïve Bayes (John and Langley, 1995) and implemented in MALLET (McCallum 2002). Random Forest (Breiman, 2001) and JRip (Cohen, 1995) were applied using Weka. All experiments were validated using 10-fold cross-validation unless otherwise stated.</p>
+                    <p>For the binary classification task (sentences containing vs. not containing
+                        direct speech), we used an annotation and classification framework developed
+                        by Markus Krug (Würzburg) wrapping LibSVM Support-Vector-Machine (Chang and
+                        Lin, 2011), Maximum Entropy (Nigam et al., 1999) and Naïve Bayes (John and
+                        Langley, 1995) and implemented in MALLET (McCallum 2002). Random Forest
+                        (Breiman, 2001) and JRip (Cohen, 1995) were applied using Weka. All
+                        experiments were validated using 10-fold cross-validation unless otherwise
+                        stated.</p>
                 </div>
                 <div type="div2" rend="DH-Heading2">
                     <head>Error analysis</head>
-                    <p>The machine learning algorithms’ incorrect assignments on the gold standard (false positives and false negatives) were manually analyzed in order to detect the errors' underlying causes.</p>
+                    <p>The machine learning algorithms’ incorrect assignments on the gold standard
+                        (false positives and false negatives) were manually analyzed in order to
+                        detect the errors' underlying causes.</p>
                 </div>
                 <div type="div2" rend="DH-Heading2">
                     <head>Automatic tagging of unseen texts</head>
-                    <p>Using the best-performing model, all sentences in the text collection were tagged for containing direct speech or not. The distribution of ratios of direct speech / non-direct speech was calculated for the three subgenres and five decades covered by the collection. Performance on these unseen texts was checked manually on a random sample. (We sampled 2300 sentences, i.e. 100 random sentences each from a sample of 23 novels stratified by ratio of direct speech.) </p>
+                    <p>Using the best-performing model, all sentences in the text collection were
+                        tagged for containing direct speech or not. The distribution of ratios of
+                        direct speech / non-direct speech was calculated for the three subgenres and
+                        five decades covered by the collection. Performance on these unseen texts
+                        was checked manually on a random sample. (We sampled 2300 sentences, i.e.
+                        100 random sentences each from a sample of 23 novels stratified by ratio of
+                        direct speech.) </p>
                 </div>
             </div>
             <div type="div1" rend="DH-Heading1">
@@ -190,51 +267,99 @@
                     <head>Recognition of direct speech</head>
                     <p>Table 1 depicts the performance for different conditions.</p>
                     <p>
-                    <figure>
-                        <graphic url="132/1000020100000756000003B78062947778BF83D5.png"/>
-                        <head>Table 1: Performance (10-fold cross-validation on the gold standard)</head>
-                    </figure>
+                        <figure>
+                            <graphic url="132/1000020100000756000003B78062947778BF83D5.png"/>
+                            <head>Table 1: Performance (10-fold cross-validation on the gold
+                                standard)</head>
+                        </figure>
                     </p>
-                    <p>Our baseline is using the speech sign (i.e. the long hyphen) as the only feature, which yields an F1 score of 0.734. Random-Forest performs best, with an F1 score of 0.939, which we consider to be an impressive result. Even when excluding the speech sign from the features, we still reach an F1 score of 0.924, much better than the hyphen alone. </p>
-                    <p>After inspecting the models, it becomes clear that only very few features carry strong cues for direct speech, namely (and unsurprisingly) the initial long hyphen. Most other features, taken separately, carry weak signals in either direction, but become relevant in combination. </p>
-                    <p>Error analysis reveals that incorrect assignments (false positives and negatives) are frequently due to imperfect sentence segmentation. Several features which have been previously used to define and recognize direct speech (question / exclamation marks, interjections, verbal tenses) also cause incorrect assignments, especially in the context of homodiegetic narration, where the narrator is somewhat involved in the plot so that his narrator speech is similar to direct speech. Finally, letters are sometimes mistaken for direct speech, which makes	 sense given that in most of them, one person addresses one or several other people.</p>
+                    <p>Our baseline is using the speech sign (i.e. the long hyphen) as the only
+                        feature, which yields an F1 score of 0.734. Random-Forest performs best,
+                        with an F1 score of 0.939, which we consider to be an impressive result.
+                        Even when excluding the speech sign from the features, we still reach an F1
+                        score of 0.924, much better than the hyphen alone. </p>
+                    <p>After inspecting the models, it becomes clear that only very few features
+                        carry strong cues for direct speech, namely (and unsurprisingly) the initial
+                        long hyphen. Most other features, taken separately, carry weak signals in
+                        either direction, but become relevant in combination. </p>
+                    <p>Error analysis reveals that incorrect assignments (false positives and
+                        negatives) are frequently due to imperfect sentence segmentation. Several
+                        features which have been previously used to define and recognize direct
+                        speech (question / exclamation marks, interjections, verbal tenses) also
+                        cause incorrect assignments, especially in the context of homodiegetic
+                        narration, where the narrator is somewhat involved in the plot so that his
+                        narrator speech is similar to direct speech. Finally, letters are sometimes
+                        mistaken for direct speech, which makes sense given that in most of them,
+                        one person addresses one or several other people.</p>
                 </div>
                 <div type="div2" rend="DH-Heading2">
                     <head>Distribution of direct speech in the corpus</head>
-                    <p>We applied the best-performing algorithm (Random Forest) to the entire text collection. Evaluation shows a certain drop in performance, with a weighted average success rate of 0.844, indicating less-than-perfect generalization. We noted a welcome absence of any strong bias for either direct or non-direct speech. Our results suggest that the average proportion of direct to non-direct speech across the collection is 61% sentences with direct speech (and 39% without direct speech).</p>
+                    <p>We applied the best-performing algorithm (Random Forest) to the entire text
+                        collection. Evaluation shows a certain drop in performance, with a weighted
+                        average success rate of 0.844, indicating less-than-perfect generalization.
+                        We noted a welcome absence of any strong bias for either direct or
+                        non-direct speech. Our results suggest that the average proportion of direct
+                        to non-direct speech across the collection is 61% sentences with direct
+                        speech (and 39% without direct speech).</p>
                     <p>
                         <figure>
-                        <graphic url="132/10000201000005DC000004B092682480DA414F98.png"/>
-                            <head>Figure 3: Ratio of direct to non-direct speech in 127 novels</head>
+                            <graphic url="132/10000201000005DC000004B092682480DA414F98.png"/>
+                            <head>Figure 3: Ratio of direct to non-direct speech in 127
+                                novels</head>
                         </figure>
                     </p>
-                    <p>While variance is considerable (see figure 3), the proportion of direct speech in French nineteenth-century novels is overall much higher than expected (and higher, for example, than the 35% reported by Brunner 2015 for German novellas). </p>
-                    <p>Figure 4 shows that both fantastic novels and crime fiction have a significantly higher median for proportion of direct-speech than ‘littérature blanche’, but do not differ significantly from each other (for significance tests, we used the non-parametric Kruskal-Wallis test at a significance level of 1%). </p>
+                    <p>While variance is considerable (see figure 3), the proportion of direct
+                        speech in French nineteenth-century novels is overall much higher than
+                        expected (and higher, for example, than the 35% reported by Brunner 2015 for
+                        German novellas). </p>
+                    <p>Figure 4 shows that both fantastic novels and crime fiction have a
+                        significantly higher median for proportion of direct-speech than
+                        ‘littérature blanche’, but do not differ significantly from each other (for
+                        significance tests, we used the non-parametric Kruskal-Wallis test at a
+                        significance level of 1%). </p>
                     <p>
                         <figure>
-                           <graphic url="132/10000201000007CF00000331CF6E09243FBC5EE6.png"/>
-                           <head>Figure 4: Distribution (left) and significance (right) of direct to non-direct speech ratios across three subgenres</head>
-                       </figure>
+                            <graphic url="132/10000201000007CF00000331CF6E09243FBC5EE6.png"/>
+                            <head>Figure 4: Distribution (left) and significance (right) of direct
+                                to non-direct speech ratios across three subgenres</head>
+                        </figure>
                     </p>
-                    <p>Figure 5 shows that only the ratios for the 1850s and the 1880s have a significantly differing level. However, because the decades do not have perfectly balanced subgenre proportions, this is probably due to a subgenre imbalance rather than an effect of the time period.</p>
+                    <p>Figure 5 shows that only the ratios for the 1850s and the 1880s have a
+                        significantly differing level. However, because the decades do not have
+                        perfectly balanced subgenre proportions, this is probably due to a subgenre
+                        imbalance rather than an effect of the time period.</p>
                     <p>
                         <figure>
                             <graphic url="132/10000201000007CF000003425305A9FB545D67A0.png"/>
-                            <head>Figure 5: Distribution (left) and significance (right) of direct to non-direct speech ratios across five decades</head>
+                            <head>Figure 5: Distribution (left) and significance (right) of direct
+                                to non-direct speech ratios across five decades</head>
                         </figure>
                     </p>
                 </div>
             </div>
             <div type="div1" rend="DH-Heading1">
                 <head>
-                    <anchor xml:id="id_h.knm7ich2oh04"/>Conclusions and Future Work
-                </head>
-                <p>Using a wide range of linguistic markers allows the reliable identification of direct speech, even in the absence of clear typographic markers. Performance is excellent to good (F1-score of 0.94 on the gold standard, weighted average success rate of 0.844 on unseen texts). Using our method reveals that nineteenth-century French novels contain a large proportion of sentences with direct speech (61% on average). Also, there are previously unseen differences in direct speech proportion for subgenre, but not for time period.</p>
-                <p>For future work, we plan to use several strategies to improve performance. One is to add more sequential information to our set of features. Examples include the position, inside a sentence, of certain lexical or typographical features as well as linguistic cues preceding and following direct speech. Also, we plan to expand our corpus to make it more balanced in terms of genres and decades. This will allow us to discover genre-related patterns of interest to literary historians in a more reliable manner and assess their significance with more confidence.</p>
+                    <anchor xml:id="id_h.knm7ich2oh04"/>Conclusions and Future Work </head>
+                <p>Using a wide range of linguistic markers allows the reliable identification of
+                    direct speech, even in the absence of clear typographic markers. Performance is
+                    excellent to good (F1-score of 0.94 on the gold standard, weighted average
+                    success rate of 0.844 on unseen texts). Using our method reveals that
+                    nineteenth-century French novels contain a large proportion of sentences with
+                    direct speech (61% on average). Also, there are previously unseen differences in
+                    direct speech proportion for subgenre, but not for time period.</p>
+                <p>For future work, we plan to use several strategies to improve performance. One is
+                    to add more sequential information to our set of features. Examples include the
+                    position, inside a sentence, of certain lexical or typographical features as
+                    well as linguistic cues preceding and following direct speech. Also, we plan to
+                    expand our corpus to make it more balanced in terms of genres and decades. This
+                    will allow us to discover genre-related patterns of interest to literary
+                    historians in a more reliable manner and assess their significance with more
+                    confidence.</p>
             </div>
             <div type="div1" rend="DH-Heading1">
                 <head>Supplementary material</head>
-                <p>Supplementary material can be found at: https://github.com/cligs/projects/tree/master/2016/dh.</p>
+                <p>Supplementary material can be found at:
+                    https://github.com/cligs/projects/tree/master/2016/dh.</p>
             </div>
             <div type="div1" rend="DH-Heading1">
                 <head>Annex A: Features used</head>
@@ -1229,66 +1354,70 @@
                 <listBibl>
                     <head>Bibliography</head>
                     <bibl>
-                        <hi rend="bold">Allison, S., Heuser, R., Jockers, M. L., Moretti, F. and Witmore, M.</hi> (2011). 
-                        <hi rend="italic">Quantitative Formalism: An Experiment (Stanford Literary Lab, Pamphlet 1)</hi>. Stanford: Standford Literary Lab.
+                        <hi rend="bold">Allison, S., Heuser, R., Jockers, M. L., Moretti, F. and
+                            Witmore, M.</hi> (2011). <hi rend="italic">Quantitative Formalism: An
+                            Experiment (Stanford Literary Lab, Pamphlet 1)</hi>. Stanford: Standford
+                        Literary Lab. </bibl>
+                    <bibl>
+                        <hi rend="bold">Breiman, L.</hi> (2001). Random Forests. <hi rend="italic"
+                            >Machine Learning</hi>, <hi rend="bold">45</hi>(1): 5–32. </bibl>
+                    <bibl>
+                        <hi rend="bold">Brunner, A.</hi> (2015). <hi rend="italic">Automatische
+                            Erkennung von Redewiedergabe: Ein Beitrag Zur Quantitativen
+                            Narratologie</hi>. (Narratologia: Contibutions to Narrative Theory Band
+                        47). Berlin; Boston: De Gruyter. </bibl>
+                    <bibl>
+                        <hi rend="bold">Chang, C.-C. and Lin, C.-J.</hi> (2011). LIBSVM: A library
+                        for support vector machines. <hi rend="italic">ACM Transactions on
+                            Intelligent Systems and Technology</hi>, <hi rend="bold">2</hi>(3):
+                        1-27. </bibl>
+                    <bibl>
+                        <hi rend="bold">Cohen, W. W.</hi> (1995). Fast Effective Rule Induction. <hi
+                            rend="italic">Twelfth International Conference on Machine Learning</hi>.
+                        Morgan Kaufmann, pp. 115–23. </bibl>
+                    <bibl>
+                        <hi rend="bold">Durrer, S.</hi> (1994). <hi rend="italic">Le dialogue
+                            romanesque. Style et structure</hi>. Geneva: Droz. </bibl>
+                    <bibl>
+                        <hi rend="bold">Elson, D. K. and McKeown, K. R.</hi> (2010). Automatic
+                        Attribution of Quoted Speech in Literary Narrative. <hi rend="italic"
+                            >Proceedings of the Twenty-Fourth AAAI Conference on Artificial
+                            Intelligence</hi> (AAAI-10). </bibl>
+                    <bibl>
+                        <hi rend="bold">Genette, G.</hi> (1980). <hi rend="italic">Narrative
+                            Discourse. An Essay in Method</hi>. Oxford: Blackwell. </bibl>
+                    <bibl>
+                        <hi rend="bold">Iosif, E. and Mishra, T.</hi> (2014). From Speaker
+                        Identification to Affective Analysis: A Multi-Step System from Analyzing
+                        Children Stories. <hi rend="italic">Proceedings of the Third Workshop on
+                            Computational Linguistics for Literature</hi>, pp. 40–49. </bibl>
+                    <bibl>
+                        <hi rend="bold">John, G. H. and Langley, P.</hi> (1995). Estimating
+                        Continuous Distributions in Bayesian Classifiers. <hi rend="italic">Eleventh
+                            Conference on Uncertainty in Artificial Intelligence</hi>. San Mateo:
+                        Morgan Kaufmann, pp. 338–45. </bibl>
+                    <bibl>
+                        <hi rend="bold">Krestel, R., Bergler, S. and Witte, R.</hi> (2008). Minding
+                        the Source: Automatic Tagging of Reported Speech in Newspaper Articles. <hi
+                            rend="italic">ELRA, Proceedings of the Sixth International Language
+                            Resources and Evaluation Conference</hi>. </bibl>
+                    <bibl>
+                        <hi rend="bold">Leech, G. N. and Short, M.</hi> (1981). <hi rend="italic"
+                            >Style in Fiction: A Linguistic Introduction to English Fictional
+                            Prose</hi>. London; New York: Longman. </bibl>
+                    <bibl>
+                        <hi rend="bold">McCallum, A. K.</hi> (2002). MALLET: A Machine Learning for
+                        Language Toolkit. </bibl>
+                    <bibl>
+                        <hi rend="bold">Sarmento, L. and Nunes, S.</hi> (2009). Automatic Extraction
+                        of Quotes and Topics from News Feeds. <hi rend="italic">Proceedings of
+                            DSIE’09 - 4th Doctoral Symposium of Informatics Engineering.</hi>
                     </bibl>
                     <bibl>
-                        <hi rend="bold">Breiman, L.</hi> (2001). Random Forests. 
-                        <hi rend="italic">Machine Learning</hi>, 
-                        <hi rend="bold">45</hi>(1): 5–32.
-                    </bibl>
-                    <bibl>
-                        <hi rend="bold">Brunner, A.</hi> (2015). 
-                        <hi rend="italic">Automatische Erkennung von Redewiedergabe: Ein Beitrag Zur Quantitativen Narratologie</hi>. (Narratologia: Contibutions to Narrative Theory Band 47). Berlin; Boston: De Gruyter.
-                    </bibl>
-                    <bibl>
-                        <hi rend="bold">Chang, C.-C. and Lin, C.-J.</hi> (2011). LIBSVM: A library for support vector machines. 
-                        <hi rend="italic">ACM Transactions on Intelligent Systems and Technology</hi>, 
-                        <hi rend="bold">2</hi>(3): 1-27.
-                    </bibl>
-                    <bibl>
-                        <hi rend="bold">Cohen, W. W.</hi> (1995). Fast Effective Rule Induction. 
-                        <hi rend="italic">Twelfth International Conference on Machine Learning</hi>. Morgan Kaufmann, pp. 115–23.
-                    </bibl>
-                    <bibl>
-                        <hi rend="bold">Durrer, S.</hi> (1994). 
-                        <hi rend="italic">Le dialogue romanesque. Style et structure</hi>. Geneva: Droz.
-                    </bibl>
-                    <bibl>
-                        <hi rend="bold">Elson, D. K. and McKeown, K. R.</hi> (2010). Automatic Attribution of Quoted Speech in Literary Narrative. 
-                        <hi rend="italic">Proceedings of the Twenty-Fourth AAAI Conference on Artificial Intelligence</hi> (AAAI-10).
-                    </bibl>
-                    <bibl>
-                        <hi rend="bold">Genette, G.</hi> (1980). 
-                        <hi rend="italic">Narrative Discourse. An Essay in Method</hi>. Oxford: Blackwell.
-                    </bibl>
-                    <bibl>
-                        <hi rend="bold">Iosif, E. and Mishra, T.</hi> (2014). From Speaker Identification to Affective Analysis: A Multi-Step System from Analyzing Children Stories. 
-                        <hi rend="italic">Proceedings of the Third Workshop on Computational Linguistics for Literature</hi>, pp. 40–49.
-                    </bibl>
-                    <bibl>
-                        <hi rend="bold">John, G. H. and Langley, P.</hi> (1995). Estimating Continuous Distributions in Bayesian Classifiers. 
-                        <hi rend="italic">Eleventh Conference on Uncertainty in Artificial Intelligence</hi>. San Mateo: Morgan Kaufmann, pp. 338–45.
-                    </bibl>
-                    <bibl>
-                        <hi rend="bold">Krestel, R., Bergler, S. and Witte, R.</hi> (2008). Minding the Source: Automatic Tagging of Reported Speech in Newspaper Articles. 
-                        <hi rend="italic">ELRA, Proceedings of the Sixth International Language Resources and Evaluation Conference</hi>.
-                    </bibl>
-                    <bibl>
-                        <hi rend="bold">Leech, G. N. and Short, M.</hi> (1981). 
-                        <hi rend="italic">Style in Fiction: A Linguistic Introduction to English Fictional Prose</hi>. London; New York: Longman.
-                    </bibl>
-                    <bibl>
-                        <hi rend="bold">McCallum, A. K.</hi> (2002). MALLET: A Machine Learning for Language Toolkit.
-                    </bibl>
-                    <bibl>
-                        <hi rend="bold">Sarmento, L. and Nunes, S.</hi> (2009). Automatic Extraction of Quotes and Topics from News Feeds. 
-                        <hi rend="italic">Proceedings of DSIE’09 - 4th Doctoral Symposium of Informatics Engineering.</hi>
-                    </bibl>
-                    <bibl>
-                        <hi rend="bold">Weiser, S. and Watrin, P.</hi> (2012). Extraction of Unmarked Quotations in Newspapers. 
-                        <hi rend="italic">Proceedings of the Eight International Conference on Language Resources and Evaluation</hi>.
-                    </bibl>
+                        <hi rend="bold">Weiser, S. and Watrin, P.</hi> (2012). Extraction of
+                        Unmarked Quotations in Newspapers. <hi rend="italic">Proceedings of the
+                            Eight International Conference on Language Resources and
+                        Evaluation</hi>. </bibl>
                 </listBibl>
             </div>
         </back>
