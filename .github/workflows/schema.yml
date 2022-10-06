@@ -19,15 +19,19 @@ jobs:
       with:
         java-version: '11'
         distribution: 'adopt'
+    - name: Convert odd to odd including software list
+      run: |
+       sudo bash utilities/odd2oddSoftwareList.sh
     - name: Convert odd to rng schema
       run: |
        sudo bash utilities/odd2rng.sh
-    - name: Commit file
+    - name: Commit files
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
+        git add schema/tei_software_annotation.xml
         git add schema/tei_software_annotation.rng
-        git commit -m "Add generated rng from odd"
+        git commit -m "Add updated odd and generated rng"
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
