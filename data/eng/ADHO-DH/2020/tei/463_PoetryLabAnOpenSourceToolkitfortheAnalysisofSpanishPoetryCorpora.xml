@@ -121,60 +121,83 @@
                     <rs type="software" key="spacy-affixes" ana="#URL">spacy-affixes</rs>,2 splits
                 words with affixes before assigning PoS [20], and can be plugged in to a regular <rs
                     type="software" key="spaCy" ana="#Name.Only">spaCy</rs> pipeline loading one of
-                the statistical models for Spanish. This pipeline is the foundation for Rantanplan
-                and JollyJumper, which are rule-based algorithms inspired by R&#237;os Mestre [25],
-                Caparr&#243;s [5] and Navarro Tom&#225;s [24], and Quilis [22] and Spang [23],
+                the statistical models for Spanish. This pipeline is the foundation for <rs
+                    type="software" key="Rantanplan" ana="#Name.Only">Rantanplan</rs> and <rs
+                    type="software" key="JollyJumper" ana="#Name.Only">JollyJumper</rs>, which are
+                rule-based algorithms inspired by <rs type="software" key="Mestre_1998"
+                    ana="#Bib.Ref">R&#237;os Mestre</rs> [25], Caparr&#243;s [5] and Navarro
+                Tom&#225;s [24], and Quilis [22] and Spang [23],
                 respectively.</p><p>[delarosa_463_figure1.tiff]</p><p>Figure 1. General architecture
-                of PoetryLab.</p><p>Following the OpenAPI specification, we defined a REST API that
-                unified the internal interface of the different packages and provided a common
-                endpoint for analysis.3 For external packages developed in languages other than
-                Python, PoetryLab provides a pluggable architecture that allows their integration.
-                This is the case for our named entity recognition system, HisMeTag [17], developed
-                in Java and connected to the PoetryLab API through an internal REST API. The only
-                requirement for third-party integrations is to consume text and produce both JSON
-                and RDF triples.</p><p>The PoetryLab API was then used to provide with functionality
-                a React-based web interface that non-technical scholars can use to interact with the
-                packages in a graphical way (see Figure 2). The frontend also allows downloading the
-                generated data.</p><p/><p>[delarosa_463_figure1.tiff]</p><p>Figure 2. PoetryLab
-                showing stressed syllables (blue), sinalefas (?) and enjambments
-                (?).</p><p>Results</p><p>One notably difficult aspect of benchmarking automated
-                analysis of Spanish poetry is the lack of a gold standard reference corpus. For the
-                evaluation of the syllabification algorithm in PoetryLab we build a 100k words
-                corpus using a combination of online resources,4 which we named EDFU and are
-                releasing under a Creative Commons license.5 For metrical analysis we used
+                of <rs type="software" key="PoetryLab" ana="#Name.Only"
+                >PoetryLab</rs>.</p><p>Following the OpenAPI specification, we defined a <rs
+                    type="software" key="PoetryLab" ana="#URL">REST API</rs> that unified the
+                internal interface of the different packages and provided a common endpoint for
+                analysis.3 For external packages developed in languages other than <rs
+                    type="software" key="Python" ana="#Name.Only">Python</rs>, <rs type="software"
+                    key="PoetryLab" ana="#Name.Only">PoetryLab</rs> provides a pluggable
+                architecture that allows their integration. This is the case for our named entity
+                recognition system, <rs type="software" key="HisMeTag" ana="#Bib.Ref">HisMeTag</rs>
+                [17], developed in <rs type="software" key="Java" ana="#Name.Only">Java</rs> and
+                connected to the <rs type="software" key="PoetryLab" ana="#Name.Only">PoetryLab
+                    API</rs> through an internal REST API. The only requirement for third-party
+                integrations is to consume text and produce both JSON and RDF triples.</p><p>The <rs
+                    type="software" key="PoetryLab" ana="#Name.Only">PoetryLab API</rs> was then
+                used to provide with functionality a <rs type="software" key="React"
+                    ana="#Name.Only">React</rs>-based web interface that non-technical scholars can
+                use to interact with the packages in a graphical way (see Figure 2). The frontend
+                also allows downloading the generated
+                data.</p><p/><p>[delarosa_463_figure1.tiff]</p><p>Figure 2. <rs type="software"
+                    key="PoetryLab" ana="#Name.Only">PoetryLab</rs> showing stressed syllables
+                (blue), sinalefas (?) and enjambments (?).</p><p>Results</p><p>One notably difficult
+                aspect of benchmarking automated analysis of Spanish poetry is the lack of a gold
+                standard reference corpus. For the evaluation of the syllabification algorithm in
+                    <rs type="software" key="PoetryLab" ana="#Name.Only">PoetryLab</rs> we build a
+                100k words corpus using a combination of online resources,4 which we named EDFU and
+                are releasing under a Creative Commons license.5 For metrical analysis we used
                 Navarro-Colorado&#8217;s corpus [21]. For mixed-metre we are using our own copus
                 obtained from Carjaval&#8217;s annotated anthology [11].6 Unfortunately, we have not
                 found a public corpus for rhyme and stanza identification yet, and although an
                 enjambment corpus seems to exist [18], it is not publicly available.</p><p>Table 1
                 shows the ratio of success extracting the list of syllables of the words in EDFU,
-                and the correct metrical analysis for the different corpora and tools. Notably,
-                PoetryLab achieves state of the art performance for syllabification and per line
-                metrical analysis.7 We were unable to reproduce Gerv&#225;s&#8217; approach and are
-                reporting their own ratios.</p><p>Syllabification (EDFU)</p>PoetryLab (rantanplan):
-            99.98Navarro-Colorado: 98.74Agirrezabal: 98.06<p>Metrical patterns
-            (fixed-metre)</p>PoetryLab (rantanplan):
-                96.22Navarro-Colorado:94.44Gerv&#225;s:88.73Agirrezabal:90.84<p>Metrical pattern
-                (mixed-metre)</p>PoetryLab (rantanplan): 65.02Navarro-Colorado:49.38<p>Table 1.
-                Summary of results of PoetryLab performance.</p><p>Discussion</p><p>Although at an
-                early stage, PoetryLab has proven useful in that it highlights some issues with the
-                existing corpora and techniques developed to this day. First, there was no
-                alternative system to analyze poetry composed of other than hendecasyllables, for
-                which we are using a corpus of mixed-metre poetry based on Carvajal&#8217;s original
-                annotations. Moreover, we are contributing with a new corpora to evaluate
-                syllabification procedures, and enriching the ecosystem of Python tools for Spanish
-                by providing a spaCy pipeline that deals with clitics. Finally, we make the data
-                produced by the PoetryLab machine readable, interoperable, and ready to be ingested
-                into a triple store compliant with the POSTDATA Project network of
-                ontologies.</p><p>Eventually, PoetryLab will be integrated into the larger POSTDATA
-                Project public website, making working with European repositories of poetry a more
-                pleasant task, and assisting whenever possible with the metrical and rhetorical side
-                of the analysis.</p><p>Founding Source</p><p>Research for this paper has been
-                achieved thanks to the Starting Grant research project Poetry Standardization and
-                Linked Open Data: POSTDATA (ERC-2015-STG-679528) obtained by Elena
-                Gonz&#225;lez-Blanco. This project is funded by the European Research Council
-                (https://erc.europa.eu) (ERC) under the research and innovation program Horizon2020
-                of the European Union.</p><p>Notes</p>See
-            https://github.com/linhd-postdata/rantanplan and
+                and the correct metrical analysis for the different corpora and tools. Notably, <rs
+                    type="software" key="PoetryLab" ana="#Name.Only">PoetryLab</rs> achieves state
+                of the art performance for syllabification and per line metrical analysis.7 We were
+                unable to reproduce Gerv&#225;s&#8217; approach and are reporting their own
+                ratios.</p><p>Syllabification (EDFU)</p>PoetryLab (rantanplan):
+            99.98Navarro-Colorado: 98.74Agirrezabal: 98.06<p>Metrical patterns (fixed-metre)</p><rs
+                type="software" key="PoetryLab" ana="#Name.Only">PoetryLab</rs> (<rs type="software"
+                key="Rantanplan" ana="#Name.Only">rantanplan</rs>): 96.22<rs type="software"
+                key="Navarro-Colorado_2017" ana="#Name.Only">Navarro-Colorado</rs>:94.44<rs
+                type="software" key="Gervas_2000" ana="#Name.Only">Gerv&#225;s</rs>:88.73<rs
+                type="software" key="Agirrezabal-et-al_2017" ana="#Name.Only"
+                >Agirrezabal</rs>:90.84<p>Metrical pattern (mixed-metre)</p><rs type="software"
+                key="PoetryLab" ana="#Name.Only">PoetryLab</rs> (<rs type="software"
+                key="Rantanplan" ana="#Name.Only">rantanplan</rs>): 65.02<rs type="software"
+                key="Navarro-Colorado_2017" ana="#Name.Only">Navarro-Colorado</rs>:49.38<p>Table 1.
+                Summary of results of <rs type="software" key="PoetryLab" ana="#Name.Only"
+                    >PoetryLab</rs> performance.</p><p>Discussion</p><p>Although at an early stage,
+                    <rs type="software" key="PoetryLab" ana="#Name.Only">PoetryLab</rs> has proven
+                useful in that it highlights some issues with the existing corpora and techniques
+                developed to this day. First, there was no alternative system to analyze poetry
+                composed of other than hendecasyllables, for which we are using a corpus of
+                mixed-metre poetry based on Carvajal&#8217;s original annotations. Moreover, we are
+                contributing with a new corpora to evaluate syllabification procedures, and
+                enriching the ecosystem of <rs type="software" key="Python" ana="#Name.Only"
+                    >Python</rs> tools for Spanish by providing a <rs type="software" key="spaCy"
+                    ana="#Name.Only">spaCy</rs> pipeline that deals with clitics. Finally, we make
+                the data produced by the <rs type="software" key="PoetryLab" ana="#Name.Only"
+                    >PoetryLab</rs> machine readable, interoperable, and ready to be ingested into a
+                triple store compliant with the POSTDATA Project network of
+                ontologies.</p><p>Eventually, <rs type="software" key="PoetryLab" ana="#Name.Only"
+                    >PoetryLab</rs> will be integrated into the larger POSTDATA Project public
+                website, making working with European repositories of poetry a more pleasant task,
+                and assisting whenever possible with the metrical and rhetorical side of the
+                analysis.</p><p>Founding Source</p><p>Research for this paper has been achieved
+                thanks to the Starting Grant research project Poetry Standardization and Linked Open
+                Data: POSTDATA (ERC-2015-STG-679528) obtained by Elena Gonz&#225;lez-Blanco. This
+                project is funded by the European Research Council (https://erc.europa.eu) (ERC)
+                under the research and innovation program Horizon2020 of the European
+                Union.</p><p>Notes</p>See https://github.com/linhd-postdata/rantanplan and
             https://github.com/linhd-postdata/jollyjumperSee
             https://github.com/linhd-postdata/spacy-affixesSee http://postdata.uned.es:5000/ui/See
             https://educalingo.com, https://dirae.es/, and https://www.fundeu.es/See
@@ -182,8 +205,10 @@
             were unsuitable for the task since their metrical information was nonexistent or
             completely computer generated.This distinction only makes sense in Agirrezabal&#8217;s
             approach since his neural networks were built independently to accommodate per line or
-            per syllable inputs<p>Tables for this paper were created using the next Notebook:
-                https://github.com/linhd-postdata/poetrylab-dh2020</p><p>Bibliography</p><p>[1]
+            per syllable inputs<p>Tables for this paper were created using the next <rs
+                    type="software" key="Jupyter_Notebook" ana="#Name.Only">Notebook</rs>: <rs
+                    type="software" key="PoetryLab" ana="#URL"
+                    >https://github.com/linhd-postdata/poetrylab-dh2020</rs></p><p>Bibliography</p><p>[1]
                 Francis, Norbert. Bilingual and Multicultural Perspectives on Poetry, Music, and
                 Narrative: The Science of Art. Lexington Books, 2017.</p><p>[2] Poetry
                 Standardization and Linked Open Data (POSTDATA) Project. European Research Council
