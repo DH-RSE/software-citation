@@ -108,8 +108,8 @@
 				<p>We used two tools to create language-and even document- specific recognition
 					patterns (or so-called models) to recognize printed Coptic texts. Coptic is the
 					last stage of the pre-Arabic, indigenous Egyptian language. It was used to
-					create a rich and unique body of literature: monastic, "Gnostic," Manichaean,
-					magical and medical texts, hagiographies, and biblical and patristic
+					create a rich and unique body of literature: monastic, &quot;Gnostic,&quot;
+					Manichaean, magical and medical texts, hagiographies, and biblical and patristic
 					translations. We found that Coptic texts have properties which make them
 					excellent candidates for reading by computers. The characters can easily be
 					distinguished due to their limited number and the fact that almost all the
@@ -126,26 +126,28 @@
 						type="bibr">Springman et al.(2014)</ref> presented the first complete
 					approach containing all major steps for historical Greek and Latin books.</p>
 				<p>The first OCR results for printed Coptic texts were achieved by Mekhaiel (see
-					Moheb's Coptic Pages) by using Tesseract to create a model for Coptic texts.
-					Tesseract assumes that the image was printed with a standardized font. Although
-					it can be trained to use many different fonts, creating a general model that
-					would satisfy scholars is not feasible. In the end, this model is sufficient for
-					pure printed Coptic texts, but creates a lot of noise for texts with mixed
-					languages or annotations. Such drawbacks can be easily overcome by checking
-					against a dictionary, but historical languages often do not have a dictionary
-					that could be considered complete, and the texts might only be fragments that
-					require further analysis.</p>
+					Moheb&apos;s Coptic Pages) by using <rs type="software">Tesseract</rs> to create
+					a model for Coptic texts. <rs type="software">Tesseract</rs> assumes that the
+					image was printed with a standardized font. Although it can be trained to use
+					many different fonts, creating a general model that would satisfy scholars is
+					not feasible. In the end, this model is sufficient for pure printed Coptic
+					texts, but creates a lot of noise for texts with mixed languages or annotations.
+					Such drawbacks can be easily overcome by checking against a dictionary, but
+					historical languages often do not have a dictionary that could be considered
+					complete, and the texts might only be fragments that require further
+					analysis.</p>
 				<p>The recognition itself is performed by either Ocropy <ref type="bibr"
-						target="#b7">(Breuel, 2008)</ref> or Tesseract. Potentially, all
-					character-based texts can be recognized. However, even though Mekhaiel provided
-					a Coptic model for Tesseract, we were never able to achieve satisfying results
-					on images which were not pre-processed.</p>
+						target="#b7">(Breuel, 2008)</ref> or <rs type="software">Tesseract</rs>.
+					Potentially, all character-based texts can be recognized. However, even though
+					Mekhaiel provided a Coptic model for <rs type="software">Tesseract</rs>, we were
+					never able to achieve satisfying results on images which were not
+					pre-processed.</p>
 			</div>
 			<div xmlns="http://www.tei-c.org/ns/1.0">
 				<head>Data Used</head>
 				<p>For training and testing, an expert on Coptic created a clean version and
-					transcription of Kuhn's 1956 edition "Letters and sermons of Besa." This will
-					also be made available to the interested public.</p>
+					transcription of Kuhn&apos;s 1956 edition &quot;Letters and sermons of
+					Besa.&quot; This will also be made available to the interested public.</p>
 				<p>Besa is a fifth-century abbot of a monastery in Upper Egypt and Coptic writer,
 					whose literary legacy consists mainly of letters to monks and nuns on questions
 					of monastic life and discipline.</p>
@@ -169,13 +171,14 @@
 					bad image quality, and annotations like line numbers increase the complexity of
 					documents as well. We, therefore, created special pages with reduced complexity.
 					Our original pages were stripped offline numbering and footnote annotations. In
-					the "clean" version, all foreign characters, punctuations and annotations inside
-					the text were removed, leaving us with a pure Coptic text. We further stripped
-					all clean versions of superlinear strokes, giving us the simplified version. For
-					testing, the selected pages were transcribed with corresponding 'original',
-					'clean' and 'clean without stroke or simplified' ground truths. All results were
-					compared with 'Ocreval' (Baumann 2014) <ref type="bibr">[9]</ref> against the
-					ground truth.</p>
+					the &quot;clean&quot; version, all foreign characters, punctuations and
+					annotations inside the text were removed, leaving us with a pure Coptic text. We
+					further stripped all clean versions of superlinear strokes, giving us the
+					simplified version. For testing, the selected pages were transcribed with
+					corresponding &apos;original&apos;, &apos;clean&apos; and &apos;clean without
+					stroke or simplified&apos; ground truths. All results were compared with
+					&apos;Ocreval&apos; (Baumann 2014) <ref type="bibr">[9]</ref> against the ground
+					truth.</p>
 				<formula xml:id="formula_0">(i)</formula>
 			</div>
 			<div xmlns="http://www.tei-c.org/ns/1.0">
@@ -183,21 +186,23 @@
 			</div>
 			<div xmlns="http://www.tei-c.org/ns/1.0">
 				<head>Prediction</head>
-				<p>Mekhaiel's original Tesseract model produced the best results on simplified pages
-					with an accuracy of ~95%, while our Ocropy model performed better on the more
-					complex pages. On the other hand, the Tesseract tends to produce predictable
-					errors. Character ϣ will, for example, always be recognised as 񮽙 ; while,
-					Ocropy produces unpredictable errors. Although our Ocropy model is less accurate
-					on simplified pages, it surpasses Tesseract on noisier pages. We measured that a
-					skilled person needs roughly 10 minutes for manual transcription and 5
-					additional minutes for proofreading per page. Ocropy's models are built on top
-					of transcribed images. Therefore, an initial ground truth is always required.
-					Training with Ocropy does not require further human interaction but consumes up
-					to two days of CPU power (Core i3/5 2.4GHz/3.2GHz, 8GB RAM, SSD), training
-					cannot be run in parallel. Tesseract's training process, on the other hand,
-					depends on the font extraction. We do not have enough data to estimate the time
-					required to extract a font from an image. Both predictions still have to be
-					checked manually, which can take up to 5 minutes. With clean pages and reduced
+				<p>Mekhaiel&apos;s original <rs type="software">Tesseract</rs> model produced the
+					best results on simplified pages with an accuracy of ~95%, while our Ocropy
+					model performed better on the more complex pages. On the other hand, the <rs
+						type="software">Tesseract</rs> tends to produce predictable errors.
+					Character ϣ will, for example, always be recognised as 񮽙 ; while, Ocropy
+					produces unpredictable errors. Although our Ocropy model is less accurate on
+					simplified pages, it surpasses <rs type="software">Tesseract</rs> on noisier
+					pages. We measured that a skilled person needs roughly 10 minutes for manual
+					transcription and 5 additional minutes for proofreading per page. Ocropy&apos;s
+					models are built on top of transcribed images. Therefore, an initial ground
+					truth is always required. Training with Ocropy does not require further human
+					interaction but consumes up to two days of CPU power (Core i3/5 2.4GHz/3.2GHz,
+					8GB RAM, SSD), training cannot be run in parallel. <rs type="software"
+						>Tesseract</rs>&apos;s training process, on the other hand, depends on the
+					font extraction. We do not have enough data to estimate the time required to
+					extract a font from an image. Both predictions still have to be checked
+					manually, which can take up to 5 minutes. With clean pages and reduced
 					proofreading time per page, <ref type="figure">Fig. 4</ref> shows an optimal OCR
 					workload reduction (red lines) in comparison to manual transcription (yellow
 					line). A more realistic scenario is mentioned in the discussion.</p>
@@ -207,18 +212,19 @@
 			</div>
 			<div xmlns="http://www.tei-c.org/ns/1.0">
 				<head>Discussion</head>
-				<p>Our result shows that Tesseract outperforms Ocropy on simplified pages in terms
-					of accuracy and amount of human work. Unfortunately, in a realistic scenario,
-					the pictures will always contain some of the previously described complexities.
-					Pre-processing of the data is, therefore, essential to obtain good results. In
-						<ref type="figure">Figure 4</ref>, we also computed a more realistic
-					scenario (blue lines) with a higher workload on pre-processing for Tesseract. It
-					shows that creating an Ocropy model pays off for larger and more complex
-					document sets.</p>
-				<p>Tesseract's overall acceptable performance is based on the fact that no model has
-					to be trained. As creating and testing a model can consume more time than manual
-					transcription and proofreading, the creation of clean images might still be less
-					efficient than the manual approach even if a model can be reused.</p>
+				<p>Our result shows that <rs type="software">Tesseract</rs> outperforms Ocropy on
+					simplified pages in terms of accuracy and amount of human work. Unfortunately,
+					in a realistic scenario, the pictures will always contain some of the previously
+					described complexities. Pre-processing of the data is, therefore, essential to
+					obtain good results. In <ref type="figure">Figure 4</ref>, we also computed a
+					more realistic scenario (blue lines) with a higher workload on pre-processing
+					for <rs type="software">Tesseract</rs>. It shows that creating an Ocropy model
+					pays off for larger and more complex document sets.</p>
+				<p><rs type="software">Tesseract</rs>&apos;s overall acceptable performance is based
+					on the fact that no model has to be trained. As creating and testing a model can
+					consume more time than manual transcription and proofreading, the creation of
+					clean images might still be less efficient than the manual approach even if a
+					model can be reused.</p>
 				<p>As long as cleaned images images are one of the desired results, our works shows
 					that the workload can be reduced by half. This applies especially to Ocropy,
 					since ground truth creation and training fit into the normal transcription
@@ -239,7 +245,7 @@
 					accuracy, further gains can only be achieved by better pre- and post-processing
 					techniques.</p>
 				<p>A bigger workload reduction can be achieved by model reuse. However, no Coptic
-					OCR models have been published besides Mekhaiel's. Therefore, we highly
+					OCR models have been published besides Mekhaiel&apos;s. Therefore, we highly
 					recommend publishing models alongside the transcription and suggest that it is
 					possible to predict almost all well-preserved texts.</p>
 				<p>Also, although our model was able to partially predict multilingual texts,
@@ -473,7 +479,8 @@
 
 					<biblStruct xml:id="b5">
 						<monogr>
-							<title level="m" type="main">Tesseract OCR</title>
+							<title level="m" type="main"><rs type="software">Tesseract</rs>
+								OCR</title>
 							<imprint/>
 						</monogr>
 					</biblStruct>

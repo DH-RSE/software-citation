@@ -101,7 +101,7 @@
 					the way a search engine identifies pages <ref type="bibr" target="#b5"
 						>(Geerthik, 2013)</ref>. Lastly, blog spam can contain link spam, which
 					spams a URL on a victim page to increase the inserted URLs search engine
-					ranking. Overall, blog spam weakens search engines' model of the Internet
+					ranking. Overall, blog spam weakens search engines&apos; model of the Internet
 					popularity distribution. Much academic and industrial effort has been spent to
 					detect, filter, and deter spam <ref type="bibr">(Dinh, 2013)</ref>, <ref
 						type="bibr" target="#b12">(Spirin and Han, 2012)</ref>.</p>
@@ -141,14 +141,15 @@
 				<head>Experimental Design</head>
 				<p>In order to classify linguistic similarity and differences in botnets, we
 					implement 3 honeypots to gather samples of blog spam. We configure our honeypots
-					identically using the Drupal content management systems (CMS) as shown in <ref
-						type="figure" target="#fig_0">Figure 1</ref>. Our honeypots are identical
-					except for the content of their first post and their domain name. Ggjx.org is
-					fashion themed, npcagent.com is sports themed, and gjams.com is pharmaceutical
-					themed. We combine the data collected from Drupal with the Apache server logs
-						<ref type="bibr">(Apache, 2016)</ref> to allow for content analysis of data
-					collected over 42 days. To allow botnets time to discover the honeypots, we
-					activate the honeypots at least 6-weeks before data collection.</p>
+					identically using the <rs type="software">Drupal</rs> content management systems
+					(CMS) as shown in <ref type="figure" target="#fig_0">Figure 1</ref>. Our
+					honeypots are identical except for the content of their first post and their
+					domain name. Ggjx.org is fashion themed, npcagent.com is sports themed, and
+					gjams.com is pharmaceutical themed. We combine the data collected from <rs
+						type="software">Drupal</rs> with the Apache server logs <ref type="bibr"
+						>(Apache, 2016)</ref> to allow for content analysis of data collected over
+					42 days. To allow botnets time to discover the honeypots, we activate the
+					honeypots at least 6-weeks before data collection.</p>
 				<p>We generate three tables of content for each honeypot <ref type="bibr"
 						target="#b1">(Bevans and Khosmood, 2016</ref>). In the user table, we record
 					the information the spambot enters while registering and user login statistics
@@ -156,12 +157,12 @@
 					includes the user id, username, password, date of registration, registration IP,
 					and number of logins. In the content table, we record the content of spam posts
 					and comments which we summarize in Table 2. This includes the blog node id, the
-					author's unique id, the date posted, the number of hits, type of post, title of
-					the post, text of the post, links in the post, language of the post, and a
-					taxonomy of the post from IBM's Alchemy API. Lastly, in the access table, we
-					include data and meta-data from the Apache logs. This includes the user id, the
-					access IP, the URL, the HTTP request type, the node ID, and an action keyword
-					describing the type of access.</p>
+					author&apos;s unique id, the date posted, the number of hits, type of post,
+					title of the post, text of the post, links in the post, language of the post,
+					and a taxonomy of the post from IBM&apos;s Alchemy API. Lastly, in the access
+					table, we include data and meta-data from the Apache logs. This includes the
+					user id, the access IP, the URL, the HTTP request type, the node ID, and an
+					action keyword describing the type of access.</p>
 				<p>Our honeypots received a total of 1.1 million requests for ggjx, 481 thousand
 					requests for gjams, and 591 thousand requests for npcagent.</p>
 			</div>
@@ -196,24 +197,24 @@
 					with the remaining 30% of the posts. Our final results are the average of three
 					runs.</p>
 				<p>The first feature set we test is Bag Of Words (BoW) which models the lexical
-					content of posts. Put simply, each word in a document is put into a 'bag' and
-					the syntactic structure is discarded. For implementation details, see our
-					technical report <ref type="bibr" target="#b2">(Bevans, 2016)</ref>. In <ref
-						type="figure" target="#fig_1">Figure 2</ref>, we show our analysis of the
-					BoW feature set.</p>
+					content of posts. Put simply, each word in a document is put into a
+					&apos;bag&apos; and the syntactic structure is discarded. For implementation
+					details, see our technical report <ref type="bibr" target="#b2">(Bevans,
+						2016)</ref>. In <ref type="figure" target="#fig_1">Figure 2</ref>, we show
+					our analysis of the BoW feature set.</p>
 				<p>When considering the top 5 contributing entities, the classification accuracy is
 					less than 95% which implies that the lexical content of botnets varies greatly.
-					The second feature we consider is the taxonomy provided by IBM Watson's
-					AlchemyAPI. Alchemy's output is a list of taxonomy labels and associated
+					The second feature we consider is the taxonomy provided by IBM Watson&apos;s
+					AlchemyAPI. Alchemy&apos;s output is a list of taxonomy labels and associated
 					confidences. For the purpose of our analysis, we discard any low or
 					non-confident labels. In <ref type="figure" target="#fig_2">Figure 3</ref>, we
 					show our analysis of the Alchemy Taxonomy feature set which highlights the
-					accuracy of Alchemy's taxonomy. We note that the Alchemy Taxonomy feature set is
-					dramatically smaller in size than the BoW feature set while still providing high
-					performance. This indicates a full lexical analysis is not necessary but a
-					taxonomic approach is sufficient. Our third feature is based on the links in the
-					posts. To create the feature, we parse each post for any HTTP links and strip
-					the link to its core domain name.</p>
+					accuracy of Alchemy&apos;s taxonomy. We note that the Alchemy Taxonomy feature
+					set is dramatically smaller in size than the BoW feature set while still
+					providing high performance. This indicates a full lexical analysis is not
+					necessary but a taxonomic approach is sufficient. Our third feature is based on
+					the links in the posts. To create the feature, we parse each post for any HTTP
+					links and strip the link to its core domain name.</p>
 				<p>The classifier with the link feature set had varied results, as shown in <ref
 						type="table" target="#tab_4">Table 5</ref>, where it was reliable in
 					differentiating ggjx entities but less reliable for the other two honeypots.
@@ -225,9 +226,9 @@
 				<p>We also form a feature set based on the part-ofspeech (PoS) makeup of a post
 					using the Stanford PoS Tagger. The Stanford PoS tagger returns a pair for each
 					word in the text, the original word and corresponding PoS. We create a BoW from
-					this response that creates an abstract representation of the document's syntax.
-					As shown in <ref type="table" target="#tab_4">Table 5</ref>, the PoS does not
-					differentiate botnets. </p>
+					this response that creates an abstract representation of the document&apos;s
+					syntax. As shown in <ref type="table" target="#tab_4">Table 5</ref>, the PoS
+					does not differentiate botnets. </p>
 			</div>
 			<div xmlns="http://www.tei-c.org/ns/1.0">
 				<head>Conclusions</head>
@@ -240,8 +241,8 @@
 						target="#fig_2">(Figure 3)</ref>.</p>
 				<p>While link and vocabulary analysis can be good differentiators of these botnets,
 					it is the content labeling (provided by Alchemy) that is the best indicator. Our
-					experiment only spans 42 days, thus it's possible the subject specialization is
-					a feature of the campaign rather than the botnet itself.</p>
+					experiment only spans 42 days, thus it&apos;s possible the subject
+					specialization is a feature of the campaign rather than the botnet itself.</p>
 			</div>
 			<div xmlns="http://www.tei-c.org/ns/1.0">
 				<head>Bibliography</head>

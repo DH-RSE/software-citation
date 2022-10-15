@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><?xml-model href="https://github.com/DH-RSE/software-citation/raw/main/schema/tei_software_annotation.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://github.com/DH-RSE/software-citation/raw/main/schema/tei_software_annotation.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
     <teiHeader>
         <fileDesc>
@@ -72,13 +73,13 @@
                 infamous for performing poorly on such historical material. We propose a novel
                 text-based method for searching through noisy text.</p>
             <p>We implemented the proposed method for the Wiener Library, one of the most extensive
-                archives on the Holocaust and Nazi era. Established in 1933, the library's unique
-                collection&#160;&#160;includes press cuttings, eyewitness testimonies, photographs,
-                as well as published and unpublished works from that era. It includes approximately
+                archives on the Holocaust and Nazi era. Established in 1933, the library&apos;s
+                unique collection  includes press cuttings, eyewitness testimonies, photographs, as
+                well as published and unpublished works from that era. It includes approximately
                 150,000 books, reference works, pamphlets and journals and over one million indexed
                 newspaper clippings, unpublished memoirs, and interviews. These documents have been
-                digitized and made available online. Hence, it's of great importance to have a fast
-                search tool for them.</p>
+                digitized and made available online. Hence, it&apos;s of great importance to have a
+                fast search tool for them.</p>
             <p>We present an easy-to-implement method that enables scholars and the public to
                 effectively search such large collections of textual material that would otherwise
                 be inaccessible due to the lack of reliable transcriptions. Its advantage is its
@@ -97,16 +98,17 @@
             <p>For preprocessing (step A), we remove black borders surrounding documents in the
                 images and adjust contrast using the CLAHE algorithm [5] because many documents have
                 non-uniform lighting.</p>
-            <p>Encouraged by recent improvements in OCR software, we chose the Tesseract engine [6,
-                7] (B) to obtain candidates. Tesseract is open-source and works well for a variety
-                of typefaces and languages.</p>
+            <p>Encouraged by recent improvements in OCR software, we chose the <rs type="software"
+                    >Tesseract</rs> engine [6, 7] (B) to obtain candidates. <rs type="software"
+                    >Tesseract</rs> is open-source and works well for a variety of typefaces and
+                languages.</p>
             <p>Next, we encode the candidates and queries in fixed-size vectors (C) using the recent
                 pyramidal histogram of characters (PHOC) representation [1]. Words with similar
                 spellings are close together in the PHOC vector space.</p>
             <p>We then use canonical-correlation analysis (CCA) to learn a common subspace between
-                noisy OCR readings and ground truth (D). This step performs "soft-correction" by
-                projecting OCR misreadings closer to their ground truth texts in the learned
-                subspace.</p>
+                noisy OCR readings and ground truth (D). This step performs
+                &quot;soft-correction&quot; by projecting OCR misreadings closer to their ground
+                truth texts in the learned subspace.</p>
             <p>Lastly, we find the correct candidates using a nearest-neighbor search (E). The most
                 commonly used distance metric for this is cosine distance. However, nearest-neighbor
                 search is by its very nature asymmetric. This causes faulty matching in
@@ -114,12 +116,12 @@
                 local scaling (CSLS) [9] to mitigate this issue.</p>
             <p>Experiments and Results</p>
             <p>We tested the accuracy and speed of our system in an information-retrieval setting on
-                a subset of the Wiener Library's "500 Document Collection," which makes up the main
-                component of the original materials and comprises over 75,000 images that have been
-                scanned from microfilm and microfiche copies of the originals. We annotated 18
-                pages, totalling 4284 words. Furthermore, we created 20 random splits, each split
-                containing 9 pages for learning the common subspace using CCA, and 9 pages for
-                testing.</p>
+                a subset of the Wiener Library&apos;s &quot;500 Document Collection,&quot; which
+                makes up the main component of the original materials and comprises over 75,000
+                images that have been scanned from microfilm and microfiche copies of the originals.
+                We annotated 18 pages, totalling 4284 words. Furthermore, we created 20 random
+                splits, each split containing 9 pages for learning the common subspace using CCA,
+                and 9 pages for testing.</p>
             <p>We used a set of 96 Latin characters for the PHOC representations, thus resulting in
                 a 1440 size binary vector for each word.</p>
             <p>Table 1: Search results, with and without PHOC encoding or CCA projection and using
@@ -141,18 +143,19 @@
             <p>Figure 1: Qualitative search results for the entire dataset. Bounding boxes in pink.
                 Our model works wellwith faded ink and approximate matching.</p>
             <p>Figure 1 shows qualitative search results through the entire dataset. The system
-                finds very long words ("Nationalsozialistische"), as well as approximate matches to
-                a query that has slightly different readings ("Rossenstrasse" vs.
-                "Rossenstra&#223;e"). As can be seen, OCR performs well on a variety of fonts.</p>
+                finds very long words (&quot;Nationalsozialistische&quot;), as well as approximate
+                matches to a query that has slightly different readings (&quot;Rossenstrasse&quot;
+                vs. &quot;Rossenstraße&quot;). As can be seen, OCR performs well on a variety of
+                fonts.</p>
             <p>Conclusion</p>
             <p>We presented a fast and accurate text-based search that is easy to implement and
                 which requires minimal fine-tuning for any given setting. It appears to provide an
                 excellent balance between speed and accuracy. It might make sense to use edit
                 distance to rerank the top results.</p>
             <p>We applied the system described here to all German-language documents in the Wiener
-                collection. When embedded---as planned---in the library's search tool, this will
-                provide WWII scholars a valuable tool to search effectively through these important
-                historic documents.</p>
+                collection. When embedded---as planned---in the library&apos;s search tool, this
+                will provide WWII scholars a valuable tool to search effectively through these
+                important historic documents.</p>
             <p>State-of-the-art OCR works well out of the box for a variety of different languages
                 and fonts. This is important for our dataset because it includes German, Polish,
                 English, and Hebrew texts. Within each language, there are also a variety of styles
@@ -168,40 +171,38 @@
                 libraries for providing the data and helping evaluate outcomes, and Leo Corry for
                 making this all happen.</p>
             <p>References</p>
-            <p>[1] Jon Almaz&#225;n, Albert Gordo, Alicia Forn&#233;s, and Ernest Valveny. Word
-                spotting and recognition with embedded attributes. IEEE Transactions on Pattern
-                Analysis and Machine Intelligence, 36(12):2552&#8211;2566, 2014.</p>
+            <p>[1] Jon Almazán, Albert Gordo, Alicia Fornés, and Ernest Valveny. Word spotting and
+                recognition with embedded attributes. IEEE Transactions on Pattern Analysis and
+                Machine Intelligence, 36(12):2552–2566, 2014.</p>
             <p>[2] Raghavan Manmatha, Chengfeng Han, Edward M. Riseman, and W. Bruce Croft. Indexing
                 handwritingusing word matching. In First ACM International Conference on Digital
-                Libraries, pages 151&#8211;159, 1996.</p>
+                Libraries, pages 151–159, 1996.</p>
             <p>[3] Sebastian Sudholt and Gernot A. Fink. PHOCNet: A deep convolutional neural
                 network for wordspotting in handwritten documents. In 15th International Conference
-                on Frontiers in Handwriting Recognition (ICFHR), pages 277&#8211;282. IEEE,
-                2016.</p>
+                on Frontiers in Handwriting Recognition (ICFHR), pages 277–282. IEEE, 2016.</p>
             <p>[4] Ismet Zeki Yalniz and Raghavan Manmatha. An efficient framework for searching
                 text in noisy document images. In 10th IAPR International Workshop on Document
-                Analysis Systems, pages 48&#8211;52. IEEE, 2012.</p>
+                Analysis Systems, pages 48–52. IEEE, 2012.</p>
             <p>[5] Garima Yadav, Saurabh Maheshwari, and Anjali Agarwal. Contrast limited adaptive
                 histogram equal-ization based enhancement for real time video system. In
                 International Conference on Advances in Computing, Communications and Informatics
-                (ICACCI), pages 2392&#8211;2397. IEEE, 2014.</p>
-            <p>[6] Ray Smith. An overview of the Tesseract OCR engine. In Ninth International
-                Conference on Document Analysis and Recognition (ICDAR), volume 2, pages
-                629&#8211;633. IEEE, 2007.</p>
+                (ICACCI), pages 2392–2397. IEEE, 2014.</p>
+            <p>[6] Ray Smith. An overview of the <rs type="software">Tesseract</rs> OCR engine. In
+                Ninth International Conference on Document Analysis and Recognition (ICDAR), volume
+                2, pages 629–633. IEEE, 2007.</p>
             <p>[7] Ray Smith. Hybrid page layout analysis via tab-stop detection. In 10th
                 International Conference on Document Analysis and Recognition (ICDAR), pages
-                241&#8211;245. IEEE, 2009.</p>
-            <p>[8] Milo&#353; Radovanovi?, Alexandros Nanopoulos, and Mirjana Ivanovi?. Hubs in
-                space: Popular nearest neighbors in high-dimensional data. Journal of Machine
-                Learning Research, 11:2487&#8211;2531, Sep 2010.</p>
-            <p>[9] Alexis Conneau, Guillaume Lample, Marc&#8217;Aurelio Ranzato, Ludovic Denoyer,
-                and Herv&#233; J&#233;gou. Word translation without parallel data. In 6th
-                International Conference on Learning Representations (ICLP, Vancouver, BC).
-                OpenReview.net, April 2018.</p>
+                241–245. IEEE, 2009.</p>
+            <p>[8] Miloš Radovanovi?, Alexandros Nanopoulos, and Mirjana Ivanovi?. Hubs in space:
+                Popular nearest neighbors in high-dimensional data. Journal of Machine Learning
+                Research, 11:2487–2531, Sep 2010.</p>
+            <p>[9] Alexis Conneau, Guillaume Lample, Marc’Aurelio Ranzato, Ludovic Denoyer, and
+                Hervé Jégou. Word translation without parallel data. In 6th International Conference
+                on Learning Representations (ICLP, Vancouver, BC). OpenReview.net, April 2018.</p>
             <p>[10] Nachum Dershowitz, Daniel Labenski, Adi Silberpfennig, Lior Wolf, and Yaron
                 Tsur. Relating articles textually and visually. In 14th IAPR International
                 Conference on Document Analysis and Recognition (ICDAR, Kyoto, Japan), pages
-                275&#8211;281, November 2017.</p>
+                275–281, November 2017.</p>
         </body>
     </text>
 </TEI>

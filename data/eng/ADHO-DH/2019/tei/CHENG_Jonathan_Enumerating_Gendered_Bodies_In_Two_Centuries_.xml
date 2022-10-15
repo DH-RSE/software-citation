@@ -112,31 +112,32 @@
                 <p style="text-align:left; ">In order to gather characters’ physical descriptions, I
                     needed a way to separate characters from each other and tabulate the words
                     embodying them. Bamman et al.’s BookNLP pipeline has worked well for many
-                    similar problems, so I modified it using spaCy libraries. First, it uses
-                    coreference resolution to identify character names and cluster them with any
-                    synonymous markers in each text. The name “Scout Finch,” for instance, gets
-                    clustered with “Scout” and any associated pronouns, treating each of those
-                    markers as referring to a single character. Then it uses dependency parsing to
-                    tabulate a wide range of words connected to each character.
+                    similar problems, so I modified it using <rs type="software">spaCy</rs>
+                    libraries. First, it uses coreference resolution to identify character names and
+                    cluster them with any synonymous markers in each text. The name “Scout Finch,”
+                    for instance, gets clustered with “Scout” and any associated pronouns, treating
+                    each of those markers as referring to a single character. Then it uses
+                    dependency parsing to tabulate a wide range of words connected to each
+                    character.
                     <hi rend="color(212121)" xml:space="preserve">By default, BookNLP extracts actions characters perform, actions that they’re the object of, adjectives modifying them, and nouns they govern (such as body parts, like “her hand”). Taken altogether, we get several words used to describe fictional people. For my purposes, however, additional words are extracted to capture each characters’ physical description. Whenever a character’s body part is mentioned, “his hands” for instance, I also gathered the verbs and adjectives modifying their bodily features, such as “his hands grasped,” “took her wrist,” and “her blue eyes.” As a result, for each novel in the corpus, we get a frequency table of words used to describe men and women (relative to the total number of words in that novel). We can then subset that table to see which words pertain to the description of characters’ bodies. In effect, this process tabulates the same characterizing words as BookNLP, but it additionally procures and counts the words attributed to their physical features. </hi>
                 </p>
                 <p style="text-align:left; ">Similar to previous research on gender’s significance
                     in characterization, my method comes with a few methodological challenges. In
                     order to separate characters from each other and assign them gender identities,
-                    spaCy will identify proper names, and I use Lincoln Mullen’s <hi rend="italic"
-                        >Gender</hi> package to label those names with a grammatical gender.
-                    Mullen’s package uses U.S and North Atlantic census data to accurately predict
-                    gender of first names, accounting for shifts in time and geographic location.
-                    The problem with using proper names to identify character, however, is that
-                    characters referred to by generic nouns are excluded, such as “the baker.” This
-                    pipeline attempts to account for this by including characters signaled by
-                    stereotypically gendered nouns, such as “the queen” or “the father,” but this
-                    does not comprehensively account for majority of generic nouns used to produce
-                    characters. Moreover, this study also does not provide any robust solutions to
-                    the first-person narrator problem. The pronoun “I” does not consistently connote
-                    a particular gender identity, so their bodily configurations are excluded from
-                    this essay. In effect, there are certain kinds of characters whose physical
-                    features will not be counted in this study. </p>
+                        <rs type="software">spaCy</rs> will identify proper names, and I use Lincoln
+                    Mullen’s <hi rend="italic">Gender</hi> package to label those names with a
+                    grammatical gender. Mullen’s package uses U.S and North Atlantic census data to
+                    accurately predict gender of first names, accounting for shifts in time and
+                    geographic location. The problem with using proper names to identify character,
+                    however, is that characters referred to by generic nouns are excluded, such as
+                    “the baker.” This pipeline attempts to account for this by including characters
+                    signaled by stereotypically gendered nouns, such as “the queen” or “the father,”
+                    but this does not comprehensively account for majority of generic nouns used to
+                    produce characters. Moreover, this study also does not provide any robust
+                    solutions to the first-person narrator problem. The pronoun “I” does not
+                    consistently connote a particular gender identity, so their bodily
+                    configurations are excluded from this essay. In effect, there are certain kinds
+                    of characters whose physical features will not be counted in this study. </p>
             </div>
             <div type="div1" rend="DH-Heading1">
                 <head>Analysis</head>

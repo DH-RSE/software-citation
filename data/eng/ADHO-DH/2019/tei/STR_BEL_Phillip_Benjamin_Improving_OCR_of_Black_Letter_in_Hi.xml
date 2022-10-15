@@ -64,7 +64,7 @@
                     <term>HTR</term>
                     <term>historical newspapers</term>
                     <term>text mining</term>
-                    <term>Transkribus</term>
+                    <term><rs type="software">Transkribus</rs></term>
                 </keywords>
                 <keywords scheme="ConfTool" n="topics">
                     <term>data mining / text mining</term>
@@ -104,36 +104,38 @@
                             <ptr target="https://www.abbyy.com"/>
                         </note>
                     </hi>. However, the training of a neural system using open-source software
-                    (e.g., <hi rend="bold">Tesseract</hi>
+                    (e.g., <hi rend="bold"><rs type="software">Tesseract</rs></hi>
                     <hi rend="bold">
                         <note xml:id="ftn1" place="foot" n="2">
                             <ptr target="https://github.com/tesseract-ocr/tesseract"/>
                         </note>
                     </hi>) is demanding. Integrated handwritten text recognition and annotation
-                    platforms like <hi rend="bold">Transkribus</hi>
+                    platforms like <hi rend="bold"><rs type="software">Transkribus</rs></hi>
                     <hi rend="bold">
                         <note xml:id="ftn2" place="foot" n="3">
                             <ptr target="https://www.transkribus.eu"/>
                         </note>
                     </hi> facilitate the creation of a ground truth, as well as the training and
                     application of neural and corpus-specific models for OCR. </p>
-                <p>Transkribus was initially designed to decipher manuscripts <note xml:id="ftn3"
-                        place="foot" n="4">see <ptr target="https://read.transkribus.eu/"/>
+                <p><rs type="software">Transkribus</rs> was initially designed to decipher
+                    manuscripts <note xml:id="ftn3" place="foot" n="4">see <ptr
+                            target="https://read.transkribus.eu/"/>
                     </note>. It allows the manual transcription of uploaded documents so that they
                     can be used as training material for <hi rend="bold">Handwritten Text
                         Recognition</hi> (HTR) models (Weidemann et al., 2017). A useful feature of
-                    Transkribus’ HTR models is that the recognition of printed texts works just as
-                    well as that of manuscripts. A few dozen of corrected pages are sufficient for
-                    high-quality OCR results. </p>
+                        <rs type="software">Transkribus</rs>’ HTR models is that the recognition of
+                    printed texts works just as well as that of manuscripts. A few dozen of
+                    corrected pages are sufficient for high-quality OCR results. </p>
                 <p>In this study we illustrate how to drastically improve OCR quality for black
                     letter in newspapers with a modest amount of manual work for ground truth
-                    creation. The integration of HTR model training into the Transkribus platform
-                    enables Digital Humanists to leverage the performance of neural OCR without
-                    having to tackle unnecessary technicalities. In our experiments we additionally
-                    address the following questions. Robustness: Are HTR models reusable for
-                    material that varies in digitisation quality (medium-resolution scans from
-                    microfilm vs. high-resolution scans from paper). Transferability: How well does
-                    a model perform on another newspaper than the one it was trained on?</p>
+                    creation. The integration of HTR model training into the <rs type="software"
+                        >Transkribus</rs> platform enables Digital Humanists to leverage the
+                    performance of neural OCR without having to tackle unnecessary technicalities.
+                    In our experiments we additionally address the following questions. Robustness:
+                    Are HTR models reusable for material that varies in digitisation quality
+                    (medium-resolution scans from microfilm vs. high-resolution scans from paper).
+                    Transferability: How well does a model perform on another newspaper than the one
+                    it was trained on?</p>
             </div>
             <div type="div1">
                 <head>
@@ -152,14 +154,15 @@
                     FineReader XIX (FRXIX) results from 2005, (b) ABBYY FineReader Server 11 (FRS11)
                     results <note xml:id="ftn5" place="foot" n="6">see <ptr
                             target="https://www.abbyy.com/de-de/finereader-server/"/>, available
-                        within Transkribus </note>, (c) Transkribus’ HTR model. Figure 1 shows
+                        within <rs type="software">Transkribus</rs>
+                    </note>, (c) <rs type="software">Transkribus</rs>’ HTR model. Figure 1 shows
                     example output from our three OCR systems. </p>
                 <p>
                     <figure>
                         <graphic url="Pictures/43d1bacd66807525a4cf35690f3fa329.png"/>
                         <head>Example excerpts with low-quality OCR from two pages of the NZZ (1819
-                            left, 1859 right, red: FRXIX, blue: FRS11, green: Transkribus
-                            HTR)</head>
+                            left, 1859 right, red: FRXIX, blue: FRS11, green: <rs type="software"
+                                >Transkribus</rs> HTR)</head>
                     </figure>
                 </p>
                 <p>In our second experiment we apply the HTR model trained on medium-resolution
@@ -172,13 +175,13 @@
                         />Creation of a ground truth and HTR model training </head>
                     <p>The NZZ had been published in black letter from 1780 until 1947. We chose one
                         title page per year at random from this period and loaded the image
-                        extracted from the PDF into Transkribus. We used the Transkribus internal
-                        FRS11 to recognise the text in the images and manually corrected words and
-                        baselines. The resulting ground truth of 167 pages contains 304,286 words
-                        and 43,151 lines. Depending on the amount of text on a page, the correction
-                        of a page including the baselines (needed to train the HTR model) takes
-                        between 1 and 2.5 hours. We used 90/10 split for training and testing the
-                        model.</p>
+                        extracted from the PDF into <rs type="software">Transkribus</rs>. We used
+                        the <rs type="software">Transkribus</rs> internal FRS11 to recognise the
+                        text in the images and manually corrected words and baselines. The resulting
+                        ground truth of 167 pages contains 304,286 words and 43,151 lines. Depending
+                        on the amount of text on a page, the correction of a page including the
+                        baselines (needed to train the HTR model) takes between 1 and 2.5 hours. We
+                        used 90/10 split for training and testing the model.</p>
                 </div>
                 <div type="div2">
                     <head>
@@ -204,7 +207,8 @@
                 <p>
                     <figure>
                         <graphic url="Pictures/16f498cc6da6a09f06204600b60f7129.png"/>
-                        <head>Comparison between original FRXIX, FRS11, and Transkribus HTR.</head>
+                        <head>Comparison between original FRXIX, FRS11, and <rs type="software"
+                                >Transkribus</rs> HTR.</head>
                     </figure>
                 </p>
                 <p>The application of our HTR model to five high-resolution images of newspaper
@@ -213,8 +217,8 @@
                 <p>
                     <figure>
                         <graphic url="Pictures/22e84f6523c4aa62b6c3f5166d3ef074.png"/>
-                        <head>Comparison between FRS11 and Transkribus HTR model on five
-                            high-resolution images from 1899.</head>
+                        <head>Comparison between FRS11 and <rs type="software">Transkribus</rs> HTR
+                            model on five high-resolution images from 1899.</head>
                     </figure>
                 </p>
                 <p>In terms of the transferability of our HTR model the average F1-measures of 98.6%
@@ -228,23 +232,25 @@
             <div type="div1">
                 <head>
                     <anchor xml:id="id_conclusion"/>Conclusion </head>
-                <p>We have shown that Transkribus is an excellent tool for creating HTR models for
-                    the OCR of newspapers typeset in black letter. Even with a limited amount of
-                    training data (150 pages), our HTR model consistently outperforms
-                    state-of-the-art commercial software. Our HTR model trained on medium-resolution
-                    images digitised from microfilm still performs better than commercial software
-                    when applied to high-resolution images derived from paper originals.</p>
+                <p>We have shown that <rs type="software">Transkribus</rs> is an excellent tool for
+                    creating HTR models for the OCR of newspapers typeset in black letter. Even with
+                    a limited amount of training data (150 pages), our HTR model consistently
+                    outperforms state-of-the-art commercial software. Our HTR model trained on
+                    medium-resolution images digitised from microfilm still performs better than
+                    commercial software when applied to high-resolution images derived from paper
+                    originals.</p>
                 <p>Given the availability and abundance of digitised historical material in the form
                     of PDF files with poorly OCRed text, our findings showcase how digital humanists
                     can improve their source material for text mining with a reasonable effort.</p>
             </div>
             <div type="div1">
                 <head>Acknowledgments</head>
-                <p>We would like to express our gratitude to Günter Mühlberger and the Transkribus
-                    team for their support in training HTR models and partially correcting baselines
-                    of our ground truth. Moreover, we thank Camille Watter and Isabel Meraner for
-                    their help in the transcription process. This research is supported by the Swiss
-                    National Science Foundation under grant CR-SII5_173719.</p>
+                <p>We would like to express our gratitude to Günter Mühlberger and the <rs
+                        type="software">Transkribus</rs> team for their support in training HTR
+                    models and partially correcting baselines of our ground truth. Moreover, we
+                    thank Camille Watter and Isabel Meraner for their help in the transcription
+                    process. This research is supported by the Swiss National Science Foundation
+                    under grant CR-SII5_173719.</p>
             </div>
         </body>
         <back>
