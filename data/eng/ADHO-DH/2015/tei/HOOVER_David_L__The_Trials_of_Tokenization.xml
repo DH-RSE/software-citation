@@ -48,7 +48,7 @@
                     <term>Long Paper</term>
                 </keywords>
                 <keywords scheme="ConfTool" n="keywords">
-                    <term>Python</term>
+                    <term><rs type="software">Python</rs></term>
                     <term>tokenization</term>
                     <term>word frequency lists</term>
                     <term>programming</term>
@@ -92,12 +92,13 @@
                 extremely problematic, though minor OCR problems exist (mainly spacing issues around
                 single quotation marks / apostrophes and dashes, and the line-end hyphen). I
                 tokenized this passage with The Intelligent Archive (2012), KWIC (Tsukamoto, 2004)
-                WordSmith Tools (Scott, 2012), Voyant (Sinclair et al., 2012), and Stylo (Eder et
-                al., 2014). <hi rend="superscript">2</hi> Even on this short text, the five programs
-                identify three different numbers of types and two different numbers of tokens,
-                largely because of the handling of single quotation marks. KWIC and WordSmith
-                produce identical lists, as do Voyant and Stylo, but neither of these match The
-                Intelligent Archive. </p>
+                WordSmith Tools (Scott, 2012), <rs type="software">Voyant</rs> (Sinclair et al.,
+                2012), and <rs type="software">Stylo</rs> (Eder et al., 2014). <hi
+                    rend="superscript">2</hi> Even on this short text, the five programs identify
+                three different numbers of types and two different numbers of tokens, largely
+                because of the handling of single quotation marks. KWIC and WordSmith produce
+                identical lists, as do <rs type="software">Voyant</rs> and <rs type="software"
+                    >Stylo</rs>, but neither of these match The Intelligent Archive. </p>
             <p>Now consider Charles Chesnutt’s <hi rend="italic">The House Behind the Cedars</hi>
                 (1900, 13), also from HathiTrust: </p>
             <figure>
@@ -108,31 +109,32 @@
                 page 13. </p>
             <p>The dialect in this passage is challenging even for human readers, and the OCR is
                 more problematic. For example, the printed text (judging from the PDF) had spaced
-                contractions, which explains ‘you 're’ in the fourth line from the bottom and the
-                space in ‘lie 's’ in the first line, where the text reads “he 's.” This classic OCR
-                problem occurs several times in this novel. And in the last line ‘you '11’ has both
-                a space and an erroneous number 11 for the ‘ll’ (double el), another common OCR
-                problem. Those analyzing big data usually rely on the insignificance of random
-                error, but these and many other kinds of error are not random, and systematic error
-                within one text, one author, one genre, or one collection could easily lead to
-                thousands of inaccurate word frequency counts in this hypothetical study of 5,000
-                texts.</p>
+                contractions, which explains ‘you &apos;re’ in the fourth line from the bottom and
+                the space in ‘lie &apos;s’ in the first line, where the text reads “he &apos;s.”
+                This classic OCR problem occurs several times in this novel. And in the last line
+                ‘you &apos;11’ has both a space and an erroneous number 11 for the ‘ll’ (double el),
+                another common OCR problem. Those analyzing big data usually rely on the
+                insignificance of random error, but these and many other kinds of error are not
+                random, and systematic error within one text, one author, one genre, or one
+                collection could easily lead to thousands of inaccurate word frequency counts in
+                this hypothetical study of 5,000 texts.</p>
             <p>The use of apostrophes in the Chesnutt passage to indicate dialect pronunciations can
                 also severely affect tokenization. Although The Intelligent Archive, KWIC, and
-                WordSmith Tools produce exactly the same lists for this brief passage, and Voyant
-                has the same number of types and tokens, Voyant removes all initial (but not final)
-                apostrophes, creating different words for eight of the 97 types. Stylo removes all
-                numbers, all initial and final apostrophes, and many internal apostrophes, retaining
-                them only in <hi rend="italic">ain^t, gentleman^s</hi>, and <hi rend="italic"
-                    >spen^s</hi> (replaced with a caret). It produces six more tokens and four more
-                types than the other programs, and many more differences in the word list.
-                Unfortunately, in Chesnutt’s short novel, more than 650 words begin and/or end with
-                apostrophes crucial to the identity of the word, so that the word lists produced by
-                Voyant and Stylo are quite inaccurate. Furthermore, only KWIC and WordSmith Tools
-                let the user choose whether apostrophes and hyphens are part of a word, and whether
-                numbers can appear in the word list or not. Only WordSmith Tools allows the user to
-                choose whether to allow apostrophes at the beginnings and/or ends of the word as
-                well as internally. </p>
+                WordSmith Tools produce exactly the same lists for this brief passage, and <rs
+                    type="software">Voyant</rs> has the same number of types and tokens, <rs
+                    type="software">Voyant</rs> removes all initial (but not final) apostrophes,
+                creating different words for eight of the 97 types. <rs type="software">Stylo</rs>
+                removes all numbers, all initial and final apostrophes, and many internal
+                apostrophes, retaining them only in <hi rend="italic">ain^t, gentleman^s</hi>, and
+                    <hi rend="italic">spen^s</hi> (replaced with a caret). It produces six more
+                tokens and four more types than the other programs, and many more differences in the
+                word list. Unfortunately, in Chesnutt’s short novel, more than 650 words begin
+                and/or end with apostrophes crucial to the identity of the word, so that the word
+                lists produced by <rs type="software">Voyant</rs> and <rs type="software">Stylo</rs>
+                are quite inaccurate. Furthermore, only KWIC and WordSmith Tools let the user choose
+                whether apostrophes and hyphens are part of a word, and whether numbers can appear
+                in the word list or not. Only WordSmith Tools allows the user to choose whether to
+                allow apostrophes at the beginnings and/or ends of the word as well as internally. </p>
             <p>Obviously, the two texts examined above cause different problems, and different
                 tokenizers are more accurate for one than for the other. Worse yet, these problems
                 are found even in relatively carefully edited texts like those from Project
@@ -141,18 +143,19 @@
                 the first line and <hi rend="italic">you’ll</hi> in the final line, the 29 initial
                 and final dialect apostrophes remain problematic. The Gutenberg text also represents
                 dashes as two hyphens without spaces, creating more problems for tokenizers. The
-                Intelligent Archive and Stylo treat these double-hyphen dashes as breaking
-                characters, while retaining single hyphens within compound words, but KWIC,
-                WordSmith Tools, and Voyant treat them like single hyphens, creating compounds with
-                double hyphens where dashes are needed. The situation is still more complex if a
-                double-hyphen is preceded or followed by a breaking character. If this sounds
-                esoteric, consider that this short novel contains nearly 400 double-hyphen dashes
-                (Dickens’ <hi rend="italic">Dombey and Son</hi> has more than 2,200). And this
-                problem, too, is highly systematic: words vary considerably in how frequently they
-                are preceded or followed by a dash, and 1,000 dash errors per text would produce
-                5,000,000 errors in our hypothetical 5,000 novels. (For a practical example of the
-                effects of error, see Matt Jockers’ discussion of topic modeling and several
-                ‘topics’ that arose from OCR error and metadata (Jockers, 2013, 135). </p>
+                Intelligent Archive and <rs type="software">Stylo</rs> treat these double-hyphen
+                dashes as breaking characters, while retaining single hyphens within compound words,
+                but KWIC, WordSmith Tools, and <rs type="software">Voyant</rs> treat them like
+                single hyphens, creating compounds with double hyphens where dashes are needed. The
+                situation is still more complex if a double-hyphen is preceded or followed by a
+                breaking character. If this sounds esoteric, consider that this short novel contains
+                nearly 400 double-hyphen dashes (Dickens’ <hi rend="italic">Dombey and Son</hi> has
+                more than 2,200). And this problem, too, is highly systematic: words vary
+                considerably in how frequently they are preceded or followed by a dash, and 1,000
+                dash errors per text would produce 5,000,000 errors in our hypothetical 5,000
+                novels. (For a practical example of the effects of error, see Matt Jockers’
+                discussion of topic modeling and several ‘topics’ that arose from OCR error and
+                metadata (Jockers, 2013, 135). </p>
             <p>It might seem that we just need more sophisticated tokenizers, but the required level
                 of sophistication to handle double-hyphen dashes correctly is quite high, and the
                 problems caused by apostrophes and single quotation marks cannot be correctly solved
@@ -183,11 +186,11 @@
             <p>You’re a real %#@$! Three tokens? Four? Does the last include the final ‘!’? What if
                 there were a period after the ‘!’?</p>
             <p>You’re a real %#@$!. How about now?</p>
-            <p>I am working on a Python tokenizer that can handle most of these issues correctly,
-                and some of these problems are fairly rare, but I despair of the possibility of
-                creating a word frequency list that is ‘correct’ even in my own opinion. For many
-                years I have ‘corrected’ the texts before tokenizing, but that is not a practical
-                solution for 5,000 novels and presents its own problems.</p>
+            <p>I am working on a <rs type="software">Python</rs> tokenizer that can handle most of
+                these issues correctly, and some of these problems are fairly rare, but I despair of
+                the possibility of creating a word frequency list that is ‘correct’ even in my own
+                opinion. For many years I have ‘corrected’ the texts before tokenizing, but that is
+                not a practical solution for 5,000 novels and presents its own problems.</p>
             <p>Perhaps in sufficiently big data, the error introduced by tokenizers will not
                 significantly alter the results, and Maciej Eder (2013) has recently shown that some
                 corpora are remarkably resistant to some kinds of intentionally introduced error.
@@ -218,10 +221,10 @@
                 would not diminish the force of my argument for the DH community, where there has
                 been much less attention paid to them.</p>
             <p rend="footnote text">2. These programs represent a variety of those used in DH work
-                (in order): a mature Java program with a database function, a venerable corpus
-                linguistics program with lots of functions and user-options, a highly customizable
-                and powerful commercial program from OUP, a widely used online tool, and a recently
-                developed set of tools written in the currently popular R.</p>
+                (in order): a mature <rs type="software">Java</rs> program with a database function,
+                a venerable corpus linguistics program with lots of functions and user-options, a
+                highly customizable and powerful commercial program from OUP, a widely used online
+                tool, and a recently developed set of tools written in the currently popular R.</p>
         </body>
         <back>
             <div type="bibliogr">
@@ -255,7 +258,8 @@
                         Authorship Attribution. <hi rend="italic">LLC,</hi>
                         <hi rend="bold">28</hi>(4): 603–14. </bibl>
                     <bibl>
-                        <hi rend="bold">Eder, M., Rybicki, J. and Kestemont, M.</hi> (2014). Stylo. </bibl>
+                        <hi rend="bold">Eder, M., Rybicki, J. and Kestemont, M.</hi> (2014). <rs
+                            type="software">Stylo</rs>. </bibl>
                     <bibl>
                         <hi rend="bold">Gaskell, E. </hi>(1910 [1851]). <hi rend="italic"
                             >Cranford</hi>. Houghton Mifflin, Boston,
@@ -295,8 +299,9 @@
                         <hi rend="bold">Scott, M.</hi> (2012). WordSmith Tools version 6. Liverpool:
                         Lexical Analysis Software. </bibl>
                     <bibl>
-                        <hi rend="bold">Sinclair, S., Rockwell, G. and the Voyant Tools Team</hi>.
-                        (2012). Voyant Tools (web application). </bibl>
+                        <hi rend="bold">Sinclair, S., Rockwell, G. and the <rs type="software"
+                                >Voyant</rs> Tools Team</hi>. (2012). <rs type="software"
+                            >Voyant</rs> Tools (web application). </bibl>
                     <bibl>
                         <hi rend="bold">Tsukamoto, S. </hi>(2004). KWIC Concordance for Windows
                         version 4.7. </bibl>

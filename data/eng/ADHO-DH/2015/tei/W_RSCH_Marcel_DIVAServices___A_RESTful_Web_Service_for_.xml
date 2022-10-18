@@ -102,22 +102,22 @@
             </p>
             <p>Our research is motivated by the availability of many different web-based tools for
                 researchers with a humanist background wanting to do document image analysis (e.g.,
-                    <hi rend="italic">SALSAH</hi> [Schweizer and Rosenthaler, 2011], Transcribe
-                Bentham [Causer and Wallace, 2012], or the Genizah project [Wolf et al., 2011]).
-                Most of these tools were either developed to solve a specific task or lack the
-                inclusion of (semi)-automatic methods. Several projects using web services for DIA
-                have been proposed in recent years. One such example is the Document Analysis and
-                Exploitation (DAE; Lamiroy and Lopresti, 2011) that provides different algorithms as
-                web services and allows for workflow creation. Our aim is to expand this research
-                with a focus on making the algorithms available for researchers with only little
-                computer science knowledge by providing them also with simple web interfaces as
-                showcases building on the web services and demonstrating how to use them to
-                integrate computational methods into their research. </p>
+                    <hi rend="italic"><rs type="software">SALSAH</rs></hi> [Schweizer and
+                Rosenthaler, 2011], Transcribe Bentham [Causer and Wallace, 2012], or the Genizah
+                project [Wolf et al., 2011]). Most of these tools were either developed to solve a
+                specific task or lack the inclusion of (semi)-automatic methods. Several projects
+                using web services for DIA have been proposed in recent years. One such example is
+                the Document Analysis and Exploitation (DAE; Lamiroy and Lopresti, 2011) that
+                provides different algorithms as web services and allows for workflow creation. Our
+                aim is to expand this research with a focus on making the algorithms available for
+                researchers with only little computer science knowledge by providing them also with
+                simple web interfaces as showcases building on the web services and demonstrating
+                how to use them to integrate computational methods into their research. </p>
             <p>Methodology</p>
             <p>We propose an open-source framework for providing algorithms to the public. For this
                 we designed a RESTful web service architecture exposing all information using the
-                JavaScript Object Notation (JSON). The intention is to include a wide assortment of
-                services for different tasks:</p>
+                    <rs type="software">JavaScript</rs> Object Notation (JSON). The intention is to
+                include a wide assortment of services for different tasks:</p>
             <p> • Image processing and enhancement in order to make the desired content more easily
                 visible or to make the processing of further automatic analysis simpler. Those
                 methods include, for example, binarization methods (Otsu 1979), Laplacian of
@@ -147,10 +147,10 @@
                 framework. Access to the provided methods and tools would all be standardized using
                 HTTP requests and JSON as input/output format. </p>
             <p>Besides a large set of own implementations we will integrate several open-source
-                software like Tesseract <hi rend="superscript">4</hi> and OCROpus. <hi
-                    rend="superscript">5</hi> This enables fast integration of many available image
-                processing algorithms that have been in development for years and proven to produce
-                reliable results. </p>
+                software like <rs type="software">Tesseract</rs>
+                <hi rend="superscript">4</hi> and OCROpus. <hi rend="superscript">5</hi> This
+                enables fast integration of many available image processing algorithms that have
+                been in development for years and proven to produce reliable results. </p>
             <p>A high-level overview of the proposed framework is provided in Figure 1. Access to
                 the provided tools and algorithms would be standardized across all possible end-user
                 applications using simple HTTP requests and JSON as input/output format. For
@@ -186,22 +186,22 @@
                 wants to automatically segment a text area, a POST request is made to the server
                 containing the following JSON:</p>
             <p>{</p>
-            <p> "url":
-                "http://www.e-codices.unifr.ch/loris/bbb/bbb-0360/bbb-0360_001r.jp2/full/pct:25/0/default.jpg",</p>
-            <p> "top": "300",</p>
-            <p> "bottom": "500",</p>
-            <p> "left": "190",</p>
-            <p> "right": "750"</p>
+            <p> &quot;url&quot;:
+                &quot;http://www.e-codices.unifr.ch/loris/bbb/bbb-0360/bbb-0360_001r.jp2/full/pct:25/0/default.jpg&quot;,</p>
+            <p> &quot;top&quot;: &quot;300&quot;,</p>
+            <p> &quot;bottom&quot;: &quot;500&quot;,</p>
+            <p> &quot;left&quot;: &quot;190&quot;,</p>
+            <p> &quot;right&quot;: &quot;750&quot;</p>
             <p>}</p>
             <p>Listing 1. Example of a JSON sent together with the POST request for automatic line
                 segmentation. The url points to the source image; the four location values mark the
                 region within the image that the user selected.</p>
             <p>[</p>
             <p> {</p>
-            <p> "bottom": "180",</p>
-            <p> "left": "95",</p>
-            <p> "right": "469",</p>
-            <p> "top": "156"</p>
+            <p> &quot;bottom&quot;: &quot;180&quot;,</p>
+            <p> &quot;left&quot;: &quot;95&quot;,</p>
+            <p> &quot;right&quot;: &quot;469&quot;,</p>
+            <p> &quot;top&quot;: &quot;156&quot;</p>
             <p> },</p>
             <p> { …}</p>
             <p>]</p>
@@ -212,10 +212,10 @@
                 containing the bounding box of each detected text line:</p>
             <p>[</p>
             <p> {</p>
-            <p> "bottom": "180",</p>
-            <p> "left": "95",</p>
-            <p> "right": "469",</p>
-            <p> "top": "156"</p>
+            <p> &quot;bottom&quot;: &quot;180&quot;,</p>
+            <p> &quot;left&quot;: &quot;95&quot;,</p>
+            <p> &quot;right&quot;: &quot;469&quot;,</p>
+            <p> &quot;top&quot;: &quot;156&quot;</p>
             <p> },</p>
             <p> { …}</p>
             <p>]</p>
@@ -236,9 +236,7 @@
             <p>Notes</p>
             <p>1. http://www.tei-c.org. </p>
             <p>2. http://www.iiif.io. </p>
-            <p>3. See
-                <?biblio ADDIN CSL_CITATION { "citationItems" : [ { "id" : "ITEM-1", "itemData" : { "author" : [ { "dropping-particle" : "", "family" : "Ma", "given" : "Huanfeng", "non-dropping-particle" : "", "parse-names" : false, "suffix" : "" }, { "dropping-particle" : "", "family" : "Doermann", "given" : "David", "non-dropping-particle" : "", "parse-names" : false, "suffix" : "" } ], "container-title" : "Document Recognition and Retrieval", "id" : "ITEM-1", "issued" : { "date-parts" : [ [ "2003", "12" ] ] }, "page" : "124-135", "title" : "Word level script identification for scanned document images", "type" : "paper-conference" }, "uris" : [ "http://www.mendeley.com/documents/?uuid=33a69a5c-4bd9-4d26-9085-f81c60ff39b5" ] } ], "mendeley" : { "formattedCitation" : "(Ma and Doermann 2003)", "plainTextFormattedCitation" : "(Ma and Doermann 2003)", "previouslyFormattedCitation" : "(Ma and Doermann 2003)" }, "properties" : { "noteIndex" : 0 }, "schema" : "https://github.com/citation-style-language/schema/raw/master/csl-citation.json" }?>
-                for an overview of classification algorithms in script identification. </p>
+            <p>3. See for an overview of classification algorithms in script identification. </p>
             <p>4. http://code.google.com/p/tesseract-ocr. </p>
             <p>5. http://github.com/tmbdev/ocropy. </p>
             <p>6. Code of the proof of concept is available at

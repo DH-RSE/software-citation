@@ -103,21 +103,21 @@
             <p>How can topic model visualizations aid in the exploration of large datasets? The
                 standard method for visualizing topic models involves a two-stage process that
                 begins with the use of a tool specifically designed to construct topic models on a
-                specified corpus. MALLET (McCallum, 2002), a command line tool that implements the
-                Latent Dirichlet Allocation (LDA) algorithm described by Blei et al. (2003),
-                provides output in the form of text files that can be shared directly with other
-                tools and seems to be the default tool of choice for the first stage. Regardless of
-                the topic modeller used, its output is then passed to a separate tool for the second
-                stage in the production of the visualization. These separate tools are either
-                general visualization tools or topic model specific visualization tools. The use of
-                general visualization tools is attractive because it typically requires a lower
-                technical competency and allows the user to leverage skills they already have, but
-                general tools provide fewer targeted affordances for exploration. Still, despite the
-                existence of at least a dozen tools that have been used to visualize topic models,
-                it remains the case that none of them are particularly well suited to exploring
-                large datasets comprising thousands or millions of entries in a corpus distributed
-                over a wide range of time and with a correspondingly large set of candidate topics
-                produced by topic modelling. </p>
+                specified corpus. <rs type="software">MALLET</rs> (McCallum, 2002), a command line
+                tool that implements the Latent Dirichlet Allocation (LDA) algorithm described by
+                Blei et al. (2003), provides output in the form of text files that can be shared
+                directly with other tools and seems to be the default tool of choice for the first
+                stage. Regardless of the topic modeller used, its output is then passed to a
+                separate tool for the second stage in the production of the visualization. These
+                separate tools are either general visualization tools or topic model specific
+                visualization tools. The use of general visualization tools is attractive because it
+                typically requires a lower technical competency and allows the user to leverage
+                skills they already have, but general tools provide fewer targeted affordances for
+                exploration. Still, despite the existence of at least a dozen tools that have been
+                used to visualize topic models, it remains the case that none of them are
+                particularly well suited to exploring large datasets comprising thousands or
+                millions of entries in a corpus distributed over a wide range of time and with a
+                correspondingly large set of candidate topics produced by topic modelling. </p>
             <p>This paper provides a solution to this problem by describing a tool that has been
                 designed specifically to address this problem and that is now entering production.
                 Before describing the tool and providing a short demonstration of its functionality,
@@ -132,8 +132,8 @@
             <p> • <hi rend="bold">Traditional charts </hi>(Bar, line, pie, scatterplot, etc.):
                 D-VITA (Gunnemann et al., 2013); Tableau (Sharkey and Ansari, 2014); ParallelTopics
                 (Dou et al., 2011); NIPS (Iwata et al., 2008); MetaToMATo (Snyder et al., 2013). </p>
-            <p> • <hi rend="bold">Network graphs</hi>: Gephi (Chen et al., 2013); Topicnet
-                (Gretarsson et al., 2012). </p>
+            <p> • <hi rend="bold">Network graphs</hi>: <rs type="software">Gephi</rs> (Chen et al.,
+                2013); Topicnet (Gretarsson et al., 2012). </p>
             <p> • <hi rend="bold">Zoomable tools</hi>: an unnamed tool by Chaney and Blei (2012). </p>
             <p> • <hi rend="bold">2D matrix</hi>: Serendip (Alexander et al., 2014); Termite (Chuang
                 et al., 2012). </p>
@@ -142,30 +142,32 @@
                 each visualization method has been developed or chosen with a particular application
                 in mind. The tools that particularly focus on exploring the underlying data and
                 revealing connections are Serendip and MetaToMATo, neither of which is a graph-based
-                visualization, and both of which become overwhelmed by large datasets. Gephi is a
-                general-purpose graph-based visualization tool that has been used to visualize large
-                datasets (Munster, Jockers), but the images it produces are static and it does not
-                easily lend itself to sharing information derived from topic models. Drawing on
-                lessons from a review of all these tools, but Serendip, MetaToMATo, and Gephi in
-                particular, the tool we report on constructing is targeted at exploration using
-                graph-based visualizations of topic models on large corpuses. </p>
+                visualization, and both of which become overwhelmed by large datasets. <rs
+                    type="software">Gephi</rs> is a general-purpose graph-based visualization tool
+                that has been used to visualize large datasets (Munster, Jockers), but the images it
+                produces are static and it does not easily lend itself to sharing information
+                derived from topic models. Drawing on lessons from a review of all these tools, but
+                Serendip, MetaToMATo, and <rs type="software">Gephi</rs> in particular, the tool we
+                report on constructing is targeted at exploration using graph-based visualizations
+                of topic models on large corpuses. </p>
             <p>
                 <hi rend="bold">Topic Modelling Philosophy Journals</hi>
             </p>
             <p>Motivation for this project has been brought about in part by work done over the past
                 year with a corpus of philosophy journals acquired from JSTOR (Simpson et al.,
                 2014). While investigating this corpus we made use of chart-based visualizations
-                with R after preprocessing with MALLET. While there was much to be learned from the
-                changing prevalence of particular topics over time, there were also a number of
-                things that the visualizations were not able to tell us. In particular, our first
-                visualizations made it difficult to easily see connections between the different
-                topics, to see relations between the different journals, and to have this
-                information present itself with increasing detail as required for the investigation.
-                This challenge arose in large part because the dataset covered 27,536 journal
-                articles from 10 different journals published between 1876 and 2008. Datasets of
-                this size and diversity are becoming increasingly common, and so we moved to pursue
-                a tool capable of visualizing the results of topic modelling. Not finding a suitable
-                one for the exploration of large datasets, we set about designing a new one. </p>
+                with R after preprocessing with <rs type="software">MALLET</rs>. While there was
+                much to be learned from the changing prevalence of particular topics over time,
+                there were also a number of things that the visualizations were not able to tell us.
+                In particular, our first visualizations made it difficult to easily see connections
+                between the different topics, to see relations between the different journals, and
+                to have this information present itself with increasing detail as required for the
+                investigation. This challenge arose in large part because the dataset covered 27,536
+                journal articles from 10 different journals published between 1876 and 2008.
+                Datasets of this size and diversity are becoming increasingly common, and so we
+                moved to pursue a tool capable of visualizing the results of topic modelling. Not
+                finding a suitable one for the exploration of large datasets, we set about designing
+                a new one. </p>
             <p>
                 <hi rend="bold">Visualizations in 3D</hi>
             </p>
@@ -182,8 +184,8 @@
                 forcing all thematic differences into a single two-dimensional presentation,
                 information is inevitably lost’. In an effort to minimize this information loss, we
                 are now creating an exploration tool for the purpose of experiencing a topic-modeled
-                corpus in 3D space, using the free, open-source JavaScript framework <hi
-                    rend="italic">Famo.us</hi>. </p>
+                corpus in 3D space, using the free, open-source <rs type="software">JavaScript</rs>
+                framework <hi rend="italic">Famo.us</hi>. </p>
             <p>The <hi rend="italic">Famo.us </hi>framework is designed to help ‘create smooth,
                 complex UIs for any screen’, and will provide us some substantial benefits, first
                 and foremost being that its CSS-like styling code is relatively straightforward to
@@ -270,8 +272,9 @@
                         <hi rend="bold">Frederica-Klein, L.</hi> (2013). TOpic Model and MEtadata
                         Visualization Project (TOME), digital humanities startup grant application. </bibl>
                     <bibl>
-                        <hi rend="bold">Goldstone, A.</hi> (2013). drfbrowser: Take a MALLET to
-                        Literary History, http://agoldst.github.io/dfrbrowser/web. </bibl>
+                        <hi rend="bold">Goldstone, A.</hi> (2013). drfbrowser: Take a <rs
+                            type="software">MALLET</rs> to Literary History,
+                        http://agoldst.github.io/dfrbrowser/web. </bibl>
                     <bibl>
                         <hi rend="bold">Gretarsson, B., O’Donovan, J., Bostandjiev, S., Höllerer,
                             T., Asuncion, A., Newman, D. and Smyth, P.</hi> (2012). Topicnets:
@@ -313,8 +316,9 @@
                         Data. In <hi rend="italic">Visualization in Geographical Information
                             Systems.</hi> London: John Wiley &amp; Sons, pp. 51–59. </bibl>
                     <bibl>
-                        <hi rend="bold">McCallum, A. K.</hi> (2002). MALLET: A Machine Learning for
-                        Language Toolkit. http://mallet.cs.umass.edu. </bibl>
+                        <hi rend="bold">McCallum, A. K.</hi> (2002). <rs type="software"
+                        >MALLET</rs>: A Machine Learning for Language Toolkit.
+                        http://mallet.cs.umass.edu. </bibl>
                     <bibl>
                         <hi rend="bold">Petre, M. and Green, T. R. G.</hi> (1992). Learning to Read
                         Graphics: Some Evidence That ‘Seeing’ an Information Display Is an Acquired
