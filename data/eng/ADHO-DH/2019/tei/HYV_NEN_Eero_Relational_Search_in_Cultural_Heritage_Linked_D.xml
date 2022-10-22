@@ -85,12 +85,12 @@
             <p>
                 <hi rend="bold">Abstract. </hi>This paper presents a new knowledge-based approach
                 for finding serendipitous semantic relations between resources in a knowledge graph.
-                The idea is to characterize the notion of "interesting connection" in terms of
-                generic ontological explanation rule patterns that are applied to an underlying
-                linked data repository to instantiate connections. In this way, 1) semantically
-                uninteresting connections can be ruled out effectively, and 2) natural language
-                explanations about the connections can be created for the end-user. The idea has
-                been implemented and tested based on a knowledge graph of biographical data
+                The idea is to characterize the notion of &quot;interesting connection&quot; in
+                terms of generic ontological explanation rule patterns that are applied to an
+                underlying linked data repository to instantiate connections. In this way, 1)
+                semantically uninteresting connections can be ruled out effectively, and 2) natural
+                language explanations about the connections can be created for the end-user. The
+                idea has been implemented and tested based on a knowledge graph of biographical data
                 extracted from life stories of 13100 prominent historical persons in Finland,
                 enriched by data linking to collection databases of museums, libraries, and
                 archives. The demonstrator is in use as part of the semantic portal BiographySampo
@@ -104,9 +104,9 @@
                         concerns on the problem of discovering serendipitous relations (a.k.a
                         connections, associations) in semantically rich, linked Cultural Heritage
                         (CH) data (Hyvönen, 2012), i.e., Knowledge Graphs (KG). In particular, we
-                        focus on the problem of finding "interesting" (Silberschatz and Tuzhilin,
-                        1995) connections between the resources in a KG, such as persons, places,
-                        and other named entities. Here the query</hi>
+                        focus on the problem of finding &quot;interesting&quot; (Silberschatz and
+                        Tuzhilin, 1995) connections between the resources in a KG, such as persons,
+                        places, and other named entities. Here the query</hi>
                     <hi rend="color(#000000)"> </hi>
                     <hi rend="color(#000000)">consists of two or more resources, and the task is to
                         find semantic relations, i.e., the query results, between them that are of
@@ -123,8 +123,8 @@
                     was a list of arc chains (such as student-of, patron-of, etc.), connecting the
                     persons based on the Getty ULAN knowledge graph of historical persons. In
                     RelFinder (Lohmann et al., 2010)(Heim et al., 2010)(Heim et al., 2009), based on
-                    the earlier "DBpedia Relationship Finder" (Lehmann et al., 2007), the user
-                    selects two or more resources, and the result is a minimal visualized graph
+                    the earlier &quot;DBpedia Relationship Finder&quot; (Lehmann et al., 2007), the
+                    user selects two or more resources, and the result is a minimal visualized graph
                     showing how the query resources are related with each other, e.g., how is Albert
                     Einstein related to Kurt Gödel in DBpedia/Wikipedia. Both gentlemen, e.g.,
                     worked at the Princeton University. In WiSP (Tartari and Hogan, 2016), several
@@ -136,18 +136,18 @@
                 <p>From a methodological perspective, the main challenge in these systems is how to
                     select and rank the interesting paths, since there are exponentially many
                     possible paths between the query resources in a KG. This problem can be
-                    approached by focusing only on "simple paths" that do not repeat nodes, on only
-                    restricted node and arc types in the graph (e.g., social connections between
-                    persons), and by assuming that shorter, possibly weighted paths are more
-                    interesting than longer ones. For weighting paths, measures such as page rank of
-                    nodes and commonness of arcs can be used.</p>
+                    approached by focusing only on &quot;simple paths&quot; that do not repeat
+                    nodes, on only restricted node and arc types in the graph (e.g., social
+                    connections between persons), and by assuming that shorter, possibly weighted
+                    paths are more interesting than longer ones. For weighting paths, measures such
+                    as page rank of nodes and commonness of arcs can be used.</p>
                 <p>The graph-based works above make use of generic traversal algorithms that are
                     application domain agnostic. In contrast, this paper suggests an alternative,
                     knowledge-based approach to finding interesting connections in a KG. The idea is
-                    to formalize  the notion of "interestingness" (Silberschatz and Tuzhilin, 1995)
-                    in the application domain using general explanation patterns that can be
-                    instantiated in a KG by using graph traversal queries, e.g., SPARQL. The
-                    benefits of this approach are: 1) non-sense relations between the query
+                    to formalize  the notion of &quot;interestingness&quot; (Silberschatz and
+                    Tuzhilin, 1995) in the application domain using general explanation patterns
+                    that can be instantiated in a KG by using graph traversal queries, e.g., SPARQL.
+                    The benefits of this approach are: 1) non-sense relations between the query
                     resources can be ruled out effectively, and 2) the explanation patterns can be
                     used for creating natural language explanations for the connections, not only
                     graph paths to be interpreted by the end user. The price to be paid is the need
@@ -173,12 +173,12 @@
                     Vince to Vince and to year 1452 based on the explanation pattern “Person X was
                     born in place Y in Z” for birth events:</p>
                 <quote>:c123 a :BirthConnection;</quote>
-                <quote>:explanation "Leonardo da Vinci was born in Vince in 1452";</quote>
+                <quote>:explanation &quot;Leonardo da Vinci was born in Vince in 1452&quot;;</quote>
                 <quote>:place :vince;</quote>
                 <quote>:time 1452;</quote>
                 <quote>:person :Leonardo_da_Vince .</quote>
-                <quote>:BirthConnection rdfs:label "Person X was born in place Y in time Z"
-                    .</quote>
+                <quote>:BirthConnection rdfs:label &quot;Person X was born in place Y in time
+                    Z&quot; .</quote>
                 <quote/>
                 <p>Relation instances like this can be searched for in a natural way using faceted
                     search, where the facets are based on the properties of the instances, that can
@@ -220,9 +220,9 @@
                     listed in Figure 1 were created using SPARQL CONSTRUCT queries with natural
                     language explanations. For example, the following template is used for
                     explaining artistic creation relations related to painting collections:</p>
-                <p>"&lt; <hi rend="bold">person name</hi>&gt; has created a work of art called &lt;
-                        <hi rend="bold">painting name</hi>&gt; in the year &lt; <hi rend="bold"
-                        >year</hi>&gt; that depicts &lt; <hi rend="bold">place name</hi>&gt;." </p>
+                <p>&quot;&lt; <hi rend="bold">person name</hi>&gt; has created a work of art called
+                    &lt; <hi rend="bold">painting name</hi>&gt; in the year &lt; <hi rend="bold"
+                        >year</hi>&gt; that depicts &lt; <hi rend="bold">place name</hi>&gt;.&quot; </p>
                 <p>
                     <figure>
                         <graphic url="Pictures/3af69ec3d5314b0710a550bd4a81b965.png"/>
@@ -259,26 +259,27 @@
                             <lb/>View of the user interface </head>
                     </figure>
                 </p>
-                <p>For example, the question "How are Finnish painters related to Italy?" is solved
-                    by selecting "Italy" from the hierarchical place facet and "painter" from the
-                    occupation facet. Any selection automatically includes its subcategories in the
-                    facet. For example, places such as Florence and Rome are in Italy, and Vatican
-                    further in Rome. The result set in this case contains 140 connections of
-                    different types whose distribution and hit counts can be seen on the connection
-                    type facet. In the same way, the person facet shows the hit count distribution
-                    along the person facet. Any facet could be used to filter the results further,
-                    if needed. In this case the 140 hits include, e.g., connection "Elin
-                    Danielson-Gambogi received in 1899 the Florence City Art Award" and "Robert
-                    Ekman created in 1844 the painting 'Landscape in Subiaco' depicting a place in
-                    Italy". In a similar way, the question "Who has got most awards in Germany" can
-                    be solved by selecting the connection type "Received an award in a place" and
-                    "Germany" from the place facet. The hit distribution along the person facet
-                    shows that general Carl Gustaf Mannerheim is the winner with eight German
+                <p>For example, the question &quot;How are Finnish painters related to Italy?&quot;
+                    is solved by selecting &quot;Italy&quot; from the hierarchical place facet and
+                    &quot;painter&quot; from the occupation facet. Any selection automatically
+                    includes its subcategories in the facet. For example, places such as Florence
+                    and Rome are in Italy, and Vatican further in Rome. The result set in this case
+                    contains 140 connections of different types whose distribution and hit counts
+                    can be seen on the connection type facet. In the same way, the person facet
+                    shows the hit count distribution along the person facet. Any facet could be used
+                    to filter the results further, if needed. In this case the 140 hits include,
+                    e.g., connection &quot;Elin Danielson-Gambogi received in 1899 the Florence City
+                    Art Award&quot; and &quot;Robert Ekman created in 1844 the painting
+                    &apos;Landscape in Subiaco&apos; depicting a place in Italy&quot;. In a similar
+                    way, the question &quot;Who has got most awards in Germany&quot; can be solved
+                    by selecting the connection type &quot;Received an award in a place&quot; and
+                    &quot;Germany&quot; from the place facet. The hit distribution along the person
+                    facet shows that general Carl Gustaf Mannerheim is the winner with eight German
                     awards.</p>
                 <p>The demonstrator is based on an architecture with the server side consisting of a
-                    Apache Jena Fuseki graph store and the client side consisting of an application
-                    written with AngularJS. The faceted search was implemented with the SPARQL
-                    Faceter (Koho et al., 2016) tool.</p>
+                        <rs type="software">Apache Jena</rs> Fuseki graph store and the client side
+                    consisting of an application written with AngularJS. The faceted search was
+                    implemented with the SPARQL Faceter (Koho et al., 2016) tool.</p>
             </div>
             <div type="div1" rend="DH-Heading1">
                 <head>Discussion</head>

@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><?xml-model href="https://github.com/DH-RSE/software-citation/raw/main/schema/tei_software_annotation.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://github.com/DH-RSE/software-citation/raw/main/schema/tei_software_annotation.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
     <teiHeader>
         <fileDesc>
@@ -91,9 +92,9 @@
             <p>The British Newspaper Archive, for example, boasts that it contains more than 37
                 million pages, which, although amounting to a large number of words, constitutes
                 only around 6% of the estimated total of newspaper pages. Establishing how the
-                digital &#8220;sample&#8221; relates to the total &#8220;population&#8221; of
-                newspapers has been difficult if not impossible. Similar challenges have been found
-                when working with digital book collections (Francois 2013).</p>
+                digital “sample” relates to the total “population” of newspapers has been difficult
+                if not impossible. Similar challenges have been found when working with digital book
+                collections (Francois 2013).</p>
             <p>In this paper, we demonstrate how contextualizing newspapers from the British
                 Newspaper Archive allows scholars to understand the contours of this corpus and to
                 critically interrogate the digital archive for potential biases. Below, we introduce
@@ -102,21 +103,21 @@
                 this work.</p>
             <p>The Newspaper Press Directories</p>
             <p>To investigate the contours of the Victorian press, we set out to digitize the
-                &#8220;Newspaper Press Directory&#8221;, a contemporaneous record that catalogued
-                periodicals circulating in Britain. Created by Charles Mitchell in 1846, the
-                Directory was published as an annual guide for advertisers, helping them to find
-                relevant audiences. In 1861, Mitchell&#8217;s Directory was recognized by the Post
-                Office as an authoritative list of the London and Provincial newspapers (Brake 2015;
-                Gliserman, 1969).&#160;&#160;</p>
-            <p>Figure 1: Example from Mitchell&#8217;s Press Directory, 1857</p>
-            <p>Figure 1 shows a description of the &#8220;Gloucestershire Chronicle&#8221; taken
-                from Mitchell&#8217;s 1857 edition. The Directory systematically lists the political
-                leaning, price and day(s) of publication, which allows us to profile newspapers,
-                i.e. locate them geographically as well as socially (i.e. places of circulation and
-                audience). Mitchell's attempted to provide a "dignified" account of the press, was
-                not unproblematic. As (O'Malley, 2015) points out: the Directory didn't simply
-                reflect the Victorian press but was also an actor that shaped the newspaper
-                landscape.</p>
+                “Newspaper Press Directory”, a contemporaneous record that catalogued periodicals
+                circulating in Britain. Created by Charles Mitchell in 1846, the Directory was
+                published as an annual guide for advertisers, helping them to find relevant
+                audiences. In 1861, Mitchell’s Directory was recognized by the Post Office as an
+                authoritative list of the London and Provincial newspapers (Brake 2015; Gliserman,
+                1969).  </p>
+            <p>Figure 1: Example from Mitchell’s Press Directory, 1857</p>
+            <p>Figure 1 shows a description of the “Gloucestershire Chronicle” taken from Mitchell’s
+                1857 edition. The Directory systematically lists the political leaning, price and
+                day(s) of publication, which allows us to profile newspapers, i.e. locate them
+                geographically as well as socially (i.e. places of circulation and audience).
+                Mitchell&apos;s attempted to provide a &quot;dignified&quot; account of the press,
+                was not unproblematic. As (O&apos;Malley, 2015) points out: the Directory
+                didn&apos;t simply reflect the Victorian press but was also an actor that shaped the
+                newspaper landscape.</p>
             <p>Nonetheless, the directories provide a useful entry point to organizing the 19th
                 century newspapers. We, therefore, attempted to contextualize the British Newspaper
                 Archive by linking this collection to information derived from the Directory.
@@ -128,39 +129,38 @@
                 industrialisation: Dorset remained rural for much of the nineteenth century, while
                 Lancashire industrialised early.</p>
             <p>Methodologically, the biggest challenge lay in parsing and encoding these documents
-                automatically. Mitchell&#8217;s Directory adheres to a rather intricate and shifting
+                automatically. Mitchell’s Directory adheres to a rather intricate and shifting
                 typographical layout, with many different fonts and transitions between cursive and
                 bold type. This, unfortunately, significantly deteriorated the OCR quality. To
                 process these documents we trained two different models: a page segmentation model
                 that splits the directory into separate entries (each describing one newspaper) and
-                a &#8220;semantic&#8221; model that overlays the individual entries with more
-                refined annotations (title, price, political leaning, but also named entities such
-                as Location, Person and Institution). The mock example below shows the input and
-                output of this process.</p>
+                a “semantic” model that overlays the individual entries with more refined
+                annotations (title, price, political leaning, but also named entities such as
+                Location, Person and Institution). The mock example below shows the input and output
+                of this process.</p>
             <p/>
-            <p>Example Input: [...] Proprietor&#8212;Henry Smith, general printer, as'the
-                representative of Trustees. (Advertisement, p. 104.)? NEAL&#8217;S CAMBRIDGE
-                GAZETTE. Monthly,Price U/. IMeiifr&amp;il.&#8212;Established March, 1855. Circulates
-                in Cambridge and its district. This is a union of the local intelligence of the
-                district, with general news and miscellanies. Proprietor&#8212;Jonathan Neal.?
-                CAH.TEBBI1 BY__________{Kent.)?</p>
+            <p>Example Input: [...] Proprietor—Henry Smith, general printer, as&apos;the
+                representative of Trustees. (Advertisement, p. 104.)? NEAL’S CAMBRIDGE GAZETTE.
+                Monthly,Price U/. IMeiifr&amp;il.—Established March, 1855. Circulates in Cambridge
+                and its district. This is a union of the local intelligence of the district, with
+                general news and miscellanies. Proprietor—Jonathan Neal.? CAH.TEBBI1
+                BY__________{Kent.)?</p>
             <p/>
-            <p>Example Output: [...] Proprietor&#8212;Henry Smith, general printer, as'the
+            <p>Example Output: [...] Proprietor—Henry Smith, general printer, as&apos;the
                 representative of Trustees. (Advertisement, p. 104.)?</p>
-            <p>NEAL&#8217;S CAMBRIDGE GAZETTE. Monthly, Price ?U/.</p>
-            <p>IMeiifr&amp;il.&#8212;Established March, 1855. Circulates in Cambridge and its
-                district. This is a union of the local intelligence of the district, with general
-                news and miscellanies. Proprietor&#8212;Jonathan Neal.?</p>
+            <p>NEAL’S CAMBRIDGE GAZETTE. Monthly, Price ?U/.</p>
+            <p>IMeiifr&amp;il.—Established March, 1855. Circulates in Cambridge and its district.
+                This is a union of the local intelligence of the district, with general news and
+                miscellanies. Proprietor—Jonathan Neal.?</p>
             <p>CAH.TEBBI1 BY__________{Kent.)?</p>
             <p/>
             <p>To train the models, we first manually labelled a random sample with a tool called
-                INCEpTION (Klie et al. 2018). Structural parsing is roughly equal to page
-                segmentation, which is reflected in the tag set (Table 1). Words that describe a
-                newspaper (as in Figure 1) are classified as &#8220;Newspaper&#8221; (with
-                &#8220;Start&#8221; and &#8220;Stop&#8221; indicating the boundaries). As the
-                directories are organized geographically (by district), we tagged a new location as
-                &#8220;District-Header&#8221; and its accompanying text as
-                &#8220;District-Description&#8221;.</p>
+                    <rs type="software">INCEpTION</rs> (Klie et al. 2018). Structural parsing is
+                roughly equal to page segmentation, which is reflected in the tag set (Table 1).
+                Words that describe a newspaper (as in Figure 1) are classified as “Newspaper” (with
+                “Start” and “Stop” indicating the boundaries). As the directories are organized
+                geographically (by district), we tagged a new location as “District-Header” and its
+                accompanying text as “District-Description”.</p>
             <p>Figure 2: Table 1: Results of structural parsing</p>
             <p>We applied Conditional Random Fields classifier to segment pages. We vectorized the
                 target and neighbouring words using (among others) the following features: use of
@@ -169,10 +169,10 @@
                 we selected based on a grid search. This resulted in a micro f-score of 0.96,
                 training on a corpus of 40 pages and testing on a set of 10 pages.</p>
             <p>Figure 3: Table 2: Results semantic parsing</p>
-            <p>The semantic parser takes a segmented page as input, and establishes the
-                &#8220;function&#8221; of each word in the document, identifying the recurrent
-                elements of the Directory, such as title, price, and political, to which we added
-                other basic named-entities such as Location, Person and Institution.</p>
+            <p>The semantic parser takes a segmented page as input, and establishes the “function”
+                of each word in the document, identifying the recurrent elements of the Directory,
+                such as title, price, and political, to which we added other basic named-entities
+                such as Location, Person and Institution.</p>
             <p>We followed the procedure developed by (Akbik, Blythe, and Vollgraf 2018) which
                 applies contextual string embeddings to sequence labelling. More concretely, we used
                 pre-trained character level Flair embeddings (both the backward and forward pass
@@ -220,29 +220,29 @@
             <p>* Code will be available in the Living with Machines github organization:
                 https://github.com/Living-with-Machines</p>
             <p>References</p>
-            <p>Akbik, Alan, Duncan Blythe, and Roland Vollgraf. 2018. &#8216;Contextual String
-                Embeddings for Sequence Labeling&#8217;. In Proceedings of the 27th International
-                Conference on Computational Linguistics, 1638&#8211;49.</p>
-            <p>Bingham, Adrian. 2010. &#8216;&#8220;The Digitization of Newspaper Archives:
-                Opportunities and Challenges for Historians&#8221;&#8217;. Twentieth Century British
-                History 21 (2): 225&#8211;31. https://doi.org/10.1093/tcbh/hwq007.</p>
-            <p>Brake, Laurel. 2015. &#8216;Nineteenth-Century Newspaper Press Directories: The
-                National Gallery of the British Press&#8217;. Victorian Periodicals Review 48 (4):
-                569&#8211;90. https://doi.org/10.1353/vpr.2015.0055.</p>
-            <p>Francois, Pieter. 2013. &#8216;The Sample Generator - Part 1: Origins&#8217;. British
-                Library Digital Scholarship Blog. 2013.
+            <p>Akbik, Alan, Duncan Blythe, and Roland Vollgraf. 2018. ‘Contextual String Embeddings
+                for Sequence Labeling’. In Proceedings of the 27th International Conference on
+                Computational Linguistics, 1638–49.</p>
+            <p>Bingham, Adrian. 2010. ‘“The Digitization of Newspaper Archives: Opportunities and
+                Challenges for Historians”’. Twentieth Century British History 21 (2): 225–31.
+                https://doi.org/10.1093/tcbh/hwq007.</p>
+            <p>Brake, Laurel. 2015. ‘Nineteenth-Century Newspaper Press Directories: The National
+                Gallery of the British Press’. Victorian Periodicals Review 48 (4): 569–90.
+                https://doi.org/10.1353/vpr.2015.0055.</p>
+            <p>Francois, Pieter. 2013. ‘The Sample Generator - Part 1: Origins’. British Library
+                Digital Scholarship Blog. 2013.
                 https://blogs.bl.uk/digital-scholarship/2013/11/the-sample-generator-part-1-origins.html.</p>
             <p>Klie, Jan-Christoph, Michael Bugert, Beto Boullosa, Richard Eckart de Castilho, and
-                Iryna Gurevych. 2018. &#8216;The INCEpTION Platform: Machine-Assisted and
-                Knowledge-Oriented Interactive Annotation&#8217;. In Proceedings of the 27th
-                International Conference on Computational Linguistics: System Demonstrations,
-                5&#8211;9. Association for Computational Linguistics.
+                Iryna Gurevych. 2018. ‘The <rs type="software">INCEpTION</rs> Platform:
+                Machine-Assisted and Knowledge-Oriented Interactive Annotation’. In Proceedings of
+                the 27th International Conference on Computational Linguistics: System
+                Demonstrations, 5–9. Association for Computational Linguistics.
                 http://tubiblio.ulb.tu-darmstadt.de/106270/.</p>
-            <p>O'Malley, Tom. 'Mitchell's Newspaper Press Directory and the Late Victorian and Early
-                Twentieth-Century Press.' Victorian Periodicals Review 48, no. 4 (2015):
-                591-606.</p>
-            <p>Smits, Thomas. 2014. &#8216;TS Tools: Problems and Possibilities of Digital Newspaper
-                and Periodical Archives&#8217;, 8.</p>
+            <p>O&apos;Malley, Tom. &apos;Mitchell&apos;s Newspaper Press Directory and the Late
+                Victorian and Early Twentieth-Century Press.&apos; Victorian Periodicals Review 48,
+                no. 4 (2015): 591-606.</p>
+            <p>Smits, Thomas. 2014. ‘TS Tools: Problems and Possibilities of Digital Newspaper and
+                Periodical Archives’, 8.</p>
         </body>
     </text>
 </TEI>

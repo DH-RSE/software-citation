@@ -90,9 +90,10 @@
                     disputed cases. The package supplies four pre-existing classification methods as
                     modules (including Delta (Burrows, 2002), widely regarded as a standard in this
                     area) as well as five sample corpora (including the famous <hi rend="italic"
-                        >Federalist Papers</hi>) so that users who don't wish to write Python code
-                    can use it simply as an off-the-shelf classifier and those who do can
-                    familiarize themselves with the system before implementing their own algorithms. </p>
+                        >Federalist Papers</hi>) so that users who don&apos;t wish to write <rs
+                        type="software">Python</rs> code can use it simply as an off-the-shelf
+                    classifier and those who do can familiarize themselves with the system before
+                    implementing their own algorithms. </p>
                 <p>Noteworthy features of the system include:</p>
                 <list type="ordered">
                     <item>sample corpora provided for familiarization;</item>
@@ -102,14 +103,14 @@
                     <item>option of post-hoc phase applying trained model(s) to unseen holdout
                         data;</item>
                     <item>empirically grounded computation of post-hoc confidence weights to deal
-                        with 'open' problems where the unseen cases may not belong to any of the
-                        training-set categories;</item>
+                        with &apos;open&apos; problems where the unseen cases may not belong to any
+                        of the training-set categories;</item>
                     <item>accompanying export file readable by R or similar statistical packages for
                         optional further processing.</item>
                 </list>
             </div>
             <div type="div1" rend="DH-Heading1">
-                <head>Sketch of the System's Operation</head>
+                <head>Sketch of the System&apos;s Operation</head>
                 <p>Toccata performs three main functions, in sequence:</p>
                 <p>(a) testmode: leave-n-out random resampling test of the classifier on the
                     training corpus to provide statistics by which the classifier can be
@@ -129,8 +130,8 @@
                     collecting or reformatting their own corpora.</p>
                 <p>
                     <hi rend="bold">ajps</hi>: ninety poems by 2 eminent 19th-century Hungarian
-                    poets, Arany József and Petőfi Sándor. Arany was godfather to Petőfi's child, so
-                    we might expect their writing styles to be relatively similar. </p>
+                    poets, Arany József and Petőfi Sándor. Arany was godfather to Petőfi&apos;s
+                    child, so we might expect their writing styles to be relatively similar. </p>
                 <p>
                     <hi rend="bold">cics</hi>: Latin texts relevant to the authorship of the <hi
                         rend="italic">Consolatio</hi> which Cicero wrote in 45 BC. This was thought
@@ -170,19 +171,20 @@
                     and deliver matching scores of a text to each model, with more positive scores
                     indicating stronger matching. The category with the highest match-score relative
                     to the average of all scores for the text, is the assigned class. Four library
-                    modules are supplied "off the shelf".</p>
-                <p>Module <hi rend="bold">docalib_deltoid.py</hi> is an implementation of Burrows's
-                    delta (Burrows, 2002) which has become a standard technique in authorship
-                    attribution studies. Module <hi rend="bold">docalib_keytoks.py</hi> works by
-                    first finding the 1024 most common word tokens in the corpus, then keeping from
-                    these the most distinctive. For classification, relative word frequencies in the
-                    text being classified are correlated with relative frequencies in each class.
-                    Module <hi rend="bold">docalib_maws.py</hi> is a version of what Mosteller and
-                    Wallace in their classic work (1964/1984) on the <hi rend="italic">Federalist
-                        Papers</hi> call their "robust Bayesian analysis", as implemented by Forsyth
-                    (1995). Module <hi rend="bold">docalib_topvocs.py</hi> implements another
-                    classifier inspired by the approach of Burrows (1992), which uses the most
-                    frequent tokens in the training corpus as features. </p>
+                    modules are supplied &quot;off the shelf&quot;.</p>
+                <p>Module <hi rend="bold">docalib_deltoid.py</hi> is an implementation of
+                    Burrows&apos;s delta (Burrows, 2002) which has become a standard technique in
+                    authorship attribution studies. Module <hi rend="bold">docalib_keytoks.py</hi>
+                    works by first finding the 1024 most common word tokens in the corpus, then
+                    keeping from these the most distinctive. For classification, relative word
+                    frequencies in the text being classified are correlated with relative
+                    frequencies in each class. Module <hi rend="bold">docalib_maws.py</hi> is a
+                    version of what Mosteller and Wallace in their classic work (1964/1984) on the
+                        <hi rend="italic">Federalist Papers</hi> call their &quot;robust Bayesian
+                    analysis&quot;, as implemented by Forsyth (1995). Module <hi rend="bold"
+                        >docalib_topvocs.py</hi> implements another classifier inspired by the
+                    approach of Burrows (1992), which uses the most frequent tokens in the training
+                    corpus as features. </p>
             </div>
             <div type="div1" rend="DH-Heading1">
                 <head>The Holdout and Posthoc Phases</head>
@@ -201,28 +203,28 @@
                     training corpus is 116 words, secondly because 14 is a relatively large number
                     of candidates.</p>
                 <p>Table 1 shows the ranking produced on a holdout sample of 24 texts, absent from
-                    the training set. Note that 12 of these 24 items are 'distractors', i.e. texts
-                    by authors not present in the training set. The program assigns these a question
-                    mark (?) in assessing its own decision.</p>
-                <p>The listing ranks the program's decisions from most to least credible. The upper
-                    third include 6 correct assignments, 1 clear mistake and a distractor. The
+                    the training set. Note that 12 of these 24 items are &apos;distractors&apos;,
+                    i.e. texts by authors not present in the training set. The program assigns these
+                    a question mark (?) in assessing its own decision.</p>
+                <p>The listing ranks the program&apos;s decisions from most to least credible. The
+                    upper third include 6 correct assignments, 1 clear mistake and a distractor. The
                     middle third contains 1 correct classification, 3 mistakes and 4 distractors.
                     The last third contains no correct answers, 1 mistake and 7 distractors.
                     (Incidentally, the distractor poem by the Earl of Oxford, ranked twentieth, is
                     more congruent with Wordsworth than any other author, including Shakespeare, and
                     not confidently assigned to any of the training categories.)</p>
                 <p>This output addresses the very real problem of documents from outside the known
-                    training categories. The listing is ordered by a quantity labelled 'credit'.
-                    This is the geometric mean of the last two numbers in each line, labelled
-                    'confidence' and 'congruity'. Confidence is derived from the preceding
-                    subsampling phase. It is computed from the differential matching score of the
-                    text under consideration as W / (W+L), where W is the number of correct answers
-                    which received a lower differential score during the subsampling phase and L is
-                    the number of wrong answers with a higher score. Congruity is simply the
-                    proportion of matching scores of the chosen category that were lower, in the
-                    subsampling phase, than the score for the case in question. It is an empirically
-                    based index of compatibility between the assigned category of the text and the
-                    training examples of that category.</p>
+                    training categories. The listing is ordered by a quantity labelled
+                    &apos;credit&apos;. This is the geometric mean of the last two numbers in each
+                    line, labelled &apos;confidence&apos; and &apos;congruity&apos;. Confidence is
+                    derived from the preceding subsampling phase. It is computed from the
+                    differential matching score of the text under consideration as W / (W+L), where
+                    W is the number of correct answers which received a lower differential score
+                    during the subsampling phase and L is the number of wrong answers with a higher
+                    score. Congruity is simply the proportion of matching scores of the chosen
+                    category that were lower, in the subsampling phase, than the score for the case
+                    in question. It is an empirically based index of compatibility between the
+                    assigned category of the text and the training examples of that category.</p>
                 <p>In all kinds of classification, the problem of never-before-seen categories can
                     loom large. (See, for instance, Eder, 2013.) Like most trainable classifiers,
                     Toccata always picks the most likely category from those it has encountered in
@@ -231,15 +233,15 @@
                     consider the classifications which obtain a score of at least 0.5 on both
                     confidence and congruity, we find 6 correct decisions, 1 incorrect and 1
                     distractor. Treating the distractor (assigning a sonnet by Dylan Thomas to Edna
-                    Millay) as incorrect still represents a 75% success rate in an "open" authorship
-                    problem on texts only slightly more than a hundred word tokens in length, where
-                    the training sample for each known category consists of approximately 1600
-                    words, with a chance expectation of 7% success. In other words, three crucial
-                    parameters -- training corpus size, text length and number of categories -- are
-                    all well "outside the envelope" of most previously reported authorship
-                    studies.</p>
+                    Millay) as incorrect still represents a 75% success rate in an &quot;open&quot;
+                    authorship problem on texts only slightly more than a hundred word tokens in
+                    length, where the training sample for each known category consists of
+                    approximately 1600 words, with a chance expectation of 7% success. In other
+                    words, three crucial parameters -- training corpus size, text length and number
+                    of categories -- are all well &quot;outside the envelope&quot; of most
+                    previously reported authorship studies.</p>
                 <p>Table 1 -- Posthoc ranking of 24 decisions on unseen texts, including 12
-                    'distractors'</p>
+                    &apos;distractors&apos;</p>
                 <table rend="rules">
                     <row>
                         <cell rend="Plain_Text">rank</cell>
@@ -462,9 +464,10 @@
                             >Literary and Linguistic Computing</hi>, <hi rend="bold">7</hi>(2):
                         91-109. </bibl>
                     <bibl>
-                        <hi rend="bold">Burrows, J.F.</hi> (2002). 'Delta': a measure of stylistic
-                        difference and a guide to likely authorship. <hi rend="italic">Literary and
-                            Linguistic Computing</hi>, <hi rend="bold">17</hi>(3): 267-87. </bibl>
+                        <hi rend="bold">Burrows, J.F.</hi> (2002). &apos;Delta&apos;: a measure of
+                        stylistic difference and a guide to likely authorship. <hi rend="italic"
+                            >Literary and Linguistic Computing</hi>, <hi rend="bold">17</hi>(3):
+                        267-87. </bibl>
                     <bibl>
                         <hi rend="bold">Eder, M.</hi> (2013). Bootstrapping Delta: a safety net in
                         open-set authorship attribution. <ref
@@ -485,8 +488,8 @@
                     <bibl>
                         <hi rend="bold">Forsyth, R.S., Holmes, D.I. and Tse, E.K</hi>. (1999).
                         Cicero, Sigonio, and Burrows: investigating the authenticity of the
-                        'Consolatio'. <hi rend="italic">Literary and Linguistic Computing, </hi><hi
-                            rend="bold">14</hi>(3): 1-26. </bibl>
+                        &apos;Consolatio&apos;. <hi rend="italic">Literary and Linguistic Computing,
+                            </hi><hi rend="bold">14</hi>(3): 1-26. </bibl>
                     <bibl>
                         <hi rend="bold">Grieve, J.</hi> (2007). Quantitative authorship attribution:
                         an evaluation of techniques. <hi rend="italic">Literary and Linguistic
@@ -496,10 +499,10 @@
                             rend="italic">Computers and the Humanities</hi>, <hi rend="bold"
                         >28</hi>: 1-20. </bibl>
                     <bibl>
-                        <hi rend="bold">Holmes, D.I. and Forsyth, R.S.</hi> (1995). The 'Federalist'
-                        revisited: new directions in authorship attribution. <hi rend="italic"
-                            >Literary and Linguistic Computing</hi>, <hi rend="bold">10</hi>(2):
-                        111-27. </bibl>
+                        <hi rend="bold">Holmes, D.I. and Forsyth, R.S.</hi> (1995). The
+                        &apos;Federalist&apos; revisited: new directions in authorship attribution.
+                            <hi rend="italic">Literary and Linguistic Computing</hi>, <hi
+                            rend="bold">10</hi>(2): 111-27. </bibl>
                     <bibl>
                         <hi rend="bold">Juola, P.</hi> (2006). Authorship attribution. <hi
                             rend="italic">Foundations and Trends in Information Retrieval</hi>, <hi

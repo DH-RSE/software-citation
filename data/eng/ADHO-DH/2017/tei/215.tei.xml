@@ -130,15 +130,16 @@
 					Processing (NLP) tasks, such as, sentiment analysis, named entity recognition,
 					or topic modeling. A large amount of NLP software is already available. On the
 					one hand, there are frameworks that bundle software for different tasks and
-					languages (e.g., NLTK <ref type="bibr">[Bird et al, 2009]</ref>, or xtas1), and
-					on the other hand there are tools that target specific tasks (e.g., gensim, <ref
-						type="bibr">Rehurek and Sojka, 2010)</ref>. As long as researchers do not
-					need to combine tools from different packages, it is usually relatively easy to
-					write scripts that perform the task. However, for innovative research, combining
-					tools often is required, especially when working with non-English text. This
-					abstract presents work in progress on NLP <ref type="bibr">Pipeline
-						(nlppln)</ref>, an open source tool that improves access to NLP software by
-					facilitating combining NLP functionality from different software packages2.</p>
+					languages (e.g., <rs type="software">NLTK</rs>
+					<ref type="bibr">[Bird et al, 2009]</ref>, or xtas1), and on the other hand
+					there are tools that target specific tasks (e.g., gensim, <ref type="bibr"
+						>Rehurek and Sojka, 2010)</ref>. As long as researchers do not need to
+					combine tools from different packages, it is usually relatively easy to write
+					scripts that perform the task. However, for innovative research, combining tools
+					often is required, especially when working with non-English text. This abstract
+					presents work in progress on NLP <ref type="bibr">Pipeline (nlppln)</ref>, an
+					open source tool that improves access to NLP software by facilitating combining
+					NLP functionality from different software packages2.</p>
 				<p>nlppln is based on Common Workflow Language (CWL), a standard for describing data
 					analysis workflows and tools <ref type="bibr">(Amstutz et al, 2016</ref>). The
 					main advantage of using a standard is that any existing NLP tool can be
@@ -158,17 +159,17 @@
 			<div xmlns="http://www.tei-c.org/ns/1.0">
 				<head>The Software</head>
 				<p>An NLP pipeline or workflow is a sequence of natural language processing steps. A
-					'step' represents a specific NLP task, that is executed by a single tool. Tools
-					require input and produce output. The basic units in CWL are command line tools
-					(i.e., tools that can be run from the command line). In order to be able to run
-					a command line tool, CWL needs a specification. The nlppln software helps
-					creating those specifications. In addition, nlppln provides functionality to
-					convert existing NLP tools written in Python to command line tools. Finally, the
-					software helps users to combine (existing and new) processing steps to
-					pipelines.</p>
+					&apos;step&apos; represents a specific NLP task, that is executed by a single
+					tool. Tools require input and produce output. The basic units in CWL are command
+					line tools (i.e., tools that can be run from the command line). In order to be
+					able to run a command line tool, CWL needs a specification. The nlppln software
+					helps creating those specifications. In addition, nlppln provides functionality
+					to convert existing NLP tools written in <rs type="software">Python</rs> to
+					command line tools. Finally, the software helps users to combine (existing and
+					new) processing steps to pipelines.</p>
 				<p>In the next section, we explain how nlppln facilitates creating NLP steps, and in
-					"Constructing Pipelines" we demonstrate the creation of an NLP pipeline for data
-					anonymization.</p>
+					&quot;Constructing Pipelines&quot; we demonstrate the creation of an NLP
+					pipeline for data anonymization.</p>
 			</div>
 			<div xmlns="http://www.tei-c.org/ns/1.0">
 				<head>Generating Steps</head>
@@ -186,29 +187,31 @@
 					files). This does however mean that the user has to adapt the CWL specification
 					by hand.</p>
 				<p>In addition to CWL specifications, nlppln allows users to generate boilerplate
-					Python command line tools. A boilerplate command line tool contains generic
-					functionality, such as opening input files and saving output files, but lacks
-					implementation of the specific NLP task. The generated Python command can be
-					used to turn existing NLP functionality into command line tools, and to create
-					Python command line tools for new NLP tasks.</p>
-				<p>Python commands and associated CWL steps are generated using a command line tool
-					that requires the user to answer a sequence of yes/no questions. Listing 1 shows
-					what that looks like for a (hypothetical) command 'command', that takes as input
-					a metadata file and multiple input files, and produces as output multiple text
-					files and metadata.</p>
-				<p>Listing 1: Generating a CWL specification and associated boilerplate Python
-					command using nlppln.</p>
+						<rs type="software">Python</rs> command line tools. A boilerplate command
+					line tool contains generic functionality, such as opening input files and saving
+					output files, but lacks implementation of the specific NLP task. The generated
+						<rs type="software">Python</rs> command can be used to turn existing NLP
+					functionality into command line tools, and to create <rs type="software"
+						>Python</rs> command line tools for new NLP tasks.</p>
+				<p><rs type="software">Python</rs> commands and associated CWL steps are generated
+					using a command line tool that requires the user to answer a sequence of yes/no
+					questions. Listing 1 shows what that looks like for a (hypothetical) command
+					&apos;command&apos;, that takes as input a metadata file and multiple input
+					files, and produces as output multiple text files and metadata.</p>
+				<p>Listing 1: Generating a CWL specification and associated boilerplate <rs
+						type="software">Python</rs> command using nlppln.</p>
 			</div>
 			<div xmlns="http://www.tei-c.org/ns/1.0">
 				<head>Constructing Pipelines</head>
 				<p>To combine text processing steps into a CWL pipeline, nlppln provides an
-					interface that allows users to write a simple Python script. We demonstrate this
-					functionality by creating a pipeline that replaces named entities in a
-					collection of text documents. Named entities are objects in text referred to by
-					proper names, such as persons, organizations, and locations. In the example
-					pipeline, named entities will be replaced with their named entity type (i.e.,
-					PER (person), ORG (organization), LOC (location), or UNSP (unspecified)). The
-					pipeline can be used as part of a data anonymization procedure.</p>
+					interface that allows users to write a simple <rs type="software">Python</rs>
+					script. We demonstrate this functionality by creating a pipeline that replaces
+					named entities in a collection of text documents. Named entities are objects in
+					text referred to by proper names, such as persons, organizations, and locations.
+					In the example pipeline, named entities will be replaced with their named entity
+					type (i.e., PER (person), ORG (organization), LOC (location), or UNSP
+					(unspecified)). The pipeline can be used as part of a data anonymization
+					procedure.</p>
 				<p>The pipeline consists of the following steps:</p>
 				<p>1. Extract named entities from text documents using frog (van den <ref
 						type="bibr">Bosch et al, 2007</ref>), an existing parser/tagger for Dutch 2.
@@ -228,18 +231,18 @@
 					listing 2. After the remaining steps steps of the workflow are added (lines
 					9-12), the workflow outputs are specified (line 14). Finally, the workflow is
 					saved to a CWL file (line 16).</p>
-				<p>Listing 2: Python script for constructing the pipeline to replace named entities
-					in text files.</p>
+				<p>Listing 2: <rs type="software">Python</rs> script for constructing the pipeline
+					to replace named entities in text files.</p>
 			</div>
 			<div xmlns="http://www.tei-c.org/ns/1.0">
 				<head>Conclusion</head>
 				<p>To help DH researchers to (re)use and combine existing NLP software, we presented
-					nlppln, an open source Python package for creating flexible and reusable NLP
-					pipelines in CWL. nlppln comes with ready-to-use NLP steps, facilitates creating
-					new steps, and helps combining steps into standardized workflows that are
-					portable across different software and hardware environments. Compared to
-					existing frameworks for creating NLP pipelines, CWL and nlppln add flexibility
-					and improved research reproducibility.</p>
+					nlppln, an open source <rs type="software">Python</rs> package for creating
+					flexible and reusable NLP pipelines in CWL. nlppln comes with ready-to-use NLP
+					steps, facilitates creating new steps, and helps combining steps into
+					standardized workflows that are portable across different software and hardware
+					environments. Compared to existing frameworks for creating NLP pipelines, CWL
+					and nlppln add flexibility and improved research reproducibility.</p>
 				<p>nlppln is a work in progress. An important challenge that needs to be addressed
 					is the fact that there is no standard data format for representing text and/or
 					information extracted from text. This means that we will have to add NLP steps
@@ -256,21 +259,22 @@
 					Klein, E. ( 2009 ). van den Bosch, A., B Busser, B., Dealemans, G. J., and
 					Canisius, S. ( 2007 ) An efficient memory-based mor-</head>
 				<label>201620092007</label>
-				<figDesc>Common Work- flow Language, v1.0,.BirdNatural Language Processing with
-					Python. O'Reilly Media Incphosyntactic tagger and parser for Dutch. In Proceed-
-					ings of the 17th Meeting of Computational Linguistics in the Netherlands, pages
-					191-206, 2007. Eckart de Castilho, R. (2016). Interoperability = f(commu- nity,
-					division of labour). In Proceedings of the Workshop on Cross-Platform Text
-					Mining and Natural Language Processing Interoperability (INTEROP 2016) at LREC
-					2016, pages 24-28, 2016. Eckart de Castilho, R., and Gurevych, I. (2014). A
-					broad- coverage collection of portable NLP components for building shareable
-					analysis pipelines. In Proceedings of the Workshop on Open Infrastructures and
-					Analysis Frameworks for HLT (OIAF4HLT) at COLING 2014, pages 1-11. Ferrucci, D.,
-					and Lally., A. (2004) UIMA: an architectural approach to unstructured
-					information processing in the corporate research environment. Natural Language
-					En- gineering 10.3-4, pages 327-348. Rehurek, R., and Sojka, P. (2010). Software
-					Framework for Topic Modelling with Large Corpora. In Proceedings of the LREC
-					2010 Workshop on New Challenges for NLP Frameworks, pages 45-50.</figDesc>
+				<figDesc>Common Work- flow Language, v1.0,.BirdNatural Language Processing with <rs
+						type="software">Python</rs>. O&apos;Reilly Media Incphosyntactic tagger and
+					parser for Dutch. In Proceed- ings of the 17th Meeting of Computational
+					Linguistics in the Netherlands, pages 191-206, 2007. Eckart de Castilho, R.
+					(2016). Interoperability = f(commu- nity, division of labour). In Proceedings of
+					the Workshop on Cross-Platform Text Mining and Natural Language Processing
+					Interoperability (INTEROP 2016) at LREC 2016, pages 24-28, 2016. Eckart de
+					Castilho, R., and Gurevych, I. (2014). A broad- coverage collection of portable
+					NLP components for building shareable analysis pipelines. In Proceedings of the
+					Workshop on Open Infrastructures and Analysis Frameworks for HLT (OIAF4HLT) at
+					COLING 2014, pages 1-11. Ferrucci, D., and Lally., A. (2004) UIMA: an
+					architectural approach to unstructured information processing in the corporate
+					research environment. Natural Language En- gineering 10.3-4, pages 327-348.
+					Rehurek, R., and Sojka, P. (2010). Software Framework for Topic Modelling with
+					Large Corpora. In Proceedings of the LREC 2010 Workshop on New Challenges for
+					NLP Frameworks, pages 45-50.</figDesc>
 			</figure>
 		</body>
 		<back>

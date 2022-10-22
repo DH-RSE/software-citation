@@ -101,15 +101,15 @@
 					exploration of digital materials.</p>
 				<p>In this paper we consider the example of a digital companion presenting the
 					contents of a Research Object studying the interpretation of leitmotif examples
-					from Wagner's compositions, specifically the Ring cycle, as they are presented
-					in numerous historical introductions, opera guides, leitmotivic threads and
-					leitmotif lists included in libretto editions and piano scores. The study of the
-					incidences of these particular leitmotif identifications consists of both the
-					gathering of source material and its digitisation and cataloguing, and a
-					musicological study of the potential relationships, influence and evolution
-					between leitmotif interpretations. To enable the extension and repurposing of
-					the identified leitmotif relationships they are structured using an
-					ontology.</p>
+					from Wagner&apos;s compositions, specifically the Ring cycle, as they are
+					presented in numerous historical introductions, opera guides, leitmotivic
+					threads and leitmotif lists included in libretto editions and piano scores. The
+					study of the incidences of these particular leitmotif identifications consists
+					of both the gathering of source material and its digitisation and cataloguing,
+					and a musicological study of the potential relationships, influence and
+					evolution between leitmotif interpretations. To enable the extension and
+					repurposing of the identified leitmotif relationships they are structured using
+					an ontology.</p>
 				<p>Notation examples in leitmotif guides are usually abstractions drawn from a piano
 					score. When reporting findings from this research it is desirable to present and
 					relate the scholarly arguments back to the musicological context within which
@@ -120,18 +120,19 @@
 					scholarly text, via semantic hyperlinks, to and from the score, including exact
 					matches and variants, illustrating interpretations, and situating the examples
 					back in context. Encoding interpretations in the form of notation examples as
-					variant readings of a certain passage could thereby chart the 'understanding' of
-					the work as a history of its variants.</p>
+					variant readings of a certain passage could thereby chart the
+					&apos;understanding&apos; of the work as a history of its variants.</p>
 				<p>(</p>
 			</div>
 			<div xmlns="http://www.tei-c.org/ns/1.0">
 				<head>For example comparing: Richard Wagner, Die Walküre, piano score by Felix
 					Mottl, Leipzig, Peters, 1914, p.165; Hans von Wolzogen, Thematischer Leitfaden
 					durch die Musik zu Richard Wagners Festspiel Der Ring des Nibelungen, 2 nd ed.,
-					Leipzig, Schloemp, 1876, p.58, 'Schicksalsmotiv'; Gustav Kobbé, Wagner's Music
-					Dramas Analyzed With the Leading Motives, New York: Schirmer, 1923, p. 57,
-					'Motive of Fate'; George Dunning Gribble, The Master Works of Richard Wagner,
-					London, Everett, 1913, p. 289, 'Fate Motif'.)</head>
+					Leipzig, Schloemp, 1876, p.58, &apos;Schicksalsmotiv&apos;; Gustav Kobbé,
+					Wagner&apos;s Music Dramas Analyzed With the Leading Motives, New York:
+					Schirmer, 1923, p. 57, &apos;Motive of Fate&apos;; George Dunning Gribble, The
+					Master Works of Richard Wagner, London, Everett, 1913, p. 289, &apos;Fate
+					Motif&apos;.)</head>
 			</div>
 			<div xmlns="http://www.tei-c.org/ns/1.0">
 				<head>Introducing MELD: Music Encoding and Linked Data</head>
@@ -147,36 +148,39 @@
 					scoped using MEI. <ref type="figure" target="#fig_0">Figure 1</ref> shows a
 					screenshot of MELD displaying text and notation, highlighting leitmotifs as
 					identified in different historical guides. To render our music notation (encoded
-					using MEI) we use Verovio ( <ref type="bibr">Pugin et al. 2013</ref>), an
-					open-source MEI renderer that produces beautiful SVG renditions of the score. In
-					addition, Verovio provides an architecture in which identifiers (in other words,
-					anchors for our relational Linked Data expressions in the MEI XML) are persisted
-					through to the rendering (in SVG) which can be connected to identifiers in our
-					contextual information (in RDF). When rendered (and re-rendered) for the user in
-					our web based application interface, the browser uses these identifiers to
-					generate interface elements and undertake actions that combine information from
-					the MEI and the Linked Data. Within the Research Object, we treat the XML IDs of
-					elements within the MEI resource as fragment identifiers, so URIs can be
-					straightforwardly generated for each notation element of interest. We employ the
-					Web Annotation Data Model ( <ref type="bibr" target="#b6">Sanderson et al.
-						2017</ref>), using these URIs as targets of annotations representing each
-					musicological marking. Corresponding annotation bodies are associated with
-					semantic tags defined to encode the different musicological interpretations,
-					which are in turn the annotation bodies of a top-level annotation targeting the
-					URI of the files currently being viewed, including the music encoding (MEI) and
-					scholarly interpretation (HTML). A simplified example of such relationships is
-					shown in <ref type="figure" target="#fig_1">Figure 2</ref>. The MELD client then
-					uses HTML/CSS and JavaScript, served by a simple web service implemented with
-					Python Flask, and illustrated in <ref type="figure" target="#fig_2">Figure
-						3</ref>. The procedure driving the rendering and user interaction is
-					illustrated in <ref type="figure" target="#fig_0">Figure 1</ref>. The client
-					processes a framed (see the explanation of framing) JSON-LD representation of
-					the RDF graph instantiating the data model. It then performs an HTTP GET call to
-					acquire the MEI resource targeted by the top-level annotation, and renders the
-					corresponding musical score to SVG using Verovio. User interactions are captured
-					using HTML divs drawn as bounding boxes over portions of the SVG corresponding
-					to MEI elements of interest; this is simplified by Verovio's retention of MEI
-					identifiers in the produced SVG output.</p>
+					using MEI) we use <rs type="software">Verovio</rs> ( <ref type="bibr">Pugin et
+						al. 2013</ref>), an open-source MEI renderer that produces beautiful SVG
+					renditions of the score. In addition, <rs type="software">Verovio</rs> provides
+					an architecture in which identifiers (in other words, anchors for our relational
+					Linked Data expressions in the MEI XML) are persisted through to the rendering
+					(in SVG) which can be connected to identifiers in our contextual information (in
+					RDF). When rendered (and re-rendered) for the user in our web based application
+					interface, the browser uses these identifiers to generate interface elements and
+					undertake actions that combine information from the MEI and the Linked Data.
+					Within the Research Object, we treat the XML IDs of elements within the MEI
+					resource as fragment identifiers, so URIs can be straightforwardly generated for
+					each notation element of interest. We employ the Web Annotation Data Model (
+						<ref type="bibr" target="#b6">Sanderson et al. 2017</ref>), using these URIs
+					as targets of annotations representing each musicological marking. Corresponding
+					annotation bodies are associated with semantic tags defined to encode the
+					different musicological interpretations, which are in turn the annotation bodies
+					of a top-level annotation targeting the URI of the files currently being viewed,
+					including the music encoding (MEI) and scholarly interpretation (HTML). A
+					simplified example of such relationships is shown in <ref type="figure"
+						target="#fig_1">Figure 2</ref>. The MELD client then uses HTML/CSS and <rs
+						type="software">JavaScript</rs>, served by a simple web service implemented
+					with <rs type="software">Python</rs> Flask, and illustrated in <ref
+						type="figure" target="#fig_2">Figure 3</ref>. The procedure driving the
+					rendering and user interaction is illustrated in <ref type="figure"
+						target="#fig_0">Figure 1</ref>. The client processes a framed (see the
+					explanation of framing) JSON-LD representation of the RDF graph instantiating
+					the data model. It then performs an HTTP GET call to acquire the MEI resource
+					targeted by the top-level annotation, and renders the corresponding musical
+					score to SVG using <rs type="software">Verovio</rs>. User interactions are
+					captured using HTML divs drawn as bounding boxes over portions of the SVG
+					corresponding to MEI elements of interest; this is simplified by <rs
+						type="software">Verovio</rs>&apos;s retention of MEI identifiers in the
+					produced SVG output.</p>
 			</div>
 			<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0">
 				<head>Figure 1 .</head>
@@ -205,12 +209,13 @@
 				<div xmlns="http://www.tei-c.org/ns/1.0">
 					<head>Acknowledgements</head>
 					<p>This work has been supported by the UK Arts and Humanities Research Council
-						grant AH/L006820/1 'Transforming Musicology', and EPSRC grant EP/L019981/1
-						'Fusing Audio and Semantic Technologies for Intelligent Music Production and
-						Consumption'. We thank all our colleagues on these projects who have
-						supported and encouraged this work, particularly Carolin Rindfleisch for her
-						complementary work on musicological ontologies, and Laurence Dreyfus for
-						wider inspiration and motivation in developing these technologies.</p>
+						grant AH/L006820/1 &apos;Transforming Musicology&apos;, and EPSRC grant
+						EP/L019981/1 &apos;Fusing Audio and Semantic Technologies for Intelligent
+						Music Production and Consumption&apos;. We thank all our colleagues on these
+						projects who have supported and encouraged this work, particularly Carolin
+						Rindfleisch for her complementary work on musicological ontologies, and
+						Laurence Dreyfus for wider inspiration and motivation in developing these
+						technologies.</p>
 				</div>
 			</div>
 
@@ -467,9 +472,10 @@
 
 					<biblStruct xml:id="b5">
 						<monogr>
-							<title level="m" type="main">Verovio: A Library for Engraving MEI Music
-								Notation into SVG. Proceedings of the 15th International Society for
-								Music Information Retrieval Conference</title>
+							<title level="m" type="main"><rs type="software">Verovio</rs>: A Library
+								for Engraving MEI Music Notation into SVG. Proceedings of the 15th
+								International Society for Music Information Retrieval
+								Conference</title>
 							<author>
 								<persName xmlns="http://www.tei-c.org/ns/1.0">
 									<forename type="first">L</forename>
