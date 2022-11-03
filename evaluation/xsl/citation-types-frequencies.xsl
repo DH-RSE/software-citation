@@ -94,7 +94,7 @@
             <xsl:value-of select="concat(
                 (: citation type :) $citation-type, ',', 
                 (: abs. frequency :) sum($instances//*:instance/@*[local-name()=$citation-type]), ',', 
-                (: rel. frequency :) sum($instances//*:instance/@*[local-name()=$citation-type]) div $count-unique-instances
+                (: rel. frequency :) format-number(sum($instances//*:instance/@*[local-name()=$citation-type]) div $count-unique-instances * 100, '##.##')
                 )"/>
             <xsl:value-of select="$NEWLINE"/>
         </xsl:for-each>
