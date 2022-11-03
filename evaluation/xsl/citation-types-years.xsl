@@ -19,7 +19,7 @@
                     <!-- regex-groups:
                     1: SoftwareID
                     2: Dateipfad
-                    3: NameOnly (bool)
+                    3: Name.Only (bool)
                     4: Bib.Ref (bool)
                     5: Bib.Soft (bool)
                     6: Agent (bool)
@@ -32,7 +32,7 @@
                             <entry>
                                 <name><xsl:value-of select="normalize-space(regex-group(1))"/></name>
                                 <path><xsl:value-of select="regex-group(2)"/></path>
-                                <value type="NameOnly"><xsl:value-of select="regex-group(3)"/></value>
+                                <value type="Name.Only"><xsl:value-of select="regex-group(3)"/></value>
                                 <value type="Bib.Ref"><xsl:value-of select="regex-group(4)"/></value>
                                 <value type="Bib.Soft"><xsl:value-of select="regex-group(5)"/></value>
                                 <value type="Agent"><xsl:value-of select="regex-group(6)"/></value>
@@ -49,13 +49,13 @@
         
         <!-- create CSV with values per year -->
         <xsl:result-document href="../csv/citation-types-years.csv" encoding="UTF-8" method="text">
-            <xsl:text>Year;NameOnly.abs;NameOnly.rel;Bib.Ref.abs;Bib.Ref.rel;Bib.Soft.abs;Bib.Soft.rel;Agent.abs;Agent.rel;URL.abs;URL.rel;PID.abs;PID.rel;Ver.abs;Ver.rel</xsl:text>
+            <xsl:text>Year;Name.Only.abs;Name.Only.rel;Bib.Ref.abs;Bib.Ref.rel;Bib.Soft.abs;Bib.Soft.rel;Agent.abs;Agent.rel;URL.abs;URL.rel;PID.abs;PID.rel;Ver.abs;Ver.rel</xsl:text>
             <xsl:value-of select="$NEWLINE"/>
             
             <xsl:for-each-group select="$year-counts//entry" group-by="substring-before(substring-after(path,'ADHO-DH/'), '/tei')">
                 <xsl:variable name="group-size" select="count(current-group())"/>
                 
-                <xsl:variable name="sum-NameOnly" select="sum(current-group()/number(value[@type='NameOnly']))"/>
+                <xsl:variable name="sum-Name.Only" select="sum(current-group()/number(value[@type='Name.Only']))"/>
                 <xsl:variable name="sum-Bib.Ref" select="sum(current-group()/number(value[@type='Bib.Ref']))"/>
                 <xsl:variable name="sum-Bib.Soft" select="sum(current-group()/number(value[@type='Bib.Soft']))"/>
                 <xsl:variable name="sum-Agent" select="sum(current-group()/number(value[@type='Agent']))"/>
@@ -65,9 +65,9 @@
                 
                 <xsl:value-of select="current-grouping-key()"/>
                 <xsl:value-of select="$SEP"/>
-                <xsl:value-of select="$sum-NameOnly"/>
+                <xsl:value-of select="$sum-Name.Only"/>
                 <xsl:value-of select="$SEP"/>
-                <xsl:value-of select="$sum-NameOnly div $group-size"/>
+                <xsl:value-of select="$sum-Name.Only div $group-size"/>
                 <xsl:value-of select="$SEP"/>
                 <xsl:value-of select="$sum-Bib.Ref"/>
                 <xsl:value-of select="$SEP"/>
@@ -125,13 +125,13 @@
                         x: [<xsl:value-of select="$year-labels"/>],
                         y: [<xsl:for-each-group select="$year-counts//entry" group-by="substring-before(substring-after(path,'ADHO-DH/'), '/tei')">
                             <xsl:variable name="group-size" select="count(current-group())"/>
-                            <xsl:value-of select="sum(current-group()/number(value[@type='NameOnly'])) div $group-size"/>
+                            <xsl:value-of select="sum(current-group()/number(value[@type='Name.Only'])) div $group-size"/>
                             <xsl:if test="position() != last()">
                                 <xsl:text>,</xsl:text>
                             </xsl:if>
                         </xsl:for-each-group>],
                         type: "bar",
-                        name: "NameOnly"
+                        name: "Name.Only"
                         
                         };
                         var trace2 = {

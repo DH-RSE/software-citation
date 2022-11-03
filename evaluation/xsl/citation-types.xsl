@@ -60,7 +60,7 @@
         
         <!-- header row -->
         <xsl:value-of select="concat($categories[1], $csv-separator, $categories[2], $csv-separator)"/>
-        <xsl:value-of select="concat('NameOnly', $csv-separator, 'NameOnly (bool)')"/>
+        <xsl:value-of select="concat('Name.Only', $csv-separator, 'Name.Only (bool)')"/>
         <xsl:for-each select="subsequence($categories, 3)">
             <xsl:value-of select="concat($csv-separator, ., $csv-separator, ., ' (bool)')"/>
         </xsl:for-each>
