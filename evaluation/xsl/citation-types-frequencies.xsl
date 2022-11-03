@@ -43,8 +43,8 @@
         '../../data/spa/ADHO-DH/2020/tei'
         )"/>
     
-    <!-- softaware types -->
-    <xsl:variable name="types" select="('Bib.Soft', 'Bib.Ref', 'Name.Only', 'Agent', 'URL', 'PID', 'Ver')" as="xs:string+"/>
+    <!-- software types -->
+    <xsl:variable name="types" select="document('../../taxonomy/citation-taxonomy.xml')//*:taxonomy/*:category/@xml:id" as="xs:string+"/>
     
     <!-- character to be used as CSV separator -->
     <xsl:variable name="csv-separator" select="','" as="xs:string"/>
