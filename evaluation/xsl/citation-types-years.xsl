@@ -15,7 +15,7 @@
         
         <xsl:variable name="year-counts">
             <counts>
-                <xsl:analyze-string select="$citation-types" regex="{concat('^([^',$SEP,']+)',$SEP,'([^',$SEP,']+)',$SEP,'[^',$SEP,']+',$SEP,'([^',$SEP,']+)',$SEP,'[^',$SEP,']+',$SEP,'[^',$SEP,']+',$SEP,'[^',$SEP,']+',$SEP,'([^',$SEP,']+)',$SEP,'[^',$SEP,']+',$SEP,'([^',$SEP,']+)',$SEP,'[^',$SEP,']+',$SEP,'([^',$SEP,']+)',$SEP,'[^',$SEP,']+',$SEP,'([^',$SEP,']+)',$SEP,'[^',$SEP,']+',$SEP,'([^',$SEP,']+)',$SEP,'[^',$SEP,']+',$SEP,'([^',$SEP,']+).*$')}" flags="m">
+                <xsl:analyze-string select="$citation-types" regex="{concat((:SoftwareID:)'^([^',$SEP,']+)',$SEP,(:Dateipfad:)'([^',$SEP,']+)',$SEP,'[^',$SEP,']+',$SEP,(:Name.Only:)'([^',$SEP,']+)',$SEP,'[^',$SEP,']+',$SEP,(:Bib.Ref:)'([^',$SEP,']+)',$SEP,'[^',$SEP,']+',$SEP,(:Bib.Soft:)'([^',$SEP,']+)',$SEP,'[^',$SEP,']+',$SEP,(:Agent:)'([^',$SEP,']+)',$SEP,'[^',$SEP,']+',$SEP,(:URL:)'([^',$SEP,']+)',$SEP,'[^',$SEP,']+',$SEP,(:PID:)'([^',$SEP,']+)',$SEP,'[^',$SEP,']+',$SEP,(:Ver:)'([^',$SEP,']+).*$')}" flags="m">
                     <!-- regex-groups:
                     1: SoftwareID
                     2: Dateipfad
@@ -103,9 +103,7 @@
             
             <xsl:variable name="years" as="xs:string+">
                 <xsl:for-each-group select="$year-counts//entry" group-by="substring-before(substring-after(path,'ADHO-DH/'), '/tei')">
-                    <xsl:text>"</xsl:text>
-                    <xsl:value-of select="current-grouping-key()"/>
-                    <xsl:text>"</xsl:text>
+                    <xsl:value-of select="concat('&quot;', current-grouping-key(), '&quot;')"/>
                 </xsl:for-each-group>
             </xsl:variable>
             <xsl:variable name="year-labels" select="string-join($years,',')"/>
