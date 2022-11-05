@@ -44,7 +44,7 @@
         )"/>
     
     <!-- categories for CSV header (later extended by boolean columns) -->
-    <xsl:variable name="categories" select="('SoftwareID','Dateipfad','Name','Bib.Ref','Bib.Soft','Agent','URL','PID','Ver')" as="xs:string+"/>
+    <xsl:variable name="categories" select="('SoftwareID','Dateipfad','Name.Only','Bib.Ref','Bib.Soft','Agent','URL','PID','Ver')" as="xs:string+"/>
     
     <!-- character to be used as CSV separator -->
     <xsl:variable name="csv-separator" select="','" as="xs:string"/>
@@ -59,8 +59,7 @@
     <xsl:template match="/">
         
         <!-- header row -->
-        <xsl:value-of select="concat($categories[1], $csv-separator, $categories[2], $csv-separator)"/>
-        <xsl:value-of select="concat('Name.Only', $csv-separator, 'Name.Only (bool)')"/>
+        <xsl:value-of select="concat($categories[1], $csv-separator, $categories[2])"/>
         <xsl:for-each select="subsequence($categories, 3)">
             <xsl:value-of select="concat($csv-separator, ., $csv-separator, ., ' (bool)')"/>
         </xsl:for-each>
@@ -82,19 +81,9 @@
                     <!-- SoftwareID and file path -->
                     <xsl:value-of select="concat($current-key, $csv-separator, $current-directory, substring-after(base-uri($doc), $current-directory))"/>
                     
-                    <!-- Name only instances -->
-                    <xsl:variable name="count-name-only" select="count($rs-with-this-key) - count($rs-with-this-key[exists(@ana)])" as="xs:integer"/>
-                    <xsl:value-of select="concat($csv-separator, $count-name-only)"/>
-                    <xsl:value-of select="concat($csv-separator, ('1'[(count($rs-with-this-key) = $count-name-only)], '0')[1])"/>
-                    
-                    <!-- Name instances -->
-                    <xsl:variable name="count" select="count($rs-with-this-key[not(contains(lower-case(@ana), '#noname'))])" as="xs:integer"/>
-                    <xsl:value-of select="concat($csv-separator, $count)"/>
-                    <xsl:value-of select="concat($csv-separator, ('1'[$count &gt; 0],'0')[1])"/>
-                    
                     
                     <!-- other annotations -->
-                    <xsl:for-each select="subsequence($categories, 4)">
+                    <xsl:for-each select="subsequence($categories, 3)">
                         <xsl:variable name="count" select="count($rs-with-this-key[contains(lower-case(@ana), lower-case(concat('#',current())))])" as="xs:integer"/>
                         <xsl:value-of select="concat($csv-separator, $count)"/>
                         <xsl:value-of select="concat($csv-separator, ('1'[$count &gt; 0],'0')[1])"/>

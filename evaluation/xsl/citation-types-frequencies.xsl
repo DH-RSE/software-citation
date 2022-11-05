@@ -43,8 +43,11 @@
         '../../data/spa/ADHO-DH/2020/tei'
         )"/>
     
-    <!-- softaware types -->
-    <xsl:variable name="types" select="('Bib.Soft', 'Bib.Ref', 'Name.Only', 'Agent', 'URL', 'PID', 'Ver')" as="xs:string+"/>
+    <!-- software types -->
+    <xsl:variable name="types" select="document('../../taxonomy/citation-taxonomy.xml')//*:taxonomy/*:category/@xml:id" as="xs:string+"/>
+    
+    <!-- additional columns for predefined filters (applied to file path, compare directory list above for examples) -->
+    <xsl:variable name="path-filters" select="('/2015/', '/2016/', '/2017/', '/2018/', '/2019/', '/2020/')" as="xs:string+"/> <!-- could also be ('/deu/', '/eng/', ...) for instance -->
     
     <!-- character to be used as CSV separator -->
     <xsl:variable name="csv-separator" select="','" as="xs:string"/>
@@ -86,13 +89,29 @@
         <xsl:variable name="count-unique-instances" select="count($instances//*:instance)" as="xs:integer"/>
         
         <!-- header row -->
-        <xsl:value-of select="concat('Citation type,abs. frequency (n=', $count-unique-instances, '),rel. frequency (in %)')"/>        
+        <xsl:value-of select="'Citation type,'"/>
+        <xsl:for-each select="$path-filters">
+            <xsl:value-of select="concat(., ' abs. frequency (n=', count($instances//*:instance[contains(@text, current())]), '),', .,' rel. frequency (in %),')"/>   
+        </xsl:for-each>
+        <xsl:value-of select="concat('ALL / abs. frequency (n=', $count-unique-instances, '),ALL / rel. frequency (in %)')"/>        
         <xsl:value-of select="$NEWLINE"/>
+        
         
         <xsl:for-each select="$types">
             <xsl:variable name="citation-type" select="." as="xs:string"/>
+            
+            <xsl:value-of select="concat($citation-type, ',')"/>
+            
+            <xsl:for-each select="$path-filters">
+                <xsl:variable name="abs" select="count($instances//*:instance[contains(@text, current())])" as="xs:double"/>
+                <xsl:variable name="abs-citation-type" select="sum($instances//*:instance[contains(@text, current())]/@*[local-name()=$citation-type])" as="xs:double"/>
+                <xsl:value-of select="concat(
+                    (: abs. frequency :) $abs-citation-type, ',', 
+                    (: rel. frequency :) if($abs=0) then 0 else format-number($abs-citation-type div $abs * 100, '##.##'), ','
+                    )"/>
+            </xsl:for-each>
+            
             <xsl:value-of select="concat(
-                (: citation type :) $citation-type, ',', 
                 (: abs. frequency :) sum($instances//*:instance/@*[local-name()=$citation-type]), ',', 
                 (: rel. frequency :) format-number(sum($instances//*:instance/@*[local-name()=$citation-type]) div $count-unique-instances * 100, '##.##')
                 )"/>

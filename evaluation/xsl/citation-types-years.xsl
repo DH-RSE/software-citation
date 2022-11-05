@@ -15,7 +15,7 @@
         
         <xsl:variable name="year-counts">
             <counts>
-                <xsl:analyze-string select="$citation-types" regex="{concat('^([^',$SEP,']+)',$SEP,'([^',$SEP,']+)',$SEP,'[^',$SEP,']+',$SEP,'([^',$SEP,']+)',$SEP,'[^',$SEP,']+',$SEP,'[^',$SEP,']+',$SEP,'[^',$SEP,']+',$SEP,'([^',$SEP,']+)',$SEP,'[^',$SEP,']+',$SEP,'([^',$SEP,']+)',$SEP,'[^',$SEP,']+',$SEP,'([^',$SEP,']+)',$SEP,'[^',$SEP,']+',$SEP,'([^',$SEP,']+)',$SEP,'[^',$SEP,']+',$SEP,'([^',$SEP,']+)',$SEP,'[^',$SEP,']+',$SEP,'([^',$SEP,']+).*$')}" flags="m">
+                <xsl:analyze-string select="$citation-types" regex="{concat((:SoftwareID:)'^([^',$SEP,']+)',$SEP,(:Dateipfad:)'([^',$SEP,']+)',$SEP,'[^',$SEP,']+',$SEP,(:Name.Only:)'([^',$SEP,']+)',$SEP,'[^',$SEP,']+',$SEP,(:Bib.Ref:)'([^',$SEP,']+)',$SEP,'[^',$SEP,']+',$SEP,(:Bib.Soft:)'([^',$SEP,']+)',$SEP,'[^',$SEP,']+',$SEP,(:Agent:)'([^',$SEP,']+)',$SEP,'[^',$SEP,']+',$SEP,(:URL:)'([^',$SEP,']+)',$SEP,'[^',$SEP,']+',$SEP,(:PID:)'([^',$SEP,']+)',$SEP,'[^',$SEP,']+',$SEP,(:Ver:)'([^',$SEP,']+).*$')}" flags="m">
                     <!-- regex-groups:
                     1: SoftwareID
                     2: Dateipfad
@@ -103,9 +103,7 @@
             
             <xsl:variable name="years" as="xs:string+">
                 <xsl:for-each-group select="$year-counts//entry" group-by="substring-before(substring-after(path,'ADHO-DH/'), '/tei')">
-                    <xsl:text>"</xsl:text>
-                    <xsl:value-of select="current-grouping-key()"/>
-                    <xsl:text>"</xsl:text>
+                    <xsl:value-of select="concat('&quot;', current-grouping-key(), '&quot;')"/>
                 </xsl:for-each-group>
             </xsl:variable>
             <xsl:variable name="year-labels" select="string-join($years,',')"/>
@@ -125,7 +123,7 @@
                         x: [<xsl:value-of select="$year-labels"/>],
                         y: [<xsl:for-each-group select="$year-counts//entry" group-by="substring-before(substring-after(path,'ADHO-DH/'), '/tei')">
                             <xsl:variable name="group-size" select="count(current-group())"/>
-                            <xsl:value-of select="sum(current-group()/number(value[@type='Name.Only'])) div $group-size"/>
+                            <xsl:value-of select="sum(current-group()/number(value[@type='Name.Only'])) div $group-size * 100"/>
                             <xsl:if test="position() != last()">
                                 <xsl:text>,</xsl:text>
                             </xsl:if>
@@ -138,7 +136,7 @@
                         x: [<xsl:value-of select="$year-labels"/>],
                         y: [<xsl:for-each-group select="$year-counts//entry" group-by="substring-before(substring-after(path,'ADHO-DH/'), '/tei')">
                             <xsl:variable name="group-size" select="count(current-group())"/>
-                            <xsl:value-of select="sum(current-group()/number(value[@type='Bib.Ref'])) div $group-size"/>
+                            <xsl:value-of select="sum(current-group()/number(value[@type='Bib.Ref'])) div $group-size * 100"/>
                             <xsl:if test="position() != last()">
                                 <xsl:text>,</xsl:text>
                             </xsl:if>
@@ -151,7 +149,7 @@
                         x: [<xsl:value-of select="$year-labels"/>],
                         y: [<xsl:for-each-group select="$year-counts//entry" group-by="substring-before(substring-after(path,'ADHO-DH/'), '/tei')">
                             <xsl:variable name="group-size" select="count(current-group())"/>
-                            <xsl:value-of select="sum(current-group()/number(value[@type='Bib.Soft'])) div $group-size"/>
+                            <xsl:value-of select="sum(current-group()/number(value[@type='Bib.Soft'])) div $group-size * 100"/>
                             <xsl:if test="position() != last()">
                                 <xsl:text>,</xsl:text>
                             </xsl:if>
@@ -164,7 +162,7 @@
                         x: [<xsl:value-of select="$year-labels"/>],
                         y: [<xsl:for-each-group select="$year-counts//entry" group-by="substring-before(substring-after(path,'ADHO-DH/'), '/tei')">
                             <xsl:variable name="group-size" select="count(current-group())"/>
-                            <xsl:value-of select="sum(current-group()/number(value[@type='Agent'])) div $group-size"/>
+                            <xsl:value-of select="sum(current-group()/number(value[@type='Agent'])) div $group-size * 100"/>
                             <xsl:if test="position() != last()">
                                 <xsl:text>,</xsl:text>
                             </xsl:if>
@@ -177,7 +175,7 @@
                         x: [<xsl:value-of select="$year-labels"/>],
                         y: [<xsl:for-each-group select="$year-counts//entry" group-by="substring-before(substring-after(path,'ADHO-DH/'), '/tei')">
                             <xsl:variable name="group-size" select="count(current-group())"/>
-                            <xsl:value-of select="sum(current-group()/number(value[@type='URL'])) div $group-size"/>
+                            <xsl:value-of select="sum(current-group()/number(value[@type='URL'])) div $group-size * 100"/>
                             <xsl:if test="position() != last()">
                                 <xsl:text>,</xsl:text>
                             </xsl:if>
@@ -190,7 +188,7 @@
                         x: [<xsl:value-of select="$year-labels"/>],
                         y: [<xsl:for-each-group select="$year-counts//entry" group-by="substring-before(substring-after(path,'ADHO-DH/'), '/tei')">
                             <xsl:variable name="group-size" select="count(current-group())"/>
-                            <xsl:value-of select="sum(current-group()/number(value[@type='PID'])) div $group-size"/>
+                            <xsl:value-of select="sum(current-group()/number(value[@type='PID'])) div $group-size * 100"/>
                             <xsl:if test="position() != last()">
                                 <xsl:text>,</xsl:text>
                             </xsl:if>
@@ -203,7 +201,7 @@
                         x: [<xsl:value-of select="$year-labels"/>],
                         y: [<xsl:for-each-group select="$year-counts//entry" group-by="substring-before(substring-after(path,'ADHO-DH/'), '/tei')">
                             <xsl:variable name="group-size" select="count(current-group())"/>
-                            <xsl:value-of select="sum(current-group()/number(value[@type='Ver'])) div $group-size"/>
+                            <xsl:value-of select="sum(current-group()/number(value[@type='Ver'])) div $group-size * 100"/>
                             <xsl:if test="position() != last()">
                                 <xsl:text>,</xsl:text>
                             </xsl:if>
@@ -214,8 +212,8 @@
                         
                         var data = [trace1, trace2, trace3, trace4, trace5, trace6, trace7];
                         var layout = {
-                        title: "Zitationsarten nach Jahren",
-                        yaxis: {title: "Vorkommen Zitationsart (pro Beitrag, in %)"},
+                        title: "Citation types per year",
+                        yaxis: {title: "Number of citation types (per abstract, in %)"},
                         xaxis: {title: "Jahr"},
                         barmode: "group"
                         };
