@@ -1,0 +1,60 @@
+Introduction
+After two decades of steady increases in image resolution through technical advances in image sensors, we are now also witnessing a significant growth in comprehensively tagged image collections. Concurrently cultural institutions have been digitizing their collections, while cultural scholars have been investing considerable efforts into the annotation of images to denote iconographic details and historical context. Despite these developments, existing interfaces to access image collections do not harness the possibilities provided by rich visual details of high-resolution images and detailed tags associated with them.
+A particularly promising development, however, is the growing research interest in visualization to support the analysis and exploration of cultural heritage data [Windhager et al., 2018]. In this context, art historians are experimenting with digital methods, in particular visualization [Bailey and Pregill, 2014], to explore their potential for expanding the scale and scope of art history [Drucker, 2013; Manovich, 2015]. In these experiments, digital methods tend to be equated with a distanced perspective on the phenomenon [Moretti, 2013] with the result that many visualizations provide high-level overviews that diminish the intricate and intriguing details of individual artifacts [Hochman and Manovich, 2013; Hristova, 2016].
+With this research we present an approach towards visualization that is challenging the understanding of overview and detail as something inherently opposed. We introduce a technique that clusters iconographic details of images in order to reveal visual patterns prevalent in a collection.
+An Overview of Close-ups
+We worked with a collection of glass plate negatives that were created around 1900 in an attempt to document the inventory of the Museum für Kunst und Gewerbe Hamburg (MKG) for publications and for internal use [Kreiseler, 2018]. Since their creation the glass plate negatives have been reinterpreted from internal material to collection objects themselves. Subsequently, they are being digitized and tagged with iconographic terms.
+Based on these resources we introduce a visualization technique that arranges close-ups into frequency-based collages. The aim is to a) highlight specific details of the collection objects and create an awareness for their iconography, b) represent the thematic and aesthetic patterns across the collection and c) support open-ended exploration at varying granularities.
+The visual interface is composed of three views, each illuminating different characteristics of the collection, and encouraging a different mode of accessing and appreciating the artifacts.
+Figure 1: Close-up Cloud
+Close-up Cloud
+The initial stage, the Close-up Cloud (see Fig. 1), provides a high-level overview of the entire collection. It displays a cloud-like collage of close-ups, each representing one occurring tag. Akin to word clouds which vary in font size, the area sizes of the close-up images represent the respective tag’s relative frequency within the entire collection, i.e., a larger area indicates more occurrences of that tag. Over time the close-ups’ content changes randomly, constantly creating a different assemblage of depictions. The visual arrangement of close-ups constitutes an abstract-concrete visualization of the collection, which attempts to (re)present both the texture and the structure of the collection items. The positioning of images is based on semantic similarity. While the initial view does not include any labels, one can reveal the respective tags by hovering over an image. The close-ups of the motifs function as navigation elements, allowing exploration along visual details.
+Figure 2: Tag view
+Tag
+After selecting a close-up, the Tag view (see Fig. 2) unfolds in a conventional image grid system, displaying all close-ups from the same tag. One can now confidently navigate through the results and select areas of interest.
+Figure 3: Object view
+Object
+In the Object view (see Fig. 3) the originating image in its entirety is visible for the first time. It is gradually zoomable and pannable. These interactions can expand the image to fill the complete size of the canvas, and in this way maximize the level of visible detail (see Fig. 4). A column of tags lists all identified close-ups in the selected object. Hovering over a tag element highlights the corresponding regions in the image by setting non-corresponding regions to be semi transparent. A number next to the tag indicates the overall frequency of the tag across the collection. It links to the respective Tag view, enabling further exploration of tangential parts of the collection.
+Figure 4: Object view, zoomed in
+Technical implementation
+In order to illustrate the core concepts of our technique we have devised a rudimentary web-based prototype using the JavaScript libraries Pixi.js and D3.js. We prepared an exemplary set of 43 data objects. The close-ups of iconographic details were manually identified, cropped and embedded as images in a folder structure. Metadata and coordinates of the close-ups are stored in JSON files that link visual material and tag data.
+Conclusion
+We presented a visualization technique for the exploration of digitized cultural collections that proposes a novel approach towards the overview. The centerpiece of our approach is a Close-up Cloud that presents a high-level overview of the collection’s iconography, while at the same time facilitating close viewing of details. Thus, it enables visual exploration along iconographic patterns across the whole collection (Close-up Cloud view and Tag view) or the details of individual objects (Object view). All stages of the interface are interlinked for open-ended exploration at multiple granularities.
+We implemented the concept as a web-based interface and evaluated the potential of the approach with collection experts and people interested in photography. The feedback that we received suggests that the technique allows both a serendipitous exploration of the collection that requires no prior knowledge, as well as the scholarly examination of iconographic patterns.
+While the Close-up Cloud is still at an early prototypical stage, the unique integration of symbolic patterns and figurative details may have the potential to bridge distant and close viewing of image collections. For future work, the development of a semi-automatic annotation technique through the integration of computer vision could be a promising approach to visualizing significantly larger collections of various kinds.
+Acknowledgements
+We thank the Museum für Kunst und Gewerbe Hamburg (MKG) for the collaboration and the Brandenburg Centre for Media Studies (ZeM) for funding this research.
+Bibliography
+Bailey, J. and Pregill, L.
+(2014). Speak to the Eyes: The History and Practice of Information Visualization.
+Art Documentation
+,
+33(2): 168–91.
+Drucker, J.
+(2013). Is There a “Digital” Art History?
+Visual Resources
+, 29(1-2): 5–13.
+Hochman, N. and Manovich, L.
+(2013). Zooming into an Instagram City: Reading the local through social media.
+First Monday
+, 18(7).
+Hristova, S.
+(2016). Images as Data: Cultural Analytics and Aby Warburg’s Mnemosyne.
+International Journal for Digital Art History
+, 2: 116–33.
+Kreiseler, S.
+(2018). Between Re-production and Re-presentation: The Implementation of Photographic Art Reproduction in the Documentation of Museum Collections Online.
+Open Library of Humanities
+, 4(2), https://doi.org/10.16995/olh.273
+Manovich, L.
+(2015). Data Science and Digital Art History.
+International Journal for Digital Art History
+, 1: 13–35.
+Moretti, F.
+(2013).
+Distant Reading
+. London and New York: Verso Books.
+Windhager, F., Federico, P., Schreder, G., Glinka, K., Dörk, M., Miksch, S., and Mayr, E.
+(2018). Visualization of Cultural Heritage Collection Data: State of the Art and Future Challenges.
+IEEE Transactions on Visualization and Computer Graphics
+.

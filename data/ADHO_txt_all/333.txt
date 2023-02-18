@@ -1,0 +1,73 @@
+Starting Point
+The project objective of
+D
+igitizing
+E
+arly
+F
+arming
+C
+ultures (DEFC) is the standardization and integration of research data from sites and finds from the Neolithic and Copper Age (7000–3000 BC) located in Greece and Western Anatolia. These datasets are based on digital and analog resources of research projects of the research group Anatolian Aegean Prehistoric Phenomena (AAPP) at the Institute for Oriental and European Archaeology (OREA) of the Austrian Academy of Sciences.
+Greece and Western Anatolia are two neighbouring and archaeologically closely related regions. They are, however, usually studied in isolation from each other and have therefore developed different terminologies and chronologies. Direct results of this de facto separation are not only huge amounts of fragmented research data but also several different models and standards for ordering and describing more or less the same kind of data. To pose and answer archaeological research questions concerning the whole territory, the information must be harmonized.
+The aim of the DEFC project is now to harmonize the existing data, to digitize analog resources and make metadata available to facilitate access and reuse this data. To achieve those goals an archaeological data management system is needed.
+Data model and Application
+The particular requirements to the data model are to reflect the high granularity of the archaeological data structure which correlates on different levels to the excavation process workflow, geographical location, chronological periodization and at the same time to keep the complex relationships between the data objects. After an evaluation of already existing solutions for managing (archaeological) data (e.g. Microsoft Access, Arches Project) it turned out that those were not comprehensive enough for modeling and capturing the very heterogeneous datasets the DEFC project is confronted with. Therefore the development of a more customizable application to collect, standardize, analyze and visualize archaeological data was necessary.
+To meet the needs of researchers a clear conceptual data model based on archaeological objects relationships has been defined with the following main model classes:
+Site (location where research took place/observations were made)
+Research Event (project and type of archaeological research that was carried out)
+Area (particular part of the site, defined by its geolocation, period, as well as its type)
+Finds (artefacts, animal and plant remains found)
+Interpretation (archaeologist's interpretation of areas/finds etc.)
+Each of those classes is defined through several properties, most of them linked to a carefully curated set of controlled vocabulary.
+Figure 1. Simplified data model
+The DEFC-App is based on the Python web framework Django. As one of the application's design principles is to keep things as simple as possible, the application tries to leverage Django´s built-in generic functionality as far as possible. The application's web interface is based on Bootstrap. Client-side scripting, which is needed for a better user guidance and enabling a more responsive data querying and presentation, is implemented with JavaScript, jQuery, Tablesorter and Leaflet.
+Figure 2. Site details page
+Figure 3. Create new Research Event page
+Figure 4. Referencing Geonames
+Development and Upcoming tasks
+The project aims to integrate open access resources by using Web APIs and Linked Data practices. At the time being Geonames referencing is implemented for the archaeological locations and provided via a user interface. Hence the fetched Geonames IDs are stored within the database to later be linked to the Pelagios project.
+The bibliographic data formerly stored in proprietary formats MS-Access and AskSam was imported to a Zotero library and linked to the DEFC-Database so that every reference record in DEFC redirects to a Zotero library record, where the entire bibliography can also be explored.
+To make the published data available ‘open access’ for further reuse in research, a REST-API (Django REST framework) was implemented along with the web user interface for querying and exporting data.
+The outlook of the project is to turn the data into Linked Open Data and make it available via a SPARQL endpoint. Moreover, the thesaurus consisting of hierarchically structured archaeological data units (respectively the aforementioned controlled vocabulary) has been partially mapped to the CIDOC CRM ontology and will later be mapped to the SKOS schema. This will, overall, enhance the quality of the RDF data in the future.
+Conclusion
+The development of the DEFC-App and its underlying data model could be understood as a very common use case in the broad field of digital humanities as it involves a tight cooperation between archaeologists, data analysts and developers.
+Bibliography
+Arches project.
+[Online] Available from:
+http://archesproject.org/
+[Accessed 4 March 2016].
+Christian Bach.
+Tablesorter
+. [Online] Available from:
+http://tablesorter.com/docs/
+[Accessed 4 March 2016].
+DEFC-App
+. [Online] Available from:
+http://defc.digital-humanities.at/
+[Accessed 4 March 2016].
+Django Software Foundation and individual contributors.
+Django
+. [Online] Available from:
+https://www.djangoproject.com/
+[Accessed 4 March 2016].
+Django REST framework
+. [Online] Available from:
+http://www.django-rest-framework.org/
+[Accessed 4 March 2016].
+Geonames
+. [Online] Available from:
+http://www.geonames.org/
+[Accessed 4 March 2016].
+Pelagios: Enable Linked Ancient Geodata In Open Systems
+. [Online] Available from:
+http://pelagios-project.blogspot.co.at/p/about-pelagios.html
+[Accessed 4 March 2016].
+Vladimir Agafonkin.
+Leaflet
+. [Online] Available from:
+http://leafletjs.com/
+[Accessed 4 March 2016].
+Zotero
+. [Online] Available from:
+https://www.zotero.org/
+[Accessed 4 March 2016].

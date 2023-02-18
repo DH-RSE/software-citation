@@ -1,0 +1,92 @@
+1 Introducing the Taalportaal
+The Taalportaal project aims at the development of a comprehensive and authoritative digital scientific grammar for Dutch and Frisian, the two official (oral) languages of the Netherlands, in the form of a virtual language institute. The Taalportaal is built around an interactive knowledge base of the current grammatical knowledge of Dutch and Frisian. The Taalportaal’s prime intended audience is the international scientific community, which is why the language used to describe the language facts is English.
+The Taalportaal provides an (almost) exhaustive collection of the currently known data relevant for grammatical research, as well as an overview of the established insights about these data. This is an important step forward compared to presenting the same material in the traditional form of (paper) handbooks. For example, the three sub-disciplines syntax, morphology and phonology are often studied in isolation, but by presenting the results of these sub-disciplines on a single digital platform and internally linking these results, the Language Portal contributes to the integration of the results reached within these disciplines.
+Technically, the Taalportaal is an XML-database, organized as DITA-topics (cf.
+https://en.wikipedia.org/wiki/Darwin_Information_Typing_Architecture
+), that is accessible via the Internet using any standard internet browser. Organization and structure of the linguistic information are reminiscent of, and to a certain extend inspired by, Wikipedia and comparable online information
+Sources (but without the anarchy of Wikipedia). The project is a collaboration of the Meertens Institute, the Fryske Akademy, the Institute of Dutch Lexicology and Leiden University, funded, to a large extent, by the Netherlands Organisation for Scientific Research (NWO) (Landsbergen et al. 2014).
+Besides the grammar modules, the portal contains an ontology of linguistic terms (recast recently in the CLARIN Concept Registry (Schuurman (2015), cf.
+https://www.clarin.eu/ccr
+) and an extensive bibliography. As of January 2016, the first release of the Taalportaal is online via
+http://www.taalportaal.org
+.
+2 Enriching the Taalportaal with links to linguistic resources
+The Taalportaal database has been enriched with links to on-line linguistic resources. Links between a descriptive grammar and a linguistically annotated corpus are valuable for various reasons. Illustrating a given construction with corpus examples may help to get a better understanding of the variation of the construction and the frequency of these variants, as well as give insight into the lexical items that occur most often in the pertinent construction. Corpus data may also convince a reader that a given variant really occurs in (well-formed) text. Finally, corpus data may also yield occurrences of constructions judged ungrammatical by the authors of the descriptive grammar for reasons such as prescriptivism or theoretical bias. The possibility of enriching a grammar with links to on-line linguistic resources is thus a unique selling point of digital grammars vis-a-vis old school paper grammars (van der Wouden et al. 2015).
+Luckily, there is no lack of linguistic resources for Dutch that are useful for this purpose (Frisian is a slightly different matter), e.g. the (syntactically annotated part of the) Corpus of Spoken Dutch (manually verified syntactic annotation for 1M words of speech) (van der Wouden et al. 2002b; Schuurman et al. 2003), the Lassy Small treebank (manually verified syntactic annotation for 1M words of text from various genres) and the Lassy Large treebank (700M words of text, automatic syntactic annotation by means of the Alpino parser (van Noord 2006, van Noord et al. 2013) are all suitable corpora for our project. The first two resources provide high-quality data for a limited amount of text, while the last resource provides wide-coverage, but noisy, data. All treebanks follow (with minor modifications) the same annotation standard (van der Wouden et al. 2002a).
+2.1 Automatic links
+We have investigated the feasibility of generating links to linguistic resources automatically (van der Wouden et al. 2015). As the Taalportaal texts are in XML format, linguistic examples, linguistic terms, etcetera are marked as such and can be “harvested” as such. Example sentences have been selected and translated into queries for corpus tools such as GrETEL (Augustinus et al. 2013), linguistic terms and lexical items that were highlighted, ended up being automatically linked to resources such as an etymological database such as the etymologiebank (van der Sijs 2010) the large (historical) dictionary WNT (De Vries & te Winkel et al. 1864–1998) or to a section in an on-line version of the Dutch reference grammar ANS (Haeseryn et al. 1997).
+2.2 Intelligent links
+Next to these automatic links, the linguistic data is also enriched with tailor-made links to corpus data (van der Wouden et al. 2015). For this, student assistants with a considerable linguistic schooling have read the linguistic texts, interpreted them and translated their content into queries that address the corpora that seems most fit to them, documenting their choices and considerations.
+The web-based corpus query tool PaQu (Odijk 2015,
+http://zardoz.service.rug.nl:8067/xpath
+) is our first tool of choice for executing treebank queries. The PaQu interface helps the user to formulate XPATH-queries; it returns matching sentences in the selected corpus, with the option to display the matching nodes in the syntactic dependency graph. It also displays the query being executed along with a brief description. Queries are dynamic, i.e. the user can switch between treebank corpora, or substitute a given lexical item by an alternative. Furthermore, users can select up to three attributes (i.e. lemma, part of speech, dependency relation, etc.) of matching nodes to obtain a frequency distribution of the attribute values. Advanced users can also modify the XPATH query as they see fit. Integration of queries into the electronic version of the SoD will be done by adding links (in the form of an icon) to paragraphs and examples for which queries are available. (GrETEL (Augustinus et al. 2013,
+http://nederbooms.ccl.kuleuven.be/eng/gretel
+) is another a corpus query tool that supports the same XPATH query language as PaQu, but that also provides support for example based query construction, a feature that might be particularly useful to non-expert users.)
+2.3 First results
+After completion of approx. 1.000 queries that cover the syntactic parts on complementation and modification of adjectives and adpositions, we have learned that creating suitable queries for a given fragment from the SoD requires creativity and careful experimentation, tuning, and documentation (cf. van Engeland & Meertens 2016). Construction of queries is far from deterministic, that is, different annotators have different opinions concerning the most suitable query for a given example or phenomenon. In a surprisingly high number of cases, there are mismatches (in constituent structure, in part-of-speech) between the presentation in the grammar and the treebank annotation. While this makes the development of queries harder, it also underlines the value of the current project: by systematically exploring the way various linguistic examples are annotated in the treebank, we provide a starting point for further corpus exploration for users that have a general linguistic interest but who are not necessarily experts on Dutch treebank annotation.
+The manually verified treebanks almost always provide sufficient examples of basic word order patterns for queries that are not restricted to a specific adjective or preposition. For queries that search for a specific lexical head or for less frequent word order patterns, the Lassy Large treebank usually has to be used. In that case, users must be prepared to see also a certain number of false hits. However, there are also examples in the Taalportaal descriptions that cannot be found even in a 700M word corpus. The conclusion that such word orders are not found in the language would be too strong, but it might be a starting point for further research (e.g. does this construction occur only in certain registers or discourse settings?) or for an alternative analysis (e.g. do these cases really involve adjectives?).
+3 Extending the Taalportaal: Afrikaans
+Only recently, South Afrika has started building a virtual language institute Viva! (
+http://viva-afrikaans.org/
+) that aims at developing a digital infrastructure for Afrikaans. Among its goals are study and description of the Afrikaans language and development of comprehensive tools and resources for written and spoken Afrikaans, including digital dictionaries and corpora; language advice is also supplied. Part of the Viva portal is a comprehensive grammar of Afrikaans, which is based on the Taalportaal architecture, and will be part of the Taalportaal infrastructure.
+Bibliography
+Augustinus, Liesbeth, Vincent Vandeghinste, Inene Schuurman, and Frank van Eynde
+. 2013. Example-based treebank querying with GrETEL — now also for Spoken Dutch. In
+Proceedings of the 19th Nordic Conference of Computational Linguistics (Nodalida 2013)
+, 423–428, Oslo, Norway. NEALT Proceedings Series 16.
+Haeseryn, Walter, Kirsten Romijn, Guido Geerts, Jaap de Rooij, and Maarten C. van den Toorn
+(eds.). 1997.
+Algemene Nederlandse Spraakkunst.
+Groningen and Deurne: Martinus Nijhoff and Wolters Plantijn. 2nd ed.
+http://ans.ruhosting.nl/e-ans/index.html
+.
+Landsbergen, Frank, Carole Tiberius, and Roderik Dernison
+. 2014. Taalportaal: an online grammar of Dutch and Frisian. In
+Proceedings of the Ninth International Conference on Language Resources and Evaluation (LREC’14)
+, ed. by Nicoletta Calzolari (Conference Chair), Khalid Choukri, Thierry Declerck, Hrafn Loftsson, Bente Maegaard, Joseph Mariani, Asuncion Moreno, Jan Odijk, & Stelios Piperidis, Reykjavik, Iceland. European Language Resources Association (ELRA).
+Van Noord, Gertjan
+. 2006. At Last Parsing Is Now Operational. In
+TALN06. Verbum Ex Machina. Actes de la 13e conference sur le traitement automatique des langues naturelles
+, ed. by Piet Mertens, Cedrick Fairon, Anne Dister, & Patrick Watrin, 20–42.
+Van Noord, Gertjan, Gosse Bouma, Frank van Eynde, Daniel de Kok, Jelmer van der Linde, Ineke Schuurman, Erik Tjong Kim Sang, and Vincent Vandeghinste
+. 2013. Large scale syntactic annotation of written Dutch: Lassy. In
+Essential Speech and Language Technology for Dutch: the STEVIN Programme
+, ed. by Peter Spyns & Jan Odijk, 147–164. Springer.
+Odijk, Jan
+. 2015. Linguistic Research with PaQU.
+Computational Linguistics in The Netherlands journal
+5, 3–14.
+Schuurman, Ineke
+. 2015. Concept revival: from ISOcat to CLARIN Concept Registry.
+CLARIN News
+7 January 2015.
+Schuurman, Ineke, Machteld Schouppe, Heleen Hoekstra, and Ton van der Wouden
+. 2003. CGN, an annotated corpus of spoken Dutch. In
+Proceedings of 4th International Workshop on Linguistically Interpreted Corpora (LINC-03)
+, ed. by Anne Abeillé, Silvia Hansen-Schirra, & Hans Uszkoreit, 101–108. Budapest.
+Van der Sijs, Nicoline
+, 2010. Etymologiebank.
+http://etymologiebank.nl/
+.
+De Vries, Matthias, Lammert A. Te Winkel et al.
+. (eds.). 1864–1998.
+Woordenboek der Nederlandsche taal
+. ’s-Gravenhage [etc.]: Martinus Nijhoff [etc.].
+http://www.inl.nl/
+.
+Van der Wouden, Ton, Gosse Bouma, Matje van de Kamp, Marjo van Koppen, Frank Landsbergen, and Jan Odijk
+. 2015. Enriching a grammatical database with intelligent links to linguistic resources. Paper delivered at CLARIN 2015, 15–17 October 2015, Wrocław, Poland, accepted for publication in the
+Selected Papers of the CLARIN 2015 Conference
+.
+Van der Wouden, Ton, Heleen Hoekstra, Michael Moortgat, Bram Renmans, and Ineke Schuurman
+. 2002a. Syntactic Analysis in the Spoken Dutch Corpus (CGN). In
+Proceedings of the third International Conference on Language Resources and Evaluation
+, ed. by Manuel González Rodríguez & Carmen Paz Suárez Araujo, 768–773. Paris: ELRA.
+Van der Wouden, Ton, Heleen Hoekstra, Michael Moortgat, Ineke Schuurman, and Bram Renmans
+. 2002b. Syntactische annotatie voor het Corpus Gesproken Nederlands (CGN).
+Nederlandse Taalkunde
+7, 335–352.
+Van Engeland, Jorik, and Erlinde Meertens
+. 2016.
+Evaluation report pilot links on taalportaal to corpus search interfaces (tpc)
+. Technical report, Utrecht University, CLARIN, and University of Groningen.

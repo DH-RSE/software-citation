@@ -1,0 +1,34 @@
+The “Inscriptions of Israel/Palestine” (IIP) project (www.brown.edu/iip) seeks to create a corpus of inscriptions (texts written on durable materials, other than coins) from the geographical location of present-day Israel/Palestine, that date from around the sixth century BCE to the seventh century CE. The inscriptions are in Greek, Latin, Hebrew, and Aramaic. The purpose of the project is not only to allow for access and robust (and ultimately, federated) searching but also for scholarly analyses. As one of the longest running active digital epigraphy projects (with over 4,000 inscriptions entered to date), IIP provides several use cases of working with a complex and challenging multi-lingual corpus. This abstract will focus on our data modeling and approach to Linked Open Data.
+IIP was an early adopter of the Epidoc schema, a customization of TEI developed especially for those working with ancient texts preserved on durable materials, such as inscriptions and coins (Elliott, Bodard, Cayless). Many users of Epidoc are in contact with each other through epigraphy.info, and the schema is continually being modified in response to user requests. The general principle, however, is that each material object on which a text is inscribed or written is treated as a discrete XML file. IIP thus gives each inscription a unique, findable ID that also serves as its document name (e.g., ash0001.xml). Each file has an extensive teiHeader, in which we encode the metadata, where possible using controlled vocabularies as attributes of elements, linked to authority files. This kind of robust encoding allows for the database-style, faceted indexing and searching powered by SOLR that we provide through our interface. We also include images (although we have much more work to do collecting them) and geographical information. We have a geographical interface that allows for mapping (see Figure 1).
+Figure 1: Screenshot of Search Page of "Inscriptions of Israel/Palestine"
+Our data has always been open. All of our XML files can be seen and downloaded individually directly from our site, or downloaded in bulk from our open Github site (https://github.com/Brown-University-Library/iip-texts) or through our API (for which we give detailed instructions on the site itself). We also encode our permission license (CC BY-NC 4.0) into our files.
+Since participating in the conference, “The Big Ancient Mediterranean” (BAM) we have sought to create links in our data in three ways. The primary geographical data within each inscription is linked to its corresponding Pleiades Gazetteer id (Pleiades). The primary chronological data within each inscription is linked to its corresponding PeriodO id (PeriodO).   And each of the types of object upon which the inscription is written is linked to the Getty Art and Architecture Thesaurus (Getty). For example:
+                       
+                    
+                           notBefore="0001"
+                           notAfter="0100">First century CE
+                    
+                                Judaea
+                                Jerusalem
+                                Akeldama Caves
+                                Cave 2 Chamber B
+                           
+                          
+                           
+                       
+The use of these ids allows our data to be scraped live by different projects, such as Pleiades and the Pelagios Network (Pelagios Network). The community is just now beginning to develop an ecosystem that allows for the fruitful exchange of data between sites using Linked Open Data and we hope that through this expansion the usefulness of our data will expand.
+We added these links to existing data, which was a costly process. We first developed an XSLT script to extract the place, time, and object values into a spreadsheet. We then manually found and added the links, in the process having to submit new geographical and chronological values for inclusion in the other authorities (and then, in return, adding the new id numbers). We then used another XSLT script to insert the new links into the XML files. Along the way there was a great deal of checking and testing. For new data files, the additions are added at the time of creation.
+One of our active projects involves the lexicographical tagging of the texts in a way that could similarly be linked and shared. This entails performing word segmentation on the existing XML files, and then assigning part of speech tags using natural language parsing. This will enable new interface features and better forms of analysis. The Global Philology Project is an exploratory project that began to lay the infrastructure for compiling and analyzing lexicographical data in many different languages across multiple sites (Global Philology). We want to further explore how our tagging of individual words could make our data – on the level of the individual words of our texts – accessible and more useful to researchers in different fields.
+For a broader description of IIP and our goals, see Satlow (forthcoming) and Lembi (forthcoming). We describe our approach to bibliographical management at Lembi, Mylonas and Satlow (2016) and our approach to the FAIR principles (FAIR) in Mylonas, Lembi, Creamer, and Satlow.
+References
+BAM: The Big Ancient Mediterranean: https://dsps.lib.uiowa.edu/bam/2016/05/10/linking-the-big-ancient-mediterranean-conference-june-6-8-2016/
+Elliott, Tom, Gabriel Bodard, Hugh Cayless et al. (2006-2019). EpiDoc: Epigraphic Documents in TEI XML: http://epidoc.sf.net.
+Global Philology Project: https://www.dh.uni-leipzig.de/wo/projects/global-philology-project/
+Lembi, Gaia, forthcoming, “Inscriptions of Israel/Palestine,” in Sarah Schulthess, ed., Digital Biblical Studies
+Lembi, Gaia, Elli Mylonas, Michael Satlow, 2016. “Bibliography in the Inscriptions of Israel/Palestine”: https://tei-c.org/Vault/MembersMeetings/2016/sites/default/files/Gaia%20Lembi,%20Elli%20Mylonas,%20Michael%20Satlow%20Bibliography%20in%20the%20Inscriptions%20of%20Israel%20Palestine%20Epigraphic%20Project.pdf
+Mylonas, Elli, Gaia Lembi, Andrew Creamer, Michael Satlow, forthcoming. “Archiving a TEI Project FAIRly,” in TEI Conference Volume.
+Pelagios Network: https://www.pelagios.org
+Getty Art and Architecture Thesaurus Online: https://www.getty.edu/research/tools/vocabularies/aat/
+Periodo: A gazetteer of period definitions for linking and visualizing data. https://perio.do.
+Pleiades: https://pleiades.stoa.org.
+Satlow, Michael L, forthcoming, “Inscriptions of Israel/Palestine,” Jewish Studies Quarterly.

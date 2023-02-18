@@ -1,0 +1,178 @@
+Resumen
+¿Los nodos centrales de una red social de personajes son los protagonistas de una obra de teatro? Para responder a esta pregunta utilizamos diferentes medidas de centralidad junto con otros valores cuantitativos textuales en un corpus anotado de obras dramáticas de teatro español correspondientes a la Edad de Plata (1868-1936). Los resultados señalan que la centralidad está en correlación moderada con la importancia, siendo mayor la correlación con valores cuantitativos textuales.
+Introducción
+La representación de personajes literarios mediante grafos y redes sociales (Marcus 1973, Moretti 2011) aporta nuevas herramientas al estudio literario. La interpretación del concepto de centralidad en grafos (Jannidis et al., 2017) ha sido investigada en su aplicación a las obras literarias (Moretti 2011; Rochat 2014; Trilcke et al. 2015 y 2016; Jannidis et al., 2016, Rodríguez 2016; Algee-Hewitt 2017). En la tradición hispánica, se han utilizado enfoques cuantitativos para analizar la densidad versal en obras del Siglo de Oro (Hermenegildo 1994 y Espejo 2002), estudiar tanto contenido simbólico y sociopolítico de los personajes de Galdós (Menéndez 1983), así como el origen social o caracterización de los personajes de Lope de Vega (Oleza 1984 y Oleza 2013).
+En este trabajo queremos evaluar cuatro preguntas:
+1. ¿Qué tipo de correlación hay entre las medidas de centralidad y la importancia del personaje?
+2. ¿Aparecen los personajes más importantes al comienzo del
+dramatis personae
+?
+3. ¿Hay correlación entre importancia y valores textuales (cantidades de unidades textuales del personaje)?
+4. ¿Qué valores podríamos utilizar para distinguir a los protagonistas del resto?
+Textos y metadatos
+A diferencia de otras lenguas europeas, el español no cuenta con un gran corpus teatral anotado en XML-TEI. El proyecto
+Biblioteca Electrónica Textual del Teatro en Español de la Edad de Plata (1868-1936)
+(BETTE) ha publicado veinticinco obras en XML-TEI de Lorca, Valle, Galdós, Clarín o Muñoz Seca, como repositorio GitHub (María Jiménez et al., 2017). En la versión 2.0 cada personaje ha sido anotado con diferentes metadatos:
+• Sexo
+• Papel en la obra (protagonista, amante, antagonista u otro)
+• Naturaleza (persona, animal, no humano...)
+• Importancia (personaje primordial, secundario o terciario)
+• Persona individual frente a grupo
+Además, se añadieron una serie de valores textuales cuantitativos de manera automática:
+• Posición en el dramatis personae (castList)
+• Cantidad de texto que pronuncia
+• Cantidad de intervenciones
+• Cantidad de referencias a su nombre
+• Cantidad de escenas en las que aparece
+Aquí un ejemplo de esa información en XML-TEI:
+Fig. 1. Metadatos de personaje en XML-TEI
+El valor de importancia fue asignado según los siguientes criterios:
+• Minor: si el personaje no aparece en el resumen (contenido también en el archivo TEI)
+• Secondary: si aparece en el resumen
+• Primary: si pertenece al grupo de entre dos y cuatro personajes esenciales
+De esta manera por cada personaje (con un total de 516) tenemos:
+1. Un valor de su importancia dentro de la obra (que puede ser utilizado como
+ground truth
+)
+2. Diferentes valores cuantitativos textuales
+3. Posición en dramatis personae
+4. Diferentes valores según medidas de centralidad
+Metodología
+La implementación para extraer, analizar, evaluar y visualizar los datos se realizó en Python mediante librerías como
+lxml
+y
+networkx
+. Para la creación de las redes sociales se definió la arista no direccional como la coaparición en escenas (la definición más frecuente en trabajos de este tipo):
+Fig. 2. Red social de personajes en
+La zapatera prodigiosa
+de Lorca
+A partir de estas redes sociales, calculamos diferentes medidas de centralidad e información sobre los nodos:
+• Degree
+• Betweenness centrality
+• Eccentricity
+• Closeness centrality
+• Load centrality
+• Current flow betweenness centrality
+• Eigenvector centrality
+• Approximate current flow betweenness centrality
+• Communicability centrality exp
+Resultados
+Analizamos la dependencia entre la importancia y el resto de valores, calculado su correlación (Spearman)
+Fig. 3. Boxplots y correlaciones con importancia de todas las obras de BETTE
+Ninguna de las medidas de centralidad tiene una correlación fuerte (> 0.6 o < -0.6 según Evans 1996). El valor máximo (0.51 en correlación negativa) es de
+current flow betweenness centrality
+, también conocida como
+information centrality
+(Brandes and Fleischer 2005; Stephenson and Zelen 1989), medida que no está entre el repertorio usual de las HD.
+En cuanto a la posición en el
+dramatis personae
+, la correlación es solo de 0.42, con una fuerte dispersión, aunque los primeros y terceros cuartiles de personajes primarios y terciarios se posicionan en rangos totalmente diferentes. Es decir, la posición en el dramatis personae sí parece aportar cierta información sobre la importancia, aunque no podemos utilizarlo de manera exclusiva (p.ej. Muñoz Seca los ordena por sexo).
+En tercer lugar, las medidas de cuantitativas textuales tienen todas correlaciones notablemente más altas, llegando hasta 0.67 en la cantidad de intervenciones.
+Ante estos resultados, nos hemos preguntado si las medidas cuantitativas textuales tienen el mismo tipo de correlación con las medidas de centralidad, en concreto si la information centrality tiene una correlación más fuerte que el resto (calculando Spearman o Pearson, dependiendo si las variables son continuas u ordinales):
+Fig. 4.
+Scatterplots
+mostrando correlación entre las veces que un personaje habla (<sp>s) y otros valores
+Como se observa
+current flow betweenness (
+o
+information) centrality
+, de nuevo, es la medida de centralidad con la correlación más fuerte con la cantidad de intervenciones.
+Finalmente hemos observado si la distribución de centralidad o valores textuales son diferentes para los personajes protagonistas de los del resto:
+Fig. 5. Boxplots de protagonistas frente al resto de personajes
+La mayor diferenciación de ambos
+boxplots
+entre las medidas de centralidad se consigue mediante
+current flow betweenness
+(o
+information
+)
+centrality
+. El solapamiento menor se consigue mediante la cantidad de texto pronunciado (pers_mes_characteres). La posición relativa en el
+dramatis personae
+en este caso consigue diferenciar de manera bastante clara los protagonistas del resto de personajes.
+Conclusiones y futuros pasos
+La anotación en detalle de información sobre los protagonistas nos permite evaluar métodos digitales. En concreto seguimos la propuesta de Moretti (2013) de abandonar la división binaria de personajes, incluyendo en nuestro caso los valores de personajes secundarios.
+Nuestros resultados muestran que, para el caso del corpus BETTE y con las formalizaciones arriba explicadas:
+1. La importancia tiene una correlación solamente entre débil y moderada con cualquier formalización de centralidad, teniendo la correlación más fuerte la
+information centrality
+2. La posición en el
+dramatis personae
+puede ser un indicador sobre el protagonismo de personajes o la diferenciación entre primarios y terciarios, pero no para diferenciar a estos de los secundarios
+3. Los valores cuantitativos textuales tienen correlaciones más fuertes. Este tipo de unidades son también las que mejor clasificarían personajes entre protagonistas y no protagonistas
+4. Es sorprendente que unidades textuales más sencillas que la centralidad en redes aporten más información tanto sobre la importancia de los personajes, así como su papel de protagonistas.
+Como otros trabajos en redes sociales (cf. Moretti 2011 y 2013; Rochat 2014) hemos trabajado con una cantidad reducida de textos. Nos gustaría comprobar estas hipótesis en mayores corpus literarios. También nos gustaría analizar los efectos que subgéneros literarios, períodos y autores ejercen sobre estos valores.
+Bibliografía
+Algee-Hewitt, Ma
+. (2017).
+Distributed Character: Quantitative Models of the English Stage, 1500-1920
+. Montréal: McGill University & Université de Montréal, pp. 119–21.
+Brandes, U. and Fleischer, D.
+(2005). Centrality Measures Based on Current Flow.
+Theoretical Aspects of Computer Science (STACS ‘05).
+Springer-Verlag, pp. 533–44 http://www.inf.uni-konstanz.de/algo/publications/bf-cmbcf-05.pdf.
+Espejo, J.
+(2002). Algunos aspectos sobre la construcción del personaje en el teatro conservado de Hernán López de Yanguas (1487-¿?).
+Scriptura,
+17, pp. 113-132.
+Evans, J. D.
+(1996).
+Straightforward Statistics for the Behavioral Sciences
+. Pacific Grove: Brooks/Cole Pub. Co.
+Gómez, S., Calvo Tello, J., González, J. M. and Vilches, R
+. (2015). Hacia una biblioteca electrónica textual del teatro en español de 1868-1936 (BETTE). Texto Digital, 11(2), pp. 171–84.
+Hermenegildo, A.
+(1995). Personaje y teatralidad: la experiencia de Juan del Encina en la Égloga de Cristino y Feba. In Pedraza, F.B. y González, R. (ed
+.). Los albores de teatro español: actas de las XVII Jornadas de teatro clásico Almagro, julio de 1994
+. Almagro: Universidad de Castilla-La Mancha, pp. 90-113.
+Jannidis, F., Reger, I., Krug, M., Weimer, L., Macharowsky, L. and Puppe, F.
+(2016). Comparison of Methods for the Identification of Main Characters in German Novels.
+DH2016.
+Krakow: ADHO, pp. 578–82 http://webcache.googleusercontent.com/search?q=cache:LjYz88cQhboJ:dh2016.adho.org/abstracts/297+&cd=1&hl=es&ct=clnk&gl=de&client=ubuntu.
+Jannidis, F., Kohle, H. and Rehbein, M. (eds).
+(2017).
+Digital Humanities: eine Einführung
+. Stuttgart: J.B. Metzler Verlag.
+Jiménez, C., Martínez Carro, E., Santa María, M. T., Calvo Tello, J., Simón Parra, M., Martínez Nieto, R. B. and García Sánchez, M.
+(2017). BETTE: Biblioteca Electrónica Textual del Teatro en Español de la Edad de Plata.
+Sociedad, Políticas, Saberes
+. Málaga: HDH, pp. 88–91 http://hdh2017.es/wp-content/uploads/2017/10/Actas-HDH2017.pdf.
+Marcus, S.
+(1973).
+Mathematische Poetik.
+(Trans.) Mândroiu, E. Bucureşti; Frankfurt/Main: Editura Academiei ; Athenäum Verlag.
+Menéndez, C.
+(1983).
+Introducción al teatro de Benito Pérez Galdós
+. Madrid: CSIC.
+Moretti, F.
+(2011). Network Theory, Plot Analysis.
+The New Left Review (
+68), pp. 80–102.
+Moretti, F.
+(2013). “Operationalizing”: or, the function of measurement in modern literary theory.
+The New Left Review (
+84), pp. 103-119.
+Oleza Simó, J.
+(2013).
+Biblioteca Digital Arte Lope
+. Valencia: Universitat de València. artelope.uv.es/biblioteca.
+Rochat, Y.
+(2014).
+Character Networks and Centrality.
+N.p. Web.
+Rodríguez, D.I.
+(2016)
+Análisis de grafos en paralelo mediante Graphx.
+Trabajo de titulación. Universidad Católica de Loja. Ecuador.
+Stephenson, K. and Zelen, M.
+(1989). Rethinking centrality: Methods and examples.
+Social Networks
+, 11(1): 1–37 doi:10.1016/0378-8733(89)90016-6.
+Trilcke, P., Fischer, F., Göbel, M. and Kampkaspar, D.
+(2016). Dramen als small worlds? Netzwerkdaten zur Geschichte und Typologie deutschsprachiger Dramen 1730-1930. In Burr, E. (ed),
+DHd 2016 Modellierung, Vernetzung, Visualisierung.
+Leipzig: DHd/nisaba, pp. 254–57.
+Trilcke, P., Fischer, F. and Kampkaspar, D.
+(2015). Digitale Netzwerkanalyse dramatischer Texte.
+DHd-Tagung. Graz
+http://gams.uni-graz.at/o:dhd2015.v.040.

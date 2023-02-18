@@ -1,0 +1,58 @@
+In the effort to capture cultural dynamics, scholars have considered social networks, that is, a graph with people as nodes and their relationships as edges. These social networks are useful; however, to capture dynamics they must be considered over time. In the literature, Time-Varying Graphs (TVGs) have been defined (Aggarwal and Subbian, 2014; Casteigts et al., 2012; Casteigts et al., 2013). In our investigations, we have found benefit in defining TVGs with nodes as societal structures and people as the edges and then considering the dynamics of the societal structures evidenced in the TVGs (Hott et al., 2014; Hott et al., 2015). Here we consider two motivating applications for our extensions to TVGs: early Mormon marital structures and an arXiv.org citation network.
+The societal structures represented in the marital and church structures of early Mormons in mid-1800s Nauvoo, Illinois, include binary, polygynous, and polyandrous marriages, as well as child and adult adoptions, and membership of individuals in the church organization hierarchy. In this time period the concept of “marriage” is in flux and part of our research is to consider various conceptualizations of “marriage” to better understand the relationship to the formation of the church structure. Each conceptualization we consider as a different “identity lens,” a term we create to describe these different views.
+We therefore define the
+identity-lens function
+that maps one evolving network to another evolving network. More specifically, given a TVG, as defined in (Casteigts et al., 2012), the
+identity-lens function
+maps the nodes and edges in with a given identity definition to a new Time/Identity-Varying Graph (TIVG) . is therefore the view of under identity lens
+i
+.
+In our marital network research (Hott et al., 2014; Hott et al., 2015), we represent marriages as the nodes, with the individuals connecting the marriages of their parents to their own marriages as adults. Every piece of this network is considered to be evolving, since marital relations change, new children are born, family members are adopted, and individuals change membership in the church organizational structure. Initially, this network may be described as a binary-marriage network, in which each node depicts a marriage between two individuals and their biological children. This is one specific definition of node identity. However, we may examine this network in different levels of granularity: with different definitions of node identity. By extending the marriage definition to all individuals married to the same husband, we may redefine node identity to define polygynous marriages, creating . A related identity function that maps binary marriages to those with the same wife creates the TIVG .
+Our second motivating example is the arXiv.org
+http://www.arxiv.org
+citation network. ArXiv.org provides online open access to over one million cross-disciplinary papers, including papers in Physics, Mathematics, and Computer Science. We build a citation TVG from this dataset, linking authors as nodes based on the co-authorship of their papers. Similar to the Nauvoo application, we define multiple identity functions to map this TVG to multiple TIVGs. Under a node identity function combining authors within the same institution, we produce
+.
+Other node identity mappings include departmental affiliation
+,
+and , in which authors are mapped to their subject areas.
+Each of these TIVGs have characteristics that change over time. As we increase the complexity of the nodes through the use of identity lenses, we increase the dynamics of the characteristics, specifically those captured within the nodes. In the Nauvoo dataset, these characteristics include familial relationships among marriage members and church leadership positions held by the members of each marriage. Similarly, in the arXiv dataset, the characteristics include departmental and institutional collaboration. We want and need metrics that are sensitive to these changes within the evolving nodes as well as the overall evolving structure of the network. To capture and analyze these dynamics, we first define sampling methods to produce static graphs depicting the state of the TIVG during a fixed-size interval around each time point, then compute centrality measures over the graph across time for each identity lens. This process creates a distribution of the metric across time, which may then be compared between identity lenses. We conjecture that utilizing different-sized sampling intervals and comparing distributions across identity lenses will provide insights to understanding the TVG and the motivating application it describes.
+We therefore define two methods to sample TIVG , in a -sized time interval around any given time-point
+t
+in
+T
+, to a static graph . They are given by the following node and edge set definitions:
+The union of all nodes and edges extant at any time during the interval. and are the “presence” functions for nodes and edges, respectively, as defined in (Casteigts et al., 2012).
+Only nodes and edges that exist throughout the entire interval.
+As a simple example of these sampling methods, consider a correspondence network, where is a set of individuals and defines their correspondence; an edge connecting two individuals is present when a letter is in the mail between them. For an interval length, , of 1 year, the first sampling method would produce a graph containing connections between any individuals who corresponded by letter at any point that year. In comparison, the second sampling method would only leave connected those individuals with constant communication for the entire year.
+Using the sampling methods above, we measure characteristics at time points throughout the lifetime of and thereby evidence the dynamics. The harmonic centrality, , is an indication of how close the nodes are to each other, while the betweenness centrality, , is indicative of how interconnected the nodes are within the graph. They are defined as
+where and are the harmonic and betweenness point-centrality measures (Wasserman and Faust, 1994) for a given node , respectively. For brevity, we will define here only , using Boldi and Vigna’s harmonic centrality definition (Boldi and Vigna, 2014), as
+where is the distance between . As a concrete example of this measure, consider the graphs in Figures 1 and 2. In the graph of Figure 1, node A acts as the central connection point, or hub. The hub has the shortest distance to any node and therefore high harmonic point-centrality, = 6. Other nodes must traverse at most two edges to reach any other node, giving them = 3.5. The overall measure for this graph is = 4.58. In comparison, the graph in Figure 2 has nodes that are distant from most of the other nodes, e.g., node A has = 2.45 leading to harmonic centrality, = 1.02. These two graphs demonstrate that the harmonic centrality of the graph is inversely related to the overall “closeness” of the nodes.
+Figure 1. A star graph, with nodes shaded based on relative point-centrality, which has harmonic centrality = 4.58
+Figure 2. A linear graph, with nodes shaded based on relative point-centrality, which has harmonic centrality = 1.02
+Allowing
+t
+to range over the entire lifespan of and considering multiple sizes for our interval, we generate distributions of the metric across time and with differing levels of temporal granularity. These distributions give a picture of the dynamics occurring within each TIVG. By comparing the metrics across TIVGs under different identity functions for the same TVG, we hope to more fully capture the dynamics of and understand the original evolving network, and provide insights into the motivating application at hand.
+We have therefore defined a new conceptualization of Time-Varying Graphs, specifically the identity-lens function and resulting Time/Identity-Varying Graphs under each identity mapping. We also defined methods for sampling the TIVGs into series of measurable static graphs and provided metrics over those representations. At the conference, we will present visualizations that represent each of our applications from the various perspectives, as well as the findings of these measures: to better understand the definition of marriage in Nauvoo and its relation to church formation, and to illuminate patterns in author and departmental co-citations.
+Bibliography
+Aggarwal, C. and Subbian, K.
+(2014). Evolutionary network analysis: A survey, ACM Computing Surveys (CSUR)
+47
+(1): 10.
+Boldi, P. and Vigna, S.
+(2014). Axioms for centrality, Internet Mathematics
+10
+(3-4): 222–62.
+Casteigts, A., et al.
+(2013). Expressivity of time-varying graphs, Fundamentals of Computation Theory, Springer, pp. 95–106.
+Casteigts, A., et al.
+(2012). Time-varying graphs and dynamic networks, International Journal of Parallel, Emergent and Distributed Systems
+27
+(5): 387–408.
+Hott, J. R., Martin, W. N. and Flake, K.
+(2014). Evolving social structures: Networks with people as the edges, Digital Humanities Forum, University of Kansas.
+Hott, J. R., Martin, W. N. and Flake, K.
+(2015). Visualizing and analyzing identity classes in evolving social structures, Chicago Colloquium on Digital Humanities and Computer Science.
+Wasserman, S. and Faust, K.
+(1994). Social Network Analysis: Methods and Applications, Vol.
+8
+, Cambridge University Press.

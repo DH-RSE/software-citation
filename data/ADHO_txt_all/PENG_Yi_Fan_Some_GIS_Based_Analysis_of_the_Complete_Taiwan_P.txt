@@ -1,0 +1,59 @@
+Introduction
+The collection of Complete Taiwan Poems (CTP) includes traditional Chinese poems that were authored between 1661 CE and 1945 CE in Taiwan.
+This time period covers the Kingdom of Tungning in Taiwan (1662 - 1683), the Qing Dynasty in Taiwan (1683 – 1895), the Japanese occupation period (1895 - 1945) and the post-war period (1945 - )
+We combine natural language processing and spatial information technology to analyze the literary trajectory and geographical distribution of poets and their poems. Assisted by digital tools such as geographic information systems (GIS) which can manage and present spatial data, we can describe the connection and evolution between poets, poems and space.
+Spatialization of literary works
+In this study, we extract spatial and temporal information about the poets and their poems, and present the information via a GIS interface. Figure 1 shows the main steps of our work.
+Figure 1. Main steps of our work
+Identification of place names
+At this moment, we focus on poems that consist of five or seven-character lines because they are the majority in CTP. Table 1 shows the statistics for the poems in CTP.
+In order to spatialize the literary materials, we extract the words that carry spatial attributes by marking words as place names at the step of part-of-speech (POS) tagging. Before that, we have to segment Chinese strings into words. Chinese word segmentation is a very difficult task for traditional poems, and the segmentation results have a considerable impact on the subsequent analysis. In addition to employing the CKIP segmenter (Ma and Chen, 2003), we also rely on some heuristics for Chinese segmentation that are applicable to traditional Chinese poems.
+Table 1. Statistics for the poems in CTP
+Table 2. Statistics about the Nc words. The numbers in parentheses show the amount of the unique Nc words
+Figure 2. The distributions of lengths of Nc words
+Relying on a heuristic (Lo, 2005), we may segment a line of five characters in two ways: 212 and 221. For example, we can divide “奉命籌軍國” into “奉命-籌-軍國” (212) or “奉命-籌軍-國” (221). Similarly, we may segment a line with seven characters into two ways: 2212 or 2221, e.g., producing “昔日-東寧-今-豫章” (2212) or “昔日-東寧-今豫-章”(2221) from “昔日東寧今豫章”. Applying these heuristics with the CKIP segmenter, we segment the CTP poems. The CKIP segmenter also does POS tagging, and Nc is of the code for place names. We show some statistics about the place names in Table 2.
+Filtering and geocoding
+After the POS step, we filter the list of Nc words for unique place names. Figure 2 shows the distribution of lengths of these unique words.
+After filtering the place names, we attempt to geocode the unique place names. The process of geocoding is shown in Figure 3. We do geocoding in two steps. First, we use the API of Chinese Civilization in Time and Space (CCTS API) provided by the Academia Sinica.
+This is a service created by the Center of GIS, RCHSS, Academia Sinica. The place names are geocoded by specialists based on many historical documents. Available from: http://ccts.sinica.edu.tw/api [cited 2019 April 29]
+CCTS reports reliable spatial information for places in Taiwan and China. If we cannot find a location for a name via CCTS, we continue geocoding via the Google Map API.
+Google. Developer Guide | Geocoding API [cited 2019 April 29]. Available from: https://developers.google.com/maps/documentation/geocoding/intro.
+We ignore names that cannot be geocoded by both services.
+Figure 3. Flowchart of the place name geocoding
+Recall that the results of the word segmentation are not completely correct, so there may be some errors with geocoding. For instance, some place names are geocoded to other countries. To avoid these problems at this moment, we use a spatial processing method to eliminate the points outside Taiwan and China.
+Application examples
+We can present and analyze the data with GIS, and offer three applications to demonstrate the spatial visualization of literary data.
+Temporal and spatial distribution of poets' birthplaces
+After analyzing the personal data of 844 poets, we can show the poets' birthplaces on maps. They lived in different dynasties. With these two variables, we generated four maps for different time periods, shown in Figure 4.
+Figure 4. Temporal and spatial distributions of poets' birthplaces
+If scholars have more ideas about the distribution of data, the data can be further analyzed through spatial methods. Figure 5 shows a further example. It analyzes the distribution of poets in parts of Taiwan. It shows that the changing distribution densities of poets in Tainan (in the south), Taipei (in the north), and Changhua (in the middle) in these time periods. This may provide hints for studies of the socioeconomic developments and cultural activities of those years.
+Figure 5. Kernel density estimation maps of poets in Taiwan
+Temporal and spatial distribution of place names in poems
+When literary experts can confirm the creation times of poems, we can analyze the places that were mentioned in poems of different time periods. Figure 6 shows some possible outcomes.
+There are 12 points (place names) in Figure 6(a), 1674 points in Figure 6(b), 3210 points in Figure 6(c), and 221 points in Figure 6(d), respectively.
+Figure 6. Temporal and spatial distributions of place names in CTP
+Splitting the 200 years of the Qing administration in Taiwan into four sub-periods, Figure 7 helps us see that some place names are more popular in different periods. Place names of the eastern part of Taiwan were mentioned less in the early Qing Dynasty. Scholars can discover more phenomena based on the spatial-temporal results, and interested scholars can certainly investigate the implications of the changing trends.
+Figure 7. Distributions of place names in Taiwan in CTP poems in different Qing periods
+A poet's trail
+We analyze the contents of the poems and personal data of Lian Heng,
+Lian Heng (連橫) was a very famous and influential person in the history of Taiwan.
+and show the results in Figure 8. When he was young (before 36 years old), most of the places he mentioned were in Taiwan and China. During his middle age (37-46), he mentioned many places in Taiwan and Japan. In his older period (after 47), he mainly focused on Taiwan, occasionally mentioning the place names of China and Japan.
+Figure 8. The trail of Lian Heng’s place names in different periods of life
+We can find that poets may have some preferences for the place names in their works in different periods. Through the spatiotemporal analysis of the poets' trails, we may pursue deeper issues about the observations. Wang et al. have done similar analysis for Yu Yonghe (郁永河). (Wang et al., 2011)
+Conclusion
+We analyzed the poets and poems in the Complete Taiwan Poems via GIS viewpoints. By combining the techniques of natural language processing and the methods of spatiotemporal analysis, we present information about poets and poems geographically. We demonstrate our ideas with three examples: a poet's trail, the distributions of poets’ birthplaces, and the distributions of place names in the poems. We hope that these cross-disciplinary explorative results may inspire fruitful ideas for literary research.
+Acknowledgements
+The research was supported in part by contracts MOST-104-2221-E-004-005-MY3 and MOST-107-2221-E-004-009-MY3 of the Ministry of Science and Technology of Taiwan and in part by projects 107H121-06, 107H121-08, 108-H121-06, and 108H121-08 of the National Chengchi University. We are grateful to the National Museum of Taiwan Literature for their sharing the Complete Taiwan Poems and their comments on our work.
+Bibliography
+Lo, F.
+(2005). Design and applications of systems for word segmentation and sense classification for Chinese poems.
+Proceedings of the Fourth Conference of Digital Archive Task Force
+. (in Chinese)
+Ma, W. and Chen, K.
+(2003). Introduction to CKIP Chinese word segmentation system for the first international Chinese word segmentation bakeoff.
+Proceedings of the Second SIGHAN Workshop on Chinese Language Processing
+, 17:168-171. DOI: https://doi.org/10.3115/1119250.1119276
+Wang, L., Lee, Y., Fan, I., Liao, H. and Pai, P.
+(2011). The historical research of small sea travel diaries and 3D GIS application integration.
+Journal of Cartography
+, 21(2): 23-26. DOI: https://doi.org/10.30006/JC.201110.0002 (in Chinese)

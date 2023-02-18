@@ -1,0 +1,46 @@
+Topic modeling is a popular tool for analyzing texts ((Jockers 2013: 122-53, Goldstone and Underwood 2014, Rhody 2012), but Mallet (
+http://mallet.cs.umass.edu/index.php
+), probably the most commonly used program, produces output that is not very easy to interpret or understand (Graham, Weingart, and Milligan 2013). The Excel spreadsheet presented here provides an automated way to import, reformat, visualize, graph, and perform some kinds of analysis on Mallet topic models in either Windows or Mac OS. It is especially useful for those who want to use Mallet to explore small amounts of text that they know well. (David Mimno's "jsLDA: In-browser topic modeling" [2019] performs some similar functions without requiring the installation of R or Mallet, but lacks the visualization, comparison, and graphing capabilities of the spreadsheet tool.)
+The most basic function of the spreadsheet, Import_Mallet_Data, copies the information from Mallet's output files into four sub-sheets: Mallet Data for Visualization, Mallet Data for Wordle, Mallet Topic Proportions, and Graph Topics in Texts. For example, it copies Mallet's data on how each word in the texts is distributed in the topics into the "Mallet Data for Visualization" sheet. Here is a snippet:
+0 ring 10:26 13:1 3:1
+1 hanging 10:6 17:1
+2 quivers 19:2 7:2 10:1 2:1 8:1
+3 hangs 10:8 7:1 4:1 11:1
+4 loop 15:3 14:1 7:1
+While importing this information, it also extracts the weights of the words in each topic and sorts the words in descending importance, rewriting the information in a form that can be imported into Wordle (
+http://www.wordle.net)
+to create a word cloud and also into the "Graph Topics in Texts" sheet for use in highlighting topics in texts.
+A third function is a simple visualization macro that highlights the words in each topic with different colors and text-sizes that reflect the importance of the words in that topic. A snippet can be seen in Fig. 1. Though fairly crude, this visualization gives more information than a word cloud, consistently marks the same frequencies with the same color and font size, and makes coherent topics more clearly visible and interpretable.
+A fourth function reformats Mallet's data about the proportions of each topic in each text and about the overall weight of each topic in the model. It lists the topics for each text in descending order of weight and lists the texts with the greatest weights for each topic in descending order of weight. A snippet is shown in Fig. 2. This reorganization makes it clear at a glance that, in the model shown here of the six voices of Virginia Woolf's
+The Waves
+, topic 10 is the most important in all six of the voices, and that each voice also has its own individual important and characteristic topic, always the second most important. Not all of the individual topics are shown in Fig. 2, but topics three and four are clearly characteristic of Susan and Louis, respectively.
+A fifth function graphs the weights of each topic in each text, producing a scatter graph like that in Fig. 3 (for 1,000-word sections Charlotte Brontë's
+Jane Eyre)
+. This interactive graph allows the topics to be toggled on and off to highlight any topics and sections that seem interesting, and clicking on a topic weight in the graph opens the section of text in which that weight appears and highlights the topic's most important words in the text. Up to three more topics can be highlighted in that same text, each with its own color (see Fig. 4).
+The sixth major function compares two topic models, either the same model run twice, or models with different numbers of topics or different parameters (on Mallet's hyperparameters, see Schöch 2016). After importing the first model and copying its results into the "Compare Topic Models" sheet, the user creates a second model, copies it beside the first, and runs the comparison macro, which shows which topic in the second model is most similar to each topic in the first and which topic in the first model is most similar to each topic in the second. (Even if topic three of model two is the most similar to topic one in model one, topic one of model one is not necessarily the most similar to topic three of model two.) The results of a comparison of a thirty-topic and a twenty-five topic model of
+Jane Eyre
+are shown in Fig. 5 (the comparison is quite basic, and does not take into account the order of the words in each topic.)
+The macros that perform the functions above and several parameters (in the "Prepare and Visualize" sheet) are customizable. The initial font for the visualization macro, the minimum frequency of a word in a topic to display, and the maximum number of topic words to compare in the comparison function can be set by the user. The user can also choose how many texts to display for each topic (see Fig. 2) by setting a divisor for the maximum topic weight. In Fig. 2, only texts that have at least one fifth the weight of the topic with the greatest weight are shown. The "Instructions" sheet contains detailed instructions for its use. Near the bottom of the sheet are Mallet commands for creating a topic model that can be copied out and dropped into Mallet.
+The_Prepare_and_Visualize_Mallet_Data Spreadsheet provides a gentle, automated introduction to topic modeling that is especially appropriate for users who want to explore the possible value of topic modeling in texts that interest them without facing a steep learning curve.
+Bibliography
+Goldstone, A., and Underwood, T.
+(2014). The quiet transformations of literary studies: What thirteen thousand scholars could tell us.
+New Literary History
+, 45(3): 359-384.
+Graham, S., Weingart, S., and Milligan, I.
+(2013). Getting started with topic modeling and MALLET.
+The Programming Historian
+, 2. Mar.
+Jockers, M.
+(2013).
+Macroanalysis: Digital Methods and Literary History
+. Urbana-Champaigne: University of Illinois Press.
+Mimno D.
+(2019). jsLDA: In-browser topic modeling. https://mimno.infosci.cornell.edu/jsLDA/
+Rhody, L.
+(2012). Topic modeling and figurative language.
+Journal of Digital Humanities
+, 2(1).
+Schöch, C.
+(2016.) Topic modeling with MALLET: Hyperparameter optimization”. In: The Dragonfly's Gaze, Marseille: Open Edition,
+https://dragonfly.hypotheses.org/1051.
