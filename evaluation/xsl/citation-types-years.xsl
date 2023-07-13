@@ -214,7 +214,7 @@
                         var layout = {
                         title: "Citation types per year",
                         yaxis: {title: "Number of citation types (per abstract, in %)"},
-                        xaxis: {title: "Jahr"},
+                        xaxis: {title: "Jahr", tickmode: "linear"},
                         barmode: "group"
                         };
                         
