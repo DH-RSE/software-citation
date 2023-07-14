@@ -1,6 +1,7 @@
 # Software citation in the Digital Humanities
 
-This project contains data and evaluation of citation of software in the Digital Humanities.
+The project about citation of software in the Digital Humanities is conducted by members of different universities and aims at measuring the current practice of the use and citation of software in academic papers (abstracts of the ADHO Digital Humanities conference). By having a detailed look at current citation practice, and making the results transparent to the community, the project wants to foster a better understanding of the current situation and enhance the sustainable und scholarly use of software in the humanities and academics in general.
+
 
 
 ## Data
