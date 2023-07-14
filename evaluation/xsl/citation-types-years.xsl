@@ -15,7 +15,7 @@
         
         <xsl:variable name="year-counts">
             <counts>
-                <xsl:analyze-string select="$citation-types" regex="{concat((:SoftwareID:)'^([^',$SEP,']+)',$SEP,(:Dateipfad:)'([^',$SEP,']+)',$SEP,'[^',$SEP,']+',$SEP,(:Name.Only:)'([^',$SEP,']+)',$SEP,'[^',$SEP,']+',$SEP,(:Bib.Ref:)'([^',$SEP,']+)',$SEP,'[^',$SEP,']+',$SEP,(:Bib.Soft:)'([^',$SEP,']+)',$SEP,'[^',$SEP,']+',$SEP,(:Agent:)'([^',$SEP,']+)',$SEP,'[^',$SEP,']+',$SEP,(:URL:)'([^',$SEP,']+)',$SEP,'[^',$SEP,']+',$SEP,(:PID:)'([^',$SEP,']+)',$SEP,'[^',$SEP,']+',$SEP,(:Ver:)'([^',$SEP,']+).*$')}" flags="m">
+                <xsl:analyze-string select="$citation-types" regex="{concat((:SoftwareID:)'^([^',$SEP,']+)',$SEP,(:Dateipfad:)'([^',$SEP,']+)',$SEP,'[^',$SEP,']+',$SEP,(:Name.Only:)'([^',$SEP,']+)',$SEP,'[^',$SEP,']+',$SEP,(:Bib.Ref:)'([^',$SEP,']+)',$SEP,'[^',$SEP,']+',$SEP,(:Bib.Soft:)'([^',$SEP,']+)',$SEP,'[^',$SEP,']+',$SEP,(:Agent:)'([^',$SEP,']+)',$SEP,'[^',$SEP,']+',$SEP,(:URL:)'([^',$SEP,']+)',$SEP,'[^',$SEP,']+',$SEP,(:PID:)'([^',$SEP,']+)',$SEP,'[^',$SEP,']+',$SEP,(:Ver:)'([^',$SEP,']+)$')}" flags="m">
                     <!-- regex-groups:
                     1: SoftwareID
                     2: Dateipfad
@@ -115,7 +115,7 @@
                 </head>
                 <body>
                     <!-- Plotly chart will be drawn inside this DIV -->
-                    <div id="myDiv" style="width: 600px; height: 500px;"></div>
+                    <div id="myDiv" style="width: 700px; height: 500px;"></div>
                     <!-- Note of creation type -->
                     <p style="font-size:0.8em;"><xsl:value-of select="concat('created on ', current-dateTime(), ' by ', tokenize(static-base-uri(), '/')[last()])"/></p>
                     <script>
