@@ -15,7 +15,7 @@
 
     <!-- When matching rs key attribute: get items from list-->
     <xsl:template
-        match="//tei:text/tei:body/tei:schemaSpec/tei:elementSpec/tei:attList/tei:attDef[@ident = 'key']/tei:valList[1]">
+        match="//tei:text/tei:body/tei:schemaSpec/tei:elementSpec/tei:attList/tei:attDef[@ident = 'target']/tei:valList[1]">
         <valList type="closed" mode="change">
         <xsl:for-each select="distinct-values($softwarelist//tei:list/tei:item/@xml:id)">
             <valItem mode="add" ident="{.}"/>

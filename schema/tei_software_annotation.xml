@@ -77,9 +77,9 @@
             <elementSpec ident="rs" mode="change">
                <attList>
                   <!-- To do: Pointers should point to ../taxonomy/citation-taxonomy.xml and multiple values divided by whitespaces are also allowed -->
-                  <attDef ident="ana" mode="change" usage="req">
+                  <attDef ident="type" mode="change" usage="req">
                      <valList type="closed" mode="change">
-                        <valItem mode="add" ident="#Bib.Soft">
+                        <valItem mode="add" ident="bib.soft">
                            <desc versionDate="2022-09-26" xml:lang="de">Bibliographieeintrag für
                               Software (Bib.Soft)</desc>
                            <desc versionDate="2022-09-26" xml:lang="de">Die Bibliographie enthält
@@ -87,24 +87,24 @@
                               der Software selbst enthalten, Namen von Verantwortlichen, eine URL,
                               einen PID, Versionsangaben, usw.</desc>
                         </valItem>
-                        <valItem mode="add" ident="#Bib.Ref">
+                        <valItem mode="add" ident="bib.ref">
                            <desc versionDate="2022-09-26" xml:lang="de">Bibliographieeintrag für
                               Referenzpublikation (Bib.Ref)</desc>
                            <desc versionDate="2022-09-26" xml:lang="de">Die Bibliographie enthält
                               einen Eintrag mit einer Publikation über die Software.</desc>
                         </valItem>
-                        <valItem mode="add" ident="#Name.Only">
+                        <valItem mode="add" ident="soft.name">
                            <desc versionDate="2022-09-26" xml:lang="de">Nur namentliche Nennung der Software (Name.Only)</desc>
                            <desc versionDate="2022-09-26" xml:lang="de">Die Software ist nur namentlich genannt. </desc>
                         </valItem>
-                        <valItem mode="add" ident="#Agent">
+                        <valItem mode="add" ident="agent">
                            <desc versionDate="2022-09-26" xml:lang="de">Namentliche Nennung der
                               Verantwortlichen (Agent)</desc>
                            <desc versionDate="2022-09-26" xml:lang="de">Personen, Gruppen oder
                               Institutionen, die für die Entwicklung der Software verantwortlich
                               sind, werden namentlich genannt.</desc>
                         </valItem>
-                        <valItem mode="add" ident="#URL">
+                        <valItem mode="add" ident="url">
                            <desc versionDate="2022-09-26" xml:lang="de">URL</desc>
                            <desc versionDate="2022-09-26" xml:lang="de">Die Zitation enthält eine
                               URL, die auf die Software selbst verweist (z.B. zu einer Webseite über
@@ -113,7 +113,7 @@
                               zu Zeitschriftenartikeln, Büchern oder auch User Manuals) werden nicht
                               gezählt.</desc>
                         </valItem>
-                        <valItem mode="add" ident="#PID">
+                        <valItem mode="add" ident="pid">
                            <desc versionDate="2022-09-26" xml:lang="de">Persistenter Identifikator
                               (PID)</desc>
                            <desc versionDate="2022-09-26" xml:lang="de">Die Zitation enthält einen
@@ -124,7 +124,7 @@
                               Zeitschriftenartikeln, Büchern oder auch User Manuals) werden nicht
                               gezählt.</desc>
                         </valItem>
-                        <valItem mode="add" ident="#Ver">
+                        <valItem mode="add" ident="ver">
                            <desc versionDate="2022-09-26" xml:lang="de">Version (Ver)</desc>
                            <desc versionDate="2022-09-26" xml:lang="de">Die Zitation enthält die
                               Angabe einer bestimmten Softwareversion oder -revision und ggf.
@@ -134,7 +134,16 @@
                         </valItem>
                      </valList>
                   </attDef>
-                  <attDef ident="key" mode="change" usage="req">
+               </attList>
+            </elementSpec>
+            <elementSpec ident="ptr" mode="change">
+               <attList> 
+                  <attDef ident="type" mode="change" usage="req">
+                     <valList type="open">
+                        <valItem mode="add" ident="software"/>
+                     </valList>
+                  </attDef>
+                  <attDef ident="target" mode="change" usage="req">
                      <valList type="closed" mode="change">
                         <valItem mode="add" ident="Python"/>
                         <valItem mode="add" ident="Java"/>
