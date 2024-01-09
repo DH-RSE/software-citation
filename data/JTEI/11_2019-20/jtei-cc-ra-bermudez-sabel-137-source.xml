@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<!-- $Id: jtei-cc-ra-bermudez-sabel-137-source.xml 877 2019-12-19 21:18:04Z ron $ -->
+<TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="main">Encoding of Variant Taxonomies in TEI</title>
+        <author>
+          <name>
+            <forename>Helena</forename>
+            <surname>Bermúdez Sabel</surname>
+          </name>
+          <affiliation>Helena Bermúdez Sabel is a <roleName>postdoctoral researcher</roleName> at the <orgName>Université de Lausanne</orgName>. Currently, she is working for the SNFS-funded project <title level="m">A world of possibilities. Modal pathways on the extra-long period of time: the diachrony of modality in the Latin language</title> which aims at reconstructing the evolution of modal meanings from the prehistory of the Latin language up to the seventh century CE. In this project, Helena supervises the technical aspects of the annotation workflow, including the automation of corpus pre-processing, annotation and publication.</affiliation>
+          <email>helena.bermudez@usc.es</email>
+        </author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>TEI Consortium</publisher>
+        <date>19/12/2019</date>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by/4.0/">
+            <p>For this publication a Creative Commons Attribution 4.0 International license
+              has been granted by the author(s) who retain full copyright.</p>
+          </licence>
+        </availability>
+      </publicationStmt>
+      <seriesStmt>
+        <title level="j">Journal of the Text Encoding Initiative</title>
+        <editor role="guest">Claudia Resch</editor>
+        <editor role="guest">Tanja Wissik</editor>
+        <editor role="guest">Vanessa Hannesschlaeger</editor>
+        <editor role="chief">John Walsh</editor>
+        <editor role="managing">Anne Baillot</editor>
+        <editor role="technical">Ron Van den Branden</editor>
+        <biblScope unit="issue" n="11">Selected Papers from the 2016 TEI Conference</biblScope>
+      </seriesStmt>
+      <sourceDesc>
+        <p>No source, born digital.</p>
+      </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+      <projectDesc>
+        <p>OpenEdition Journals -centre for open electronic publishing- is the platform for journals in the humanities and social sciences, open to quality periodicals looking to publish full-text articles online.</p>
+      </projectDesc>
+    </encodingDesc>
+    <profileDesc>
+      <langUsage>
+        <language ident="en">en</language>
+      </langUsage>
+      <textClass>
+        <keywords xml:lang="en">
+          <term>feature structures</term>
+          <term>textual variants</term>
+          <term>scholarly editions</term>
+          <term>taxonomies</term>
+        </keywords>
+      </textClass>
+    </profileDesc>
+    <revisionDesc>
+      <change when="2019-12-17">RvdB encoded the file.</change>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <front>
+      <div type="abstract" xml:id="abstract">
+        <p>The inherent flexibility of the digital format has favored the rise of editions that enable access to every witness of a particular textual work. These types of editions might have different goals and seek to answer different research questions, but they usually coincide in drawing attention to the importance of textual variants. To maximize the computational analysis that may be practiced with the variants in different witnesses, a complex taxonomy that reflects the diversity of cases is required.</p>
+        <p>Many scholars have followed the recommended TEI method for encoding types of variants—that is, through the attributes <att>cause</att> or <att>type</att> inside the element <gi>rdg</gi>—while others find that method insufficient. These attributes are not able to enclose the hierarchy intrinsic to complicated taxonomies or the overlap of classes in an efficient way. However, the TEI Guidelines do offer a module that addresses this complex encoding issue: feature structures. The method proposed in this paper does not advocate for a controlled vocabulary to categorize types of variants. What it offers instead is a pliable encoding method that allows the editor to include multiple layers of information in each apparatus tagset.</p>
+      </div>
+      <div type="acknowledgements">
+        <p>This work was supported by the Ministerio de Educación, Cultura y Deporte (Spanish Government) as part of its predoctoral training program (FPU grant AP2012–4518) and by the Ministerio de Economía, Industría y Competitividad as part of the project <title level="m">Paleografía, Lingüística y Filología. Laboratorio on-line de la lírica gallego-portuguesa</title> (FFI2015–68451–P).</p>
+      </div>
+    </front>
+    <body>
+      <div xml:id="introduction">
+        <head>Introduction</head>
+        <p>This paper proposes a method for introducing multilayered analytical information as part of the critical annotation of an edition. <ptr type="crossref" target="#rationale"/> gives a brief introduction about the importance of variation studies, justifying the subject of analysis. The method, explained in <ptr type="crossref" target="#features #validation"/>, explores the use of feature structures for the creation of complex taxonomies describing textual variation. <ptr type="crossref" target="#edition"/> offers examples of one of the ways in which the variant taxonomy may be linked to the body of the edition.</p>
+        <p>Although this paper is TEI-centered, other XML technologies will be mentioned. <ptr type="crossref" target="#validation"/> includes a brief commentary on using XSLT to transform a TEI-conformant definition of constraints into schema rules. However, the greatest attention to an additional technology is in <ptr type="crossref" target="#analyses"/>, which discusses the use of XQuery to retrieve particular <foreign>loci critici</foreign> and to deploy quantitative analyses.</p>
+      </div>
+      <div xml:id="rationale">
+        <head>Rationale</head>
+        <p>In textual scholarship, two founding concepts shape the methodology of analysis: text and variant. While <term>text</term> is a broad concept that requires a theoretical approach to define it with precision, the concept of <term>variant</term> is intrinsic to the philological tasks involved in the editorial process, that is, the empirical operations that define what constitutes a variant and its role in the analysis of the text: normalizations, the selection of contents of the critical apparatus and how this information will be structured, and explanatory annotations, among others.</p>
+        <p>The amount of data we can collect from the analysis of variation depends on the complexity of the transmission process. Scholars who study textual traditions transmitted by scribes are familiar with the use of variants to help identify how many hands participated in the creation of the witness, and where these people came from or where they were trained. Furthermore, variants account for the modifications of the text that may help clarify the political and cultural context in which a work is copied, edited, and published. In addition, variants are also of great importance in modern and contemporary works: the typographer, the editor or editors, and the author at different stages of the composition process must also be studied through the analysis of variants (<ref type="bibl" target="#segre95">Segre 1995</ref>).</p>
+        <p>The most common issues addressed through the study of variation include the following:
+          <list rend="bulleted">
+            <item>The analysis of the results of the collation of witnesses is a mandatory step to establish the relationships of filiation among them and, consequently, the construction of the <term>stemma</term>—when possible—or local <term>stemmata</term> in highly contaminated traditions (<ref type="bibl" target="#mink00">Mink 2000</ref>).</item>
+            <item>Stemmatic analysis sheds light on stages of transmission that are not preserved directly, but that can nonetheless be identified as sources for the extant witnesses—that is, it helps in the description of an archetype and hyparchetypes (<ref type="bibl" target="#maas58">Maas 1958</ref>).</item>
+            <item>The exploration of internal variants may reveal different stages during which the textual materials that form a work were compiled.</item>
+            <item>Alongside codicological analysis, variants may contribute information about the time and geographical location in which a particular witness was created.</item>
+            <item>Variants present data of interest for the development of the history of writing and the history of a language.</item>
+            <item>Variants may provide evidence for the identification of copyists, historical owners, editors, and other persons who may have participated in the transmission of a work or in the alteration of its contents. In addition, variants may provide sociohistorical information through the study of the motivation underlying those alterations.</item>
+            <item>The study of variation is a key feature of genetic editions that allows one to analyze the creative process of a particular writer or editor.</item>
+          </list>
+        </p>
+        <p>Considering all of the above, it goes without saying that any type of scholarly edition that takes into account a multi-witness tradition needs to refer to variation somehow. How these references will be made depends on the theoretical background and the editorial model. Textual scholarship is very rich in its treatment of the relation of variants and the final result of the edited text, but both <soCalled>materialistic</soCalled> approaches to the edition of texts (for example, <ref type="bibl" target="#cerquiglini89">Cerquiglini 1989</ref>) and methods that look for a curated version (for example, <ref type="bibl" target="#chiesa02">Chiesa 2002</ref>) require the analysis of variants.</p>
+        <p>The information a scholar might want to retrieve from the analysis of variants is so dependent on the circumstances of the text and on their interests that a generic taxonomy able to enclose the complexity of variation and reflect all the nuances is impractical. Thus, the goal of this paper is to provide an encoding mechanism that would formalize, for all intents and purposes, textual variants.</p>
+        <p>Among the studies concerning textual variation that can be conducted through a taxonomy of variants, there is the possibility of combining both quantitative and descriptive approaches.</p>
+        <p>A fine categorization of the types of textual variants enriches the critical annotation of any scholarly edition because of the ways in which this information can be embedded in a digital environment. In addition, the analysis of a work after the ordering and categorization of all variants may open a window onto new research questions. For example, a classification regarding content—that is, addition, omission, and mutation—can be systematized according to subdivisions that offer possible explanations for the variation. Applying this kind of analysis to the oeuvre of an author or authors could shed light on the composition process, as well as <!-- [RvdB] changed "serving" to "serve" -->serve as a source for different types of genetic and stylometric studies.</p>
+        <p>When the object of study is a textual tradition transmitted by acts of copying, a multilayered analysis is especially appropriate. The analysis of linguistic variation between witnesses brings to attention the <term>core</term>, original language of the text, and the <term>patina</term>, the linguistic layers left by the copyists (<ref type="bibl" target="#trovato14">Trovato 2014</ref>). In addition, linguistic variants shed light on the distinctive features of every witness, which makes the study of linguistic aspects of the textual tradition as a whole more practicable. Furthermore, linguistic variants may occur as a result of self-dictation by copyists after reading and memorizing the extracts they intend to copy, and thus may reflect features of their idiolects. The study of those features contributes to a better understanding of the history of a witness, since it provides evidence of the agents that participated in its creation.</p>
+        <p>Additionally, the linguistic data that can be retrieved by the classification of linguistic variants are of interest to historical linguistics in ways that may transcend the critical analysis of a particular textual work. Any linguistic variant must be analyzed first in a synchronic context: the oldest variants coexist with newer variants in the same linguistic community, but in different contexts or registers (<ref type="bibl" target="#jakobson71">Jakobson 1971, 528</ref>). Thus, by identifying linguistic variants in a multi-witness tradition, we are discerning the variants that are competing in a specific chronological framework. Historical corpora used for linguistic studies have sometimes relied on scholarly curated texts or on a transcription of only the oldest witness, and in those cases linguistic variation within the tradition may be neutralized.<note>This statement is especially significant when dealing with corpora that have been compiled over a long period of time. As is clearly explained in the introduction to the Helsinki Corpus that Irma Taavitsainen and Päivi Pahta prepared for the <ref target="http://www.helsinki.fi/varieng/CoRD/corpora/HelsinkiCorpus/meintro.html">Corpus Resource Database</ref> (CoRD) (<bibl xml:id="quoteref1"><title level="a">Placing the Helsinki Corpus Middle English Section Introduction into Context</title>, <ptr target="http://www.helsinki.fi/varieng/CoRD/corpora/HelsinkiCorpus/meintro.html"/></bibl>): <quote source="#quoteref1">The idea of basing corpus texts directly on manuscript sources has been presented more recently<gap/> The principles of preparing manuscript texts for print have undergone changes during the history of editing<gap/></quote>.</note></p>
+        <p>Depending on the historical period to which a tradition belongs, even graphic variants, often dismissed as nonsignificant variation because they may not be <emph>textually</emph> significant, may nonetheless provide a rich source of cultural information. A graphemic analysis derived from a taxonomy allows an efficient computation of frequencies that can be filtered according to different codicological or historical aspects encoded in the corpus, such as the quire or folio number. This analysis may clarify certain elements of the genesis of the witnesses, such as the identification of hands or editorial interventions. Similarly, scribal errors may provide information related to the sources, such as the distinctive features of a hyparchetype (for example, an unusual graphic substitution might mean that the affected letters had similar shapes in the model) or linguistic data.</p>
+      </div>
+      <div xml:id="features">
+        <head>Feature Structures</head>
+        <p>From the TEI documentation (see the <ref target="http://www.tei-c.org/Vault/P5/3.1.0/doc/tei-p5-doc/en/html/ref-att.textCritical.html">set of attributes</ref> specific to elements representing variant readings: <bibl><ref type="bibl" target="#TEI16">TEI Consortium 2016</ref>, Appendix B: Attribute Classes, <title level="a">att.textCritical</title></bibl>) we can assume that the recommended way to describe the motivation behind a variant and its categorization is done through the attributes <att>type</att> and <att>cause</att>. However, the complexity of variation, with overlapping categories and complex hierarchies of variation types, cannot be recorded with a straightforward use of these two attributes.<note>For examples of different variant classifications, see Colwell and Tune (<ref type="bibl" target="#colwell64">1964</ref>) and Italia, Vitali, and Di Iorio (<ref type="bibl" target="#italia15">2015</ref>).</note></p>
+        <p>The TEI offers a module well suited for the encoding of complex taxonomies: the <ref target="http://www.tei-c.org/Vault/P5/3.1.0/doc/tei-p5-doc/en/html/FS.html">Feature Structures</ref> module (<ref type="bibl" target="#TEI16">TEI Consortium 2016, 18</ref>). A feature structure is a group of <ident>attribute:value</ident> pairs, where the values may be either atomic or nested feature structures. As described by Witt and Stegmann (<ref type="bibl" target="#witt09">2009</ref>), feature structures are a generic method to organize data with a metarepresentation format that presents numerous advantages, some of which will be discussed in greater detail below. For a more detailed description of feature structures and their rationale see Pose, Lopez, and Rosemary (<ref type="bibl" target="#pose14">2014, 9–10</ref>).</p>
+        <p>One argument in support of the use of feature structures is the official recognition of the model in 2012 as an international standard (ISO 24612) (<ref type="bibl" target="#romary15">Romary 2015</ref>), which bestows a certain stability on the methodology and confirms, at least to some extent, its importance and influence within a user community.</p>
+        <p>With respect to the model itself, by describing an object as a sum (and convergence) of multiple individual features, we can implement a complex description with a fine level of granularity. See, for example, in <ptr type="crossref" target="#example1"/> a proposed definition of a phenomenon of <term>progressive nasalization</term>, a type of linguistic variation characterized by the addition of a nasal sound.
+          <figure xml:id="example1">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <fs xml:id="pro-nas">
+                <f name="taxonomy">
+                  <fs type="linguistic">
+                    <f name="category">
+                      <fs type="phonetic">
+                        <f name="process">
+                          <fs type="alteration">
+                            <f name="mode">
+                              <fs type="assimilation">
+                                <f name="procedure">
+                                  <symbol value="nasalization"/>
+                                </f>
+                                <f name="direction">
+                                  <symbol value="progressive"/>
+                                </f>
+                              </fs>
+                            </f>
+                          </fs>
+                        </f>
+                        <f name="position">
+                          <symbol value="end"/>
+                        </f>
+                        <f name="constriction">
+                          <binary value="true"/>
+                        </f>
+                      </fs>
+                    </f>
+                  </fs>
+                </f>
+                <f name="description">
+                  <string xml:lang="en">Progressive nasalization</string>
+                </f>
+              </fs>
+            </egXML>
+            <head type="legend">Entry in the taxonomy for a particular linguistic phenomenon</head>
+          </figure>
+        </p>
+        <p>Let us briefly describe the encoding presented in <ptr type="crossref" target="#example1"/> by going through the different layers of data employed to describe this type of variant. This and other samples presented throughout this paper are part of a dissertation project that studies linguistic variation phenomena between two different manuscript branches that transmit secular Galician-Portuguese medieval poetry. For that reason, the examples used here reflect the research questions of that project, which are related to the study of variation as a source of information for the genesis of the different witnesses.</p>
+        <p>The two features that primarily describe the variant presented in <ptr type="crossref" target="#example1"/> are the taxonomy that will be used (in this case, the linguistic one) and a feature called <val>description</val> that contains a definition of the phenomenon.</p>
+        <p>The category of the linguistic taxonomy to which this variant belongs is the phonetic one, and the phenomenon of progressive nasalization is further defined by the features <val>process</val>, <val>position</val>, and <val>constriction</val>. As we can see, the <val>process</val> feature is more complex than the others and it requires further decomposition. The selection of features to define the phenomenon was based on their relevance for the work in which this taxonomy is applied. For example, in medieval poetry it is important to know which phonetic phenomena occur at the end of a word creating a consonantic coda (constriction): the metrical analysis of the medieval Galician-Portuguese tradition depends on the number of syllables, and progressive nasalization can alter that count through a literary device known as <term>synalepha</term>. A synalepha is the merging of two syllables into one whenever a word ends in a vowel and the next word also begins with a vowel. This means that progressive nasalization, with the addition of a nasal consonant, would prevent that merging. If one witness presents a regular metric paradigm and in the other the paradigm is broken because of the presence or the absence of this phenomenon, it is the deviant witness that presents a <soCalled>spurious</soCalled> variant.</p>
+        <p>One of the advantages of the internal organization of feature structures is that any layer of information may be referenced during the description of the value of other features. This facilitates the creation of long and complex taxonomies on the foundation of a small set of shared features. For example, in the case of a linguistic variation taxonomy, it could be convenient to define a feature structure that would represent any phonetic phenomenon that implies the addition of a sound. In this manner, we could refer to that structure when defining <term>paragoge</term> (addition at the end of a word), <term>epenthesis</term> (addition within a word), <term>prothesis</term> (addition at the beginning of a word), etc. In <ptr type="crossref" target="#example2"/> the attribute <att>feats</att> refers to the features related to the sound addition, so that the phenomena <soCalled>paragoge</soCalled> and <soCalled>prothesis</soCalled> can be characterized simply by adding the features that define them more precisely.
+          <figure xml:id="example2">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <fs xml:id="sound-addition">
+                <f name="taxonomy">
+                  <fs type="linguistic">
+                    <f name="category">
+                      <fs type="phonetic">
+                        <f name="process">
+                          <symbol value="addition"/>
+                        </f>
+                      </fs>
+                    </f>
+                  </fs>
+                </f>
+              </fs>
+              <fs xml:id="paragoge">
+                <f name="taxonomy">
+                  <fs feats="#sound-addition">
+                    <f name="position">
+                      <symbol value="end"/>
+                    </f>
+                    <f name="constriction">
+                      <binary value="false"/>
+                    </f>
+                  </fs>
+                </f>
+                <f name="description">
+                  <string xml:lang="en">Paragoge</string>
+                </f>
+              </fs>
+              <fs xml:id="prothesis">
+                <f name="taxonomy">
+                  <fs feats="#sound-addition">
+                    <f name="position">
+                      <symbol value="start"/>
+                    </f>
+                  </fs>
+                </f>
+                <f name="description">
+                  <string xml:lang="en">Prothesis</string>
+                </f>
+              </fs>
+            </egXML>
+            <head type="legend"><soCalled>Reusing</soCalled> features to define phenomena that entail the addition of a sound</head>
+          </figure>
+        </p>
+        <p>Furthermore, the feature structure system is so flexible that it allows the combination of heterogeneous types of categorizations using the same methods. This may be especially convenient when working with variant taxonomies and scholarly editions, since different theories and models may require different categories, and it may be of interest to incorporate them simultaneously. See <ptr type="crossref" target="#example3"/> for a description of dittography, a type of scribal error characterized by a repetition, that could be represented within the same master taxonomy that would include <ptr type="crossref" target="#example1 #example2"/>.
+          <figure xml:id="example3">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <fs xml:id="dittography">
+                <f name="taxonomy">
+                  <fs type="error">
+                    <f name="category">
+                      <fs type="involuntary">
+                        <f name="process">
+                          <symbol value="eye-skip"/>
+                        </f>
+                        <f name="result">
+                          <symbol value="repetition"/>
+                        </f>
+                      </fs>
+                    </f>
+                  </fs>
+                </f>
+                <f name="description">
+                  <string xml:lang="en">Dittography</string>
+                </f>
+              </fs>
+            </egXML>
+            <head type="legend">Entry in the taxonomy for a particular scribal error</head>
+          </figure>
+        </p>
+        <p>In this case, the outer layers of the definition relate the three examples to one another, although the inner elements used to analyze them further are completely different.</p>
+      </div>
+      <div xml:id="validation">
+        <head>Internal Validation of the Taxonomy</head>
+        <p>Because a taxonomy may have many diverse layers of information, it would be easy to lose track of the features, adversely affecting the accuracy of data retrieval. That is why the <ref target="http://www.tei-c.org/Vault/P5/3.1.0/doc/tei-p5-doc/en/html/FS.html#FD">Feature System Declaration</ref> (<ref type="bibl" target="#TEI16">TEI Consortium 2016, 18.11</ref>) is crucial: it is the instrument for declaring all attributes and their possible values, that is, for listing all feature names and feature values, to which a prose description may be added to explain what each represents. This declaration forces the creation of well-documented taxonomies, which provides advantages for the reuse and especially the development of these taxonomies.</p>
+        <p>Additionally, the feature system declaration provides a means for defining constraints, describing what a well-formed and valid feature structure is according to the theory and praxis of the research that is being developed. Alongside the documentary value of this definition, its typed-feature modeling facilitates the creation of schema constraints. For instance, I process my declaration to further constrict my schema so the feature structure declaration and its actual application are always synchronized and up to date.<note>I use XSLT to process the feature structure declaration in order to create all required Schematron rules that will constrict the feature library accordingly. I am currently working on creating a more generic validator (see my <ref target="https://github.com/HelenaSabel/FS-Validator">Github repository</ref>, <ptr target="https://github.com/HelenaSabel/FS-Validator"/>).</note>
+        <figure xml:id="example4">
+          <egXML xmlns="http://www.tei-c.org/ns/Examples">
+            <fsdDecl>
+              <fsDecl type="variants.taxonomy">
+              <fDecl name="description">
+                <fDescr>Prose description of the phenomenon</fDescr>
+                <vRange>
+                  <vNot>
+                    <string/>
+                  </vNot>
+                </vRange>
+              </fDecl>
+              <fDecl name="taxonomy">
+                <fDescr>Main categorization for type of variant</fDescr>
+                <vRange>
+                  <vAlt>
+                    <fs type="linguistic"/>
+                    <fs type="error"/>
+                    <fs type="material"/>
+                    <fs type="equipollent"/>
+                    <fs type="graphic"/>
+                  </vAlt>
+                </vRange>
+              </fDecl>
+            </fsDecl>
+              <fsDecl type="linguistic">
+                <fDecl name="category">
+                  <vRange>
+                    <vAlt>
+                      <fs type="phonetic"/>
+                      <fs type="morphosyntatic"/>
+                      <fs type="lexical"/>
+                      <fs type="language-transfer"/>
+                    </vAlt>
+                  </vRange>
+                </fDecl>
+              </fsDecl>
+              <fsDecl type="phonetic">
+                <fsDescr>Features to describe phonetic change</fsDescr>
+                <fDecl name="process">
+                  <fDescr>Feature to represent the main type of sound change</fDescr>
+                  <vRange>
+                    <vAlt>
+                      <symbol value="addition"/>
+                      <symbol value="reduction"/>
+                      <fs type="alteration"/>
+                    </vAlt>
+                  </vRange>
+                </fDecl>
+                <fDecl name="constriction">
+                  <fDescr>Vowel or consonant phenomenon</fDescr>
+                  <vRange>
+                    <vAlt>
+                      <binary value="true"/>
+                      <binary value="false"/>
+                    </vAlt>
+                  </vRange>
+                </fDecl>
+                <!-- Continue with the description of other features --> 
+              </fsDecl>
+            </fsdDecl>
+          </egXML>
+          <head type="legend">Excerpt of a feature system declaration</head>
+        </figure>
+        </p>
+        <p>In the sample presented in <ptr type="crossref" target="#example4"/>, there are two features in the outer layer, the feature <val>description</val>, whose value cannot be an empty string, and the <val>taxonomy</val>, which can contain any of the following nested feature structures: <val>linguistic</val>, <val>error</val>, <val>material</val>, <val>equipollent</val>, or <val>graphic</val>. Similar declarations are built according to the same model to describe linguistic feature structures and the individual features that define them. When there is no need to go more deeply into the decomposition of a feature structure, and the possible values conform to a limited list, the <gi>symbol</gi> element is used to define this controlled vocabulary. In the case of boolean-type values, as in the feature <val>constriction</val> seen in <ptr type="crossref" target="#example1"/>, the <gi>binary</gi> element is declared instead in order to define the constriction.</p>
+      </div>
+      <div xml:id="edition">
+        <head>Encoding Textual Variation in TEI</head>
+        <p>As is also often the case elsewhere in the TEI Guidelines, there are several ways to encode variants, as well as alternative methods for linking the apparatus information to the text (see the <ref target="http://www.tei-c.org/Vault/P5/3.1.0/doc/tei-p5-doc/en/html/TC.html">Critical Apparatus</ref> documentation for more information: <ref type="bibl" target="#TEI16">TEI Consortium 2016, 12</ref>). Of the available methods, the <ref target="http://www.tei-c.org/Vault/P5/3.1.0/doc/tei-p5-doc/en/html/TC.html#TCAPPS">parallel segmentation</ref> method (<ref type="bibl" target="#TEI16">TEI Consortium 2016, 12.2.3</ref>) seems to be a popular encoding technique for multi-witness editions, in terms of both the specific tools that have been created for this method and the number of projects that apply it.<note>Tools include <ref target="http://v-machine.org/">Versioning Machine</ref>, <ref target="https://collatex.net/">CollateX</ref> (both the Java and Python versions), and <ref target="http://www.juxtasoftware.org/">Juxta</ref>. For representative projects using the parallel segmentation method see <ref target="http://scholarlyediting.org/2015/editions/lowelledition_wit-Courier.html">Satire in Circulation: James editions Russell Lowell’s Letter from a volunteer in Saltillo</ref>, <ref target="http://digitalthoreau.org/fluid-text-toc">Walden: A Fluid-Text Edition</ref>, or <ref target="http://digitalmitford.org/literature/Julian.html">Digital Mitford: The Mary Russel Mitford Archive</ref>, to name a few.</note> The discussion below explores the integration of a variant taxonomy into an edition that follows this method by inserting an <gi>app</gi> element for each variation unit, that is, in every <term>locus</term> in the text where at least two concurrent readings exist <!-- [RvdB] corrected author order -->(<ref type="bibl" target="#mace12">Macé, De Vos, and Geuten 2012, 113</ref>).</p>
+        <p>Taxonomies can be formalized as complex modules of structured information, and in the interest of maintaining legibility for human editors, an efficient way to incorporate analytic information into an edition involves the use of stand-off annotation methods (<ref type="bibl" target="#banski10">Bański 2010</ref>). Stand-off refers to annotation that is not inserted in line. It usually entails the development of the annotation of a primary document in a different file or files from the one that contains the primary textual data. The process of relating the primary document to its annotation involves linking between specific locations of the primary source and the information that describes them, whether through byte offsets, elements, attributes, or other methods (<ref type="bibl" target="#ide04">Ide and Romary 2004, 218</ref>).</p>
+        <p>In simpler traditions, a semantic correspondence through the use of the attribute <att>ana</att>, as in the examples below, may also be suitable. Each entry of the taxonomy has an ID that is referred to in an <att>ana</att> attribute in the edition.
+          <!-- [RvdB] check / fix encoding of glyphs -->
+          <figure xml:id="example5">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <l n="13">
+                <app>
+                  <rdg wit="#A" ana="#np">se<seg>n</seg>pre</rdg>
+                  <rdg wit="#B" ana="#abb"><choice><abb>sempᷓ</abb><expan>semp<ex>re</ex></expan></choice></rdg>
+                </app>
+                <app>
+                  <rdg wit="#A" ana="#reg"><seg>ll</seg>e</rdg>
+                  <rdg wit="#B" ana="#li">lh<seg>i</seg></rdg>
+                </app>
+                <app>
+                  <rdg wit="#A" ana="#pal-stem">qui<seg>ge</seg></rdg>
+                  <rdg wit="#B" ana="#abb"><choice><abb>qͥs</abb><expan>q<ex>ui</ex>s</expan></choice></rdg>
+                </app>
+                <app>
+                  <rdg wit="#A" ana="#gap"/>
+                  <rdg wit="#B">muj</rdg>
+                </app>
+                <app>
+                  <rdg wit="#A" ana="#reg">me<seg>ll</seg>or</rdg>
+                  <rdg wit="#B" ana="#abb"><choice><abb>melhᷣ</abb><expan>melh<ex>or</ex></expan></choice></rdg>
+                </app> toda <app>
+                  <rdg wit="#A">uia</rdg>
+                  <rdg wit="#B" ana="#y-minim">uya</rdg>
+                </app>
+              </l>
+            </egXML>
+            <head type="legend">Excerpt from a multi-witness edition</head>
+          </figure>
+        </p>
+        <p><ptr type="crossref" target="#example5"/> shows a line of the corpus, encoded according to the TEI parallel segmentation method. The text nodes that are direct children of <gi>l</gi> are common text shared by all witnesses, and an <term>apparatus</term> element, <gi>app</gi>, is introduced wherever there are divergences. If there is more than one variant per <gi>app</gi>, the element <gi>seg</gi> encloses the affected characters in order to avoid ambiguities regarding which part of the token refers to which variant. If there were two or more variants inside the same token, then the <gi>seg</gi> element would contain a <att>corresp</att> attribute whose value would be the ID of the variant. When there are additional elements that provide the required semantics for the identification of the characters related to the variant, the use of <gi>seg</gi> is avoided (see in <ptr type="crossref" target="#example5"/> how the variants related to the use of abbreviations are encoded with specific markup which prevents any possible ambiguity). This strategy allows an accurate retrieval of any instance of the phenomena defined in the taxonomy.</p>
+      </div>
+      <div xml:id="analyses">
+        <head>Additional Analyses</head>
+        <p>One of the functions that the variant taxonomy can fulfill in the publication of the edition is the provision of an accurate description for each textual variant. One way to explore the use of the taxonomy is through enhancing the edition by using visual cues to define the type of variant.
+          <figure xml:id="figure1">
+            <graphic url="images/figure1.png" height="685px" width="468px"/>
+            <head type="legend">HTML edition sample</head>
+          </figure>
+        </p>
+        <p>The screenshot presented in <ptr type="crossref" target="#figure1"/> shows two lines of the edition of one of the compositions of my corpus. I have used the higher categories to color-code the variants: graphic variants are bold, linguistic ones are indigo, errors are red, and equipollent readings are underlined. The use of colors is complemented with tooltips, so there is no information that it is only conveyed through color. If we click on any of the variants, we retrieve their more specific descriptions, that is, the contents of <code>f[@name eq "description"]</code>, as shown in <ptr type="crossref" target="#figure2"/>
+          <figure xml:id="figure2">
+            <graphic url="images/figure2.png" height="736px" width="663px"/>
+            <head type="legend">HTML edition sample</head>
+          </figure>
+        </p>
+        <p>In the same way that we access the different hierarchies of the taxonomy to enrich the edition, we can query the textual variants.</p>
+        <p>For instance, we can create a web form following the classification of the different subcategories. This would allow us to explore the frequencies of these variants in the corpus (<ptr type="crossref" target="#figure3"/>). This type of approach makes it possible to study each variation phenomenon by calculating its distribution according to witness and scribe, by period of composition, and, of course, by analyzing all its occurrences in the corpus (<ptr type="crossref" target="#figure4"/>).
+          <figure xml:id="figure3">
+            <graphic url="images/figure3.png" height="769px" width="709px"/>
+            <head type="legend">HTML web form of variation phenomena</head>
+          </figure>
+          <figure xml:id="figure4">
+            <graphic url="images/figure4.png" height="1182px" width="696px"/>
+            <head type="legend">Results after selecting a phenomenon</head>
+          </figure>
+        </p>
+        <p>The strong hierarchical organization of feature structures allows us to access efficiently any of the layers of data used in its definition. For example, considering the structure of the taxonomy partially declared in <ptr type="crossref" target="#example4"/>, it might be of interest to retrieve all instances of a linguistic variant related to a phonetic change and compare them numerically to variation related to morphological change.</p>
+        <p>However, the full potential of feature structures becomes clearer with complex queries. Consider, for example, the corpus of syllabic verse compositions mentioned earlier. In such a tradition it would be important to be able to retrieve all lines in which either a linguistic variant or a divergent reading would result in a change in the number of syllables. Such composite queries could determine which linguistic phenomena are likely to represent innovations according to whether they provoke a metrical irregularity, and they could detect a correlation among linguistic phenomena and consequential <term>emendationes</term>.</p>
+        <p>Complex queries can be implemented with a small piece of code such as the one presented in <ptr type="crossref" target="#example6"/>. First, I look in the taxonomy for the feature structure IDs in whose definition there are features that would alter the number of syllables: those containing the element <gi>symbol</gi> with the attribute values <val>addition</val> or <val>repetition</val> (the <code>$additionPhenomena</code> variable) or those with the <val>reduction</val> and <val>omission</val> values (<code>$reductionPhenomena</code> variable). These include both linguistic variants and scribal errors. Then I look for all lines of the corpus that contain <gi>rdg</gi> elements with at least one reference to each of these two groupings of variant typologies.
+          <figure xml:id="example6">
+            <eg>
+  declare namespace tei = "http://www.tei-c.org/ns/1.0";
+  declare variable $lines as node()+ := collection('/db/edition')//tei:div[@type eq 'poem']//tei:l;
+  declare variable $features as node()+ := doc('/db/feature-library.xml')//tei:fvLib/tei:fs;      
+  declare variable $additionPhenomena as xs:string+ := $features[.//tei:symbol/@value = ('addition', 'repetition')]/concat('#', @xml:id);           
+  declare variable $reductionPhenomena as xs:string+ := $features[.//tei:symbol/@value = ('reduction', 'omission')]/concat('#', @xml:id);
+              
+  for $line in $lines[descendant::tei:rdg[some $ana in tokenize(@ana, '\s+') satisfies $ana = $reductionPhenomena]]
+  return $line[descendant::tei:rdg[some $ana in tokenize(@ana, '\s+') satisfies $ana = $additionPhenomena]]
+            </eg>
+            <head type="legend">Query for combining features</head>
+          </figure>
+        </p>
+        <p>Such queries retrieve occurrences like the one presented in <ptr type="crossref" target="#example5"/>, an authentic example of my corpus in which a linguistic phenomenon might have motivated the scribe to correct the contents of the line in order to regularize the metric pattern. In this line (<q>Yet, I always loved her more</q>) there is a linguistic phenomenon that creates an extra syllable, the palatalization of the past stem of an irregular verb, which requires a paragogic vowel for pronunciation (<mentioned>quige</mentioned> versus <mentioned>quis</mentioned>). The witness that does not contain this phenomenon presents extra textual content, the monosyllabic word <mentioned>muj</mentioned>, which has an emphatic sense and is therefore omissible without changing the denotative meaning of the line. A plausible hypothesis for explaining this variation is that <q>quige</q> is an innovation that motivated a conscious omission of <q>muj</q> in order to maintain the correct number of syllables per verse. These nonaccidental omissions or additions are effectively retrieved when the description of linguistic phenomena includes a feature that mentions the addition or reduction of phonemes (as seen in the sample presented in <ptr type="crossref" target="#example4"/>), which enables us to construct queries that look for the co-occurrence of those types of variation with variants related to the textual content.</p>
+      </div>
+      <div xml:id="conclusions">
+        <head>Conclusions</head>
+        <p>Variation is a complex and multifaceted issue. For that reason, a hierarchical model based on the accumulation and nesting of layers of information and able to represent any concepts that depend on categories, subcategories, and even the overlapping of categories is necessary for representing all of these nuances.</p>
+        <p>The examples presented in this paper were modeled based on a specific project and its research questions,<note>The working hypothesis of the aforementioned project entailed a quantitative analysis of linguistic variants to provide evidence that the concentration of certain archaisms on the one hand and innovations on the other will depict the different stages in the compilation of textual materials. The objects of study were medieval songbooks and the transmission of the particular tradition under analysis is based on the reuniting of smaller songbooks that were disseminated independently before creating the preserved compilations.</note> but the intention was to present a more general method through a particular application. Nevertheless, the tradition used for exemplification is quite homogeneous and the maximum number of witnesses for the same piece of text is three. This means that a semantic correspondence presented through the use of an attribute in the edition whose value points to the taxonomy might not be suitable for more complex traditions. However, alternative stand-off methods should overcome those limitations. This will be one of the focus points in the future development of a more solid editorial model whose defining feature will be its aptness for descriptive and quantitative analyses of textual variants. Following the distinction made by Jannidis and Flanders (<ref type="bibl" target="#jannidis13">2013</ref>), the future work will entail the transformation of an egoistic modeling, designed for a specific research question, to an altruistic one.</p>
+        <p>In spite of its limitations, the core of the methodology presented here might be of interest for other projects. The creation of a variant taxonomy encoded using the feature structures model is a flexible method which brings multiple advantages for textual scholarship. On the one hand, a granular definition of variation phenomena whose information can be embedded later into the edition entails a descriptive model that helps the user browse through the witnesses’ readings. On the other hand, it enables quantitative analyses with greater precision and efficiency.</p>
+         </div>
+      </body>
+    <back>
+      <div type="bibliography">
+        <listBibl>
+          <bibl xml:id="banski10"><author>Bański, Piotr</author>. <date>2010</date>. <title level="a">Why TEI Stand-off Annotation Doesn’t Quite Work: And Why You Might Want to Use It Nevertheless.</title> In <title level="m">Proceedings of Balisage: The Markup Conference 2010</title>. <series>Balisage Series on Markup Technologies</series>, vol. <biblScope unit="issue">5</biblScope>. doi:<idno type="doi">10.4242/BalisageVol5.Banski01</idno>.</bibl>
+          <bibl xml:id="cerquiglini89"><author>Cerquiglini, Bernard</author>. <date>1989</date>. <title level="m">Éloge de la variante: Histoire critique de la philologie</title>. <pubPlace>Paris</pubPlace>: <publisher>Éditions du Seuil</publisher>.</bibl>
+          <bibl xml:id="chiesa02"><author>Chiesa, Paolo</author>. <date>2002</date>. <title level="m">Elementi di critica testuale</title>. <pubPlace>Bologna</pubPlace>: <publisher>Pàtron Editore</publisher>.</bibl>
+          <bibl xml:id="colwell64"><author>Colwell, E. C.</author>, and <author>E. W. Tune</author>. <date>1964</date>. <title level="a">Variant Readings: Classification and Use</title>. <title level="j">Journal of Biblical Literature</title> <biblScope unit="volume">83</biblScope> (<biblScope unit="issue">3</biblScope>): <biblScope unit="page">253–61</biblScope>. doi:<idno type="doi">10.2307/3264283</idno>.</bibl>
+          <bibl xml:id="ide04"><author>Ide, Nancy</author>, and <author>Laurent Romary</author>. <date>2004</date>. <title level="a">International Standard for a Linguistic Annotation Framework</title>. <title level="j">Natural Language Engineering</title> <biblScope unit="volume">10</biblScope> (<biblScope unit="issue">3–4</biblScope>): <biblScope unit="page">211–25</biblScope>. doi:<idno type="doi">10.1017/S135132490400350X</idno>. <ptr target="https://doi.org/10.1017/S135132490400350X"/>.</bibl>
+          <bibl xml:id="italia15"><author>Italia, Paola</author>, <author>Fabio Vitali</author>, and <author>Angelo Di Iorio</author>. <date>2015</date>. <title level="a">Variants and Versioning Between Textual Bibliography and Computer Science</title>. In <title level="m">Proceedings of the Third AIUCD Annual Conference on Humanities and Their Methods in the Digital Ecosystem</title> (AIUCD ’14). <pubPlace>New York</pubPlace>: <publisher>ACM</publisher>. doi:<idno type="doi">10.1145/2802612.2802614</idno>.</bibl>
+          <bibl xml:id="jakobson71"><author>Jakobson, Roman</author>. <date>1971</date>. <title level="m">Selected Writings</title>. Vol. <biblScope unit="volume">1</biblScope>, <title level="m">Phonological Studies</title>. <pubPlace>The Hague</pubPlace>: <publisher>Mouton</publisher>.</bibl>
+          <bibl xml:id="jannidis13"><author>Jannidis, Fotis</author>, and <author>Julia Flanders</author>. <date>2013</date>. <title level="a">A Concept of Data Modeling for the Humanities</title>. In <title level="m">Digital Humanities 2013: Conference Abstracts</title>, <biblScope unit="page">237–39</biblScope>. <pubPlace>Lincoln, NE</pubPlace>: <publisher>Center for Digital Research in the Humanities</publisher>. <ptr target="http://dh2013.unl.edu/abstracts/ab-313.html"/>.</bibl>
+          <bibl xml:id="maas58"><author>Maas, Paul</author>. <date>1958</date>. <title level="m">Textual Criticism</title>. <pubPlace>Oxford</pubPlace>: <publisher>Clarendon Press</publisher>.</bibl>
+          <bibl xml:id="mace12"><author>Macé, Caroline</author>, <author>Ilse De Vos</author>, and <author>Koen Geuten</author>. <date>2012</date>. <title level="a">Comparing Stemmatological and Phylogenetic Methods to Understand the Transmission History of the <soCalled>Florilegium Coislinianum</soCalled>.</title> In <title level="m">Ars Edendi</title> Lecture Series, edited by <editor>Alessandra Bucossi</editor> and <editor>Erika Kihlman</editor>, <biblScope unit="issue">2</biblScope>:<biblScope unit="page">107–29</biblScope>. Studia Latina Stockholmiensia 58. <pubPlace>Stockholm</pubPlace>: <publisher>Stockholm University Library</publisher>. urn:<idno type="urn">nbn:se:su:diva-79673</idno>; PDF available at <ptr target="http://www.diva-portal.org/smash/get/diva2:551286/FULLTEXT01.pdf"/>.</bibl>
+          <bibl xml:id="mink00"><author>Mink, Gerd</author>. <date>2000</date>. <title level="a">Editing and Genealogical Studies: The New Testament.</title> <title level="j">Literary and Linguistic Computing</title> <biblScope unit="volume">15</biblScope> (<biblScope unit="issue">1</biblScope>): <biblScope unit="page">51–56</biblScope>. doi:<idno type="doi">10.1093/llc/15.1.51</idno>.</bibl>
+          <bibl xml:id="pose14"><author>Pose, Javier</author>, <author>Patrice Lopez</author>, and <author>Laurent Romary</author>. <date>2014</date>. <title level="a">A Generic Formalism for Encoding Stand-off Annotations in TEI</title>. <ptr target="https://hal.inria.fr/hal-01061548"/>, version 1.</bibl>
+          <bibl xml:id="romary15"><author>Romary, Laurent</author>. <date>2015</date>. <title level="u">Standards for Language Resources in ISO — Looking Back at 13 Fruitful Years.</title> <ptr target="https://arxiv.org/abs/1510.07851"/>.</bibl>
+          <bibl xml:id="segre95"><author>Segre, Cesare</author>. <date>1995</date>. <title level="a">Critique des variantes et critique génétique</title>. <title level="j">Genesis (Manuscrits-Recherche-Invention)</title> <biblScope unit="issue">7</biblScope>: <biblScope unit="page">29–45</biblScope>. doi:<idno type="doi">10.3406/item.1995.994</idno>.</bibl>
+          <bibl xml:id="TEI16"><orgName>TEI Consortium</orgName>. <date>2016</date>. <title level="m">TEI P5: Guidelines for Electronic Text Encoding and Interchange</title>. <edition>Version 3.1.0</edition>. Last updated December 15. <pubPlace>N.p.</pubPlace>: <publisher>TEI Consortium</publisher>. <ptr target="https://www.tei-c.org/Vault/P5/3.1.0/doc/tei-p5-doc/en/html/"/>.</bibl>
+          <bibl xml:id="trovato14"><author>Trovato, Paolo</author>. <date>2014</date>. <title level="m">Everything You Always Wanted to Know about Lachmann’s Method. A Non-Standard Handbook of Genealogical Textual Criticism in the Age of Post-Structuralism, Cladistics, and Copy-Text</title>. <pubPlace>Padova</pubPlace>: <publisher>libreriauniversitaria.it</publisher>.</bibl>
+          <bibl xml:id="witt09"><author>Witt, Andreas</author>, and <author>Jens Stegmann</author>. <date>2009</date>. <title level="a">TEI Feature Structures as a Representation Format for Multiple Annotation and Generic XML Documents</title>. In <title level="m">Proceedings of Balisage: The Markup Conference 2009</title>. <series>Balisage Series on Markup Technologies</series>, vol. <biblScope unit="issue">3</biblScope>. doi:<idno type="doi">10.4242/BalisageVol3.Stegmann01</idno>.</bibl>
+        </listBibl>
+      </div>
+    </back>
+  </text>
+</TEI>

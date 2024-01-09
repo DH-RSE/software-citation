@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="main">TEI, Ontologies, Linked Open Data: Geolat and Beyond</title>
+        <author>
+          <name>
+            <forename>Fabio</forename> 
+            <surname>Ciotti</surname>
+          </name>
+          <affiliation>Fabio Ciotti is <roleName>Assistant Professor</roleName> at the <orgName>University of Roma Tor Vergata</orgName>, where he teaches Digital Literary Studies and Theory of Literature. He is <roleName>President</roleName> of the <orgName>Associazione per l’Informatica Umanistica e la Cultura Digitale</orgName> (AIUCD, the Italian digital humanities association) and member of the EADH Executive Board. He has been scientific consultant for text encoding and technological infrastructures in several digital libraries and archives projects, and has served in the TEI Technical Council.</affiliation>
+          <email>fabio.ciotti@uniroma2.it</email>
+        </author>
+        <author>
+          <name>
+            <forename>Maurizio</forename> 
+            <surname>Lana</surname>
+          </name>
+          <affiliation>Maurizio Lana is an <roleName>assistant professor</roleName> at <orgName>Università del Piemonte Orientale</orgName> where he teaches Library &amp; Information Science; he also coordinates the <title level="m"><ref target="http://www.geolat.it">geolat-geography for Latin literature</ref></title> project and, with R. Tabacco, the <title level="m"><ref target="http://www.digiliblt.uniupo.it">digital library of late-Latin texts</ref></title> digilibLT.</affiliation>
+          <email>m.lana@lett.unipmn.it</email>
+        </author>
+        <author>
+          <name>
+            <forename>Francesca</forename> 
+            <surname>Tomasi</surname>
+          </name>
+          <affiliation>Francesca Tomasi is <roleName>assistant professor</roleName> at the <orgName>University of Bologna</orgName>, where she teaches archives and computer science and digital humanities. Her research is mostly focused on ontologies and semantic modeling in the cultural heritage domain. She is in particular editor of the digital collection: <ref target="http://vespasianodabisticciletters.unibo.it">Vespasiano da Bisticci, <title level="m">Letters</title></ref>. She is finally <roleName>President of the School of Humanities library</roleName> in the <orgName>University of Bologna</orgName>.</affiliation>
+          <email>francesca.tomasi@unibo.it</email>
+        </author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>TEI Consortium</publisher>
+        <date>07/12/2015</date>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by/4.0/">
+            <p>For this publication a Creative Commons Attribution 4.0 International license has been granted by the author(s) who retain full copyright.</p>
+          </licence> 
+        </availability>
+      </publicationStmt>
+      <seriesStmt>
+        <title level="j">Journal of the Text Encoding Initiative</title>
+        <editor role="guest">Arianna Ciula</editor>
+        <editor role="guest">Fabio Ciotti</editor>
+        <editor role="chief">John Walsh</editor>
+        <editor role="managing">Martin Holmes</editor>
+        <editor role="technical">Ron Van den Branden</editor>
+        <biblScope unit="issue" n="8">Selected Papers from the 2013 TEI Conference</biblScope>
+      </seriesStmt>
+      <sourceDesc>
+        <p>No source, born digital.</p>
+      </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+      <projectDesc>
+        <p>Revues.org -centre for open electronic publishing- is the platform for journals in the
+          humanities and social sciences, open to quality periodicals looking to publish full-text
+          articles online.</p>
+      </projectDesc>
+    </encodingDesc>
+    <profileDesc>
+      <langUsage>
+        <language ident="en">en</language>
+      </langUsage>
+      <textClass>
+        <keywords xml:lang="en">
+          <term>geotagging</term>
+          <term>personography</term>
+          <term>ontology</term>
+          <term>Semantic Web</term>
+          <term>Linked Open Data</term>
+          <term>digital annotation</term>
+        </keywords>
+      </textClass>
+    </profileDesc>
+  </teiHeader>
+  <text>
+    <front>
+      <div type="abstract" xml:id="abstract">
+        <p>This paper presents the rationales and the logical architecture of <title level="m">Geolat — Geography for Latin Literature</title>, a project for the enrichment of Latin literature which makes use of a complex mix of TEI markup, Semantic Web technologies and formal ontologies. The purpose of <title level="m">Geolat</title> is the annotation of the geographical and personal references in a corpus of Latin TEI encoded texts. These annotations are linked to a set of ontologies that give them formal semantics, and can finally be exposed the as linked open data, in order to improve the documents’ interoperability with other existing LOD and to enhance information retrieval possibilities. The paper is organized as follows: first we introduce the project in order to explain the steps needed to complete it (<ptr target="#geolat" type="crossref"/>); then we describe the ontological modeling and the TEI encoding in <title level="m">Geolat</title>, by focusing on both places and persons (<ptr type="crossref" target="#geolatontology"/>). We then discuss the annotation data model (<ptr type="crossref" target="#openannotation"/>). In conclusion, we introduce some future directions (<ptr type="crossref" target="#conclusion"/>).</p>
+      </div>
+      <div type="acknowledgements">
+        <p>This research is supported by Compagnia di San Paolo Foundation. Fabio Ciotti wrote <ptr type="crossref" target="#geographyontology #geographytei #openannotation"/>; Maurizio Lana wrote <ptr type="crossref" target="#introduction #geolat #conclusion"/>; Francesca Tomasi wrote <ptr type="crossref" target="#introduction #modelpersons #teieac #perspective"/>; the authors, however, share with each other and with others (Diego Magro, Silvio Pieroni, and Fabio Vitali) the whole scientific responsibility for the project.</p>
+      </div>
+    </front>
+    <body>
+      <div xml:id="introduction">
+        <head>Introduction</head>
+        <p>The dialogue that TEI started with other semantic models has two aims: data and document interchange as well as the improvement of the editors’ ability to formally declare hermeneutical positions. The TEI schemas include most of the elements and attributes (and now classes as well) to provide interpretations, while other non-TEI schemas, such as the EAC-CPF (Encoded Archival Context—Corporate Bodies, Persons and Families) metadata element set, may be employed to enhance or augment the TEI model. On the one hand, additional schemas could contribute to perfecting the scope of some TEI elements; on the other hand, other semantic models, such as ontologies, could improve the effectiveness of interpretations.</p>
+        <p>Speaking about models means reflecting on the relationships between TEI and ontologies, but also moving towards new emerging semantic paradigms. People working with texts today have some interesting opportunities that the editorial domain is encouraging, such as: describing or enriching texts through TEI encoding; formalizing their knowledge of textual content(s) by using one or more ontologies; offering open access to their work in order to guarantee dissemination; and making their data interoperable by means of linked open data.</p>
+        <p>Moreover, we could say that these options exist because digital libraries are becoming increasingly widespread. The availability of collections has stimulated, as a natural result, the growth of new <soCalled>movements</soCalled>. Actually, without digital text collections, these opportunities would be mostly theoretical; however, we should also consider the resulting question that arises: What can we do with digital texts that cannot be done with non-digital texts? Each of the opportunities mentioned above entails interesting implications:</p>
+        <list rend="ordered">
+          <item>TEI encoding is sufficiently flexible to allow text to incorporate annotation using many different approaches, including structural, syntactic, and linguistic. Many diverse document and content types may be described using TEI.</item>
+          <item>Ontologies allow the formal description of specific knowledge domains.</item>
+          <item>Open access tries to break existing barriers to access and fosters collaboration and knowledge sharing.</item>
+          <item>The linked open data (LOD) mechanism allows data and projects which were not originally intended to work together to interconnect by implementing a common method for describing and publishing data.</item>
+        </list>
+        <p>All the features described above are fundamental to the aims of <title level="m">Geolat—Geography for Latin Literature</title>, a global project for Latin literature annotation which makes use of TEI encoding and other ontologies. The present research therefore intends to address the issues related to TEI collections management from a semantic perspective by presenting a specific case study.</p>
+        <p>The paper is organized as follows: first we introduce the project in order to explain the steps needed to complete it (<ptr target="#geolat" type="crossref"/>); then we describe the ontological modeling and the TEI encoding in <title level="m">Geolat</title>, by focusing on both places and persons (<ptr target="#geolatontology" type="crossref"/>). We then discuss the annotation data model (<ptr target="#openannotation" type="crossref"/>). In conclusion, we introduce some future directions (<ptr target="#conclusion" type="crossref"/>).</p>
+      </div>
+      <div xml:id="geolat">
+        <head>The Geolat Project</head>
+        <p>Starting from the need to enrich the TEI encoding with an in-depth formalization of the process steps, the <title level="m">Geolat</title> project aims to propose an extensible model of a digital library in the literary domain: <title level="m">Geolat</title> will semantically annotate texts using many different ontologies, describing places, persons, and textual objects. Additionally, it will publish its content as open-access LOD. The project is led by an interdisciplinary group of scholars, including historians, geographers, classicists, language philosophers, science philosophers, librarians, digital humanities researchers, computer scientists, archeologists, and comparative literature scholars. The main idea is that if places and personal names are formally annotated in a given text collection, those texts can be studied through the knowledge the texts themselves include. It will then be possible, for instance, to answer the question <q>who was where?</q>—the places where a given person was at a given time, or the persons who, at a given time, were in a given place—and show the answers not simply with the usual text tools (concordance-like) but also through maps (for places) or graphs (for persons).</p>
+        <p>From a conceptual standpoint, four simple steps are needed to complete the project:</p>
+        <list rend="ordered">
+          <item>the building of a global digital Latin library from the Archaic period up to the fifth century CE, joining different existing available corpora:
+            <list rend="bulleted">
+              <item>classical Latin texts from Packard Humanities Institute Classical Latin Texts (PHI) CD-ROM which are now freely accessible, according to Italian and EU laws on intellectual property rights;</item>
+              <item>late Latin texts, from <ref target="http://www.digiliblt.unipmn.it/">DigilibLT</ref> (the Digital Library of Late-Antique Latin Texts);<note><ptr target="http://www.digiliblt.unipmn.it/"/>.</note></item>
+              <item>the Latin Grammarians in the collection prepared by Nino Marinone as the basis for <title level="m">Index Grammaticus: An Index to the Latin Grammar Texts</title>;<note><bibl>Edited by <editor>Valeria Lomanto</editor> and <editor>Nino Marinone</editor> (<pubPlace>Hildesheim</pubPlace>: <publisher>Olms-Weidmann</publisher>, <date>1990</date>).</bibl></note></item>
+              <item>possibly, the juridical texts from <ref target="http://bia.lex.unict.it/">Bibliotheca Iuris Antiqui(BIA)</ref>;<note><ptr target="http://bia.lex.unict.it/"/>.</note></item>
+              <item>possibly, the Latin poetry from <ref target="http://www.mqdq.it/mqdq/">Musisque Deoque: Un archivio digitale di poesia Latina</ref> (MQDQ);<note><ptr target="http://www.mqdq.it/mqdq/"/>.</note></item>
+            </list>
+          </item>
+          <item>the building of an ontology. This step will involve a connection between different models starting from some specific issues—describing places and integrating descriptions of people in EAC-CPF (plus the related ontologies illustrating the textual objects)—and from the consideration that roles and functions change in relation to the context. Further, we need to consider that existing geographical ontologies are not (completely) suitable for describing the classical world because, for example, some kinds of ancient places have no immediate equivalent in contemporary conceptualizations (take for instance the notion of <term>castrum</term> in Latin culture); a city may be founded by a deity or by a human; or you may be dealing with nomadic populations whose <soCalled>places</soCalled> are impossible to describe similarly to those of non-nomadic populations;</item>
+          <item>
+            <p>annotation of every personal and geographical name in the texts using a geographical ontology, which means:
+            <list rend="bulleted">
+              <item>assigning IRIs/URIs to textual objects like books, chapters, paragraphs, words;</item>
+              <item>associating <ref target="http://pleiades.stoa.org/">Pleiades</ref><note><ptr target="http://pleiades.stoa.org/"/>.</note> URIs with geographical names;</item>
+              <item>associating <ref target="https://viaf.org/">VIAF</ref><note>Virtual International Authority File (<ptr target="https://viaf.org/"/>).</note> IDs with personal names for the authority control;</item>
+          <item>integrating a geographical ontology with specific concepts for the classical world and classical texts;</item>
+          <item>integrating the EAC-CPF model and ontology for managing roles and functions of mentioned people.</item>
+            </list>
+            </p>
+            <p>The documents are marked up with very light TEI/XML encoding that describes document structures and philological phenomena. The textual segments (nouns and nominal phrases) referring to a person or geographical entity are explicitly encoded through specific TEI elements (see <ptr target="#geolatontology" type="crossref"/>). Only instances of individual persons or geographical instances are encoded (while general or abstract geographical concepts are not). The encoding process for places and names is implemented in two phases: first a Named Entity Recognition (NER) system extracts references from primary sources (<ref type="bibl" target="#isaken12">Isaksen et al. 2012</ref>); then these references are edited by human experts.</p>
+          </item>
+          <item>the use of annotated texts in order to facilitate specific research questions related to geography or named persons. This procedure will allow, for example,
+            <list rend="bulleted">
+              <item>general users to start reading texts through a geographic interface: for example, a map where they can choose an area, or a person interface through which they can choose from a typology of activities and roles;</item>
+          <item>scholars to discover concepts or information hidden by the standard textual interface usually adopted to access the documents;</item>
+          <item>mobile and augmented reality devices which display passages describing the physical place where you are.</item>
+            </list>
+          </item>
+        </list>
+      </div>
+      <div xml:id="geolatontology">
+        <head>Ontological Modeling and TEI Encoding in Geolat</head>
+        <p>The logical architecture of the <title level="m">Geolat</title> project is a complex one, requiring many levels of ontological modeling and textual encoding. Some general methodological principles are:</p>
+        <list rend="bulleted">
+          <item>maintaining the distinction among different levels of abstraction and adopting the most efficient formalism for each level, trying to avoid unneeded complexity;</item>
+          <item>minimizing the amount of semantic information directly expressed at the inline markup level in favor of stand-off markup. In this way, it is possible to favor readability, portability, and maintenance of primary resources;</item>
+          <item>adopting Semantic Web languages to express semantic information (geographic and prosopographical data) and rigorously defining the annotations’ intended semantics with the use of formal ontologies—which allows us to exploit the reasoning capabilities of inference engines and semantic stores;</item>
+          <item>allowing the gradual extension and modification of geographical descriptions over time;</item>
+          <item>facilitating interoperability with other repositories and sets of geographic data expressed as linked data.</item>
+        </list>
+        <p>In the following sections, the problems related to the description of places (<ptr target="#geographyontology #geographytei" type="crossref"/>) and persons (<ptr target="#modelpersons #teieac #perspective" type="crossref"/>) will be explained.</p>
+        <div xml:id="geographyontology">
+          <head>Distinction between Semantic Geographical Data and Geographical Ontology</head>
+          <p>The distinction between semantic geographical data and geographical ontology is analogous to the distinction between assertion box (ABox) and terminological box (TBox) which is made in description logic.</p>
+          <cit>
+            <quote source="#quoteref1">
+              <p>Description logics and their semantics traditionally split <term>concepts</term> and their relationships from the different treatment of <term>instances</term> and their attributes and roles, expressed as fact assertions. The concept split is known as the TBox (for <emph>terminological</emph> knowledge, the basis for <emph>T</emph> in <term>TBox</term>) and represents the schema or taxonomy of the domain at hand. The TBox is the structural and intensional component of conceptual relationships. It is this construct for which Structure Dynamics generally reserves the term <soCalled>ontology</soCalled>.</p>
+              <p>The second split of instances is known as the ABox (for <term>assertions</term>, the basis for <emph>A</emph> in <emph>ABox</emph>) and describes the attributes of instances (or individuals), the roles between instances, and other assertions about instances regarding their class membership with the TBox concepts. Both the TBox and ABox are consistent with set-theoretic principles.</p>
+            </quote>
+            <ref target="#bergman09" type="bibl" xml:id="quoteref1">Bergman 2009</ref>
+          </cit>
+          <p>According to the aforementioned distinction, the geographical semantic data (GSD) in Geolat consists of a set of RDF statements defining the individual geographic features. Each individual entity is:
+            <list rend="ordered">
+              <item>identified by an IRI;</item>
+              <item>associated with one or more membership classes;</item>
+              <item>optionally associated with one or more persons;</item>
+              <item>identified by a set of properties:
+                <list rend="bulleted">
+                  <item>geographic coordinates in GPS format;</item>
+                  <item>placename(s) with chronological information about its/their use over time;</item>
+                  <item>itineraries (such as pilgrimage or military expedition) of which the place is a part;</item>
+                  <item>historical, geographical, cultural annotations (such as etymology; typology of settlement: city, castrum; reason for being mentioned: battlefield)</item>
+                  <item>links to IRI/URI in other data sets like Pleiades, Geonames, and DBPedia etc.</item>
+                </list>
+              </item>
+          </list>
+          </p>
+          <p>The geographic ontology (GO) contains the formal representation of general concepts and relationships. The formalism we have adopted for ontological modeling is OWL 2 RL.</p>
+          <cit>
+            <quote source="#quoteref2">OWL 2 RL enables the implementation of polynomial time reasoning algorithms using rule-extended database technologies operating directly on RDF triples; it is particularly suitable for applications where relatively lightweight ontologies are used to organize large numbers of individuals and where it is useful or necessary to operate directly on data in the form of RDF triples.</quote>
+            <ref type="bibl" xml:id="quoteref2" target="#w3owl">W3C OWL Working Group 2012, sec. 2.4</ref>
+          </cit>
+          <p>Geographic ontology provides concepts such as settlement, city, person, physical location, sea, and river, along with their properties; specifies their taxonomy; and defines relations among the <soCalled>occurrences of concepts</soCalled>, such as the <term>located in</term> relation, which associates the name of a settlement with its physical place, or the <term>founded by</term> relation, which relates a city to its founders.</p>
+          <p>The design of this ontology must address various theoretical problems, such as the status of fictional places; the need to draw a distinction between purely fictional places and places whose past existence is acknowledged by the textual tradition but which do not have any certain location nor material vestiges (for instance the city of Alba Longa, according to Titus Livius founded by Ascanio, son of Aeneas); the possibility for certain entities to have distinct ontological properties according to different textual traditions (one city, for instance, can have various foundation stories, with different actors—be they real or fictional).</p>
+          <p>Of course this requires that we state explicitly in the ontology the textual context where each property value is valid.</p>
+        </div>
+        <div xml:id="geographytei">
+          <head>Connection between Geographical Data and TEI Markup Vocabulary</head>
+          <p>TEI offers a rich vocabulary for the annotation of textual segments that include references to places and geographical entities (<ref type="bibl" target="#tei15">TEI Consortium 2015, <ref target="http://www.tei-c.org/Vault/P5/2.8.0/doc/tei-p5-doc/en/html/ND.html">ch. 13, <title level="a">Names, Dates, People, and Places</title></ref></ref>). For our annotation goals, the two most important TEI elements are:
+            <list rend="ordered">
+              <item><gi>placeName</gi> identifies a noun or phrase referring to a geopolitical or administrative entity;</item>
+              <item><gi>geogName</gi> identifies a noun or phrase referring to a physical place.</item>
+          </list>
+          </p>
+          <p>Their key attributes are:
+            <list rend="ordered">
+              <item><att>xml:id:</att> univocally identifies the encoded element; the purpose is to allow inverse references from geographical RDF assertions to the text passages that mention those entities;</item>
+              <item><att>ref</att>: includes the URI which identifies the geographical entity referred to by the text passage in GSD.</item>
+            </list>
+          </p>
+          <p>See this example from Titus Livius, <title level="m">Ab urbe condita libri</title>, 1,3:
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <milestone unit="section" n="5" />
+              pax ita conuenerat ut Etruscis Latinisque fluuius 
+              <geogName ref="http://www.geolat.it/geoDat/aTiber" xml:id="tiber01">
+                Albula 
+              </geogName>
+              , quem nunc 
+              <geogName ref="http://www.geolat.it/geoData/Tiber" xml:id="tiber02"> 
+                Tiberim
+              </geogName> 
+              uocant, finis esset.
+              <milestone unit="section" n="6" />
+            </egXML>
+          </p>
+          <p>As shown above, the TEI attribute <att>ref</att> allows us to explicitly connect every geographical expression in the text to its RDF description. However, it is also necessary to express the reverse connection from the RDF description to the text. The rationale for this requirement is twofold: from the practical point of view, it is easier to link the query (and inference) results to the relevant text portions; from the methodological point of view, we are sure that the semantic data set is self-consistent and potentially autonomous from the text collection.</p>
+          <p>The simplest method to obtain this result consists in assigning a <soCalled>textual instance</soCalled> property to the URI that identifies the entity. The value of this textual instance property is an XPointer expression identifying the corresponding element in the XML/TEI file. This structure is illustrated in the RDF statement below:
+            <list rend="ordered">
+              <item><term>subject</term>: geographical entity URI</item>
+              <item><term>predicate</term>: <ident>textualInstance</ident> assigns a textual location as an instance of the entity</item>
+              <item><term>object</term>: XPointer reference to the element that contains the geographical expression</item>
+            </list>
+          </p>
+          <p>For example:<note>This example, and all the following code snippets of RDF statements, are expressed in Turtle syntax. Cfr. <bibl><title level="m">RDF 1.1 Turtle. Terse RDF Triple Language</title>. W3C Recommendation 25 February 2014. <ptr target="http://www.w3.org/TR/2014/REC-turtle-20140225/"/>.</bibl></note></p>
+          <eg><![CDATA[
+            @prefix geolat <http://www.geolat.it/>
+            
+            geolat:geoData/Tiber geolat:textualInstance
+            geolat:abUrbeConditam.xml#xpath(//geogName[@xml:id=‘tiber01']);
+            geolat:textualInstance
+            geolat:abUrbeConditam.xml#xpath(//geogName[@xml:id=‘tiber02']) .
+          ]]></eg>
+        </div>
+        <div xml:id="modelpersons">
+          <head>A Model for Managing Persons</head>
+          <p>Among the most significant changes in TEI P5 is the addition of the Biographical and Prosopographical Data features (<ref type="bibl" target="#tei15">TEI Consortium 2015, <ref target="http://www.tei-c.org/Vault/P5/2.8.0/doc/tei-p5-doc/en/html//ND.html#NDPERS">ch. 13.3, <title level="a">Biographical and Prosopographical Data</title></ref></ref>). These features provide elements and attributes for describing individuals and their relationships. In 2006 a <soCalled>Personography</soCalled> workgroup (the <ref target="http://www.tei-c.org/Activities/Workgroups/PERS/index.xml">TEI Personography Task Force</ref>)<note><ptr target="http://www.tei-c.org/Activities/Workgroups/PERS/index.xml"/>.</note> was established to investigate how other existing XML schemas and TEI customizations handle data about people. The result was Wedervang-Jensen and Driscoll’s <title level="m">Report on XML Mark-up of Biographical and Prosopographical Data</title> (<ref type="bibl" target="#wedervang-jensen06">2006</ref>).<note>The actual changes introduced in the TEI Schema to implement the proposals in that document are described in Wittern, Ciula, and Tuhoy (<ref type="bibl" target="#wittern09">2009</ref>).</note></p>
+          <p>Names of people are identified in TEI with the <gi>persName</gi> element. This element, like the <gi>placeName</gi> and the <gi>geogName</gi>, supports an <att>xml:id</att> attribute for unique identification and a <att>ref</att> attribute to link the name to an external description or URI. At the URI level, many features, as described below, could be used in order to enrich biographical and prosopographical description.</p>
+          <p>The standard bibliographic approach to describing people actually consists in the identification of the unique individuals and in the attribution of an invariant set of features. However, we should never overlook the strong existing connections between people and the textual context. As a result of these connections, roles and functions, intended as features of individuals, may change depending on the context, that is, on the source attesting the individual. It is therefore possible to state that:
+            <list rend="ordered">
+              <item>some features are not only static over time, but also theoretically constant regardless of the context (for example, birth, death, personal name);</item>
+              <item>other features vary depending on date and/or place (for example, age, affiliation, education, event, state);</item>
+              <item>roles (for example, author, actor, editor, speaker) and functions (for example, administrative, organizational, educational) are elements that identify people depending on the context.</item></list>
+          </p>
+          <p>Thus we can say that a person is a <soCalled>complex entity</soCalled>, because she/he is connected with different typologies of phenomena: some of these are unchangeable, while others depend on a time period, a place, or a context.</p>
+          <p>In TEI, the <gi>person</gi> element may be associated with different roles or functions. Consider, for example, the digital edition of a literary text. We may use the TEI <gi>person</gi> element to encode information about all the individuals who created and contributed to the digital edition: the author of the analog source, the editor of the printed version, or all the individuals quoted in the text. The concept of person expands the boundaries: although individuals are related to the source, they are also entities with a role enabling a single person to connect either with different resources (that is, documents), or with several other persons (for example, for the sharing of the same role). A three-level relationship therefore arises: among individuals, between a person and a document in which she/he is mentioned, and among a person and other resources. This <soCalled>three-level relation</soCalled> model is a concept adopted by a shared standard in the archival domain, used in order to manage authority records: the EAC-CPF Schema (see <ptr type="crossref" target="#teieac"/>). This approach was chosen in part because it forces a reply to the following questions:
+            <list rend="bulleted">
+              <item>Why is a person related to another?</item>
+              <item>What is written in a document about a person?</item>
+              <item>What connection is possible to establish between a person and other resources regarding the same person?</item>
+            </list>
+          </p>
+        </div>
+        <div xml:id="teieac">
+          <head>TEI and EAC-CPF</head>
+          <p>For the annotation of individuals and groups, TEI may be used in conjunction with the EAC-CPF schema, developed in order to formalize the ISAAR (CPF) standard (<ref target="http://www.ica.org/10203/standards/isaar-cpf-international-standard-archival-authority-record-for-corporate-bodies-persons-and-families-2nd-edition.html">International Standard Archival Authority Record for Corporate Bodies, Persons and Families</ref>),<note><ptr target="http://www.ica.org/10203/standards/isaar-cpf-international-standard-archival-authority-record-for-corporate-bodies-persons-and-families-2nd-edition.html"/></note> which today is also available as an ontology (<ref target="#mazzini11" type="bibl">Mazzini and Ricci 2011</ref>). EAC-CPF contributes to the representation of individuals, emphasizing the importance of both context and relationships. The editorial approach to annotation described here borrows from the domain of archival studies. Archival science espouses a principle of separation between the description of records (documents) and the description of people (corporate bodies, persons, and families), and emphasizes context (<ref target="#pitti04" type="bibl">Pitti 2004</ref>). The same approach could be implemented in TEI, when the final purpose is to expose data sets of both TEI XML documents and related personographic data to be used by the Web community.</p>
+          <p>The EAC-CPF schema suggests useful ways to extend the <gi>relation</gi> concept in TEI. EAC-CPF is based on the concept of an <soCalled>entity</soCalled>, a corporate body, person, or family that manages relationships among other entities and between one entity and a resource linked at some level. Each relationship could be described, dated, and classified. In addition to elements related to <soCalled>relation</soCalled> (<gi>cpfRelation</gi> and <gi>resourceRelation</gi>), EAC-CPF defines a <gi>function</gi> element that <q>provides information about a function, activity, role, or purpose performed or manifested by the entity being described</q> on a specific date. The <gi>functionRelation</gi> element illustrates a <quote source="#quoteref3">function related to the described entity.<gap/> it includes a <att>functionRelationType</att> attribute that could support a controlled list of type values</quote> (<ref type="bibl" xml:id="quoteref3" target="#eacwg14">Encoded Archival Context Working Group 2014</ref>).</p>
+          <p>A new model of an <soCalled>authority record</soCalled>—a complex structure able to document the context in which the identity is attested—could be introduced: the authority not only is generated by the controlled form of the name, and the related parallel forms, but is also the result of relationships generated by the context (that is, the specific document in which the entity is mentioned) to determine a concept.</p>
+          <p>According to the RDF model, it is possible to assert that an identified entity (URI) manages relationships (predicate) with different objects; these objects could be:
+            <list rend="ordered">
+              <item>another entity (URI): another person, place (URI), date (URI), or event (URI);</item>
+              <item>a contextual resource (URI): the document in which the entity is mentioned;</item>
+              <item>an external resource (URI): another object (a document, an image, a video, an audio record, and so on).</item>
+            </list>
+          </p>
+          <p>This procedure could be applied to describe annotations and other contributions to the digital edition, for instance, by identifying a contributor of an annotation who, on a specific date, performed a specific activity (the principle of <soCalled>provenance</soCalled> of an assertion, that is, authorship attribution activity). The responsibility (the TEI <gi>resp</gi> element) could be intended as a role. Each person is associated with a responsibility statement able to identify the role that the entity covered in that document, associating persons to documents. The same person may fulfill the same responsibility in other editions. In this way relationships are extended to other documents. Moreover, other individuals who share the same responsibilities may be linked.</p>
+          <p>This process could be declared and exposed as an RDF data set with URIs for the univocal identification and TEI/EAC for classes and predicates in order to build a collection of authorities related to persons that covered either a role or a function in a certain time period and context. By declaring connections as relationships, through the EAC-CPF model, we could develop a knowledge base of people, with a role or function originated by the context.</p>
+          <p>The aforementioned model has already been applied to the description of real individuals who manage activities in relation to documents (<ref type="bibl" target="#pasin13">Pasin and Bradley 2013</ref>). The same approach could be expanded to prosopographical description, with an adequate extension of the function sets to include activities of interest for historiographical research (for instance, military mission, diplomatic activity, arranged marriage, conspiracy). People mentioned, described, or in general cited in sources also assume different roles in different contexts—context being determined by the document, as an historical source, in which a person appears. More specifically, people are related to dates, places, and events, enriching the expressivity of the description.</p>
+        </div>
+        <div xml:id="perspective">
+          <head>People and Places in a <soCalled>Perspective Function</soCalled></head>
+          <p>Place, in particular, could be an interesting key for managing functions. In the <title level="m">Geolat</title> project we are able to assert that people have different roles with respect to places. This means that the context (that is, the document) determines the existing relationship between a person and a place. In addition, the role a person plays in a document also changes the kind of the relationship she/he has with the place. A place could be intended not only as a city that a person <term>was-born-in</term> or a person <term>died-in</term> but also as place that a person <term>went-to</term> for a specific event or to <term>do-something</term>. A taxonomy of predicates will be developed in order to define the possible relationships between a person and a place.</p>
+          <p>An example of a person description (pseudocode):
+            <eg><![CDATA[
+<persName xml:id=”LdM”>Lorenzo de‘ Medici</persName>
+xml:id=LdM
+Access_key: Medici, Lorenzo de’
+Dbpedia URI: http://it.dbpedia.org/page/Lorenzo_de%27_Medici
+VIAF permalink: http://viaf.org/viaf/54169908
+Father-of: Piero de’Medici (URI)
+Born-in: Firenze (URI) 
+Died-in: Firenze (URI)
+Born-when: 1449 (xsd:integer)
+Died-when: 1492 (xsd:integer)
+Visited-what: Roma (URI) –function: diplomatic mission 
+Visited-what: Venezia (URI) –function: military mission 
+Visited-when: Roma (URI) 1466 
+Visited-when: Venezia (URI) 1465
+Iconography: http://www.google.com/search?hl=en&q=lorenzo+de%27+medici&um=1&ie=UTF-8&tbm=isch
+&source=og&sa=N&tab=wi&ei=_1vcUOeAJqeI4ASikoCYBQ&biw=1146&bih=709&sei=AVzcUNnjIOXV4gTVloHQCQ
+Biography: http://it.wikipedia.org/wiki/Lorenzo_de'_Medici
+Author-of: http://it.wikisource.org/wiki/Canti_carnascialeschi_%28Lorenzo_de%27_Medici%29
+Attested-in: http://it.wikiquote.org/wiki/Maria
+Provenance: http://www.unibo.it/docenti/francesca.tomasi
+              ]]></eg>
+          </p>
+          <p>By creating connections between the archival and the philological domains, digital editions open new perspectives on the cultural heritage domain, establishing connections between heterogeneous objects and <quote source="#quoteref4">creating efficiencies in the re-use of metadata across repositories, and through open linked data resources</quote> (<ref xml:id="quoteref4" target="#larson11" type="bibl">Larson and Janakiraman 2011, 4</ref>). Linked data describing persons performing specific roles could be considerably improved by employing analytic description concerning people’s functions, using the context as interpretative key: <quote source="#quoteref5">the description of personal roles and of the statuses of documents needs to vary in time and according to changing contexts<gap/> such roles and statuses need to be handled formally by ontological models</quote> (<ref xml:id="quoteref5" target="#peroni12" type="bibl">Peroni, Shotton, and Vitali 2012, 9</ref>).</p>
+        </div>
+      </div>
+      <div xml:id="openannotation">
+        <head>A Meta-ontology for the Annotation: Open Annotation Data Model</head>
+        <p>The annotation layer that we are connecting to the texts describes semantic features of the textual content. We need, however, to record some meta-properties of the annotations themselves:
+          <list rend="bulleted">
+            <item>responsibility metadata;</item>
+            <item>typological categorization;</item>
+            <item>scope or function;</item>
+            <item>provenance metadata (responsibilities, certainty level, time).</item>
+          </list>
+        </p>
+        <p>For this reason we have opted to add an intermediate layer to express the relationship between the annotation and the text, based on the Open Annotation data model (OA), which is a plausible model for meeting these requirements:
+          <cit>
+            <quote source="#quoteref6">An annotation is considered to be a set of connected resources, typically including a body and target, and conveys that the body is related to the target. The exact nature of this relationship changes according to the intention of the annotation, but most frequently conveys that the body is somehow <soCalled>about</soCalled> the target. Other possible relationships include that the body is an identifier for the target, provides a representation of the target, or classifies the target in some way. This perspective results in a basic model with three parts, depicted below.<gap/>
+            <figure xml:id="figure1">
+              <graphic height="406px" width="706px" url="images/jtei-8-ciotti_image_01.png"/>
+              <head type="legend">Annotation, Body and Target</head> 
+            </figure>
+            </quote>
+            <ref type="bibl" xml:id="quoteref6" target="#sanderson13">Sanderson, Ciccarese, and Van de Sompel 2013</ref>
+        </cit>
+        </p>
+        <p>In a nutshell, we can define OA as an RDF vocabulary (formally expressed in OWL 2), which allows the expression of the relationship between an annotation and its object and a metadata set for this relationship. The core of OA is the <ident>oa:Annotation</ident> class with the two relationships <ident>oa:hasBody</ident> (that expresses the relationships between an annotation and its content) and <ident>oa:hasTarget</ident> (that expresses the relationships with the object of the annotation).</p>
+        <p>Both the annotation body and target are expressed by URI; other properties of the <ident>oa:Annotation</ident> class are <ident>oa:annotatedBy</ident> (to state responsibility) and <ident>oa:annotatedAt</ident> (to specify the date of the annotation). Using this model, the definition of an annotation in <title level="m">Geolat</title> would be as follows (in Turtle syntax):
+          <eg><![CDATA[
+            <geolat:titoLivioAnn_1>a oa:Annotation ;
+	               oa:hasBody geolat:geoData/Tiber ;
+	               oa:hasTarget 	geolat:abUrbeConditam.xml#xpath(//geogName	[@xml:id='tiber02'])
+	               oa:annotatedBy <geolat:agent1> ;
+	               oa:annotatedAt "2013-09-28T12:00:00Z" ;
+            ]]></eg>
+        </p>
+        <p>The attribution of a semantic type to this annotation can be achieved with a twofold
+          approach:
+          <list rend="bulleted">
+            <item>extension of the OA ontology through the introduction of a set of subclasses of the <ident>oa:Annotation</ident> class, in order to formalize this typology;</item>
+            <item>use of the <ident>oa:MotivatedBy</ident> property, whose values express the rationale of a given annotation and are members of the <ident>oa:Motivations</ident> class, which is extensible according to the users’ needs.</item>
+          </list>
+        </p>
+        <p>The adoption of the OA framework has the advantage of making the annotation metadescriptions homogeneous with the complex semantic <title level="m">Geolat</title> architecture, and at the same time using an established standard that assures interoperability with other projects and future software platform change.</p>
+      </div>
+      <div xml:id="conclusion">
+        <head>Closing Remarks and Future Developments</head>
+        <p>In <title level="m">Geolat</title> everything is planned and built through free, open-source software. There are several reasons underlying this choice, including the project’s need to share its software tools with other researchers. Practical benefits of our adoption of open-source tools include the absence of annual license fees, which can be a real burden for long-term humanities research projects.</p>
+        <p>The entire content is made available under CC licenses. Despite a strong pressure towards CC-BY (which requires only citing the author[s]), <title level="m">Geolat</title> chose a CC-BY-NC-SA license which seems more appropriate to stress the value—including from an economic/commercial point of view—of the research outcomes.</p>
+        <p>Semantic annotation of a digital library of textual materials potentially never ends; therefore, a crowdsourcing approach should be adopted. Annotating the entire corpus of Latin literature is undoubtedly a demanding task: as a consequence, a core group of people working over many years is needed. However, being open to crowdsourcing means that the members of the larger research community of Latin scholars can significantly contribute to this effort.</p>
+        <p>Linked open data (LOD) is the most efficient framework to allow semantic interoperability of complex data sets on the Web. In the field of classical studies, several important resources are currently available which publish their data as LOD, including <ref target="http://pleiades.stoa.org/">Pleiades</ref>,<note><ptr target="http://pleiades.stoa.org/"/></note> a gazetteer for classical antiquity, and <ref target="http://pelagios.org/">Pelagios</ref>,<note><ptr target="http://pelagios.org/"/></note> a collaborative initiative to share and link geographic references in ancient cultural artifacts and documents. Notwithstanding its value and usefulness, Pleiades lacks references to textual passages with place names, which it could gather from <title level="m">Geolat</title>. <title level="m">Geolat</title> could retrieve from Pleiades selected geographical data (such as GPS coordinates, the ancient names of places, and names in modern languages where available). This mutual sharing of controlled and authoritative data is our primary motivation for using LOD in <title level="m">Geolat</title>. This approach contributes to a growing community of scholars sharing data and tools.</p>
+        <p>The <title level="m">Geolat</title> model is not language-dependent, and can be adopted for any collection in any language. This is not a purely quantitative approach (the model can be used for <emph>n</emph> different languages): it means that through the model (provided that the same model is adopted for annotating), different texts, from different literatures, can interact and can be read in their intertextual relations: any person or place, mentioned in different texts from different literatures, can be tracked. The aim is to finely analyze and interpret similarities and differences across texts, languages, and literatures.</p>
+      </div>
+    </body>
+    <back>
+      <div type="bibliography">
+        <listBibl>
+          <bibl xml:id="bergman09"><author>Bergman, Mike</author>. <date>2009</date>. <title level="u">The Fundamental Importance of Keeping an ABox and TBox Split</title>. Ontology Best Practices for Data-driven Applications, part 2.May 17. <ptr target="http://www.mkbergman.com/489/ontology-best-practices-for-data-driven-applications-part-2/"/>.</bibl>
+          <bibl xml:id="eacwg14"><orgName>Encoded Archival Context Working Group</orgName>. <date>2014</date>. <title level="m">Encoded Archival Context—Corporate Bodies, Persons, and Families (EAC-CPF) Tag Library</title>. <edition>Edition 2014</edition>. <ptr target="http://eac.staatsbibliothek-berlin.de/fileadmin/user_upload/schema/cpfTagLibrary.html"/>.</bibl>
+          <bibl xml:id="isaken12"><author>Isaksen, Leif</author>, <author>Elton Barker</author>, <author>Eric C. Kansa</author>, and <author>Kate Byrne</author>. <date>2012</date>. <title level="a">GAP: A NeoGeo Approach to Classical Resources</title>. <title level="j">Leonardo</title> <biblScope unit="volume">45</biblScope> (<biblScope unit="issue">1</biblScope>): <biblScope unit="page">82–83</biblScope>. doi:<idno type="doi">10.1162/LEON_a_00343</idno>.</bibl>
+          <bibl xml:id="larson11"><author>Larson, Ray R.</author>, and <author>Krishna Janakiraman</author>. <date>2011</date>. <title level="a">Connecting Archival Collections: The Social Networks and Archival Context Project</title>. In <title level="m">Research and Advanced Technology for Digital Libraries: International Conference on Theory and Practice of Digital Libraries (TPDL 2011)</title>, edited by <editor>Stefan Gradmann</editor>, <editor>Francesca Borri</editor>, <editor>Carlo Meghini</editor>, and <editor>Heiko Schuldt</editor>, <biblScope unit="page">3–14</biblScope>. Lecture Notes in Computer Science 6966. <pubPlace>Heidelberg, Germany</pubPlace>: <publisher>Springer</publisher>. doi:<idno type="doi">10.1007/978-3-642-24469-8_3</idno>. <ptr target="http://link.springer.com/chapter/10.1007/978-3-642-24469-8_3"/>.</bibl>
+          <bibl xml:id="mazzini11"><author>Mazzini, Silvia</author>, and <author>Francesca Ricci</author>. <date>2011</date>. <title level="a">EAC-CPF Ontology and Linked Archival Data</title>. In <title level="m">Proceedings of the 1st International Workshop on Semantic Digital Archives</title>, edited by <editor>Livia Predoiu</editor>, <editor>Steffen Hennicke</editor>, <editor>Andreas Nürnberger</editor>, <editor>Annett Mitschick</editor>, and <editor>Seamus Ross</editor>, <biblScope unit="page">72–81</biblScope>. <pubPlace>N.p.</pubPlace>: <publisher>CEUR Workshop Proceedings</publisher>.<ptr target="http://ceur-ws.org/Vol-801/"/>.</bibl>
+          <bibl xml:id="pasin13"><author>Pasin, Michele</author> and <author>John Bradley</author>. <date>2013</date>. <title level="a">Factoid-based prosopography and computer ontologies: Towards an integrated approach</title>. <title level="j">Digital Scholarship in the Humanities</title> <biblScope unit="volume">30</biblScope> (<biblScope unit="issue">1</biblScope>): <biblScope unit="page">86–97</biblScope>. doi:<idno type="doi">http://dx.doi.org/10.1093/llc/fqt037</idno>.</bibl>
+          <bibl xml:id="peroni12"><author>Peroni, Silvio</author>, <author>David Shotton</author>, and <author>Fabio Vitali</author>. <date>2012</date>. <title level="a">Scholarly Publishing and Linked Data: Describing Roles, Statuses, Temporal and Contextual Extents</title>. In <title level="m">Proceedings of the 8th International Conference on Semantic Systems</title>, <biblScope unit="page">9–16</biblScope>. <pubPlace>New York</pubPlace>: <publisher>ACM</publisher>. doi:<idno type="doi">10.1145/2362499.2362502</idno>.</bibl>
+          <bibl xml:id="pitti04"><author>Pitti, Daniel V.</author> <date>2004</date>. <title level="a">Creator Description: Encoded Archival Context</title>. In <title level="m">Authority Control in Organizing and Accessing Information: Definition and International Experience</title>, edited by <editor>Arlene G. Taylor</editor> and <editor>Barbara B. Tillett</editor>, with the assistance of <editor>Murtha Baca</editor> and <editor>Mauro Guerrini</editor>, <biblScope unit="page">201–26</biblScope>. <pubPlace>Binghamton, N.Y.</pubPlace>: <publisher>Haworth Information Press</publisher>.</bibl>
+          <bibl xml:id="sanderson13"><editor>Sanderson, Robert</editor>, <editor>Paolo Ciccarese</editor>, and <editor>Herbert Van de Sompel</editor>, eds. <date>2013</date>. <title level="u">Open Annotation Data Model</title>. Community Draft, February 8. World Wide Web Consortium (W3C). <ptr target="http://www.openannotation.org/spec/core/20130208/index.html"/>.</bibl>
+          <bibl xml:id="tei15"><orgName>TEI Consortium</orgName>. <date>2015</date>. <title level="m">TEI P5: Guidelines for Electronic Text Encoding and Interchange</title>. <edition>Version 2.8.0</edition>. Last updated April 6. <pubPlace>N.p.</pubPlace>: <publisher>TEI Consortium</publisher>. <ptr target="http://www.tei-c.org/Vault/P5/2.8.0/doc/tei-p5-doc/en/html/"/>.</bibl>
+          <bibl xml:id="w3owl"><orgName>W3C OWL Working Group</orgName>. <date>2012</date>. <title level="m">OWL 2 Web Ontology Language Document Overview</title>, <edition>2nd ed.</edition> W3C Recommendation, December 11. <ptr target="http://www.w3.org/tr/owl2-overview/#profiles"/>.</bibl>
+          <bibl xml:id="wedervang-jensen06"><author>Wedervang-Jensen, Eva</author>, and <author>Matthew Driscoll</author>. <date>2006</date>. <title level="m">Report on XML Mark-up of Biographical and Prosopographical data</title>. February 16. <ptr target="http://www.tei-c.org/activities/workgroups/pers/persw02.xml"/>.</bibl>
+          <bibl xml:id="wittern09"><author>Wittern, Christian</author>, <author>Arianna Ciula</author>, and <author>Conal Tuohy</author>. <date>2009</date>. <title level="a">The making of TEI P5</title>. <title level="j">Literary and Linguistic Computing</title> <biblScope unit="volume">24</biblScope> (<biblScope unit="issue">3</biblScope>): <biblScope unit="page">281–296</biblScope>. doi:<idno type="doi">10.1093/llc/fqp017</idno>.</bibl>
+        </listBibl>
+      </div>
+    </back>
+  </text>
+</TEI>

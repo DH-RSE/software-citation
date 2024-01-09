@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="main">Edition Visualization Technology</title>
+        <title type="sub">A Simple Tool to Visualize TEI-based Digital Editions</title>
+        <author>
+          <name><forename>Roberto</forename> <surname>Rosselli Del Turco</surname></name>
+          <affiliation>Roberto Rosselli Del Turco is an <roleName>assistant professor</roleName> at the <orgName>University of Torino</orgName>, where he teaches Germanic philology. He is also an <roleName>assistant professor of humanities computing</roleName> at the <orgName>University of Pisa</orgName>. He directs the Digital Vercelli Book project and is <roleName>co-director</roleName> of the <orgName>Visionary Cross Project</orgName>.</affiliation>
+          <email>roberto.rossellidelturco@unito.it</email>
+        </author>
+        <author>
+          <name><forename>Giancarlo</forename> <surname>Buomprisco</surname></name>
+          <affiliation>Giancarlo Buomprisco is a <roleName>graduate student</roleName> at the <orgName>University of Pisa</orgName> currently collaborating with the DigiPal project at <orgName>King’s College London</orgName>.</affiliation>
+          <email></email>
+        </author>
+        <author>
+          <name><forename>Chiara</forename> <surname>Di Pietro</surname></name>
+          <affiliation>Chiara Di Pietro is a <roleName>graduate student</roleName> at the <orgName>University of Pisa</orgName>, working toward a MA degree in Informatica Umanistica.</affiliation>
+          <email></email>
+        </author>
+        <author>
+          <name><forename>Julia</forename> <surname>Kenny</surname></name>
+          <affiliation>Julia Kenny is a <roleName>graduate student</roleName> at the <orgName>University of Pisa</orgName>, working toward a MA degree in Informatica Umanistica.</affiliation>
+          <email></email>
+        </author>
+        <author>
+          <name><forename>Raffaele</forename> <surname>Masotti</surname></name>
+          <affiliation>Raffaele Masotti is a <roleName>graduate student</roleName> at the <orgName>University of Pisa</orgName>, working toward a MA degree in Informatica Umanistica.</affiliation>
+          <email></email>
+        </author>
+        <author>
+          <name><forename>Jacopo</forename> <surname>Pugliese</surname></name>
+          <affiliation>Jacopo Pugliese is a <roleName>graduate student</roleName> at the 
+            <orgName>University of Pisa</orgName>, working toward a MA degree in 
+            Informatica Umanistica.</affiliation>
+          <email></email>
+        </author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>TEI Consortium</publisher>
+        <date>29/12/2014</date>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by/4.0/">
+            <p>For this publication a Creative Commons Attribution 4.0 International license has been granted by the author(s) who retain full copyright.</p>
+          </licence> 
+        </availability>
+      </publicationStmt>
+      <seriesStmt>
+        <title level="j">Journal of the Text Encoding Initiative</title>
+        <editor role="guest">Arianna Ciula</editor>
+        <editor role="guest">Fabio Ciotti</editor>
+        <editor role="chief">John Walsh</editor>
+        <editor role="managing">Martin Holmes</editor>
+        <editor role="technical">Ron Van den Branden</editor>
+        <biblScope unit="issue" n="8">Selected Papers from the 2013 TEI Conference</biblScope>        
+      </seriesStmt>
+      <sourceDesc>
+        <p>No source, born digital.</p>
+      </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+      <projectDesc>
+        <p>Revues.org -centre for open electronic publishing- is the platform for journals in the
+          humanities and social sciences, open to quality periodicals looking to publish full-text
+          articles online.</p>
+      </projectDesc>
+      <tagsDecl>
+      </tagsDecl>
+    </encodingDesc>
+    <profileDesc>
+      <langUsage>
+        <language ident="en">en</language>
+      </langUsage>
+      <textClass>
+        <keywords xml:lang="en">
+          <term>manuscript transcription</term>
+          <term>diplomatic edition</term>
+          <term>critical edition</term>
+          <term>digital edition</term>
+          <term>XSLT</term>
+          <term>web publication</term>
+          <term>digital lightbox</term>
+        </keywords>
+      </textClass>
+    </profileDesc>
+  </teiHeader>
+  <text>
+    <front>
+      <div type="abstract" xml:id="abstract">
+        <p>The TEI schemas and guidelines have made it possible for many scholars and researchers to encode texts of any kind for (almost) all kinds of purposes, but this excellent standard is matched by an astounding diversity of publishing tools, which is particularly true when it comes to image-based digital editions. The different needs of scholars, coupled with the constant search for an effective price/result ratio and the local availability of technical skills, have led to a remarkable fragmentation: publishing solutions range from simple HTML pages produced using the TEI stylesheets (or the TEI Boilerplate software) to very complex frameworks based on CMS and SQL search engines. Researchers of the Digital Vercelli Book project started looking into a simple, user-friendly solution and eventually decided to build their own: EVT (Edition Visualization Technology) has been under development since about 2010 and has turned into a flexible tool that can be used to create a web-based digital edition starting from transcription files encoded in TEI XML. This paper describes why this tool was created, how it works, and developments planned for the future.</p>
+      </div>
+      <div type="acknowledgements">
+        <p>For the purposes of the Italian academy, R. Rosselli Del Turco is responsible for sections <ref type="crossref" target="#need">1</ref>, <ref type="crossref" target="#howitworks">2.1</ref>, <ref type="crossref" target="#futuredevelopments">3.</ref>-<ref type="crossref" target="#layout">3.1</ref>, <ref type="crossref" target="#architecture">3.5</ref>, <ref type="crossref" target="#conclusion">4</ref>; G. Buomprisco is responsible for section <ref type="crossref" target="#lightbox">3.4</ref>; C. Di Pietro is responsible for section <ref type="crossref" target="#embeddedcritical">3.3</ref>; J. Kenny is responsible for section <ref type="crossref" target="#stylesheets">2.3</ref>; R. Masotti is responsible for sections <ref type="crossref" target="#howitworks">2.2</ref> and <ref type="crossref" target="#features">2.4</ref>; J. Pugliese is responsible for section <ref type="crossref" target="#searchengine">3.2</ref>. R. Rosselli Del Turco also planned and revised the whole article.</p>
+      </div>
+    </front>
+    <body>
+      <div xml:id="need">
+        <head>The Need for a Digital Facsimile/Edition Browser</head>
+        <div xml:id="DVPproject">
+          <head>The Digital Vercelli Book Project</head>
+          <p>When the transcription of the Vercelli Book manuscript (Codex CXVII, Archivio e Biblioteca Capitolare di Vercelli) passed the 50% landmark, researchers working on the project<note><p>The Digital Vercelli Book project, <ptr target="http://vbd.humnet.unipi.it/"/>.</p></note> started to think about the best way to visualize the edition. Thanks to the openness and support of the Biblioteca Capitolare, it was decided to abandon the original plan of a CD/DVD publication, largely inspired by digital editions such as the <ref target="http://ebeowulf.uky.edu/"><title level="m">Electronic Beowulf</title></ref>,<note><p>Support site for the <title level="m">Electronic Beowulf</title>, <ptr target="http://ebeowulf.uky.edu/"/>.</p></note> in favor of a web-based publication. While this decision was critical in that it allowed us to select the most supported and widely-used medium, we soon discovered that it did not make choices any simpler. On the one hand, the XSLT stylesheets provided by TEI are great for HTML rendering, but do not include support for image-related features (such as the text-image linking available thanks to the P5 version of the TEI schema) and tools (including zoom in/out, magnifying lens, and hot spots) that represent a significant part of a digital facsimile and/or diplomatic edition; other features, such as an XML search engine, would have to be integrated separately, in any case. On the other hand, there are powerful frameworks based on CMS<note><p>The Omeka framework (<ptr target="http://omeka.org/"/>) supports publishing TEI documents; see also Drupal (<ptr target="https://drupal.org/"/>‎) and TEICHI (<ptr target="http://www.teichi.org/"/>).</p></note> and other web technologies<note><p>Such as the eXist XML database, <ptr target="http://exist-db.org/"/>.</p></note> which looked far too complex and expensive, particularly when considering future maintenance needs, for our project’s purposes. Other solutions, such as the <ref target="http://sourceforge.net/projects/eppt/">EPPT</ref> software<note><p>Edition Production and Presentation Technology, <ptr target="http://sourceforge.net/projects/eppt/"/>.</p></note> developed by K. Kiernan or the <ref target="http://www3.iath.virginia.edu/seenet/elwoodinfo.htm">Elwood viewer</ref><note><p>Elwood Viewer, <ptr target="http://www3.iath.virginia.edu/seenet/elwoodinfo.htm"/>.</p></note> created by G. Lyman, either were not yet ready or were unsuitable for other reasons (proprietary software, user interface issues, specific hardware and/or software requirements).</p>
+        </div>
+        <div xml:id="standards">
+          <head>Standard vs. Fragmentation</head>
+          <p>We concluded that, while the TEI schemas and Guidelines are a solid foundation for philological work, this excellent standard is matched by an astounding diversity of publishing tools, particularly when it comes to digital editions, especially editions that include images of manuscripts. As a consequence, a single scholar, or a small group of researchers, can easily encode an image-based edition in TEI XML, but will have to look for further support and resources to publish it, which is a serious obstacle to greater acceptance of digital philology methods and techniques. While continuing to inquire about a good, community-tested solution, and in spite of being aware of the dangers coming from the so-called NIH (Not Invented Here) syndrome, we started looking into a project-specific solution that could fulfill our needs.</p>
+        </div>
+        <div xml:id="experiments">
+          <head>First Experiments</head>
+          <p>At first, however, EVT was more an experimental research project for students at the <ref target="http://infouma.di.unipi.it/laurea/index.asp">Informatica Umanistica course</ref> of the University of Pisa<note><p>BA course, <ptr target="http://infouma.di.unipi.it/laurea/index.asp"/>.</p></note> than a real attempt to solve the digital edition viewer problem. We aimed at investigating some user interface–related aspects of such a viewer, in particular certain usability problems that are often underestimated by similar projects (<ref type="bibl" target="#rosselli11">Rosselli Del Turco 2011</ref>), and at encouraging the use of standards to ensure the maximum longevity for the edition; we also considered releasing the source code as free software right from the start, since we firmly support open source and open access within the academic community. The first prototypes implemented on the basis of our concepts were promising, but eventually we reached a dead end: in spite of all our good intentions the User Interface (UI) looked cluttered; the software sported several secondary features, such as a rich text editing widget, but lacked critical ones (text-image linking, for instance), and was not fully stable, possibly as a result of too many widgets of different origins being used at the same time. On the architectural side, data was loaded straight into the web code, which had to be done by hand, with no options for configuration at all. In conclusion: not bad for a first attempt, but falling far short of our original goals.</p>
+        </div>
+      </div>
+      <div xml:id="currentEVT">
+        <head>The Current EVT Version</head>
+        <div xml:id="rebooting">
+          <head>EVT v. 2.0: Rebooting the Project</head>
+          <p>To get out of the impasse we decided to completely reboot the project, removing secondary features and giving priority to fundamental ones. We also found a solution for the data-loading problem: instead of finding a way to load the data into the software we decided to build the edition around the data itself. Making the TEI XML files the starting point means that the editor can focus on his work, marking up the transcription text, with very little configuration needed to create the edition. This approach also allowed us to quickly test XML files belonging to other edition projects, to check if EVT could go beyond being a project-specific tool. The inspiration for these changes came from work done in similar projects developed within the TEI community, namely <ref target="http://dcl.slis.indiana.edu/teibp/">TEI Boilerplate</ref>,<note><p>TEI Boilerplate, <ptr target="http://dcl.slis.indiana.edu/teibp/"/>.</p></note> John A. Walsh’s collection of <ref target="https://github.com/jawalsh/tei2html">XSLT stylesheets</ref>,<note><p><ident>tei2html</ident>, <ptr target="https://github.com/jawalsh/tei2html"/>.</p></note> and Solenne Coutagne’s work for the <ref target="https://sites.google.com/site/annebaillot/digitale-edition"><soCalled>Berliner Intellektuelle 1800–1830</soCalled></ref> project.<note><p>Digitale Edition <title level="m">Briefe und Texte aus dem intellektuellen Berlin um 1800</title>, <ptr target="https://sites.google.com/site/annebaillot/digitale-edition"/>.</p></note> Through this approach, we achieved two important results: first, usage of EVT is quite simple—the user applies an XSLT stylesheet to their already marked-up file(s), and when the processing is finished they are presented with a web-ready edition; second, the web edition that is produced is based on a client-only architecture and does not require any additional kind of server software, which means that it can be simply copied on a web server to be used at once, or even on a cloud storage service (provided that it is accessible by the general public).</p>
+          <p>To ensure that it will be working on all the most recent web browsers, and for as long as possible on the World Wide Web itself, EVT is built on open and standard web technologies such as HTML, CSS, and JavaScript. Specific features, such as the magnifying lens, are entrusted to jQuery plug-ins, again chosen from the best-supported open-source ones to reduce the risk of future incompatibilities. The general architecture of the software, in any case, is modular, so that any component which may cause trouble or turn out to be not completely up to the task can be replaced easily.</p>
+        </div>
+        <div xml:id="howitworks">
+          <head>How it Works</head>
+          <p>Our ideal goal was to have a simple, very user-friendly drop-in tool, requiring little work and/or knowledge of anything beyond XML from the editor. To reach this goal, EVT is based on a modular structure where a single stylesheet (<ident>evt_builder.xsl</ident>) starts a chain of XSLT 2.0 transformations calling in turn all the other modules. The latter belong to two general categories: those devoted to building the HTML site, and the XML processing ones, which extract the edition text lying between folios using the <gi>pb</gi> element and format it according to the edition level. All XSLT modules live inside the <ident>builder_pack</ident> folder, in order to have a clean and well-organized directory hierarchy.
+            <figure xml:id="fig1">
+              <graphic url="images/tei-8-rosselli-fig_1.png" width="484px" height="723px"/>
+              <head type="legend">The EVT <ident>builder_pack</ident> directory structure.</head>
+            </figure>
+          </p>
+          <p>Therefore, assuming the available formatting stylesheets meet your project’s criteria, to create a digital edition you only have to follow three simple steps:
+            <list rend="bulleted">
+              <item>copy the edition data into the data/input_data folder: there are different sub-folders for text (TEI XML documents) and images (these have to follow a specific naming convention);</item>
+            <item>optionally you can modify transformation options by editing <ident>evt_builder-conf.xsl</ident>, to specify for example the number of edition levels or presence of images;</item>
+              <item>you can then apply the <ident>evt_builder.xsl</ident> stylesheet to your TEI XML document using the Oxygen XML editor or another XSLT 2–compliant engine.</item>
+            </list>
+            <figure xml:id="fig2">
+              <graphic url="images/tei-8-rosselli-fig_2.png" width="485px" height="572px"/>
+              <head type="legend">The EVT data directory structure.</head>
+            </figure>
+          </p>
+          <p>When the XSLT processing is finished, the starting point for the edition is the <ident>index.html</ident> file in the root directory, and all the HTML pages resulting from the transformations will be stored in the <ident>output_data</ident> folder. You can delete everything in this latter folder (and the <ident>index.html</ident> file), modify the configuration options, and start again, and everything will be re-created in the assigned places.</p>
+        </div>
+        <div xml:id="stylesheets">
+          <head>The XSLT stylesheets</head>
+          <p>The transformation chain has two main purposes: generate the HTML files containing the edition and create the home page which will dynamically recall the other HTML files.</p>
+          <p>The EVT builder’s transformation system is composed of a modular collection of XSLT 2.0 stylesheets: these modules are designed to permit scholars to freely add their own stylesheets and to manage the different desired levels of the edition without influencing other parts of the system, for instance the generation of the home page.</p>
+          <p>The transformation is performed applying a specific XSLT stylesheet (<ident>evt_builder.xsl</ident>) which includes links to all the other stylesheets that are part of the transformation chain and that will be applied to the TEI XML document containing the transcription.</p>
+          <p>EVT can be used to create image-based editions with different edition levels starting from a single encoded text. The text of the transcription must be divided into smaller parts to recreate the physical structure of the manuscript. Therefore, it is essential that paginated XML documents are marked using a TEI page break element (<gi>pb</gi>) at the start of each new page or folio side, so that the transformation system will be able to recognize and handle everything that stands between a <gi>pb</gi> element and the next one as the content of a single page.</p>
+          <p>The system is designed to generate an arbitrary number of edition levels: as a consequence, the user is required to indicate how many (and which) output levels they intend to create by modifying the corresponding parameter in the configuration file.</p>
+          <p>The following code segment shows the default configuration with two edition levels:
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <xsl:variable name="edition_array" as="element()*" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+                <edition>Diplomatic</edition>
+                <edition>Interpretative</edition>
+              </xsl:variable>
+            </egXML>
+          </p>
+          <p>The user can change the number of output levels simply by adding or removing an <gi>edition</gi> element in the <ident>evt_builder-conf.xsl</ident> file, and they can also personalize the edition’s name by changing the content of the <gi>edition</gi> element. For example, if they wish to generate a critical level, they are required to add <code>&lt;edition>Critical&lt;/edition></code> to the <ident>edition_array</ident> variable.<note><p>The available edition levels are described in the software documentation. Adding another edition level requires providing the corresponding stylesheet.</p></note></p>
+          <p>Once the XML file is ready and the parameters are set, the EVT builder’s transformation system uses a collection of stylesheets to divide the XML file containing the text of the transcription into smaller portions, each one corresponding to the content of a folio, recto or verso, of the manuscript. For each of these text fragments it creates as many output files as requested by the file settings.</p>
+          <p>In order to create the contents of these files, templates required to handle the edition level are selected by using the value of their <att>mode</att> attribute. For example, by associating the transformation for the diplomatic edition to the <ident>dipl</ident> mode, the correct content of the pages of this edition is obtained applying the templates that have <val>dipl</val> as value for <att>mode</att>. This requires that each one of the pages selected by the system is processed by an <!-- [RvdB] changed "current-group" to "current-group()" --><tag type="empty">xsl:apply-templates select="current-group()" mode="dipl"</tag> instruction before its content is inserted into the diplomatic output file.</p>
+          <p>Using XSLT modes it is possible to separate the rules for the different transformations of a TEI element and to recall other XSLT stylesheets in order to manage the transformations or send different parts of a document to different parts of the transformation chain. This permits the extraction of different texts for different edition levels (diplomatic, diplomatic-interpretative) processing the same XML file, and to save them in the HTML site structure, which is available as a separate XSLT module.</p>
+          <p>The use of modes also allows users to separate template rules for the different transformations of a TEI element and to place them in different XSLT files or in different parts of a single stylesheet. So templates such as the following
+            <egXML xmlns="http://www.tei-c.org/ns/Examples"><xsl:template match="tei:abbr" mode="dipl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"/></egXML>
+            and
+            <egXML xmlns="http://www.tei-c.org/ns/Examples"><xsl:template match="tei:abbr" mode="int" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"/></egXML>
+            can be placed in different stylesheets or in different parts of the same stylesheet without generating conflicts.</p>
+          <p>If the TEI elements that are processed are placed in an HTML element and these elements’ <att>class</att> attribute values are based on the scheme <ident>[edition_level]-[TEI_element’s_name]</ident>,<note><p>For example, to process the element <gi>abbr</gi> for the diplomatic edition: <ident>dipl-abbr</ident>.</p></note> it is then possible to retain the semantic information contained in the markup and, if necessary, to associate the element with the corresponding class in the CSS rules so as to specify the visualization and highlighting of the item.</p>
+          <p>As already stated above, the editors will be able to freely add their own stylesheets in order to personally manage the different levels of the desired edition. What is required from users is to:
+            <list rend="bulleted">
+              <item>personalize the edition generation parameter as shown above;</item>
+              <item>copy their own XSLT files containing the template rules to generate the desired edition levels in the directory that contains the stylesheets used for TEI element transformation (<ident>builder_pack/modules/elements</ident>);</item>
+              <item>include the new stylesheets in the file used to start the transformation chain (<ident>builder_pack/evt_builder.xsl</ident>);</item>
+              <item>associate a mode value to the new edition level transformation;</item>
+              <item>add a <att>mode</att> attribute with the corresponding value to all the template rules used for that transformation.</item>
+            </list>
+          </p>
+          <p>For the time being, this kind of customization has to be done by hand-editing the configuration files, but in a future version of EVT we plan to add a more user-friendly way to configure the system.</p>
+        </div>
+        <div xml:id="features">
+          <head>Features</head>
+          <p>At present, EVT can be used to create image-based editions with two possible edition levels: diplomatic and diplomatic-interpretative; this means that a transcription encoded using elements belonging to the appropriate TEI module<note><p>See chapter 11, <title level="a">Representation of Primary Sources</title>, in the <ref type="bibl" target="#tei14">TEI Guidelines</ref>.</p></note> should already be compatible with EVT, or require only minor changes to be made compatible. The Vercelli Book transcription schema is based on the standard TEI schema, with no custom elements or attributes added: our tests with similarly encoded texts showed a high grade of compatibility. A critical edition level is currently being researched and it will be added in the future.</p>
+          <p>When the website produced by EVT is loaded in a browser, the viewer will be presented with the manuscript image on the left side, and the corresponding text on the right: this is the default view, but on the main toolbar at the top right corner of the browser window there are icons to access all the available views:
+            <list>
+              <item><soCalled>Image-Text</soCalled> view: as mentioned above, this is the default view showing a manuscript folio image and the corresponding text in one or more edition levels;</item>
+              <item><soCalled>Text-Text</soCalled> view: conceived to compare different edition levels, which can be chosen by means of the drop-down menu in the text frame toolbar;</item>
+              <item><soCalled>Bookreader</soCalled>: this view expands the image frame to show double-side images of the manuscript (that is showing the <emph>verso</emph> side of a folio and the following one’s <emph>recto</emph> side). At the moment it is necessary that these images be double-sided; in a future version of EVT it will be possible to place single folio images side-by-side and to browse them in a synchronized way.</item>
+            </list>
+            <figure xml:id="fig3">
+              <graphic url="images/tei-8-rosselli-fig_3.png" width="1280px" height="800px"/>
+              <head type="legend">The bookreader view.</head>
+            </figure>
+          </p>
+          <p>It is interesting to notice how the <soCalled>bookreader</soCalled> view is automatically populated with content during the transformation phase with no action required by the editor. The only necessary requirement at the encoding level, in fact, is that the editor should encode folio numbers by means of the <gi>pb</gi> element including <mentioned>r</mentioned> and <mentioned>v</mentioned> letters to mark recto and verso pages, respectively. EVT will take care of automatically associating each folio to the images copied in the <ident>input_data/images</ident> folder using a <soCalled>verso-recto</soCalled> naming scheme (for example: <ident>104v-105r.png</ident>). It is of course possible that in some cases the transformation process is unable to return the correct result: this is why we decided to save this kind of information in an XML file, <ident>structure.xml</ident>, separate and independent from the HTML interface; this file will be updated automatically every time the transformation process is started and can be customized by the editor.</p>
+          <p>Although the different views access different kinds of content, such as single side and double side images, the navigation algorithms used by EVT allow the user to move from one view to another without losing the current browsing position.</p>
+          <p>All content is shown inside HTML frames designed to be as flexible as possible. No matter what view one is currently in, one can expand the desired frame to focus on its specific content, temporarily hiding the other components of the user interface. It is furthermore possible to collapse the frame toolbars to increase the space devoted to content visualization; it is important to notice, however, that we recommend using EVT in full-screen mode to see images and text at the maximum possible screen resolution. The collapse and restore actions are triggered by icons embedded in the interface, but one can also press the <ident>Esc</ident> key to instantly return to the default layout.</p>
+          <p>On the image side, several tools are available to improve analysis of manuscript images. The zoom feature is always active, so that the user can zoom in or out at any time by means of the mouse scroll wheel or using the appropriate slider in the bottom toolbar. More tools are available on the top toolbar:
+            <list rend="bulleted">
+              <item><soCalled>Magnifier</soCalled>: a magnifying lens to explore the manuscript images in greater detail; the lens shows an area of a high resolution version of the same folio image, which means a better view compared to the standard zoom feature.</item>
+              <item><soCalled>HotSpot</soCalled>: if activated, areas of the images for which there are specific notes and/or details will be highlighted. Clicking on them will call up a pop-up window with the related information. This feature is quite recent and still needs to be refined; the pop-up window may be replaced by a better solution. </item>
+              <item><soCalled>TextLink</soCalled>: when this feature is active, lines in the manuscript are highlighted and linked to the corresponding lines of the edition text, and vice versa.</item>
+              <item><soCalled>Thumbnails</soCalled>: will show miniature images for all the available manuscript digitized folios.</item>
+            </list>
+          </p>
+          <p>The image-text feature is inspired by Martin Holmes’s <ref target="http://www.tapor.uvic.ca/~mholmes/image_markup/">Image Markup Tool</ref><note><p>The UVic Image Markup Tool Project, <ptr target="http://www.tapor.uvic.ca/~mholmes/image_markup/"/>.</p></note> software and was implemented in XSLT and CSS; all the other features are achieved by using jQuery plug-ins.</p>
+          <p>In the text frame tool bar you can see three drop-down menus which are useful for choosing texts, specific folios, and edition levels, and an icon that triggers the search functionality. Again, the editor can modify the <ident>structure.xml</ident> file to change the text-related information, or even to exclude some of the images from the navigation system.</p>
+        </div>
+        <div xml:id="usecase">
+          <head>A First Use Case</head>
+          <p>On December 24, 2013, after extensive testing and bug fixing work, the EVT team published a beta version of the <ref target="http://vbd.humnet.unipi.it/beta/">Digital Vercelli Book</ref> edition,<note><p>Full announcement on the project blog, <ptr target="http://vbd.humnet.unipi.it/?p=2047"/>. The beta edition is directly accessible at <ptr target="http://vbd.humnet.unipi.it/beta/"/>.</p></note> soliciting feedback from all interested parties. Shortly afterwards, the version of the EVT software we used, improved by more bug fixes and small enhancements, was made available for the academic community on <ref target="http://sourceforge.net/projects/evt-project/">the project’s SourceForge site</ref>.<note><p>Edition Visualization Technology: Digital edition visualization software, <ptr target="http://sourceforge.net/projects/evt-project/"/>.</p></note>
+          <figure xml:id="fig4">
+            <graphic url="images/tei-8-rosselli-fig_4.png" width="1280px" height="800px"/>
+            <head type="legend">The Digital Vercelli Book edition based on EVT v. 0.1.48. Image-text linking is active.</head>
+          </figure>
+          </p>
+        </div>
+      </div>
+      <div xml:id="futuredevelopments">
+        <head>Future Developments</head>
+        <p>EVT development will continue during 2014 to fix bugs and to improve the current set of features, but there are also several important features that will be added or that we are currently considering for inclusion in EVT. Some of the planned features will require fundamental changes to the software architecture to be implemented effectively: this is probably the case for the Digital Lightbox (see <ptr type="crossref" target="#lightbox"/>), which requires a client-server architecture (<ptr type="crossref" target="#architecture"/>), instead of the current client-only model, to perform some of the existing and planned actions. The currently developed search engine (<ptr type="crossref" target="#searchengine"/>) may prove too limited when dealing with larger text collections, but thanks to the new architecture it will be possible to consider new, more powerful solutions.</p>
+        <div xml:id="layout">
+          <head>New Layout</head>
+          <p>One important aspect that has been introduced in the current version of EVT is a completely revised layout: the current user interface includes all the features which were deemed necessary for the Digital Vercelli Book beta, but it also is ready to accept the new features planned for the short and medium terms. Note that nontrivial changes to the general appearance and layout of the resulting web edition will be necessary, and this is especially the case for the XML search engine and for the critical edition support. Fortunately the basic framework is flexible enough to be easily expanded by means of new views or a redesign of the current ones.</p>
+        </div>
+        <div xml:id="searchengine">
+          <head>Search Engine</head>
+          <p>The EVT search engine is already working and being tested in a separate development branch of the software; merging into the main branch is expected as soon as the user interface is finalized. It was implemented with the goal of keeping it simple and usable for both academics and the general public.</p>
+          <p>To achieve this goal we began by studying various solutions that could be used as a basis for our efforts. In the first phases of this study we looked at the principal XML databases, such as of BaseX, eXist, etc., and we found a solution by envisioning EVT as a distributed application using the client-server architecture. For this test we selected the <ref target="http://exist-db.org/">eXist</ref><note><p>eXist-db, <ptr target="http://exist-db.org/"/>.</p></note> open source XML database, and in a relatively short time we created, sometimes by trial-and-error, a prototype that queried the database for keywords and highlighted them in context.</p>
+          <p>While this model was a step in the right direction and partially operational, we also felt that it was not sufficiently user-friendly, which is a critical goal of the entire project. In fact, forcing the editor to install and configure specific server software is a cumbersome requirement. Moreover, thanks to its client-only architecture, up to this point EVT could work as a desktop application or an off-line web application that could be accessed anywhere, and possibly distributed in optical formats (CD or DVD). Forcing the prerequisites of an Internet connection and of dependency on a server-based XML database would have undermined our original goal. Going the database route was no longer an option for a client-only EVT and we immediately felt the need to go back to our original architecture to meet this standard. This sudden turnaround marked another chapter in the research process and brought us to the current implementation of EVT Search.</p>
+          <p>However, this new vision also had obvious limitations and issues. An XML database could provide us with crucial functionality typical of every information retrieval system: an indexer, a powerful and flexible server-side language (XQuery), and some useful built-in functions for semantic and linguistic analysis (such as keyword in context and concordances). It became clear that our implementation should take those missing functionalities into account and consider alternative technologies.</p>
+          <p>To simplify the planning process, we focused on the bare functionalities that would be expected by the user. Essentially, we found that at least two of them were needed in order to make a functional search engine: free-text search and keyword highlighting. To implement them we looked at existing search engines and plug-ins programmed in the most popular client-side web language: JavaScript. In the end, our search produced two answers: <emph>Tipue Search</emph> and <emph>DOM manipulation</emph>.</p>
+          <div xml:id="tipue">
+            <head>Tipue Search</head>
+            <p><ref target="http://www.tipue.com/search/">Tipue search</ref><note><p>Tipue Search, <ptr target="http://www.tipue.com/search/"/>.</p></note> is a jQuery plug-in search engine released under the MIT license and aimed at indexing and searching large collections of web pages. It can function both offline and online, and it does not necessarily require a web server or a server-side programming/query language (such as SQL, PHP, or Python) in order to work. While technically a plug-in, its architecture is quite interesting and versatile: Tipue uses a combination of client-side JavaScript for the actual bulk of the work, and JSON (or JavaScript object literal) for storing the content. By accessing the data structure, this engine is able to search for a relevant term and bring back the matches.</p>
+            <p>Tipue Search operates in three modes:
+              <list rend="bulleted">
+                <item>in <emph>Static mode</emph>, Tipue Search operates without a web server by accessing the contents stored in a specific file (<ident>tipuedrop_content.js</ident>); these contents are presented in JSON format;</item>
+                <item>in <emph>Live mode</emph>, Tipue Search operates with a web server by indexing the web pages included in a specific file (<ident>tipuesearch_set.js</ident>);</item>
+                <item>in <emph>JSON mode</emph>, Tipue Search operates with a web server by using AJAX to load JSON data stored in specific files (as defined by the user).</item>
+              </list>
+            </p>
+            <p>This plug-in suited our needs very well, but had to be modified slightly in order to accommodate the requirements of the entire project. Before using Tipue to handle the search we needed to generate the data structure that was going to be used by the engine to perform the queries. We explored some existing XSL stylesheets aimed at TEI to JSON transformation, but we found them too complex for the task at hand. So we modified our own stylesheets to produce the desired output.</p>
+            <p>This output consists of two JSON files:
+              <list rend="bulleted">
+                <item><ident>diplomatic.json</ident> contains the text of the diplomatic edition of the Vercelli Book;</item>
+                <item><ident>facsimile.json</ident> contains the text of the facsimile edition of the Vercelli Book.</item>
+              </list>
+            </p>
+            <p>These files are produced by including two templates in the overall flow of XSLT transformations that extract crucial data from the TEI documents and format them with JSON syntax. The procedure complements well the entire logic of automatic self-generation that characterizes EVT.</p>
+            <p>After we managed to extract the correct data structure, we began to include the search functionality in EVT. By using the logic behind Tipue JSON mode, we implemented a trigger (under the shape of a select tag) that loaded the desired JSON data structure to handle the search (diplomatic or facsimile, as mentioned above) and a form that managed the query strings and launched the search function. Additionally, we decided to provide the user with a simple virtual keyboard composed of essential keys related to the Anglo-Saxon alphabet used in the Vercelli Book.</p>
+            <p>The performance of Tipue Search was deemed acceptable and our tests showed that even large collections of data did not pose any particular problem.</p>
+            <figure xml:id="fig5">
+              <graphic url="images/tei-8-rosselli-fig_5.png" width="1107px" height="755px"/>
+              <head type="legend">Experimental search interface.</head>
+            </figure>
+          </div>
+          <div xml:id="dom">
+            <head><!-- [RvdB] shouldn't this be "DOM Manipulation" (see end of introduction to §3.2)? -->
+              <!-- [MDH] Clarified it a bit by adding "through DOM Manipulation". -->Keyword Highlighting through DOM Manipulation</head>
+            <p>The solution to keyword highlighting was found while searching many plug-ins that deal with this very problem. All these plug-ins use JavaScript and DOM manipulation in order to wrap the HTML text nodes that match the query with a specific tag (a span or a user-defined tag) and a CSS class to manage the style of the highlighting. While this implementation was very simple and self-explanatory, making use of simple recursive functions on relevant HTML nodes has proved to be very difficult to apply to the textual contents handled by EVT.</p>
+            <p>HTML text within EVT is represented as a combination of text nodes and <gi>span</gi> elements. These spans are used to define the characteristics of the current selected edition. They contain both philological information about the inner workings of the text and information about its visual representation. Very often the text is composed of spans that handle different versions of words (such as the sub-elements of the TEI <gi>choice</gi> element) or highlight an area of a word (based on the TEI <gi>hi</gi> element, for example).</p>
+            <p>This type of markup would not have constituted a problem if it had wrapped complete words, since the plug-ins could recursively explore its content and search for a matching term. In certain portions of the text, however, some letters are separated by a span from the rest of the word (for example: <code>&lt;span>H&lt;/span>ello</code>). Since the plug-ins worked on the level of text nodes, a word split by spans would be seen as two different text nodes (for example: <mentioned>H</mentioned> and <mentioned>ello</mentioned>) and could not be matched by the query, making the standard transversal algorithm of the plug-ins impossible to use without any further substantial modifications.</p>
+            <p>To solve this problem we recreated the transversal algorithm entirely, making it more intelligent and context-sensitive. In order to do so, we explored the text to be highlighted by using a map that kept track of all the spans and text nodes and their starting and ending position in this flow. At the end of the process, we simply inserted the span elements (or the user-defined elements) in the positions marked by the map.
+              <figure xml:id="fig6">
+                <graphic url="images/tei-8-rosselli-fig_6.png" width="468px" height="92px"/>
+                <head type="legend">Highlighting of search results in the normal view.</head>
+              </figure>
+            </p>
+            <p>We found the performance of this solution acceptable and our text showed that even dynamic highlighting (performed as the user inputs text) posed no problem for this implementation.</p>
+          </div>
+        </div>
+        <div xml:id="embeddedcritical">
+          <head>Embedded Transcription and Critical Edition Support</head>
+          <div xml:id="embedded">
+            <head>Embedded Transcription</head>
+            <p>In some contexts, such as encoding of epigraphical texts, the text transcribed is conceived more as a help for a better understanding of what is written on the object’s surface than as a stand-alone edition. This kind of transcription can be encoded by means of the embedded transcription method as described in section 11.2.2 of the <ref type="bibl" target="#tei14">TEI Guidelines</ref>,<note><p>See <title level="a">Embedded Transcription</title>, <ptr target="http://www.tei-c.org/Vault/P5/2.6.0/doc/tei-p5-doc/en/html/PH.html#PHZLAB"/>.</p></note> in which words and other written traces are not supplied in a <gi>text</gi> in parallel with a <gi>facsimile</gi>, but are encoded as subcomponents of the elements representing the physical surfaces inside <gi>sourceDoc</gi>. The text transcribed, therefore, is not separated from the information about the image, but is placed inside a <gi>zone</gi> element, which defines two-dimensional areas within a <gi>surface</gi>, and is transcribed using one or more <gi>line</gi> elements.</p>
+            <p>Originally EVT could not handle this particular encoding method, since the XSLT stylesheets could only process TEI XML documents encoded according to the traditional transcription method. Since we think that this is a concrete need in many cases of study (mainly epigraphical inscriptions, but also manuscripts, at least in some specific cases), we recently added a new feature that will allow EVT to handle texts encoded according to the embedded transcription method. This work was possible due to a small grant awarded by EADH.<note><p>See EADH Small Grant: Call for Proposals, <ptr target="http://eadh.org/support/eadh-small-grants-call-proposals"/>.</p></note></p>
+          </div>
+          <div xml:id="critical">
+            <head>Support for Critical Edition</head>
+            <p>One important feature whose development will start at some point this year is the support for critical editions, since at the present moment EVT allows dealing only with diplomatic and interpretative ones. We aim not only to offer full support for the TEI Critical Apparatus module, but also to find an innovative layout that can take advantage of the digital medium and its dynamic properties to go beyond the traditional, static, printed page: <quote source="#quoteref1">The layers of footnotes, the multiplicity of textual views, the opportunities for dramatic visualization interweaving the many with each other and offering different modes of viewing the one within the many—all this proclaims <q>I am a hypertext: invent a dynamic device to show me</q>. The computer is exactly this dynamic device</quote> (<ref type="bibl" xml:id="quoteref1" target="#robinson05">Robinson 2005, § 12</ref>).</p>
+            <p>A digital edition can, of course, maintain the traditional layout, possibly moving the apparatus from the bottom of the page to a more convenient position, but could and should also explore different ways of organizing and displaying the connection between edition text and the critical apparatus: even if an electronic screen is just as limited by its two-dimensional form factor as a printed book, there are several ways to overcome this limitation, which we intend to research and test until we find an effective solution.</p>
+            <p>Furthermore, a real added value granted by the digital medium is the opportunity to transcribe completely every witness and to visualize the different readings of each one in the wider context of the text of the witness itself, and not only as a single, isolated variant inside the critical apparatus. In fact, thanks to hypertextual links, it is possible to connect every single entry to the precise fragment of text where it belongs, allowing a deeper study and an easier comparison of the main text and the variant texts. A tool based on this approach would really take advantage of the dynamic and hypertextual nature of a web-based edition.</p>
+            <p>Some of the problems related to this approach are related to the user interface and the way it should be designed in order to be usable and useful: how to conceive and where to place the graphical widgets holding the critical apparatus, how to integrate these UI elements in EVT, how to contextualize the variants and navigate through the witnesses’ texts, and more. There are other problems, for instance scalability issues (how to deal with very big textual traditions that count tens or even hundreds of witnesses?) or the handling of texts produced by collation software, which strictly depend on the current TEI Critical Apparatus module. Considering that there is a subgroup of the TEI’s Manuscript Special Interest Group devoted to significantly improving this module, we can only hope that at least some of these problems will be addressed in a future version.</p>
+          </div>
+          
+        </div>
+        <div xml:id="lightbox">
+          <head>Digital Lightbox</head>
+          <p>Developed first at the University of Pisa, and then at King’s College London as part of the <ref target="http://www.digipal.eu/">DigiPal</ref><note><p>DigiPal: Digital Resource and Database of Palaeography, Manuscript Studies and Diplomatic, <ptr target="http://www.digipal.eu/"/>.</p></note> project, the <ref target="http://lightbox-dev.dighum.kcl.ac.uk">Digital Lightbox</ref><note><p>A beta version is available at <ptr target="http://lightbox-dev.dighum.kcl.ac.uk"/>.</p></note> is a web-based visualization framework which aims to support historians, paleographers, art historians, and others in analyzing and studying digital reproductions of cultural heritage objects. The methodology of research inspiring development of this tool is to study paleographic elements in a qualitative way, helping scholars’ interpretations as much as possible, and therefore to reject any automatic methods such as pattern recognition and clustering which are supposed to return quantitative and objective results. Although ongoing projects making use of these computational methods are very promising, the results that may be obtained at this time are still significantly less precise (with regard to specific image features, at least) than those produced through human interpretation.</p>
+          <p>Initially developed exclusively for paleographic research, the Digital Lightbox may be used with any type of image because it includes a set of general graphic tools. Indeed, the application allows a detailed and powerful analysis of one or more images, arranged in up to two available workspaces, providing tools for manipulation, management, comparison, and transformation of images. The development of this project is consistently tested by paleographers at King’s College London working on the DigiPal project, who are using the web application as a support for analyzing and gathering samples of paleographic elements.</p>
+          <p>The software offers a rich set of tools: besides basic functions such as resizing, rotation, and dragging, it is possible to use a set of filters—such as opacity, brightness, color inversion, grayscale effect, and contrast—which, used in combination, are able to significantly improve the quality of digital images or specific areas of them. For example, one of the possible applications for filters is the improvement of burned or otherwise damaged manuscripts, which are obviously much more difficult to read and transcribe. Images can also be compared using an automatic tool which allows the user to merge two images, returning a third one made up of the differences between them. A typical application of the combined use of these tools is the disambiguation of different types of the same character (allographs, according to the DigiPal terminology).
+            <figure xml:id="fig7">
+              <graphic url="images/tei-8-rosselli-fig_7.png" width="1366px" height="768px"/>
+              <head type="legend">Comparison and disambiguation of allographs in the Digital Lightbox.</head>
+            </figure>
+          </p>
+          <p>Collaboration is a very important characteristic of Digital Lightbox: what makes this tool stand apart from all the image-editing applications available is the possibility of creating and sharing the work done using the software framework. First, you can create collections of images and then export them to the local disk as an XML file; this feature not only serves as a way to save the work, but also to share specific collections with other users. Moreover, it is possible to export (and, consequently, to import) working sessions, or, in other words, the current status of the work being done using the application: in fact, all the images, letters, and notes present on the workspace will be saved when the user leaves and restored when they log in again. These features have been specifically created to encourage sharing and to make collaborative work more effective and easy. Thanks to a new HTML5 feature, it is possible to support the importing of images from the local disk to the application without any server-side function.</p>
+          <p>Digital Lightbox has been developed using some of the latest web technologies available, such as HTML5, CSS3, the front-end framework <ref target="http://getbootstrap.com/">Bootstrap</ref>,<note><p>Bootstrap, <ptr target="http://getbootstrap.com/"/>.</p></note> and the JavaScript (ECMAScript 6) programming language, in combination with the <ref target="http://jquery.com/">jQuery</ref> library.<note><p><ptr target="http://jquery.com/"/>.</p></note> The code architecture has been designed to be modular and easily extensible by other developers or third parties: indeed, it has been released as open source software on GitHub,<note><p>Digital Lightbox, <ptr target="https://github.com/Gbuomprisco/Digital-Lightbox/"/>.</p></note> and is freely available to be downloaded, edited, and tinkered with.</p>
+          <p>The Digital Lightbox represents a perfect complementary feature for the EVT project: a graphic-oriented tool to explore, visualize, and analyze digital images of manuscripts. While EVT provides a rich and usable interface to browse and study manuscript texts together with the corresponding images, the tools offered by the Digital Lightbox allow users to identify, gather, and analyze visual details which can be found within the images, and which are important for inquiries relating, for instance, to the style of the handwriting, decorations on manuscript folia, or page layout.</p>
+          <p>An effort to adapt and integrate the Digital Lightbox into EVT is already underway, making it available as a separate, image-centered view, but there is a major hurdle to overcome: some of the DL features are only possible within a client-server architecture. Since EVT or, more precisely, a separate version of EVT will migrate to this architecture, at some point in the future it will be possible to integrate a full version of the DL. Plans for the current, client-only version envision implementing all those features that do not depend on server software: even if this means giving up interesting features such as collaborative work and annotation, we believe that even a subset of the available tools will be an invaluable help for manuscript image analysis. Furthermore, as noted above, thanks to HTML5 and CSS3 it will become more and more feasible to implement features in a client-only mode.</p>
+        </div>
+        <div xml:id="architecture">
+          <head>New Architecture</head>
+          <p>In September 2013 we met with researchers of the <ref target="http://claviusontheweb.it/web/index.php">Clavius on the Web</ref> project<note><p>See <ptr target="http://claviusontheweb.it/web/index.php"/>. A preliminary test using a previous version of EVT is available at <ptr target="http://claviusontheweb.it/EVT/"/>.</p></note> to discuss a possible use of EVT in order to visualize the documents that they are collecting and encoding; the main goal of the project is to produce a web-based edition of all the correspondence of this important sixteenth–seventeenth-century mathematician.<note><p>Currently preserved at the Archivio della Pontificia Università Gregoriana.</p></note> The integration of EVT with another web framework used in the project, the eXist XML database, will require a very important change in how the software works: as mentioned above, everything from XSLT processing to browsing of the resulting website has been done on the client side, but the integration with eXist will require a move to the more complex client-server architecture. A version of EVT based on this architecture would present several advantages, not only the integration of a powerful XML database, but also the implementation of a full version of the Digital Lightbox. We will try to make the move as painless as possible and to preserve the basic simplicity and flexibility that has been a major feature of EVT so far. The client-only version will not be abandoned, though for quite some time there will be parallel development with features trickling from one version to the other, with the client-only one being preserved as a subset of the more powerful one.</p>
+        </div>
+      </div>
+      <div xml:id="conclusion">
+        <head>Conclusion</head>
+        <p>Started as an experimental, project-based learning initiative to explore issues related to the publishing of TEI-encoded digital editions, this software has grown to the point of being a potentially very useful tool for the TEI community: since it requires little configuration, and no knowledge of programming languages or web frameworks except for what is needed to apply an XSLT stylesheet, it represents a user-friendly method for producing image-based digital editions. Moreover, its client-only architecture makes it very easy to test the edition-building process (one has only to delete the output folders and start anew) and publish preliminary versions on the web (a shared folder on any cloud-based service such as Dropbox is all that is needed).</p>
+        <p>While EVT has been under development for 3–4 years, it was thanks to the work and focus required by the Digital Vercelli Book release at end of 2013 that we now have a solid foundation on which to build new features and refine the existing ones. Some of the future expansions also pose important research questions: this is the case with the critical edition support, which touches a sensitive area of the very recent digital philology discipline.<note><p>Digital philology makes use of ICT methods and tools, such as text encoding, in the context of textual criticism and philological study of documents to produce digital editions of texts. While many of the first examples of such editions were well received (see for instance <ref type="bibl" target="#kiernan13">Kiernan 2013</ref>; also see <ref type="bibl" target="#siemens12">Siemens 2012</ref> for an example of the new theoretical possibilities allowed by the digital medium), serious doubts concerning not only their durability and maintainability, but also their methodological effectiveness, have been raised by some scholars. The debate is still ongoing, see <ref type="bibl" target="#gabler10">Gabler 2010</ref>, <ref type="bibl" target="#robinson05">Robinson 2005</ref> and <ref type="bibl" target="#robinson13">2013</ref>, <ref type="bibl" target="#rosselli14">Rosselli Del Turco, forthcoming</ref>.</p></note> The collaborative work features of the Digital Lightbox are also critical to the way modern scholars interact and share their research findings. Finally, designing a user interface capable of hosting all the new features, while remaining effective and user-friendly, will itself be very challenging.</p>
+      </div>
+    </body>
+    <back>
+      <div type="appendix">
+        <head>The EVT Team</head>
+        <list type="gloss">
+          <label>Project lead:</label>
+          <item>Roberto Rosselli Del Turco</item>
+          <label>UI design, HTML programming:</label>
+          <item>Roberto Rosselli Del Turco, Julia Kenny, and Raffaele Masotti</item>
+          <label>XSLT framework and graphic plug-ins:</label>
+          <item>Julia Kenny and Raffaele Masotti</item>
+          <label>XML search engine:</label>
+          <item>Jacopo Pugliese</item>
+          <label>Critical edition and embedded transcription support:</label> 
+          <item>Chiara Di Pietro</item>
+          <label>Digital Lightbox:</label> 
+          <item>Giancarlo Buomprisco</item>
+        </list>
+        <p>EVT website: <ptr target="http://sourceforge.net/projects/evt-project/"/></p>
+      </div>
+      <div type="bibliography">
+        <listBibl>
+          <bibl xml:id="gabler10"><author>Gabler, Hans Walter</author>. <date>2010</date>. <title level="a">Theorizing the Digital Scholarly Edition</title>. <title level="j">Literature Compass</title> <biblScope unit="volume">7</biblScope>(<biblScope unit="issue">2</biblScope>): <biblScope unit="page">43–56</biblScope>. doi:<idno type="doi">10.1111/j.1741-4113.2009.00675.x</idno>.</bibl>
+          <bibl xml:id="kiernan13"><editor>Kiernan, Kevin S.</editor>, ed. <date>2013</date>. <title level="m">The electronic Beowulf</title>. <edition>3rd edition</edition>. <pubPlace>London</pubPlace>: <publisher>British Library</publisher>. CD-ROM.</bibl>
+          <bibl xml:id="robinson05"><author>Robinson, Peter</author>. <date>2005</date>. <title level="a">Current Issues in Making Digital Editions of Medieval Texts—Or, Do Electronic Scholarly Editions Have a Future?</title> <title level="j">Digital Medievalist</title> <biblScope unit="issue">1.1</biblScope>. <ptr target="http://www.digitalmedievalist.org/journal/1.1/robinson/"/>.</bibl>
+          <bibl xml:id="robinson13"><author>Robinson, Peter</author>. <date>2013</date>. <title level="a">Towards a Theory of Digital Editions</title>. <title level="j">Variants: The Journal of the European Society for Textual Scholarship</title> <biblScope unit="issue">10</biblScope>: <biblScope unit="page">105–31</biblScope>.</bibl>
+          <bibl xml:id="rosselli11"><author>Rosselli Del Turco, Roberto</author>. <date>2011</date>. <title level="a">After the Editing is Done: Designing a Graphic User Interface for Digital Editions</title>. <title level="j">Digital Medievalist</title> <biblScope unit="issue">7</biblScope> <ptr target="http://www.digitalmedievalist.org/journal/7/rosselliDelTurco/"/>.</bibl>
+          <bibl xml:id="rosselli14"><author>Rosselli Del Turco, Roberto</author>. <date>Forthcoming</date>. <title level="a">The Battle We Forgot to Fight: Should We Make a Case for Digital Editions?</title> In <title level="m">Digital Scholarly Editing: Theory, Practice and Future Perspectives</title>, edited by <editor>Matthew Driscoll</editor> and <editor>Elena Pierazzo</editor>. <pubPlace>Cambridge</pubPlace>: <publisher>Open Book Publishers</publisher>.</bibl>
+          <bibl xml:id="siemens12"><author>Siemens, Ray</author>, <author>Meagan Timney</author>, <author>Cara Leitch</author>, <author>Corina Koolen</author>, and <author>Alex Garnett</author>. <date>2012</date>. <title level="a">Toward Modeling the <emph>Social</emph> Edition: An Approach to Understanding the Electronic Scholarly Edition in the Context of New and Emerging Social Media</title>. <title level="j">Literary and Linguistic Computing</title> <biblScope unit="volume">27</biblScope>(<biblScope unit="issue">4</biblScope>): <biblScope unit="page">445–61</biblScope>. doi:<idno type="doi">10.1093/llc/fqs013</idno>.</bibl>
+          <bibl xml:id="tei14"><orgName>TEI Consortium</orgName>. <date>2014</date>. <title level="m">TEI P5: Guidelines for Electronic Text Encoding and Interchange</title>. <edition>Version 2.7.0</edition>. Last updated on September 16, 2014. <pubPlace>N.p.</pubPlace>: <publisher>TEI Consortium</publisher>. <ptr target="http://www.tei-c.org/Vault/P5/2.7.0/doc/tei-p5-doc/en/html/index.html"/>.</bibl></listBibl>       
+      </div>
+    </back>
+  </text>
+</TEI>

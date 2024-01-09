@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="main">The TEI Critical Apparatus Toolbox</title>
+        <title type="sub">Empowering Textual Scholars through Display, Control, and Comparison Features</title>
+        <author>
+          <name>
+            <forename>Marjorie</forename>
+            <surname>Burghart</surname>
+          </name>
+          <affiliation>Marjorie Burghart is a permanent <roleName>Research Fellow</roleName> at the French <orgName>National Center for Academic Research</orgName> (CNRS - Centre National de la Recherche Scientifique). She works at the UMR 5648 CIHAM Research Centre, where she conducts research as a medievalist and digital humanist.</affiliation>
+          <email>marjorie.burghart@ehess.fr</email>
+        </author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>TEI Consortium</publisher>
+        <date>07/12/2016</date>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by/4.0/">
+            <p>For this publication a Creative Commons Attribution 4.0 International license has been granted by the author(s) who retain full copyright.</p>
+          </licence> 
+        </availability>
+      </publicationStmt>
+      <seriesStmt>
+        <title level="j">Journal of the Text Encoding Initiative</title>
+        <editor role="guest">Marjorie Burghart</editor>
+        <editor role="guest">Emmanuelle Morlock</editor>
+        <editor role="chief">John Walsh</editor>
+        <editor role="managing">Anne Baillot</editor>
+        <editor role="technical">Ron Van den Branden</editor>
+        <biblScope unit="issue" n="10">Selected Papers from the 2015 TEI Conference</biblScope>
+      </seriesStmt>
+      <sourceDesc>
+        <p>No source, born digital.</p>
+      </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+      <projectDesc>
+        <p>Revues.org -centre for open electronic publishing- is the platform for journals in
+          the humanities and social sciences, open to quality periodicals looking to publish
+          full-text articles online.</p>
+      </projectDesc>
+    </encodingDesc>
+    <profileDesc>
+      <langUsage>
+        <language ident="en">en</language>
+      </langUsage>
+      <textClass>
+        <keywords xml:lang="en">
+          <term>critical editions</term>
+          <term>tools</term>
+        </keywords>
+      </textClass>
+    </profileDesc>
+  </teiHeader>
+  <text>
+    <front>
+      <div type="abstract" xml:id="abstract">
+        <p>The various mechanisms offered by the TEI schema and <title level="m"><ref type="bibl" target="#tei2015">Guidelines</ref></title> for the encoding of critical editions suffer from one major shortcoming: the lack of user-friendly tools allowing philologists and their readers to display and process TEI-encoded editions. After witnessing –and personally experiencing– this frustration, I decided to develop an application especially dedicated to supporting philologists in their work, and helping them to fully benefit from their encoding work. The <title level="m">TEI Critical Apparatus Toolbox</title> is now available online (<ptr target="http://ciham-digital.huma-num.fr/teicat/"/>). This article describes the context in which this application was developed, its current features, and the plans for future improvements.</p>
+      </div>
+    </front>
+    <body>
+      <div xml:id="context">
+        <head>Context</head>
+        <div xml:id="editorWord">
+          <head>The Editor at Work, and the Need for Digital Support</head>
+          <p>Critical editions involve long, demanding and often lonely work. Whatever the school of textual criticism to which the editor belongs, the editorial work process involves a close examination of the various witnesses of the text in question, and their meticulous collation to record variants and errors for each relevant witness. The critical apparatus, which documents and supports the work produced by the editor, is the core of any critical edition and is what makes it a scholarly object. With the development of digital critical editions, a lot of attention has been devoted to the new possibilities offered by the digital medium to overcome the structuring but frustrating limits of the printed page.<note><p>For an overview, see <ref type="bibl" target="#pierazzo2015">Pierazzo 2015</ref>, ch. 7.4 <title level="a">Looking for New Models: the Critical Apparatus</title> (154–57)</p></note></p>
+          <p>Yet very few tools have been designed to facilitate the work of the editor during the production phase, while the edition is still in the making.<note><p>I am leaving aside here the rich field of automatic collation and computationally assisted stemmatology, considering only the case of <soCalled>hand-crafted</soCalled> digital editions.</p></note> By its very nature, building a critical apparatus is a difficult and error-prone task, especially as the number of witnesses grows. As a scholarly editor of medieval texts, I especially wished to be aided in three areas: 
+            <list>
+              <item>Detection of human errors in the apparatus: it is quite easy for the editor to forget to record the reading of a manuscript for a particular locus, or to make a typo in the witness siglum while recording it, which will result in a loss of information. In a print edition, or even in a digital edition prepared with text-processing software, such errors are extremely difficult to spot and correct since they require a human reader to closely double-check every apparatus entry. The careful encoding of a critical edition, however, offers the possibility of automatic notification of such errors, among other advantages.</item>
+              <item>Displaying the work-in-progress edition: in the early stages of a critical edition, it is quite common to be undecided yet regarding the manuscript (if any) on which you are going to base your edition, so the possibility of easily displaying the different versions of the text according to various witnesses, and in different states, is quite helpful. Regular tools designed for the display of critical editions in their final stage can be helpful; however, a work-in-progress edition may have characteristics which make those tools difficult or impossible to use.</item>
+              <item>Using different styles of TEI encoding: even if an editor is planning to produce a text encoded with lemmata (<gi>lem</gi> elements), it is quite common to encode only <soCalled>neutral</soCalled> readings (<gi>rdg</gi> elements) while the work is still in progress, choosing which <gi>rdg</gi> element will become a <gi>lem</gi> only at a later stage, when all or enough witnesses have been collated and examined. An early-stage edition may therefore comprise apparatus entries containing either a lemma and one or more readings, or only readings – a state that can be confusing to some display tools.</item>
+            </list>
+          </p>
+        </div>
+        <div xml:id="surveyTools">
+          <head>A Survey of Existing Tools</head>
+          <p>While looking for such aid in existing tools, I surveyed the most likely candidates.<note><p>I did not consider  <ref target="https://sourceforge.net/projects/evt-project/">Edition Visualization Technology, or EVT</ref> in this initial survey, because when I started working on the <title level="m">TEI Critical Apparatus Toolbox</title> EVT could only work with facsimile editions. However, EVT 2 was released, in its alpha stage, in July 2016. This new version does offer features for critical editions. It is capable of displaying a critical text, as well as the text of a witness. (Last updated October 6, 2016, <ptr target="https://sourceforge.net/projects/evt-project/"/>.)</p></note> Three major TEI display tools have been evaluated using three criteria: their ability to detect human errors in the apparatus; their ability to display the text according to a particular manuscript; and their ability to display the critical text in a traditional fashion. I have not considered tools designed for the display of a single witness or documentary edition, since the needs of those types of edition are different.</p>
+          <p>None of the tools provided automatic detection of errors, while the style of display
+            offered differed: 
+            <list>
+              <item>The <title level="m"><ref target="http://www.tei-c.org/Tools/Stylesheets/index.xml">TEI Stylesheets</ref></title><note><p>TEI Consortium, <title level="m">XSL Stylesheets for TEI XML</title>, accessed December 4, 2016, <ptr target="http://www.tei-c.org/Tools/Stylesheets/index.xml"/></p></note> offer a simple display for critical editions, but do not offer a way to display a single manuscript.</item>
+              <item><title level="m"><ref target="http://teiboilerplate.org">TEI Boilerplate</ref></title>,<note><p>Accessed December 4, 2016, <ptr target="http://teiboilerplate.org"/></p></note> for all its other qualities, is not suitable for critical editions: it displays both lemma (if any) and readings one after the other, without giving any information on the witness where they appear.</item>
+              <item>The <title level="m"><ref target="http://v-machine.org">Versioning Machine</ref></title><note><p>Last modified January 21, 2016, <ptr target="http://v-machine.org"/></p></note> does not display a critical text, but is especially designed to display a text in parallel versions according to its various witnesses. It suffers from a minor shortcoming, though: it only works with a positive apparatus, where even lemmata have a list of witnesses attached. If an edition is encoded with a negative apparatus,<note><p>In a negative apparatus, the lemma does not have a <att>wit</att> attribute, and each witness not appearing in the <att>wit</att> of a reading within the same element is assumed, by default, to bear the same text as the lemma.</p></note> the witnesses whose siglum does not appear in an apparatus element are considered to bear no text at all at this place, instead of bearing the same text as the lemma for this entry.</item>
+            </list>
+          </p>
+          <p>It goes without saying that since those tools are open source, they could of course be customized or modified to address the needs listed above. I have only considered off-the-shelf features, available to any scholar without programming skills or even advanced digital skills.
+            <figure xml:id="fig1">
+            <graphic url="images/tei-10-burghart-fig_1.png" width="723px" height="287px"/>
+            <head type="legend">Comparative features of TEI XML display tools</head>
+          </figure>
+          </p>
+        </div>
+        <div xml:id="towardsToolbox">
+          <head>Towards a <soCalled>Toolbox</soCalled></head>
+          <p>After this survey, I started writing my own scripts in order to support my editorial work, as a set of separate tools. It quickly occurred to me that those scripts could easily be grouped together in a <soCalled>toolbox</soCalled> that, with a little bit of packaging, could be of help not only to me but to many other editors. By focusing on the processing and display of the critical apparatus, it was possible to find common features useful to most TEI critical editions, therefore going beyond a project-specific tool. I opted for a design that would be as user-friendly as possible, not requiring users to know any XSLT or CSS, nor  even to download and configure anything.</p>
+          <p>I chose to focus on editions encoded using the Parallel Segmentation method,<note><p><ref type="bibl" target="#tei2015">TEI Consortium 2015, 12.2.3</ref>: <title level="a">The Parallel Segmentation Method</title>, <ptr target="http://www.tei-c.org/Vault/P5/2.9.1/doc/tei-p5-doc/en/html/TC.html#TCAPPS"/></p></note> since it seems by far the more widely used, especially by editors working with a traditional XML editor, and since the double end-point attachment method<note><p><ref type="bibl" target="#tei2015">TEI Consortium 2015, 12.2.2</ref>: <title level="a">The Double End-Point Attachment Method</title>, <ptr target="http://www.tei-c.org/Vault/P5/2.9.1/doc/tei-p5-doc/en/html/TC.html#TCAPDE"/>. The third option proposed by the TEI Guidelines, the Location-referenced method (<ref type="bibl" target="#tei2015">TEI Consortium 2015, 12.2.1</ref>: <title level="a">The Location-referenced Method</title>, <ptr target="http://www.tei-c.org/Vault/P5/2.9.1/doc/tei-p5-doc/en/html/TC.html#TCAPLO"/>), was not relevant here, since it does not allow one to reconstruct the text of a single witness or perform advanced processing tasks on the apparatus.</p></note> is difficult to implement when encoding <soCalled>manually</soCalled> without the help of a specially-designed tool.</p>
+          <p>The next section describes the tool that I created.</p>
+        </div>
+      </div>
+      <div xml:id="seconddiv">
+        <head>The <title level="m">TEI Critical Apparatus Toolbox</title></head>
+        <div xml:id="description">
+          <head>Description</head>
+          <p>The <title level="m">TEI Critical Apparatus Toolbox</title> is an online application for the quick and easy visualization and processing of TEI XML critical editions. It is not meant to be a publication tool: the <title level="m">Critical Apparatus Toolbox</title> specifically targets the needs of editors during the preparation of their ongoing work, allowing them to perform quality controls on their TEI files and to display their work-in-progress text either in the style of a <soCalled>traditional</soCalled> critical edition, and/or in parallel versions corresponding to each witness.</p>
+          <p>The requirements are very basic: no account, download, installation, or configuration is needed. The users are simply invited to upload the TEI XML file of a critical edition through a web browser. The only requirement is that this edition must be encoded using the Parallel Segmentation method. As long as this method is used, any style can be used in the file: positive or negative apparatus, use of <gi>lem</gi>, use of <gi>rdg</gi> only, or a mix of different styles – which is common in work-in-progress editions, when some lemmata have already been chosen while other apparatus entries still contain only readings, waiting for a choice by the editor.</p>
+        </div>
+        <div xml:id="features">
+          <head>Features</head>
+          <div xml:id="critEdView">
+            <head><soCalled>Traditional</soCalled> Critical Edition View</head>
+            <p>Tools designed to publish and display critical editions are usually very efficient for finished editions, but they may not be well adapted to ongoing work. Proposing a visualization for such encoding is not easy, because there might not be an identifiable critical text (yet), and the styles can be mixed in the apparatus. The <title level="m">Critical Apparatus Toolbox</title> will display each style (lemma and reading[s], or readings only) differently: 
+              <list>
+                <item>In each case, the content of <gi>lem</gi> and <gi>rdg</gi> are highlighted, with a white background.</item>
+                <item>When an <gi>app</gi> element contains a <gi>lem</gi> and one or more <gi>rdg</gi>s, there is an easily identifiable critical text: only the content of the <gi>lem</gi> will be displayed in the text, and the readings will appear in a pop-up note. To see the note, the users simply need to click the upward-pointing arrow sign (↑) following the content of the lemma. Example: 
+                  <figure xml:id="example_code_1">
+                    <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                      <app>
+                        <lem>capitulo V</lem>
+                        <rdg wit="#G #P1 #T"/>
+                      </app>
+                    </egXML>
+                    <head type="legend">Encoding of an omission in a negative style of apparatus, in an edition considering six witnesses (P2, P3, P1, G, R2, and T)</head>
+                  </figure>
+                  <figure xml:id="example_rend_1a">
+                    <graphic url="images/tei-10-burghart-fig_2.png" width="102px" height="32px"/>
+                    <head type="legend">Displaying this code in the <title level="m">Critical Apparatus Toolbox</title></head>
+                  </figure>
+                  <figure xml:id="example_rend_1b">
+                    <graphic url="images/tei-10-burghart-fig_3.png" width="338px" height="41px"/>
+                    <head type="legend">Displaying this code: pop-up note after clicking on the ↑ sign</head>
+                  </figure>
+                </item>
+                <item>When an <gi>app</gi> element has only <gi>rdg</gi> children, there is no identifiable critical text. It is therefore impossible for the application to decide which reading should be the critical text, and which other(s) should be variants only mentioned in a note. In this case, the content of each <gi>rdg</gi> is displayed, by order of appearance in the <gi>app</gi>. To make the text more readable, curly brackets open and close each series of <gi>rdg</gi>s belonging in the same <gi>app</gi> element. To make the presence of empty readings clearer, they are materialized with a minus sign (-), which was deemed more neutral in this case than using the notion of <soCalled>omission</soCalled>. Example: 
+                  <figure xml:id="example_code_2">
+                    <egXML xmlns="http://www.tei-c.org/ns/Examples">collegium, <app>
+                        <rdg wit="#K1 #K2"/>
+                        <rdg wit="#F #V">vel</rdg>
+                      </app> capitulum,</egXML>
+                    <head type="legend">Encoding of the various readings in a positive style of apparatus, in an edition considering four witnesses (F, K1, K2, and V)</head>
+                  </figure>
+                  <figure xml:id="example_rend_2">
+                    <graphic url="images/tei-10-burghart-fig_4.png" width="351px" height="28px"/>
+                    <head type="legend">Displaying this code in the <title level="m">Critical Apparatus Toolbox</title></head>
+                  </figure>
+                </item>
+                <item>The use of reading groups is also supported: the content of each <gi>rdgGrp</gi> element is displayed between bold double parentheses. If the <gi>rdgGrp</gi> contains a <gi>lem</gi>, its text is underlined. Example: 
+                  <figure xml:id="example_code_3">
+                    <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                      <app>
+                        <rdgGrp>
+                          <lem wit="#K1">exhortationis</lem>
+                          <rdg wit="#K2">exortacio</rdg>
+                        </rdgGrp>
+                        <rdgGrp>
+                          <rdg wit="#F">sermonis</rdg>
+                          <rdg wit="#V">sermonem</rdg>
+                        </rdgGrp>
+                      </app>
+                    </egXML>
+                    <head type="legend">Encoding groups of readings in a positive style of apparatus, in an edition considering four witnesses (F, K1, K2, and V)</head>
+                  </figure>
+                  <figure xml:id="example_rend_3">
+                    <graphic url="images/tei-10-burghart-fig_5.png" width="539px" height="29px"/>
+                    <head type="legend">Displaying this code in the <title level="m">Critical Apparatus Toolbox</title></head>
+                  </figure>
+                </item>
+              </list>
+            </p>
+            <p>This traditional critical edition view also offers the option to show or hide page breaks, if they have been encoded with the <gi>pb</gi> tag. If the user chooses to display all page breaks, the page or folio numbers appear in blue, between square brackets, and inline for better readability of the text (especially when the page breaks of multiple witnesses have been recorded). Alternatively, it is possible to display page breaks only for a particular witness (relying on the value of the <att>edRef</att> attribute, which must refer to the siglum of the witness). In this case, it is assumed that the page breaks of this witness are of particular interest to the user, and they are displayed in a more prominent fashion, as blocks with a thin blue line representing each break.</p>
+            <p>So far the <title level="m">Critical Apparatus Toolbox</title> is not very different from other TEI display tools, except perhaps that it can handle a great variety of encoding styles within the Parallel Segmentation method. But its most distinctive feature is the ability to perform automated controls of the encoding.</p>
+          </div>
+          <div xml:id="consistencyControl">
+            <head>Controlling the Consistency of Your Encoding</head>
+            <p>The preparation of a critical edition involves many sessions of meticulous proofreading, especially to check the accuracy of the apparatus. If the <title level="m">Critical Apparatus Toolbox</title> cannot replace the careful eye of the editor, it offers an efficient way to control the consistency of the encoding by detecting small inevitable mistakes, like a typo in the list of sigla or the failure to record the reading of a particular witness in an apparatus entry.</p>
+            <p>To perform those controls, the <title level="m">Critical Apparatus Toolbox</title> will scan the <gi>teiHeader</gi> and <gi>front</gi> sections of the TEI file for a <gi>listWit</gi>, and find all the sigla of the witnesses. Then, it will compare this list to the manuscripts appearing in the <att>wit</att> attribute of <gi>lem</gi> and <gi>rdg</gi> elements. The nature of the controls will depend on the type of apparatus used in the edition.</p>
+            <div xml:id="positiveApp">
+              <head>Positive Apparatus</head>
+              <p>In a positive apparatus, the reading of each witness considered for the edition is explicitly mentioned in each <gi>app</gi>: even lemmata have a <att>wit</att> attribute, listing all the witnesses bearing this text. This type of apparatus may be more verbose, but it is a useful practice at least during the preparation of the edition (whether or not this will be the style used in the final version of the edition) because it forces the editor to be more accurate and makes verifications easier. It is the type of apparatus that allows for the most efficient consistency checks.</p>
+              <p>The <title level="m">Critical Apparatus Toolbox</title> can: 
+                <list>
+                  <item><emph>Highlight apparatus entries that do not use all witnesses</emph>: the content of the incomplete <gi>app</gi> elements which do not explicitly give a text for each witness listed in the <gi>listWit</gi> will be highlighted in red. Example: 
+                    <figure xml:id="example_code_4">
+                      <egXML xmlns="http://www.tei-c.org/ns/Examples">Nos quoque <app>
+                          <rdg wit="#F">oramus</rdg>
+                          <rdg wit="#K1">eramus</rdg>
+                          <rdg wit="#K2">obsecramus</rdg>
+                        </app> ut servo</egXML>
+                      <head type="legend">Encoding of readings in a positive style of apparatus, in an edition considering four witnesses (F, K1, K2, and V), offering no reading for V</head>
+                    </figure>
+                    <figure xml:id="example_rend_4">
+                      <graphic url="images/tei-10-burghart-fig_6.png" width="491px" height="28px"/>
+                      <head type="legend">Displaying this code in the <title level="m">Critical Apparatus Toolbox</title></head>
+                    </figure>
+                  </item>
+                  <item><emph>Highlight apparatus entries that do not use a specific witness</emph>: in the previous feature, if any witness is missing, the entry will be highlighted. In some cases, for instance an incomplete collation for one of the witnesses, this could generate a great deal of unwanted information. With this function, the user can choose to highlight only the <gi>app</gi> elements that do not explicitly give a text for a specific witness that they select. Each witness is assigned a different highlight color (there are twenty different colors available).</item>
+                  <item><emph>Highlight apparatus entries where no witness at all is mentioned</emph>: not giving any <att>wit</att> for a <gi>lem</gi> or <gi>rdg</gi> – or an empty <att>wit</att> – may be a choice from the encoder, but it may also result from a mistake. With this function, the editor can easily map and control those entries.</item>
+                  <item><emph>Highlight apparatus entries where a witness is mentioned more than once</emph>: a careless mistake or a typo may cause the same witness to appear more than once in the <att>wit</att> of the <gi>lem</gi> and <gi>rdg</gi> children of the same apparatus entry. This results in a confusing situation, where the application cannot determine which reading actually belongs in the witness, that must be corrected by the editor.</item>
+                </list>
+              </p>
+              <p>It is worth noting that the application is capable of dealing with lacunae encoded with <gi>lacunaStart</gi> and <gi>lacunaEnd</gi>. When one of the witnesses is lacunary, the apparatus entries appearing between the <gi>lacunaStart</gi> and <gi>lacunaEnd</gi> tags marking up this lacuna will of course not give any reading for this witness, but the application will not consider that the lacunary witness is erroneously missing, and will not highlight those entries if the user checks incomplete <gi>app</gi> elements. Conversely, if an apparatus entry gives a text for this witness within the lacuna, the application will consider that the witness is mentioned more than once and highlight this entry accordingly.</p>
+            </div>
+            <div xml:id="negativeApp">
+              <head>Negative Apparatus</head>
+              <p>In a negative apparatus, only witnesses with a reading differing from the lemma are explicitly mentioned, the <gi>lem</gi> element usually having no <att>wit</att>. Witnesses whose siglum does not appear in the <att>wit</att> of a <gi>rdg</gi> are assumed to bear the same text as the lemma. This type of apparatus is slightly quicker to encode, since there is no need to list all witnesses, but on the other end it gives fewer opportunities for automated verification: it is impossible to be sure that the editor added the reading of each witness, since unmentioned manuscripts are assumed by default to correspond to the lemma.</p>
+              <p>In this case, the <title level="m">Critical Apparatus Toolbox</title> can nevertheless <emph>highlight apparatus entries that mention a particular witness</emph>. Practically, this will highlight only apparatus entries where a witness’s reading differs from the lemma. Example: 
+                <figure xml:id="example_code_5">
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">dolores corporis <app>
+                      <lem>leniantur</lem>
+                      <rdg wit="#R2">laniantur</rdg>
+                    </app>.</egXML>
+                  <head type="legend">Encoding a variant in a negative style of apparatus</head>
+                </figure>
+                <figure xml:id="example_rend_5">
+                  <graphic url="images/tei-10-burghart-fig_7.png" width="226px" height="28px"/>
+                  <head type="legend">Displaying this code in the <title level="m">Critical Apparatus Toolbox</title>, when highlighting all apparatus entries mentioning witness R2</head>
+                </figure>
+              </p>
+            </div>
+            <div xml:id="otherControls">
+              <head>Other Controls</head>
+              <p>The <title level="m">Critical Apparatus Toolbox</title> can also highlight apparatus entries that contain a <gi>lem</gi>, or that contain only <gi>rdg</gi> elements.</p>
+            </div>
+          </div>
+          <div xml:id="parallelVersions">
+            <head>Parallel Versions View</head>
+            <p>As an alternative to the traditional critical edition view, users can display their edition in parallel versions corresponding to the text. After uploading the TEI XML file, the user is asked to choose the sigla of the witnesses they want to see displayed, from a list automatically built from the <gi>listWit</gi> found in the document. The user also has the option to display the critical text alongside the text according to individual witnesses.</p>
+            <p>The parallel versions view is available for a positive as well as a negative apparatus. In the case of a negative apparatus, the application will reconstruct the text of each witness by using the text of the lemma when a reading is not explicitly given for the witness.</p>
+            <p>After submitting the choice of witnesses, the parallel versions will be displayed in columns. The look and feel of those parallel versions is similar to the traditional critical edition view, with the difference that for each apparatus entry, the text displayed is that of the current witness. The text of the lemma and of the other manuscripts is still presented, but only in an apparatus note.</p>
+            <p>A color-code helps the user to situate each witness in relation to the critical text:
+              <list>
+                <item>when the current witness has the same reading as the lemma, the text of the apparatus entry is highlighted in white;</item>
+                <item>when this witness has a different reading from the lemma, the text is highlighted in orange;</item>
+                <item>when there is no lemma for an apparatus entry, the text of the witness is highlighted in yellow;</item>
+                <item>when an apparatus entry does not give any intelligible reading for this witness, question marks highlighted in red are displayed. This means there is probably something wrong with the way this apparatus entry is encoded.</item>
+              </list>
+            </p>
+          </div>
+        </div>
+        <div xml:id="appDesign">
+          <head>Application Design</head>
+          <p>The <title level="m">Critical Apparatus Toolbox</title> is an online application built on a set of XSLT stylesheets served through PHP files, the output of which is made interactive thanks to Javascript and CSS. It makes use of some parts of <title level="m">TEI Boilerplate</title>, most notably its web design. But despite the similar look and feel, the core functions are very different: all the parts of the <title level="m">TEI Boilerplate</title> stylesheets pertaining to critical edition elements have been overridden.</p>
+          <p>The XSLT stylesheets analyze the TEI XML edition, and determine its characteristics.<note><p>I have chosen to concentrate here on the presentation of the general framework, rather than getting into technical details about the XSLT code, especially since the code may be subject to quick evolutions and updates at this stage.</p></note> When they transform each <gi>app</gi> into <gi>span</gi> HTML elements, this information is used to assign one or more CSS classes to each <gi>span</gi>: all are assigned the <soCalled>app</soCalled> class; the ones not explicitly giving a text for each witness are assigned the class <soCalled>incomplete</soCalled>, those giving more than one reading for the same witness are assigned the class <soCalled>doubles</soCalled>, and so on. A list of all the witnesses mentioned in the apparatus entry is also created by the XSLT and stored in the <att>title</att> attribute of the HTML <gi>span</gi>. Those <att>class</att> and <att>title</att> values are used by the javascript functions to control the consistency of the encoding and highlight elements according to the user requests. The default <title level="m">TEI Boilerplate</title> XSLT and CSS are used for all the TEI elements which are not directly related to critical editions.</p>
+          <p>Within the Parallel Segmentation method, the latest evolutions of the TEI are implemented, like the possibility for <gi>lem</gi> or <gi>rdg</gi> to contain <ident>model.divLike</ident> and <ident>model.pLike</ident> elements.<note><p>This feature has been available since TEI P5 v. 2.9.0, released on October 9, 2015. See <ref target="http://www.tei-c.org/Vault/P5/2.9.0/doc/tei-p5-doc/readme-2.9.0.html">TEI P5 version 2.9.0 release notes</ref></p></note> In the future, keeping up with the developments and evolutions of the Critical Apparatus module will be a priority. We hope that the <title level="m">Critical Apparatus Toolbox</title> will be able to adapt to these evolutions: since the functions of the interface are powered by Javascript, updating the XSLT should be enough to adapt to new rules or elements in the module.</p>
+        </div>
+      </div>
+      <div xml:id="future">
+        <head>Future Developments</head>
+        <p>The beginning of the development of the <title level="m">Critical Apparatus Toolbox</title> was a lonely endeavor, but the project has since benefited from the collaboration of Magdalena Turska<note><p>Magdalena Turska created this prototype as part of her work as an Experienced Researcher Fellow of the <title level="m"><ref target="http://dixit.uni-koeln.de">Digital Scholarly Editions Initial Training Network</ref></title> (DIXIT) program <ref target="http://dixit.uni-koeln.de"/> (accessed December 4, 2016).</p></note> who wrote a prototype for the integration of the Toolbox into an oXygen framework. Decisive help was also found via a collaboration with the Erasmus SP+ DEMM program (<title level="m"><ref target="http://www.digitalmanuscripts.eu">Digital Edition of Medieval Manuscripts</ref></title>).<note><p>Accessed December 4, 2016, <ptr target="http://www.digitalmanuscripts.eu"/></p></note> For the three years beginning in June 2015 DEMM is holding an annual hackathon event where the <title level="m">Critical Apparatus Toolbox</title> is the base application that small, mixed teams of textual scholars and computer scientists try to enhance to meet their particular needs.<note><p>The first of these events took place at Queen Mary University London in June 2015, with the computer scientists Astrid Bin, Daniel Gabana Arellano, Danielle Gilaberte De Almeida, and Chris Sparks, along with all the current DEMM students as textual scholars (<bibl><title level="m">Digital Editing of Medieval  Manuscripts</title>, <title level="a">People</title>, accessed December 4, 2016, <ref target="https://www.digitalmanuscripts.eu/people/"/></bibl>).</p></note> These events will play an important role in the future developments of the Toolbox, since they confront us directly with the real-life experience and needs of editors.</p>
+        <div xml:id="newControls">
+          <head>New Controls and Features</head>
+          <p>During the first hackathon, the students and computer scientists were divided into four groups working on three themes: one worked on features linked to the representation of named entities, two others on various ways of representing the variance of an edited text (from various states of transcription showing either abbreviated or expanded words to parallel versions of a text with potentially different branches), and the last concentrated on the relationship between the edited text and images. These themes could serve as general directions for enhancing the <title level="m">Critical Apparatus Toolbox</title>: 
+            <list>
+              <item>offering visualization options for named entities, from a simple index to more elaborate links to maps, when possible;</item>
+              <item>taking into account the visualization of transcription features like abbreviations/expanded words;</item>
+              <item>allowing the display of parallel branches of a tradition, beyond the mere display of parallel witnesses;</item>
+              <item>adding some options to link the text to its representation, or to images generally. This poses the problem of access to the images: in the current state of the Toolbox, users upload their TEI XML edition but not the other files potentially linked to it, like images.</item>
+            </list>
+          </p>
+        </div>
+        <div xml:id="webPubli">
+          <head>A Basic Web-publication Kit</head>
+          <p>Another direction would be a feature similar to the <soCalled>Web View</soCalled> output system proposed in Martin Holmes’s <title level="m"><ref target="http://tapor.uvic.ca/~mholmes/image_markup/">Image Markup Tool</ref></title>.<note><title level="m"><ref target="http://tapor.uvic.ca/~mholmes/image_markup/">The UVic Image Markup Tool Project</ref></title>, accessed December 4, 2016,</note> Even if the <title level="m">Critical Apparatus Toolbox</title> is not a publication application, such an output would provide users with a ready-to-use static version of their edition, a set of files (HTML, CSS, Javascript, etc.) that they could  publish on their website or show in a demo session. While complex projects will always need a proper publication framework, this sort of lightweight publication output would provide a simple tool for basic self-publication.<note><p>For a discussion of the question of TEI and self-publication, see <ref type="bibl" target="#pierazzo2015">Pierazzo 2015, 129–30</ref>.</p></note>
+          </p>
+        </div>
+        <div xml:id="print">
+          <head>Printing Editions</head>
+          <p>The printed page is one of the many possible outputs for a critical edition, even if it is only a scaled-down version of the proper digital edition. In many cases, a printed output is not only a desirable option, but a necessity: think, for instance, of the PhD students preparing a critical edition who have to turn in a printed version of their work. Many of them turn to LaTeX instead of TEI, therefore losing the benefits of semantic encoding just to be able to print their dissertation in the required fashion.</p>
+          <p>It is of course extremely difficult, if not impossible, to propose a generic model for such diverse objects as TEI XML critical editions. Yet, a useful compromise can be found by concentrating only on the critical apparatus layout, and also by offering the user some simple interactive customization options (for instance, page size, page and line numbering, and content of the apparatus notes) to deliver as useful an output as possible.</p>
+          <p>I am preparing a generic TEI-to-LaTeX and TEI-to-PDF conversion feature that will be implemented in the <title level="m">Critical Apparatus Toolbox</title>. I chose LaTeX as an intermediary format because it offers all the desired options, thanks to the <code>reledmac</code> package especially designed for typesetting critical editions.<note><p>The <code>reledmac</code> package, maintained by Maïeul Rouquette, replaces the established <code>ledmac</code> and <code>eledmac</code> packages. See CTAN (Comprehensive TeX Archive Network), <title level="m"><code>reledmac</code>—Typeset Scholarly Editions</title>, accessed December 4, 2016, <ptr target="https://www.ctan.org/pkg/reledmac?lang=en"/> I thank M. Rouquette for kindly helping me to learn how to use the package.</p></note> It is better suited to the specific needs of critical editions than XSL:FO. Another advantage of an intermediary file is that it leaves users the opportunity to edit the LaTeX code to obtain a better PDF result, which they might prefer over a modification of the XSLT templates, depending on their skillset.</p>
+          <p>This feature, still a work-in-progress but well advanced, lets the user customize many parameters of the output through a graphical interface, without requiring any knowledge of LaTeX. When users need heavy customization of the default settings, they can easily override the templates transforming the TEI into LaTeX (although this requires some understanding of XSLT and LaTeX). The result of the transformation is a .zip file, containing a .tex file (which users can edit manually if they wish), the result of the transformation of this .tex file into PDF, and the log file of the transformation process. The end result should be a ready-to-print file following the state-of-the-art rules (such as various levels of footnotes, or references to lines). The following image is a sample page from a PDF file produced directly from a TEI critical edition using this TEI-to-Print  feature. 
+            <figure xml:id="example_PDF_page">
+              <graphic url="images/tei-10-burghart-fig_8.png" width="1654px" height="2339px"/>
+              <head type="legend">From TEI to PDF: an example produced with the default settings</head>
+            </figure> The TEI-to-Print feature should be publicly available in early 2017.</p>
+        </div>
+      </div>
+      <div xml:id="conclusion">
+        <head>Conclusion</head>
+        <p>In a survey conducted in September-October 2010, respondents stated that the main obstacle they had to overcome was the lack of user-friendly tools (<ref type="bibl" target="#burghartRehbein2012">Burghart and Rehbein 2012</ref>). It seems that, a little more than five years after that survey, the general landscape of the TEI has evolved toward a better recognition of the importance of providing the users with tools that require as little technical knowledge as possible to let textual scholars reap the fruits of their encoding. One can hope that initiatives such as <ref target="https://github.com/TEIC/TEI-Simple">TEI Simple</ref>,<note><p><ptr target="https://github.com/TEIC/TEI-Simple"/></p></note> which offers a TEI schema for a specific type of documents and needs, and the TEI Processing Model, will help integrate TEI encoding seamlessly into the workflow of textual scholars.<note>See <ref target="#turskaCummingsRahtz2016" type="bibl">Turska, Cummings and Rahtz 2016</ref></note></p>
+        <p>The <title level="m">Critical Apparatus Toolbox</title> belongs in this growing galaxy of lightweight, user-oriented tools. With features demonstrating the immediate benefits of TEI encoding, it is a good tool for TEI training and workshops. But its main purpose remains to facilitate the work of textual scholars, a complex task given the widely diverse habits of different schools, and even of different people. Our first results demonstrate that despite the diversity, some level of common ground can be found to provide generic services.</p>
+      </div>
+    </body>
+    <back>
+      <div type="bibliography">
+        <listBibl>
+          <!--
+          <bibl xml:id="andrews2013"><author>Andrews, Tara L.</author>. <date>2013</date>.
+              <title level="a">The Third Way. Philology and Critical Edition in the Digital
+              Age</title>, In <title level="j">Variants</title>, <biblScope unit="issue"
+              >10</biblScope>: <biblScope unit="page">61–76</biblScope></bibl>
+              -->
+          <bibl xml:id="burghartRehbein2012"><author>Burghart, Marjorie</author> and <author>Malte Rehbein</author>. <date>2012</date>. <title level="a">The Present and Future of the TEI Community for Manuscript Encoding</title>, In <title level="j">Journal of the Text Encoding Initiative</title>, <biblScope unit="issue">2</biblScope>. <ref target="http://jtei.revues.org/372"/>. doi:<idno type="doi">10.4000/jtei.372</idno>.</bibl>
+          <bibl xml:id="pierazzo2015"><author>Pierazzo, Elena</author>. <date>2015</date>. <title level="m">Digital Scholarly Editing: Theories, Models and Methods</title>, <pubPlace>Burlington</pubPlace>, VT: <publisher>Ashgate</publisher>.</bibl>
+          <bibl xml:id="tei2015"><orgName>TEI Consortium</orgName>. <date>2015</date>. <title level="m">TEI P5: Guidelines for Electronic Text Encoding and Interchange</title>. <edition>Version 2.9.1</edition>. Last updated October 15. <ref target="http://www.tei-c.org/Vault/P5/2.9.1/doc/tei-p5-doc/en/html/"/>.</bibl>
+          <bibl xml:id="turskaCummingsRahtz2016"><author>Turska, Magdalena</author>, <author>James Cummings</author>, and <author>Sebastian Rahtz</author>. <date>2016</date>. <title level="a">Challenging the Myth of Presentation in Digital Editions</title>, In <title level="j">Journal of the Text Encoding Initiative</title>, <biblScope unit="issue">9</biblScope>. <ref target="http://jtei.revues.org/1453"/>. doi:<idno type="doi">10.4000/jtei.1453</idno>.</bibl>
+          <!--
+          <bibl xml:id="sahle2008"><author>Sahle, Patrick</author>. <date>2008</date>. <title
+              level="m">A Catalogue of Digital Scholarly Editions</title>, available online
+              <ref target="http://www.digitale-edition.de"/></bibl>
+          <bibl xml:id="sahle2013"><author>Sahle, Patrick</author>. <date>2013</date>. <title
+              level="m">Digitale Editionsformen, Zum Umgang mit der Überlieferung unter den
+              Bedingungen des Medienwandels</title>, <pubPlace>Norderstedt</pubPlace>:
+              <publisher>Books on Demand</publisher>, 3 vol.</bibl>
+              -->
+        </listBibl>
+      </div>
+    </back>
+  </text>
+</TEI>

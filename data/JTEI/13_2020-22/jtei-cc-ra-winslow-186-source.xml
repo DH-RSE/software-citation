@@ -1,0 +1,731 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<!-- $Id: jtei-cc-ra-winslow-186-source.xml 1061 2021-09-24 17:27:24Z tiago.sousa-garcia $ -->
+<TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title type="main">Authenticating Features in the TEI</title>
+            <!-- author information in separate <author> elements per author -->
+            <author>
+               <name>
+                  <forename>Sean M.</forename>
+                  <surname>Winslow</surname>
+               </name>
+               <affiliation><roleName>Postdoc</roleName> on the FWF (Austrian Science Fund) project
+                  Retain Domain Specific Functionalities in a Generic Repository with Humanities
+                  Data (ORD84), <orgName>Karl-Franzens-Universität Graz</orgName></affiliation>
+               <email>sean.winslow@uni-graz.at</email>
+            </author>
+         </titleStmt>
+         <publicationStmt>
+            <publisher>TEI Consortium</publisher>
+            <date>2021-09-23</date>
+            <availability>
+               <licence target="https://creativecommons.org/licenses/by/4.0/">
+                  <p>For this publication a Creative Commons Attribution 4.0 International license
+                     has been granted by the author(s) who retain full copyright.</p>
+               </licence>
+            </availability>
+         </publicationStmt>
+         <seriesStmt>
+            <title level="j">Journal of the Text Encoding Initiative</title>
+            <editor role="guest">Susan Schreibman</editor>
+            <editor role="managing">Tanja Wissik</editor>
+            <editor role="managing">Joel Kalvesmaki</editor>
+            <editor role="managing">Pietro Maria Liuzzo</editor>
+            <editor role="managing">Tiago Sousa Garcia</editor>
+            <editor role="technical">Ron Van den Branden</editor>
+            <biblScope unit="issue" n="13">Selected Papers from the 2018 TEI Conference</biblScope>
+         </seriesStmt>
+         <sourceDesc>
+            <p>No source, born digital.</p>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <projectDesc>
+            <p>OpenEdition Journals -centre for open electronic publishing- is the platform for
+               journals in the humanities and social sciences, open to quality periodicals looking
+               to publish full-text articles online.</p>
+         </projectDesc>
+      </encodingDesc>
+      <profileDesc>
+         <langUsage>
+            <language ident="en">en</language>
+         </langUsage>
+         <textClass>
+            <keywords xml:lang="en">
+               <term>authentication</term>
+               <term>seal</term>
+               <term>stamp</term>
+               <term>authenticity</term>
+               <term>diplomatics</term>
+               <term>charters</term>
+               <term/>
+            </keywords>
+         </textClass>
+      </profileDesc>
+      <revisionDesc>
+         <change when="2021-09-23" who="TSG">First encoding</change>
+      </revisionDesc>
+   </teiHeader>
+   <text>
+      <front>
+         <div type="abstract" xml:id="abstract">
+            <p>Textual and paratextual elements that serve to establish the authenticity of
+               documents abound and carry meaning that is important—often central—to the meaning of
+               the document as received, but are currently only lightly modeled in TEI. This paper
+               will discuss issues in the modeling of authenticating features across time periods
+               and regional boundaries, from the existing <gi scheme="TEI">seal</gi> element to
+               medieval European chirographs to Japanese <foreign xml:lang="ja">jitsu-in</foreign>.
+               Here, I will make the case for the applicability of authenticating elements,
+               introduce a preliminary working vocabulary of methods of authenticating elements, and
+               demonstrate how they can be modeled in TEI.</p>
+         </div>
+      </front>
+      <body>
+         <!-- text divisions, each with an @xml:id and <head> -->
+         <div xml:id="introduction">
+            <head>Introduction</head>
+            <p>Textual and paratextual elements that serve to establish the authenticity of
+               documents abound and carry authority that is important—often central—to the meaning
+               of the document as received. An authentic document from a legitimate sender issuing
+               an order, for example, is completely different in interpretation from an inauthentic
+               copy of an order, although the reception may change based upon whether it was
+               perceived by the recipients as authentic. Issues related to authentication are
+               currently only lightly modeled in TEI. This paper will discuss issues in the modeling
+               of authenticating features across time periods and regional boundaries, from the
+               existing <gi scheme="TEI">seal</gi> element to medieval European chirographs to
+               Japanese <foreign xml:lang="ja">jitsu-in.</foreign> Here, I will make the case for
+               the applicability of authenticating elements, introduce a preliminary working
+               vocabulary of methods of authenticating elements, and demonstrate how they can be
+               modeled in TEI.</p>
+            <p>The present use case arises out of the ongoing work of mapping of medieval documents
+               marked up by the <ref target="http://www.cei.lmu.de/">Charters Encoding Initiative</ref>
+               (CEI),<note><ref type="bibl" target="#vogeleretal2018">CEI website</ref>, accessed June 25, 2021, <ptr
+                     target="http://www.cei.lmu.de/"/>.</note> a charters-data-specific fork of TEI
+               P4 with its own elements and structures and separate development history, to TEI P5.
+               Georg Vogeler, who began the CEI, wondered what a model that encompassed both seals
+               and digital hashes might look like and initiated the current discussion of
+               authentication and the current ODD (<q>One Document Does it all</q>) extension. This
+               discussion and the ODD extension are part of the Austrian Science Fund (FWF) Open
+               Research Data (ORD) Project 84, Retain Domain Specific Functionalities in a Generic
+               Repository with Humanities Data, for which I worked as a postdoctoral research
+               associate. Vogeler’s observation, and the model of the CEI, were the genesis of the
+               current discussion of authentication and the current extension, and the present
+               author would like to acknowledge Georg Vogeler’s advice and feedback throughout the
+                  process.<note>I am also grateful for the advice and feedback of the anonymous
+                  reviewers of this paper.</note> In the process of modeling medieval documents for
+               the update of CEI to TEI P5, it was necessary to address such issues as they occur in
+               the context of medieval documents, with elements like chirographs, monograms, and
+               lists of witnesses. The practices modeled in the CEI, however, are similar across
+               time periods and regions, with little clear demarcation in the exact differences in
+               form and function of seals, stamps, monograms, <foreign xml:lang="ja"
+                  >jitsu-in</foreign>, and <foreign xml:lang="la">rotas</foreign>: all of these
+               practices exist within a larger spectrum of practice that spans time and culture,
+               from ancient Mesopotamia to medieval England to modern Japan. Accordingly, this paper
+               considers not just medieval charters and documents currently being encoded for the
+               CEI, but also potential needs for the modeling of related materials and of items like
+               text-bearing museum objects that have authentication features, such as banknotes and
+               passports. Born-digital objects such as email likely need further, specialized
+               attention in the future, and are beyond the scope of the present study. The paper
+               introduces a dedicated element for authentication, based upon (and expanding) current
+               practice in the CEI.</p>
+            <p>This paper attempts to generalize the markup of authenticating elements encountered
+               through diplomatic study of and markup of medieval documents, moving beyond the
+               original disciplinary context of the originating project. The approach here is very
+               different from that taken by SigiDoc (<ref xml:id="ref1" type="bibl"
+                  target="#sopracasaetal2020">Sopracasa 2020</ref>), a recent offshoot of EpiDoc,
+               which takes a rather numismatic approach, focusing on seals as individual objects,
+               independent of any accompanying materials, a decision derived from the conditions of
+               Byzantine sigillography, where scarcely any documents survive. It also differs from
+               other projects that contain elements describing authentication (e.g.,
+                  Nomisma<note><title level="a">Nomisma Ontology</title>, accessed July 1, 2021, <ptr
+                     target="http://nomisma.org/ontology"/>.</note>) which are discipline-specific
+               (i.e., numismatic) in approach, in aiming for generalizable universality.</p>
+         </div>
+         <div xml:id="priorart">
+            <head>Prior Art: Manuscript Catalogues and Diplomatics</head>
+            <p>Diplomatics, the science of the interpretation of charters and other documentary
+               materials, has since its inception been concerned with the authenticity of documents.
+               Foundational episodes in the history of the discipline center on this concern:
+               Lorenzo Valla’s debunking of the Donation of Constantine set the model that
+               diplomatists have generally followed, that of the expert making decisions based upon
+               the totality of the evidence about the content and context of a historical document
+               to determine whether it is authentic or a forgery (<ref xml:id="ref2" type="bibl"
+                  target="#valla1440">Valla 1440</ref>). When Jean Mabillon laid the groundwork for
+               the modern discipline in his <title level="m">De re diplomatica libri VI</title>, he
+               did so in response to competing claims about the authenticity of documents held in
+               the abbey of Saint-Denis (<ref xml:id="ref3" type="bibl" target="#mabillon1681"
+                  >Mabillon 1681</ref>). His six-year-long program to establish the authentic nature
+               of those documents led to the foundation of the disciplines of paleography and
+               diplomatics and also set the model for the learned diplomatist who approaches
+               historical documents in a holistic way to deliver expert and authoritative judgments
+               on the authenticity of historical documents.</p>
+            <p>Diplomatics as a discipline is one of the auxiliary sciences of history (<foreign
+                  xml:lang="de">Historische Hilfswissenschaften</foreign>), and exists as both a
+               general tool for historians and a specialist field of inquiry on its own. In its
+               modern form, it sees significant use in archival cataloging of documents. While the
+               TEI manuscript description (<ident>msdescription</ident>) module provides many
+               elements for representing traditional catalog elements in TEI (<ref xml:id="ref4"
+                  type="bibl" target="#cummings2017">Cummings 2017</ref>), these cataloging elements
+               are highly focused on books, not documents. Not only do documents have their own
+               forms, but they also have the specific trait of being anchored in a legal context: a
+               document which is treated entirely as text without reference to its authentic status
+               can be misleading to the modern historian, as treating an inauthentic document as if
+               it were authentic (i.e, with the force of law behind it) leads the modern scholar
+               down a false historical path.<note>I leave aside here the question of forged
+                  authentication, which is outside the limited scope of this paper, and, in any
+                  event, could be dealt with appropriately using existing markup.</note>
+               Traditionally, authentication has been a matter for an expert, who makes a decision
+               based upon the totality of the form and content of the document, processes it through
+               personal expertise in the relevant historical and legal contexts, and makes a
+               pronouncement on whether it is authentic or inauthentic.<note>The concept of
+                  authentication as witness to something both being true and being legal is
+                  discussed by <ref xml:id="ref14" type="bibl" target="#chango2012">Chango (2012)</ref>.</note>
+            </p>
+            <p>Ideally, TEI would make room for the inclusion of specialist expert knowledge and
+               judgment, but at the same time, as content-based markup, de-link that judgment from
+               the real, present elements which are evidence for authentication. This separates the
+               text, as an object that can be freely transcribed, edited, and forwarded, from the
+               images, which can be reproduced through photographs; from the authenticating value of
+               those textual or image elements; and also from the document itself, the authenticity
+               of which can only be determined by the kind of connoisseurship which comes from long
+               experience and exposure to documents. In this way, a combination of authentic and
+               inauthentic, authenticating and nonauthenticating elements can be separated from the
+               overall document (which, in the case that it contains a mix of authentic and
+               inauthentic authentication elements, is likely itself inauthentic). That
+               authenticating elements bear significance beyond their text or image and convey
+               information that is on par with the text itself is well established (<ref
+                  xml:id="ref5" type="bibl" target="#ruck1996">Rück 1996</ref>). This paper suggests
+               a way to regularly mark up such elements using an extension of TEI, with a suggested
+               preliminary controlled vocabulary useful as a target for subtype pointers.</p>
+         </div>
+         <div xml:id="authenticatingfeatures">
+            <head>Authenticating Features</head>
+            <p>Seals, whether affixed (applied directly to the document) or pendant (hanging from
+               the document from a cord or parchment/paper tag), served to express that the document
+               had been legitimately and authentically issued by the owner of the seal.<note>A
+                  useful (though UK-centric) introduction to sealing practices is by <ref
+                     xml:id="ref6" type="bibl" target="#new2010">New (2010)</ref>.</note> Seal
+               matrices were physical devices with complex carvings on them, presenting both a
+               material and an artistic/technological barrier to forgery, and therefore serving as
+               an attestation of the authentic nature of the document to which they were attached.
+               But seals are not specific to the format enshrined in the TEI Guidelines, the
+               medieval wax seal: its predecessors, circular seals meant for rolling in clay, are
+               much attested from the ancient Middle East, and using signet rings for personal
+               attestation was a common practice from the Ancient Middle East<note>From about 3400
+                  BCE. <ref xml:id="ref15" type="bibl" target="#collon1987">Collon 1987</ref>.</note> through the Middle Ages, with variances in fashion, until
+               going out of general use in the nineteenth century.</p>
+            <p>Though wax seals have a physical and artistic character that can be described with
+               the relevant TEI elements, their intended purpose points to their value as
+               paratextual elements, as their authenticating value is independent of their value as
+               art or as text. Accordingly, it makes sense that the authenticating value needs
+               highlighting, and the <gi scheme="TEI">sealDesc</gi> and <gi scheme="TEI">seal</gi>
+               elements largely handle these concerns, bundling the various aspects of seals—their
+               artistic description, physical character, prosopographical attributes, and other
+               paratextual qualities—in one place, representing the plural modes of communication
+               that seals are involved in. But do seals in themselves represent the full range of
+               features that similarly combine textual, artistic, and paratextual elements for the
+               purpose of authenticating documents?</p>
+            <p>TEI P5 provides the elements <gi scheme="TEI">seal</gi> and <gi scheme="TEI"
+                  >sealDesc</gi> as part of the msdescription module. A closely related feature of
+               manuscripts which is also modeled is <gi scheme="TEI">stamp</gi>. Stamps, while
+               differing in material form, often have similar (if not identical) visual arrangement,
+               incorporating elements of text and heraldry in round or pointed oval seals, directly
+               borrowing their visual forms from such seals; in fact, there is little to distinguish
+               a single-matrix affixed seal (one matrix, pressed into hot wax applied to the page)
+               from the impression of an ink stamp (one stamp, pressed into ink applied to the
+               page). Historically, they have been largely interchangeable, with stamps taking over
+               as authenticating features and still widely used by government and corporate offices,
+               as well as for indicating ownership (as in the Bodleian stamp, <ptr type="crossref"
+                  target="#stamp_wiki"/>). Stamps outside of Europe have a long history of use in
+               ways that are directly analogous to the use of seals in Europe, with widespread use
+               in the Middle East and East Asia; when discussing the latter, the term
+                  <term>seal</term> refers to inked stamps (<foreign xml:lang="ja"
+                  >jitsu-in</foreign> in Japan and colloquially <soCalled>chops</soCalled> in China)
+               used to sign and authenticate documents.</p>
+            <p>Despite the similar ways that (wax) seals and (inked) seals/stamps operate, at
+               present TEI treats them quite differently. Inked seals/stamps are treated as
+               text-level elements, placed where they appear in the running text, unlike <gi
+                  scheme="TEI">seal</gi>s, which are considered to be part of the physical
+               description of the document, within <ident>msDesc/physDesc/sealDesc/seal</ident>,
+               although seals often contain text themselves (since <gi scheme="TEI">msDesc</gi> is
+               catalog-level information, text in seals is currently treated as a description of the
+               seal, not as text, making text in seals problematic to properly capture). <ref
+                  type="crossref" target="#example1">Examples 1</ref> and <ref type="crossref"
+                  target="#example2">2</ref> show how they are currently described.</p>
+            <figure xml:id="example1">
+               <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <rubric>
+                     <lb/>Apologyticu TTVLLIANI AC IGNORATIA IN XPO IHV <lb/>SI NON LICET <lb/>NOBIS
+                     RO <lb/>manii imperii <stamp>Bodleian stamp</stamp>
+                     <lb/>
+                  </rubric>
+               </egXML>
+               <head type="legend">Stamps: The example in the TEI P5 documentation for stamp (<title
+                     level="a">Watermarks and Stamps</title>, <ref xml:id="figref1" type="bibl"
+                     target="#tei2019">TEI Consortium 2019, sec. 10.3.3</ref>, <ptr
+                     target="https://tei-c.org/Vault/P5/3.6.0/doc/tei-p5-doc/en/html/MS.html#mswat"
+                  /></head>
+            </figure>
+            <figure xml:id="example2">
+               <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <seal n="2" type="pendant" subtype="cauda_duplex">
+                     <p>The seal of <name>Jens Olufsen</name> in black wax: <bibl>
+                           <ref>DAS 1061</ref>
+                        </bibl>. Legend: <quote>S IOHANNES OLAVI</quote>. Parchment tag on which is
+                        written: <quote>Woldorp Iohanne G</quote>.</p>
+                  </seal>
+               </egXML>
+               <head type="legend">Seals. The example in the TEI P5 documentation for seal (<title
+                     level="a">Seals</title>, <ref xml:id="figref2" type="bibl" target="#tei2019"
+                     >TEI Consortium 2019, sec. 10.7.3.2</ref>, <ptr
+                     target="https://tei-c.org/Vault/P5/3.6.0/doc/tei-p5-doc/en/html/MS.html#msphse"
+                  />)</head>
+            </figure>
+            <figure xml:id="stamp_wiki">
+               <graphic url="img/Bibliotheksstempel_Bodleiana.jpg" width="218px" height="223px"/>
+               <head type="legend">An example Bodleian stamp.</head>
+               <head type="license">Image from Wikimedia.<ptr
+                     target="https://commons.wikimedia.org/wiki/File:Bibliotheksstempel_Bodleiana.jpg"
+                  /></head>
+            </figure>
+            <p>Note that despite being part of the running text of the document, the content of the
+               stamp element in <ptr type="crossref" target="#example1"/> is not text. Presumably,
+               in this case, it should read <q>BIBLIOTHECA BODLEIANA</q> as seen in <ptr
+                  type="crossref" target="#stamp_wiki"/> (and, if the writing in the Coat of Arms
+               of the University of Oxford is included, also <q>DOMINUS ILLUMINATIO MEA</q>), but
+               instead the example is a text reference to the identity of the stamp (although, since
+               there have presumably been multiple Bodleian stamps over the years, a rather
+               insufficient one). In this sense, the content of the <gi scheme="TEI">stamp</gi>
+               element is rather parallel to the content of the <gi scheme="TEI">seal</gi> element,
+               despite the actual content models being quite different (<gi scheme="TEI">seal</gi>,
+               which may contain <ident>model.pLike</ident> and <gi scheme="TEI">decoNote</gi>, only
+               serves as a direct container for three different elements; <gi scheme="TEI"
+                  >stamp</gi>, which may contain <ident>macro.phraseSeq</ident>, serves as a
+               container for over 100, but none of the same three that <gi scheme="TEI">seal</gi>
+               contains: <gi scheme="TEI">decoNote</gi>, <gi scheme="TEI">p</gi>, and <gi
+                  scheme="TEI">ab</gi>).<note><gi scheme="TEI">p</gi>, in turn, has a larger number
+                  of descendants, but the point is that these essentially equivalent features are
+                  modeled in such a way that they have no direct overlap in child elements.</note>
+            </p>
+         </div>
+         <div xml:id="authenticatingfeaturesnotcovered">
+            <head>Authenticating Features Not Covered by the TEI: Medieval Examples</head>
+            <p>As explained above, despite the differences in modeling in TEI P5, seals and stamps
+               often—though not always—perform the same or similar functions, while having the same
+               or similar layouts and very similar physical forms. But these are far from the only
+               authenticating forms, as medieval documents also used split media (chirograph, poll,
+               indenture, or tally), witnessing, various forms of signing (crosses, <foreign
+                  xml:lang="la">rota</foreign>s, and monograms), reproduction/publication (<foreign
+                  xml:lang="la">vidimus</foreign>, etc.), and less easily catalogued features, like
+               specific chancellery styles of documents and handwriting (most notably, the ornate
+               papal chancellery style). All of these elements served to establish that a document
+               was what it claimed to be, and that the contents of the document had the force of law
+               behind them. A legal document marked up without attention to these features is just a
+               text (generally a very formulaic one, written from a model), and missing a crucial
+               and inseparable aspect of its value to its producers and recipients: its status as a
+               legal object. Compare, for example, the XML representation of document
+                  <idno>570411a</idno> from the <ref xml:id="ref7" type="bibl"
+                  target="#monumenta2019">Monumenta Germaniae Historica</ref> (<ptr
+                  target="http://telota.bbaw.de/constitutiones/data/texts/570411a.xml"/>)<note>
+                  <bibl>
+                     <title level="m">Monumenta Germaniae Historica: Constitutiones et acta publica
+                        imperatorum et regum 1357–1378</title>, <publisher>Berlin-Brandenburgische
+                        Akademie der Wissenschaften</publisher>, accessed <date>July 22,
+                     2019</date>, <ptr target="http://telota.bbaw.de/constitutiones/index.html"
+                     />.</bibl></note> with its image (<ptr
+                  target="http://telota.bbaw.de/constitutiones/resources/images/Urkunde.gif"/>.
+               Though the document does mention a <q>Monogramm</q>, it is not marked up with any
+               specialized element, and both the monogram and the half of the seal that remains—both
+               bearing text and crucial for establishing that the accompanying text is authentic—are
+               not treated as text or with the care with which text would be treated.</p>
+            <figure xml:id="rotapope">
+               <graphic url="img/rotapope.png" width="956px" height="892px"/>
+               <head type="legend">Rota of Pope Innocent II in a charter, second graphic of
+                        <bibl><title level="m">Chartularium Sangallense</title>
+                     <biblScope unit="volume">03</biblScope> (<idno>1004–1277</idno>) <biblScope
+                        unit="part">Nr. 898, S. 21–22</biblScope>, accessed <date>July 2,
+                        2021</date>, <ptr
+                        target="https://www.monasterium.net/mom/CSGIII/Nr_898_S_21-22/charter"
+                     /></bibl></head>
+            </figure>
+            <figure xml:id="leadenbull">
+               <graphic url="img/leadenbull.png" width="804px" height="1212px"/>
+               <head type="legend">Leaden bull attached to a charter, second graphic of <bibl><title
+                        level="m">Chartularium Sangallense</title>
+                     <biblScope unit="volume">03</biblScope> (<idno>1004–1277</idno>) <biblScope
+                        unit="part">Nr. 898, S. 21–22</biblScope>, accessed <date>July 2,
+                        2021</date>, <ptr
+                        target="https://www.monasterium.net/mom/CSGIII/Nr_898_S_21-22/charter"
+                     /></bibl>.</head>
+            </figure>
+            <figure xml:id="benevalete">
+               <graphic url="img/benevalete.png" width="846px" height="1058px"/>
+               <head type="legend">Bene Valete in a charter, second graphic of <bibl><title
+                        level="m">Chartularium Sangallense</title>
+                     <biblScope unit="volume">03</biblScope> (<idno>1004–1277</idno>) <biblScope
+                        unit="part">Nr. 898, S. 21–22</biblScope>, accessed <date>July 2,
+                        2021</date>, <ptr
+                        target="https://www.monasterium.net/mom/CSGIII/Nr_898_S_21-22/charter"
+                     /></bibl></head>
+            </figure>
+            <figure xml:id="subscription">
+               <graphic url="img/subscription.png" width="2312px" height="392px"/>
+               <head type="legend">Subscription of Pope Innocent II in a charter, second graphic of
+                        <bibl><title level="m">Chartularium Sangallense</title>
+                     <biblScope unit="volume">03</biblScope> (<idno>1004–1277</idno>) <biblScope
+                        unit="part">Nr. 898, S. 21–22</biblScope>, accessed <date>July 2,
+                        2021</date>, <ptr
+                        target="https://www.monasterium.net/mom/CSGIII/Nr_898_S_21-22/charter"
+                     /></bibl></head>
+            </figure>
+            <p>A feature that is currently not specifically modeled at all in TEI, but which serves
+               a similar purpose to both stamp and seal, and even appears similar to both, is a
+                  <foreign xml:lang="la">rota</foreign> or monogram. Both are handwritten or
+               hand-drawn devices involving the names or initials of the issuer of the document,
+               formalized enough to be recognizable as separate from other forms of signing. A
+                  <foreign xml:lang="la">rota</foreign> is a specific, papal form of the monogram,
+               which is characteristic enough to be described using its own term and structured
+               similarly to a stamp (see <ptr type="crossref" target="#rotapope"/>). Similarly to
+               the stamp and seal above, the <foreign xml:lang="la">rota</foreign> contains both
+               textual and figural elements, arranged in a formalized and consistent way, serving to
+               establish the authenticity of the sender of the document. The round format of the
+                  <foreign xml:lang="la">rota</foreign> and the consistent styling of the materials
+               within directly invoke the style of seals or stamps, and contain notable similarities
+               with the specific papal version of the seal, the leaden <term>bull</term> (<ptr
+                  type="crossref" target="#leadenbull"/>).</p>
+            <p>Extending the idea of a drawn device that represents the person and authority of the
+               drafter, the notarial signet is a related conventional symbol in the form of a
+               drawing (often with writing) that stands in for the person preparing or acting in a
+               notarial authority for the document. A similar element, unique to the papal
+               chancellery, is the <term>Bene Valete</term> (<ptr type="crossref"
+                  target="#benevalete"/>), which is structured like a monogram and accompanies the
+               other elements of papal authentication, like the <foreign xml:lang="la"
+                  >rota</foreign> and signature as well as the bull (papal seal, <ptr
+                  type="crossref" target="#leadenbull"/>).</p>
+            <p>All of these features are supplemented (or, in many modern European and American
+               cases, replaced) by the autograph signature (as pictured in <ptr type="crossref"
+                  target="#subscription"/>), but that is far from the only version of signing used
+               historically, and the cross, and in some cases fingerprints, used for signing work
+               equivalently to indicate consent to the terms of a document. Indeed, seals, stamps,
+               signatures, and crosses all have overlapping uses for asserting assent. Crosses were
+               commonly used by witnesses to documents when the witnesses did not attach their own
+               seals. Crosses overlap with signatures for the illiterate, and did so into the recent
+               past. Stamps used for signing are still current in East Asia and coexist with
+               signatures on documents throughout the world, often asserting that the person signing
+               has the authority to sign on behalf of an organization or institution, represented by
+               the stamp. An interesting case of the coexistence of stamps and crosses and
+               signatures was documented by <ref xml:id="ref8" type="bibl" target="#ramble2018"
+                  >Ramble (2018)</ref>, who additionally finds inked fingerprints thrown into the
+               mix. He tracks changes in the documentary practice of the Mustang region of Nepal
+               from inked stamps (associated with Tibetan practices) to fingerprints (associated
+               with Indian, perhaps British Raj, practice), these practices corresponding to a
+               movement from Tibetan to Nepali legal terms. Fingerprints (and handprints, in some
+               examples) can be clearly seen to replace stamps on a one-for-one basis, demonstrating
+               their analogous authentication value.<note>Going beyond medieval examples, a
+                  technology which also uses fingerprints, biometric identity management, once the
+                  purview of science fiction, has become increasingly common in personal computing
+                  devices: iOS and Android devices, among others, support fingerprint or facial
+                  recognition technology, supplementing traditional passwords (<ref xml:id="ref9"
+                     type="bibl" target="#mac2018"><title level="a">Use Touch ID on your Mac</title>
+                     n.d.</ref>; <ref xml:id="ref10" type="bibl" target="#biometrics2018"><title
+                        level="a">Biometrics</title> n.d.</ref>). Future technology may include
+                  retina or iris scans (already in use at airport gates), fingerprints (associated
+                  with biometric passports), and other biometric data associated with a record in
+                  order to establish its identity.</note>
+            </p>
+            <p>As the above examples show, there are a range of technologies and practices which
+               bleed together both in their place on a visual spectrum and in their practical use,
+               and can thus be productively classified together, serving a similar function to
+               seals, often with similar forms, but not yet described by the TEI. Other less
+               obviously similar practices also serve a similar function, which we can easily infer
+               through their co-use in service to proving the authenticity of documents, though they
+               may not immediately be visually similar. An interesting medieval example is what I
+               will call <soCalled>split medium</soCalled> authentication, and includes a number of related practices:
+               chirographs, polls, indentures, and tally sticks.</p>
+         </div>
+         <div xml:id="beyondseals">
+            <head>Beyond Seals and Stamps: Medium as Authentication</head>
+            <figure xml:id="chirograph"><graphic url="img/chirograph.jpg" width="735px" height="600px"/><head type="legend">Chirograph from 1177, Departmental Archives of Val-d’Oise, part of the
+               virtual exhibition <title level="m">Ciro graphum, un charte exceptionnelle de
+                  1177</title>
+               (<ptr target="http://archives.valdoise.fr/expositions/exposition-ciro-graphum-une-charte-exceptionnelle-de-3/n:213"/>).
+               Paris, Archives nationales, <idno>AE/II/181</idno> digitally reunited with Pontoise, Archives
+               départementales du Val-d’Oise, <idno>9 H 81</idno>.</head></figure>
+            <p>Chirographs are a medieval practice of authenticating documents, named from the
+               practice of writing the word <foreign xml:lang="la">chirographum</foreign> (with inconsistent
+               orthography), which means <q>handwritten</q>, between two identical copies of the same
+               document and then cutting the two halves apart through the word, so that the parts
+               can be recombined to show that the word lines up exactly. Actual practices vary, and
+               need not include the word <foreign xml:lang="la">chirographum</foreign>, but rely instead on
+               images (see <ptr type="crossref" target="#chirograph"/>) or the shape of the cut: wavy cuts are
+               called polls, jagged (<soCalled>teeth-like</soCalled>) cuts are called indentures, and some chirographs
+               might have three parts. A similar split-medium practice exists for account sticks,
+               called tally sticks, which would be broken as a receipt, such that the splinters
+               would uniquely match the account and prove that it had been paid. The medium is
+               itself authenticating in a way that is simply not the case in ordinary documents. In
+               <ptr type="crossref" target="#chirograph"/>, an example with both seals and chirograph attests to their shared use, as
+               the authority of either half does not rest entirely upon the seals, but rather upon
+               the status of each half lining up with its mate. In practice, chirographs, polls, and
+               indentures circulated widely without seals, the split itself being sufficient
+               authentication.</p>
+            <p>Another authenticating medium is so-called <soCalled>banknote paper</soCalled>, a special blend of
+               different materials and fibers that is distinctive and can only be manufactured by
+               specialized producers. An additional physical aspect of the medium, the watermark
+               traditionally laid into paper, serves to identify the maker, and in the case of
+               banknotes and other secure media serves to identify the paper as being made of the
+               proper material (and presumably under the proper authority). Offices and individuals
+               have long used basic authentication through physical media by writing or typing
+               letters on institutional or individualized letterhead, controlling access to the
+               stationery in order to protect its authority.</p>
+            <p>Going beyond the medium, there is a category of practices which combine physical
+               characteristics and printing (spanning practices that are almost all the former to
+               practices that are all the latter) in the service of authentication: security
+               printing. This can include micrography (extremely small type that is hard to
+               duplicate because cutting such fine dies is expensive) and unique typefaces with
+               distinctive, purposeful irregularities that, owing to their very imperfections, are
+               harder to duplicate than perfectly regular typefaces. It includes guilloche patterns,
+               intricate and regular patterns that are hard to duplicate when cutting dies for
+                  printing.<note>After all, printed type and printed banknotes are produced
+                  through functionally the same process as stamping a document, and the use of dies
+                  differs little from pressing a matrix into wax to seal it.</note> Other forms of
+               security printing include the use of special inks, including inks designed to
+               fluoresce in various wavelengths of light. Such inks are used in Canadian passports,
+               where under UV light, Parliament Hill is surrounded by colorful fireworks, as it is
+               on Canada Day.</p>
+            <p>Following this chain of physical interventions in the service of authentication, one
+               of the best ways to be assured that material is authentic is to receive it directly
+               from a trusted source in a controlled manner. For a medieval document, a continuous
+               chain of transmission through known and documented sources may suffice, as would
+               continuous presence in a trusted and secure archival context. Ethiopian charters were
+               often copied into the margins of <soCalled>golden gospels</soCalled> or other locally important
+               manuscripts that would be well guarded by the local church and community. Presence in
+               the margins of these sacred works ensured preservation and guarded against
+               independently circulating forgeries. An example, from a copy of the <foreign xml:lang="eth"
+                  >Mäṣḥafä gizeyat</foreign>(a lectionary with extracts from the <foreign xml:lang="eth"
+                  >Wəddase Maryam</foreign>, <title level="a">Praise of Mary</title>) of Zala ʾƎnda ʾAmanuʾel Church in Tigray,
+               has been discussed elsewhere, in terms of its clear documentary characteristics,
+               despite not sharing much in material format with the typical single-page European
+               charter (<ref xml:id="ref11" type="bibl" target="#wion2018">Wion 2018</ref>; <ref xml:id="ref12" type="bibl" target="#vogeler2018">Vogeler 2018</ref>). Similarly to storage in a locked safe, packaging
+               or enclosure (where tamper-resistant) assures the recipient that the item has been
+               delivered in an unaltered condition. Security bags, security tape, tamper seals (on
+               pharmaceuticals, for example), and lamination of documents all serve to establish the
+               unaltered character of the material so enclosed, and therefore its unforged
+               authenticity.</p>
+         </div>
+         <div xml:id="genericelement">
+            <head>5 A Generic Element: <gi scheme="TEI">authen</gi></head>
+            <p>In order to clearly model all of these related practices, and in the interest of not
+               favoring one period or type of document over another, a generic element seems both
+               desirable and advisable. The proposed element, as implemented in the TEI_CEI
+                  ODD,<note>See the <ref xml:id="ref13" type="bibl" target="#winslowetal2019">CEI2TEI GitHub repository, accessed June 25, 2021</ref>,
+                     <ptr target="https://github.com/GVogeler/CEI2TEI/blob/master/tei_cei.odd"/>.</note> is simple
+               (<ident>attList</ident> items suppressed for brevity: they follow the top-level distinctions in the
+               sample controlled vocabulary visualized in <ptr type="crossref" target="#example4"/>):</p>
+            <figure xml:id="example4">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+               <elementSpec ident="authen" mode="add "> 
+                    <desc>Description of an element that is used to authenticate a document. Specifically, elements that would be intended, from a juridical perspective, to be authenticating. May contain a forged  element, in which case the forgery should be noted and certainty marked.</desc> 
+                    <classes> 
+                      <memberOf key="att.dateable"/> 
+                      <memberOf key="att.global"/> 
+                      <memberOf key="att.typed"/> 
+                      <memberOf key="model.inter"/> 
+                    </classes> 
+                    <content> 
+                      <alternate minOccurs="0" maxOccurs="unbounded"> 
+                      <classRef key="model.pLike"/> 
+                          <classRef key="model.limitedPhrase"/> 
+                          <elementRef key="decoNote"/> 
+                          <elementRef key="condition"/> 
+                         </alternate> 
+                        </content> 
+                        <attList> 
+                        ... 
+                    </attList> 
+               </elementSpec>
+            </egXML>
+            <head type="legend"><gi scheme="TEI">elementSpec</gi> with content model for element <gi
+                  scheme="TEI">authen</gi>.</head></figure>
+            <p>This feature genericizes the combination of physical/textual and paratextual elements
+               in a seal to cover a whole range of authenticating features, serving not only the
+               specific needs of charters encoding in the TEI, but also allowing for a fuller and
+               more intercultural understanding of the nature of authenticating features that may be
+               analogous to sealing in various contexts. By choosing to encode using <gi
+                  scheme="TEI">authen</gi>, a richer, fuller, and more accurate view of the material
+               can be encoded, as the intended context of these features (and with it the fullness
+               of their import) is not discarded. It has a broader content model than <gi
+                  scheme="TEI">seal</gi>, specifically <ident>model.LimitedPhrase</ident>, which is needed to cover
+               all of the use cases of the CEI but also importantly captures <ident>model.pPart.msdesc</ident>,
+               with a number of elements that are useful for describing seals themselves, as well as
+               other types of authentication. Currently, this element is implemented in the TEI_CEI
+               ODD for encoding charters, but the principles outlined here suggest that it should be
+               available for broader use in the TEI. Alongside these changes, for the purposes of
+               the TEI_CEI ODD, <gi scheme="TEI">sealDesc</gi> has been renamed to <gi scheme="TEI"
+                  >authDesc</gi>, to make the semantics consistent and understandable to the
+               user.</p>
+            <p>In order to control the wide range of different variants of this practice, here is a
+               proposed vocabulary, provided in SKOS (Simple Knowledge Organization System) format
+               (as part of the project’s <ref
+                  target="https://github.com/GVogeler/CEI2TEI/blob/master/Authentication/authen.skos.ttl"
+               > GitHub repository</ref>,<note>Accessed July 13, 2021, <ptr
+                     target="https://github.com/GVogeler/CEI2TEI/blob/master/Authentication/authen.skos.ttl"
+                  />.</note> at <ptr
+                  target="https://github.com/GVogeler/CEI2TEI/blob/master/Authentication/authen.skos.ttl"
+               />,
+               which allows the identification of individual items of authentication from a large
+               list. It is the product of a preliminary categorization of the various types of
+               authentication that might appear in text-bearing objects encoded in the TEI P5. A
+               visualization of this scheme, which was used in the preparation of the SKOS
+               vocabulary, is reproduced in the appendix of this article. With the combination of
+               this basic element and the wide range of potential subtype pointers (or equivalent
+               modification of the ODD to enforce a project-specific <ident>attList</ident>), it should be possible
+               to model a wide range of text-bearing documents, from ancient seals to modern
+               banknotes and passports, as well as to enrich content-based markup of important
+               paratextual authenticating elements.</p>
+            <p>It is my hope that this element, if picked up, will go some way toward allowing for
+               more meaningful markup of a broad swath of transregional paratextual practices,
+               helping TEI transcend some of its narrowly constructed limitations in the approach to
+               such subjects from one specific regional/disciplinary perspective.</p>
+         </div>
+      </body>
+      <back>
+         <div type="bibliography">
+            <!-- the bibliography for the article, organized as a series of <bibl> elements inside <listBibl> -->
+            <listBibl>
+               <bibl xml:id="biometrics2018"><title level="a">Biometrics.</title>
+                  <author>Android Open Source Project</author>. <date>Accessed December 4,
+                     2018</date>. <ref target="https://source.android.com/security/biometric"
+                     >https://source.android.com/security/biometric</ref>.</bibl>
+               <!--<bibl xml:id="boyle1992"><author>Boyle, Leonard E.</author>
+                  <date>1992</date>. <title level="a">Diplomatics.</title> In <title level="m"
+                     >Medieval Studies: An Introduction</title>, edited by <editor>James M.
+                     Powell</editor>, <biblScope unit="page">82–113</biblScope>. <edition>2nd
+                     ed.</edition>
+                  <pubPlace>Syracuse, NY</pubPlace>: <publisher>Syracuse University
+                     Press</publisher>.</bibl>-->
+               <bibl xml:id="chango2012"><author>Chango, Mawaki</author>. <date>2012</date>. <title
+                     level="u">Becoming Artifacts: Medieval Seals, Passports and the Future of
+                     Digital Identity.</title> PhD diss., <publisher>Syracuse
+                  University</publisher>. <ref target="https://surface.syr.edu/it_etd/74"
+                     >https://surface.syr.edu/it_etd/74</ref>.</bibl>
+               <bibl xml:id="clemensetal2007"><author>Clemens, Raymond</author>, and <author>Timothy
+                     Graham</author>. <date>2007</date>. <title level="m">Introduction to Manuscript
+                     Studies.</title><pubPlace>Ithaca, NY</pubPlace>: <publisher>Cornell University
+                     Press</publisher>.</bibl>
+               <!--              orphan reference: this entry is referenced in two other entries, even though it’s not cited directly in the text. This is acceptable in Chicago style. .-->
+               <bibl xml:id="collon1987"><author>Collon, Dominique</author>. <date>1987</date>.
+                     <title level="m">First impressions: cylinder seals in the Ancient Near
+                     East.</title><pubPlace>London</pubPlace>: <publisher>British
+                  Museum</publisher>.</bibl>
+               <bibl xml:id="cubelicetal2018"><editor>Cubelic, Simon</editor>, <editor>Axel
+                     Michaels</editor>, and <editor>Astrid Zotter</editor>, eds. <date>2018</date>.
+                     <title level="m">Studies in Historical Documents from Nepal and
+                     India.</title><series>Documenta Nepalica</series>
+                  <biblScope unit="volume">1</biblScope>. <pubPlace>Heidelberg</pubPlace>:
+                     <publisher>Heidelberg University Publishing</publisher>.
+                  doi:10.17885/heiup.331.454.</bibl>
+               <bibl xml:id="cummings2017"><author>Cummings, James</author>. <date>2017</date>.
+                     <title level="a">Manuscript Description.</title> Chap. 3 in <title level="m"
+                     >Digital Editing of Medieval Texts: A Textbook</title>,edited by
+                     <editor>Marjorie Burghart</editor>. <pubPlace>N.p.</pubPlace>:
+                     <publisher>N.p</publisher>. <ptr target="https://www.digitalmanuscripts.eu//wp-content/uploads/2017/09/03-ms-desc-JC.pdf"/>; <ptr target="https://www.digitalmanuscripts.eu/?page_id=648"/>.</bibl>
+               <bibl xml:id="mabillon1681"><author>Mabillon, Jean</author>. <date>1681</date>.
+                     <title level="m">De re diplomatica libri
+                  VI.</title><pubPlace>Paris</pubPlace>.</bibl>
+         <!--      <bibl xml:id="macneilletal2005"><author>MacNeil, Heather</author>, <author>Chen
+                     Wei</author>, <author>Luciana Duranti</author>, <author>Anne
+                     Gilland-Swetland</author>, <author>Maria Guercio</author>, <author>Yvette
+                     Hackett</author>, <author>Babak Hamidzadeh</author>, et al. <date>2005</date>.
+                     <title level="a">Authenticity Task Force Report.</title> Chap. 1 in <title
+                     level="m">The Long-term Preservation of Authentic Electronic Records: the
+                     findings of the InterPARES Project,</title>edited by <editor>Luciana
+                     Duranti</editor>. <pubPlace>Italia</pubPlace>:
+                  <publisher>Archilab</publisher>.</bibl>-->
+             <!--  <bibl xml:id="charlemagne2015"><author>The Making of Charlemagne’s Europe
+                     (768–814)</author>. <date>2015</date>. <title level="m">User Guide for Data
+                     Entry.</title>Version 18. The Making of Charlemagne’s Europe (768–814).
+                     <date>Last revised January 20</date>. <ref
+                     target="http://www.charlemagneseurope.ac.uk/media/uploads/charlemagne_project_user_guide_v18.pdf"
+                     >http://www.charlemagneseurope.ac.uk/media/uploads/charlemagne_project_user_guide_v18.pdf</ref>.</bibl>-->
+               <bibl xml:id="monumenta2019"><title level="a">Monumenta Germaniae Historica:
+                     Constitutiones et acta publica imperatorum et regum 1357–1378.</title>
+                  <date>2019</date>. <publisher>Berlin-Brandenburgische Akademie der
+                     Wissenschaften</publisher>. Accessed <date>July 22</date>. <ref
+                     target="http://telota.bbaw.de/constitutiones/index.html"
+                     >http://telota.bbaw.de/constitutiones/index.html</ref>.</bibl>
+               <bibl xml:id="new2010"><author>New, Elizabeth A</author>. <date>2010</date>. <title
+                     level="m">Seals and Sealing Practices</title>. <pubPlace>London</pubPlace>:
+                     <publisher>British Records Association</publisher>.</bibl>
+               <bibl xml:id="ramble2018"><author>Ramble, Charles</author>. <date>2018</date>. <title
+                     level="a">Producing <q>South Asian</q> Tibetan Documents in Highland
+                     Nepal, 19th to 20th Centuries: The Emergence and Disappearance of a Local
+                     Diplomatic Tradition.</title> In <editor>Cubelic</editor>,
+                     <editor>Michaels</editor>, and <editor>Zotter</editor>
+                  <ref type="bibl" target="#cubelicetal2018"><date>2018</date></ref>, <biblScope
+                     unit="page">111–33</biblScope>.</bibl>
+               <bibl xml:id="ruck1996"><editor>Rück, Peter</editor>, ed. <date>1996</date>. <title
+                     level="m">Graphische Symbole in mittelalterlichen Urkunden: Beiträge zur
+                     diplomatischen Semiotik</title>. <series>Historische
+                     Hilfswissenschaften</series>
+                  <biblScope unit="volume">3</biblScope>. <pubPlace>Sigmaringen</pubPlace>:
+                     <publisher>Jan Thorbecke</publisher>.</bibl>
+               <bibl xml:id="sopracasaetal2020"><author>Sopracasa, Alessio</author>, and
+                     <author>Martina Filosa</author>. <date>2020</date>. <title level="a">Encoding
+                     Byzantine Seals: SigiDoc</title>, in <title level="m">Atti del IX Convegno
+                     Annuale AIUCD. La svolta inevitabile: sfide e prospettive per l`Informatica
+                     Umanistica</title>, <biblScope unit="page">240–45</biblScope>.
+                     <pubPlace>Milano</pubPlace>: <publisher>Università Cattolica del Sacro
+                     Cuore</publisher>. <ref
+                     target="http://aiucd2020.unicatt.it/aiucd-Sopracasa_Filosa.pdf"
+                     >http://aiucd2020.unicatt.it/aiucd-Sopracasa_Filosa.pdf</ref>.</bibl>
+               <bibl xml:id="tei2019"><author>TEI Consortium</author>. <date>2019</date>. <title
+                     level="m">TEI P5: Guidelines for Electronic Text Encoding and
+                     Interchange</title>. Version 3.6.0. Last updated <date>July 19</date>.
+                     <pubPlace>N.p.</pubPlace>: <publisher>TEI Consortium</publisher>. <ref
+                     target="https://tei-c.org/Vault/P5/3.6.0/doc/tei-p5-doc/en/html/"
+                     >https://tei-c.org/Vault/P5/3.6.0/doc/tei-p5-doc/en/html/</ref>.</bibl>
+               <bibl xml:id="mac2018"><title level="a">Use Touch ID on your Mac</title>.<title
+                     level="m">MacOS User Guide</title>. <publisher>Apple Inc</publisher>. Accessed
+                     <date>December 4, 2018</date>. <ref
+                     target="https://support.apple.com/en-us/HT207054"
+                     >https://support.apple.com/en-us/HT207054</ref>.</bibl>
+               <bibl xml:id="valla1440"><author>Valla, Lorenzo</author>. <date>1440</date>. <title
+                     level="m">De falso credita et ementita Constantini Donatione
+                     declamatio</title>.
+               </bibl>
+               <bibl xml:id="vogeler2018"><author>Vogeler, Georg</author>. <date>2018</date>. <title
+                     level="a">Digital Diplomatics: The Evolution of a European Tradition or a
+                     Generic Concept?</title> In <editor>Cubelic</editor>,
+                  <editor>Michaels</editor>, and <editor>Zotter</editor>
+                  <ref type="bibl" target="#cubelicetal2018"><date>2018</date></ref>, <biblScope
+                     unit="page">85–109</biblScope>.</bibl>
+               <bibl xml:id="vogeleretal2018"><author>Vogeler, Georg</author>, et al.
+                     <date>2018</date>. <title level="m">CEI – Charters Encoding Initiative</title>.
+                  Accessed <date>December 4</date>. <ref target="https://www.cei.lmu.de"
+                     >https://www.cei.lmu.de</ref>.</bibl>
+               <bibl xml:id="winslowetal2019"><author>Winslow, Sean M</author>., and <author>Georg
+                     Vogeler</author>. <date>2019</date>. <title level="m">CEI2TEI.</title>Github.
+                  Last revised <date>June 21</date>. <ref
+                     target="https://github.com/GVogeler/CEI2TEI"
+                     >https://github.com/GVogeler/CEI2TEI</ref>.</bibl>
+               <bibl xml:id="wion2018"><author>Wion, Anaïs</author>. <date>2018</date>. <title
+                     level="a">The TEI-XML Architecture of <title level="m">Ethiopian Manuscript
+                        Archives</title>: Respecting the Integrity of Primary Sources and Asserting
+                     Editorial Choices</title>. <title level="m">Comparative Oriental Manuscript
+                     Studies Bulletin</title><biblScope unit="volume">4</biblScope>
+                  <biblScope unit="issue">(1)</biblScope>: <biblScope unit="page">33–38</biblScope>.
+                     <ptr target="https://www.aai.uni-hamburg.de/en/comst/pdf/bulletin4-1/33-38.pdf"
+                     />.</bibl>
+            </listBibl>
+         </div>
+         <div type="appendix">
+            <head>Addendum: Preliminary Work on Classification of Authenticating Features</head>
+            <figure xml:id="figure7"><graphic url="img/visualrep.jpg" width="1407px" height="1827px"/><head type="legend">Visual representation of the organization behind the vocabulary of
+               authenticating elements.</head></figure>
+         </div>
+      </back>
+   </text>
+</TEI>

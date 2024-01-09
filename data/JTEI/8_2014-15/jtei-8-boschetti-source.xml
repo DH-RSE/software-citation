@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="main">TeiCoPhiLib: A Library of Components for the Domain of Collaborative Philology</title>
+        <author>
+          <name>
+            <forename>Federico</forename>
+            <surname>Boschetti</surname>
+          </name>
+          <affiliation>Federico Boschetti, holds a PhD in classical philology and brain and cognitive sciences—language, interaction and computation. He is a <roleName>researcher</roleName> at the A. Zampolli Institute for Computational Linguistics of the <orgName>Italian National Research Council</orgName> (ILC-CNR) of Pisa. His area of interest is computational and collaborative philology.</affiliation>
+          <email>federico.boschetti@ilc.cnr.it</email>
+        </author>
+        <author>
+          <name>
+            <forename>Angelo Mario</forename>
+            <surname>Del Grosso</surname>
+          </name>
+          <affiliation>Angelo Mario Del Grosso, holds a PhD in information engineering at the Engineering Ph.D. School <soCalled>Leonardo da Vinci</soCalled> of the University of Pisa. He is a <roleName>research fellow</roleName> at the A. Zampolli Institute for Computational Linguistics of the <orgName>Italian National Research Council</orgName> (ILC-CNR) of Pisa. His area of interest is the analysis, design and development of object-oriented and computational methodologies applied to the textual scholarship domain.</affiliation>
+          <email>angelo.delgrosso@ilc.cnr.it</email>
+        </author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>TEI Consortium</publisher>
+        <date>23/09/2015</date>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by/4.0/">
+            <p>For this publication a Creative Commons Attribution 4.0 International license has been granted by the author(s) who retain full copyright.</p>
+          </licence> 
+        </availability>
+      </publicationStmt>
+      <seriesStmt>
+        <title level="j">Journal of the Text Encoding Initiative</title>
+        <editor role="guest">Arianna Ciula</editor>
+        <editor role="guest">Fabio Ciotti</editor>
+        <editor role="chief">John Walsh</editor>
+        <editor role="managing">Martin Holmes</editor>
+        <editor role="technical">Ron Van den Branden</editor>
+        <biblScope unit="issue" n="8">Selected Papers from the 2013 TEI Conference</biblScope>        
+      </seriesStmt>
+      <sourceDesc>
+        <p>No source, born digital.</p>
+      </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+      <projectDesc>
+        <p>Revues.org -centre for open electronic publishing- is the platform for journals in the
+          humanities and social sciences, open to quality periodicals looking to publish full-text
+          articles online.</p>
+      </projectDesc>
+    </encodingDesc>
+    <profileDesc>
+      <langUsage>
+        <language ident="en">en</language>
+      </langUsage>
+      <textClass>
+        <keywords xml:lang="en">
+          <term>APIs</term>
+          <term>design patterns</term>
+          <term>library of components</term>
+          <term>collaborative philology</term>
+        </keywords>
+      </textClass>
+    </profileDesc>
+  </teiHeader>
+  <text>
+    <front>
+      <div type="abstract" xml:id="abstract">
+        <p>In this article we illustrate a work in progress related to the design of a library of software components devoted to editing, processing, and visualizing TEI-annotated documents in the domain of philological studies, in particular in the subdomain of collaborative philology, which concerns the social activity of scholars focused on shared philological tasks. We discuss the technologies related to XML markup languages and the processing of marked-up documents. We describe the method used to design and implement the TeiCoPhiLib, outlining the design patterns as well as discussing general benefits of the overall architecture. Finally, we present case studies in which some components of our library currently implemented in Java have been used.</p>
+      </div>
+    </front>
+    <body>
+      <div xml:id="introduction">
+        <head>Introduction</head>
+        <p>The TeiCoPhiLib library is a collection of components currently implemented in Java (JSR 270), which parses documents encoded according to a basic subset of TEI tags defined in an ODD file<note>The ODD files currently available can be downloaded from GitHub: <ptr target="https://github.com/CoPhi"/>. The TEI schema we intend eventually to adopt conforms to the EpiDoc vocabulary, following the policy of the Perseus Catalog (<ref type="bibl" target="#crane14">Crane et al. 2014</ref>).</note> and creates an object-oriented data structure in order to handle the textual content and its processing. The overall architecture is based on the well known Model-View-Controller (MVC) pattern, which separates the representation of data from the rendering and management of the content for the sake of flexibility and reusability. TeiCoPhiLib maps the structured document onto an aggregation of objects. The library enables the visualization through a web browser by instantiating a collection of widgets rendered on the client through standard web technologies. Specifically, the server-side environment jointly processes data and visualization templates,<note>Facelets XML templates are used under the Java Server Faces 2.0 specification.</note> and generates HTML pages rendered on the client. Special components are devoted to monitoring the behavior and interactions among the objects generated from the input TEI documents.</p>
+        <p>In distributed and collaborative environments, the maintenance of links and relations among editable XML documents is a challenging task (<ref type="bibl" target="#diiorio09">Di Iorio et al. 2009</ref>; <ref type="bibl" target="#peroni13">Peroni, Poggi, and Vitali 2013</ref>; <ref type="bibl" target="#schmidt09">Schmidt and Colomb 2009</ref>). Indeed, this kind of environment must preserve the referential integrity among interrelated textual units and the consistency among interlinked contents (<ref type="bibl" target="#schmidt14">Schmidt 2014</ref>; <ref type="bibl" target="#barabucci13">Barabucci et al. 2013</ref>; <ref type="bibl" target="#ronnau09">Ronnau, Philipp, and Borgho 2009</ref>). It is worth noting that both texts and related annotations may change asynchronously. Accordingly, the problems with maintenance have an increasing relevance in social editing (<ref type="bibl" target="#siemens12">Siemens et al. 2012</ref>) and in general in collaborative philology. This emerging field concerns the social activity of scholars focused on shared philological tasks (such as scholarly editing and collaborative annotation) through a cyberinfrastructure (<ref type="bibl" target="#terras10">Terras and Crane 2010</ref>; <ref type="bibl" target="#crane09">Crane, Seales, and Terras 2009</ref>). In order to face this challenge, our approach exploits software engineering techniques illustrated in <ptr type="crossref" target="#designpatterns"/>, which explains the TeiCoPhiLib design patterns.</p>
+        <p>For this reason, the design of TeiCoPhiLib widely leverages the stand-off approaches provided by the TEI Guidelines, that is, both the reference to plain text offsets and the reference to nodes denoted by the <att>xml:id</att> unique identifiers (<ref type="bibl" target="#tei15">TEI Consortium 2015</ref>; <ref type="bibl" target="#wittern09">Wittern, Ciula, and Conal 2009</ref>; <ref type="bibl" target="#pierazzo15">Pierazzo 2015</ref>). Consequently, the design of the components aims at the separation of concerns through four distinct layers: <list rend="inline ordered"><item>textual structure;</item> <item>semantics;</item> <item>style; and</item> <item>behavior</item></list>, in order to ensure modularity, scalability, and flexibility.</p>
+      </div>
+      <div xml:id="background">
+        <head>Background</head>
+        <p>The main benefit of XML, and especially of the TEI Guidelines (<ref type="bibl" target="#tei15">TEI Consortium 2015</ref>), resides in simplicity, flexibility, readability, and customizability, with the assurance of a formal approach for validating the marked-up data. Consequently, XML provides a standard way to define a set of tags (vocabulary) for specific purposes. Moreover, the cluster of technologies associated with <ref target="http://www.w3.org/standards/xml/">XML</ref><note><ptr target="http://www.w3.org/standards/xml/"/>.</note> allows us to process, query and publish structured documents.</p>
+        <p>Several frameworks and initiatives have been developed over the years for handling XML, achieving great results and benefits for both scholars and developers. Among others, the open-source general-purpose framework <ref target="http://cocoon.apache.org/">Cocoon</ref><note><ptr target="http://cocoon.apache.org/"/>.</note> and the native XML database <ref target="http://exist-db.org/">eXist-db</ref><note><ptr target="http://exist-db.org/"/>.</note> deserve to be mentioned. Specifically for TEI-annotated documents, <ref target="http://www.tustep.uni-tuebingen.de/tustep_eng.html">TUSTEP</ref>,<note><ptr target="http://www.tustep.uni-tuebingen.de/tustep_eng.html"/>.</note> <ref target="http://dcl.ils.indiana.edu/">TEIBoilerplate</ref>,<note><ptr target="http://dcl.ils.indiana.edu/"/>.</note> <ref target="http://sourceforge.net/projects/txm/">TXM</ref>,<note> <ptr target="http://sourceforge.net/projects/txm/"/>.</note> and <ref target="http://tapasproject.org/">TAPAS</ref><note><ptr target="http://tapasproject.org/"/>.</note> are prominent projects.</p>
+        <p> For all of these initiatives, the transformation from an XML document structure to another format by XSLT can be considered the focal point.</p>
+      </div>
+      <div xml:id="method">
+        <head>Method</head>
+        <div xml:id="flexibility">
+          <head>Flexibility and Reusability</head>
+          <p>A document-oriented approach can be complemented by an application/API-oriented approach for the development of textual analysis tools. We are adopting a top-down design integrated with bottom-up processes (<ref type="bibl" target="#delgrosso13">Del Grosso and Boschetti 2013</ref>), which allows us to generalize, extend, and refactor the overall architecture as new requirements and common issues emerge from use cases under development. The design is top-down because we are defining both the general abstract framework and the mechanisms that allow us to implement new functionalities according to emerging needs. On the other hand, our library also adopts a bottom-up approach because we apply refactoring strategies to adapt existing components implemented in our previous projects to the general framework, extending the framework.</p>
+          <p>The library of components is designed by exploiting object-oriented methods and processes such as analysis of requirements, definition of the domain entities, separation of concerns, information hiding, and software reusability and extensibility (<ref type="bibl" target="#fowler96">Fowler 1996</ref>). Extensive use of design patterns (i.e., recurring solutions to common problems within a given context [<ref type="bibl" target="#gamma95">Gamma et al. 1995</ref>]) facilitates the achievement of these goals.</p>
+          <p>Agile software development<note>See the Agile Manifesto (<ptr target="http://www.agilemanifesto.org/"/>) for a detailed explanation.</note> and use case–driven modeling (<ref type="bibl" target="#rosenberg07">Rosenberg and Stephens 2007</ref>) ensure the progressive enhancement of old functionalities and the development of new ones. The main principles of agile software development that we adopt are: <list rend="inline ordered"><item>individuals and communication are more important than processes and tools;</item> <item>documentation and design must be accessible to everybody all the time;</item> <item>software development starts as soon as possible;</item> <item>changes and refactoring are part of the design and the development process;</item> <item>all lab team members participate in all presentations;</item> <item>software is organized in short releases and divided into short iterations;</item> <item>results are validated by domain expert collaborations and test-driven development (both unit tests and acceptance tests)</item></list>. The continuous integration and release are supported by open source Integrated Development Environments (IDEs) like Eclipse or NetBeans and by a software configuration management tool such as SVN or Git for versioning and revision control.</p>
+          <p>The aforementioned paradigm is applied in the TeiCoPhiLib library by <list rend="inline ordered"><item>the implementation of a flexible importing and normalization module in the pre-processing phase, which ensures a coherent abstraction model of the resources;</item> <item>the definition of the functional specification by designing the objects and by declaring the application interfaces;</item> <item>the export of the information encapsulated in the objects into different data formats, in order to enable data integration and data exchange</item></list>.</p>
+        </div>
+        <div xml:id="soc">
+          <head>Separation of Concerns</head>
+          <p>First of all, objects that represent the whole document or interrelated documents are initialized by parsing the original TEI document(s) and by creating a new data structure, which decouples the orthogonal information conveyed by the XML elements: <list rend="inline ordered"><item>textual structure,</item> <item>semantics,</item> <item>style, and</item> <item>behavior</item></list>. It is important to point out that the new data structure is the result of transformations (by XSLT DOM transformations or SAX event-driven transformations) managed during the parsing process. Thus, the current implementation of the TeiCoPhiLib exposes methods that parse the XML file and create Java objects. The resources are stored and maintained in a native XML database management system (i.e., eXist-db). The APIs and services provided by Lucene, a software library developed and hosted by the Apache Foundation, have been used for indexing the textual data.</p>
+          <p>For instance, the information conveyed by the following TEI snippet is distributed among the appropriate Java objects that handle the four levels described above:
+            <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true">
+              <div type="chapter" n="1" style="font-variant:normal">
+                [...]
+                <p xml:lang="ita">
+                  <lb n="1"/>Io nacqui veneziano ai 
+                  18 ottobre del 1775, giorno 
+                  <lb n="2"/>dell’evangelista san Luca; 
+                  e morrò per la grazia di Dio 
+                  <lb n="3"/>italiano quando lo vorrà 
+                  quella Provvidenza che governa 
+                  <lb n="4"/>misteriosamente il mondo.</p>
+                [...]<milestone type="page" n="2"/>[...]
+              </div>
+            </egXML>
+          </p>
+          <p>The parsing process concerns the following aspects:</p>
+          <list rend="ordered">
+            <item><emph>Textual structure</emph>. The same document originally structured paragraph by paragraph for literary analysis can easily restructured page by page for layout analysis and for comparison with the original page image. Semantics, style, and behavior are represented by objects separated from (but linked to) the nodes of the DOM tree.</item>
+            <item><emph>Semantics</emph>. At the semantic level, both attributes (such as <att>type</att>) and tag names (such as <gi>p</gi>) are processed in the same way and linked to the related DOM node.</item>
+            <item><emph>Style</emph>. The style is managed by separated renderers, which point to textual positions affected by stylistic features. For instance, the information extracted from the <att>style</att> attribute is used to instantiate the Java objects devoted to managing the rendering information.</item>
+            <item><emph>Behavior</emph>. Behaviors are handled by objects that process textual resources according to the current state of the data structure and the rules to manage such a state. For example, a hyphenator performs its tasks according to the language of the textual data (encoded in the original TEI file, e.g., by <code>@xml:lang="it"</code>) and the related hyphenation rules (such as the hyphenation rules for the Italian language, managed by the hyphenator bundles).</item>
+          </list>
+          <p>The object-oriented representation of the document allows data to be processed dynamically, taking account of its physical and logical structure, in an attempt to overcome the multiple hierarchies issue. This means that the data model of the library has a decoupled and abstract structure which can be serialized in any available file format, including all standard TEI-compliant approaches. Consequently, the TeiCoPhiLib document entity keeps structure and logical information in an independent but related aggregate of objects (<ptr type="crossref" target="#figure3"/>). Furthermore, output modules or visitors (<ptr type="crossref" target="#figure2"/>) can traverse and serialize the object representation of the document to a file. In particular, modules for TEI files define the marshalling process, which encompasses the operation to obtain the encoded XML files. In this way the system provides the actual representation of the document.</p>
+        </div>
+        <div xml:id="designpatterns">
+          <head>Design Patterns</head>
+          <p>The overall architecture of the library is based on several design patterns, according to the object-oriented paradigm (<ref type="bibl" target="#gamma95">Gamma et al. 1995</ref>; <ref type="bibl" target="#buschmann07">Buschmann, Henney, and Schmidt 2007</ref>).</p>
+          <p>Design patterns were introduced in software engineering in order to provide a common solution for a recurring problem in a specific context. A design pattern defines the instantiation policies, the structure, or the behavior for an aggregate of objects that cooperate to provide a complex but recurrent functionality, such as the creation of polymorphic entities, the management of decoupled modules, or the selection at run time of the most suitable algorithm for the current task. The general idea of object-oriented patterns is to encapsulate functionality and data inside an efficient and flexible collection of classes. The current implementation of the prototype exploits the Java programming language technologies.</p>
+          <list rend="ordered">
+            <item>The <emph>Model-View-Controller</emph> (MVC) pattern (<ref type="bibl" target="#burbeck92">Burbeck 1992</ref>) determines the architecture of the library by separating the internal representation of the data from the rendering and the behavioral purposes.</item>
+            <item>The <emph>Factory</emph> pattern allows designers to enhance the object creation procedure by means of special classes (i.e., the factory classes) that guarantee abstract coupling among system modules (i.e., the object relationships do not reference implementing classes). As a matter of fact, the foregoing design makes it possible to programmatically reference abstract objects independently from the run-time instances which actually perform the task. This design pattern lets applications change the implementation of a class in a flexible way. In our case, for instance, a document object has textual content maintained in a specific DOM data structure transparent to the user. The client agent is able to manipulate and process the document independently of its internal DOM representation. The algorithms and processing keep the state of the data structure coherent by updating the DOM representation in a transparent way.</item>
+            <item>The <emph>Builder</emph> pattern is used to initialize and populate the document data structure. Together with the factory pattern, it hides the real type of the objects from the user agents and maintains the state consistency of the interconnected information. In this way, in the library initialization process, it is possible to create different data structures for different aims, in a way that is completely transparent to the user agents. For instance, a Builder oriented to the layout analysis can restructure the information parsed from the TEI input document.</item>
+            <item>The <emph>Composite</emph> pattern is the core of the data structure (<ptr type="crossref" target="#figure3"/>). The document object is defined as an aggregation of hierarchical entities with the same data type. The hierarchy maps either the DOM structure of the original XML-TEI document or the structure of one of its transformations based on an XSLT input parameter. Thanks to this pattern, an efficient object-oriented structure, sketched through the UML class diagram on the right of <ptr type="crossref" target="#figure3"/>, represents the whole/part relationships among the objects in the data structures.</item>
+            <item>The <emph>Strategy</emph> pattern implements different operations in different ways based on the object type or on specified parameters. For example, the building process uses different strategies, which are driven from specific features given through property files. In the previous example, the original TEI page milestone is represented by an element node in the DOM internal structure; conversely, the original TEI element for paragraph can be represented by a milestone. Furthermore, the Strategy pattern is useful for rendering the same data in multiple views in different contexts or processing the same data with different algorithms.</item>
+            <item>
+              <p>The <emph>Observer</emph> pattern provides a mechanism for handling dependencies among interrelated objects. This ensures that when a change occurs, the overall state is synchronized and updated. For example, if an edit operation deletes some values in the document, all related structures are notified and updated accordingly. The library organizes the entities derived from the original document information through the stand-off approach. In this way the document structure is separate from its semantics, style, and behavior.</p>
+              <figure xml:id="figure1">
+                <graphic url="images/jtei-8-boschetti_01.png" width="3176px" height="1196px"/>
+                <head type="legend">Class diagram of the Observer pattern designed for the TeiCoPhiLib</head>
+              </figure>
+              <p>Several modules of the library need synchronized data. In particular, annotations and comments need to be notified if an event occurs that changes the state of the referenced object. This problem is well known in the context of graphical user interfaces, where embodied components communicate by message exchange according to a standard protocol. The Observer pattern, which is a behavioral technique, solves the aforementioned problem in an elegant and easy way. TeiCoPhiLib exploits the Observer pattern to manage communication among the object-oriented representation of the document and the encapsulated data that point to it. <ptr type="crossref" target="#figure1"/> shows the UML class diagram of the mechanism designed for the library. The pattern involves two interfaces: <list rend="inline ordered"><item>Subject and</item> <item>Observer</item></list>. These two entities provide the flexibility to implement a decoupled notification mechanism. The Subject provides a registration procedure for the Observer object, and the Observer object provides a standard method allowing the Subject to notify it. TeiCoPhiLib defines objects that can change, such as the Document data type, and objects that need to be notified, such as the Annotation or the Comment data types. Consequently, the Document class implements the Subject interface, whereas the Annotation and Comment classes implement the Observer interface. The following simplified Java snippet illustrates this concept programmatically.
+                <eg>
+                  Observer annotation = new Annotation();
+                  Observer comment = new Comment();
+                  
+                  Subject teiDocument = new Document();
+                  teiDocument.subscribe(ObserverType.ANNOTATION, annotation);
+                  teiDocument.subscribe(ObserverType.COMMENT, comment);
+                  
+                  // some processing that modifies the teiDocument object
+                  // accordingly the observers have to be notified
+                  //[...]
+                  teiDocument.notify(ObserverType.ANNOTATION);
+                </eg>
+              </p>
+            </item>
+            <item>
+              <p>The pattern <emph>Visitor</emph> allows the user agents to gather data which are stored in different object data fields and enables the reconstruction of a consistent and homogeneous view. The stand-off mechanism implies a distributed and interrelated structure where information is maintained across various objects. For example, during the exporting phase the object-oriented representation of the document is processed in order to produce a valid TEI XML document according to a schema selected by the user.</p>
+              <figure xml:id="figure2">
+                <graphic url="images/jtei-8-boschetti_02.png" height="1775px" width="3759px"/>
+                <head type="legend">Class diagram of the Visitor pattern designed for the TeiCoPhiLib</head>
+              </figure>
+              <p>The hierarchical nature of the document representation facilitates the data structure traversal in a flexible and customizable way. The Visitor pattern provides a mechanism to extend the functionality of the TeiCoPhiLib by allowing components to perform a client-supplied operation on each node of the document hierarchy. <ptr type="crossref" target="#figure2"/> shows how a client of the data model can traverse the document tree in order to write its textual content. The mechanism supplies the actual visitor instance by means of a custom operation. The current implementation of the Visitor interface is then used by the entities of the hierarchy which are unaware of the actual behavior of the visitor instance. In this way, the Visitor pattern provides a procedure to operate on the representation of the document by making available to the clients a point of extensibility (<ref type="bibl" target="#martin00">Martin 2000</ref>).</p>
+            </item>
+          </list>
+          <p>An example should clarify the aforementioned architecture. The client application that uses TeiCoPhiLib APIs invokes the building method of the abstract Builder class. Moreover, the resulting document object is a concretization of an abstract class representing the current structure of the TEI-encoded resource, as illustrated in the following Java statement:
+            <eg>
+              Document teiDocument = AbstractBuilderFactory.buildDocument(new File("features.properties"),new File("teiDocument.xml"));
+            </eg>
+          </p>
+          <p>The Builder object needs two input files: <list rend="inline ordered"><item>a property file containing the suitable configuration for the instantiation of the concrete objects;</item> <item>the TEI XML file to parse</item></list>. The state of the internal representation of the document is composite-component–based. In this way each single element is handled by the TEIComposite object shown on the right-hand side of <ptr type="crossref" target="#figure1"/>, which represents each node of the hierarchical DOM structure. Leaves are instances of the StrippedTextChunk class (<ptr type="crossref" target="#figure3"/>). Methods in such a structure make it possible to manipulate the content and the structure of the resources.</p>
+          <figure xml:id="figure3">
+            <graphic url="images/jtei-8-boschetti_03.png" height="984px" width="1430px"/>
+            <head type="legend">Parsed TEI document (left), mapped into a Composite pattern structure (right)</head>
+          </figure>
+          <p>Finally, the data structure is an object-oriented representation of the entities in the real domain of the digital document, but the storage platform/paradigm could actually be relational, hierarchical, semi-structural (XML), or network/graph–structured (<ref type="bibl" target="#hohpe04">Hohpe and Woolf 2004</ref>).</p>
+          <p>The UML diagram on the left side of <ptr type="crossref" target="#figure1"/> shows the structure of a TEI document DOM representation. Objects, in this case, exactly map the tags of the TEI-encoded file format. The UML diagram on the right side illustrates the composite-components design. This diagram maps the same aforementioned information and structure, but using a flexible and recursive design. Each TEIComposite object reflects a TEI element and each child is recursively a TEIComposite or a textual element.</p>
+        </div>
+      </div>
+      <div xml:id="casestudies">
+        <head>Case Studies</head>
+        <p>The case studies illustrated below have been implemented with the components already developed for our library.</p>
+        <div xml:id="euporia">
+          <head>Euporia: Visualization, Editing, and Annotation of Parallel Texts for Didactic Purposes</head>
+          <p>Euporia is a project aimed at visualizing, editing, and annotating bilingual texts displayed in parallel. The original digital resources are stored and maintained in authoritative digital libraries available online, such as the Biblioteca Italiana and the Perseus Digital Library, or they are downloaded from social proofreading websites, such as WikiSource, and subsequently processed and marked up in TEI. Some examples of Greek and Latin texts potentially alignable or actually aligned with their Italian translations are shown in table 1.</p>
+          <p>As mentioned in <ptr type="crossref" target="#method"/>, different subcollections of texts that must be aligned may provide or omit some extratextual information (such as line number or page number) and they may organize texts in different ways (for instance, lines can be grouped or not inside <gi>lg</gi> elements). For this reason, the XSD schema (which is expected to be a subset of the general TEI schemas) is generated <emph>a posteriori</emph> from the actual text subcollections. This approach can be considered complementary to the TEI Roma approach, a kind of reverse engineering, which also allows us to generate the ODD file. Studying the schemas, XSLT transformations are created in order to deal only with relevant information and canonical formats processed by the appropriate Aligner. Currently only the <ident>SpeechAligner</ident> for dramatic texts has been implemented: correspondences between the Italian translation and the original Greek text are automatically injected with the <att>corresp</att> attribute (see row B in <ptr type="crossref" target="#table1"/>) and misalignments must be manually corrected.</p>
+            <table xml:id="table1">
+              <head>Parallel texts</head>
+              <row role="label" rows="1" cols="1">
+                <cell role="data" rows="1" cols="1">A) Perseus Digital Library</cell>
+                <cell role="data" rows="1" cols="1">Digital Library of Biblioteca Italiana</cell>
+              </row>
+              <row role="data" rows="1" cols="1">
+                <cell role="data" rows="1" cols="1">
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true">
+                    <!-- www.perseus.tufts.edu -->
+                    <div1 type="Book" n="2" org="uniform" sample="complete">
+                      <milestone ed="p" n="1" unit="card"/>
+                      <l>Conticuere omnes, intentique ora tenebant.</l>
+                      <l>Inde toro pater Aeneas sic orsus ab alto:</l>
+                      <l>Infandum, regina, iubes renovare dolorem,</l>
+                      <l>Troianas ut opes et lamentabile regnum</l>
+                      <l n="5">eruerint Danai; quaeque ipse miserrima vidi,</l>
+                      <l>et quorum pars magna fui. Quis talia fando</l>
+                      <l>Myrmidonum Dolopumve aut duri miles Ulixi</l>
+                      <l>temperet a lacrimis? Et iam nox umida caelo</l>
+                      <l>praecipitat, suadentque cadentia sidera somnos.</l>
+                      <l n="10">Sed si tantus amor casus cognoscere nostros</l>
+                      <l>et breviter Troiae supremum audire laborem,</l>
+                      <l>quamquam animus meminisse horret, luctuque refugit,</l>
+                      <l>incipiam.<milestone ed="P" unit="para"/>Fracti bello fatisque repulsi</l> [...]
+                    </div1>
+                  </egXML>
+                </cell>
+                <cell role="data" rows="1" cols="1">
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true">
+                    <!-- www.bibliotecaitaliana.it -->
+                    <div1 sample="complete"> [...] <lg sample="complete">
+                      <l>Tutti ammutiro e s'affisaro. Enea</l>
+                      <l>Da l'alto seggio incominciava. Infando,</l>
+                      <l>O Regina, è il dolor cui tu m'imponi</l>
+                      <l>Ch'io rinnovelli. I' dovrò dir da' Greci</l>
+                      <l>I teucri averi e il miserando regno</l>
+                      <l>Come fosser diserti; io dire i casi</l>
+                      <l>Tristissimi dovrò, cui vidi io stesso</l>
+                      <l>E di che fui gran parte. E qual potrebbe</l>
+                      <l>O Mirmidone o Dolope o seguace</l>
+                      <l>Del fero Ulisse rattenere il pianto</l>
+                      <l>Tai cose in ragionando? E già dal cielo</l>
+                      <l>Precipita la notte umida, e gli astri</l>
+                      <l>Vanno in cader persuadendo il sonno.</l>
+                      <l>Ma se tanto desio nel cor ti siede</l>
+                      <l>De l'ascoltar de' nostri casi e in breve</l>
+                      <l>Udir di Troia l'ultima sciaura,</l>
+                      <l>Benchè pur del pensiero io mi spaventi,</l>
+                      <l>Comincerò. Dopo tant'anni infine</l> [...] </lg> [...] </div1>
+                  </egXML>
+                </cell>
+              </row>
+              <row role="label" rows="1" cols="1">
+                <cell role="data" rows="1" cols="1">B) Perseus Digital Library</cell>
+                <cell role="data" rows="1" cols="1">Euporia Resources</cell>
+              </row>
+              <row role="data" rows="1" cols="1">
+                <cell role="data" rows="1" cols="1">
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true">
+                    <sp id="sp_grc_0002">
+                      <speaker>Ἑλένη</speaker>
+                      <p>
+                        <lb/>τί δ, ὦ ταλαίπωρ’ — ὅστις ὤν μ’ ἀπεστράφης 
+                        <lb/>καὶ ταῖς ἐκείνης συμφοραῖς ἐμὲ στυγεῖς;
+                      </p>
+                    </sp>
+                  </egXML>
+                </cell>
+                <cell role="data" rows="1" cols="1">
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true">
+                    <sp id="sp_ita_0002" corresp="#sp_grc_0002">
+                      <speaker>ELENA</speaker>: 
+                      <p>
+                        <lb/>Perché, qual che tu sia, misero, gli occhi 
+                        <lb/>torci da me, pei falli altrui m'aborri?
+                      </p>
+                    </sp>
+                  </egXML>
+                </cell>
+              </row>
+            </table>
+          <p>Parallel texts are visualized and managed through EuporiaWebApp (<ptr type="crossref" target="#figure4"/>), which is a server-side Java web application compliant with the JSR 314 specification intended for educational purposes. Students, the end users of Euporia, are allowed to query texts, both jointly and independently, through multilingual or monolingual keywords.</p>
+        <figure xml:id="figure4">
+          <graphic url="images/jtei-8-boschetti_04.png" height="788px" width="1303px"/>
+          <head type="legend">Euporia</head>
+        </figure>
+        <p>Annotations can also be associated with linked chunks of text (such as a sentence and its translation: see <ptr type="crossref" target="#figure5"/>) or with single, independent chunks of text (such as a single word of the original text). Annotations and their pointers to the text are stored as stand-off markup. Currently, the adopted stand-off linking mechanism uses only <att>xml:id</att>, but the use of XPointer is under evaluation.</p>
+        <figure xml:id="figure5">
+          <graphic url="images/jtei-8-boschetti_05.png" height="575px" width="998px"/>
+          <head type="legend">Annotation in Euporia</head>
+        </figure>
+        </div>
+        <div xml:id="aporia">
+          <head>Aporia: Adapting the Parallel Text Framework to Specific Scientific Requirements</head>
+          <p>Aporia is the enhanced version of Euporia, intended for research purposes. Accordingly, the Parallel Text framework has been adapted and extended to meet specific scientific requirements (<ref type="bibl" target="#bozzi13">Bozzi 2013</ref>). An experimental case study has been performed on Theodor Mommsen’s edition of the <title level="m">Res Gestae Divi Augusti</title> (1883), in order to examine the complementarity of attested fragments of text in the Latin inscription of the <title level="m">RGDA</title> and the related attested fragments in the Greek translation (<ref type="bibl" target="#lame12">Lamé 2012</ref>). Attested and conjectural parts from Mommsen’s critical edition have been marked. As shown in <ptr type="crossref" target="#figure6"/>, the feature <soCalled>status</soCalled> (attested / partially attested / conjectural) is not only visualized in different colors (a CSS stylesheet is enough for this task), but also available in query masks to filter the results of a query (for instance, <q>find only attested or partially attested words</q>) and in tables of results.</p>
+          <p>Unlimited stand-off layers of analysis can be added (such as morphological, syntactic, and semantic analysis), at different levels of granularity (for example, at the level of words for morphological analysis and at the level of sentences for semantic analysis). The layers of annotation are added through the web application and stored in the XML database. Moreover, they can be manually encoded and visualized through the web application.</p>
+        <figure xml:id="figure6">
+          <graphic url="images/jtei-8-boschetti_06.png" height="414px" width="1390px"/>
+          <head type="legend">Aporia</head>
+        </figure>
+        </div>
+        <div xml:id="saussure">
+          <head>Saussure Project: Supporting Genetic Criticism</head>
+          <p>The Saussure Project exploits the flexibility of Aporia in order to adapt the system to the study of Saussurean autographs, making author’s variants searchable and creating multilingual indexes of ancient terms studied by the linguist.</p>
+          <p>Instead of showing linked texts in parallel, the system shows the image of the manuscript and the related transcription (<ptr type="crossref" target="#figure7"/>).</p>
+          <figure xml:id="figure7">
+            <graphic url="images/jtei-8-boschetti_07.png" height="743px" width="1430px"/>
+            <head type="legend">Saussure Project</head>
+          </figure>
+        </div>
+      </div>
+      <div xml:id="conclusion">
+        <head>Conclusion</head>
+        <p>The TeiCoPhiLib is a work in progress focused on the creation of a library of software components aimed at managing a limited subset of TEI tags used in the domain of collaborative philology. Because of the increasing complexity of annotations and the multiple usages of the same texts in collaborative environments, stand-off annotation and dense mark-up make it challenging to keep annotated documents readable and manageable. While annotation focuses on types of texts (such as poetic, dramatic, and with or without critical apparatus), software development focuses on abstraction of data structures and behaviors related to those texts (such as searching them in parallel, filtering by morphological features, and comparing text and image).</p>
+        <p>Reusable software components promote the management of stand-off annotation at any level (such as editing, searching, or visualizing), improving the experience of the annotation and use of TEI documents.</p>
+        <p>The document parsing in the current Java implementation takes place on the server side, where the Java virtual machine runs within the web application environment.</p>
+        <p> The marshalling and unmarshalling process handles the serialization of the object representation of the TEI document, in order to store and retrieve data on the filesystem or in native XML databases, such as eXist-db.</p>
+        <p>Performance measurement tools such as JMeter will help to optimize the performance of the library components.</p>
+        <p> Software currently under development will be available on GitHub at <ptr target="https://github.com/CoPhi/cophilib"/>.</p>
+      </div>
+    </body>
+    <back>
+      <div type="bibliography">
+        <listBibl>
+          <bibl xml:id="barabucci13"><author>Barabucci, Gioele</author>, <author>Angelo Di Iorio</author>, <author>Silvio Peroni</author>, <author>Francesco Poggi</author>, and <author>Fabio Vitali</author>. <date>2013</date>. <title level="a">Annotations with EARMARK in Practice: A Fairy Tale</title>. In <title level="m">DH-CASE ’13: Proceedings of the 1st International Workshop on Collaborative Annotations in Shared Environment: Metadata, Vocabularies and Techniques in the Digital Humanities</title>, article no. 11. <pubPlace>New York</pubPlace>: <publisher>ACM</publisher>. doi:<idno type="doi">10.1145/2517978.2517990</idno>.</bibl>
+          <bibl xml:id="bozzi13"><author>Bozzi, Andrea</author>. <date>2013</date>. <title level="a">G2A: A Web Application to Study, Annotate and Scholarly Edit Ancient Texts and Their Aligned Translations</title>. <title level="j">Studia graeco-arabica</title> <biblScope unit="issue">3</biblScope>:<biblScope unit="page">159–71</biblScope>. <ptr target="http://www.greekintoarabic.eu/uploads/media/BOZZI_SGA_3-2013.pdf"/>.</bibl>
+          <bibl xml:id="burbeck92"><author>Burbeck, Steve</author>. <date>1992</date>. <title level="a">Applications Programming in Smalltalk-80TM: How to Use Model-View-Controller (MVC)</title>. Last modified March 4, 1997. <ptr target="http://www.math.sfedu.ru/smalltalk/gui/mvc.pdf"/>.</bibl>
+          <bibl xml:id="buschmann07"><author>Buschmann, Frank</author>, <author>Kevlin Henney</author>, and <author>Douglas C. Schmidt</author>. <date>2007</date>. <title level="m">Pattern Oriented Software Architecture</title>. Vol. 5, <hi rend="m">On Patterns and Pattern Languages.</hi> <series>Wiley Software Patterns Series</series>. <pubPlace>Chichester, England</pubPlace>: <publisher>John Wiley &amp; Sons</publisher>.</bibl>
+          <bibl xml:id="crane14"><author>Crane, Gregory</author>, <author>Bridget Almas</author>, <author>Alison Babeu</author>, <author>Lisa Cerrato</author>, <author>Anna Krohn</author>, <author>Frederik Baumgart</author>, <author>Monica Berti</author>, <author>Greta Franzini</author>, and <author>Simona Stoyanova</author>. <date>2014</date>. <title level="a">Cataloging for a Billion Word Library of Greek and Latin</title>. In <title level="m">DATeCH ’14: Proceedings of the First International Conference on Digital Access to Textual Cultural Heritage</title>, <biblScope unit="page">83–88</biblScope>. <pubPlace>New York</pubPlace>: <publisher>ACM</publisher>. doi:<idno type="doi">10.1145/2595188.2595190</idno>.</bibl>
+          <bibl xml:id="crane09"><author>Crane, Gregory</author>, <author>Brent Seales</author>, and <author>Melissa Terras</author>. <date>2009</date>. <title level="a">Cyberinfrastructure for Classical Philology</title>. <title level="j">Digital Humanities Quarterly</title> <biblScope unit="volume">3</biblScope> (<biblScope unit="issue">1</biblScope>). <ptr target="http://www.digitalhumanities.org/dhq/vol/003/1/000023/000023.html"/>.</bibl>
+          <bibl xml:id="delgrosso13"><author>Del Grosso</author>, <author>Angelo Mario</author>, and <author>Federico Boschetti</author>. <date>2013</date>. <title level="a">Collaborative Multimedia Platform for Computational Philology: CoPhi Architecture</title>. In <title level="m">MMEDIA 2013, The Fifth International Conferences on Advances in Multimedia</title> [Proceedings], edited by <editor>Philip Davies</editor> and <editor>David Newell</editor>, <biblScope unit="page">46–51</biblScope>. <pubPlace>N.p.</pubPlace>: <publisher>IARIA</publisher>. <ptr target="http://www.thinkmind.org/index.php?view=article&amp;articleid=mmedia_2013_3_10_40059"/>.</bibl>
+          <bibl xml:id="diiorio09"><author>Di Iorio, Angelo</author>, <author>Michele Schirinzi</author>, <author>Fabio Vitali</author>, and <author>Carlo Marchetti</author>. <date>2009</date>. <title level="a">A Natural and Multi-layered Approach to Detect Changes in Tree-based Textual Documents</title>. In <title level="m">Enterprise Information Systems: Proceedings of 11th International Conference on Enterprise Information Systems (ICEIS 2009)</title>, edited by <editor>Joaquim Filipe</editor> and <editor>José Cordeiro</editor>, <biblScope unit="page">90–101</biblScope>. Lecture Notes in Business Information Processing 24. <pubPlace>Berlin</pubPlace>: <publisher>Springer</publisher>. doi:<idno type="doi">10.1007/978-3-642-01347-8_8</idno>.</bibl>
+          <bibl xml:id="fowler96"><author>Fowler, Martin</author>. <date>1996</date>. <title level="m">Analysis Patterns: Reusable Object Models</title>. <pubPlace>Menlo Park, CA</pubPlace>: <publisher>Addison Wesley</publisher>.</bibl>
+          <bibl xml:id="gamma95"><author>Gamma, Erich</author>, <author>Richard Helm</author>, <author>Ralph Johnson</author>, and <author>John Vlissides</author>. <date>1995</date>. <title level="m">Design Patterns: Elements of Reusable Object-Oriented Software</title>. <pubPlace>Reading, MA</pubPlace>: <publisher>Addison-Wesley</publisher>.</bibl>
+          <bibl xml:id="hohpe04"><author>Hohpe, Gregor</author>, and <author>Bobby Woolf</author>. <date>2004</date>. <title level="m">Enterprise Integration Patterns: Designing, Building, and Deploying Messaging Solutions</title>. <pubPlace>Boston</pubPlace>: <publisher>Addison-Wesley</publisher>.</bibl>
+          <bibl xml:id="lame12"><author>Lamé, Marion</author>. <date>2012</date>. <title level="u">Epigraphie en réseau: réflexions sur les potentialités d’innovations dans la représentation numérique d’inscriptions complexes</title>. Ph.D. thesis, University of Bologna – University of Aix-Marseille. <ptr target="http://www.theses.fr/2012AIXM3130"/>.</bibl>
+          <bibl xml:id="martin00"><author>Martin, Robert C.</author> <date>2000</date>. <title level="a">Design Principles and Design Patterns</title>. <pubPlace>Gurnee, IL</pubPlace>: <publisher>Object Mentor</publisher>. <ptr target="http://www.objectmentor.com/resources/articles/Principles_and_Patterns.pdf"/>.</bibl>
+          <bibl xml:id="peroni13"><author>Peroni, Silvio</author>, <author>Francesco Poggi</author>, and <author>Fabio Vitali</author>. <date>2013</date>. <title level="a">Tracking Changes through EARMARK: A Theoretical Perspective and an Implementation</title>. In <title level="m">DChanges 2013: Proceedings of the International Workshop on Document Changes: Modeling, Detection, Storage and Visualization</title>, edited by <editor>Gioele Barabucci</editor>, <editor>Uwe M. Borghoff</editor>, <editor>Angelo Di Iorio</editor>, and <editor>Sonja Maier</editor>. <pubPlace>Aachen</pubPlace>, <publisher>Germany</publisher>: CEUR Workshop Proceedings. <ptr target="http://ceur-ws.org/Vol-1008/paper6.pdf"/>.</bibl>
+          <bibl xml:id="pierazzo15"><author>Pierazzo, Elena</author>. <date>2015</date>. <title level="m">Digital Scholarly Editing: Theories, Models and Methods</title>. <pubPlace>Farnham</pubPlace>, <pubPlace>Surrey</pubPlace>: <publisher>Ashgate</publisher>.</bibl>
+          <bibl xml:id="ronnau09"><author>Ronnau, Sebastian</author>, <author>Geraint Philipp</author>, and <author>Uwe M. Borgho</author>. <date>2009</date>. <title level="a">Efficient Change Control of XML Documents</title>. In <title level="m">DocEng 2009: Proceedings of the 9th ACM Symposium on Document Engineering</title>, <biblScope unit="page">3–12</biblScope>. <pubPlace>New York</pubPlace>: <publisher>ACM</publisher>. doi:<idno type="doi">10.1145/1600193.1600197</idno>.</bibl>
+          <bibl xml:id="rosenberg07"><author>Rosenberg, Doug</author>, and <author>Matt Stephens</author>. <date>2007</date>. <title level="m">Use Case Driven Object Modeling with UML: Theory and Practice</title>. <pubPlace>Berkeley, CA</pubPlace>: <publisher>Apress</publisher>.</bibl>
+          <bibl xml:id="schmidt14"><author>Schmidt, Desmond</author>. <date>2014</date>. <title level="a">Towards an Interoperable Digital Scholarly Edition</title>. <title level="j">Journal of the Text Encoding Initiative</title> <biblScope unit="issue">7</biblScope> (November). <ptr target="http://jtei.revues.org/979"/>.</bibl>
+          <bibl xml:id="schmidt09"><author>Schmidt, Desmond</author>, and <author>Robert Colomb</author>. <date>2009</date>. <title level="a">A Data Structure for Representing Multi-version Texts Online</title>. <title level="j">International Journal of Human-Computer Studies</title> <biblScope unit="volume">67</biblScope> (<biblScope unit="issue">6</biblScope>): <biblScope unit="page">497–514</biblScope>. doi:<idno type="doi">10.1016/j.ijhcs.2009.02.001</idno>.</bibl>
+          <bibl xml:id="siemens12"><author>Siemens, Ray</author>, <author>Meagan Timney</author>, <author>Cara Leitch</author>, <author>Corina Koolen</author>, and <author>Alex Garnett</author>. <date>2012</date>. <title level="a">Toward Modeling the <emph>Social</emph> Edition: An Approach to Understanding the Electronic Scholarly Edition in the Context of New and Emerging Social Media</title>. <title level="j">Literary and Linguistic Computing</title> <biblScope unit="volume">27</biblScope> (<biblScope unit="issue">4</biblScope>): <biblScope unit="page">445–61</biblScope>. doi:<idno type="doi">10.1093/llc/fqs013</idno>.</bibl>
+          <bibl xml:id="tei15"><orgName>TEI Consortium</orgName>. <date>2015</date>. <title level="m">TEI P5: Guidelines for Electronic Text Encoding and Interchange</title>. <edition>Version 2.8.0</edition>. Last updated April 6. <pubPlace>N.p.</pubPlace>: <publisher>TEI Consortium</publisher>. <ptr target="http://www.tei-c.org/Vault/P5/2.8.0/doc/tei-p5-doc/en/html/"/>.</bibl>
+          <bibl xml:id="terras10"><editor>Terras, Melissa</editor>, and <editor>Gregory Crane</editor>, eds. <date>2010</date>. <title level="m">Changing the Center of Gravity: Transforming Classical Studies through Cyberinfrastructure.</title> Digital Technologies and the Ancient World 4. <pubPlace>Piscataway, NJ</pubPlace>: <publisher>Gorgias Press</publisher>.</bibl>
+          <bibl xml:id="wittern09"><author>Wittern, Christian</author>, <author>Arianna Ciula</author>, and <author>Conal Tuohy</author>. <date>2009</date>. <title level="a">The Making of TEI P5</title>. <title level="j">Literary and Linguistic Computing</title> <biblScope unit="volume">24</biblScope> (<biblScope unit="issue">3</biblScope>): <biblScope unit="page">281–96</biblScope>. doi:<idno type="doi">10.1093/llc/fqp017</idno>.</bibl>
+        </listBibl>
+      </div>
+    </back>
+  </text>
+</TEI>

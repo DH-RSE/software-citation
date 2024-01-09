@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<!-- $Id: jtei-calvo-235-source.xml 1212 2023-07-16 18:56:47Z pietro.liuzzo $ -->
+<TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="main" xml:lang="es">¿Qué hacer con textos que no se pueden publicar? Datos derivados, criterios FAIR y TEI</title>
+        <title type="sub" xml:lang="en">What to do with copyright restricted texts? Derived text formats, the FAIR criteria, and TEI</title>
+        <author>
+          <name>
+            <forename>José</forename>
+            <surname>Calvo Tello</surname>
+          </name>
+          <affiliation>José Calvo Tello trabaja como <roleName>investigador</roleName> y <roleName>bibliotecario</roleName> en la <orgName>Göttingen State and University Library</orgName> (Alemania). Se doctoró en Humanidades por la Universidad de Würzburg (Alemania) con el trabajo <title level="m">The Novel in the Spanish Silver Age: A Digital Analysis of Genre Using Machine Learning</title> (<ref type="bibl" target="#calvo2021a">2021</ref>). Ha impartido cursos de Estudios Románicos y Humanidades Digitales en varias universidades (Eichstätt-Ingolstadt, Kassel, Würzburg). Su investigación se centra en la aplicación y el desarrollo de métodos estadísticos y computacionales como el aprendizaje automático aplicados a las literaturas románicas y a datos bibliotecarios.</affiliation>
+          <email>calvotello@sub.uni-goettingen.de</email>
+        </author>
+        <author>
+          <name>
+            <forename>Nanette</forename>
+            <surname>Rißler-Pipka</surname>
+          </name>
+          <affiliation>Nanette Rißler-Pipka trabaja como <roleName>investigadora</roleName> y <roleName>co-directora de DARIAH-DE</roleName> en la GWDG (<orgName>Gesellschaft für wissenschaftliche Datenverarbeitung mbH Göttingen</orgName>, en Alemania). En su tesis de habilitación analiza los escritos de Pablo Picasso (<title level="m">Picassos schriftstellerisches Werk: Passagen zwischen Bild und Text</title>, <!-- [RvdB] missing from bibliography -->2015) y su tesis doctoral trata sobre la literatura francesa del siglo XIX y la descripción de la mujer como víctima del arte (<title level="m">Das Frauenopfer in der Kunst und seine Dekonstruktion</title>, <!-- [RvdB] missing from bibliography -->Fink 2005). En los últimos años ha trabajado en la intersección entre las Humanidades Digitales y los Estudios Románicos.</affiliation>
+            <email>nanette.rissler-pipka@gwdg.de</email>
+        </author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>TEI Consortium</publisher>
+        <date>01/08/2023</date>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by/4.0/">
+            <p>For this publication a Creative Commons Attribution 4.0 International license has been granted by the author(s) who retain full copyright.</p>
+          </licence>
+        </availability>
+      </publicationStmt>
+      <seriesStmt>
+        <title level="j">Journal of the Text Encoding Initiative</title>
+        <editor role="guest">Gimena del Rio Riande</editor>
+        <editor role="guest">Susanna Allés-Torrent</editor>
+        <editor role="managing">Tanja Wissik</editor>
+        <editor role="managing">Joel Kalvesmaki</editor>
+        <editor role="managing">Pietro Maria Liuzzo</editor>
+        <editor role="managing">Tiago Sousa Garcia</editor>
+        <editor role="technical">Ron Van den Branden</editor>
+        <biblScope unit="issue" n="16">Spanish Issue</biblScope>
+      </seriesStmt>
+      <sourceDesc>
+        <p>No source, born digital.</p>
+      </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+      <tagsDecl>
+        <rendition xml:id="bold">font-weight: bold;</rendition>
+      </tagsDecl>
+      <projectDesc>
+        <p>OpenEdition Journals -centre for open electronic publishing- is the platform for journals in the humanities and social sciences, open to quality periodicals looking to publish full-text articles online.</p>
+      </projectDesc>
+    </encodingDesc>
+    <profileDesc>
+      <langUsage>
+        <language ident="es">es</language>
+        <language ident="en">en</language>
+      </langUsage>
+      <textClass>
+        <keywords xml:lang="es">
+          <term>datos derivados</term>
+          <term>corpus</term>
+          <term>problemas legales</term>
+          <term>derechos de autor</term>
+          <term>literatura española</term>
+          <term>Picasso</term>
+          <term>edad de plata</term>
+        </keywords>
+      </textClass>
+      <textClass>
+        <keywords xml:lang="en">
+          <term>derived data</term>
+          <term>extracted features</term>
+          <term>corpora</term>
+          <term>legal issues</term>
+          <term>copyright</term>
+          <term>Spanish literature</term>
+          <term>Picasso</term>
+          <term>silver age</term>
+        </keywords>
+      </textClass>
+    </profileDesc>
+    <revisionDesc>
+      <change when="2023-05-27" who="RvdB">intial encoding</change>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <front>
+      <div type="authorNotes">
+        <p>Agradecemos a nuestro colega y jurista Michael Ernst sus comentarios y respuestas a nuestras preguntas, así como los comentarios de los revisores y los editores del <title level="j">Journal of the Text Encoding Initiative</title>, que nos han ayudado a mejorar el artículo.</p>
+      </div>
+      <div type="abstract" xml:id="resumen" xml:lang="es">
+        <p>En ciertas circunstancias, los datos preparados por proyectos no pueden ser publicados de manera abierta. En las últimas décadas diferentes proyectos han publicado datos derivados para evitar este problema. En este artículo, argumentamos a favor de TEI como formato para esta tarea, ya que favorece el cumplimiento de los principios FAIR. Además, presentamos diferentes opciones, discutiendo sus ventajas y desventajas y mostramos aplicaciones concretas a varios proyectos con textos en español (CORDE, novelas de la Edad de Plata y textos de Picasso).</p>
+      </div>
+      <div type="abstract" xml:id="abstract" xml:lang="en">
+        <p>In certain circumstances, data prepared by projects cannot be published openly. In the last decades different projects have published derived data (also called extracted features) to avoid this problem. In this article, we argue in favor of TEI as a format for this task, as it favors compliance with the FAIR principles. Furthermore, we present different options, discuss their advantages and disadvantages and show concrete applications to several projects with Spanish texts (CORDE, novels of the Silver Age and texts by Picasso).</p>
+      </div>
+    </front>
+    <body>
+      <div xml:id="corpusTEI">
+        <head>Pasado de la publicación de corpus literarios en TEI</head>
+        <p>Uno de los usos más frecuentes de la TEI es la codificación de corpus, tanto para objetivos lingüísticos como literarios. A diferencia de las ediciones digitales con un grado mayor de detalle en su codificación, esta se suele restringir en los corpus a los elementos estructurales superficiales, como la diferenciación entre paratextos y texto principal, capítulos, párrafos, poemas, etc. Algunos grandes proyectos internacionales han publicado cientos o miles de textos literarios en TEI de manera abierta, como la <ref target="https://textgrid.de/en/digitale-bibliothek">Digitale Bibliothek</ref> en TextGrid Repository,<note>Fecha de consulta 16 de julio de 2023, <ptr target="https://textgrid.de/en/digitale-bibliothek"/>.</note> <ref target="https://dracor.org/">Drama Corpus</ref> (DraCor),<note>Fecha de consulta 16 de julio de 2023, <ptr target="https://dracor.org/"/>.</note> los corpus formados durante la COST action European Literary Text Collection (<!-- [RvdB] ??? -->ELTeC, <ref type="bibl" target="#schoch2021">Schöch et al. 2021</ref>; <ref type="bibl" target="#burnard2021">Burnard, Schöch, y Odebrecht 2021</ref>), o, en menor escala, los corpus para las lenguas romances de CLiGS Textbox (<ref type="bibl" target="#schoch2019">Schöch et al. 2019</ref>).</p>
+        <p>Este tipo de publicaciones que utilizan TEI también han sido parte de la historia de las humanidades digitales en español. Proyectos como la <ref target="https://www.cervantesvirtual.com/">Biblioteca Virtual Miguel de Cervantes</ref><note>Proyecto de digitalización y publicación de textos relevantes para el hispanismo, entre ellos obras literarias: fecha de consulta 16 de julio de 2023, <ptr target="https://www.cervantesvirtual.com/"/>.</note> o los corpus de la Real Academia Española (RAE) como el Corpus Diacrónico del Español (CORDE), que presentaremos en detalle más adelante (<ref type="bibl" target="#sanchezsanchez2007">Sánchez Sánchez y Domínguez Cintas 2007</ref>) fueron proyectos pioneros a la hora de codificar en TEI textos en español. Ambas instituciones decidieron no poner a disposición de manera abierta sus recursos en TEI, lo que impidió que la comunidad hispanohablante tuviese acceso a una parte importante de esos recursos. Otros proyectos siguieron una senda similar, como <ref target="https://www.cervantesvirtual.com/obra/canon-60-la-coleccion-esencial-del-tc12-teatro-clasico-espanol/">Canon 60</ref><note>Corpus de 60 obras canónicas de diferentes tradiciones europeas: fecha de consulta 16 de julio de 2023, <ptr target="https://www.cervantesvirtual.com/obra/canon-60-la-coleccion-esencial-del-tc12-teatro-clasico-espanol/"/>.</note> o la <ref target="https://artelope.uv.es/biblioteca/">Biblioteca Digital Artelope</ref>.<note>Corpus literarios de obras escritas por o atribuidas a Lope de Vega: fecha de consulta 16 de julio de 2023, <ptr target="https://artelope.uv.es/biblioteca/"/>.</note> En los últimos seis años han sido publicados nuevos corpus literarios de manera abierta, como los corpus de sonetos <ref target="https://github.com/pruizf/disco">Diachronic Spanish Sonnet Corpus</ref><note>Fecha de consulta 16 de julio de 2023, <ptr target="https://github.com/pruizf/disco"/>.</note> (<!-- [RvdB] ??? -->DISCO, <ref type="bibl" target="#ruizfabo2018">Ruiz Fabo et al. 2018</ref>) y <ref target="https://github.com/bncolorado/CorpusSonetosSigloDeOro">Corpus of Spanish Golden-Age Sonnets</ref><note>Fecha de consulta 16 de julio de 2023, <ptr target="https://github.com/bncolorado/CorpusSonetosSigloDeOro"/>.</note> (<ref type="bibl" target="#navarrocolorado2018">Navarro Colorado 2018</ref>), el de la <ref target="https://github.com/HDAUNIR/BETTE">Biblioteca Electrónica Textual del Teatro en Español de 1868–1936</ref><note>Fecha de consulta 16 de julio de 2023, ​​<ptr target="https://github.com/HDAUNIR/BETTE"/>.</note> (<!-- [RvdB] ??? -->BETTE, integrado en DraCor, <ref type="bibl" target="#santamariafernandez2020">Santa María Fernández, Calvo Tello, y Jiménez Fernández 2020</ref>), los de prosa española y latinoamericana en <ref target="https://github.com/cligs/textbox">CLiGS Textbox</ref>,<note>Fecha de consulta 16 de julio de 2023, <ptr target="https://github.com/cligs/textbox"/>.</note> el <ref target="https://github.com/cligs/conssa/tree/v1.0.0">Corpus of the Novel in the Spanish Silver Age</ref> (<!-- [RvdB] ??? -->CoNSSA, <ref type="bibl" target="#calvo2021a">Calvo Tello 2021a</ref>; <ref type="bibl" target="#calvo2021b">2021b</ref>),<note>Fecha de consulta 16 de julio de 2023, <ptr target="https://github.com/cligs/conssa/tree/v1.0.0"/>.</note> Corpus de novelas hispanoamericanas del siglo XIX (<!-- [RvdB] ??? -->CONHA, <ref type="bibl" target="#henny-krahmer2018">Henny-Krahmer 2018</ref>) o el corpus español de <ref target="https://github.com/eeditiones/eltec">European Literary Text Collection</ref> (ELTeC).<note>Fecha de consulta 16 de julio de 2023, <ptr target="https://github.com/eeditiones/eltec"/>.</note>
+        </p>
+        <p>Una de las razones por las cuales iniciativas como el CORDE no pusieron a disposición sus datos originales fueron las restricciones legales de ediciones modernas de textos antiguos. Sin embargo, la RAE puso a disposición ciertos datos derivados de ese corpus que han sido utilizados de manera masiva por la comunidad investigadora. En concreto, publicaron la <ref target="http://corpus.rae.es/frecCORDE/lfrecuencias.html">lista de frecuencia</ref> de los tokens del corpus.<note>Fecha de consulta 16 de julio de 2023, <ptr target="http://corpus.rae.es/frecCORDE/lfrecuencias.html"/>.</note> Además, desde hace algunos años ofrecen la posibilidad de solicitar acceso a la <ref target="http://corpus.rae.es/frecCORDE/Otros.html">frecuencia de palabras</ref> por texto junto con sus metadatos,<note>Fecha de consulta 16 de julio de 2023, <ptr target="http://corpus.rae.es/frecCORDE/Otros.html"/>.</note> ofreciendo como ejemplo <ref target="http://corpus.rae.es/frecCORDE/quijote1.TXT"><title level="m">El ingenioso hidalgo don Quijote de la Mancha</title></ref> de Miguel de Cervantes Saavedra.<note>Fecha de consulta 16 de julio de 2023, <ptr target="http://corpus.rae.es/frecCORDE/quijote1.TXT"/>.</note> En este artículo proponemos y discutimos diferentes posibilidades para la publicación de datos en TEI cuando no se pueden publicar los textos originales.</p>
+      </div>
+      <div xml:id="TEIFAIR">
+        <head>Datos FAIR y TEI</head>
+        <p>Desde su publicación, los principios FAIR (<ref type="bibl" target="#wilkinson2016">Wilkinson et al. 2016</ref>) se han convertido en una parte importante de la ciencia abierta y de las buenas prácticas para la publicación de datos de investigación.<note>Fecha de consulta 16 de julio de 2023, <ptr target="https://datos.gob.es/es/noticia/principios-fair-buenas-practicas-para-la-gestion-y-administracion-de-datos-cientificos"/>.</note> En el campo de los estudios literarios, uno de los datos más frecuentes son corpus textuales junto con sus metadatos. Para preparar y publicar esos datos de una manera que pueda ser útil para la comunidad y lograr el reconocimiento en la comunidad investigadora, es necesario hacerse la pregunta: ¿son mis datos FAIR?</p>
+        <p>Los principios FAIR están basados en los cuatro términos que forman el acrónimo: <term xml:lang="en"><hi rendition="#bold">F</hi>indable</term> (<soCalled>encontrables</soCalled>), <term xml:lang="en"><hi rendition="#bold">A</hi>ccesible</term> (<soCalled>accesibles</soCalled>), <term><hi rendition="#bold">I</hi>nteroperable</term> (<soCalled>interoperables</soCalled>), <term xml:lang="en"><hi rendition="#bold">R</hi>eusable</term> (<soCalled>reutilizables</soCalled>). Sin embargo, no pueden reducirse a esos cuatro aspectos, sino que cada uno recoge puntos concretos respecto a cada etapa de trabajo de recolección, análisis y preparación de los datos para la publicación (expresados frecuentemente como, por ejemplo, F1 o F2 para los dos primeros subpuntos de <term xml:lang="en">Findable</term>). Los principios requieren esfuerzo y colaboración tanto por parte de los investigadores (en cuanto editores o creadores de datos), como por parte de los operadores de repositorios de datos (administradores de datos).<note>Para una descripción detallada, véase: fecha de consulta 16 de julio de 2023, <ptr target="https://blogs.tib.eu/wp/tib/2017/09/12/the-fair-data-principles-for-research-data/"/>.</note></p>
+        <p>Consideramos que, cuando los datos son principalmente textuales, los criterios FAIR son más fáciles de adoptar en TEI que en otros formatos (como especificaciones ad hoc de XML, HTML, JSON, CSV, texto plano o MySQL). De manera breve, podemos describir de la siguiente manera los principales aspectos de los criterios FAIR:
+          <list type="gloss">
+            <label>Findable</label>
+            <item>TEI ofrece elementos (como <gi>idno</gi>) para guardar identificadores unívocos (F1), describir el documento con metadatos (F2) y que la relación entre datos y metadatos quede guardada en la integridad de un único documento (F4).</item>
+            <label>Accesible</label>
+            <item>Al estar basado en un estándar abierto como es XML, TEI puede accederse utilizando protocolos abiertos y gratuitos (A1). De nuevo, el hecho de que metadatos y datos estén recogidos en un solo documento resulta una ventaja (A2).</item>
+            <label>Interoperable</label>
+            <item>TEI ofrece un vocabulario formal y abierto para la descripción de datos (I1), sigue en buena medida los criterios FAIR (I2) y permite tanto la interrelación de conjuntos de datos como la documentación de cambios (I3). Sin embargo, dos implementaciones TEI diferentes pueden no ser interoperables al no utilizar los mismos elementos y atributos.</item>
+            <label>Reusable</label>
+            <item>TEI ofrece posibilidades para que los investigadores describan las decisiones tomadas sobre los datos (R1), tiene elementos específicos para la licencia (R1.1) y la procedencia de los datos (R1.2) y es uno de los formatos más ampliamente usados en las Humanidades (R1.3).</item>
+          </list></p>
+        <p>Con esto no queremos decir que cualquier proyecto que trabaje con TEI producirá datos de investigación completamente FAIR. En primer lugar, en la lista anterior nos hemos centrado en la perspectiva del investigador y no en aquellos puntos que dependen principalmente del repositorio donde se publiquen (como F3, A1 o A2). En segundo lugar, cada proyecto que utilice TEI debe tomar una serie de decisiones sobre su implementación específica, por lo que cada proyecto debe decidir hasta qué punto y de qué manera satisface los criterios FAIR. Sin embargo, observamos que TEI tiende a ofrecer elementos específicos para cada uno de estos puntos. Incluso con poco esfuerzo, el uso de TEI mejora el estatus FAIR de nuestros datos en comparación con otros formatos, especialmente en comparación con texto plano.</p>
+        <p>Por ejemplo, en estilometría es habitual encontrar documentos de texto plano con ciertos metadatos codificados en el nombre del archivo, con la estructura <ident>Autor_Título.txt</ident>. Ese mismo documento de texto plano tendrá un mejor estatus FAIR con un par de pasos como son incluir el texto de cada nueva línea en un elemento TEI y colocar los metadatos de autor y título como metadatos en elementos TEI dentro del <gi>teiHeader</gi>. De esta manera se hace explícito qué datos y metadatos son considerados y qué valor tiene cada uno de ellos.</p>
+      </div>
+      <div xml:id="problema">
+        <head>El problema: textos y datos no publicables por razones legales, éticas u otras</head>
+        <p>En la mayoría de los casos, los investigadores que crean datos (por ejemplo, textos literarios en TEI) quieren publicar estas colecciones junto con los resultados del análisis y los metadatos. Esto puede no solo ser un interés de los investigadores, sino también un requisito de las instituciones financiadoras. La publicación de los datos, metadatos, herramientas y resultados estadísticos es también una presuposición sobre la reproducibilidad de los resultados de investigaciones, recogido en la R (Reusable) de los criterios FAIR.</p>
+        <p>Sin embargo, hay casos en que la publicación de textos y datos no es posible por razones legales: en muchos países, los derechos de explotación expiran a los 70 años de la muerte del autor. En consecuencia, obras de autores que fueron publicadas por primera vez a principios del siglo XX no están en el dominio público. Por ejemplo, las obras de Rafael Alberti (nacido en 1902, muerto en 1999) no entrarán en el dominio público antes del 2070, mientras que los textos de Federico García Lorca (1898–1936), de la misma generación, están en el dominio público desde el año 2017. Los textos que están todavía bajo la protección de los derechos de explotación pueden ser analizados o anotados, pero no pueden ser publicados de manera completa.</p>
+        <p>Otras razones que prohíben una publicación abierta de datos afectan el contenido y el origen de los datos. Puede tratarse de datos empíricos, como encuestas de lectores que contienen aspectos sensibles o referencias personales, que no pueden ser publicados, aunque estos representan una minoría en el campo de los estudios literarios. Igualmente, algunos aspectos éticos obstaculizan la publicación de datos procedentes de culturas indígenas cuya reproducción es cuestionable, por ejemplo por haber sido obtenidos en un contexto imperialista. Si los datos pertenecen originalmente a otras culturas o regiones, puede ser problemático publicarlos aunque formen parte del dominio público (<ref type="bibl" target="#carroll2020">Carroll et al. 2020</ref>).</p>
+        <p>En relación con estos aspectos legales y éticos, algunos proyectos dedicados a infraestructuras de investigación (como el consorcio alemán <ref target="https://www.text-plus.org/en/">Text+</ref>)<note>Fecha de consulta 16 de julio de 2023, <ptr target="https://www.text-plus.org/en/"/>.</note> ofrecen servicios de asistencia con el asesoramiento de expertos.</p>
+        <p>Estos problemas no son tenidos en cuenta de manera general en los criterios FAIR. Las posibles soluciones varían y dependen de los objetivos del proyecto. En comunidades investigadoras con más datos sensibles, como las ciencias sociales, existen repositorios que ofrecen control sobre quién puede conseguir qué datos.<note>Véase, por ejemplo, el asesoramiento en CESSDA (Consortium of European Social Science Data Archives): fecha de consulta 16 de julio de 2023, <ptr target="https://www.cessda.eu/Training/Training-Resources/Library/Data-Management-Expert-Guide/6.-Archive-Publish/Publishing-with-CESSDA-archives/Access-categories"/> y <ptr target="https://www.cessda.eu/Training/Training-Resources/Library/Data-Management-Expert-Guide/6.-Archive-Publish/Publishing-with-CESSDA-archives"/>.</note> Otra solución de este tipo que no corresponde a los criterios FAIR es la publicación en un repositorio específico (por ejemplo, los repositorios universitarios que sirven exclusivamente para archivar los datos, sin que estos puedan encontrarse).</p>
+      </div>
+      <div xml:id="solucion">
+        <head>Una posible solución: datos derivados</head>
+        <p>Como se mencionaba en la primera sección, algunos proyectos ya han encontrado posibles soluciones al problema de no poder publicar los datos originales: publicar datos derivados (también llamados <term xml:lang="en">extracted features</term> en artículos en inglés). El objetivo es poder publicar la mayor cantidad de datos sin cometer ninguna infracción legal o ética. En este artículo nos centraremos en aquellos casos en los que los textos no pueden publicarse debido a derechos de explotación.</p>
+        <p>En 2020 se publicó un artículo fruto de una serie de encuentros por parte de diferentes investigadores universitarios e instituciones, entre ellos la Biblioteca Nacional Alemana. El artículo expone que:
+          <cit>
+            <quote source="#quoteref1">La idea básica de los formatos de texto derivados (<foreign xml:lang="de">abgeleitete Textformate</foreign> en alemán) es esencialmente la siguiente: Se parten de fondos de textos completos protegidos por derechos de autor <gap/> a los que una institución tiene acceso legal. Estas colecciones de textos se transforman en los denominados formatos de texto derivados mediante la aplicación de procesos que representan esencialmente tanto un enriquecimiento selectivo de la información (por ejemplo, mediante la anotación lingüística) como una reducción de la misma (por ejemplo, mediante la supresión de formas de palabras o la anulación de información secuencial). Este procesamiento puede aplicarse, en caso necesario, en relación con un proyecto de investigación concreto de la propia institución o de terceros. El ejemplo más sencillo de este formato de texto derivado sería una tabla que registra las frecuencias de cada palabra en cada texto para un inventario de textos.</quote>
+            <ref xml:id="quoteref1" type="bibl" target="#schoch2020">Schöch et al. 2020, la traducción es nuestra</ref>
+          </cit>
+        </p>
+        <p>En esta misma publicación se discuten diferentes iniciativas que ya han implementado esta idea. Probablemente, la más conocida sea el Google Ngram Dataset, un conjunto de datos con n-grams de diferentes longitudes (bigramas, trigramas, 4-grams y 5-grams) de tokens y anotación de categorías gramaticales. Los datos originales en numerosas lenguas proceden de publicaciones escaneadas para Google Books y no se refieren a publicaciones concretas ni contienen metadatos, sino que han sido agrupados por el año de la publicación. De esta manera, este conjunto de datos permite ciertos análisis diacrónicos, pero no centrados en autores, editoriales o publicaciones concretas.</p>
+        <p>Junto con Google Books, otro gran conjunto de datos es el producido por el HathiTrust Research Center (HTRC) bajo el nombre de HTRC Extracted Features Dataset (<ref type="bibl" target="#jett2020">Jett et al. 2020</ref>). Contiene datos de 17 millones de publicaciones, en concreto metadatos y las frecuencias de palabras por página. De esta manera, los datos derivados son mucho más detallados que en el caso de los n-grams, permitiendo muchos más análisis que en el caso anterior. Cada archivo corresponde a un volumen digitalizado en HathiTrust. Estos archivos son documentos JSON expresados en JSON for Linking Data (JSON-LD), en cuya raíz, junto con algunos metadatos técnicos, se encuentran dos elementos: <ident>metadata</ident> y <ident>features</ident>. El primero contiene ciertos metadatos descriptivos del documento, como su título, su autor (normalizado mediante identificadores VIAF), fecha de publicación, etcétera. El elemento <ident>features</ident> contiene, junto con ciertos metadatos técnicos, un elemento <ident>pages</ident> que contiene una lista con elementos para cada una de las páginas del volumen. A su vez, cada uno de los elementos para cada página incluye ciertos metadatos (como la lengua detectada en el texto de la página), y finalmente un elemento <ident>body</ident>. Este contiene un elemento <ident>tokensPosCount</ident> que incluye los principales datos derivados del texto, en concreto cada uno de los tokens que se encuentran en la página, su categoría gramatical y la frecuencia de la combinación de ambos en la página. <ptr type="crossref" target="#ejemplo1"/> muestra algunos tokens de una página de la obra <title level="m">O locura o santidad</title> de José Echegaray, que se encuentra en la muestra que el HTRC ofrece como <ref target="https://gitlab.gwdg.de/jose.calvotello/derived_data_tei_sp/-/tree/main/data/HTRC-extracted-features">ejemplo</ref>:<note>El documento de HTRC también se encuentra en el repositorio con los datos y código de este artículo: fecha de consulta 16 de julio de 2023, <ptr target="https://gitlab.gwdg.de/jose.calvotello/derived_data_tei_sp/-/tree/main/data/HTRC-extracted-features"/>.</note>
+          <figure xml:id="ejemplo1">
+            <eg>
+              "tokenPosCount": {
+                "se": {"PRON": 8},
+                "siera": {"VERB": 1},
+                "le": {"PRON": 3},
+                "romper": {"VERB": 1},
+                "ser": {
+                  "AUX": 1,
+                  "VERB": 1
+                },
+                "Cervantes": {"PROPN": 1},
+                "ama": {"NOUN": 1},
+                "entre": {"ADP": 1},
+            </eg>
+            <head type="legend">Datos derivados en HTRC formateados en JSON-LD.</head>
+          </figure>
+        </p>
+        <p>En el artículo de Schöch et al. (<ref type="bibl" target="#schoch2020">2020</ref>) también se mencionan ciertos tipos de análisis frecuentes en las Humanidades Digitales y otras disciplinas afines. El objetivo es tener en cuenta metodologías concretas mientras se discuten las diferentes posibilidades de los datos derivados. En el artículo se mencionan:
+          <list rend="ordered">
+            <item>Clasificación y <term xml:lang="en">clustering</term> de textos (incluyendo atribución de autoría y estilometría)</item>
+            <item>Extracción de rasgos distintivos</item>
+            <item>Reducción de dimensionalidad con <term xml:lang="en">topic modeling</term></item>
+            <item>Análisis de polaridad mediante análisis de sentimiento (<term xml:lang="en">sentiment analysis</term>)</item>
+            <item>Relaciones de personajes (mediante análisis de redes)</item>
+            <item>Análisis de reúso de texto (es decir, el estudio de qué textos reutilizan o citan otros textos anteriores)</item>
+            <item>Modelos lingüísticos, como BERT (Bidirectional Encoder Representations from Transformers) o GPT (Generative Pre-trained Transformer), para diferentes tareas</item>
+          </list>
+        </p>
+        <p>Otros métodos podrían añadirse, como la anotación manual o automática de los datos, o el análisis de otras entidades.</p>
+        <p>Desde 2021, el consorcio alemán <ref target="https://www.text-plus.org/en">Text+</ref><note>Fecha de consulta 16 de julio de 2023, <ptr target="https://www.text-plus.org/en"/>.</note> ha iniciado sus actividades como parte de su infraestructura nacional de datos de investigación (Nationale Forschungsdateninfrastruktur o NFDI). Este consorcio tiene como objetivo coordinar la integración de recursos ya existentes siguiendo las necesidades de las comunidades de investigadores que usan el texto como principal fuente de datos. Una de las tareas que se planean explorar en este proyecto es la publicación de datos derivados, considerando sus diferentes implicaciones legales, de estandarización o su aplicación a la investigación. Esto es especialmente relevante para algunas de las instituciones participantes en Text+ como archivos y bibliotecas, con grandes cantidades de textos digitales. El poder desarrollar esta idea dentro de Text+ facilita que los requisitos de numerosos proyectos puedan ser considerados en su diseño.</p>
+      </div>
+      <div xml:id="datosderivadosTEI">
+        <head>La formalización de datos derivados en TEI</head>
+        <div xml:id="publicar">
+          <head>¿Qué queremos publicar?</head>
+          <p>En esta sección, exploramos con un único texto diferentes posibilidades para la extracción de datos derivados y su posible representación en TEI. Consideramos los siguientes tipos de datos derivados:
+            <list rend="ordered">
+              <item><hi rendition="#bold">Datos del texto</hi> como frecuencias o co-ocurrencias de entidades, tokens, tipografía y espacios en blanco.</item>
+              <item><hi rendition="#bold">Estructura textual</hi>, por ejemplo, para observar si un documento contiene citas, pasajes teatrales, poemas, párrafos u oraciones, así como su distribución a lo largo de las secciones (capítulos, escenas) y del documento.</item>
+              <item><hi rendition="#bold">Metadatos a nivel de documento</hi> como el nombre del autor, el género, el año de publicación, etcétera. Estos datos suelen haber sido anotados manualmente por el editor o exportados desde alguna fuente como catálogos. En TEI, se codificarían dentro del <gi>teiHeader</gi>.</item>
+              <item><hi rendition="#bold">Valores estadísticos textuales</hi> como la longitud media de párrafos u oraciones, medidas de legibilidad del texto, complejidad textual, etcétera. Estos pueden ser expresados en TEI mediante elementos <gi>measure</gi> dentro del elemento <gi>extent</gi> en <gi>teiHeader</gi>.</item>
+              <item><hi rendition="#bold">Anotaciones</hi> de diferentes tipos, como lemas, categorías gramaticales o semánticas, rima o silabificación, análisis de sentimiento, etcétera. Estas pueden haber sido anotadas de manera manual por personas o de manera automática por herramientas. Además, son susceptibles de ser expresadas en TEI mediante soluciones <term xml:lang="en">in-line</term> o utilizando estrategias <term xml:lang="en">stand-off</term>, por ejemplo mediante el elemento <gi>standOff</gi> y referencias al elemento anotado.</item>
+            </list>
+          </p>
+          <p>De estos cinco tipos de datos, consideramos que el único protegido por los derechos de explotación del autor y que no puede ser publicado es el primero, los datos del texto (tokens y tipografía). Sin embargo, es importante no olvidar los otros cuatro tipos de datos y dar soluciones que los integren siguiendo los criterios FAIR.</p>
+        </div>
+        <div xml:id="ejemplo">
+          <head>Ejemplo original</head>
+          <p>Todos los ejemplos y pasajes que mostramos han sido publicados como documentos TEI y publicados en el <ref target="https://gitlab.gwdg.de/jose.calvotello/derived_data_tei_sp">repositorio GitLab</ref>.<note>Fecha de consulta 16 de julio de 2023, <ptr target="https://gitlab.gwdg.de/jose.calvotello/derived_data_tei_sp"/>.</note> Aunque la idea de representar datos derivados en TEI no obliga a que los datos originalmente se encuentren en TEI, en esta sección partimos de ese caso. En concreto, utilizamos las primeras oraciones de la novela <title level="m">La Tribuna</title> de Emilia Pardo Bazán (con el identificador <ident>ne0075</ident>) que ya ha sido publicada en TEI como parte del mencionado corpus CoNSSA. CoNSSA contiene una versión anotada en la que, entre otros aspectos, las oraciones están marcadas mediante el elemento <gi>seg</gi>, especificando si ese segmento es narrativo o contiene estilo directo. En ellos están anotadas las oraciones mediante el elemento <gi>s</gi>. Para este artículo hemos añadido identificadores mediante el atributo <att>xml:id</att> en cada elemento.</p>
+          <figure xml:id="ejemplo2">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <div n="1" type="chapter" xml:id="ne0075_chap1">
+                <head xml:id="ne0075_chap1_head0">- I - : Barquillos </head>
+                <p xml:id="ne0075_chap1_p1">
+                  <seg type="narrative" xml:id="ne0075_chap1_seg2">
+                    <s xml:id="ne0075_chap1_s3">Comenzaba a amanecer, pero las primeras y vagas luces del alba a duras penas lograban colarse por las tortuosas curvas de la calle de los Gastros, cuando el señor Rosendo, el barquillero que disfrutaba de más parroquia y popularidad en Marineda, se asomó, abriendo a bostezos, a la puerta de su mezquino cuarto bajo.</s>
+                    <!-- ... -->
+                  </seg>
+                  <!-- ... -->
+                </p>
+                <!-- ... -->
+              </div>
+            </egXML>
+            <head type="legend">Comienzo de <title level="m">La Tribuna</title>, con elementos para párrafos, pasajes narrativos y oraciones.</head>
+          </figure>
+        </div>
+        <div xml:id="bolsadepalabras">
+          <head>Bolsa de palabras en TEI a diferentes niveles textuales</head>
+          <p>Una manera de publicar datos derivados sobre el texto es seguir la estrategia del CORDE, es decir, tokenizar el texto y dar la frecuencia de cada token en el volumen completo. De esta manera estamos representando en TEI los valores que estarían contenidos en una matriz de bolsa de palabras (<term xml:lang="en">bag of words</term>). Para ello, podemos utilizar el elemento <gi>measure</gi> y sus atributos <att>commodity</att> y <att>quantity</att>.
+          <figure xml:id="ejemplo3">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <extent>
+                <measureGrp type="form">
+                  <measureGrp corresp="#ne0075">
+                    <measure commodity="," quantity="5727"/>
+                    <measure commodity="de" quantity="4121"/>
+                    <measure commodity="la" quantity="2699"/>
+                    <measure commodity="el" quantity="2631"/>
+                    <measure commodity="y" quantity="2243"/>
+                    <!-- ... -->
+                  </measureGrp>
+                  <!-- ... -->
+                </measureGrp>
+                <!-- ... -->
+              </extent>
+            </egXML>
+            <head type="legend">Frecuencias de tokens de todo el volumen en <gi>measureGrp</gi>.</head>
+          </figure>
+          </p>
+          <p>Sin embargo, si el documento ya se encuentra estructurado en capítulos, podríamos utilizar un <gi>measureGrp</gi> para cada capítulo y referenciar mediante el atributo <att>corresp</att> el capítulo correspondiente del que proceden los datos de frecuencia.
+          <figure xml:id="ejemplo4">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <extent>
+                <measureGrp type="form">
+                  <measureGrp corresp="#ne0075_chap1">
+                    <measure commodity="," quantity="142"/>
+                    <measure commodity="de" quantity="120"/>
+                    <measure commodity="el" quantity="91"/>
+                    <measure commodity="la" quantity="75"/>
+                    <measure commodity="y" quantity="71"/>
+                    <!-- ... -->
+                  </measureGrp>
+                  <!-- ... -->
+                </measureGrp>
+                <!-- ... -->
+              </extent>
+            </egXML>
+            <head type="legend">Frecuencias de tokens del primer capítulo en <gi>measureGrp</gi>.</head>
+          </figure>
+          </p>
+          <p>Esto puede ser llevado un paso más allá y dar las frecuencias en unidades más pequeñas, como párrafos (<gi>p</gi>) o estrofas (<gi>lg</gi>)
+          <figure xml:id="ejemplo5">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <extent>
+                <measureGrp type="form">
+                  <measureGrp corresp="#ne0075_chap1_p1">
+                    <measure commodity="," quantity="18"/>
+                    <measure commodity="de" quantity="17"/>
+                    <measure commodity="el" quantity="11"/>
+                    <measure commodity="y" quantity="10"/>
+                    <!-- ... -->
+                  </measureGrp>
+                  <!-- ... -->
+                </measureGrp>
+                <!-- ... -->
+              </extent>
+            </egXML>
+            <head type="legend">Frecuencias de tokens del primer párrafo en <gi>measureGrp</gi>.</head>
+          </figure>
+          </p>
+          <p>Si el texto se encuentra estructurado en oraciones, como es el caso de la versión anotada de CoNSSA, las bolsas de palabras pueden representar cada oración:
+            <figure xml:id="ejemplo6">
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <extent>
+                  <measureGrp type="form">
+                    <measureGrp corresp="#ne0075_chap1_s3">
+                      <measure commodity="," quantity="6"/>
+                      <measure commodity="de" quantity="5"/>
+                      <measure commodity="a" quantity="4"/>
+                      <measure commodity="el" quantity="3"/>
+                      <measure commodity="las" quantity="2"/>
+                      <measure commodity="y" quantity="2"/>
+                      <!-- ... -->
+                    </measureGrp>
+                    <!-- ... -->
+                  </measureGrp>
+                  <!-- ... -->
+                </extent>
+              </egXML>
+              <head type="legend">Frecuencias de tokens de la primera oración en <gi>measureGrp</gi>.</head>
+            </figure>
+          </p>
+          <p>En teoría, la oración no tiene que ser el elemento más profundo en la estructura textual al que se aplique este método, sino que puede trasladarse a los sintagmas. Sin embargo, esto podría acabar considerando los sintagmas que contengan una cantidad muy reducida de palabras o incluso una única palabra. De esta manera acabaríamos con bolsas con una o unas pocas palabras y reproducir el orden completo del texto sería sencillo. Incluso es cuestionable si las oraciones no son unidades demasiado breves para las que es posible reproducir el orden original. De esta manera, la estructura textual y sintáctica nos lleva a un área gris donde nos preguntamos hasta qué punto podemos publicar las frecuencias de los tokens.</p>
+          <p>Los datos del HTRC Extracted Features Dataset presentados anteriormente constituyen una variante de este modelo con algunas diferencias a lo hasta ahora presentado. Por un lado, el nivel textual elegido en este conjunto de datos para crear las bolsas de palabras es la página, en coherencia con la digitalización que tiene lugar en bibliotecas que tradicionalmente tiene como objetivo producir PDFs. Por otro lado, este conjunto de datos ofrece también la anotación gramatical de los tokens, información que podría ser codificada en TEI de diferentes maneras.</p>
+        </div>
+        <div xml:id="estruturavacia">
+          <head>Estructura textual vacía</head>
+          <p>Muchas preguntas de investigación sobre el texto no pueden ser respondidas solo con bolsas de palabras del volumen o libro analizado, cómo la cantidad, longitud o distribución de párrafos y oraciones a lo largo de la obra. La versión anotada de CoNSSA contiene no solo la estructura de párrafos y oraciones, sino también qué segmentos del texto están en estilo directo (en inglés, <term xml:lang="en">direct speech</term>) y cuáles son los segmentos narrativos. Toda esta información está estructurada mediante los elementos <gi>p</gi>, <gi>seg</gi> y <gi>s</gi> en TEI. Aunque cabría la opción de modelar estas etiquetas de tal manera que también fuesen recogidas sus frecuencias en la bolsa de palabras, esto traería desventajas como la pérdida de la estructura jerárquica.</p>
+          <p>Por ello, nuestra propuesta es mantener las etiquetas pendiendo del elemento <gi>text</gi>, pero eliminar de ellas todo el contenido léxico y tipográfico. Es decir, mantener una estructura textual en TEI sin texto. El marcado TEI es un trabajo de los editores del texto, por lo que consideramos que no debe ser considerado como protegido por los derechos de explotación del autor, lo que conlleva que podamos publicarlo sin restricciones.
+            <figure xml:id="ejemplo7">
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <div n="1" type="chapter" xml:id="ne0075_chap1">
+                  <head xml:id="ne0075_chap1_head0">- I - : Barquillos </head>
+                  <p xml:id="ne0075_chap1_p1">
+                    <seg type="narrative" xml:id="ne0075_chap1_seg2">
+                      <s xml:id="ne0075_chap1_s3"/>
+                      <s xml:id="ne0075_chap1_s4"/>
+                      <s xml:id="ne0075_chap1_s5"/>
+                      <s xml:id="ne0075_chap1_s6"/>
+                      <s xml:id="ne0075_chap1_s7"/>
+                      <s xml:id="ne0075_chap1_s8"/>
+                    </seg>
+                  </p>
+                  <!-- ... -->
+                </div>
+              </egXML>
+              <head type="legend">Estructura textual en TEI sin texto en los elementos principales.</head></figure>
+          </p>
+          <p>Como se observa, los elementos TEI vacíos de <gi>p</gi>, <gi>seg</gi> y <gi>s</gi> mantienen el atributo <att>xml:id</att>. Si el mismo documento TEI contiene las frecuencias léxicas en los <ident>&lt;measureGrp&gt;</ident> explicados en <ptr type="crossref" target="#bolsadepalabras"/>, un investigador puede cruzar los datos de ambas secciones y obtener, por ejemplo, qué vocabulario aparece en oraciones de estilo directo y compararlo con el vocabulario de oraciones narrativas; este análisis no sería posible si los datos fuesen modelados solo en bolsas de palabras.</p>
+        </div>
+        <div xml:id="alteracion">
+          <head>Alteración del orden de los tokens en elemento TEI</head>
+          <p>Aunque la combinación de las estrategias de <ptr type="crossref" target="#bolsadepalabras #estruturavacia"/> recogería buena parte de los datos, la desventaja para los usuarios es el hecho de que tengan que extraerlos de dos elementos del mismo archivo, y cruzarlos mediante los identificadores (en los atributos <att>xml:id</att> y <att>corresp</att>). Esto supone que los usuarios tengan ciertos conocimientos técnicos, como conocimientos sobre XPath y en alguna lengua de programación.</p>
+          <p>Una alternativa más amigable para herramientas y usuarios consiste en desordenar las palabras dentro de cada elemento TEI descendiente de <gi>text</gi>. En <ptr type="crossref" target="#ejemplo8"/> se observa que el orden de los tokens de la primera oración de la novela de Bazán han sido desordenados, o dicho de otra manera, han sido ordenados aleatoriamente:
+            <figure xml:id="ejemplo8">
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <p xml:id="ne0075_chap1_p1">
+                  <seg type="narrative" xml:id="ne0075_chap1_seg2">
+                    <s xml:id="ne0075_chap1_s3">Comenzaba de el la a las Marineda asomó las a popularidad , Rosendo , tortuosas , , luces más Gastros bostezos de curvas . el lograban calle y la por mezquino el duras cuarto bajo , amanecer colar los su penas se y parroquia barquillero en de se señor a a puerta , primeras vagas pero cuando alba de que abriendo de disfrutaba</s>
+                    <!-- ... -->
+                  </seg>
+                  <!-- ... -->
+                </p>
+              </egXML>
+              <head type="legend">Tokens en elemento de oración con el orden de los tokens desordenado de manera aleatoria.</head>
+            </figure>
+          </p>
+          <p>Una alternativa a este desorden u orden aleatorio es sustituirlo por otro orden, como el alfabético:
+            <figure xml:id="ejemplo9">
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <p xml:id="ne0075_chap1_p1">
+                  <seg type="narrative" xml:id="ne0075_chap1_seg2">
+                    <s xml:id="ne0075_chap1_s3">, , , , , , . Comenzaba Gastros Marineda Rosendo a a a a abriendo alba amanecer asomó bajo barquillero bostezos calle colar cuando cuarto curvas de de de de de disfrutaba duras el el el en la la las las lograban los luces mezquino más parroquia penas pero popularidad por primeras puerta que se se señor su tortuosas vagas y y</s>
+                    <!-- ... -->
+                  </seg>
+                  <!-- ... -->
+                </p>
+              </egXML>
+              <head type="legend">Tokens en elemento de oración ordenados alfabéticamente.</head>
+            </figure>
+          </p>
+          <p>Otras opciones son posibles, como el orden alfabético inverso o el orden por frecuencia. El orden alfabético (y otros órdenes no aleatorios) resulta más llamativo que el aleatorio, en parte por la repetición de tokens o caracteres idénticos o similares (tipografía, palabras en mayúscula o minúscula). El orden aleatorio puede crear a primera vista una falsa sensación de naturalidad, especialmente en investigadores que no conozcan suficientemente el idioma del documento. Por eso, consideramos que puede ser una ventaja utilizar órdenes no aleatorios como el alfabético para recordar a la persona investigadora que trabaja con textos que han sido alterados de manera artificial.</p>
+          <p>Independientemente del orden de los tokens, este documento con orden alterado contendría exactamente la misma información que un documento con la estructura textual vacía (<ptr type="crossref" target="#estruturavacia"/>) y las bolsas de palabras a nivel de oración (<ptr type="crossref" target="#bolsadepalabras"/>). La ventaja es que este documento podría enviarse a herramientas que procesan TEI, como Voyant Tools o Stylo. Sin embargo, al igual que cualquier otro basado en bolsas de palabras, produciría resultados erróneos si se utilizasen métodos inspirados en la semántica distribucional, entre ellos extracción de colocaciones, n-grams, topic modeling o word embeddings.</p>
+        </div>
+        <div xml:id="xsample">
+          <head>Muestra y xSample</head>
+          <p>Otra posibilidad diferente a las que hasta ahora se han presentado es publicar solo una muestra del texto original. Esta muestra contendría una cantidad del texto original (por ejemplo, el 15%), incluido el orden de los tokens que hasta ahora se había perdido.</p>
+          <p>Este procedimiento es el adoptado por proyectos como <ref target="https://www.izus.uni-stuttgart.de/fokus/fdm-projekte/xsample/">xSample</ref><note>Fecha de consulta 16 de julio de 2023, <ptr target="https://www.izus.uni-stuttgart.de/fokus/fdm-projekte/xsample/"/>.</note> de la Universidad de Stuttgart. El usuario puede crear muestras de corpus protegidos y controlar según una serie de parámetros las características de la muestra generada, por ejemplo, eligiendo que el 15% provenga del comienzo o del final del texto (<ref type="bibl" target="#gartner2021">Gärtner et al. 2021</ref>).</p>
+          <p>Una versión más sencilla de este procedimiento podría ser la extracción de muestras aleatorias del 15% del total del documento. Más concretamente, podrían seleccionarse de manera aleatoria el 15% de las oraciones en cada uno de los capítulos. Del restante 85% de los elementos TEI se eliminaría su contenido léxico, manteniéndose como elementos vacíos (<ptr type="crossref" target="#estruturavacia"/>). Dependiendo del interés y del género analizado, podría elegirse otra unidad textual diferente a la oración, como la página, el párrafo o el verso.</p>
+          <p>El proceso de selección podría realizarse mediante programas que lean el documento TEI, iteren por los capítulos (o elementos <gi>div</gi> que dependan directamente del elemento <gi>body</gi>), y cuenten la cantidad de oraciones (u otras unidades textuales) de ese capítulo. Una vez se tenga ese número, se calcularía qué número de oraciones representan el 15% de ese capítulo. Después, se generarían números aleatorios que designen cuáles son las oraciones que entran en el 15% que se mantiene y qué oraciones son parte del 85% cuyo contenido se elimina. Más detalles pueden encontrarse en el código del repositorio del artículo de Gärtner et al. (<ref type="bibl" target="#gartner2021">2021</ref>).</p>
+          <p>En <ptr type="crossref" target="#ejemplo10"/> se muestra el resultado de este proceso en el comienzo de la novela de Bazán. El primer capítulo tiene 18 párrafos con un total de 71 oraciones; redondeando hacia abajo, el 15% de 71 oraciones son 10. El proceso aleatorio elige 10 oraciones para este capítulo cuyo contenido léxico se mantiene; del resto de 61 oraciones se borra su contenido, pero se mantienen sus elementos TEI. En el caso del primer párrafo, esto significa que el contenido de todas las oraciones se elimina excepto el de la segunda oración:
+            <figure xml:id="ejemplo10">
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <p xml:id="ne0075_chap1_p1">
+                  <seg type="narrative" xml:id="ne0075_chap1_seg2">
+                    <s xml:id="ne0075_chap1_s3"></s>
+                    <s xml:id="ne0075_chap1_s4">Vestía el madrugador un desteñido pantalón grancé, reliquia bélica, y estaba en mangas de camisa.</s>
+                    <s xml:id="ne0075_chap1_s5"></s>
+                    <s xml:id="ne0075_chap1_s6"></s>
+                    <s xml:id="ne0075_chap1_s7"></s>
+                    <s xml:id="ne0075_chap1_s8"></s>
+                  </seg>
+                </p>
+              </egXML>
+              <head type="legend">Muestra de oraciones por párrafo.</head>
+            </figure>
+          </p>
+          <p>Uno de los aspectos más débiles de este procedimiento es la falta de un marco legal claro que permita que los investigadores o las instituciones encargadas de infraestructuras de investigación como bibliotecas publiquen estas muestras de manera abierta. En el caso de xSample, el proyecto se basa en dos párrafos de leyes alemanas que permiten que ciertos datos que no pueden ser publicados sí puedan ser compartidos con otros investigadores que participan en un proyecto interdisciplinar o que participan en revisión por pares (<ref type="bibl" target="#gartner2021">Gärtner et al. 2021</ref>). Está todavía por aclarar qué criterios deben cumplir las personas que pueden recibir los datos generados de esta manera.</p>
+          <p>Independientemente del marco legal, este procedimiento tiene claras ventajas y desventajas. Por un lado, se pierde la mayor parte del texto original. Por otro lado, la persona tendría acceso a los datos originales del 15% lo que ofrece mayor libertad a la hora de elegir método de análisis. En realidad, esta es la única posibilidad hasta ahora presentada que permitiría aplicar métodos como <term xml:lang="en">word embeddings</term> sin restricciones (aunque con menos material). Si el muestreo se realizase de manera homogénea a lo largo de todos los capítulos y dentro de ellos se eligiesen las oraciones de manera aleatoria, el 15% debería ser representativo del conjunto de la obra, por lo que las conclusiones a las que se llegasen podrían ser generalizables para el resto de la obra siguiendo procedimientos de la estadística inferencial. Este conjunto de métodos estadísticos estándares en muchas áreas de la investigación inducen las características de una población estadística a partir de muestras (<ref type="bibl" target="#evans1996">Evans 1996, 25–26</ref>). Aplicados a textos de la manera aquí presentada, podrían tomar las unidades lingüísticas que aparecen en las muestras y predecir qué frecuencia sería esperable en el texto completo. Esta manera de trabajar sería especialmente útil para analizar fenómenos basados en unidades con frecuencias relativamente altas; sin embargo, sería difícilmente aplicable a fenómenos o unidades que aparecen solo un par de veces en cada documento, como refranes, colocaciones específicas, o referencias a personajes, personas o lugares secundarios en la obra.</p>
+        </div>
+        <div xml:id="enmasarado">
+          <head>Texto enmascarado</head>
+          <p>Una última posibilidad que queremos presentar consiste en sustituir cada una de las unidades léxicas por identificadores, como si cada token llevase una máscara que impidiese el reconocimiento de la unidad léxica original. El objetivo de este procedimiento es publicar tanto la frecuencia como el orden de las unidades léxicas para el texto completo, pero hacerlo de tal manera que se pierda la relación entre el token original y el token publicado. Para realizarlo, en primer lugar conviene crear un listado de todos los tokens presentes en el corpus. En segundo lugar, debe asignarse a cada token un identificador aleatorio de manera que la relación entre token e identificador quede guardada en una tabla de mapeo:
+              <table xml:id="ejemplo11">
+                <head>Selección de tokens y sus identificadores.</head>
+                <row role="label">
+                  <cell>token</cell>
+                  <cell>id</cell>
+                </row>
+                <row>
+                  <cell>,</cell>
+                  <cell>id_2859</cell>
+                </row>
+                <row>
+                  <cell>.</cell>
+                  <cell>id_1005</cell>
+                </row>
+                <row>
+                  <cell>Comenzaba</cell>
+                  <cell>id_1941</cell>
+                </row>
+                <row>
+                  <cell>a</cell>
+                  <cell>id_6603</cell>
+                </row>
+                <row>
+                  <cell>de</cell>
+                  <cell>id_12350</cell>
+                </row>
+              </table>
+          </p>
+          <p>Posteriormente, cada token presente en el texto de los elementos TEI es sustituido por su identificador:
+            <figure xml:id="ejemplo12">
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <p xml:id="ne0075_chap1_p1">
+                  <seg type="narrative" xml:id="ne0075_chap1_seg2">
+                    <s xml:id="ne0075_chap1_s3">id_1941 id_6603 id_12466 id_2859 id_2977 id_10836 id_12155 id_6531 id_7254 id_7892 id_12350 id_5108 id_2363 id_6603 id_3224 id_3725 id_9127 id_11417 id_9579 id_3246 id_10836 id_11477 id_9428 id_12350 id_8726 id_9707 id_12350 id_3152 id_4414 id_2859 id_7346 id_5108 id_11423 id_11406 id_2859 id_5108 id_7807 id_2327 id_1406 id_12350 id_1731 id_11045 id_6531 id_6895 id_8972 id_8819 id_2859 id_9579 id_756 id_2859 id_5384 id_6603 id_5296 id_2859 id_6603 id_8726 id_12399 id_12350 id_5671 id_6190 id_10418 id_4058 id_1005</s>
+                    <!-- ... -->
+                  </seg>
+                  <!-- ... -->
+                </p>
+              </egXML>
+              <head type="legend">Vocabulario enmascarado.</head>
+            </figure>
+          </p>
+          <p>El resultado es un texto incomprensible para el ser humano, pero potencialmente analizable por métodos estadísticos o computacionales. Este modelo representaría para cada corpus un mundo textual completo, contenido en sí mismo, con una lógica interna regulada por la tabla de mapeo entre tokens originales e identificadores. Muchos procedimientos computacionales podrían aplicarse a esta representación, tanto aquellos basados en bolsas de palabras como en colocaciones, por ejemplo para la clasificación de documentos. Sin embargo, no solamente la comprensión humana sería víctima del enmascaramiento de los tokens; un corpus con vocabulario enmascarado sirve solo para métodos computacionales como parte de una lengua sin hablantes ni recursos. La mayoría de herramientas de procesamiento de lenguaje natural no podrían aplicarse a este corpus, entre otras herramientas de anotación lingüística. Incluso tokenizadores que consideran dividir el texto en unidades más pequeñas, por ejemplo, WordPiece, el tokenizador estándar en algoritmos de BERT, (<ref type="bibl" target="#tunstall2022">Tunstall, Werra, y Wolf 2022, 33</ref>) podrían realizar errores al procesar esta representación enmascarada. En otras palabras, un corpus con vocabulario enmascarado es un objeto hermético, un recurso que no se puede comparar con otros corpus, al que no se le pueden aplicar base de datos ni herramientas de procesamiento del lenguaje natural, ni anotar de manera manual, ya que no se puede comprender.</p>
+          <p>Aunque no consideramos que esta opción sea aceptable para la enorme mayoría de los usos, no la descartamos completamente. Podría ser imaginable que una institución tenga un gran conjunto de documentos sensibles y que quiera realizar una tarea concreta con ellos, como clasificarlos según ciertas categorías. Las personas que programen ese procedimiento de clasificación no deben poder leer los textos originales, pero sí deben poder aplicar diferentes métodos computacionales.</p>
+        </div>
+      </div>
+      <div xml:id="aplicacion">
+        <head>Aplicación a diferentes ejemplos</head>
+        <p>En estas secciones, queremos demostrar con tres recursos en español de qué manera podrían implementarse las posibilidades presentadas.</p>
+        <div xml:id="corde">
+          <head>Corpus Diacrónico del Español (CORDE)</head>
+          <p>En 2002 la Real Academia Española (RAE) publicó dos corpus complementarios: el Corpus de Referencia del Español Actual (CREA) con textos contemporáneos y el Corpus Diacrónico del Español (CORDE) con textos históricos. El plan era que el CREA contuviese siempre los textos de los últimos 25 años y que el CORDE fuese aumentando paulatinamente su alcance cronológico. El plan se modificó con el desarrollo de un nuevo corpus llamado Corpus del Español del Siglo XXI (CORPES) que contiene textos de este siglo.</p>
+          <p>El CORDE es una de las mayores fuentes históricas de textos en español, con alrededor de 300 millones de tokens y 34.000 textos de las diferentes áreas donde se habla español (<ref type="bibl" target="#sanchezsanchez2007">Sánchez Sánchez y Domínguez Cintas 2007</ref>). Este corpus es una herramienta estándar en diferentes áreas del estudio de la lengua y literatura en español, aunque también ha recibido críticas, principalmente en relación con que la falta de homogeneidad en cuanto a la modernización de sus textos (<ref type="bibl" target="#rodriguezmolina2017">Rodríguez Molina y Octavio de Toledo y Huerta 2017</ref>).</p>
+          <p>Como hemos explicado anteriormente, este corpus tiene publicadas en su web las frecuencias totales de cada token en el corpus completo. Esto ya puede considerarse como la publicación de datos derivados agrupados. Desde hace algunos años, la RAE ofrece también el acceso a las frecuencias totales de cada documento, junto con sus metadatos. La RAE ha publicado un ejemplo con el texto de <ref target="http://corpus.rae.es/frecCORDE/quijote1.TXT"><title level="m">El ingenioso hidalgo don Quijote de la Mancha</title></ref>:<note>Fecha de consulta 16 de julio de 2023, <ptr target="http://corpus.rae.es/frecCORDE/quijote1.TXT"/>.</note>
+            <figure xml:id="ejemplo13">
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <TITULO>El ingenioso hidalgo don Quijote de la Mancha</TITULO>
+                <AUTOR>Cervantes Saavedra, Miguel de</AUTOR>
+                <PAIS>España</PAIS>
+                <FECHACRE>  1605   	</FECHACRE>
+                <TEMA>Prosa narrativa extensa: Novela y otras formas similares</TEMA>
+                <MEDIO>Libro</MEDIO>
+                Número de formas ortográficas: 188175
+                Número de elementos (tokens): 215121
+                Número de elementos distintos (types): 15845
+                17324 ,
+                10661 que
+                8928 de
+                8164 y
+              </egXML>
+              <head type="legend">Metadatos y datos derivados del Quijote en el CORDE.</head>
+            </figure>
+          </p>
+          <p>En este documento se observan tres tipos de datos. En primer lugar, metadatos sobre el autor y el texto, con sus valores en elementos XML. En segundo lugar, tres cuantificaciones sobre el contenido del texto: número de formas ortográficas, número de elementos y número de elementos distintos. Finalmente, la cuantificación de la frecuencia de cada token en el texto original a modo de tabla con dos columnas separadas por un espacio en blanco.</p>
+          <p>En este trabajo, tomamos estos datos derivados y los modelamos en un archivo TEI. Debido a que nosotros consideramos como input datos que ya han sido derivados, nos vemos restringidos en cuanto a las opciones disponibles. De las opciones discutidas en la sección 5, solo tenemos a disposición hacer bolsas de palabras del volumen. Sin embargo, la RAE sí podría realizar datos derivados más ricos, como bolsas de palabras por frase, tokens desordenados o muestras del texto completo.</p>
+          <p>Los tres tipos de datos publicados por la RAE como datos derivados podrían ser expresados de manera explícita y en un formato coherente en un único documento TEI. Los diferentes metadatos se colocarían en los diferentes elementos TEI (entre otros <gi>title</gi> y <gi>author</gi>). Las tres cuantificaciones sobre el texto podrían colocarse en un <gi>measureGrp</gi> con un <att>type</att> que lo describa, y la frecuencia de tokens se encontraría en otro <gi>measureGrp</gi>.
+            <figure xml:id="ejemplo14">
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <TEI>
+                  <teiHeader>
+                    <fileDesc>
+                      <titleStmt>
+                        <title>El ingenioso hidalgo don Quijote de la Mancha</title>
+                        <author>Cervantes Saavedra, Miguel de</author>
+                      </titleStmt>
+                      <extent>
+                        <measureGrp type="metrics">
+                          <measure commodity="ortographic_forms" quantity="188175"/>
+                          <measure unit="tokens" quantity="215121"/>
+                          <measure unit="types" quantity="215121"/>
+                        </measureGrp>
+                        <measureGrp type="tokens">
+                          <measure commodity=',' quantity='17324'/>
+                          <measure commodity='que' quantity='10661'/>
+                          <measure commodity='de' quantity='8928'/>
+                          <measure commodity='y' quantity='8164'/>
+                          <!-- ... -->
+                        </measureGrp>
+                        <!-- ... -->
+                      </extent>
+                      <!-- ... -->
+                    </fileDesc>
+                    <!-- ... -->
+                  </teiHeader>
+                  <!-- ... -->
+                </TEI>
+              </egXML>
+              <head type="legend">Propuesta de metadatos y datos derivados del CORDE en TEI.</head>
+            </figure>
+          </p>
+          <p>Además, se podrían añadir referencias a los archivos de autoridad de recursos como la BNE, Virtual International Authority File (VIAF) o Wikidata a algunos de estos metadatos, como autor u obra, así como otros metadatos (como el lugar, tema o medio). De esta manera, los datos derivados del CORDE podrían ser enriquecidos con los datos de estos recursos o comparados con otros corpus o catálogos que también contengan identificadores de archivos de autoridad.
+            <figure xml:id="ejemplo15">
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <titleStmt>
+                  <title ref="https://www.wikidata.org/wiki/Q480">El ingenioso hidalgo don Quijote de la Mancha</title>
+                  <author ref="https://www.wikidata.org/wiki/Q5682">Cervantes Saavedra, Miguel de</author>
+                </titleStmt>
+              </egXML>
+              <head type="legend">Metadatos en TEI identificados con entidades en Wikidata.</head>
+            </figure>
+          </p>
+        </div>
+        <div xml:id="conssa">
+          <head>Corpus of the Novel in the Spanish Silver Age (CoNSSA)</head>
+          <p>El CoNSSA contiene 358 obras narrativas de autoras y autores españoles publicadas por primera vez entre 1880 y 1939 (<ref type="bibl" target="#calvo2021a">Calvo Tello 2021a</ref>; <ref type="bibl" target="#calvo2021a">2021b</ref>). Este corpus fue creado para el análisis de géneros de la novela. La mayor parte del corpus ha sido publicado en documentos TEI con el texto completo, junto con metadatos de diferentes tipos. En 2022, una <ref target="https://textgridrep.org/project/TGPR-8b44ca41-6fa1-9b49-67b7-6374d97e29eb">nueva versión del corpus</ref> ha sido publicada en TextGrid Repository, con metadatos estructurados siguiendo principios y recursos bibliotecarios como sistemas de clasificación o archivos de autoridad, además de otros recursos de datos enlazados abiertos (Linked Open Data).<note>Fecha de consulta 16 de julio de 2023, <ptr target="https://textgridrep.org/project/TGPR-8b44ca41-6fa1-9b49-67b7-6374d97e29eb"/>.</note>
+          </p>
+          <p>Sin embargo, muchos autores mantienen derechos de explotación sobre sus textos, por lo que sus textos no pueden ser publicados de manera abierta. Por ejemplo, los herederos de Pío Baroja mantendrán los derechos de explotación del autor hasta 2036. De todos los textos del corpus se publicaron tablas de metadatos y, dependiendo del origen de la digitalización de los textos y datos derivados en forma de tablas de bolsas de palabras y otros rasgos que permiten la reproducibilidad de los análisis realizados con el corpus.</p>
+          <p>Para futuras publicaciones de datos derivados, metadatos y datos pueden integrarse en un único documento TEI, ya sea mediante bolsas de palabras de oración o párrafo (<ptr type="crossref" target="#bolsadepalabras"/>), o mediante oraciones con tokens desordenados u ordenados alfabéticamente (<ptr type="crossref" target="#alteracion"/>). En el <ptr type="crossref" target="#ejemplo16"/> hemos modelado mediante orden alfabético dentro de un elemento <gi>s</gi> los tokens de la primera oración de la novela de Pío Baroja <title level="m">El mayorazgo de Labraz</title>.
+            <figure xml:id="ejemplo16">
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <div type="part">
+                  <head>LIBRO PRIMERO: LOS VIAJEROS</head>
+                  <div n="1" type="chapter" xml:id="ne0001_chap1">
+                    <head xml:id="ne0001_chap1_head0">I</head>
+                    <quote xml:id="ne0001_chap1_quote1">
+                      <p xml:id="ne0001_chap1_p2">
+                        <seg type="narrative" xml:id="ne0001_chap1_seg3">
+                          <s xml:id="ne0001_chap1_s4">, ? Estrella Occidente a asomas colina crepúsculo de de el el en entre faz follaje la las majestuosa miras nubes paseas por que que qué radiante resplandeces soberbia sobre te través tu y ¿ …</s>
+                        </seg>
+                      </p>
+                      <!-- ... -->
+                    </quote>
+                    <!-- ... -->
+                  </div>
+                  <!-- ... -->
+                </div>
+              </egXML>
+              <head type="legend">Metadatos en TEI identificados con entidades en Wikidata.</head>
+            </figure>
+          </p>
+          <p>En este ejemplo se observa la ventaja de la alteración del orden, ya que la primera oración se encuentra dentro de un elemento <gi>quote</gi>, es decir, es parte de una cita textual. De esta manera se pueden realizar análisis textuales o estilísticos teniendo en cuenta esta categoría, información que se perdería en la mayoría de alternativas.</p>
+        </div>
+        <div xml:id="picasso">
+          <head>Picasso</head>
+          <p>La obra de Pablo Picasso (pintura, textos, etc.) está protegida por derechos de explotación por lo menos hasta 2043. Su obra literaria consiste en más de 300 poemas en prosa, dos obras teatrales y por último un fragmento titulado <title level="a">El Entierro del Conde de Orgaz</title> (escrito entre 1957 y 1959; <ref type="bibl" target="#picasso1989">Picasso 1989</ref>). Todos estos textos fueron publicados después de la muerte del autor en 1989, editados por Marie-Laure Bernadac y Christine Piot en la editorial de Gallimard, París. Hasta hoy se trata de la única edición de la obra escrita completa del artista con anotaciones sobre versiones, datos y materiales (incluidas ilustraciones) en el anexo. No existe ninguna versión digitalizada y aprobada por parte de la <ref target="https://www.picasso.fr/les-droits-qu-est-ce-que-picasso-administration">Fundación Pablo Picasso</ref> en Europa.<note>Fecha de consulta 16 de julio de 2023, <ptr target="https://www.picasso.fr/les-droits-qu-est-ce-que-picasso-administration"/>.</note> Sin embargo, las investigadoras e investigadores tienen acceso a los textos en formato HTML mediante el portal <title level="u">On-line Picasso project</title> dirigido por Enrique Mallén de la Sam Houston State University, en Texas. De este recurso se ha creado un corpus de textos para algunos análisis (<ref type="bibl" target="#risslerpipka2019a">Rißler-Pipka 2019a</ref>; <ref type="bibl" target="#risslerpipka2019b">2019b</ref>; <ref type="bibl" target="#risslerpipka2023">2023</ref>). La edición digital fue comparada y verificada con la edición de Gallimard en una serie de pasajes. La publicación de este corpus analizado en estos trabajos no está permitida, por lo que es un buen ejemplo de cómo se pueden modelar datos derivados en TEI para su publicación.</p>
+          <p>Con el objeto de comparar el uso de construcciones sintácticas y gramaticales de Picasso y sus contemporáneos, hemos anotado todos los textos con categorías gramaticales (en inglés, <foreign xml:lang="en">part of speech</foreign>) con la herramienta <ref target="https://nlp.stanford.edu/software/tagger.shtml#Download">Stanford POS tagger</ref> (tanto para los textos en español como en francés).<note>Fecha de consulta 16 de julio de 2023, <ptr target="https://nlp.stanford.edu/software/tagger.shtml#Download"/>.</note> El siguiente pasaje muestra la anotación realizada por la herramienta para el texto de Picasso <title level="a">El Entierro del Conde de Orgaz</title>; más concretamente para la primera oración, que es <q>aquí no hay más que aceite y ropa vieja</q>:
+            <figure xml:id="ejemplo17">
+              <eg>
+                rg
+                rn
+                vaip
+                rg
+                cs
+                ncs
+                cc
+                ncs
+                aq
+                fp
+              </eg>
+              <head type="legend">Etiquetas gramaticales anotadas por el Stanford POS tagger para la primera línea del poema <title level="a">El Entierro del Conde de Orgaz.</title>
+              </head>
+            </figure>
+          </p>
+          <p>Una peculiaridad de los textos de Picasso es que prácticamente no utiliza signos de puntuación, lo que aumenta la dificultad de reconocer las categorías gramaticales, por lo que en muchos casos es errónea. Sin embargo, analizar las categorías gramaticales es una posibilidad para comparar el uso y el estilo del autor en textos de diferentes idiomas (para este caso el francés y español, véase <ref type="bibl" target="#risslerpipka2023">Rißler-Pipka 2023</ref>).</p>
+          <p>Estas anotaciones gramaticales pueden ser representadas en TEI mediante bolsas de rasgos a nivel de volumen en un elemento <gi>measureGrp</gi>:
+            <figure xml:id="ejemplo18">
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <TEI>
+                  <teiHeader>
+                    <fileDesc>
+                      <titleStmt>
+                        <title>El Entierro del Conde de Orgaz</title>
+                        <author ref="https://www.wikidata.org/wiki/Q5593">Pablo Picasso</author>
+                      </titleStmt>
+                      <extent>
+                        <measureGrp type="partOfSpeech">
+                          <measure commodity="ncs" quantity="1040"/>
+                          <measure commodity="sp" quantity="1010"/>
+                          <measure commodity="da" quantity="645"/>
+                          <measure commodity="ncp" quantity="530"/>
+                          <measure commodity="aq" quantity="478"/>
+                          <!-- ... -->
+                        </measureGrp>
+                        <!-- ... -->
+                      </extent>
+                      <!-- ... -->
+                    </fileDesc>
+                    <!-- ... -->
+                  </teiHeader>
+                  <!-- ... -->
+                </TEI>
+              </egXML>
+              <head type="legend">Metadatos y frecuencia de las etiquetas gramaticales del poema <title level="a">El Entierro del Conde de Orgaz</title>, en TEI.</head>
+            </figure>
+          </p>
+          <p>La ventaja de publicar estos datos en TEI en comparación con tablas o texto plano es que en un único documento se integran documentados aquellos metadatos que el investigador considere necesarios para el análisis. De manera similar al caso del CORDE, hemos añadido la referencia al identificador de Wikidata del autor, no de la obra, ya que ni Wikidata ni Wikipedia contienen una instancia del poema con este título (aunque sí para la <ref target="https://www.wikidata.org/wiki/Q94802">pintura del Greco</ref>,<note>Fecha de consulta 16 de julio de 2023, <ptr target="https://www.wikidata.org/wiki/Q94802"/>.</note> lo que representa un interesante caso de ambigüedad entre obras).</p>
+        </div>
+      </div>
+      <div xml:id="conclusiones">
+        <head>Conclusiones</head>
+        <p>En este artículo hemos presentado diferentes opciones de publicación de datos relacionados con textos cuando los datos originales y completos no pueden publicarse. Sin embargo, todas estas opciones se basan en que las personas del proyecto quieran publicar ciertos datos y así hacer que tanto ellas mismas como el resto de la comunidad se beneficien de este paso.</p>
+        <p>Ante este interés y los nuevos desarrollos y discusiones que están teniendo lugar en diferentes países, argumentamos a favor de TEI como un formato en el que publicar datos derivados. La ventaja de TEI en comparación con otros formatos reside en que TEI permite modelar en un único documento otros tipos de datos que también son relevantes para el análisis, como la estructura textual, metadatos, documentación o anotación generada tanto de manera manual como automática. Esto permite que diferentes puntos de los criterios FAIR puedan ser satisfechos.</p>
+        <p>Hemos explorado diferentes maneras de modelar estos datos textuales derivados en TEI y los hemos aplicado a tres casos concretos y diferentes de los últimos años. Consideramos que la variante de alteración del orden en los elementos TEI (<ptr type="crossref" target="#alteracion"/>) es probablemente la que mejor equilibra el marco legal actual, la cantidad de datos y su usabilidad.</p>
+        <p>En cualquier caso, las diferentes opciones tienen que ser discutidas con juristas teniendo en cuenta las leyes nacionales e internacionales, aspectos que en este artículo no hemos podido cubrir.</p>
+        <p>La creación, publicación y reutilización de estos datos no debe ser un trabajo únicamente de las investigadoras e investigadores. Los proyectos y las instituciones responsables de las infraestructuras de investigación deberían facilitar su creación, publicación y reutilización. Un ejemplo sería que algunos de estos pasos estén integrados en repositorios, como el <ref target="https://textgridrep.org/?lang=en">TextGrid Repository</ref><note>Fecha de consulta 16 de julio de 2023, <ptr target="https://textgridrep.org/?lang=en"/>.</note> que ha sido explícitamente desarrollado para textos en TEI y donde la comunidad puede subir sus datos, generar otros derivados mediante opciones estandarizadas y posteriormente publicarlos en TEI.</p>
+        <p>Como vemos, los datos derivados abren nuevas posibilidades y retos en diferentes áreas de la investigación. Por todo ello, un aspecto central de los siguientes años recae en la necesidad de que los proyectos para la creación de infraestructuras se comuniquen de manera activa con la comunidad investigadora sobre sus necesidades y preferencias.</p>
+      </div>
+    </body>
+    <back>
+      <div type="bibliography">
+        <listBibl>
+          <bibl xml:id="burnard2021"><author>Burnard, Lou</author>, <author>Christof Schöch</author>, y <author>Carolin Odebrecht</author>. <date>2021</date>. <title level="a">In search of comity: TEI for distant reading</title>. <title level="j">Journal of the Text Encoding Initiative</title> <biblScope unit="issue">14</biblScope>. doi:<idno type="DOI">10.4000/jtei.3500</idno>.</bibl>
+          <bibl xml:id="calvo2021a"><author>Calvo Tello, José</author>. <date>2021</date>a. <title level="m">The Novel in the Spanish Silver Age: A Digital Analysis of Genre Using Machine Learning</title>. <series>Digital Humanities Research</series> <biblScope unit="issue">4</biblScope>. <pubPlace>Bielefeld</pubPlace>: <publisher>transcript</publisher>. <ptr target="https://www.transcript-verlag.de/978-3-8376-5925-2/the-novel-in-the-spanish-silver-age/?c=331025282"/>. <!--Fecha de consulta: 12 de mayo de 2023.--></bibl>
+          <bibl xml:id="calvo2021b"><author>Calvo Tello, José</author>. <date>2021</date>b. <title level="a">Corpus de novelas de la Edad de Plata, en XML-TEI</title>. <title level="j">Signa: Revista de la Asociación Española de Semiótica</title> <biblScope unit="volume">30</biblScope>(<biblScope unit="issue">0</biblScope>): <biblScope unit="page">83–107</biblScope>. doi:<idno type="DOI">10.5944/signa.vol30.2021.29299</idno>.</bibl>
+          <bibl xml:id="carroll2020"><author>Carroll, Stephanie Russo</author>, <author>Ibrahim Garba</author>, <author>Oscar L. Figueroa-Rodríguez</author>, <author>Jarita Holbrook</author>, <author>Raymond Lovett</author>, <author>Simeon Materechera</author>, <author>Mark Parsons</author>, et al. <date>2020</date>. <title level="a">The CARE Principles for Indigenous Data Governance</title>. <title level="j">Data Science Journal</title> <biblScope unit="volume">19</biblScope>(<biblScope unit="issue">1</biblScope>): <biblScope unit="page">43</biblScope>. doi:<idno type="DOI">10.5334/dsj-2020-043</idno>.</bibl>
+          <bibl xml:id="evans1996"><author>Evans, James D.</author> <date>1996</date>. <title level="m">Straightforward statistics for the behavioral sciences</title>. <pubPlace>Pacific Grove</pubPlace>: <publisher>Brooks/Cole Pub. Co</publisher>.</bibl>
+          <bibl xml:id="gartner2021"><author>Gärtner, Markus</author>, <author>Felicitas Kleinkopf</author>, <author>Melanie Andresen</author>, y <author>Sibylle Hermann</author>. <date>2021</date>. <title level="a">Corpus Reusability and Copyright - Challenges and Opportunities</title>. En <title level="m">Proceedings of the Workshop on Challenges in the Management of Large Corpora (CMLC-9)</title>, <biblScope unit="page">10–19</biblScope>. <pubPlace>Limerick</pubPlace>: <publisher>Leibniz-Institut für Deutsche Sprache</publisher>. doi:<idno type="DOI">10.14618/IDS-PUB-10470</idno>.</bibl>
+          <bibl xml:id="henny-krahmer2018"><author>Henny-Krahmer, Ulrike</author>. <date>2018</date>. <title level="a">Exploration of Sentiments and Genre in Spanish American Novels</title>. En <title level="m">Puentes/Bridges</title>. <pubPlace>México DF</pubPlace>: <publisher>ADHO</publisher>. <ptr target="https://dh2018.adho.org/exploration-of-sentiments-and-genre-in-spanish-american-novels/"/>. <!--Fecha de consulta: 12 de mayo de 2023.--></bibl>
+          <bibl xml:id="jett2020"><author>Jett, Jacob</author>, <author>Boris Capitanu</author>, <author>Deren Kudeki</author>, <author>Timothy Cole</author>, <author>Yuerong Hu</author>, <author>Peter Organisciak</author>, <author>Ted Underwood</author>, <author>Eleanor Dickson Koehl</author>, <author>Ryan Dubnicek</author>, y <author>J. Stephen Downie</author>. <date>2020</date>. <title level="u">The HathiTrust Research Center Extracted Features Dataset</title>. HathiTrust Research Center. doi:<idno type="DOI">10.13012/R2TE-C227</idno>.</bibl>
+          <bibl xml:id="navarrocolorado2018"><author>Navarro Colorado, Borja</author>. 2018. <title level="a">A Metrical Scansion System for Fixed-Metre Spanish Poetry</title>. <title level="j">Digital Scholarship in the Humanities</title> <biblScope unit="volume">33</biblScope>(<biblScope unit="issue">1</biblScope>): <biblScope unit="page">112–27</biblScope>. doi:<idno type="DOI">10.1093/llc/fqx009</idno>.</bibl>
+          <bibl xml:id="picasso1989"><author>Picasso, Pablo</author>. <date>1989</date>. <title level="m">Picasso: Collected Writings</title>. Editado por <editor>Marie-Laure Bernadac</editor>. 1. publ. <pubPlace>London</pubPlace>: <publisher>Aurum</publisher>.</bibl>
+          <bibl xml:id="risslerpipka2019a"><author>Rißler-Pipka, Nanette</author>. <date>2019</date>a. <title level="a">L’esthétique numérique de Picasso</title>. <title level="j">Philologie im Netz</title> <biblScope unit="volume">2019</biblScope>(<biblScope unit="issue">16</biblScope>): <biblScope unit="page">39–59</biblScope>.</bibl>
+          <bibl  xml:id="risslerpipka2019b"><author>Rißler-Pipka, Nanette</author>. <date>2019</date>b. <title level="a">In Search of a New Language: Measuring Style of Góngora and Picasso</title>. <title level="j">Romanische Studien</title> <biblScope unit="volume">0</biblScope>(<biblScope unit="issue">0</biblScope>): <biblScope unit="page">117–50</biblScope>.</bibl>
+          <bibl xml:id="risslerpipka2023"><author>Rißler-Pipka, Nanette</author>. <date>2023</date> (en prensa). <title level="a">Cross-language Stylometry: Picasso’s Writings in Spanish and French</title>. En <title level="m">Digital Stylistics in Romance Studies and Beyond</title>, editado por <editor>Jose Calvo Tello</editor>, <editor>Ulrike Henny-Krahmer</editor>, <editor>Robert Hesselbach</editor>, y <editor>Christof Schöch</editor>. <pubPlace>Heidelberg</pubPlace>.</bibl>
+          <bibl xml:id="rodriguezmolina2017"><author>Rodríguez Molina, Javier</author>, y <author>Álvaro Sebastián Octavio de Toledo y Huerta</author>. <date>2017</date>. <title level="a">La imprescindible distinción entre texto y testimonio: el CORDE y los criterios de fiabilidad lingüística</title>. <title level="j">Scriptum digital: revista de corpus diacrònics i edició digital en llengües iberoromàniques</title> <biblScope unit="issue">6</biblScope>: <biblScope unit="page">5–68</biblScope>.</bibl>
+          <bibl xml:id="ruizfabo2018"><author>Ruiz Fabo, Pablo</author>, <author>Helena Bermúdez Sabel</author>, <author>Clara Martínez Cantón</author>, <author>Elena González-Blanco</author>, y <author>Borja Navarro Colorado</author>. <date>2018</date>. <title level="a">The Diachronic Spanish Sonnet Corpus (DISCO): TEI and Linked Open Data Encoding, Data Distribution and Metrical Findings – DH 2018.</title> En <title level="m">Puentes/Bridges</title>. <pubPlace>México DF</pubPlace>: <publisher>ADHO</publisher>. <ptr target="https://dh2018.adho.org/the-diachronic-spanish-sonnet-corpus-disco-tei-and-linked-open-data-encoding-data-distribution-and-metrical-findings/"/>. <!--Fecha de consulta: 12 de 5 de 2023.--></bibl>
+          <bibl xml:id="sanchezsanchez2007"><author>Sánchez Sánchez, Mercedes</author>, y <author>Carlos Domínguez Cintas</author>. <date>2007</date>. <title level="a">El banco de datos de la RAE: CREA y CORDE</title>. <title level="j">Per Abbat: boletín filológico de actualización académica y didáctica</title> <biblScope unit="issue">2</biblScope>: <biblScope unit="page">137–48</biblScope>.</bibl>
+          <bibl xml:id="santamariafernandez2020"><author>Santa María Fernández, Teresa</author>, <author>José Calvo Tello</author>, y <author>Concepción María Jiménez Fernández</author>. <date>2020</date>. <title level="a">¿Existe correlación entre importancia y centralidad? Evaluación de personajes con redes sociales en obras teatrales de la Edad de Plata.</title> <title level="j">Digital Scholarship in the Humanities</title> <biblScope unit="volume">36</biblScope>(<biblScope unit="issue">Supplement_1</biblScope>): <biblScope unit="page">i81–88</biblScope>. doi:<idno type="DOI">10.1093/llc/fqaa015</idno>.</bibl>
+          <bibl xml:id="schoch2020"><author>Schöch, Christof</author>, <author>Frédéric Döhl</author>, <author>Achim Rettinger</author>, <author>Evelyn Gius</author>, <author>Peer Trilcke</author>, <author>Peter Leinen</author>, <author>Fotis Jannidis</author>, <author>Maria Hinzmann</author>, y <author>Jörg Röpke</author>. <date>2020</date>. <title level="a">Abgeleitete Textformate: Text und Data Mining mit urheberrechtlich geschützten Textbeständen</title>. <title level="j">Zeitschrift für digitale Geisteswissenschaften</title>. doi:<idno type="DOI">10.17175/2020_006</idno>.</bibl>
+          <bibl xml:id="schoch2021"><author>Schöch, Christof</author>, <author>Tomaz Erjavec</author>, <author>Roxana Patras</author>, y <author>Diana Santos</author>. <date>2021</date>. <title level="a">Creating the European Literary Text Collection (ELTeC): Challenges and Perspectives.</title> <title level="j">Modern Languages Open</title> <biblScope>1</biblScope>: <biblScope unit="page">25</biblScope>. doi:<idno type="DOI">10.3828/mlo.v0i0.364</idno>.</bibl>
+          <bibl xml:id="schoch2019"><author>Schöch, Christof</author>, <author>José Calvo Tello</author>, <author>Ulrike Henny-Krahmer</author>, y <author>Stefanie Popp</author>. <date>2019</date>. <title level="a">The CLiGS Textbox: Building and Using Collections of Literary Texts in Romance Languages Encoded in TEI XML.</title> <title level="j">Journal of the Text Encoding Initiative</title>. doi:<idno type="DOI">10.4000/jtei.2085</idno>.</bibl>
+          <bibl xml:id="tunstall2022"><author>Tunstall, Lewis</author>, <author>Leandro von Werra</author>, y <author>Thomas Wolf</author>. <date>2022</date>. <title level="m">Natural Language Processing with Transformers: Building Language Applications with Hugging Face.</title> <pubPlace>Sebastopol</pubPlace>: <publisher>O’Reilly Media</publisher>.</bibl>
+          <bibl xml:id="wilkinson2016"><author>Wilkinson, Mark D.</author>, <author>Michel Dumontier</author>, <author>IJsbrand Jan Aalbersberg</author>, <author>Gabrielle Appleton</author>, <author>Myles Axton</author>, <author>Arie Baak</author>, <author>Niklas Blomberg</author>, et al. <date>2016</date>. <title level="a">The FAIR Guiding Principles for Scientific Data Management and Stewardship</title>. <title level="j">Scientific Data</title> <biblScope unit="volume">3</biblScope>: <biblScope unit="issue">160018</biblScope>. doi:<idno type="DOI">10.1038/sdata.2016.18</idno>.</bibl>
+        </listBibl>
+      </div>
+    </back>
+  </text>
+</TEI>

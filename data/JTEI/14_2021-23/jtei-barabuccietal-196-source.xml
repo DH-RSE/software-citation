@@ -1,0 +1,1451 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<!-- $Id: jtei-barabuccietal-196-source.xml 1114 2022-05-12 07:21:36Z tiago.sousa-garcia $ -->
+<TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI.internal">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title type="main">Signs of the Times: Medieval Punctuation, Diplomatic Encoding and
+               Rendition</title>
+            <!-- author information in separate <author> elements per author -->
+            <author>
+               <name>
+                  <forename>Elisa</forename>
+                  <surname>Cugliana</surname>
+               </name>
+               <affiliation>Dr. Elisa Cugliana is currently working at the <orgName>Cologne Center for
+                  eHumanities (University of Cologne, Germany)</orgName>, where she is involved in the Text+
+                  consortium of the <orgName>German National Research Data Infrastructure (NFDI)</orgName>. She
+                  completed her PhD in Germanic philology and digital editing in February 2022 with
+                  a joint dissertation project between <orgName>Ca’ Foscari University of Venice</orgName> and the
+                  <orgName>University of Cologne</orgName>. For her PhD, she edited a medieval German version of Marco
+                  Polo’s travel account, concentrating in particular on a computational approach to
+                  the normalisation of the texts. Among her research interests are indeed
+                  (computational) scholarly editing, Germanic philology and medieval textuality
+                  (with a focus on the so-called <soCalled>sortes</soCalled> texts), as well as diachronic linguistics
+                  and the Cimbrian language of Northern Italy.</affiliation>
+               <email>elisa.cugliana@unive.it</email>
+            </author>
+            <author>
+               <name>
+                  <forename>Gioele</forename>
+                  <surname>Barabucci</surname>
+               </name>
+               <affiliation>Gioele Barabucci is an <roleName>associate professor in Computer
+                     Science</roleName> at the <orgName>Department of Design of the Norwegian
+                     University of Science and Technology (NTNU)</orgName>. He received his PhD in
+                  Computer Science from the University of Bologna and later went on to pursue his
+                  research interests in the digital humanities as a Marie Curie Experienced
+                  Researcher and as a research fellow at the Cologne Center for eHumanities. His
+                  main research topics are the design of knowledge and the evolution of information.
+                  Concretely, this means studying comparison algorithms, devising versioning
+                  systems, and formalizing document models, as well as researching ontologies, legal
+                  documents, and multilingual systems.</affiliation>
+               <email>gioele.barabucci@ntnu.no</email>
+            </author>
+         </titleStmt>
+         <publicationStmt>
+            <publisher>TEI Consortium</publisher>
+            <date>11/01/2022</date>
+            <availability>
+               <licence target="https://creativecommons.org/licenses/by/4.0/">
+                  <p>For this publication a Creative Commons Attribution 4.0 International license
+                     has been granted by the author(s) who retain full copyright.</p>
+               </licence>
+            </availability>
+         </publicationStmt>
+         <seriesStmt>
+            <title level="j">Journal of the Text Encoding Initiative</title>
+            <editor role="guest">Georg Vogeler</editor>
+            <editor role="managing">Tanja Wissik</editor>
+            <editor role="managing">Joel Kalvesmaki</editor>
+            <editor role="managing">Pietro Maria Liuzzo</editor>
+            <editor role="managing">Tiago Sousa Garcia</editor>
+            <editor role="technical">Ron Van den Branden</editor>
+            <biblScope unit="issue" n="14">Selected Papers from the 2019 TEI Conference</biblScope>
+         </seriesStmt>
+         <sourceDesc>
+            <p>No source, born digital.</p>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <projectDesc>
+            <p>OpenEdition Journals -centre for open electronic publishing- is the platform for
+               journals in the humanities and social sciences, open to quality periodicals looking
+               to publish full-text articles online.</p>
+         </projectDesc>
+      </encodingDesc>
+      <profileDesc>
+         <langUsage>
+            <language ident="en">en</language>
+         </langUsage>
+         <textClass>
+            <keywords xml:lang="en">
+               <term>normalization</term>
+               <term>punctuation</term>
+               <term>automated workflow</term>
+               <term>pipelines</term>
+               <term>computable edition</term>
+               <term>formalization of editorial rules</term>
+               <term>reproducibility</term>
+            </keywords>
+         </textClass>
+      </profileDesc>
+      <revisionDesc>
+         <change who="TSG" when="2022-05-20">Further author corrections</change>
+         <change who="TSG" when="2022-05-11">Author corrections</change>
+         <change who="TSG" when="2022-01-11">Initial encoding</change>
+      </revisionDesc>
+   </teiHeader>
+   <text>
+      <front>
+         <div type="abstract" xml:id="abstract">
+            <p>Digitally managing punctuation in the editions of medieval manuscripts is one of
+               those issues that initially looks like a minor detail, but later reveals itself as a
+               tangled web of problems spanning from computer science (how to represent punctuation
+               signs?) to philology (what types of signs exist?) through epistemology (is the
+               processing of punctuation a mere technical transformation or a valuable part of the
+               scholarship?). The aim of this paper is to address the theoretical aspects of these
+               questions and their practical implications, providing a couple of solutions fitting
+               the paradigms and the technologies of the TEI.</p>
+            <p>This paper describes how we dealt with the encoding and transformation of the
+               punctuation in the Early New High German edition of Marco Polo’s travel account.
+               Technically, we implemented a set of general rules (as XSLT templates) plus various
+               exceptions (as descriptive instructions in XML attributes), and applied them in an
+               automated fashion (using XProc pipelines). In addition to this, we discuss the
+               philological foundation of this method and, contextually, we address the topic of the
+               transformation of a single original source into different transcriptions: from a
+               highly diplomatic edition to an interpretative one, going through a spectrum of
+               intermediate levels of normalization. We also reflect on the separation between
+               transcription and analysis, as well as on the role of the editor when the edition is
+               the output of a semi-automated process.</p>
+         </div>
+      </front>
+      <body>
+         <!-- text divisions, each with an @xml:id and <head> -->
+         <div xml:id="introduction">
+            <head>Introduction</head>
+            <p>Since its inception, the critical edition of the Early New High German (ENHG) Marco
+                  Polo<note>A philological introduction to the project can be found in <ref
+                     type="bibl" target="#cugliana2019">Cugliana (2019)</ref>.</note> (version
+                  DI<note>Originally <hi rend="italic">DI</hi> stood for <term>Deutsche
+                     Inkunabel</term>, but nowadays it just denotes the Early New High German
+                  version of Marco Polo’s work, preserved in five witnesses.</note> of the <title
+                  level="m">Devisement dou Monde</title>) has been planned as an edition with
+               multiple layers. For each witness the editor would manually edit a master TEI file
+               and, from that file, three edition levels would be generated, each at a different
+               level of closeness to the source: a purely diplomatic edition (where aspects like
+               colors, letter sizes, glyph variance, and layout are preserved), a fully
+               interpretative edition (presenting a more modernized text), and a semidiplomatic
+               edition (with a text which still maintains relevant features from the source, but
+               which is already more readable and fluent, also thanks to a minimal system of
+               punctuation).</p>
+            <p>These issues quickly arose while editing:</p>
+            <list rend="ordered">
+               <item>the master TEI file became too big and its structure too complex, thus too hard
+                  to navigate and maintain, even when using advanced XML editors such as Oxygen
+                  XML;</item>
+               <item>normalizing punctuation revealed itself as a complex task that required
+                  profound changes to the structure of the edited text.</item>
+            </list>
+            <p>The first issue, the overgrowth of the master TEI file, is due to the need to
+               transcribe and encode three variants of each word of the witness (one for each level
+               of edition). Not only is this process extremely time-consuming, but it also requires
+               the addition of a lot of markup (e.g., <gi scheme="TEI">choice</gi> elements) that
+               stiffens the text hierarchy and makes it cumbersome to encode complex linguistic
+               phenomena or critical annotations that span multiple words.</p>
+            <p>The second issue, the complexity of normalizing punctuation, emerged from the
+               combination of two factors:</p>
+            <list rend="ordered">
+               <item>it was not possible to find an underlying system governing the use of
+                  punctuation in the source;</item>
+               <item>using the standard approach to normalization in TEI (using <gi scheme="TEI"
+                     >choice</gi> with, e.g., <att>orig</att> and <att>reg</att>) turned out to be
+                  impracticable for two main reasons: the verbosity of the encoding and the lack of
+                  correspondences between the medieval and the modern systems (<att>orig</att> would
+                  very often be empty), both complicated by the presence of three levels of edition
+                  (diplomatic, semidiplomatic, and interpretative).</item>
+            </list>
+            <p>To address these issues, we devised and implemented a novel approach that made it
+               possible for a single scholar to edit each witness in three different levels of
+               edition in the allotted time span of eighteen months, while keeping the master TEI
+               file lean in its structure and readable even by scholars who are not well versed in
+               XML technologies.</p>
+            <p>The key innovation of this approach is the encoding of many textual phenomena (and of
+               how these phenomena should be handled) as formal, machine-readable rules, separate
+               from the edited text. An automated workflow is then used to process the master file
+               according to the rules and to produce each of the three levels of edition, depending
+               on which set of rules has been selected. In contrast with other similar systems,
+               there is a clear distinction between rules and exceptions in our approach. This is
+               particularly important in the ENHG Marco Polo edition because the language it is
+               written in has never been standardized and thus the system of rules has been
+               organically derived during the editorial work (as described in detail in section
+               2).</p>
+            <p>This paper provides an overview of our approach (section 3) and shows how our
+               approach addresses both issues. In particular we show how normalizing punctuation
+               represents a dramatic step beyond the more classical normalization of words. The
+               current implementation of our approach, based on XProc and XSLT, is also presented in
+               section 3.</p>
+            <p>Moving to an editorial workflow with such a level of automation requires a
+               reevaluation of the role of the editor, from wordsmith to formalizer of rules (and
+               exceptions). In section 4 we discuss how our approach fits the recent
+                  <soCalled>edition-as-a-program</soCalled> paradigm and which changes in
+               perspective a widespread adoption of this methodology could entail for future
+               critical editors.</p>
+         </div>
+         <div xml:id="background">
+            <head>Background and issues</head>
+            <div xml:id="marcopolo">
+               <head>Marco Polo and ENHG</head>
+               <p>The <title level="m">Devisement dou Monde</title> is a travel narrative written by
+                  Rustichello da Pisa and Marco Polo, most probably in 1298, while they were both in
+                  prison, in Genoa. It narrates Marco Polo’s travels to and within the Eastern
+                  World: the traveler was a Venetian who, following his father and uncle on a
+                  business trip to Asia, ended up spending almost twenty-five years in the East, at
+                  the court of Kublai Khan. The account of his journey is preserved in more than 140
+                  manuscripts which were produced over two centuries. The original version composed
+                  by the two prison companions is unfortunately lost. The text was translated into
+                  German twice during the Middle Ages. While one of these translations (version VG3)
+                  was already edited by <ref type="bibl" target="#tscharner1935">Tscharner
+                     (1935)</ref>, version DI is being edited for the first time in our project,
+                  which serves as the backdrop for the present study.</p>
+               <p>Under the name ENHG Marco Polo we refer to an edition project including the three
+                  main witnesses of version DI of the <title level="m">Devisement dou Monde</title>,
+                  all written in Early New High German: a manuscript (München, BSB Cgm 696), an
+                  incunabulum (München, BSB-Ink P-671), and a short fragment (München, BSB Cgm 252).
+                  These three witnesses are considered the most important from a stemmatic point of
+                  view (<ref type="bibl" target="#cugliana2019">Cugliana 2019</ref>) and all date
+                  back to the second half of the fifteenth century.</p>
+               <p>The output of the ENHG Marco Polo project is not a critical edition which aims at
+                  presenting a reconstructed text, but rather a collection of editions, in which
+                  each witness is edited separately: for each witness, three different editions will
+                  be produced, one for each of three targeted levels of rendition: diplomatic,
+                  semidiplomatic, and interpretative. Because each witness is treated as a separate
+                  entity, no critical apparatus in the traditional sense will be produced, and in
+                  its stead, the edited texts will be accompanied by a set of
+                     commentaries.<note>These commentaries are not a critical apparatus in the
+                     traditional sense (see <ref type="bibl" target="#maceetal2015">Macé and Roelli
+                        2015, s.v. Apparatus</ref>) as no critical text was established for this
+                     edition: the reasons for this choice depend on the history of the transmission
+                     of the text and are illustrated in <ref type="bibl" target="#cugliana2019"
+                        >Cugliana (2019)</ref>.</note> The commentaries will, in part, be shared by
+                  all editions (for example, the commentaries on the named entities, which are
+                  central to Marco Polo research), and, in part, be edition-specific (for example,
+                  the edition of the incunabulum will contain a commentary on the style of the
+                  writing typical of the first printed texts, while the edition of the fragment will
+                  contain a description of the conservative traits of the language it is written
+                     in<note>The conservative traits of the language in which these works are
+                     written have already been noted by <ref type="bibl" target="#benedetto1928"
+                        >Benedetto (1928)</ref>, one of the most important scholars in the
+                     field.</note>).</p>
+               <p>Our use of the term <term>edition</term> matches that of the Italian school of
+                  textual scholarship,<note>See for instance <ref type="bibl" target="#buzzoni2016"
+                        >Buzzoni (2016)</ref>, and the bibliography cited there, for an introduction
+                     to the Italian school of thought, and the works by other philologists such as
+                     Gianfranco Contini, Alfredo Stussi, Domenico de Robertis, Giorgio Pasquali,
+                     Raul Mordenti, and Paolo Trovato, to mention a few.</note> according to which
+                  the term edition refers to a specific rendition of the text (diplomatic,
+                  interpretative, etc.). This use of the word <term>edition</term> also conforms to
+                  the definition of scholarly edition provided by <ref type="bibl"
+                     target="#sahle2016">Sahle (2016, 23)</ref>, although the scholar uses this term
+                  to include all parts of an edition project: the act of rendering the text in, say,
+                  an interpretative way, is <foreign xml:lang="de">erschließend</foreign>
+                  (revealing, opening up to the text) in its nature, as some specific aspects of the
+                  text are presented in such a way that the reader is granted more informed access
+                  to them.</p>
+               <p>The edition will be published online using a specifically tailored version of EVT
+                  (Edition Visualization Technology<note><quote source="#quote1">A light-weight,
+                        open source tool specifically designed to create digital editions from
+                        XML-encoded texts</quote> (<ref type="bibl" target="#delturco2013"
+                        xml:id="quote1">Rosselli Del Turco et al. 2013</ref>).</note>) and will
+                  present, on the one hand, each witness in its continuum from facsimile to multiple
+                  levels of normalization and, on the other hand, the three main witnesses in
+                  synopsis. From each module of the edition and from each of the texts composing the
+                  editorial project it will be possible to access a twofold commentary: specific
+                  notes referring to the named entities and the <foreign xml:lang="la"
+                     >realia</foreign> appearing in the text, and philological notes referring
+                  either to all of the three witnesses or to one witness in particular.</p>
+               <p>The language in which the three witnesses are written is Early New High German.
+                  ENHG represents quite a problematic phase of the German language, beginning with
+                  the definition of its time span. As a matter of fact, there have been different
+                  proposals for a definition of its periodization (see, for instance, <ref
+                     type="bibl" target="#grimm1822">Grimm 1822</ref>, <ref type="bibl"
+                     target="#scherer1878">Scherer 1878</ref>, and <ref type="bibl"
+                     target="#wells1990">Wells 1990</ref>), but what is relevant here is that the
+                  ENHG phase covers a long time span, going through Gutenberg’s media revolution,
+                  which had a huge impact on the written German language (<ref type="bibl"
+                     target="#bosco2003">Bosco Coletsos 2003, 187–91</ref>). This stage of the
+                  German language is extremely diverse, which has quite a few consequences for the
+                  scholarly editor approaching the texts written or printed during the period.</p>
+            </div>
+            <div xml:id="normalization">
+               <head>Normalization</head>
+               <p><quote source="#quote2">Normalisation takes place when the orthography (or other
+                     aspects of the language) of a text is changed in order to make it correspond to
+                     a certain standard</quote> (<ref type="bibl" target="#maceetal2015"
+                     xml:id="quote2">Macé and Roelli 2015, s.v. <ptr
+                        target="https://wiki.helsinki.fi/display/stemmatology/Normalisation"
+                  /></ref>).</p>
+               <p>The need for normalization in scholarly editions arises from the fact that
+                  premodern texts present a high degree of variation when it comes to orthography
+                  and punctuation.<note>On the variation characterizing premodern texts see <ref
+                        type="bibl" target="#contini2014">Contini (2014✝, 45)</ref> and <ref
+                        type="bibl" target="#pierazzo2016">Pierazzo (2016, 41)</ref>. As for
+                     punctuation, the following manuals are used as a reference in the present
+                     project: <ref type="bibl" target="#parkes1992">Parkes (1992)</ref>, <ref
+                        type="bibl" target="#mortara2008">Garavelli (2008)</ref>, <ref type="bibl"
+                        target="#rinas2017">Rinas (2017)</ref>, and <ref type="bibl"
+                        target="#kirchhoff2017">Kirchhoff (2017)</ref>.</note> This clashes with the
+                  desire of many scholarly editors to produce readable texts where orthographic,
+                  morphological, and dialectal variance have been regularized and eroded. This
+                  desire has had different motivations in the history of editorial practice. When
+                  philology was still considered an ancillary discipline, the role of the editors
+                  was to prepare the texts for historians and literary scholars, who were mainly
+                  interested in the contents. Diacritics, for instance, and other linguistic
+                  peculiarities were considered on a par with <foreign xml:lang="de">ein verdammtes
+                     Unkraut</foreign> (<q>a damned weed</q>) in a tidy flower
+                  garden, as Julius Weizsäcker wrote in 1867.<note>As quoted in <ref type="bibl"
+                        target="#sahle2013">Sahle (2013, 1:71)</ref></note>
+               </p>
+               <p>With Karl Lachmann,<note>For a systematization of Lachmann’s method, see <ref
+                        type="bibl" target="#maas1950">Maas (1950)</ref>.</note> normalization
+                  became a necessity for philologists themselves: needing to summarize a whole
+                  textual tradition in an apparatus at the bottom of the page, it was no longer
+                  feasible to take into account all variants and punctuation. Collation, in
+                  particular, implies normalization: the establishment of a traditional stemma is
+                  based on Leitfehler (<q>guiding errors</q>), not on equivalent variants.<note>But
+                     things are different in digital stemmatology: see in this respect <ref
+                        type="bibl" target="#andrews2020">Andrews (2020)</ref>.</note> The formal
+                  appearance of the reconstructed text (for example, the dialectal variety chosen
+                  for the text) would then be given the shape considered to be closest to the
+                  language of the author.<note>After a long discussion on the importance of formal
+                     variance and on the overlapping between form and content, <ref type="bibl"
+                        target="#contini2014" xml:id="quote3">Contini (2014✝, 50)</ref> gives
+                     concrete indications on how formal variance should be dealt with in a critical
+                     edition: <quote source="#quote3">a parità di condizioni, si adotta
+                        costantemente la forma di un testimone, scelto (ma per di solito
+                        apoditticamente) per ragioni o di antichità o di congruenza regionale o di
+                        sorvegliata organicità.<gap/> Non ci si sottrae all’impressione che la forma
+                        passi in seconda linea innanzi alla sostanza</quote> (<quote
+                        source="#quote3">all things being equal, one constantly adopts the form of
+                        one witness, chosen (but usually apodictically) for reasons either of
+                        antiquity, or regional consistency, or surveilled organicity.<gap/> One does
+                        not escape the impression that the form is in the second place with respect
+                        to the substance</quote>) (our translation).</note> Generally, however, it
+                  is commonly assumed that editors of medieval texts are free to decide when, how,
+                  and how much their texts should be normalized.<note><quote source="#quote4">The
+                        extent of normalisation, as well as the rules followed by the editors,
+                        depends on their judgement and the methods they adopt.</quote> (<ref
+                        type="bibl" target="#buzzoni2020" xml:id="quote4">Buzzoni 2020,
+                     140</ref>)</note>
+               </p>
+               <p>For many languages the exact procedures used to normalize a text have been
+                  established <foreign xml:lang="la">a posteriori</foreign> by historical linguists.
+                  For instance, normalized Middle High German was first established by Karl Lachmann
+                  (see <ref type="bibl" target="#maas1950">Maas 1950</ref>) and then accepted by the
+                  scholarly community.</p>
+               <p>However, no such normalization standards currently exist for ENHG. As <ref
+                     xml:id="quote5" type="bibl" target="#ebertetal1993">Ebert et al. (1993,
+                     7)</ref> write: <quote source="#quote5">Until the sixteenth century and for
+                     many aspects also later, there is no variety of Early New High German that
+                     <gap/> had a generally accepted and undisputable prestige over all the others
+                     and which can, on the basis of such sociolinguistic fact, be considered as a
+                     reference variety for synchronic writing and speaking or for diachronic
+                     use.</quote><note><quote source="#quote5">Es gibt bis ins 16. Jahrhundert und
+                        unter vielen Aspekten selbst darüber hinaus keine Varietät des
+                        Frühneuhochdeutschen, die <gap/> ein zeitgenössisch allgemein anerkanntes,
+                        unbestreitbar über alle anderen Varietäten hinausragendes Prestige gehabt
+                        hätte und der man aufgrund eines solchen sprachsoziologischen Faktums die
+                        Funktion einer Leitvariante für synchrones Schreiben und Sprechen und für
+                        die Diachronie zuschreiben könnte</quote> [our translation]. This horizontal
+                     variation is in fact <foreign xml:lang="de">eines der markantesten Kennzeichen
+                        des Frühneuhochdeutschen</foreign> (one of the most distinctive features of
+                     Early New High German).</note>
+               </p>
+               <p>A survey of existing editions of ENHG texts shows that, while internal coherence
+                  in normalization practices is desired and documented, not only are normalization
+                  standards missing, they are also not actively sought after. Focusing on the
+                  Ingelheimer Haderbücher project (<ref type="bibl" target="#marzietalnd">Marzi and
+                     Sprenger n.d.</ref>), for instance: although the editors were extremely
+                  accurate in outlining their principles for textual transcription, they did not
+                  provide any specific bibliographical reference in support of their decisions on
+                  how the texts were transcribed and normalized. In fact, they only tangentially
+                  address this concern by writing that <quote source="#quote6">for the orthography
+                     of the single letters and the creation of the transcriptions we mostly welcomed
+                     and observed the suggestions of Germanists, linguists, and
+                     paleographers</quote>.<note><quote source="#quote6">Bei der Schreibung der
+                        einzelnen Buchstaben wurden vor allem Hinweise von Germanisten,
+                        Sprachforschern und Paläographen aufgenommen und bei der Erstellung der
+                        Transkription berücksichtigt</quote> [our translation] (<ref xml:id="quote6"
+                        type="bibl" target="#marzietalnd">Marzi and Sprenger (n.d.), <title
+                           level="a">Richtlinien: Transkription und Register</title>, accessed
+                        September 17, 2021</ref>, <ptr
+                        target="https://www.haderbuecher.de/projekt/editionsrichtlinien/"/>.</note>
+               </p>
+               <p>An interesting case is the <title level="m">Frühneuhochdeutsches
+                     Wörterbuch</title> (<ref type="bibl" target="#worterbuch">FWB</ref>), a
+                  dictionary of ENHG, started in the 1980s and expected to be completed in
+                        2027.<note><ptr target="https://fwb-online.de/"/>.</note> The editors of the
+                  FWB did propose a set of rules, a necessary precondition for such a large-scale
+                  project. The principle at the basis of the orthography chosen for the lemmata in
+                  the dictionary is a phonological one: after having established an ideal
+                  phonological system of ENHG, the corresponding graphemes were chosen. The editors
+                  themselves, however, state very clearly that such a systematization represents
+                  only an ideal (in their words <foreign xml:lang="de">ausgezeichnet</foreign>)
+                     language.<note>In their words, the lemmata appear in <q>einer ausgezeichneten
+                        Wortbildungsform in ausgezeichneter Lautung und ausgezeichneter Graphie.
+                        Diese Form muß alle Vorkommensformen in einem bestimmten Sinne
+                        repräsentieren.</q>
+                     <ptr
+                        target="https://fwb-online.de/einleitung/positionen-des-woerterbuchartikels-i-das-lemma"
+                     />.</note> We are not using the FWB as a reference for our normalization,
+                  first, because this ideal language is very distant from the actual language and
+                  orthography we find in our witnesses, and, second, because the dictionary is still
+                  not complete (many letters are completely missing, and many are incomplete: only
+                  six letters of the alphabet are fully represented).</p>
+               <div xml:id="normalisationchoices">
+                  <head>Normalization Choices Are Editorial Choices</head>
+                  <p>For a scholar editing a medieval text, <soCalled>to normalize</soCalled> means
+                     making a series of editorial decisions.<note>For a guide on how to normalize
+                        medieval texts, see <ref type="bibl" target="#stussi1988">Stussi (1988,
+                           161)</ref>, and for a concrete example of normalization, see <ref
+                           type="bibl" target="#renzietal2009">Renzi and Andreose (2009,
+                           272–82)</ref>.</note> Some examples of the kinds of decisions that need
+                     to be made are:</p>
+                  <list rend="bulleted">
+                     <item>how to substitute modern equivalents for original textual features (e.g.,
+                        if and when to substitute the modern <term>s</term> for the <term>long s
+                           [ſ]</term>);</item>
+                     <item>how to change certain signs to others (e.g., when to turn a
+                           <term>virgula</term> into a comma, when to turn it into a full stop, and
+                        when to eliminate it completely);</item>
+                     <item>when to omit features that are today considered unnecessary (such as
+                        decorations);</item>
+                     <item>when to add new features that were not yet fully developed in medieval
+                        times (like capitalization rules or spaces between different words or
+                        sections of text).</item>
+                  </list>
+                  <p>To an external observer, the act of normalizing a text can be seen as a sort of
+                     correction being imparted on the text. Scholars, in this respect, have often
+                     distinguished between <soCalled>normalization</soCalled> and
+                        <soCalled>correction</soCalled>, between mechanical and less mechanical
+                     interventions: the former, normalization, being seen as an almost objective
+                     process, while the latter, correction, often considered as a subjective act
+                     that involves the editor’s <term>iudicium</term>.<note>See, for example, the
+                        difference between substantial and formal variants and between operations
+                           <foreign xml:lang="la">ope codicum</foreign> and <foreign xml:lang="la"
+                           >ope ingenii</foreign> (<ref type="bibl" target="#stussi1988">Stussi
+                           1988</ref>; <ref type="bibl" target="#renzietal2009">Renzi and Andreose
+                           2009</ref>).</note>
+                  </p>
+                  <p>In our view there is no strict dichotomy between normalization and correction,
+                     but rather a continuum. No normalization is entirely objective, no correction
+                     is entirely subjective. For example, one can argue that substituting
+                        <term>u</term> for <term>v</term> and vice versa is quite unproblematic and
+                     rather objective because it follows an established rule of the art in a certain
+                     school of philology. However, in our opinion, choosing which set of rules to
+                     follow is also a subjective choice of the scholar that cannot, and should not,
+                     be seen as independent of their work. In addition, we argue that even in the
+                     simplest cases the philologist runs the risk of concealing linguistic features
+                     of great importance, taking them for scribal negligence.</p>
+                  <p>In our opinion no intervention pertaining to the normalization process can be
+                     considered objective or mechanical. The lack of a clear line of distinction
+                     suggests that as much information as feasibly possible should be preserved
+                     during the preparation of a scholarly edition.</p>
+                  <p>Preserving information has, however, a cost: the editor must put in the effort
+                     to record every single correction, even the most minute. The method we present
+                     in <ref type="crossref" target="#ourapproach">section 3</ref> aims to make it
+                     possible to preserve a vast amount of information with little effort on the
+                     part of the editor.</p>
+               </div>
+               <div xml:id="normalizationtei">
+                  <head>Normalization in TEI</head>
+                  <p>In TEI most of these normalization actions are represented using <gi
+                        scheme="TEI">choice</gi> elements. For example, the expansion of
+                        <term>ᵽ</term> into <term>per</term> would be encoded as</p>
+                  <figure xml:id="example1">
+                     <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true">
+                        <w>
+                           <choice>
+                              <abbr>ᵽ</abbr>
+                              <expan>per</expan>
+                           </choice>
+                        </w>
+                     </egXML>
+                     <head type="legend">Expansion of an abbreviation with <gi scheme="TEI"
+                           >choice</gi></head>
+                  </figure>
+                  <p>It is also possible to use <gi scheme="TEI">choice</gi> to encode more than one
+                     normalization form for the same word, for example, using the ad-hoc elements
+                     described by the Menota handbook:<note><ref type="bibl" target="#haugen2019"
+                           >Haraldur Bernharðsson and Odd Einar Haugen, <title level="a">Levels of
+                              text representation</title>, ch. 4 in Haugen 2019,
+                           https://www.menota.org/HB3_ch4.xml</ref>.</note>
+                  </p>
+                  <figure xml:id="example2">
+                     <egXML xmlns="http://www.tei-c.org/ns/Examples"
+                        xmlns:me="http://www.menota.org/ns/1.0" valid="true">
+                        <w>
+                           <choice>
+                              <me:facs>waꝛn</me:facs>
+                              <me:dipl>warn</me:dipl>
+                              <me:norm>waren</me:norm>
+                           </choice>
+                        </w>
+                     </egXML>
+                     <head type="legend">Normalisation in the Menota project</head>
+                  </figure>
+                  <p>There are many TEI elements that are routinely used in combination with <gi
+                        scheme="TEI">choice</gi> to express different kinds of normalization
+                     intents: for instance, <gi scheme="TEI">abbr</gi>, <gi scheme="TEI">expan</gi>,
+                        <gi scheme="TEI">sic</gi>, <gi scheme="TEI">corr</gi>, <gi scheme="TEI"
+                        >orig</gi>, <gi scheme="TEI">reg</gi>, <gi scheme="TEI">supplied</gi>, and,
+                     for punctuation, <gi scheme="TEI">pc</gi>.</p>
+                  <p>The use of <gi scheme="TEI">choice</gi> has two main drawbacks: first, it
+                     causes a twentyfold expansion in character count (a five-letter word with two
+                     normalizations requires more than one hundred characters to be encoded), and,
+                     second, it forces what would be a single <gi scheme="TEI">w</gi> element to
+                     grow into an eight-tag, two-level-deep markup structure. When each word in a
+                     manuscript needs such a treatment (as is the case in medieval texts), these two
+                     drawbacks quickly lead to the creation of a TEI file that is hard to navigate
+                     and to maintain.</p>
+               </div>
+            </div>
+            <div xml:id="punctuation">
+               <head>Punctuation</head>
+               <p>Punctuation is one of the many aspects of a text that undergoes normalization
+                  during the creation of a scholarly edition. In most cases normalizing punctuation
+                  is considered a secondary task and very quickly brushed off in the introductions
+                  of many editions.<note>An example of the traditional way to address punctuation is
+                     the edition of <title level="m">Erek</title> by <ref xml:id="quote7"
+                        type="bibl" target="#hammeretal2017">Hammer, Millet, and Reuvekamb-Felber
+                        (2017)</ref> which is based on manuscript A. The authors state that <quote
+                        source="#quote7">in order to account for the dominance of A in the context
+                        of the textual transmission <gap/>, we put this text in the focus of our
+                        edition and we represent it in the form (except for the interventions noted
+                        below) in which it came to us</quote> (our translation) (p. XXXV). In the
+                     introduction to the edition, only six lines are devoted to punctuation: there,
+                     it is stated that <quote source="#quote7"><supplied>w</supplied>e insert
+                        punctuation according to modern rules and to our understanding of the text.
+                        Generously at the end of the verse, much more careful inside the
+                        verse</quote> (our translation) (p. XXXVIII). The original reads <quote
+                        source="#quote7"><supplied>i</supplied>nterpunktion setzen wir nach modernen
+                        Regeln und entsprechend unserem Verständnis des Textes. Am Verseende
+                        großzügig, im Versinneren deutlich vorsichtiger.</quote> This is no
+                     criticism of the edition itself, which is extremely valuable, but a
+                     matter-of-fact observation capturing the common way of dealing with punctuation
+                     in state-of-the-art editions.</note>
+               </p>
+               <p>In our opinion, the normalization of punctuation is a critical step in the
+                  creation of any nondiplomatic edition. Punctuation is not only a reading aid: it
+                  delivers meaning, suggests interpretations, creates structures, and changes the
+                  importance of words. It is the responsibility of the editor of a non-diplomatic
+                  edition to translate ancient punctuation systems into something that a modern
+                  reader can fully understand.</p>
+               <p>From an operational point of view, the normalization of punctuation marks is
+                  profoundly different from the normalization of words, although the two are often
+                  treated in the same way.</p>
+               <p>The normalization of words is usually quite simple and has only minimal impact on
+                  the markup structure (when done without preserving information, as described in
+                  the previous section). In the most common case, some letters in a word are
+                  changed, requiring the replacement of that word. The more convoluted cases require
+                  splitting or merging words, but those still have, at most, a linear effect on the
+                  markup structure (for example, turning <tag type="start">w</tag>aberes<tag type="end">w</tag>
+                   into <tag type="start">w</tag>aber<tag type="end">w</tag><tag type="start">w</tag>es<tag type="end">w</tag>
+                  <note>From München, BSB Cgm 696, f. 145r.</note>).</p>
+               <p>In contrast, the normalization of punctuation is often more complex, leads to
+                  modifications in the hierarchical structure of the markup, and even has a ripple
+                  effect on the surrounding text. For example, normalizing the middle dot in <q><tag type="start">s</tag><gap/> geben ‧ von stund er gesund wirt <gap/><tag type="end">s</tag></q> into a full stop will not only change the markup structure,
+                  but also require the capitalization of the following word, now the first word of
+                  the following sentence: <q><tag type="start">s</tag><gap/> geben.<tag type="end">s</tag><tag type="start">s</tag>Von stund er gesund wirt <gap/><tag type="end">s</tag></q>.<note>From München, BSB Cgm 696, f. 265r.</note>
+               </p>
+               <p>The additional complexity of normalizing punctuation is especially prominent when
+                  dealing with medieval texts. As a matter of fact, punctuation in the Middle Ages
+                  responded to needs that were completely different from what we are used to in
+                  modern times, and different rules were applied based on many factors: the <foreign
+                     xml:lang="la">scriptorium</foreign> where the manuscripts were produced, the
+                  scribe, the language, the destination of the text, and the local customs.</p>
+               <p>This is the case in medieval German, where punctuation was usually not driven by
+                  syntactic principles, but instead often had a rhetoric function: it was meant as
+                  an aid to those reading the text aloud (<ref type="bibl" target="#digilio2008"
+                     >Digilio 2008, 373</ref>). For instance, an important element in the clause
+                  could be put between two commas to signal that it was to be read louder; today
+                  this would have the opposite result. Take for example, <q>Mary, his sister, is a
+                     doctor</q>: if we were to follow some medieval punctuation conventions, like
+                  the ones often found in the witnesses represented in the ENHG Marco Polo, <q>his
+                     sister</q> would be the focus of the sentence, while according to the modern
+                  use of commas, the same phrase would be of secondary importance. An example of
+                  this is the following sentence, from the rubric of chapter 3 in München, BSB Cgm
+                  696: <q>die zwen prüder <gap/> darnach chomen, zu dem groſſen hern, der gancȝen
+                     tartarey</q>.<note><q>The two brothers <gap/> then come, to the great lord, of
+                        whole Tatarstan</q>.</note> Despite being the pragmatic focus of the
+                  sentence, <q>zu dem groſſen hern</q> is here between commas: the commas clearly
+                  emphasize the phrase in question. Moreover, modern punctuation imposed on medieval
+                  texts can obscure important linguistic phenomena: in the case of the ENHG Marco
+                  Polo, this concerns structures such as the connecting relative and the syntactic parameter of the null subject.</p>
+               <p>Unfortunately, things are even more complex than that; the sentence we have just
+                  analyzed proceeds as follows: <q>die zwen prüder <gap/> darnach chomen, zu dem
+                     groſſen hern, der gancȝen tartarey, gnant ẟ groſe cham, kayſer ʋon Chatay</q>:
+                  the second part of the sentence, which translates <q>called the Great Kaan,
+                     emperor of Chatay</q>, would seem to reflect instead a more modern use of
+                  commas.</p>
+               <p>The underlying truth is that the systems regulating punctuation in medieval texts
+                  are not yet fully understood. This is true for the German Middle Ages in general,
+                  as Digilio (<ref type="bibl" target="#digilio2008">2008, 373</ref>) observes, and
+                  for ENHG in particular. In this respect, <ref xml:id="quote8" type="bibl"
+                     target="#ebertetal1993">Ebert et al. (1993, 29)</ref> write that <quote
+                     source="#quote8">how far it is possible to describe rules and how much
+                     rulelessness reigns here, remains to be determined.</quote><note><quote
+                        source="#quote8">Inwieweit hier Regeln beschreibbar sind und inwieweit hier
+                        Regellosigkeit herrscht, bleibt noch festzustellen.</quote></note> The very
+                  meaning of the signs is often ambiguous: <term>punctus</term> and
+                     <term>virgula</term>, the two signs that appear in the witnesses at the basis
+                  of the edition,are, particularly in the fourteenth and fifteenth centuries, <quote
+                     source="#quote9">polyfunctional</quote> (<ref xml:id="quote9" type="bibl"
+                     target="#ebertetal1993">Ebert et al. 1993, 29</ref>).</p>
+               <p>This lack of systematic rules and the high degree of ambiguity makes it hard to
+                  understand which set of rules was being used in the first place and, in turn,
+                  almost impossible to transpose in a fully mechanical way the punctuation system
+                  used by a manuscript into one of the many currently used. Contini supports our
+                  observations when he writes that <quote source="#quote10">the frictions due to the
+                     change of system are particularly visible in the case of punctuation
+                        <supplied>that in old texts mixes semantic and melodic functions</supplied>,
+                     so that it is only rarely possible to insert or omit one and the same sign in
+                     the same place</quote> (<ref xml:id="quote10" type="bibl" target="#contini2014"
+                     >Contini 2014†, 23</ref>). Instead of a translation from one system into
+                  another (which is the definition of normalization adopted by Contini), in the case
+                  of punctuation one would have to substitute the system <foreign xml:lang="la">in
+                     toto</foreign>.</p>
+               <p>We are not the first to notice that normalizing punctuation differs profoundly
+                  from normalizing words. In 2014, for instance, Elena Pierazzo wrote in a
+                  discussion on the TEI mailing list on the subject of normalization of
+                     punctuation:<note>Elena Pierazzo, <bibl xml:id="maillist"><title level="u">Re: Original and editorial
+                        punctuation</title>, TEI-L, May 23, 2014, <ptr
+                        target="https://listserv.brown.edu/cgi-bin/wa?A2=TEI-L;4b7897d6.1405"/>;
+                        <ptr
+                        target="http://tei-l.970651.n3.nabble.com/Original-and-editorial-punctuation-td4025791.html#a4025812"
+                        /></bibl>.</note>
+               </p>
+               <cit><quote source="#maillist"><p>The point is that punctuation is not like spelling and orthography. <supplied>F</supplied>or the
+                     latter, you have words and sequences of characters that evolve from one
+                     accepted format to another accepted format.<gap/></p>
+                  <p>However, punctuation does not work like this: you cannot trace the evolution of
+                     a medieval or early modern comma into, say, a semicolon, because they are
+                     completely different systems that are practically unrelated to each
+                     other.<gap/>So when editing a medieval/early modern text, <hi rend="bold">if
+                        providing a modern punctuation is a requirement of the project, then first
+                        you strip the text from all the punctuation and then you add completely new
+                        one.</hi> (emphasis added)</p></quote></cit>
+               <div xml:id="possibleapproaches">
+                  <head>Possible Approaches</head>
+                  <p>Among the different attempts on the part of scholarly editors to address this
+                     issue, we can identify three main tendencies:</p>
+                  <list rend="ordered">
+                     <item>the complete removal of the original punctuation system, replacing it
+                        with a modern one;</item>
+                     <item>the decision to maintain punctuation exactly as it was in the source
+                        document;</item>
+                     <item>an endeavor to normalize punctuation, while remaining as close as
+                        possible to the source.</item>
+                  </list>
+                  <p>An example of the first approach, removal and replacement of the original
+                     punctuation, is found in <title level="m">Corpus Rhythmorum Musicum</title>
+                        (<ref type="bibl" target="#stella2020">Stella 2020</ref>),<note><ptr
+                           target="http://www.corimu.unisi.it/public/frontend"/>.</note> a
+                     multimodal edition containing the earliest medieval Latin songs, together with
+                     their musical rendition. Figure 1 shows an excerpt from the edition alongside
+                     one of the witnesses:</p>
+                  <figure xml:id="figure1">
+                     <graphic url="img/figure1.png" height="186px" width="525px"/>
+                     <head type="legend">Left: Manuscript of the song <title level="a">A solis ortu
+                           usque ad occidua</title>.<note><ptr target="http://www.corimu.unisi.it/public/manoscritti/manoscritto/idms/7"
+                           /> Verona, Biblioteca Capitolare, XC (85).</note> Right: Edition of the
+                        song from the <title level="m">Corpus Rhythmorum Musicum</title>.<note>
+                           <ptr
+                              target="http://www.corimu.unisi.it/public/previewedizione/testo/idschede/1"
+                           />.</note> The medieval punctuation present in the original manuscript
+                        has been removed <term>in toto</term> and replaced by modern punctuation in
+                        the edited text.</head>
+                  </figure>
+                  <p>An example of the second method, the faithful preservation of the original
+                     punctuation in the edited text, can be found in the <title level="m"
+                        >Parzival-Projekt</title> (<ref type="bibl" target="#stolzetal2020">Stolz
+                        2020</ref>),<note><ptr
+                           target="http://www.parzival.unibe.ch/cod857/Daten/materialien.html"
+                        />.</note> depicted in <ref type="crossref" target="#figure2">figure
+                     2</ref>. Here the transcription of the witness perfectly matches the original
+                     punctuation: the medieval dot is encoded using a modern full point, fully
+                     comparable from the point of view of its visual rendering.</p>
+                  <figure xml:id="figure2">
+                     <graphic url="img/figure2.png" height="82px" width="453px"/>
+                     <head type="legend">Extract St. Gallen, Stiftsbibliothek, Cod. 857 (f. 10a,
+                        verses 18.30–19.03) from the edition of MS D in the <title level="m"
+                           >Parzival-Projekt</title>. The edited text maintains the original
+                        punctuation.</head>
+                  </figure>
+                  <p>An example of the third strategy, normalizing punctuation while trying to keep
+                     it close to the original, is the <title level="m">Digital Vercelli Book</title>
+                     by Roberto Rosselli Del Turco (<ref type="bibl" target="#delturcond"
+                     >n.d.</ref>). The Vercelli Book has two editions: a diplomatic and an
+                     interpretative one. While the diplomatic edition preserves the original
+                     punctuation, the interpretative edition presents a simplification of the
+                     original punctuation. This simplification replaces most archaic signs with full
+                     stops, but still respects most of the features of the original punctuation, in
+                     particular its position. This often leads to unnatural-looking edited texts,
+                     such as that shown in <ref type="crossref" target="#figure3">figure 3</ref>. In
+                     this example, the dot preceding the string <q>achine</q> is maintained in its
+                     original position, but the two words composing the string <q>ac</q> and
+                        <q>hine</q> are separated. Having a full stop still adjacent to the first
+                     letter of a word, though, is quite unfamiliar for modern readers, who might
+                     have difficulties parsing the text.</p>
+                  <figure xml:id="figure3">
+                     <graphic url="img/figure3.png" height="36px" width="453px"/>
+                     <head type="legend">Extract from the <title level="m">Digital Vercelli
+                           Book</title>. Some punctuation is simplified <soCalled>in
+                           place</soCalled>, leading to unfortunate hard-to-read artifacts that do
+                        not match current punctuation conventions (e.g., <q>.ac hine</q>).</head>
+                  </figure>
+                  <p>If, on the one hand, we appreciate the attempt to normalize the original
+                     punctuation, on the other hand, this approach does not seem to improve the
+                     readability of the text, as one would expect from an interpretative edition.
+                     Moreover, it does not seem to help much in the analysis of the original
+                     punctuation either. However, it could represent one step in a potential
+                     spectrum of normalizations, a first step in reducing the complexity present in
+                     the original source.</p>
+               </div>
+               <div xml:id="punctuationENHG">
+                  <head>Punctuation in the ENHG Marco Polo</head>
+                  <p>In our project, punctuation will be handled in three different ways, one for
+                     each level of faithfulness: diplomatic, semidiplomatic, and interpretative.</p>
+                  <p>At the diplomatic level punctuation will be fully preserved. Each punctuation
+                     mark will be encoded in its original position and using the nearest Unicode
+                     code point. Extracting precise information about the punctuation marks from the
+                     facsimile and encoding it in the TEI files will also have the positive side
+                     effect of unlocking important analyses in the fields of stylometry and
+                     phylogenetics (<ref type="bibl" target="#darmonetall2020">Darmon et al.
+                        2020</ref>).</p>
+                  <p>At the semidiplomatic level a reduced system of punctuation consisting of two
+                     signs, a middle dot (·) and a <term>virgula</term> (|), will be introduced.
+                     Similar systems are often used in the late Middle Ages (<ref type="bibl"
+                        target="#parkes1992">Parkes 1992, 46</ref>) and are often adopted in ENHG
+                     texts of the fourteenth and fifteenth centuries (<ref type="bibl"
+                        target="#hartwegetal2005">Hartweg and Wegera 2005, 131</ref>). This reduced
+                     system based on unfamiliar signs will allow a smooth presentation of the text’s
+                     structure, and, at the same time, reduce the intervention of the editor on the
+                     interpretation of the textual content. A similar approach was used by <ref
+                        type="bibl" target="#mitchelletal1998">Mitchell and Robinson (1998)</ref>,
+                     as discussed in <ref type="crossref" target="#multipleeditions">the next
+                        section</ref>. In addition, in our case, the insertion of this minimal
+                     system of punctuation follows the motto <quote source="#quote11">no punctuation
+                        where the sense is clear without any</quote> (<ref xml:id="quote11"
+                        type="bibl" target="#mitchelletal1998">Mitchell and Robinson 1998,
+                     313</ref>).</p>
+                  <p>At the interpretative level the punctuation will be completely modernized,
+                     allowing the general public to easily read the text.</p>
+               </div>
+            </div>
+            <div xml:id="multipleeditions">
+               <head>Multiple Editions</head>
+               <p>Notwithstanding the issues outlined in the previous section, the project behind
+                  the ENHG Marco Polo edition strives to match and surpass the state of the art for
+                  digital editions.</p>
+               <p>One particular aim of the ENHG Marco Polo is to be able to programmatically
+                  produce multiple editions, each with different notes and normalized texts, from a
+                  single master TEI file. In practice, this means:</p>
+               <list rend="bulleted">
+                  <item>The witnesses will be encoded using TEI-compliant XML markup.</item>
+                  <item>The scholar will work by directly editing the TEI XML master file.</item>
+                  <item>For each witness, there will be a single master file containing all related
+                     information and critical annotations (including the references for the editor’s
+                     notes).</item>
+                  <item>The same text will be edited in multiple levels of closeness to the source:
+                     diplomatic (with special characters to show allographic variance, colors,
+                     abbreviations, errors etc.), semi-diplomatic (with expanded abbreviations, but
+                     still maintaining some relevant graphematic distinctions, a reduced punctuation
+                     system, and the correction of trivial mistakes), and interpretative (with the
+                     correction of all mistakes and the modernization of graphemes, punctuation, and
+                     other textual features). Given that the project is based on three main
+                     witnesses, this means producing a total of nine different editions.</item>
+                  <item>Multiple editions will be generated automatically from the master TEI file,
+                     with no manual intervention on the resulting files.</item>
+                  <item>The generated editions files will conform to the TEI subset understood by
+                     EVT.</item>
+               </list>
+               <p>Some of these desiderata clash with each other. For instance, the desire to
+                  directly edit the XML file makes it hard and error-prone to keep in a single
+                  master file all the information needed to generate the three editions. It would
+                  have been hardly possible to respect the desired level of explicitness in the
+                  normalisation process due to the complexities emerging from the high level of
+                  granularity of the transcriptions combined with the goal of producing multiple
+                  levels of normalisation.</p>
+               <div xml:id="predigitalapproaches">
+                  <head>Predigital Approaches</head>
+                  <p>In predigital times, presenting the same text at different levels of rendition
+                     would of course mean a lot of work. The philologist, after completing the
+                     diplomatic transcription, would start all over again and proceed with another
+                     transcription and repeat the process for each level of normalization they
+                     wished to produce. Not only is this a very long and demanding workflow, but it
+                     also poses a number of problems: first of all, if an uncertain passage of the
+                     text gets clarified later on in the editing process, the changes need to be
+                     made on all the different editions separately. Moreover, inconsistencies can
+                     emerge between different edition levels, as they are created independently from
+                     each other.</p>
+                  <p>An interesting example, in this respect, is that of <ref type="bibl"
+                        target="#mitchelletal1998">Mitchell and Robinson (1998)</ref>: in their
+                     edition of <title level="m">Beowulf</title>, they decided to use modern
+                     punctuation. The text, in fact, needed to be accessible to a wide audience. At
+                     the same time, however, they expressed their reservations on the issue: modern
+                     punctuation would not suit Old English poetry and it would force the editors to
+                     make decisions in order to resolve ambiguities which cannot be resolved. Given
+                     these considerations, extensively explained in section IIIB of their edition,
+                     they wanted to offer a way out, or at least an alternative. They proposed a
+                     different system of punctuation, which inspired our intermediate level of
+                     normalization. However, they limited themselves to offering a mere taste of
+                     their solution in the appendix to the edition (pp. 313–18). In the appendix
+                     they edited verses 1–114 again, using a different punctuation system and
+                     inviting the reader to go back to the beginning of the full edition, where the
+                     first three folios of the manuscripts are reproduced in a black and white
+                     facsimile (pp. 44–48). Such an approach has many limitations: it is highly
+                     impractical, both from the point of view of the reader, who is forced to go
+                     back and forth from the beginning to the end of the book and who, in the end,
+                     only gets a small portion of the <soCalled>best</soCalled> version of the text,
+                     and from the point of view of the scholar, who cannot realize their ideas to
+                     the fullest, as that would probably cost too much time and space.</p>
+               </div>
+               <div xml:id="digitalapproaches">
+                  <head>Digital Approaches</head>
+                  <p>One of the main advantages of digital transcriptions of manuscripts is that
+                     they can be reprocessed and transformed quite easily, at least in theory. This
+                     lends itself to the idea of having a single container that includes both a
+                     diplomatic transcription and hints on how to normalize certain pieces of
+                     texts.</p>
+                  <p>For example, it is quite common for philologists who prepare their editions
+                     using TEI to make use of elements such as <gi scheme="TEI">choice</gi>, <gi
+                        scheme="TEI">orig</gi>, and <gi scheme="TEI">reg</gi> to indicate how to
+                     normalize certain words, or <gi scheme="TEI">sic</gi> and <gi scheme="TEI"
+                        >corr</gi> to encode corrections. A software tool will then process these
+                     hints and, for example, allow the reader to choose between a version that has
+                     been created on the fly by selecting the text marked with <gi scheme="TEI"
+                        >orig</gi>/<gi scheme="TEI">sic</gi> and another version created by
+                     selecting the text in the<gi scheme="TEI">reg</gi>/<gi scheme="TEI">corr</gi>
+                     elements.</p>
+                  <p>A digital edition exemplifying this approach is the aforementioned <title
+                        level="m">Digital Vercelli Book</title>, by <ref type="bibl"
+                        target="#delturcond">Roberto Rosselli Del Turco (n.d.)</ref>: here two
+                     levels of edition are offered, a diplomatic and a more interpretative one. The
+                     user can compare the two editions visualizing them synoptically in the EVT
+                     software used for the edition.</p>
+               </div>
+            </div>
+         </div>
+         <div xml:id="ourapproach">
+            <head>Our Approach</head>
+            <p>To address the challenges and the desiderata of the ENHG Marco Polo edition (single
+               master file, directly editable, multiple output editions), we developed and
+               implemented a novel approach where normalization is dealt with using formal rules,
+               explicit exceptions, and automated pipelines to generate ephemeral edition files.
+               This approach is inspired by similar initiatives in the fields of collation (<ref
+                  type="bibl" target="#barabuccietal2017a">Barabucci and Fischer 2017</ref>; <ref
+                  type="bibl" target="#vanzundert2019">van Zundert 2019</ref>), textual edition
+                  (<ref type="bibl" target="#barabuccietal2017b">Barabucci, Spadini, and Turska,
+                  2017</ref>), legal analysis (<ref type="bibl" target="#barabuccietal2011"
+                  >Barabucci et al. 2011</ref>), and curation of research data (<ref type="bibl"
+                  target="#barabucci2018">Barabucci 2018</ref>).</p>
+            <p>This methodology is characterized by the following key aspects:</p>
+            <list rend="bulleted">
+               <item>the master TEI file contains the transcriptions;</item>
+               <item>general rules are encoded using a formal language, with a scheme such as <q>if
+                     CONDITION then TRANSFORMATION</q>;</item>
+               <item>rules are stored outside the master TEI file;</item>
+               <item>rules are applied to structures, not just to pieces of text;</item>
+               <item>the few exceptions (such as manual corrections or cases where a rule should not
+                  be applied) are encoded in the master TEI file;</item>
+               <item>the edition files, despite being the main concrete output of the editorial
+                  project, are ephemeral and never modified directly.</item>
+            </list>
+            <p>The implementation consists of a series of XSLT transformations, each representing
+               and implementing a single rule, coordinated by three different XProc pipelines, one
+               for each level of edition. The source code is available at <ptr
+                  target="https://marcopolo.cceh.uni-koeln.de/"/>.</p>
+            <p>This methodology contrasts with the established editorial practice of mingling
+               transcription, normalization, and critical amendments. Instead of just performing the
+               desired normalization steps while transcribing and keeping track of them in an
+               introduction to the edition, here the rules are separate artifacts, related to, but
+               independent from, the edited text. In fact, as a fortunate byproduct of this
+               methodology, the ENHG Marco Polo produced a set of rules for the normalization of
+               words and punctuation in Early New High German. The scholarly community now has the
+               opportunity to evaluate, discuss, critique, modify, and, if desired, adopt this set
+               of rules independently from the edited text.</p>
+            <p>Another important distinction is the epistemological status of the generated edition
+               files. The three edition files are the main scholarly output of the editorial
+               project, but they are also ephemeral files that can be thrown away and reproduced in
+               their exact form at any time. This is possible because all the knowledge needed to
+               create the edition files (both the scholarly and the technical knowledge) is stored
+               either in the master TEI file or in one of the pipelines. No manual
+                  <soCalled>drive-by</soCalled> modification is performed at any time. With this
+               framework in place, it even becomes possible to reconstruct the chain of reasoning
+               and transformations that lead to a certain result in a specific part of the edition
+               file, giving critical editing the same kind of transparency and mechanical
+               reproducibility common to other sciences.</p>
+            <div xml:id="rules">
+               <head>Rules</head>
+               <p>Rules are the way in which the scholar formalizes the normalization process. The
+                  kind of rule used in the project is of the form <q>if CONDITION then
+                     TRANSFORMATION</q>. Examples of rules implemented in ENHG Marco Polo edition
+                  are:</p>
+               <list rend="bulleted">
+                  <item>orthographic corrections after changes in punctuation (e.g., if a
+                        <term>virgula</term> has been normalized into a full stop, then the first
+                     letter of the following word must be capitalized);</item>
+                  <item>methods to join words split at the ends of lines (e.g., if a token is at the
+                     end of a line and ends with one of the characters used to denote a joining,
+                     then merge this token with the following token).</item>
+                  <item>replacement rules for archaic letters (e.g., replace a long s (ſ) with a
+                     lowercase s);</item>
+                  <item>expansion rules for abbreviations (e.g., replace all occurrences of
+                        <q>vñ</q> with <q>vnd</q>).</item>
+               </list>
+               <p>The first two examples demonstrate why one should not think of these rules as
+                  simple textual substitutions. As described in previous sections, there is a deep
+                  connection between punctuation and the structure of the text. Changing punctuation
+                  can, and often does, change the structure of the text. At the same time, it is
+                  essential to represent such structures in a machine-readable way. For example,
+                  without a proper representation of the concept of <term>sentence</term> it would
+                  not be possible to write rules such as <q>if a word appears at the beginning of a
+                        <term>sentence</term><gap/></q> What follows is that there is a continual
+                  interaction between the rules and the structure of the edited text. Rules, and in
+                  particular punctuation rules, often modify the structure of the text. A technical
+                  system that does not allow for this interaction to happen is not able to deal in
+                  properly with normalization in general and punctuation in particular.</p>
+               <p>Each rule is implemented as a small and self-contained XSLT transformation. At the
+                  time of writing, the ENHG Marco Polo project comprises about a hundred rules,
+                  grouped in twenty macro categories. On average, the core of each rule is
+                  implemented in less than three lines of XSLT.</p>
+               <p>To give the readers an impression of the simplicity of the rule implementation, we
+                  show here the main parts of the XSLT that implement one of the example rules
+                  described above.</p>
+               <div xml:id="examplerule">
+                  <head>Example: Rule to Join Words Split at the End of a Line</head>
+                  <p>In ENHG, a punctuation sign that we nowadays call a double oblique hyphen was
+                     used to mark that a word has been split at the end of a line. In the diplomatic
+                     rendition we want to preserve this word division and the forced line break,
+                     while in other renditions we want to reconstruct the complete word.</p>
+                  <p>The XSLT excerpt in <ref type="crossref" target="#example3">Example 3</ref>
+                     shows how split words are joined when a middle double oblique hyphen is found.
+                     The joining is performed in a lossless way: all information present in the
+                     original witness is preserved. This is possible because this step operates on a
+                     supertextual structure that contains information about the structure of the
+                     text and the positioning of a token (e.g., <att>eol</att>=<val>true</val>). It
+                     must be stressed that this last piece of information, and the supertextual
+                     structure in general, are not part of the master TEI file and have been added
+                     in the preceding steps. It should also be noted that this rule does not delete
+                     any text, it just marks that two words have been joined and what the result of
+                     this operation is. Another rule will take care of modifying the structure, and
+                     yet another will remove the now superfluous partial word in the next line
+                     before creating the final edition file. However, while removing and carrying
+                     out all these changes, comments about what is being done will be added as an
+                     aid to the readers of the final edition file.</p>
+                  <figure xml:id="example3">
+                     <egXML xmlns="http://www.tei-c.org/ns/Examples" xmlns:xsl="www.example.com"
+                        valid="true">
+                        <xsl:template
+                           match="mp:TOKEN[@eol='true'][ends-with(., $char-double-oblique-hyphen)]">
+                           <!-- First, the two parts of the split word are identified. -->
+                           <xsl:variable name="part1-raw" select="string(.)"/>
+                           <xsl:variable name="part1"
+                              select="substring-before($part1-raw, $char-double-oblique-hyphen)"/>
+                           <xsl:variable name="part2" select="string(following::p:TOKEN[1])"/>
+                           <!-- Then the joined word is computed. -->
+                           <xsl:variable name="joined-parts">
+                              <xsl:value-of select="$part1"/>
+                              <xsl:value-of select="$part2"/>
+                           </xsl:variable>
+                           <!-- Finally, the content of the original element is replaced by
+                  the joined word, and the source pieces stored and
+                  carried along in extra attributes. -->
+                           <xsl:copy>
+                              <xsl:apply-templates select="@*"/>
+                              <xsl:attribute name="joined" select="true()"/>
+                              <xsl:attribute name="part1" select="$part1-raw"/>
+                              <xsl:attribute name="part2" select="$part2"/>
+                              <xsl:value-of select="$joined-parts"/>
+                           </xsl:copy>
+                        </xsl:template>
+                     </egXML>
+                     <head type="legend">XSLT implementation of the rule <q>Join words split with a
+                           double oblique hyphen</q>.</head>
+                  </figure>
+                  <p>The rule in <ref type="crossref" target="#example3">Example 3</ref> is
+                     independent from other rules in the pipeline. The scholar is free to use this
+                     rule in the generation of a specific edition or to leave it out. In the case of
+                     the Marco Polo project, this rule is employed in the pipelines that produce the
+                     semi-diplomatic and the interpretative editions, but not in the diplomatic
+                     edition.</p>
+                  <p>Because it is independent from the other rules used in the pipeline, other
+                     scholars can reuse this rule in their projects without being forced to adopt
+                     the Marco Polo pipelines, and all their rules, in their entirety.</p>
+               </div>
+            </div>
+            <div xml:id="oneoff">
+               <head>One-off Cases, Exceptions, and Manual Corrections</head>
+               <p>Before a rule can be written, a textual phenomenon must first be recognized as
+                  such and then a pattern must be identified. At the beginning of the editorial
+                  process, when the textual materials are not yet well known and the normalization
+                  rules are not yet clear, it is simpler and more productive to address one-off
+                  textual phenomena manually. This is done by annotating the word to be normalized
+                  or the sign to be changed in the master TEI file. Once a pattern is recognized, a
+                  rule can be written and these annotations removed from the master TEI file.</p>
+               <p>Similarly, there are cases where the conditions of a rule would normally apply,
+                  but where the scholar does not want the transformation to happen. Rather than
+                  complicating the condition in the rule to exclude a specific case, it makes sense
+                  to mark the specific occurrence as an exception in the master TEI file.</p>
+               <p>Finally, the scholar may want to correct an obvious mistake, while keeping track
+                  of the original reading. This is done not by writing a rule, but by placing an
+                  annotation in the master TEI file.</p>
+               <p>All these issues (one-off normalization, exceptions, and manual corrections) are
+                  encoded using TEI elements directly in the master TEI file.</p>
+               <p>One-off normalizations are marked in the master TEI file using one of the
+                  non-standard attributes defined by the ENHG ODD. For example attaching
+                     <eg>mp:n1-subst="foo"</eg> to any element will force the substitution of the
+                  word <q>foo</q> for the content of that element, but only at the normalization
+                  level denoted by N1 (<q>semi-interpretative</q>). Such exceptions are marked using
+                     <gi scheme="TEI">w</gi> or <gi scheme="TEI">pc</gi> elements, together with the
+                  already cited project-specific <ident>mp:nX-subst</ident> attributes, as shown in
+                     <ref type="crossref" target="#example4">Example 4</ref>.</p>
+               <figure xml:id="example4">
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples" xmlns:mp="www.example.com"
+                     valid="true">
+                     <pc mp:n1-subst="|" mp:n2-subst=";">,</pc>
+                  </egXML>
+                  <head type="legend">Substitution of a comma with a virgula in the semi-diplomatic
+                     edition (n1) and with a semicolon in the interpretative edition (n2).</head>
+               </figure>
+               <p>Manual corrections are encoded using a combination of <gi scheme="TEI"
+                     >choice</gi>,<gi scheme="TEI">orig</gi>, and <gi scheme="TEI">reg</gi>
+                  elements, together with the <att>mp:use-in-nX</att> attributes, as illustrated in
+                     <ref type="crossref" target="#example5">Example 5</ref>.</p>
+               <figure xml:id="example5">
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples" xmlns:mp="www.example.com"
+                     valid="true">
+                     <persName ref="#marcoPolo">
+                        <choice>
+                           <orig>Macho</orig>
+                           <reg mp:use-in-n1="true">Marcho</reg>
+                           <reg mp:use-in-n2="true">Marco</reg>
+                        </choice>
+                     </persName>
+                  </egXML>
+                  <head type="legend">Correction of the typo in the name <q>Marcho</q>, which will
+                     appear as <q>Marcho</q> in the semi-diplomatic edition and as <q>Marco</q> in
+                     the interpretative edition.</head>
+               </figure>
+               <p>The ability to quickly deal with occasional exceptions without having to resort to
+                  writing a new rule or making the existing ones more complicated greatly simplifies
+                  the day-to-day job of the scholar. It also allows for a cleaner separation between
+                  rules (theoretically shared by a community) and exceptions (the results of the
+                  editor’s own decisions).</p>
+            </div>
+            <div xml:id="pipelines">
+               <head>Pipelines and Normalization Levels</head>
+               <p>Pipelines are used by the scholar to indicate which rules should be applied, and
+                  in which order, to turn the master TEI file into a complete edition at a specific
+                  level of normalization.</p>
+               <p>In the ENHG Marco Polo project there are three pipelines, one for each target
+                  level of faithfulness and readability. Achieving a specific level of faithfulness
+                  and readability is done by carefully choosing which rules to apply from the
+                  catalogue of available rules. Some steps are shared by all pipelines, while others
+                  are specific to certain faithfulness levels. <ref type="crossref"
+                     target="#figure4">Figure 4</ref> illustrates this approach.</p>
+               <figure xml:id="figure4">
+                  <graphic url="img/figure4_corrected.png" height="210px" width="148px"/>
+                  <head type="legend">High-level representation of the pipeline-based workflow. The
+                     gray cogs indicate steps shared by all pipelines. The cogs with patterns
+                     identify level-specific steps.</head>
+               </figure>
+               <p>Each pipeline is implemented as an XProc pipeline. All the pipelines are simple
+                  linear flows (i.e., the output of a rule is the input for the next rule). From a
+                  methodological point of view, the XProc pipeline is a record of all the operations
+                  that the scholar performs on the transcription. The creation of an edition level
+                  is equivalent to replaying this record. <ref type="crossref" target="#example6"
+                     >Example 6</ref> shows an excerpt of the XProc pipeline used to generate the
+                  semidiplomatic edition.</p>
+               <p>It is important to note that pipelines comprise three kinds of steps:</p>
+               <list rend="ordered">
+                  <item>infrastructural steps: for example, the <term>tokenize</term> step that
+                     creates the textual super-structure to which all other steps will refer
+                     to;</item>
+                  <item>rule-based steps: for example, the <term>adjust-capitalization</term> step
+                     that implements the set of rules to fix the capitalization of words after
+                     changes in punctuation; and</item>
+                  <item>exception-related steps: for example, the <term>apply-punct-n1-subst</term>
+                     step that handles all the exceptions to the punctuation rules that are relevant
+                     for the N1 level (i.e., semi-diplomatic).</item>
+               </list>
+               <figure xml:id="example6">
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                     <p:declare-step xmlns:p="http://www.w3.org/ns/xproc" version="1.0">
+                        <p:input port="source">
+                           <p:document href="marco-polo-master.tei.xml"/>
+                        </p:input>
+                        <p:xslt>
+                           <p:input port="stylesheet">
+                              <p:document href="tokenize.xsl"/>
+                           </p:input>
+                        </p:xslt> 
+                        [...] 
+                        <p:xslt> Ⓐ <p:input port="stylesheet">
+                              <p:document href="remove-line-breaks.xsl"/> Ⓐ </p:input>
+                        </p:xslt>
+                        [...] 
+                        <p:xslt> Ⓐ <p:input port="stylesheet">
+                              <p:document href="normalize-letters-n1.xsl"/> Ⓐ </p:input>
+                        </p:xslt>
+                        <p:xslt> Ⓐ <p:input port="stylesheet">
+                              <p:document href="normalize-letters-common.xsl"/> Ⓐ </p:input>
+                        </p:xslt>
+                        <p:xslt> 🅑 <p:input port="stylesheet">
+                              <p:document href="apply-punct-n1-subst.xsl"/> 🅑 </p:input>
+                        </p:xslt>
+                        <p:xslt> Ⓐ <p:input port="stylesheet">
+                              <p:document href="adjust-capitalization.xsl"/>
+                           </p:input>
+                        </p:xslt>
+                        [...]
+                        <p:xslt>
+                           <p:input port="stylesheet">
+                              <p:document href="untokenize.xsl"/>
+                           </p:input>
+                        </p:xslt>
+                        <p:store>
+                           <p:with-option name="href" select="'marco-polo-n1.tei.xml'"/>
+                        </p:store>
+                     </p:declare-step>
+                  </egXML>
+                  <head type="legend">Excerpt of the XProc pipeline used to generate the
+                     semi-diplomatic edition. Steps marked A are steps that implement rules; the
+                     step marked B takes care of exceptions.</head>
+               </figure>
+               <p>The fact that the editorial workflows for all the editions are formalized in XProc
+                  pipelines makes it possible, for instance, to compare these pipelines and see in
+                  detail (and with utmost precision) how they differ and what is, in this project,
+                  the difference between the processes needed to establish a diplomatic, a
+                  semi-diplomatic or an interpretative edition. Breaking down the traditional
+                  analogue processes into unambiguous discrete steps can contribute to the scholarly
+                  debate on edition typology.</p>
+            </div>
+         </div>
+         <div xml:id="conclusions">
+            <head>Conclusions and Future Work</head>
+            <p>We have described the workflow and the methodological approach behind a digital
+               scholarly edition of the ENHG translation of Marco Polo’s work. The key idea to this
+               methodological approach is the encoding of all the scholar’s knowledge (transcribed
+               text, normalization rules for words and punctuation, exceptions, corrections) in a
+               formalized way. Using this approach, it is possible to produce multiple editions at
+               different levels of faithfulness and readability from a single master TEI file while
+               keeping the master file lean and readable. In addition, the fact that the whole
+               process is logged, and no manual modifications are performed in the generated edition
+               files, allows the scholar to rapidly make fixes or test hypotheses. Finally, the sets
+               of rules, being separated from the transcriptions, can be debated by the scholarly
+               community independently from the edition.</p>
+            <p>Compared to other approaches, this pipeline-based approach greatly simplifies the
+               programming of rules that modify the structure of the text, leading to simpler and
+               more succinct rules. First-class support for structural modifications is necessary to
+               properly handle the normalization of punctuation. While textual normalization can, in
+               most cases, be carried out through simple textual substitutions, many cases of
+               punctuation normalization instead require changes to the structure of the text, as
+               well as follow-up adjustments, for instance when full stops are inserted and
+               sentences split.</p>
+            <p>The adoption of our approach, as well as other similar programming-based approaches,
+               forces a reflection on the role of the editor, or more precisely, on the many new
+               roles that the editor must embrace. First, the editor stops being a mere transcriber:
+               his/her main task is now to record all textual phenomena (each normalization action
+               is explicitly recorded in the source files). With a collection of recorded phenomena
+               in place, the editor can turn these single occurrences into systematic rules and
+               catalogues of rules, becoming a pattern-spotter and knowledge-synthetizer. Once
+               various such catalogues of rules have been established (e.g., for different
+               languages, different time periods, and different scriptoria) and publicly shared, we
+               envision future editors starting their editions by picking and choosing their
+               preferred set of rules, thereby explicitly signaling in which philological tradition
+               they are placing their work while maintaining the technical support needed to express
+               their scholarly freedom to devise new exceptions and new rules. The publication of
+               the rules and workflows used (in the form of steps and pipelines) would then become
+               part of the expected content of a digital scholarly edition.</p>
+            <p>In the future we would like to test various possible improvements. First we would
+               like to experiment with creating <term>declarative rule generators</term>. Many rules
+               are repetitive in their nature (for example, the normalization of single characters)
+               and it should be possible to express them in a declarative fashion. These abstract
+               rules would then be translated into XSLT transformations. Another aspect we would
+               like to reflect on is how the transformation process directed by the pipelines
+               influences the various levels of abstraction of the document being transformed,
+               drawing parallels with stratified document models such as CMV+P (<ref type="bibl"
+                  target="#barabucci2019">Barabucci 2019</ref>). A final thing we would like to test
+               is the replacement of the XProc pipelines with pure XSLT pipelines (<ref type="bibl"
+                  target="#birnbaum2017">Birnbaum 2017</ref>). Replacing XProc with XSLT pipelines
+               would reduce the number of technologies that other scholars have to be familiar with
+               in order to understand the editorial process in its entirety.</p>
+            <p>Another future development that we envision is the deconstruction of the
+               visualization of the edition into a series of small, explicit steps, taking place one
+               after the other, just like their counterparts in the pipelines: one click would show
+               the effects of the normalization of the allographs, another click would expand the
+               abbreviations, another one would introduce a different system of punctuation, etc,
+               until the last click would finally reveal the scholarly edition in its completeness.
+               Our approach, in which all the knowledge of the editor is formalized, recorded, and
+               made actionable, would be a solid base for such a future fractally detailed
+               edition.</p>
+            <p>We hope to be an inspiration for other edition projects. We firmly believe that all
+               medieval manuscripts should be accessible in this way. We need to escape the
+               constraints of paper editions and to start thinking differently. As Sahle famously
+               wrote, a digital scholarly edition is really digital if it cannot be printed without
+               a loss of the original contents and functionalities. Only editions that fully embrace
+               the digital medium and its tools, including formalization of knowledge and
+               programming, can satisfy this condition.</p>
+            <p>In this environment where we have no space limits, why should we limit ourselves to
+               the presentation of a predefined number of rendition levels? Why only diplomatic,
+               semidiplomatic, and interpretative? We believe, in fact, that the granularity can
+               increase even further.</p>
+         </div>
+      </body>
+      <back>
+         <div type="bibliography">
+            <!-- the bibliography for the article, organized as a series of <bibl> elements inside <listBibl> -->
+            <listBibl>
+               <bibl xml:id="andrews2020"><author>Andrews, Tara</author>. <date>2020</date>. <title
+                     level="a">Transcription and Collation.</title> Chap. 3.3 in <title level="m"
+                     >Handbook of Stemmatology</title>, edited by <editor>Philipp Roelli</editor>,
+                     <biblScope unit="page">160–75</biblScope>. <pubPlace>Berlin</pubPlace>:
+                     <publisher>De Gruyter</publisher>. <idno type="DOI"
+                     >doi:10.1515/9783110684384</idno>.</bibl>
+               <bibl xml:id="barabucci2018"><author>Barabucci, Gioele</author>. <date>2018</date>.
+                     <title level="u">Funktionale und deklarative Programmierung-basierte Methode
+                     für nachhaltige, reproduzierbare und verifizierbare Datenkuration.</title>
+                  Paper presented at DHd Konferenz 2018: Kritik der digitalen Vernunft,
+                     <pubPlace>Cologne</pubPlace>, <date>February 26–March 2, 2018</date>. <ptr
+                     target="https://gioele.io/p/dhd2018"/>; <ptr
+                     target="http://dhd2018.uni-koeln.de/"/>.</bibl>
+               <bibl xml:id="barabucci2019"><author>Barabucci, Gioele</author>. <date>2019</date>.
+                     <title level="a">The CMV+P Document Model, Linear Version.</title> In <title
+                     level="m">Versioning Cultural Objects: Digital Approaches</title>, edited by
+                     <editor>Roman Bleier</editor> and <editor>Sean M. Winslow</editor>, <biblScope
+                     unit="page">153–70</biblScope>. <pubPlace>Norderstedt</pubPlace>:
+                     <publisher>BoD</publisher>.</bibl>
+               <bibl xml:id="barabuccietal2017a"><author>Barabucci, Gioele</author>, and
+                     <author>Franz Fischer</author>. 2017. <title level="a">The Formalization of
+                     Textual Criticism: Bridging the Gap between Automated Collation and Edited
+                     Critical Texts.</title> In <title level="m">Advances in Digital Scholarly
+                     Editing: Papers Presented at the DiXiT Conferences in The Hague, Cologne, and
+                     Antwerp,</title> edited by <editor>Peter Boot</editor>, <editor>Anna
+                     Cappellotto</editor>, <editor>Wout Dillen</editor>, <editor>Franz
+                     Fischer</editor>, <editor>Aodhán Kelly</editor>, <editor>Andreas
+                     Mertgens</editor>, <editor>Anna-Maria Sichani</editor>, <editor>Elena
+                     Spadini</editor>, and <editor>Dirk van Hulle</editor>, <biblScope unit="page"
+                     >47–53</biblScope>. <pubPlace>Leiden</pubPlace>: <publisher>Sidestone
+                     Press.</publisher></bibl>
+               <bibl xml:id="barabuccietal2017b"><author>Barabucci, Gioele</author>, <author>Elena
+                     Spadini</author>, and <author>Magdalena Turska</author>. <date>2017</date>.
+                     <title level="a">Data vs. Presentation: What Is the Core of a Scholarly Digital
+                     Edition?</title> In <title level="m">Advances in Digital Scholarly Editing:
+                     Papers Presented at the DiXiT Conferences in The Hague, Cologne and
+                     Antwerp,</title> edited by <editor>Peter Boot</editor>, <editor>Anna
+                     Cappellotto</editor>, <editor>Wout Dillen</editor>, <editor>Franz
+                     Fischer</editor>, <editor>Aodhán Kelly</editor>, <editor>Andreas
+                     Mertgens</editor>, <editor>Anna-Maria Sichani</editor>, <editor>Elena
+                     Spadini</editor>, and <editor>Dirk van Hulle</editor>, <biblScope unit="page"
+                     >37–46</biblScope>. <pubPlace>Leiden</pubPlace>: <publisher>Sidestone
+                     Press</publisher>.</bibl>
+               <bibl xml:id="barabuccietal2011"><author>Barabucci, Gioele</author>, <author>Monica
+                     Palmirani</author>, <author>Fabio Vitali</author>, and <author>Luca
+                     Cervone</author>. <date>2011</date>. <title level="a">Long-term Preservation of
+                     Legal Resources.</title> In <title level="m">International Conference on
+                     Electronic Government and the Information Systems Perspective,</title>
+                  <title level="s">Lecture Notes in Computer Science</title>
+                     <biblScope unit="volume">6866</biblScope>: <biblScope unit="page"
+                     >78–93</biblScope>. <pubPlace>Berlin</pubPlace>:
+                     <publisher>Springer</publisher>. <idno type="DOI"
+                     >doi:10.1007/978-3-642-22961-9_7</idno>.</bibl>
+               <bibl xml:id="benedetto1928"><editor>Benedetto, Luigi F.</editor>, ed.
+                     <date>1928</date>. <title level="m">Il Milione.</title> By <author>Marco
+                     Polo</author>. Prima edizione integrale. <pubPlace>Firenze</pubPlace>:
+                     <publisher>Leo S. Olschki</publisher>.</bibl>
+               <bibl xml:id="birnbaum2017"><author>Birnbaum, David J</author>. <date>2017</date>.
+                     <title level="a">Patterns and Antipatterns in XSLT Micropipelining.</title> In
+                     <title level="m">Proceedings of Balisage: The Markup Conference 2017</title>.
+                        <title level="s">Balisage Series on Markup Technologies</title>
+                     <biblScope unit="volume">19</biblScope>. <idno type="DOI"
+                     >doi:10.4242/BalisageVol19.Birnbaum01.</idno></bibl>
+               <bibl xml:id="bosco2003"><author>Bosco Coletsos, Sandra</author>. <date>2003</date>.
+                     <title level="m">Storia della lingua tedesca.</title>
+                  <pubPlace>Torino</pubPlace>: <publisher>Rosenberg &amp;
+                  Sellier</publisher>.</bibl>
+               <bibl xml:id="buzzoni2016"><author>Buzzoni, Marina</author>. <date>2016</date>.
+                     <title level="a">A Protocol for Scholarly Digital Editions? The Italian Point
+                     of View.</title> In <title level="m">Digital Scholarly Editing: Theories and
+                     Practices</title>, edited by <editor>Matthew James Driscoll</editor> and
+                     <editor>Elena Pierazzo</editor>, <biblScope unit="page">59–82</biblScope>.
+                     <pubPlace>Cambridge</pubPlace>: <publisher>Open Book
+                  Publishers</publisher>.</bibl>
+               <bibl xml:id="buzzoni2020"><author>Buzzoni, Marina</author>, ed. <date>2020</date>.
+                     <title level="a">Towards the Construction of a Stemma.</title> In <title
+                     level="m">Handbook of Stemmatology: History, Methodology, Digital
+                     Approaches</title>, edited by <editor>Philipp Roelli</editor>, <biblScope
+                     unit="page">139–207</biblScope>. <pubPlace>Berlin</pubPlace>: <publisher>De
+                     Gruyter</publisher>.</bibl>
+               <bibl xml:id="contini2014"><author>Contini, Gianfranco</author>. <date>2014†</date>.
+                     <title level="m">Filologia</title>, edited by <editor>Lino Leonardi</editor>.
+                     <pubPlace>Bologna</pubPlace>: <publisher>Il Mulino</publisher>.</bibl>
+               <bibl xml:id="cugliana2019"><author>Cugliana, Elisa</author>. <date>2019</date>.
+                     <title level="a">Exploring a German Version of Marco Polo’s <title level="m"
+                        >Devisement dou Monde</title>.</title>
+                  <title level="m">Ecdotica</title>
+                  <biblScope unit="volume">16</biblScope>: <biblScope unit="page"
+                  >9–32</biblScope>.</bibl>
+               <bibl xml:id="darmonetall2020"><author>Darmon, Alexandra N. M.</author>,
+                     <author>Marya Bazzi</author>, <author>Sam D. Howison</author>, and
+                     <author>Mason A. Porter</author>. <date>2020</date>. <title level="a">Pull Out
+                     All the Stops: Textual Analysis via Punctuation Sequences</title>. <title
+                     level="j">European Journal of Applied Mathematics</title>: <biblScope
+                     unit="page">1–37</biblScope>. <idno type="DOI"
+                     >doi:10.1017/S0956792520000157</idno>.</bibl>
+               <bibl xml:id="digilio2008"><author>Digilio, Maria Rita</author>. <date>2008</date>.
+                     <title level="a">Scrittura e interpunzione in testi del medioevo tedesco e
+                     gotico.</title> In <title level="m">Storia della punteggiatura in
+                     Europa</title>, edited by <editor>Bice Mortara Garavelli</editor>, <biblScope
+                     unit="page">359–73</biblScope>. <pubPlace>Bari</pubPlace>:
+                     <publisher>Laterza</publisher>.</bibl>
+               <bibl xml:id="ebertetal1993"><author>Ebert, Robert Peter</author>, <author>Oskar
+                     Reichmann</author>, <author>Hans-Joachim Solms</author>, and
+                     <author>Klaus-Peter Wegera</author>. <date>1993</date>. <title level="m"
+                     >Frühneuhochdeutsche Grammatik.</title>
+                  <pubPlace>Tübingen</pubPlace>: <publisher>Max Niemeyer Verlag</publisher>.</bibl>
+               <bibl xml:id="grimm1822"><author>Grimm, Jacob</author>. <date>1822</date>. <title
+                     level="m">Deutsche Grammatik</title>, <biblScope unit="volume">Bd.
+                        1</biblScope>. <pubPlace>Göttingen</pubPlace>:
+                     <publisher>Dieterich</publisher>.</bibl>
+               <bibl xml:id="hartwegetal2005"><author>Hartweg, Frédéric</author>, and
+                     <author>Klaus-Peter Wegera</author>. <date>2005</date>. <title level="m"
+                     >Frühneuhochdeutsch. Eine Einführung in die deutsche Sprache des
+                     Spätmittelalters und der frühen Neuzeit.</title> 2nd rev. ed.
+                     <pubPlace>Berlin</pubPlace>: <publisher>De Gruyter</publisher>.</bibl>
+               <bibl xml:id="hammeretal2017"><author>Hammer, Andreas</author>, <author>Victor
+                     Millet</author>, and <author>Timo Reuvekamp-Felber</author>, eds.
+                     <date>2017</date>. <editor>Hartmann von Aue</editor>,<title level="m">Ereck:
+                     Textgeschichtliche Ausgabe mit Abdruck sämtlicher Fragmente und der Bruchstücke
+                     des mitteldeutschen <title level="m">Erek</title>.</title>
+                  <pubPlace>Berlin</pubPlace>: <publisher>De Gruyter</publisher>.</bibl>
+               <bibl xml:id="kirchhoff2017"><author>Kirchhoff, Frank</author>. <date>2017</date>.
+                     <title level="m">Von der Virgel zum Komma: Die Entwicklung der Interpunktion im
+                     Deutschen</title>. <title level="s">Germanistische Bibliothek</title>,
+                        <biblScope unit="volume">Bd. 61</biblScope>.
+                     <pubPlace>Heidelberg</pubPlace>: <publisher>Universitätsverlag
+                     Winter</publisher>.</bibl>
+               <bibl xml:id="maas1950"><author>Maas, Paul</author>. <date>1950</date>. <title
+                     level="m">Textkritik.</title>
+                  <biblScope unit="volume">2</biblScope>., verb. und verm. Aufl.
+                     <pubPlace>Leipzig</pubPlace>: <publisher>B. G. Teubner</publisher>.</bibl>
+               <bibl xml:id="mitchelletal1998"><editor>Mitchell, Bruce</editor>, and <editor>Fred C.
+                     Robinson</editor>, eds. <date>1998</date>. <title level="m">Beowulf: An Edition
+                     with Relevant Shorter Texts.</title>
+                  <pubPlace>Oxford</pubPlace>: <publisher>Blackwell Publishing</publisher>.</bibl>
+               <bibl xml:id="mortara2008"><editor>Mortara Garavelli, Bice</editor>, ed.
+                     <date>2008</date>. <title level="m">Storia della punteggiatura in
+                     Europa.</title>
+                  <pubPlace>Bari</pubPlace>: <publisher>Laterza</publisher>.</bibl>
+               <bibl xml:id="parkes1992"><author>Parkes, Malcolm B</author>. <date>1992</date>.
+                     <title level="m">Pause and Effect: An Introduction to the History of
+                     Punctuation in the West.</title>
+                  <pubPlace>New York</pubPlace>: <publisher>Routledge</publisher>.</bibl>
+               <bibl xml:id="pierazzo2016"><author>Pierazzo, Elena</author>. <date>2016</date>.
+                     <title level="a">Modelling Digital Scholarly Editing: From Plato to
+                     Heraclitus.</title> In <title level="m">Digital Scholarly Editing: Theories and
+                     Practices</title>, edited by <editor>Matthew James Driscoll</editor> and
+                     <editor>Elena Pierazzo</editor>, <biblScope unit="page">41–58</biblScope>.
+                     <pubPlace>Cambridge</pubPlace>: <publisher>Open Book
+                  Publishers</publisher>.</bibl>
+               <bibl xml:id="renzietal2009"><author>Renzi, Lorenzo</author>, and <author>Alvise
+                     Andreose</author>. <date>2009</date>. <title level="m">Manuale di linguistica e
+                     filologia romanza.</title> 3rd ed. <pubPlace>Bologna</pubPlace>: <publisher>Il
+                     Mulino</publisher>.</bibl>
+               <bibl xml:id="rinas2017"><editor>Rinas, Karsten</editor>. <date>2017</date>. <title
+                     level="m">Theorie der Punkte und Striche: die Geschichte der deutschen
+                     Interpunktionslehre</title>. <title level="s">Germanistische
+                        Bibliothek</title>, <biblScope unit="volume">Bd. 62</biblScope>.
+                     <pubPlace>Heidelberg</pubPlace>: <publisher>Universitätsverlag Winter
+                     Heidelberg</publisher>.</bibl>
+               <bibl xml:id="sahle2013"><author>Sahle, Patrick</author>. <date>2013</date>. <title
+                     level="m">Digitale Editionsformen: zum Umgang mit der Überlieferung unter den
+                     Bedingungen des Medienwandels</title>. 3 vols. <title level="s"
+                        >Schriften des Instituts für Dokumentologie und Editorik</title>, <biblScope
+                        unit="volume">vols. 7–9</biblScope>.
+                     <pubPlace>Norderstedt</pubPlace>: <publisher>BoD</publisher>.</bibl>
+               <bibl xml:id="sahle2016"><author>Sahle, Patrick</author>. <date>2016</date>. <title
+                     level="a">What Is a Scholarly Digital Edition?</title> In <title level="m"
+                     >Digital Scholarly Editing: Theories and Practices</title>, edited by
+                     <editor>Matthew James Driscoll</editor> and <editor>Elena Pierazzo</editor>,
+                     <biblScope unit="page">19–39</biblScope>. <pubPlace>Cambridge</pubPlace>:
+                     <publisher>Open Book Publishers</publisher>.</bibl>
+               <bibl xml:id="scherer1878"><author>Scherer, Wilhelm</author>. <date>1878</date>.
+                     <title level="m">Zur Geschichte der deutschen Sprache</title>. 2. ausg.
+                     <pubPlace>Berlin</pubPlace>: <publisher>Weidmann</publisher>.</bibl>
+               <bibl xml:id="stussi1988"><author>Stussi, Alfredo</author>. <date>1988</date>. <title
+                     level="m">Nuovo avviamento agli studi di filologia italiana</title>. Nuovo ed.
+                     <pubPlace>Bologna</pubPlace>: <publisher>Il Mulino</publisher>.</bibl>
+               <bibl xml:id="tscharner1935"><editor>Tscharner, Eduard Horst von</editor>, ed.
+                     <date>1935</date>. <title level="m">Der mitteldeutsche Marco Polo nach der
+                     Admonter Handschrift.</title>. <pubPlace>Berlin</pubPlace>:
+                     <publisher>Weidmannsche Buchhandlung</publisher>.</bibl>
+               <bibl xml:id="vanzundert2019"><author>Van Zundert, Joris J</author>.
+                     <date>2019</date>. <title level="a">Why the Compact Disc Was Not a Revolution
+                     and <title level="m">Cityfish</title> Will Change Textual Scholarship, or What
+                     Is a Computational Edition?</title>
+                  <title level="j">Ecdotica</title>
+                  <biblScope unit="volume">15</biblScope>: <biblScope unit="page"
+                  >129–56</biblScope>.</bibl>
+               <bibl xml:id="wells1990"><author>Wells, Christopher J</author>. <date>1990</date>.
+                     <title level="m">Deutsch: Eine Sprachgeschichte bis 1945</title>. Translated by
+                     <editor role="translator">Rainhild Wells</editor>.
+                     <pubPlace>Tübingen</pubPlace>: <publisher>Niemeyer</publisher>. Originally
+                  published as <title level="m">German: A Linguistic History to 1945</title>
+                     (<pubPlace>Oxford</pubPlace>: <publisher>Clarendon Press</publisher>,
+                     <date>1985</date>).</bibl>
+            </listBibl>
+            <listBibl>
+               <bibl xml:id="worterbuch"><author>Akademie der Wissenschaft zu Göttingen</author>.
+                     <date>n.d.</date>
+                  <title level="m">Frühneuhochdeutsches Wörterbuch.</title> Accessed <date>April 19,
+                     2021</date>. <ptr target="https://fwb-online.de/"/>. </bibl>
+               <bibl xml:id="haugen2019"><editor>Haugen, Odd Einar</editor>, ed. <date>2019</date>.
+                     <title level="m">The Menota Handbook: Guidelines for the Electronic Encoding of
+                     Medieval Nordic Primary Sources</title>. <biblScope>Version 3.0</biblScope>.
+                     <pubPlace>Bergen</pubPlace>: <publisher>Medieval Nordic Text
+                     Archive</publisher>. Last modified <date>December 12, 2019</date>. <ptr
+                     target="https://www.menota.org/HB3_index.xml"/>.</bibl>
+               <bibl xml:id="maceetal2015"><editor>Macé, Caroline</editor>, and <editor>Philipp
+                     Roelli</editor>, eds. <date>2015</date>. <title level="m">Parvum Lexicon
+                     Stemmatologicum</title>. <biblScope>Version 1.0</biblScope>. Last modified
+                     <date>May 3, 2018</date>.<ptr
+                     target="https://wiki.helsinki.fi/display/stemmatology"/> .</bibl>
+               <bibl xml:id="marzietalnd"><author>Marzi, Werner</author>, and <author>Kai-Michael
+                     Sprenger</author>. <date>n.d.</date>
+                  <title level="m">Ingelheimer Haderbücher</title>. Accessed <date>April 19,
+                     2021</date>. <ptr target="https://www.haderbuecher.de/"/>.</bibl>
+               <bibl xml:id="stolzetal2020"><author>Stolz, Michael</author>, et al.
+                     <date>2020</date>. <title level="m">Parzival Projekt</title>. Last modified
+                     <date>May 22, 2020</date>. <ptr target="http://www.parzival.unibe.ch/home.html"
+                  />.</bibl>
+               <bibl xml:id="delturcond"><editor>Rosselli Del Turco, Roberto</editor>, ed.
+                     <date>n.d.</date>
+                  <title level="m">The Digital Vercelli Book</title>. <biblScope>Beta
+                     version</biblScope>. Accessed <date>October 22, 2021</date>. <ptr
+                     target="http://vbd.humnet.unipi.it/beta2/"/>.</bibl>
+               <bibl xml:id="delturco2013"><author>Rosselli Del Turco, Roberto</author>, et al.
+                     <date>2013</date>. <title level="m">Edition Visualization Technology</title>.
+                  Accessed <date>April 19, 2021</date>.<ptr target="http://evt.labcd.unipi.it/"
+                  />.</bibl>
+               <bibl xml:id="stella2020"><editor>Stella, Francesco</editor>, ed. <date>2020</date>.
+                     <title level="m">Corpus Rhythmorum Musicum.</title> Last modified <date>July
+                     28, 2020</date>. <ptr target="http://www.corimu.unisi.it/public/frontend"
+                  />.</bibl>
+            </listBibl>
+         </div>
+      </back>
+   </text>
+</TEI>

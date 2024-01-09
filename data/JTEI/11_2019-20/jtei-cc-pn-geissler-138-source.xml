@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<!-- $Id: jtei-cc-pn-geissler-138-source.xml 957 2020-05-19 08:47:24Z ron $ -->
+<TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="main">Building a Collaborative Editorial Workbench for Legal Texts with Complex Structures</title>
+        <author>
+          <name>
+            <forename>Nils</forename>
+            <surname>Geißler</surname>
+          </name>
+          <affiliation>Nils Geißler is a <roleName>student</roleName> at the <orgName>University of Cologne</orgName>, working towards a MA in <soCalled>Informationsverarbeitung</soCalled> (humanities computer science). He has worked as a <roleName>student assistant</roleName> at the <orgName>Cologne Center for eHumanities</orgName> since May 2014.</affiliation>
+          <email>nils.geissler@unikoeln.de</email>
+        </author>
+        <author>
+          <name>
+            <forename>Daniela</forename>
+            <surname>Schulz</surname>
+          </name>
+          <affiliation>Daniela Schulz is currently working at the <orgName>Duke August Library Wolfenbüttel</orgName> (HAB) in the context of the CLARIAH-DE project. While studying history and English at the University of Cologne, she participated in a number of different projects in institutions such as the Cologne Center for eHumanities (CCeH), the Royal Irish Academy (RIA), and the Duke August Library, and also received specific training in digital humanities.</affiliation>
+          <email>schulz@hab.de</email>
+        </author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>TEI Consortium</publisher>
+        <date>12/05/2020</date>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by/4.0/">
+            <p>For this publication a Creative Commons Attribution 4.0 International license has been granted by the author(s) who retain full copyright.</p>
+          </licence>
+        </availability>
+      </publicationStmt>
+      <seriesStmt>
+        <title level="j">Journal of the Text Encoding Initiative</title>
+        <editor role="guest">Claudia Resch</editor>
+        <editor role="guest managing">Tanja Wissik</editor>
+        <editor role="guest">Vanessa Hannesschlaeger</editor>
+        <editor role="managing">Joel Kalvesmaki</editor>
+        <editor role="managing">Pietro Maria Liuzzo (Universität Hamburg)</editor>
+        <editor role="managing">Tiago Sousa Garcia (Newcastle University)</editor>
+        <editor role="chief">John Walsh</editor>
+        <editor role="technical">Ron Van den Branden</editor>
+        <biblScope unit="issue" n="11">Selected Papers from the 2016 TEI Conference</biblScope>
+      </seriesStmt>
+      <sourceDesc>
+        <p>No source, born digital.</p>
+      </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+      <projectDesc>
+        <p>OpenEdition Journals -centre for open electronic publishing- is the platform for journals in the humanities and social sciences, open to quality periodicals looking to publish full-text articles online.</p>
+      </projectDesc>
+    </encodingDesc>
+    <profileDesc>
+      <langUsage>
+        <language ident="en">en</language>
+      </langUsage>
+      <textClass>
+        <keywords xml:lang="en">
+          <term>collation</term>
+          <term>WordPress CMS</term>
+          <term>tool development</term>
+          <term>XSL pipelining</term>
+          <term>medieval manuscripts</term>
+          <term>hybrid edition</term>
+        </keywords>
+      </textClass>
+    </profileDesc>
+    <revisionDesc>
+      <change when="2020-05-19">Ron Van den Branden applied authors’ proofing corrections.</change>
+      <change when="2020-05-19">Ron Van den Branden changed encoding of project titles, according to jTEI editorial decision.</change>
+      <change when="2020-05-07">Ron Van den Branden encoded the file.</change>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <front>
+      <div type="abstract" xml:id="abstract">
+        <p>This paper presents the work undertaken by the <title level="m">Capitularia</title> project to integrate a collaborative editorial workbench into the open-source content management system (CMS) WordPress. It introduces the reasons for selecting WordPress as the project’s CMS, the workflows established (including a sophisticated XSL-scripting pipeline), as well as three plug-ins created to integrate certain functionalities. The Cap-X2WP plug-in facilitates XSL transformations of XML files to HTML directly within the WordPress framework. The Cap-PaGer plug-in is used to generate WordPress pages automatically based on the XML files located in specific folders on the server. Their publication status can be administered via a special interface added to the general WordPress dashboard at a moment’s notice. Whereas the aforementioned plug-ins facilitate the daily work of the staff members in the general management and enhancement of the project’s website, the Cap-Coll plug-in eases the specific editorial task of collating texts by including the CollateX algorithms in a WordPress plug-in. The report concludes with a brief perspective on the possibilities for further developments.</p>
+      </div>
+      <div type="acknowledgements">
+        <p>We gladly acknowledge the work of Gioele Barabucci for adapting the CollateX algorithms to the project’s needs, as well as that of Marcello Perathoner, who largely took on the implementation of these algorithms and other features within the WordPress framework.</p>
+      </div>
+      </front>
+      <body>
+        <div xml:id="introduction">
+          <head>Introduction</head>
+          <p>For scholarly projects with long-term funding, in addition to achieving the project’s actual objectives, there is often also an expectation that the project will create a general added value from which other projects or even the entire research community can benefit. This might, for example, be achieved by documenting the experience gained, in order to contribute to the establishment of best practices. Especially in digital humanities projects, a more concrete contribution lies in the development and provision of helpful software applications that allow for reuse.</p>
+          <p>Within the context of the project <title level="m"><ref target="https://capitularia.uni-koeln.de/en/">Capitularia: Edition of the Frankish Capitularies</ref></title>,<note>Accessed April 1, 2020, <ptr target="https://capitularia.uni-koeln.de/en/"/>.</note> three plug-ins<note>Plug-ins are modular packages of code written in PHP that introduce new functionalities to WordPress without changing the actual core. They make it easy to customize and enhance a website to meet one’s specific needs. For a general introduction to WordPress plug-ins, see <title level="a"><ref target="https://wordpress.org/support/article/plugins/">Plugins</ref></title>, WordPress.org, accessed March 18, 2020, <ptr target="https://wordpress.org/support/article/plugins/"/>.</note> to extend the basic functionalities of the WordPress core have been developed so far. These could be of general interest for similar editing projects. After a quick description of the decision-making processes that led to the utilization of the open-source content management system (CMS) WordPress (<ptr type="crossref" target="#wordpress"/>), followed by a brief presentation of the project itself (<ptr type="crossref" target="#project"/>), these plug-ins and the functionalities they provide are presented in more detail (<ptr type="crossref" target="#tool"/>).</p>
+        </div>
+        <div xml:id="wordpress">
+          <head>Why WordPress?</head>
+          <p>In the last few years, a lot of effort has been put into developing specialized infrastructures (such as <ref target="http://gams.uni-graz.at">GAMS</ref>,<note>Geisteswissenschaftliches Asset Management System (Humanities’ Asset Management System), accessed March 18, 2020, <ptr target="http://gams.uni-graz.at"/>.</note> <ref target="https://fud.uni-trier.de">FuD</ref>,<note>Die virtuelle Forschungsumgebung für die Geistes- und Sozialwissenschaften, accessed March 18, 2020, <ptr target="https://fud.uni-trier.de"/>.</note> or <ref target="https://textgrid.de/">TextGrid</ref><note>TextGrid: Virtuelle Forschungsumgebung für die Geisteswissenschaften, accessed March 18, 2020, <ptr target="https://textgrid.de/"/>.</note>) to ease the administration and publication of digital humanities data, and thus to avoid insular solutions.<note>TEI Publisher (accessed March 18, 2020, <ptr target="http://tei-publisher.com"/>), a very promising attempt arising directly out of the TEI community itself, has only been published recently and hence could not be considered as an option when the <title level="m">Capitularia</title> project started.</note> Still, the choice of infrastructure is not an easy one, since certain difficulties exist:
+            <list rend="bulleted">
+              <item>a large number of scholars working with TEI lack the (access to) technical expertise (<ref type="bibl" target="#burghart12">Burghart and Rehbein 2012</ref>) and/or the financial support needed for the proper use of at least some of those;</item>
+              <item>for many, especially small-scale ventures, infrastructural projects might even be a little oversized, and/or the familiarization might take too long;</item>
+              <item>infrastructures depend on regular funding to ensure maintenance and further improvements, and thus ensure their longstanding viability. Expired funding might block necessary adjustments to the changing technologies of the future, calling into question the sustainability of the software.<note>Stürmer (<ref type="bibl" target="#sturmer15">2015</ref>) establishes four different criteria for evaluating the digital sustainability of open source software products: <list rend="inline ordered"><item>heterogeneous communities participate in the development to ensure distributed knowledge;</item> <item>an ecosystem of commercial vendors also exists;</item> <item>nonprofit organizations coordinate the development as well as distribution; and</item> <item>it is possible for users to adapt the software to their own needs.</item></list></note></item>
+            </list>
+          </p>
+          <p>Especially in a long-term scholarly editorial project such as <title level="m">Capitularia</title>, which is supposed to run for sixteen years (2014 to approx. 2029), the choice of the basic technological framework is extremely important, since the resource is supposed to be available for the entire duration of the project and beyond, and certain requirements need to be met as well. Besides more specific demands, one of these requirements was that the website should be up and running immediately after the project started in the spring of 2014. The research community should be allowed to monitor the project’s development and start working on the material provided as soon as possible. These requirements ruled out from the beginning a time-consuming in-house development, but suggested the adoption of a different approach that had previously been used in some digital humanities projects: the application and customization of an existing web framework. Digital Scholarly Edition (DSE) ventures such as the <title level="m"><ref target="http://www.confessio.ie">Saint Patrick’s Confessio Hypertext Stack Project</ref></title><note>Royal Irish Academy 2009–2017, accessed March 18, 2020, <ptr target="http://www.confessio.ie"/>.</note> have been built using the CMS <ref target="https://www.drupal.org/">Drupal</ref>.<note>Accessed March 18, 2020, <ptr target="https://www.drupal.org/"/>.</note> For the same framework, specific extensions like <soCalled>TEICHI</soCalled> (<ref type="bibl" target="#pape12">Pape et al. 2012</ref>) have been developed to enable working with TEI files.</p>
+          <p>Content management systems already contain a lot of functionalities that serve useful purposes in digital humanities projects. Furthermore, the application of already established software, which is not specifically intended for a particular use and has a wide-ranging community participating in its constant development, could also be more sustainable (<ref type="bibl" target="#sturmer15">Stürmer 2015</ref>). WordPress was selected as the CMS for <title level="m">Capitularia</title> for the following reasons:
+            <list rend="bulleted">
+              <item>WordPress provides a framework which is easy to use and maintain even for people with limited technical expertise, but also offers a vast number of possible extensions for those having (access to) programming skills. Compared to Drupal, the learning curve is less steep.</item>
+              <item>One of the huge advantages of WordPress is that—owing to its widespread use—a large community participates in its further development and documentation. Therefore, more or less ready-made solutions already exist for numerous problems; when they do not, one can easily develop one’s own plug-ins with the help of the good documentation.</item>
+              <item>WordPress is PHP-based and uses a MySQL database—both standard technologies.</item>
+              <item>WordPress can be regarded as sustainable open source software (<ref type="bibl" target="#sturmer15">Stürmer 2015</ref>).</item>
+              <item>WordPress allows for a multilingual interface.</item>
+              <item>WordPress had already been used in the <title level="m"><ref target="http://www.leges.uni-koeln.de">Bibliotheca legum</ref></title> project,<note>Edited by Karl Ubl, assisted by Dominik Trump and Daniela Schulz (Cologne, 2012), accessed March 18, 2020, <ptr target="http://www.leges.uni-koeln.de"/>. The <title level="m">Bibliotheca legum</title> can be seen as complementary to <title level="m">Capitularia</title> as it deals with the transmission of the so-called <foreign>leges</foreign> (such as the <title level="m">Lex Salica</title>), which are another important source for early medieval legal knowledge. <foreign>Leges</foreign> and capitularies often appear together within the same codices.</note> a database of Carolingian secular law texts, and therefore one could build upon experiences. In contrast with <title level="m">Capitularia</title>, the <title level="m">Bibliotheca legum</title> relies solely on the use of already existing plug-ins without any specific in-house developments.</item>
+            </list>
+          </p>
+        </div>
+        <div xml:id="project">
+          <head>About the Project</head>
+          <div xml:id="scope">
+            <head>Scope</head>
+            <p>The <title level="m">Capitularia</title> project is concerned with the hybrid edition of decrees by Frankish rulers. These legal texts are an important source for various aspects of early medieval European history. Capitularies originated as individual texts from deliberations and assemblies at court, but hardly any original has survived. Mostly they were transmitted in sundry collections compiled by attendants of these assemblies, or based on copies sent to bishops or other office holders, which created a vast variety of different versions of the texts.<note>For a concise overview of the different attempts to define capitularies, see <title level="a">What Are Capitularies?</title>, accessed March 18, 2020, <ptr target="https://capitularia.uni-koeln.de/en/project/definition/"/>.</note> What most capitularies have in common is that they appear as a list of chapters, with different capitularies often amalgamated with one another. This outward appearance also explains why they are commonly called <soCalled>capitularies</soCalled>. Most often capitularies mention neither date, not place, nor the <soCalled>issuer</soCalled>. Some appear to have been official documents; others might have been private notes, drafts, or extracts. They were rearranged, modified, or extracted by the compilers, sometimes with individual titles, vague titles, or no titles at all. This wide spectrum makes it hard to judge the status of a particular text. The texts also differ significantly in length and number of extant witnesses, ranging from unique up to more than thirty. All in all, there are about three hundred texts in more than three hundred extant manuscripts. The characteristics of the source material raise particular issues that affect the TEI encoding (for example, the identification of certain passages, overlaps, and contaminations), and consequently also the work of the editors. The modeling of an overarching structure to depict and reference the single textual units in their various manifestations within the manuscripts posed one of the biggest challenges. And it still does.</p>
+          </div>
+          <div xml:id="objectives">
+            <head>Objectives</head>
+            <p>A traditional critical print edition will be published in the Leges series of the <ref target="http://www.mgh.de">Monumenta Germaniae Historica</ref> (MGH)<note>Accessed March 18, 2020, <ptr target="http://www.mgh.de"/>.</note> containing the reconstructed capitularies with full commentary and a German translation, but with a simplified critical apparatus that includes only the variants considered relevant by the editors. The digital edition (<ptr type="crossref" target="#figure1"/>) is meant as its complement with a focus on the transmission and tradition of the texts, enhanced by further resources such as a comprehensive, annotated bibliography and various overviews. Here, each text considered as capitulary is presented as it appears in the respective manuscript source, with annotations. In addition to the TEI-compliant transcriptions, thorough manuscript descriptions are taken from the seminal study <title level="m">Bibliotheca capitularium regum Francorum manuscripta</title> by Hubert Mordek (<ref type="bibl" target="#mordek95">1995</ref>). They are enhanced by meticulous observations carried out by the project team. Hence, interested scholars have access to all relevant information on each codex and the text(s) it contains, but the print edition is not overburdened by an oversized critical apparatus.
+              <figure xml:id="figure1">
+                <graphic url="images/figure1.png" width="1216px" height="789px"/>
+                <head type="legend">The <title level="m">Capitularia</title> web page (<ptr target="http://capitularia.uni-koeln.de/en"/>).</head>
+              </figure>
+            </p>
+          </div>
+          <div xml:id="logistic">
+            <head>Logistics</head>
+            <p><title level="m"><ref target="https://capitularia.uni-koeln.de/en/project/">Capitularia</ref></title> is funded by the North Rhine–Westphalian Academy of Sciences, Humanities and the Arts, and is being prepared in close collaboration with the <ref target="http://cceh.uni-koeln.de">Cologne Center for eHumanities</ref> (CCeH),<note>Accessed March 18, 2020, <ptr target="http://cceh.uni-koeln.de"/>.</note> the MGH, and other partners.<note>Accessed April 1, 2020, <ptr target="https://capitularia.uni-koeln.de/en/project/"/>.</note> The digital edition is overseen by a team based in Cologne. The print edition is being prepared jointly by a group of editors. Since the collaborators are scattered, a central platform for internal communication as well as for the distribution of resources among staff is essential to facilitate successful cooperation. Hence, WordPress not only provides the web publication and thus the outward presentation of the project to the public, but also serves as a means of exchange and a collaborative editorial workbench.</p>
+            <p>There is an internal workspace in WordPress for the project staff and the editorial team. It allows the participants to access data, resources, manuals, and tools. Recently, <ref target="https://github.com/cceh/capitularia">GitHub</ref> has been introduced for the overall administration of the project’s technical developments.<note>CCeH GitHub repository, accessed March 18, 2020, <ptr target="https://github.com/cceh/capitularia"/>.</note> To ensure the long-term availability of the resource, the <title level="m">Capitularia</title> project relies on a combination of suitable technical infrastructure and strong institutional ties. The server space is provided by the University of Cologne’s Regional Computing Centre (RRZK), with which both the CCeH and the <ref target="http://dch.phil-fak.uni-koeln.de/">Cologne Data Center for the Humanities</ref> (DCH),<note>Kölner Datenzentrum für die Geisteswissenschaften, accessed March 18, 2020,<ptr target="http://dch.phil-fak.uni-koeln.de/"/>.</note> an institute specifically dedicated to the sustainability of humanities data, maintain close contact. In addition, <title level="m">Capitularia</title> also participates in the <ref target="https://www.babs-muenchen.de/index.html?c=&amp;l=en">web archiving program</ref> of the Bavarian State Library (BSB).<note>BABS (Bibliothekarisches Archivierungs- und Bereitstellungssystem): Long-term Preservation at the Bavarian State Library (Bayerische StaatsBibliothek), accessed March 18, 2020, <ptr target="https://www.babs-muenchen.de/index.html?c=&amp;l=en"/>.</note></p>
+          </div>
+          <div xml:id="workflows">
+            <head>Workflows</head>
+            <p>The workflow for creating <title level="m">Capitularia</title> web content is as follows (<ptr type="crossref" target="#figure2"/>): as has been mentioned before, the main source for the manuscript pages as well as most index pages (such as lists of manuscripts or capitularies) is Mordek’s <title level="m">Bibliotheca capitularium</title> (<ref type="bibl" target="#mordek95">1995</ref>). He provided descriptions of all witnesses bearing capitularies, but died in 2006 before he could provide a new edition of the material. His book was digitized by means of optical character recognition (OCR) and marked up with XML.<note>The MGH kindly granted permission to provide and prepare the material.</note> Further markup was then added to this corpus file to enable the automated creation of TEI-compliant manuscript descriptions that are stored in <gi>msDesc</gi> elements inside the <gi>teiHeader</gi>.</p>
+            <p>The diplomatic transcriptions of the individual capitularies are mostly based on digital facsimiles. Whenever possible, the originals are also consulted. Preceded by an editorial preface by the <title level="m">Capitularia</title> staff members, the encoded transcriptions form the <gi>body</gi> of the file. The TEI-compliant encoding is carried out in the <ref target="https://www.oxygenxml.com">oXygen</ref> XML Editor,<note>Accessed March 18, 2020, <ptr target="https://www.oxygenxml.com"/>.</note> which is connected to the server by means of <ref target="http://webdav.org/">Web-based Distributed Authoring and Versioning</ref> (WebDAV).<note><bibl><author>Jim Whitehead</author>, <title level="u">Welcome to WebDAV Resources</title>, last modified April 21, <date>2010</date>, <ptr target="http://webdav.org/"/>.</bibl></note> This ensures that all employees have access to the latest versions at all times. GitHub is used for managing the files. In addition to that, older versions are manually saved in a special archive folder.</p>
+            <p>The transcriptions are checked by a very strict schema– a project specific customization in RELAX NG – supplemented by <ref target="http://schematron.com/">Schematron</ref>,<note>Accessed March 18, 2020, <ptr target="http://schematron.com/"/>.</note> and checked manually by the staff members. One person is responsible for transcribing and encoding a particular capitulary of a manuscript. The transcription is then reviewed twice by other staff members before the original transcriber incorporates their annotations or corrections to finalize the transcription. Before publishing the manuscript page on the web, the HTML version of the file is proofread once more.</p>
+            <figure xml:id="figure2">
+              <graphic url="images/figure2.png" width="1406px" height="807px"/>
+              <head type="legend">The <title level="m">Capitularia</title> workflow for the creation of the digital edition.</head>
+            </figure>
+            <p>The transcriptions form the basis of the print edition which is being prepared by the team of editors using the <ref target="http://cte.oeaw.ac.at/">Classical Text Editor</ref> (CTE),<note>Stefan Hagel, Classical Text Editor version 10.1, last updated February 28, 2020, <ptr target="http://cte.oeaw.ac.at/"/>.</note> a program the editors were familiar with. Their work is facilitated by computer-aided collation (see <ptr type="crossref" target="#cap-coll"/>). The TEI output provided by the CTE is then also uploaded onto the <title level="m">Capitularia</title> website to publish preprint versions of the reconstructed capitularies (<ptr type="crossref" target="#figure3"/>).
+              <figure xml:id="figure3">
+                <graphic url="images/figure3.png" width="1491px" height="828px"/>
+                <head type="legend">Workflow for the critical print edition with the PDF output as generated by the Classical Text Editor (CTE), as well as the reprocessed CTE-TEI output of the <soCalled>Prooemium generale</soCalled> issued by Emperor Louis the Pious (Capit. LdF no. 5, olim Boretius-Krause no. 137) including the translation into German.</head>
+              </figure>
+            </p>
+        </div>
+        </div>
+        <div xml:id="tool">
+          <head>Tool Development</head>
+          <p>WordPress distinguishes between different user roles which are given different authorization levels. This distinction allows WordPress to display certain content and areas of the website only to staff members or users who are logged in. The front end is usually visible to all users. The dashboard, which is part of the WordPress back end, is the main administration area where most of the site’s settings are managed. It is therefore only accessible to users with appropriate administrative privileges. The plug-ins are also adjusted and administered here.</p>
+          <p>Three main plug-ins have been developed and implemented within the context of the <title level="m">Capitularia</title> project so far: <list rend="inline ordered"><item>an XSL Processor plug-in which enables transforming the TEI XML files with XSL into HTML (Cap-X2WP) to be outputted into a WordPress page;</item> <item>a page generator plug-in (Cap-PaGer) that allows one to generate numerous pages in bulk; and</item> <item>the collation plug-in (Cap-Coll). Collation, the process of comparing the texts of various witnesses to investigate their textual variance, is one of the main tasks in the field of textual criticism.</item></list></p>
+          <div xml:id="cap-x2wp">
+            <head>Cap-X2WP</head>
+            <p>The Cap-X2WP plug-in facilitates XSL transformations of XML files within the WordPress framework on the server side. It is based on the <ref target="https://wordpress.org/plugins/xslprocessor/">XSLT Processor plug-in</ref><note>Hakre Chryzo, <soCalled><ref target="https://wordpress.org/plugins/xslprocessor/">xslprocessor</ref></soCalled>, accessed March 28, 2020 (plug-in closed as of August 30, 2019), <ptr target="https://wordpress.org/plugins/xslprocessor/"/>.</note> that had been deployed in the <title level="m">Bibliotheca legum</title> project. Both use <ref target="https://codex.wordpress.org/shortcode">shortcode</ref>, which is a WordPress-specific way to include shortcut commands into the content area (the actual body of a page or post).<note><bibl><title level="u">Shortcode</title>, WordPress Codex (online manual), accessed March 18, 2020, <ptr target="https://codex.wordpress.org/shortcode"/>.</bibl></note> Shortcode is written in square brackets. In its simplest form it consists only of the name of the shortcode (here <ident>cap_xsl</ident>), but additional information can be provided by using attributes. In the case of <title level="m">Capitularia</title>, these attributes contain the path to an XML file and an XSL file in order to display the result of the transformation on a WordPress page (<ptr type="crossref" target="#figure4"/>).
+              <figure xml:id="figure4">
+                <graphic url="images/figure4.png" width="1250px" height="611px"/>
+                <head type="legend">At left, the shortcode in square brackets starting with its name, <ident>cap_xsl</ident>, is followed by <tag>div class="xsl-output"</tag>, which contains the transformation’s output. At right, the result as displayed in a user’s browser.</head>
+              </figure>
+            </p>
+            <p>Redevelopment became necessary because the XSLT Processor plug-in is no longer maintained and performance issues have arisen as the complexity of the files increased. To prevent the transformation process from starting again on every page request, which would result in longer loading times, Cap-X2WP checks whether the underlying files have been edited in the meantime. The core idea of this plug-in is to cache the result of a transformation in its WordPress page, and only retransform if either the XML or the XSL file has changed. Each transformation’s result is stored in a <tag>div class="xsl-output"</tag> element during this process, which is replaced when a new transformation is triggered. Writing the generated content simultaneously into the WordPress page itself has the additional advantage that the regular full-text search already included in the WordPress core can also be used in this context. General settings can be configured easily via the options interface included in the WordPress dashboard (<ptr type="crossref" target="#figure5"/>).
+              <figure xml:id="figure5">
+                <graphic url="images/figure5.png" width="1004px" height="503px"/>
+                <head type="legend">The interface for the configuration of the Cap-X2WP plug-in.</head>
+              </figure>
+            </p>
+          </div>
+          <div xml:id="cap-pager">
+            <head>Cap-PaGer</head>
+            <p>The Cap-PaGer plug-in is used to generate WordPress pages automatically based on the XML files located in specific folders on the server. Their publication status can be administered via a special interface added to the general WordPress dashboard with a single click.</p>
+            <p>Cap-PaGer was developed to enable the automated generation of the numerous manuscript pages (one page for each codex that contains the manuscript description as well as the transcriptions of the texts contained) in WordPress, instead of creating them manually. The general structure of a WordPress page is quite simple: it consists of a title (to be displayed as its heading), a page slug, information on its location within the overall hierarchy of the website, and its content. Since in the case of <title level="m">Capitularia</title> most of the pages are composed of the requests to the respective XML and XSL files in shortcode as mentioned above (<ptr type="crossref" target="#figure4"/>), it seemed obvious that we should build those pages in a generic and reproducible way. Within the course of development, the plug-in was extended to enable building all WordPress pages that are based on XML files, and its administration became increasingly sophisticated. By now the Cap-PaGer is fully implemented for use in the back end of WordPress.</p>
+            <figure xml:id="figure6">
+              <graphic url="images/figure6.png" width="1174px" height="402px"/>
+              <head type="legend">The options interface for the general settings (left), which allow the creation of tabs for the different categories such as manuscripts or capitularies that date before 814 CE, and the specific options for the category <soCalled>manuscripts</soCalled> (right).</head>
+            </figure>
+            <p><ptr type="crossref" target="#figure6"/> shows how tabs for the different sections can be created and administered by the project staff. Here, general settings (such as the root directories in which the XML files are stored) can be entered. Further options and more detailed configurations for the individual sections are available on their respective tabs. In conjunction with the multilingual plug-in <ref target="https://wordpress.org/plugins/qtranslate-x/">qTranslate-X</ref>,<note>For details see qTranslate X, version 3.4.6.8, <ptr target="https://wordpress.org/plugins/qtranslate-x/"/>.</note> different translations for different language settings are also possible. The directories mentioned here correspond to the actual directory structure on the server. This means that all files located within the <ident>mss</ident> (manuscripts) directory on the server will be displayed as a list within the manuscript section. A schema can also be adjoined, as well as one or more XSL files used for the transformation. For example, there are three different transformations associated with the section <soCalled>manuscripts</soCalled>: first, a transformation to display the comprehensive manuscript description taken from Mordek (<ref type="bibl" target="#mordek95">1995</ref>) as mentioned above; second, a transformation for the main transcription; and finally, a transformation for a footer that attaches some additional notes such as how to cite this particular page, a hyperlink to the XML source file available for download,<note>When looking for a readable version, users can just right-click on the transcription and choose <soCalled>print</soCalled> to access a version that is specially formatted for printing.</note> and the revision history. This modular approach was deliberately chosen to reduce the complexity of the single XSL files and thus to facilitate their maintenance. Despite the complex processing pipeline working in the background, the interface enables the project staff to connect the different parts and determine what will be displayed on the page in an easy and clear way.</p>
+            <p>The administration of the pages takes place within the page generator dashboard (<ptr type="crossref" target="#figure7"/>). The staff members have a synoptic view of all pages belonging to a particular category as well as their publication states. They can easily select publishing, publishing privately, or unpublishing, as well as further options (such as the extraction of metadata), enhancing functionalities originally implemented in the WordPress core (<soCalled>private</soCalled> vs. <soCalled>published</soCalled>). These synopses enable collaboration among staff as different researchers can work on many manuscripts at the same time without getting lost in the process.</p>
+            <figure xml:id="figure7">
+              <graphic url="images/figure7.png" width="1018px" height="750px"/>
+              <head type="legend">Publicly published manuscripts are indicated in green, privately published in yellow. Not shown here: Unpublished items are indicated in red.</head>
+            </figure>
+          </div>
+          <div xml:id="cap-coll">
+            <head>Cap-Coll</head>
+            <p>In order to facilitate the editorial tasks involved with the numerous textual witnesses, collation is supported by alignment tables. This functionality is based on <ref target="https://collatex.net/">CollateX</ref><note>CollateX – Software for Collating Textual Sources, accessed March 18, 2020, <ptr target="https://collatex.net/"/>.</note> with the algorithms included in the <title level="m">Capitularia</title> Collation Tool. Before the actual collation takes place, the XML files containing the TEI-compliant transcriptions are preprocessed and normalized by some simple XSL transformations to eliminate surplus information that would otherwise complicate the collation process. Each manuscript can be included in or excluded from the collation with a single click. Dragging and dropping changes its position within the default (alphabetical) order. Various settings can be chosen to customize the automated collation, such as the alignment algorithm applied (Dekker, Needleman-Wunsch, or MEDITE<note>A very brief overview of the three algorithms implemented in CollateX is given in <title level="a">Alignment Algorithms</title>, CollateX documentation, accessed March 18, 2020, <ptr target="https://collatex.net/doc/#alignment-algorithms"/>.</note>), the Levenshtein distance<note>A metric for the sameness of/difference between two strings, which counts the insertions, deletions, and substitutions needed to convert one string to the other.</note> score, as well as other options. The configuration can then be saved to replicate the run (<ptr type="crossref" target="#figure8"/>). Some of the options are only available to staff members, while for public display and usage, only those settings that have proven to lead to best results are available.</p>
+            <figure xml:id="figure8">
+              <graphic url="images/figure8.png" width="1444px" height="756px"/>
+              <head type="legend">The <title level="m">Capitularia</title> Collation (Cap-Coll) Dashboard showing the available manuscripts as well as the different settings.</head>
+            </figure>
+            <p>In the collation output, corresponding text passages are displayed aligned with each other (<ptr type="crossref" target="#figure9"/>). At the same time, deviations from a base text are highlighted, providing more clarity and transparency when comparing the textual witnesses. Cap-Coll allows the editors (and the users) to compare each chapter of a capitulary in any (sub)set of manuscripts either by using the old nineteenth-century edition of Boretius and Krause (1883/1897) as the basic text, or by selecting another version from any manuscript for the role of base text. Therefore, it allows for the testing of hypotheses regarding the textual tradition, and makes similarities/differences more explicit. Based on the collation output, the editors investigate the filiation and reconstruct, annotate, and translate the single capitularies for the print edition.
+            <figure xml:id="figure9">
+              <graphic url="images/figure9.png" width="1735px" height="804px"/>
+              <head type="legend">Collation output for chapter 4 of the <soCalled>Capitula legibus addenda</soCalled> (Boretius-Krause no. 139).</head>
+            </figure>
+            </p>
+          </div>
+        </div>
+        <div xml:id="conclusion">
+          <head>Conclusion and Further Prospects</head>
+          <p>In the light of the experience gained so far, WordPress has proven an effective and easy-to-maintain framework for <title level="m">Capitularia</title>. Its simple extensibility and adaptability are especially strong arguments for the adoption of WordPress in digital humanities projects working with TEI files.</p>
+          <p>One of the main problems of using existing tools was that, for the most part, they were developed to meet the needs of a specific project, and so adaptions to other material are difficult, time consuming and resource-intensive. Often infrastructure maintenance is limited by the project’s funding. That is at least not the case for the Cap-X2WP and Cap-PaGer plug-ins, since their functionalities are so general that they are of use even beyond the domain of digital humanities, and thus universally applicable to WordPress websites. In its current state, the code is optimized for usage within the <title level="m">Capitularia</title> project, but it can easily be adjusted to others’ particular needs and is accessible via GitHub. By making the code available on public repositories, others can build upon previous work.</p>
+          <p>The Cap-Coll plug-in has a specific field of application, but still collation is an essential task in nearly all DSE ventures. The most recent development in the <title level="m">Capitularia</title> project was, to make Cap-Coll available in the front end as well. Before, the collation tool could only be used by researchers with the appropriate WordPress account, accessing it in the back end. By modifying the plug-in, now all visitors to the website are allowed to make their own collations. The inclusion of further visualizations would be a desirable next step to enhance it.</p>
+          <p>Slightly connected to the further development of the collation plug-in is the long-term plan to improve the work routines, so that the preparation of the critical print edition becomes fully integrated into the <title level="m">Capitularia</title> XML workflow, making it more efficient and seamless. The prerequisites for such an enhancement are: first, to provide a decent print output based on XML, which would be comparable to that provided by the CTE; and second, the willingness of all participants to familiarize themselves with new software applications.</p>
+        </div>
+      </body>
+    <back>
+      <div type="bibliography">
+        <listBibl>
+          <bibl xml:id="burghart12"><author>Burghart, Marjorie</author>, and <author>Malte Rehbein</author>. <date>2012</date>. <title level="a">The Present and Future of the TEI Community for Manuscript Encoding</title>. <title level="j">Journal of the Text Encoding Initiative</title> <biblScope unit="issue">2</biblScope>. <ptr target="http://journals.openedition.org/jtei/372"/>; doi:<idno type="doi">10.4000/jtei.372</idno>.</bibl>
+          <bibl xml:id="mordek95"><author>Mordek, Hubert</author>. <date>1995</date>. <title level="m">Bibliotheca capitularium regum Francorum manuscripta: Überlieferung und Traditionszusammenhang der fränkischen Herrschererlasse</title>. <pubPlace>Munich</pubPlace>: <publisher>Monumenta Germaniae Historica</publisher>.</bibl>
+          <bibl xml:id="pape12"><author>Pape, Sebastian</author>, <author>Christof Schöch</author>, and <author>Lutz Wegner</author>. <date>2012</date>. <title level="a">TEICHI and the Tools Paradox: Developing a Publishing Framework for Digital Editions.</title> <title level="j">Journal of the Text Encoding Initiative</title> <biblScope unit="issue">2</biblScope>. <ptr target="http://journals.openedition.org/jtei/432"/>; doi:<idno type="doi">10.4000/jtei.432</idno>.</bibl>
+          <bibl xml:id="sturmer15"><author>Stürmer, Matthias</author>. <date>2015</date>. <title level="a">Wann sind Open Source Projekte digital nachhaltig?</title> In <title level="m">Open Source Studie: Schweiz 2015</title>, edited by <editor>swissICT</editor> and <editor>Swiss Open Systems User Group</editor>, <biblScope unit="page">36–37</biblScope>. <ptr target="https://www.ossdirectory.com/knowhow/160_OSSStudieSchweiz2015.pdf"/>.</bibl>
+        </listBibl>
+      </div>
+    </back>
+  </text>
+</TEI>

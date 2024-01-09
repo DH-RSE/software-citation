@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<!-- $Id: jtei-cc-ra-scholger-173-source.xml 902 2020-02-11 22:06:14Z martin $ -->
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1" xmlns:g2o="http://gams.uni-graz.at/ontology#" rend="jTEI">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="main">Taking Note: Challenges of Dealing with Graphical Content in TEI</title>
+        <author>
+          <name>
+            <forename>Martina</forename>
+            <surname>Scholger</surname>
+          </name>
+          <affiliation>Martina Scholger is a <roleName>senior scientist</roleName> and <roleName>researcher</roleName> at <orgName>the Centre for Information Modelling – Austrian Centre for Digital Humanities</orgName> at <orgName>the University of Graz</orgName>. She studied art history and received her PhD in digital humanities with a study on artists’ creation processes documented in their notebooks. She is teaching information and text modelling and is involved in numerous cooperation projects in the field of digital scholarly editing and text mining. She has been a member of <orgName>the Institute for Documentology and Scholarly Editing</orgName> since 2014 and a member of the <orgName>TEI Technical Council</orgName> since 2016, where she is currently serving as <roleName>Chair</roleName>.</affiliation>
+          <email>martina.scholger@uni-graz.at</email>
+        </author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>TEI Consortium</publisher>
+        <date>29/01/2020</date>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by/4.0/">
+            <p>For this publication a Creative Commons Attribution 4.0 International license has been granted by the author(s) who retain full copyright.</p>
+          </licence>
+        </availability>
+      </publicationStmt>
+      <seriesStmt>
+        <title level="j">Journal of the Text Encoding Initiative</title>
+        <editor role="guest">Janelle Jenstad</editor>
+        <editor role="guest">Kathryn Tomasek</editor>
+        <editor role="guest">Martin Holmes</editor>
+        <editor role="chief">John Walsh</editor>
+        <editor role="managing">Anne Baillot</editor>
+        <editor role="technical">Ron Van den Branden</editor>
+        <biblScope unit="issue" n="12">Selected Papers from the 2017 TEI Conference</biblScope>
+      </seriesStmt>
+      <sourceDesc>
+        <p>No source, born digital.</p>
+      </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+      <projectDesc>
+        <p>TEI 2017 Conference Abstracts.</p>
+      </projectDesc>
+      <tagsDecl>
+      </tagsDecl>
+    </encodingDesc>
+    <profileDesc>
+      <langUsage>
+        <language ident="en">en</language>
+      </langUsage>
+      <textClass>
+        <keywords xml:lang="en">
+          <term>art history</term>
+          <term>digital scholarly editions</term>
+          <term>notebooks</term>
+          <term>graphic encoding</term>
+          <term>text and image</term>
+          <term>genetic editing</term>
+          <term>Semantic Web</term>
+        </keywords>
+      </textClass>
+    </profileDesc>
+    <revisionDesc>
+      <change when="2020-02-11">Martin Holmes made editorial proofing changes per guest-editors.</change>
+      <change when="2020-01-28">Martin Holmes made editorial proofing changes.</change>    
+      <change when="2020-01-28">Ron Van den Branden made small changes.</change>      
+      <change when="2020-01-28">Ron Van den Branden made some technical modifications.</change>      
+      <change when="2020-01-03">Amy Tang encoded the file.</change>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <front>
+      <div type="abstract" xml:id="abstract">
+        <p>This paper describes the ongoing development of a TEI-conformant model for the encoding of hybrid primary sources containing text and graphical components on a similar level of semantic meaning. The subsequent considerations are part of the digital scholarly edition project representing the notebooks of the Austrian conceptual artist Hartmut Skerbisch (1945–2009), a handwritten corpus created over a period of almost 40 years. Besides text, drawings were an important visual means of expression for the artist. In the context of digitally representing the numerous graphics embedded in the notes with equivalent depth to the text, a three-step model is proposed. This model takes into account the <list rend="inline ordered"><item><emph>graphical components</emph> characterizing the composition,</item> <item><emph>textual functions</emph> describing and directing the execution of artworks, and</item> <item><emph>interpretation</emph> of the graphics and their contextualization with connected material and information</item></list>. The paper discusses the existing methods of representing graphics in TEI, presents the combination of these methods in the actual scholarly edition project, and introduces the semantic enrichment of the TEI sources through formal descriptions in RDF/XML taxonomies using linked open data. Thus, the genealogy of artistic concepts and artworks documented in the notebooks will become traceable.</p>
+      </div>
+    </front>
+    <body>
+      <div xml:id="introduction">
+        <head>Introduction</head>
+        <p>The primary focus on text is not only inherent in the name of the Text Encoding Initiative itself, but also in the initial scope of the TEI as an encoding standard focusing on the notion of a text (<ref target="#ide1995" type="bibl">Ide and Sperberg-McQueen 1995, 7–8</ref>; <ref target="#burnard2014" type="bibl">Burnard 2014, chap. 2</ref>). Undoubtedly, the TEI has become the means of choice for representing text in digital form in general and digital scholarly editing in particular. Although the TEI has always taken a generalistic approach, considering documents of any size, any number and any content (<ref target="#burnard2014" type="bibl">Burnard 2014</ref>), an extensive description of visual materials is nevertheless lacking in the TEI Guidelines. Since, in the wake of the large-scale digitization efforts of recent years, there is an increasing need to deal with hybrid source materials in digital humanities research, the TEI must also meet these challenges. Therefore, extended mechanisms and additions to the TEI Guidelines are required to open and expand the model for encoding non-textual sources with the same level of meaning as text.</p>
+        <p>Notes by artists, writers, and scientists are a good example for the necessity to accommodate hybrid written and pictorial sources. They are a valuable primary source of the story behind the scenes, tracing the origin, genesis, execution, and reuse of ideas, functioning as a storehouse of individual thoughts growing to mature concepts expressed in written and pictorial form (<ref target="#radecke2013" type="bibl">Radecke 2013, 150–151</ref>; <ref target="#grésillon1999" type="bibl">Grésillon 1999, 11 and 168</ref>). The Dadaist writer Hugo Ball claimed that <quote source="#quoteref1">the word and the image are one</quote> (<ref type="bibl" target="#ball1974" xml:id="quoteref1">Ball 1974, 66</ref>), to emphasize the strong relationship between the acts of composing paintings and poetry. The Surrealist painter René Magritte proclaimed that <quote source="#quoteref2">in a painting words are of the same substance as images</quote> (<ref target="#magritte1929" type="bibl" xml:id="quoteref2">Magritte 1929, 32</ref>). Consequently, in a notebook text and graphics enter into an inseparable dialogue.</p>
+        <p>This paper discusses a vivid example of such a hybrid source, namely an artist’s notebook. In performative, ephemeral, and temporary art forms like conceptual art, performance art, and media art, notes play a key role in interpreting and understanding the actual artwork. They function as a documentary source, one of few remaining witnesses (or, in this case, the only one) of a temporally limited artistic event or artwork. This calls for a comprehensive representation of all related source components including notes and graphics.</p>
+        <p>This article will introduce a TEI-conformant approach to encoding sketches in the notebooks to a similar depth as the text itself. For this purpose, the TEI encoding of the actual record on a descriptive level is semantically enriched by factual statements in taxonomies using linked open data sources. The representation as a graph benefits the notebooks’ inherent characteristics of distributed information by allowing for the implementation of flexible and reusable search mechanisms, the visualization of relationships both within the notebooks and outside, and the indexing of documents in different ways.</p>
+      </div>
+      <div xml:id="ProjectContext">
+        <head>Project Context, Artist, and Source</head>
+        <p>The reflections on hybrid primary sources incorporating text and graphics on a similar semantic level and the challenges of digitally representing these phenomena discussed in this paper are part of an ongoing digital scholarly edition project on the notebooks by the Austrian conceptual and object artist Hartmut Skerbisch (1945–2009). It is a digital scholarly edition of the artist’s notebooks with a special focus on the genesis of his artistic work. The overall goal of this project is to reconstruct the artist’s inspirations powered by external influences and associative processes in the course of his developing individual manifestations: the evolution of a specific idea and its change over time.</p>
+        <p>Skerbisch expressed his ideas and concepts in various visual forms. In his early media artworks of the 1960s and 1970s, he examined in particular the space-generating properties of electronic media. In his work with photography starting in the late 1970s, he investigated the imaging process with its own means, i.e., addressing inherent qualities of photography such as seriality, indexicality, lack of materiality, and the production of reality in his own photographs (<ref target="#frisinghelli1994" type="bibl">Frisinghelli 1994, 61–62</ref>). Similarly, his sculptural works from the late 1980s focused on the features of the material used and the recipients’ spatial experience, which were more important to the artist than the aesthetic shell (<ref target="#niegelhell2015" type="bibl">Niegelhell 2015, 80</ref>). Skerbisch was trained as an architect and consequently he remained interested in the relationship between space, sculpture, and the spectator. This influence is recognizable in his clear constructional drawings and design language. He himself defined his work as a commentary on other works from literature, music, and art, a reflection on the likes of James Joyce, Franz Kafka, Kathy Acker, The Rolling Stones, or Jimi Hendrix (<ref type="bibl" target="#verein2015">Verein der Freunde von Hartmut Skerbisch 2015</ref>). This circumstance explains the numerous references both in the texts and in the graphics. Skerbisch collected his ideas in a total of 35 notebooks, with approximately 2100 inscribed pages. These notebooks were created over a period of close to 40 years, between 1969 and 2008. The TEI-encoded notebook transcripts are stored, managed, and published in the digital repository GAMS of the <ref target="https://informationsmodellierung.uni-graz.at/en/">Centre for Information Modelling</ref> at the University of Graz,<note><p>Centre for Information Modelling – Austrian Centre for Digital Humanities, accessed February 8, 2019, <ptr target="https://informationsmodellierung.uni-graz.at/en/"/>.</p></note> the <ref target="https://gams.uni-graz.at/">Humanities’ Asset Management System</ref>.<note><p>Humanities’ Asset Management System GAMS, accessed May 25, 2018, <ptr target="https://gams.uni-graz.at/"/>.</p></note> It is an OAIS-conformant long-term preservation system based on the open source project <ref target="http://duraspace.org/fedora/">Fedora Repository</ref><note><p>Fedora Repository (Flexible Extensible Digital Object Repository Architecture), accessed February 8, 2019, <ptr target="http://duraspace.org/fedora/"/>.</p></note> (<ref target="#steiner2018" type="bibl">Steiner and Stigler 2018</ref>). A specially-designed content model stores the TEI encoding, related digital surrogates, RDF/XML statements extracted from the TEI during the upload into the repository, and dissemination methods operating on these datastreams in one single object. The current digital scholarly edition of Skerbisch’s notebooks (<ref type="bibl" target="#scholger2018b">Scholger 2018b</ref>) provides a synoptic view of facsimile and transcript, employing the IIIF-based image viewer <ref target="https://openseadragon.github.io/">OpenSeadragon</ref><note><p>OpenSeadragon, accessed February 8, 2019, <ptr target="https://openseadragon.github.io/"/>.</p></note> and a content-based view showing the references between single notebook entries of any kind and entities like persons, literature, music, artworks, and artistic concepts, which are presented in dedicated registers and thesauri. For the full context of the methodological considerations, the digital edition, and its technical implementation, see <ref target="#scholger2018a" type="bibl">Scholger 2018a</ref>.</p>
+        <div xml:id="ImportanceOfVisual">
+          <head>Importance of Visual Content</head>
+          <p>The TEI standard covers most of the textual phenomena contained in the notebooks: these range from easily-legible and interpretable continuous text to non-linear unstructured text fragments; single keywords where the content is difficult to interpret because of the lack of context; enumerations organized in columns; textual interventions like additions, deletions, substitutions, and transpositions; references to other areas on the page and metamarks as indicators of how the text should be read; and other source materials like patched newspaper clippings, glued-in photographs, and inserted slips of paper.</p>
+          <p>In addition to text, the notebooks contain a remarkable number of graphical representations, such as sketches, drawings, or scribbles (on approximately 450 out of 2100 pages). Skerbisch used this form of expression for recording his ideas and for preparing and planning works of art. Thus, they are merely accompanying the text instead of being illustrative, but they carry the same weight and equivalent meaning to the text itself. They can help to trace various stages of the realization of specific artworks and concepts as well to show developments and modifications of particular ideas.</p>
+          <p><ptr target="#figure1" type="crossref"/> shows on the left a graphic with a view into a tetrahedron: its top is held up by a rod and an amorphous shape is recognizable on the bottom. It is actually a tent held by a branch, and the human indicated by a lung seeks shelter under the tent. The example on the right shows the same subject, but from an aerial perspective, and supplemented by a circle designated as a stone slab. The accompanying text gives information on the materials, colors, and objects to be used in the actual installation, and it labels specific components of the graphic. <figure xml:id="figure1">
+            <graphic url="images/fig1.jpg" width="5776px" height="2059px"/>
+            <head type="legend">Tent construction in two different views. Notebook 2: 2v and 10r.</head>
+          </figure></p>
+          <p><ptr target="#figure2" type="crossref"/> shows another witness to the same topic: a notebook page with interlocking formulas, calculations, and constructional drawings with dimensions for the meticulous planning of a physical manifestation of the envisioned installation. Closer inspection of the triangular shapes reveals their relation to the tent construction. The photograph on the right shows one of the three known realized installations emerging from this design process: <title level="m">Lispn!</title> from 1978 which features a tent construction.<figure xml:id="figure2">
+            <graphic url="images/fig2.jpg" height="475px" width="1540px"/>
+            <head type="legend">Calculation of the tent construction (left), Notebook 4: 22r; Installation <title level="m">Lispn!</title> (Photo: Hartmut Skerbisch) (right).</head>
+          </figure></p>
+          <p>The complexity increases when different views and levels of details coincide on one page. <ptr target="#figure3" type="crossref"/> shows a wooden box with an amorphous mass expanding on the bottom as a central representation in full view. Additionally, it shows four detailed renditions of individual areas of the full sketch from different angles. The drawings are accompanied by descriptive text and labels. Although the connection between the tent and the box is not given on a formal level, it becomes clear through the investigation of shared intellectual concepts, forms, and materials. <figure xml:id="figure3">
+            <graphic url="images/fig3.jpg" width="874px" height="1045px"/>
+            <head type="legend">Constructional drawing with details and different views. Notebook 10: 15v.</head>
+          </figure></p>
+          <p>These examples demonstrate the need to consider graphical representations as rich information carriers that require a specific description model. The central question is therefore how to develop a <soCalled>notion of graphics</soCalled>, i.e., how to appropriately treat graphical representations in a text-centric encoding environment.</p>
+        </div>
+        <div xml:id="Genealogy">
+          <head>Genealogy of Sketches</head>
+          <p>The transcription and digital representation of the textual entries in the notebooks mainly uses specific transcriptional elements from Chapter 11 <title level="a">Representation of Primary Sources</title> of the TEI Guidelines (<ref type="bibl" target="#tei2019">TEI Consortium 2019</ref>)<note><p><ptr target="http://www.tei-c.org/Vault/P5/3.5.0/doc/tei-p5-doc/en/html/PH.html"/>.</p></note> to prepare the documentation of the origin and the genesis of the text. Drawing on the principles of genetic editing, mechanisms have been established by a dedicated working group on Genetic Editions focusing on the physical appearance and the writing process of a document rather than the intellectual structure (<ref target="#burnard2010" type="bibl">Burnard et al. 2010</ref>). This led to a thorough investigation of the French editorial school of the critique génétique (<ref type="bibl" target="#grésillon1999">Grésillon 1999</ref>). While this movement focuses primarily on the creative writing process of literary manuscripts, Pierre-Marc de Biasi points out that the genetic approach can also be transferred to non-textual material, especially to architecture and sculpture (<ref target="#debiasi1997" type="bibl">De Biasi 1997, 124</ref>). In the case of the present notebooks used for the conception of artworks, the constitution of the text plays a subordinate role to the unfolding of artistic ideas and general concepts. According to this assertion, the genetic approach is applied to graphical representations. Sketches, formulas, and other graphical representations are integral forms of artistic expressions. Drawings can carry a specific message which cannot always be expressed with words. Here, the graphic becomes the primary object, and the text moves into the background. Representing visual material like graphics is thus not the task of—nor suitably dealt with by—text-image-linking tools, for which a range of satisfying solutions already exist (<ref target="https://openseadragon.github.io/">OpenSeadragon</ref>,<note><p>OpenSeadragon, accessed February 8, 2019, <ptr target="https://openseadragon.github.io/"/>.</p></note> <ref target="http://projectmirador.org/">Mirador</ref>,<note><p>Mirador, accessed February 8, 2019, <ptr target="http://projectmirador.org/"/>.</p></note> <ref target="https://dfg-viewer.de/">DFG-Viewer</ref>,<note><p>DFG-Viewer, accessed February 8, 2019, <ptr target="https://dfg-viewer.de/"/>.</p></note> etc.). Instead, it is necessary to accurately describe and encode the type and design of graphical representations as well as the subservient functions of text in a formal, comparative, and processable way. How then can the researcher apply the genetic approach to sketches and graphical elements in the TEI context? The sketches in <ptr target="#figure4" type="crossref"/> exemplify the development between the various graphical representations, which is in fact comparable to textual alterations in genetic criticism. <figure xml:id="figure4">
+            <graphic url="images/fig4.jpg" height="1188px" width="4091px"/>
+            <head type="legend">Development stages of three drawings of a tent. Notebook 4: 19v.</head>
+          </figure>
+            <ptr target="#figure4" type="crossref"/> shows three stages of a tent construction from an axonometric view. The most significant change can be seen in the type of the supporting structure: the first construction shows a single rod, placed in the middle, with the textile spread from its top; the second one shows a rod placed in the middle with three rods attached to it, forming a tetrahedron; in the third construction the centre of gravity is shifted and the rod is tilted. These different stages have to be formally described.</p>
+        </div>
+      </div>
+      <div xml:id="Representing">
+        <head>Representing Graphics with TEI</head>
+        <p>In the following, the current possibilities and their pitfalls for representing graphics in TEI are discussed. Resulting from this consideration, a TEI-conformant solution for a detailed and formal description of graphical representations in a text-centric encoding environment is presented. Several approaches to encoding photographs, illustrations, graphics, and other visual material that can appear as part of a text are already featured in the TEI Guidelines in chapter 14.4. on <title level="a">Specific Elements for Graphic Images</title> (<ref type="bibl" target="#tei2019">TEI Consortium 2019</ref>)<note><p><ptr target="http://www.tei-c.org/Vault/P5/3.5.0/doc/tei-p5-doc/en/html/FT.html#FTGRA"/>.</p></note> and 11.1 on <title level="a">Digital Facsimiles</title> (<ref target="#tei2019" type="bibl">TEI Consortium 2019</ref>).<note><p><ptr target="http://www.tei-c.org/Vault/P5/3.5.0/doc/tei-p5-doc/en/html/PH.html#PHFAX"/>.</p></note> The simplest method, providing a mere indication of a graphic’s existence embedded in a continuous text, is recorded by the element <gi>graphic</gi> with a reference to the location of the digital surrogate in the <att>url</att> attribute in form of a URI-reference, as shown in <ptr target="#example1" type="crossref"/>: <figure xml:id="example1">
+          <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true"><graphic url="tent.jpg"/></egXML>
+          <head type="legend">Recording a simple graphic.</head>
+        </figure>
+        </p>
+        <p>This simple mechanism is useful in the context of illustrations accompanying the text, where the image has illustrative character and not an explanatory function. This minimal encoding, registering the graphic’s existence, can be expanded through nesting the graphic reference <gi>graphic</gi>, the prose description <gi>figDesc</gi>, and the textual transcription in arbitrary text blocks <gi>ab</gi> within a <gi>figure</gi> element employing a structure-oriented encoding approach. <ptr target="#example2" type="crossref"/> demonstrates the use of this expansion for the first drawing of <ptr target="#figure4" type="crossref"/>. <figure xml:id="example2">
+          <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true"><figure>
+            <graphic url="tent.jpg"/>
+            <figDesc>Zeltkonstruktion mit zentralem Zwieselstab [tent construction with
+              a central rod]</figDesc>
+            <ab>Stab (rod) <lb/>Tetraeder [tetrahedron] <lb/>Zwei Oesen (two eyelets)
+              <lb/>Zwei Leder △ [two leather triangles]</ab>
+            <ab>Spitze etwa in Augenhöhe [peak near eye level]</ab>
+          </figure>
+          </egXML>
+          <head type="legend">Encoding of graphic and text.</head>
+        </figure></p>
+        <p>When focusing on the physical disposition of the document and the writing (and drawing) process rather than the textual structure, the <gi>sourceDoc</gi> element has to be considered. <ptr target="#example3" type="crossref"/> uses the same source and shows the segmentation of textual and visual content into surfaces, zones, and lines with exact coordinates for locating every discrete graphical component and portion of text. <figure xml:id="example3">
+          <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true"><sourceDoc>
+            <surface>
+              <zone ulx="288" uly="136" lrx="1500" lry="892">
+                <graphic url="tent.jpg"/>
+                <zone ulx="947" uly="193" lrx="1083" lry="257">Stab</zone>
+                <zone ulx="947" uly="193" lrx="1083" lry="257">Tetraeder</zone>
+                <zone ulx="944" uly="325" lrx="1147" lry="378">Zwei Oesen</zone>
+                <zone ulx="942" uly="378" lrx="1206" lry="435">Zwei Leder △</zone>
+                <zone ulx="936" uly="479" lrx="1466" lry="597">Spitze etwa in
+                  Augenhöhe</zone>
+              </zone>
+            </surface>
+          </sourceDoc>
+          </egXML>
+          <head type="legend">Encoding of the physical disposition of graphics and their components.</head>
+        </figure></p>
+        <p>But neither of these options carries the necessary complexity to model the graphics on the same formal and content-related level as the text in the notebooks. Using these approaches, it is hardly possible to describe their design and meanings, to formalize the complex interactions of text and graphical components, and to record alterations and modifications for comparing various draft stages.</p>
+        <p>An attempt to assign meaning to visual material in TEI-encoded artifacts was made by Martin Holmes’s <title level="m">Image Markup Tool</title> which provides image annotation within the <gi>body</gi> and corresponds with dedicated zones of the image in the <gi>facsimile</gi> section which in turn refers to descriptive categories stored in the encoding description of the TEI Header (<ref type="bibl" target="#holmes2012">Holmes 2012</ref>). Building upon this approach in order to study the genesis of artworks documented in the notebooks, a formalized description in combination with semantic web methods facilitates the comparison of the preliminary drawings and the recording of developments as well as their contextualization with regard to other notebook entries (text and graphics), overall intellectual concepts, and actual artworks.</p>
+        <p>For a comprehensive description of graphical representations, a multi-layered model<note><p>For a graphical representation of the model see <ref target="#scholger2019" type="bibl">Scholger 2019, 46</ref>.</p></note> is proposed, accounting for the various <list rend="ordered inline"><item>graphical components,</item> <item>textual functions, and</item> <item>editorial interpretations</item></list>. The first two levels, describing the graphical components and the textual functions—essentially constituting the material record of the source—are descriptive. The third or interpretational layer allows for commenting and contextualizing the material with links to internal and external entities, and is provided by the editor. This refers to the editorial dichotomy of Hans Zeller in separating the objective facts—the <foreign>Befund</foreign> (record)—and its further editing—the <foreign>Deutung</foreign> (interpretation)—of the record (<ref target="#zeller1971" type="bibl">Zeller 1971, 50–52</ref>). This methodological differentiation of editorial tasks in philology is close to Erwin Panofsky’s theory on the description and interpretation of works of art: his three-level model consists of a <emph>pre-iconographic analysis</emph>, describing the formal aspects of the work in question; the <emph>iconographic analysis</emph> deals with the interpretation; and the <emph>iconological analysis</emph> considers the artwork in its particular cultural and historical context (<ref type="bibl" target="#panofsky2006">Panofsky 2006, 37–40</ref>).</p>
+        <p>The first layer of the proposed model describes—independently of a specific technical implementation—the graphical components of a figure. It declares <list rend="inline simple"><item>a) the <emph>type</emph> of the graphic representation (e.g., sketch, constructional drawing, doodle),</item> <item>b) the <emph>projection</emph> (e.g., front view, plan view),</item> <item>c) the <emph>status</emph> of execution (e.g., total view, detail view),</item> <item>d) the material of the <emph>information carrier</emph> (e.g., paper, newspaper, photograph),</item> <item>e) the <emph>drawing instrument</emph> (e.g., pencil, ink pen),</item> <item>f) the <emph>date</emph> or <emph>time</emph> span (to facilitate a chronological order for further investigation on the genesis of the work), and</item> <item>g) the graphical <emph>shapes and figures</emph> primarily used (e.g., triangle, square, cube, tetrahedron)</item></list>.</p>
+        <p>The second layer records the textual functions. It refers to any explanatory text accompanying the graphic provided by the artist for descriptive purposes. This category includes <list rend="inline simple"><item>a) a <emph>caption</emph>,</item> <item>b) a <emph>description</emph> related to the whole graphic or parts of it, and</item> <item>c) a <emph>label</emph> which designates a specific component of the graphic, sometimes made explicit through a connecting line or clarified through its distinct positioning</item></list>. Additionally, the textual content can be of a specific type (e.g., providing information on the material or measurements to be used in the physical manifestation).</p>
+        <p>The third layer represents the editor’s interpretation. The model consists of <list rend="inline simple"><item>a) a general <emph>comment</emph>,</item> <item>b) several <emph>relations</emph>—to other <emph>notebook entries</emph>, to <emph>external entities</emph> from literature, art, music, or other preparatory objects (like physical models or photographs), to actual <emph>manifestations</emph>, and to general theoretical <emph>concepts</emph> reflected on by the artist—and</item> <item>c) the <emph>image genesis</emph></item></list>, which is not explicitly encoded but is a result of the indexing process and therefore operative: variants are generated automatically and can be brought into a sequence to show—in a manner comparable to different stages of a text in genetic criticism—the development of modifications. The factual information is represented as RDF statements in dedicated taxonomies, enriched with information from existing authority files where applicable.</p>
+        <p>The model in its reduced form neglects those categories that are either already applied as general metadata to the notebook (e.g., author, archive, copyright information), or those that do not apply to Skerbisch’s graphics. If required, the model can easily be extended.</p>
+        <p>The application of these categories to the tent in <ptr type="crossref" target="#figure4"/> is shown in <ptr type="crossref" target="#table1 #table2 #table3"/>. Constants and alterations are easily identified and documented. Most of the properties—like type, projection, shapes, material, notebook entry, external reference, manifestation, and concept—refer to thesauri and controlled vocabularies from existing authority files, especially the <ref target="http://www.getty.edu/research/tools/vocabularies/aat/">Art &amp; Architecture Thesaurus (AAT)</ref><note><p>Art &amp; Architecture Thesaurus (AAT), accessed February 8, 2019, <ptr target="http://www.getty.edu/research/tools/vocabularies/aat/"/>.</p></note> and the individually compiled <ref target="http://gams.uni-graz.at/o:sker.artworks">catalogue of Skerbisch’s artworks</ref><note><p>Artwork list of Hartmut Skerbisch, accessed February 8, 2019, <ptr target="http://gams.uni-graz.at/o:sker.artworks"/>.</p></note> and <ref target="http://gams.uni-graz.at/o:sker.concepts">artistic concepts</ref>.<note><p>Taxonomy on concepts mentioned by the artist, accessed February 8, 2019, <ptr target="http://gams.uni-graz.at/o:sker.concepts"/>.</p></note> <ptr type="crossref" target="#table1 #table2 #table3"/> reveal that many of the instances remain the same across the three representations, but some show distinct differences, especially when it comes to the textual functions which contain instructions for materiality and measurements for the physical realization of the artwork. <table xml:id="table1">
+          <head>Instances of the graphical components.</head>
+          <row role="label">
+            <cell/>
+            <cell>graphic 1</cell>
+            <cell>graphic 2</cell>
+            <cell>graphic 3</cell>
+          </row>
+          <row>
+            <cell role="label">type</cell>
+            <cell cols="3">sketch</cell>
+          </row>
+          <row>
+            <cell role="label">projection</cell>
+            <cell cols="3">axonometry</cell>
+          </row>
+          <row>
+            <cell role="label">status</cell>
+            <cell cols="3">total view</cell>
+          </row>
+          <row>
+            <cell role="label">information carrier</cell>
+            <cell cols="3">paper</cell>
+          </row>
+          <row>
+            <cell role="label">drawing instrument</cell>
+            <cell cols="3">ink pen, black</cell>
+          </row>
+          <row>
+            <cell role="label">date</cell>
+            <cell cols="3">1973–08 (not before)</cell>
+          </row>
+          <row>
+            <cell role="label">form/shape</cell>
+            <cell cols="3">triangle, tetrahedron</cell>
+          </row>
+        </table>
+          <table xml:id="table2">
+            <head>Instances of the textual functions.</head>
+            <row role="label">
+              <cell/>
+              <cell>graphic 1</cell>
+              <cell>graphic 2</cell>
+              <cell>graphic 3</cell>
+            </row>
+            <row>
+              <cell role="label">caption</cell>
+              <cell cols="3">Studien zum Haus am Lepenen Strudel [studies on the house at the Lepenen Strudel]</cell>
+            </row>
+            <row>
+              <cell role="label">description</cell>
+              <cell>Spitze etwa in Augenhöhe [peak near eye level]</cell>
+              <cell>Drehbarer Stab gehalten von drei Stützstäben [rotating rod held by three support rods]</cell>
+              <cell>-</cell>
+            </row>
+            <row>
+              <cell role="label">label</cell>
+              <cell>Stab; Tetraeder; Zwei Oesen; Zwei Leder Dreiecke [rod; tetrahedron; two eyelets; two leather triangles]</cell>
+              <cell>–</cell>
+              <cell>Geneigter Stab [tilted rod]</cell>
+            </row>
+            <row>
+              <cell role="label">measure</cell>
+              <cell>~1,5–1,7m</cell>
+              <cell>–</cell>
+              <cell>–</cell>
+            </row>
+            <row>
+              <cell role="label">material</cell>
+              <cell>Leder [leather]</cell>
+              <cell/>
+              <cell/>
+            </row>
+          </table>
+          <table xml:id="table3">
+            <head>Instances of the interpretational layer.</head>
+            <row role="label">
+              <cell/>
+              <cell>graphic 1</cell>
+              <cell>graphic 2</cell>
+              <cell>graphic 3</cell>
+            </row>
+            <row>
+              <cell role="label">comment</cell>
+              <cell>tent construction with a central rod <gap/></cell>
+              <cell>tent construction with a rotating rod set up in the middle <gap/></cell>
+              <cell>tent construction with a tilted rod at the rear edge <gap/></cell>
+            </row>
+            <row>
+              <cell role="label" cols="4">Relation</cell>
+            </row>
+            <row>
+              <cell role="label">notebook entry</cell>
+              <cell cols="3">graphic (#TB01-004); text (#TB04-128); text (#TB05-12) etc.</cell>
+            </row>
+            <row>
+              <cell role="label">external reference</cell>
+              <cell cols="3">photograph (P112)</cell>
+            </row>
+            <row>
+              <cell role="label">manifestation</cell>
+              <cell cols="3">Erde. Our cubehouse still rocks (A10003); Lispn! (A10036); reden blattartig (A10004)</cell>
+            </row>
+            <row>
+              <cell role="label">concept</cell>
+              <cell cols="3">body, environment, settlement</cell>
+            </row>
+            <row>
+              <cell role="label" cols="4">Image genesis</cell>
+            </row>
+            <row>
+              <cell role="label">alteration</cell>
+              <cell>central rod</cell>
+              <cell>rotating central rod</cell>
+              <cell>one tilted rod as supporting element</cell>
+            </row>
+            <row>
+              <cell role="label">addition</cell>
+              <cell/>
+              <cell>three additional bracing rods</cell>
+              <cell>side panels added</cell>
+            </row>
+            <row>
+              <cell role="label">deletion</cell>
+              <cell/>
+              <cell>side panels removed</cell>
+              <cell/>
+            </row>
+          </table></p>
+        <div xml:id="proposal">
+          <head>Proposal for an Encoding Model</head>
+          <p>To transfer the demonstrated model into digital structures, the existing methods for encoding graphics in TEI—already introduced in the paragraph on <title level="m">Representing Graphics with TEI</title>—are brought together and enhanced with a semantic web approach. The proposed means of encoding the graphic from <ptr target="#figure5" type="crossref"/> in TEI is as follows: <figure xml:id="figure5">
+            <graphic url="images/fig5.jpg" height="723px" width="1233px"/>
+            <head type="legend">Sketch representing a tent, with additional textual functions. Notebook 4: 19v.</head>
+          </figure>
+            <figure xml:id="example4">
+              <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true"><!-- section 1: encoding of the physical dispositions in the facsimile structure -->
+                <facsimile>
+                  <surface xml:id="fol_19v">
+                    <zone xml:id="F-27" ulx="316" uly="145" lrx="1482" lry="837">
+                      <graphic url="tent.jpg"/>
+                      <zone xml:id="F-27-01-a" ulx="947" uly="193" lrx="1083" lry="257"/>
+                      <zone xml:id="F-27-01-b" points="595,515 610,194 620,193 615,514"/>
+                      <zone xml:id="F-27-02-a" ulx="947" uly="267" lrx="1143" lry="317"/>
+                      <zone xml:id="F-27-02-b" points="340,561 615,155 820,345 699,847 631,423"/>
+                      <!-- more <zone> elements -->
+                    </zone>
+                  </surface>
+                </facsimile>
+                <!-- section 2: encoding of the sketch in the intellectual text structure -->
+                <figure facs="#F-27" ana="art:A10003 gt:1010100 gt:6070000 gt:7010000">
+                  
+                  <figDesc>Zelt mit Zwieselstab</figDesc>
+                  
+                  <figure facs="#F-27-01">
+                    <label facs="#F-27-01-a" ana="gt:7050000">Stab</label>
+                    <graphic url="#F-27-01-b"/>
+                  </figure>
+                  
+                  <figure facs="#F-27-02">
+                    <label facs="#F-27-02-a" ana="gt:5030000">Tetraeder</label>
+                    <graphic url="#F-27-02-b"/>
+                  </figure>
+                  
+                  <figure facs="#F-27-03">
+                    <label facs="#F-27-03-a" ana="gt:2080000">Zwei Oesen</label>
+                    <graphic url="#F-27-03-b"/>
+                  </figure>
+                  
+                  <figure facs="#F-27-04">
+                    <label facs="#F-27-04-a">Zwei <material ana="gt:2020000">Leder</material> △</label>
+                    <graphic url="#F-27-04-b"/>
+                  </figure>
+                  
+                  <graphic url="#F-27-a"/>
+                  <label facs="#F-27-b">Spitze etwa in <material type="height" ana="gt:6030000">Augenhöhe</material></label>
+                  
+                </figure>
+              </egXML>
+              <head type="legend">Alignment of transcription and facsimile.</head>
+            </figure> The encoding in <ptr target="#example4" type="crossref"/> consists of two parts, aligning the transcription with the facsimile, using the parallel transcription approach. For representing the respective detail of the digital surrogate and the physical disposition of the graphic, the facsimile structure, i.e., <gi>facsimile</gi>, <gi>surface</gi>, <gi>graphic</gi>, and nested <gi>zone</gi> elements, is used. In contrast to the previously presented method for representing the digital surrogate and the physical disposition within <gi>sourceDoc</gi>, which per definition is used for a single source document (<ref type="bibl" target="#tei2019">TEI Consortium 2019</ref>), the <gi>facsimile</gi> structure is employed. Coordinates using members from the attribute class <att>att.coordinated</att> locate not only the graphic as a whole but also the position of single components, both graphical components and textual functions. This supports the orientation within the graphic and the comparability of details when further processing the content, for example for presentation in an image viewer. A number of tools are available to facilitate the determination of the coordinates. For marking rectangular areas, the <ref target="https://github.com/oxygenxml/TEI-Facsimile-Plugin">TEI-Facsimile-Plugin</ref><note><p>TEI-Facsimile-Plugin, accessed Feburary 8, 2019, <ptr target="https://github.com/oxygenxml/TEI-Facsimile-Plugin"/>.</p></note> as part of the oXygen XML Editor is convenient since this occurs in the same working environment as used for the encoding, inserting the code at the intended place. Unfortunately, the plugin does not support polygons. For this purpose, the <ref target="http://teicat.huma-num.fr/zoner.php">TEI-Zoner</ref>,<note><p>TEI-Zoner, accessed February 8, 2019, <ptr target="http://teicat.huma-num.fr/zoner.php"/>.</p></note> a simple browser-based tool developed by Chris Sparks for marking single points on a surface, is employed. The resulting TEI-conformant snippet—<gi>zone</gi> elements representing the coordinates as pairs of values in the <att>points</att> attribute—can be copied directly to the corresponding position within the facsimile structure in the actual TEI document. For further elaboration on connecting lines between labels and specific graphic details, the <gi>path</gi> element for non-closed areas is available, recently introduced with version 3.4.0 of the TEI Guidelines (<ref target="#tei2019" type="bibl">TEI Consortium 2019, <gi>path</gi></ref>).<note><p><ptr target="http://www.tei-c.org/Vault/P5/3.5.0/doc/tei-p5-doc/en/html/ref-path.html"/>.</p></note> For encoding a graphical representation within the intellectual text structure in the body, the <gi>figure</gi> element is used, nesting the <gi>figDesc</gi> element for a summarizing prose description of the setting provided by the editor. The TEI-schema allows for nested <gi>figure</gi> elements in order to localize specific parts of the graphic—represented each time through a nested <gi>graphic</gi> element—and to localize and encode the textual function and instruction which is represented through a <gi>label</gi> element. In the TEI Guidelines, <gi>label</gi> is defined as containing <quote source="#quoteref4">any label or heading used to identify part of a text, typically but not exclusively in a list or glossary</quote> (<ref xml:id="quoteref4" type="bibl" target="#tei2019">TEI Consortium 2019, chap. <gi>label</gi></ref>).<note><p><ptr target="http://www.tei-c.org/Vault/P5/3.5.0/doc/tei-p5-doc/en/html/ref-label.html"/>.</p></note> This supplementary phrase allows for a broader interpretation and the use of the <gi>label</gi> element in this context. In case the artist gave additional instructions concerning measurements and materials for the planned installation, they are encoded using the elements <gi>measure</gi> and <gi>material</gi>, although the latter was originally introduced for describing the physical material of manuscripts (<ref target="#tei2019" type="bibl">TEI Consortium 2019, chap. <gi>material</gi></ref>).<note><p><ptr target="http://www.tei-c.org/Vault/P5/3.5.0/doc/tei-p5-doc/en/html/ref-material.html"/>.</p></note> The relation between the intellectual content and the physical disposition is established by the <att>facs</att> attributes on the figure tagset, pointing to the designated <att>xml:id</att> attributes on the corresponding <gi>zone</gi> elements. This largely covers the description of the text functions, but the formalization of the graphic-specific properties is still missing. Descriptive elements from the TEI/XML encoding are semantically enriched and formalized by linking them to dedicated statements on subjects in taxonomies expressed in RDF/XML using linked open data sources. This is implemented using the <att>ana</att> attribute which <quote source="#quoteref5">indicates one or more elements containing interpretations of the element on which the <att>ana</att> attribute appears</quote> (<ref target="#tei2019" type="bibl" xml:id="quoteref5">TEI Consortium 2019</ref>).<note><p><ptr target="http://www.tei-c.org/Vault/P5/3.5.0/doc/tei-p5-doc/en/html/ref-att.global.analytic.html"/>.</p></note> This trinity of image, sign, and meaning of content (<ref target="#vogeler2015" type="bibl">Vogeler 2015</ref>) facilitates <list rend="inline simple"><item>a) the formalized representation of the TEI-encoded content,</item> <item>b) the retrieval of common factual statements, and</item> <item>c) the visualization of relations between different entities</item></list>. The next step will be to formalize a special case of the <gi>figure</gi> element in a project-specific ODD in order to further implement the proposed model. In <ptr target="#example4" type="crossref"/>, the value <val>art:A10003</val> refers, indicated through its prefix <val>art</val>, to an RDF triple of a description from the artwork thesaurus, which contains all known artworks by Skerbisch, with related information. The prefix <val>gt</val> addresses subjects from the graphic thesaurus, which incorporate concepts from existing authority files in addition to individually defined concepts where the authority files are lacking. It can be flexibly expanded at any time when new material is edited. The graphic thesaurus represented in SKOS currently contains seven top concepts: <list rend="inline simple"><item>1) visual works,</item> <item>2) materials,</item> <item>3) drafting, drawing and writing equipment,</item> <item>4) supporting material,</item> <item>5) geometric figures,</item> <item>6) views, and</item> <item>7) interpretation</item></list>. In summary, this approach of <list rend="simple inline"><item>a) localizing the topographic aspects of the graphic in the <gi>facsimile</gi> section,</item> <item>b) graphic description through <gi>figure</gi> elements embedded in the text structure, and</item> <item>c) semantic enrichment using the <att>ana</att> attribute</item></list> allows for the detection and extraction of graphics related by their content throughout the entire notebook corpus. Comparing the changes with a formal model clearly shows the alteration of key components and concepts, i.e., <emph>image genesis</emph>. Hence, the encoding of related concepts allows the extraction, comparison, and genealogical sequencing of related sketches from throughout the corpus.</p>
+          <p>Similar concepts assigned to graphics can be retrieved through SPARQL queries: during the upload process into the repository, information encoded in the TEI document is formalized as RDF triples which are stored in a triple store for further retrieval.</p>
+          <p><ptr target="#example5" type="crossref"/> shows the RDF triple with the actual statements representing a single graphical representation (see <ptr target="#figure5" type="crossref"/>) from the notebook, indicated as a URI in the <att>rdf:about</att> of the <gi>rdf:Description</gi>. The reference to the artwork thesaurus, an RDF/XML file, is determined by the predicate <gi>g2o:isArtworkID</gi>; the predicate <gi>rdf:type</gi> references concepts from the graphic thesaurus via a URI in the <att>rdf:resource</att>. <figure xml:id="example5">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true"><rdf:Description rdf:about="http://gams.uni-graz.at/o:sker.04#GRA-046-0">
+              <dc:type rdf:resource="http://purl.org/dc/dcmitype/Image"/>
+              <g2o:isArtworkID rdf:resource="http://gams.uni-graz.at/o:sker.artworks#A10003"/>
+              <dc:date>1972</dc:date>
+              <dc:title>Erde (Our cubehouse still rocks)</dc:title>
+              <rdf:type rdf:resource="http://gams.uni-graz.at/skos/scheme/o:sker.graphics/#1010100"/>
+              <rdf:type rdf:resource="http://gams.uni-graz.at/skos/scheme/o:sker.graphics/#2020000"/>
+              <rdf:type rdf:resource="http://gams.uni-graz.at/skos/scheme/o:sker.graphics/#2080000"/>
+              <rdf:type rdf:resource="http://gams.uni-graz.at/skos/scheme/o:sker.graphics/#5030000"/>
+              <rdf:type rdf:resource="http://gams.uni-graz.at/skos/scheme/o:sker.graphics/#6030000"/>
+              <rdf:type rdf:resource="http://gams.uni-graz.at/skos/scheme/o:sker.graphics/#6070000"/>
+              <rdf:type rdf:resource="http://gams.uni-graz.at/skos/scheme/o:sker.graphics/#7010000"/>
+              <rdf:type rdf:resource="http://gams.uni-graz.at/skos/scheme/o:sker.graphics/#7050000"/>
+              <g2o:image rdf:resource="http://gams.uni-graz.at/iiif/o:sker.04/IMAGE.046/288,136,1212,756/pct:20/0/default.jpg"/>
+              <g2o:partOf rdf:resource="http://gams.uni-graz.at/o:sker.04"/>
+            </rdf:Description>
+            </egXML>
+            <head type="legend">Extracted RDF triples on a single graphical representation.</head>
+          </figure> The storage of the RDF triples extracted from the TEI document and all related thesauri and taxonomies in the triple store Blazegraph lays the foundation for a common query of the data and the retrieval of shared artistic concepts. The following SPARQL query in <ptr target="#example6" type="crossref"/> first finds all notebook fragments (subject), where the predicate <ident>g2o:isArtworkID</ident> refers to a specific concept (object) in the artwork thesaurus (<ident>art:A10003</ident>) and extracts the artwork title via the predicate <ident>dc:title</ident>. The following graph pattern restricts the result with the predicate <ident>g2o:image</ident> to all image fragments and delivers the image coordinates as a URI for later presenting the designated detail through the <ref target="http://iiif.io/api/image/2.0/">IIIF Image API</ref> using image request parameters.<note><p>IIIF Image API, accessed February 8, 2019, <ptr target="http://iiif.io/api/image/2.0/"/>.</p></note> It joins together triples matching any number of the <ident>rdf:type</ident> predicate referencing concepts from the graphic thesaurus: sketches (<ident>gt:1010100</ident>), skin (<ident>gt:2020000</ident>), eyelets (<ident>gt:2080000</ident>), tetrahedra (<ident>gt:5030000</ident>), eye-level-views (<ident>gt:6030000</ident>), axonometric projection (<ident>gt:6070000</ident>), tents (<ident>gt:7010000</ident>), and rods (<ident>gt:7050000</ident>). The predicate <ident>skos:prefLabel</ident> returns the label of the concept from the SKOS thesaurus and <ident>dc:date</ident> extracts the closest date information—either from the pertinent entry, from the notebook itself, or from the creation date of related artworks—to the graphic detail. <figure xml:id="example6">
+            <eg>PREFIX dc:&lt;http://purl.org/dc/elements/1.1/>
+              PREFIX rdf:&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+                PREFIX skos:&lt;http://www.w3.org/2004/02/skos/core#>
+                  PREFIX g2o:&lt;http://gams.uni-graz.at/ontology#>
+                    PREFIX gt:&lt;http://gams.uni-graz.at/skos/scheme/o:sker.graphics/#>
+                      PREFIX art:&lt;http://gams.uni-graz.at/o:sker.artworks#>
+                        
+                        select * where
+                        
+                        {         
+                        ?Fragment g2o:isArtworkID art:A10003 .
+                        art:A10003 dc:title ?artworkTitle .
+                        
+                        { 
+                        ?Fragment g2o:image ?imageRef . 
+                        ?Fragment rdf:type gt:1010100 .
+                        ?Fragment rdf:type gt:7010000 .
+                        
+                        {gt:1010100 skos:prefLabel ?label .} UNION
+                        {gt:7010000 skos:prefLabel ?label  .}
+                        
+                        FILTER (lang(?label) = 'eng')
+                        } 
+                        
+                        OPTIONAL {
+                        ?Fragment dc:date ?date .
+                        }
+                        
+                        }</eg>          
+            <head type="legend">SPARQL query to retrieve notebook fragments with specific properties.</head>
+          </figure> This SPARQL query briefly exemplifies the flexibility of querying data with different restrictions and variations to address the main research question: the genesis of concepts and artworks throughout the notebook corpus. Through this formalization process, similar graphics are extracted, compared, and examined for similarities and differences. The resulting XML data from this SPARQL query returns a list of images as well as a synopsis of features. The reference to the position in the notebooks gives relative temporal information to create a chronology of changes. This is implemented as a search function, dynamically transforming the results to a web representation. Drawing on the encoding of the location of graphical details explained above, single components are highlighted using JavaScript and thus support the interpretation process (<ptr target="#figure6" type="crossref"/>).<figure xml:id="figure6">
+            <graphic url="images/fig6.jpg" height="514px" width="604px"/>
+            <head type="legend">Highlighting of similar properties in different sketches.</head>
+          </figure></p>
+          <p>The comparative juxtaposition, in combination with the temporal dimension of the course of development, reveals specific stages of development and degrees of completion. The SPARQL query extracts, in a first step, all sketches showing a tent (<ident>gt:7010000</ident>), highlighted in blue. A further restriction on the subject human figures (<ident>gt:7020000</ident>), highlighted in yellow, shows only graphics with a combination of tents and human representations. Finally, adding an axonometric projection (<ident>gt:6070000</ident>) as a further selection criterion leaves only the left and the right graphics of the last row. The encoding of shapes on the <gi>zone</gi> element in <ptr target="#example4" type="crossref"/> is relatively simple, but, depending on the level of detail and the complexity of the shape itself, the process can be difficult and time-consuming.</p>
+          <p>This perspective on the corpus draws a picture of the chronological sequence in which the graphics occurred and shows the intensity with which the artist has devoted himself to a specific topic in the conception of his artworks. Since the notebook entries are also linked to artworks and artistic concepts, this method allows searches for corresponding text passages in addition to the graphics. Through the combination of textual entries, graphical representations, external links, and work manifestations, a comprehensive analysis of the work creation process becomes possible.</p>
+        </div>
+      </div>
+      <div xml:id="closingRemarks">
+        <head>Closing Remarks and Future Developments</head>
+        <p>A quotation from Hartmut Skerbisch himself aptly summarizes the challenge at hand: <quote source="#quoteref6">Though not self-evident, there are after all also works of art. Once we get involved, we are in a labyrinth of relationships and seek a way out</quote> (<ref target="#skerbisch2000" type="bibl" xml:id="quoteref6">Skerbisch 2000</ref>).</p>
+        <p>Skerbisch’s artworks usually evolved over a long period of time. This becomes evident in the notebooks themselves: various text fragments and graphical representations are scattered throughout the corpus, and ideas undergo numerous variations. Based on the different manifestations shown in <ptr target="#figure7" type="crossref"/>, it is a challenge to understand the ideas behind them without familiarity with the artist. The tent appears in a private photograph from 1969 and is taken up again in the artworks <title level="m">Erde</title>. <title level="m">Our cubehouse still rocks</title> from 1976 and yet again two years later in the installation <title level="m">Lispn!</title>. The latter refers to a quotation from James Joyce’s <title level="m">Finnegans Wake</title> <quote source="#quoteref7">Soft morning city! Lsp! I am leafy speafing Lpf!<gap/>Lispn!</quote> (<ref target="#joyce1947" type="bibl" xml:id="quoteref7">Joyce 1947, 619</ref>) which also reiterates <foreign>reden blattartig</foreign>, a 1976 literal translation of <mentioned>leafy speafing</mentioned> into German. All of these artworks share the concepts of <soCalled>breathing</soCalled> and <soCalled>body</soCalled> (incorporating the shape of a human lung) and <soCalled>settlement</soCalled> (expressed through the tent).</p>
+        <p>Investigating the graphical representations in notebooks—and especially their changes and alterations in material, positions, components, proportions, etc.—can assist us in solving the bigger puzzle of reconstructing an artist’s creative processes. Such investigations should therefore be much more prominent in the genre of digital scholarly editing. To achieve that goal, however, it is essential to encode graphics with a similar depth and complexity to text. For this purpose, a combination of TEI encoding and semantic web technologies seems to be a promising solution. <figure xml:id="figure7">
+          <graphic url="images/fig7.jpg" width="4836px" height="1108px"/>
+          <head type="legend">Evidence of graphics related to the same concept. <title level="m">reden blattartig</title>, 1976; <title level="m">Erde. Our cubehouse still rocks</title>, 1976; <title level="m">Lispn!</title>, 1978. (Photos: Hartmut Skerbisch).</head>
+        </figure></p>
+        <p>The proposed encoding model for graphical representations is currently a prototype, which is applied to the whole notebook corpus. Additionally, its suitability to comparable source material which shares similar characteristics is yet to be investigated. One can imagine that notebooks by scientists (e.g., <ref target="https://www.bl.uk/collection-items/alexander-flemings-lab-books">laboratory books by Alexander Fleming</ref>),<note><p>Alexander Fleming’s Lab Books, British Library, Add MS 56106–56225, accessed May 25, 2018, <ptr target="https://www.bl.uk/collection-items/alexander-flemings-lab-books"/>.</p></note> artists (e.g., <ref target="http://www.bl.uk/manuscripts/FullDisplay.aspx?ref=Add_MS_5231">sketches and notes by Albrecht Dürer</ref>),<note><p>Sketches and notes by Albrecht Dürer, British Library, Add MS 5231, accessed May 25, 2018, <ptr target="http://www.bl.uk/manuscripts/FullDisplay.aspx?ref=Add_MS_5231"/>.</p></note> scientific travel correspondence (e.g., <ref target="https://edition-humboldt.de/">Alexander von Humboldt</ref>),<note><p>edition humboldt digital, accessed May 25, 2018, <ptr target="https://edition-humboldt.de/"/>.</p></note> notes from architects, engineers, and even medieval manuscripts will benefit from the application of the proposed model. Only through the combination of an equally thorough encoding of textual and graphical components, and their semantic enrichment, can such hybrid source material be fully understood.</p>
+      </div>
+    </body>
+    <back>
+      <div type="bibliography">
+        <listBibl>
+          <bibl xml:id="ball1974"><author>Ball, Hugo</author>. <date>1974</date>. <title level="m">Flight Out of Time: A Dada Diary</title>. <title level="s">The documents of 20th-century art</title>. <pubPlace>New York</pubPlace>: <publisher>Viking Press</publisher>.</bibl>
+          <bibl xml:id="burnard2014"><author>Burnard, Lou</author>. <date>2014</date>. <title level="m">What is the Text Encoding Initiative?</title>
+            <publisher>OpenEdition Press</publisher>. doi: <idno type="DOI">10.4000/books.oep.426</idno>.</bibl>
+          <bibl xml:id="burnard2010"><author>Burnard, Lou</author>, <author>Fotis Jannidis</author>, <author>Elena Pierazzo</author>, and <author>Malte Rehbein</author>. <date>2010</date>. <title level="a">An Encoding Model for Genetic Editions</title>. <ptr target="http://www.tei-c.org/Vault/TC/tcw19.html"/>.</bibl>
+          <bibl xml:id="debiasi1997"><author>De Biasi, Pierre-Marc</author>. <date>1997</date>. <title level="a">Horizons for genetic studies</title>. <title level="j">Word &amp; Image</title>
+            <biblScope unit="volume">13</biblScope> (<biblScope unit="issue">2</biblScope>): <biblScope unit="page">124–34</biblScope>. doi: <idno type="DOI">10.1080/02666286.1997.10434277</idno>.</bibl>
+          <bibl xml:id="frisinghelli1994"><author>Frisinghelli, Christine</author>. <author>1994</author>. <title level="a">Der wesentliche Bestand der Erscheinungen</title>. In <title level="m">Hartmut Skerbisch: Werkauswahl 1969–1994, Neue Galerie Graz</title>, edited by <editor>Werner Fenz</editor>, <biblScope unit="page">60–65</biblScope>. <pubPlace>Graz</pubPlace>: <publisher>Neue Galerie</publisher>.</bibl>
+          <bibl xml:id="grésillon1999"><author>Grésillon, Almuth</author>. <date>1999</date>. <title level="m">Literarische Handschriften: Einführung in die <q>critique génétique</q></title>. <title level="s">Arbeiten zur Editionswissenschaft 4</title>. <pubPlace>Bern</pubPlace>: <publisher>Lang</publisher>.</bibl>
+          <bibl xml:id="holmes2012"><author>Holmes, Martin</author>. <date>2012</date>. <title level="a">Image Markup Tool</title>. Accessed May 25, 2018. <ptr target="https://hcmc.uvic.ca/~mholmes/image_markup/"/>.</bibl>
+          <bibl xml:id="ide1995"><author>Ide, Nancy M.</author>, and <author>C. M. Sperberg-McQueen</author>. <date>1995</date>. <title level="a">The TEI: History, Goals, and Future</title>. <title level="j">Computers and the Humanities</title>
+            <biblScope unit="volume">29</biblScope> (<biblScope unit="issue">1</biblScope>): <biblScope unit="page">5–15</biblScope>. <ptr target="https://doi.org/10.1007/BF01830313"/>.</bibl>
+          <bibl xml:id="joyce1947"><author>Joyce, James</author>. <date>1947</date>. <title level="m">Finnegans Wake</title>. <pubPlace>New York</pubPlace>: <publisher>Viking Press</publisher>.</bibl>
+          <bibl xml:id="magritte1929"><author>Magritte, René</author>. <date>1929</date>. <title level="a">Les mots et les images</title>. <title level="j">La Révolution Surréaliste</title>
+            <biblScope unit="volume">12</biblScope>: <biblScope unit="page">32–33</biblScope>.</bibl>
+          <bibl xml:id="niegelhell2015"><author>Niegelhell, Franz</author>. <date>2015</date>. <title level="a">Der Zeit Voraus Sein</title>. In <title level="m">Hartmut Skerbisch: Leben Und Werk, Life and Work: Gegenwart Als Gegenwart, Present as Present</title>, edited by <editor>Verein der Freunde von Hartmut Skerbisch</editor>, <biblScope unit="page">20–97</biblScope>. <pubPlace>Wien</pubPlace>: <publisher>Verlag für Moderne Kunst</publisher>.</bibl>
+          <bibl xml:id="panofsky2006"><author>Panofsky, Erwin</author>. <date>2006</date>. <title level="m">Ikonographie und Ikonologie: Bildinterpretation nach dem Dreistufenmodell</title>. <pubPlace>Köln</pubPlace>: <publisher>DuMont</publisher>.</bibl>
+          <bibl xml:id="radecke2013"><author>Radecke, Gabriele</author>. <date>2013</date>. <title level="a">Notizbuch-Editionen: Zum philologischen Konzept der Genetisch-kritischen und kommentierten Hybrid-Edition von Theodor Fontanes Notizbüchern</title>. In <title level="s">Internationales Jahrbuch für Editionswissenschaft.</title> Vol. <biblScope unit="volume">27</biblScope>, edited by <editor>Rüdiger Nutt-Kofoth</editor> and <editor>Bodo Plachta</editor>. <biblScope unit="page">149–72</biblScope>. <pubPlace>Münster</pubPlace>: <publisher>De Gruyter</publisher>.</bibl>
+          <bibl xml:id="scholger2018a"><author>Scholger, Martina</author>. <date>2018a</date>. <title level="a">Assoziationsprozessen auf der Spur: Digitale Edition der Notizbücher von Hartmut Skerbisch</title>. PhD diss., University of Graz. <ptr target="http://unipub.uni-graz.at/urn:nbn:at:at-ubg:1-123592"/>.</bibl>
+          <bibl xml:id="scholger2018b"><author>Scholger, Martina</author>. <date>2018b</date>. <title level="m">Die Notizbücher von Hartmut Skerbisch. 1969–2008</title>. <edition>Eine digitale Edition</edition>. Accessed May 25, 2018. <ptr target="https://gams.uni-graz.at/skerbisch"/>.</bibl>
+          <bibl xml:id="scholger2019"><author>Scholger, Martina</author>. <title level="a">Pieces of a Bigger Puzzle: Tracing the Evolution of Artworks and Conceptual Ideas in Artists’ Notebooks</title>. In <title level="m">Versioning Cultural Objects. Digital Approaches</title>, edited by <editor>Roman Bleier</editor> and <editor>Sean M. Winslow</editor>. <biblScope unit="page">27–58</biblScope>.</bibl>
+          <bibl xml:id="skerbisch2000"><author>Skerbisch, Hartmut</author>. <date>2000</date>. <title level="a">Statements</title>. Accessed May 25, 2018. <ptr target="http://www.van.at/alt/van99/energie/statement.htm"/>.</bibl>
+          <bibl xml:id="steiner2018"><author>Steiner, Elisabeth</author>, and <author>Johannes Stigler</author>. <date>2018</date>. <title level="a">GAMS–An infrastructure for the long-term preservation and publication of research data from the Humanities</title>. In <title level="m">Mitteilungen der VÖB 71: Nr. 1: Repositorien in Österreich</title>, edited by <editor>Vereinigung Österreichischer Bibliothekarinnen und Bibliothekare</editor>, <biblScope unit="page">66–75</biblScope>. doi: <idno type="DOI">10.31263/voebm.v71i1.1992</idno>.</bibl>
+          <bibl xml:id="tei2019"><author>TEI Consortium</author>. <date>2019</date>. <title level="m">TEI P5: Guidelines for Electronic Text Encoding and Interchange. Version 3.5.0.</title>
+            <ptr target="http://www.tei-c.org/Vault/P5/3.5.0/doc/tei-p5-doc/en/html/"/>.</bibl>
+          <bibl xml:id="verein2015"><editor>Verein der Freunde von Hartmut Skerbisch</editor>, ed. <date>2015</date>. <title level="m">Hartmut Skerbisch: Leben Und Werk, Life and Work: Gegenwart Als Gegenwart, Present as Present</title>. <pubPlace>Wien</pubPlace>: <publisher>Verlag für Moderne Kunst</publisher>.</bibl>
+          <bibl xml:id="vogeler2015"><author>Vogeler, Georg</author>. <date>2015</date>. <title level="a">Warum werden mittelalterliche und frühneuzeitliche Rechnungsbücher eigentlich nicht digital editiert?</title> In <title level="m">Grenzen und Möglichkeiten der Digital Humanities</title>, edited by <editor>Constanze Baum</editor> and <editor>Thomas Stäcker</editor>. Sonderband der Zeitschrift für digitale Geisteswissenschaften 1. <ptr target="http://dx.doi.org/10.17175/sb001_007"/>.</bibl>
+          <bibl xml:id="zeller1971"><author>Zeller, Hans</author>. <date>1971</date>. <title level="a">Befund und Deutung: Interpretation und Dokumentation als Ziel und Methode der Edition</title>. In <title level="m">Texte und Varianten: Probleme ihrer Edition und Interpretation</title>, edited by <editor>Gunter Martens</editor> and <editor>Hans Zeller</editor>, <biblScope unit="page">45–89</biblScope>. <pubPlace>München</pubPlace>: <publisher>Beck</publisher>.</bibl>
+        </listBibl>
+      </div>
+    </back>
+  </text>
+</TEI>

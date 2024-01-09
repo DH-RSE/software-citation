@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<!-- $Id: jtei-cc-ra-wissik-198-source.xml 1128 2022-08-10 21:48:15Z ron $ -->
+<TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="main">Encoding Interruptions in Parliamentary Data: From Applause to Interjections and Laughter</title>
+        <author>
+          <name>
+            <forename>Tanja</forename>
+            <surname>Wissik</surname>
+          </name>
+          <affiliation>Tanja Wissik is a <roleName>senior scientist</roleName> at the ACDH-CH (Austrian Centre for Digital Humanities and Cultural Heritage) of the <orgName>Austrian Academy of Sciences</orgName> and teaches at the University of Graz and the University of Vienna. She works on numerous national and international research projects in the fields of language resources and digital humanities. Her research interests include digital language resources and technologies, especially terminological resources and corpora, variation and language change, workflow research, and the teaching of DH technologies and methods.
+          </affiliation>
+          <email>Tanja.Wissik@oeaw.ac.at</email>
+        </author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>TEI Consortium</publisher>
+        <date>30/06/2022</date>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by/4.0/">
+            <p>For this publication a Creative Commons Attribution 4.0 International license has been granted by the author(s) who retain full copyright.</p>
+          </licence>
+        </availability>
+      </publicationStmt>
+      <seriesStmt>
+        <title level="j">Journal of the Text Encoding Initiative</title>
+        <editor role="guest">Georg Vogeler</editor>
+        <editor role="managing">Tanja Wissik</editor>
+        <editor role="managing">Joel Kalvesmaki</editor>
+        <editor role="managing">Pietro Maria Liuzzo</editor>
+        <editor role="managing">Tiago Sousa Garcia</editor>
+        <editor role="technical">Ron Van den Branden</editor>
+        <biblScope unit="issue" n="14">Selected Papers from the 2019 TEI Conference</biblScope>
+      </seriesStmt>
+      <sourceDesc>
+        <p>No source, born digital.</p>
+      </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+      <projectDesc>
+        <p>OpenEdition Journals -centre for open electronic publishing- is the platform for journals in the humanities and social sciences, open to quality periodicals looking to publish full-text articles online.</p>
+      </projectDesc>
+      <tagsDecl>
+        <rendition xml:id="bold" scheme="css">font-weight: bold;</rendition>
+        <rendition xml:id="italic" scheme="css">font-style: italic;</rendition>
+      </tagsDecl>
+    </encodingDesc>
+    <profileDesc>
+      <langUsage>
+        <language ident="en">en</language>
+      </langUsage>
+      <textClass>
+        <keywords xml:lang="en">
+          <term>parliamentary data</term>
+          <term>parliamentary records</term>
+          <term>parliamentary interruptions</term>
+          <term>encodings of parliamentary interruptions</term>
+        </keywords>
+      </textClass>
+    </profileDesc>
+      <revisionDesc>
+        <change who="RvdB" when="2022-08-09">Applied author’s proofing corrections.</change>
+        <change who="RvdB" when="2022-06-28">Initial encoding</change>
+      </revisionDesc>
+   </teiHeader>
+  <text>
+    <front>
+      <div type="abstract" xml:id="abstract">
+        <p>Parliamentary data, especially parliamentary discourse, is of interest to researchers from various fields in the humanities and social sciences. The growing number of machine-readable and annotated parliamentary text corpora opens up this field for computer-based quantitative analysis. In this paper I aim to give an overview of how parliamentary interruptions are recorded in official parliamentary records and how they are modeled and encoded in currently available machine-readable parliamentary corpora. Furthermore, I will discuss whether these encodings are suitable for computer-based quantitative analysis of parliamentary interruptions. I will suggest detailed encodings of parliamentary interruptions in TEI as an extension to the Parla-CLARIN recommendations, to enable the extraction of parliamentary interruptions and to facilitate computerized quantitative analysis based on these encodings. As an example, I will use the encoding of interruptions in the Austrian Parliamentary Records.</p>
+      </div>
+      <div type="acknowledgements">
+        <p>This work was supported in part by a CLARIN Mobility Grant and the DYLEN Project funded by the ÖAW go!digital Next Generation Grant (GDNG 2018–020).</p>
+      </div>
+    </front>
+    <body>
+      <div xml:id="introduction">
+        <head>Introduction</head>
+        <p>Parliamentary data, especially parliamentary discourse, is of interest to researchers from various fields in the humanities and social sciences, such as linguistics, political sciences, communication studies, history, and law studies. In most countries, official parliamentary records are available in electronic format on the parliamentary websites and there is a growing number of machine-readable and annotated parliamentary corpora (see <ref type="bibl" target="#fiser18">Fišer, Lenardič, and Erjavec 2018, 1321</ref>) that are opening up parliamentary discourse for computer-based quantitative analysis. Interesting research into parliamentary data includes studies related to parliamentary interruptions. However, most of the studies produced so far are of a qualitative nature.</p>
+        <p>In this paper I will give an overview of how parliamentary interruptions are recorded in official parliamentary records and how they are modeled and encoded in currently available machine-readable parliamentary corpora. Furthermore, I will discuss whether these encodings are suitable for computer-based quantitative analysis of parliamentary interruptions. I will suggest detailed encodings of parliamentary interruptions as an extension to the Parla-CLARIN recommendations (<ref type="bibl" target="#erjavec22">Erjavec and Pančur 2022</ref>) to facilitate computerized quantitative analysis based on these encodings. Such encodings would allow one to study, for example, correlations between interruptions and other factors like political party or age. They would also allow one to track changes in the ratio of interruptions across time and to test whether such changes are influenced by factors like the topic under discussion and which party is in the government and which in opposition.</p>
+        <p>I will use the encoding of interruptions in the Austrian Parliamentary Records as an example.</p>
+      </div>
+      <div xml:id="interruptions">
+        <head>Parliamentary Interruptions</head>
+        <p>Ilie (<ref xml:id="quoteref1" type="bibl" target="#ilie05">2005, 415</ref>) defines parliamentary discourse as <quote source="#quoteref1">a process of joint real-life interaction that consists of interventions made by several participants involved in a dialogic exchange who are assigned particular institutional roles</quote>. In most parliamentary debates, time on the floor is allocated by institutional rules and regulations rather than on a turn-by-turn basis. However, conversational interactions, such as interruptions, occur in parliamentary discourse (see <ref type="bibl" target="#ilie01">Ilie 2001</ref>, <ref type="bibl" target="#ilie05">2005</ref>) and are an intriguing research topic.</p>
+        <p>Studies on parliamentary interruptions have been carried out by, among others, Wodak et al. (<ref type="bibl" target="#wodak90">1990</ref>); Burkhardt (<ref type="bibl" target="#burkhardt04">2004</ref>); Ilie (<ref type="bibl" target="#ilie05">2005</ref>, <ref type="bibl" target="#ilie10">2010</ref>); Zima, Brône, and Feyaerts (<ref type="bibl" target="#zima10">2010</ref>); Stopfner (<ref type="bibl" target="#stopfner13">2013</ref>); and Truan (<ref type="bibl" target="#truan16">2016</ref>, <ref type="bibl" target="#truan17">2017</ref>). Most of these studies are qualitative, applying close reading methods. Some of these studies focus on classifying parliamentary interruptions (e.g., <ref type="bibl" target="#ilie05">Ilie 2005</ref>; <ref type="bibl" target="#burkhardt04">Burkhardt 2004</ref>). According to Ilie (<ref type="bibl" target="#ilie05">2005, 419</ref>), we can distinguish between verbal and nonverbal interruptions. Verbal interruptions are defined as <quote source="#quoteref2">voiced intrusions in the current speaker’s contribution</quote> (<ref xml:id="quoteref2" type="bibl" target="#ilie05">Ilie 2005, 420</ref>), while nonverbal interruptions are, for example, applause or laughter. Interruptions can also be classified according to the initiator, whether an individual, such as a single member of parliament (MP), or a group, such as an entire party. Similarly, we can distinguish between institutionalized interruptions (e.g., a call to order) and noninstitutionalized interruptions (e.g., an interjection voiced by one MP). Finally, we can differentiate between positively and negatively connotated interruptions. Similar classifications can be found in Burkhardt (<ref type="bibl" target="#burkhardt04">2004, 159ff</ref>). Regarding the classification, Ilie (<ref xml:id="quoteref3" type="bibl" target="#ilie05">2005, 419</ref>) states that <quote source="#quoteref3"><supplied>n</supplied>one of the above parameters can adequately and exhaustively account on their own for the range of variation across interventions meant to interfere with the current speaker. Moreover, each of these parameters involve a number of shifting and overlapping variables.</quote></p>
+        <p>Even though interruptions are a general feature of parliamentary discourse, it has to be said that occurrence, type, and frequency depend on the parliamentary tradition and the rules of procedure (see <ref type="bibl" target="#bevitori04">Bevitori 2004, 87</ref>).</p>
+        <div xml:id="recordings">
+          <head>Recordings of Interruptions in Parliamentary Records</head>
+          <p>In order to study parliamentary discourse, and in particular parliamentary interruptions, researchers have to rely on the documentation of parliamentary debates, such as transcripts, shorthand records, and audio/video recordings. In most countries, parliamentary debates are recorded formally in parliamentary records and published. Winters (<ref xml:id="quoteref4" type="bibl" target="#winters17">2017</ref>) states that <quote source="#quoteref4"><supplied>p</supplied>arliamentary records form a unique longitudinal dataset about human behaviour: they can span hundreds of years, with periodical (often daily or weekly) accounts published according to a stable procedure. The nearly verbatim character of much of the transcription, albeit within certain conventions, also renders it closer to the spoken word than other sources with similar chronological coverage.</quote></p>
+          <p>Most parliamentary records, whether transcriptions or stenographic verbatim records, record not only the speeches of members of parliament, but also the interruptions. Typically, these interruptions are distinguished from the rest of the text by some typographical convention (e.g., italics, boldface, or indentation). I will present some examples taken from parliamentary records of different countries in different languages. In the parliamentary records of the Italian Senate (see <ptr type="crossref" target="#figure1"/>), for instance, the interruption is written in italics and enclosed in parentheses. The example shows a nonverbal interruption, namely applause (<foreign xml:lang="it">applausi</foreign>).
+            <figure xml:id="figure1">
+              <graphic url="images/figure1.png" height="278px" width="516px"/>
+              <head type="legend">Example of the recording of interruptions in the records of the Italian Parliament (XVIII, 186th sitting, January 30, 2020)<note>Senato della Repubblica, Resoconto Stenografico, 186ª seduta pubblica, January 30, 2020, <ptr target="http://www.senato.it/service/PDF/PDFServer/BGT/1142053.pdf"/>.</note>
+              </head>
+            </figure>
+          </p>
+          <p>In the British Hansard, interruptions are marked by square brackets and italics. In the example in <ptr type="crossref" target="#figure2"/> we see a nonverbal interruption, namely laughter.
+            <figure xml:id="figure2">
+              <graphic url="images/figure2.png" height="351px" width="331px"/>
+              <head type="legend">Example of the recording of interruptions in the records of the British Hansard (volume 670, no. 19, January 30, 2020)<note>House of Commons Official Report, Plenary Debates (Hansard), vol. 670, January 30, 2019, last updated February 11, 2020, <ptr target="https://hansard.parliament.uk/commons/2020-01-30"/>.</note>
+              </head>
+            </figure>
+          </p>
+          <p>In the following example of a German parliamentary record (<ptr type="crossref" target="#figure3"/>), the interruptions are set in parentheses and indented, to contrast with the text of the regular speeches. In <ptr type="crossref" target="#figure3"/> we also see a combination of interruptions: a nonverbal interruption (<foreign xml:lang="de">Beifall</foreign>, applause) and two verbal interruptions (by MP Michael Grosse-Brömer and MP Sören Bartol).
+            <figure xml:id="figure3">
+              <graphic url="images/figure3.png" height="247px" width="290px"/>
+              <head type="legend">Example of the recording of interruptions in the German Parliamentary Records (19/143, January 30, 2020)<note>Deutscher Bundestag, Stenographischer Bericht, 19. Wahlperiode, 143. Sitzung, Berlin, January 30, 2020, <ptr target="http://dipbt.bundestag.de/doc/btp/19/19143.pdf"/>.</note>
+              </head>
+            </figure>
+          </p>
+          <p>In the Polish Parliamentary Records (<ptr type="crossref" target="#figure4"/>), interruptions, both verbal and nonverbal, are also enclosed in parentheses. Nonverbal interruptions are set in italics, while verbal interruptions use a regular font style, with only the name of the MP or the collective set in italics.
+            <figure xml:id="figure4">
+              <graphic url="images/figure4.png" height="399px" width="301px"/>
+              <head type="legend">Example of the recording of interruptions in the Polish Parliamentary Records (85th sitting, August 30, 2019).<note>Sprawozdanie Stenograficznez, 85. posiedzenia Sejmu Rzeczypospolitej Polskiej, August 30, 2019, <ptr target="http://orka2.sejm.gov.pl/StenoInter8.nsf/0/D6D603947842BC45C1258467000B519E/%24File/85_c_ksiazka_bis.pdf"/>.</note></head>
+            </figure>
+          </p>
+          <p>Finally, the shorthand records of the Austrian National Council contain various types of interruptions in parentheses and italics (see <ptr type="crossref" target="#figure5"/>).
+            <figure xml:id="figure5">
+              <graphic url="images/figure5.png" height="244px" width="504px"/>
+              <head type="legend">Example of the recording of interruptions in the Austrian Parliamentary Records (XXIV, 10th sitting, January 21, 2009)<note>10. Sitzung des Nationalrates der Republik Österreich, XXIV. Gesetzgebungsperiode (10th sitting of the National Council of the Republic of Austria, 24th legislative period), January 21, 2009, Stenographisches Protokoll (shorthand record), p. 111, <ptr target="https://www.parlament.gv.at/PAKT/VHG/XXIV/NRSITZ/NRSITZ_00010/fname_149810.pdf"/>.</note>
+              </head>
+            </figure>
+          </p>
+          <p><ptr type="crossref" target="#figure5"/>, an example of an Austrian parliamentary record, illustrates a combination of verbal and nonverbal interruptions in parentheses and italics. Furthermore, the name of the MP voicing the interjection is set in bold type.</p>
+          <p>These examples show that interruptions recorded in the written records in these five countries range from terse descriptions like <q>Laughter</q> in the British Hansard or <q>Applausi</q> in the Italian records to more detailed descriptions, as in the Polish, German, and Austrian records, where the wordings of the verbal interruptions are also recorded.</p>
+          <p>In the next section we will closely examine these typographically marked interruptions in the Austrian Parliamentary Records. According to Klein (<ref type="bibl" target="#klein82">1982, 234</ref>), the jargon of the stenographers aptly refers to them as <q>Regiebemerkungen</q> (stage directions).</p>
+        </div>
+        <div xml:id="austria">
+          <head>Austrian Use Case: Interruptions in the Austrian Parliamentary Records</head>
+          <p>As seen in <ptr type="crossref" target="#figure5"/>, parliamentary interruptions in the Austrian Parliamentary Records are recorded in parentheses and italics. However, other transcriber comments are recorded in the same fashion as well. Overall, the following types of information can be found: verbal interruptions, nonverbal interruptions, descriptions of scenes or gestures, and descriptions of parliamentary procedures. Next, I will illustrate these types of information with examples.</p>
+          <list type="gloss">
+            <label>Verbal interruptions</label>
+            <item>
+              <list rend="ordered">
+                <item>
+                  <p>Individual verbal interruptions (by a specific person)</p>
+                  <p>Example: <hi rendition="#italic">(Abg. <hi rendition="#bold">Vilimsky</hi>: Volksabstimmung!)</hi><note>10. Sitzung des Nationalrates der Republik Österreich, XXIV. Gesetzgebungsperiode (10th sitting of the National Council of the Republic of Austria, 24th legislative period), January 21, 2009, Stenographisches Protokoll (shorthand record), p. 98, <ptr target="https://www.parlament.gv.at/PAKT/VHG/XXIV/NRSITZ/NRSITZ_00010/fnameorig_149810.html"/>.</note></p>
+                </item>
+                <item>
+                  <p>Individual verbal interruptions, where the wording is not recorded by the stenographer</p>
+                  <p>Example: <hi rendition="#italic">(Zwischenruf des Abg. <emph rendition="#bold">Vilimsky</emph>.)</hi><note>47. Sitzung des Nationalrates der Republik Österreich, XXIII. Gesetzgebungsperiode, January 31, 2008, Stenographisches Protokoll, p. 106, <ptr target="https://www.parlament.gv.at/PAKT/VHG/XXIII/NRSITZ/NRSITZ_00047/fnameorig_114688.html"/>.</note></p>
+                </item>
+                <item>
+                  <p>Collective verbal interruptions (by a party or group of MPs)</p>
+                  <p>Example: <hi rendition="#italic">(Ruf bei den Grünen: Freudenau gibt’s nicht! – Ruf beim BZÖ: <hi rendition="#bold">Was</hi> ist mit der Freudenau?)</hi><note>10. Sitzung des Nationalrates der Republik Österreich, XXIV. Gesetzgebungsperiode, January 21, 2009, Stenographisches Protokoll, p. 50, <ptr target="https://www.parlament.gv.at/PAKT/VHG/XXIV/NRSITZ/NRSITZ_00010/fnameorig_149810.html"/>.</note></p>
+                </item>
+                <item>
+                  <p>Anonymous verbal interruptions</p>
+                  <p>Verbal interruptions where the wording is recorded by the stenographer but they are not attributed to an individual or collective</p>
+                  <p>Example: <hi rendition="#italic">(Rufe: Warum?)</hi><note>Ibid., p. 284, <ptr target="https://www.parlament.gv.at/PAKT/VHG/XXIV/NRSITZ/NRSITZ_00010/fnameorig_149810.html"/>.</note></p>
+                </item>
+                <item>
+                  <p>Verbal interruptions where the wording is not recorded by the stenographer and they are not attributed to a person or collective</p>
+                  <p>Example: <hi rendition="#italic">(Zwischenrufe)</hi><note>16. Sitzung des Nationalrates der Republik Österreich, XX. Gesetzgebungsperiode, April 16–19, 1996, p. 217 , <ptr target="https://www.parlament.gv.at/PAKT/VHG/XX/NRSITZ/NRSITZ_00016/fnameorig_114021.html"/>.</note></p>
+                </item>
+              </list>
+            </item>
+            <label>Nonverbal interruptions</label>
+            <item>
+              <list rend="ordered">
+                <item>
+                  <p>Individual nonverbal interruptions (by a specific person)</p>
+                  <p>Example: <hi rendition="#italic">(Abg. Dr. <hi rendition="#bold">Khol</hi> schüttelt den Kopf.)</hi><note>100. Sitzung des Nationalrates der Republik Österreich XXI. Gesetzgebungsperiode, April 17, 2002, p. 42, <ptr target="https://www.parlament.gv.at/PAKT/VHG/XXI/NRSITZ/NRSITZ_00100/fnameorig_114555.html"/>.</note></p>
+                </item>
+                <item>
+                  <p>Collective nonverbal interruptions (by a party or a group of MPs)</p>
+                  <p>Example: <hi rendition="#italic">(Beifall bei der SPÖ)</hi><note>Ibid., p. 26, <ptr target="https://www.parlament.gv.at/PAKT/VHG/XXI/NRSITZ/NRSITZ_00100/fnameorig_114555.html"/>.</note></p>
+                  Example: <hi rendition="#italic">(Beifall bei den Freiheitlichen und bei Abgeordneten der ÖVP.)</hi><note>Ibid., p. 28, <ptr target="https://www.parlament.gv.at/PAKT/VHG/XXI/NRSITZ/NRSITZ_00100/fnameorig_114555.html"/>.</note>
+                </item>
+                <item>
+                  <p>Anonymous nonverbal interruptions not attributed to a person or collective (e.g., mentioning of a party)</p>
+                  <p>Example: <hi rendition="#italic">(Allgemeiner Beifall.)</hi><note><ptr target="https://www.parlament.gv.at/PAKT/VHG/XX/NRSITZ/NRSITZ_00001/fnameorig_113991.html"/>.</note></p>
+                  <p>Example: <hi rendition="#italic">(Heiterkeit.)</hi><note>100. Sitzung des Nationalrates der Republik Österreich XXI. Gesetzgebungsperiode, April 17, 2002, p. 80, <ptr target="https://www.parlament.gv.at/PAKT/VHG/XXI/NRSITZ/NRSITZ_00100/fnameorig_114555.html"/>.</note></p>
+                </item>
+              </list>
+            </item>
+            <label>Grouped interruptions</label>
+            <item>
+              <p>These are different types of interruptions grouped together in parentheses and separated by a dash.</p>
+              <p>Example: <hi rendition="#italic">(Abg. <hi rendition="#bold">Strache:</hi> Wo ist da der Weg für Österreich? – Weitere Zwischenrufe bei der FPÖ.)</hi><note>10. Sitzung des Nationalrates der Republik Österreich, XXIV. Gesetzgebungsperiode, January 21, 2009, Stenographisches Protokoll, p. 98, <ptr target="https://www.parlament.gv.at/PAKT/VHG/XXIV/NRSITZ/NRSITZ_00010/fnameorig_149810.html"/>.</note></p>
+              <p>Example: <hi rendition="#italic">Abg. Mag. <hi rendition="#bold">Schweitzer</hi>: Wir hören ja zu! – Abg. Ing. <hi rendition="#bold">Westenthaler</hi>: Die Grünen haben schon wieder eine Demonstration im Haus!)</hi><note>100. Sitzung des Nationalrates der Republik Österreich XXI. Gesetzgebungsperiode, April 17, 2002, p. 40, <ptr target="https://www.parlament.gv.at/PAKT/VHG/XXI/NRSITZ/NRSITZ_00100/fnameorig_114555.html"/>.</note></p>
+            </item>
+            <label>Descriptions</label>
+            <item>
+              <p>Descriptions are of two types: descriptions of the scene, gestures, etc. as well as descriptions of the parliamentary procedure. The former can be related to interruptions, while the latter type is not an interruption.</p>
+              <list rend="ordered">
+                <item>
+                  <p>Descriptions of the scene, gestures, etc.</p>
+                  <p>This type of description can refer to a speaker or an interrupter and describes movements, gestures, or similar minutiae. The following examples are limited to descriptions of interrupters.</p>
+                  <p>Example: <hi rendition="#italic">(Abg. <hi rendition="#bold">Mandak</hi> – auf die auf dem Rednerpult platzierte Tafel weisend –: Kann man das Taferl bitte wegnehmen? – Abg. <hi rendition="#bold">Kopf</hi> entfernt die Tafel vom Rednerpult.)</hi><note>79. Sitzung des Nationalrates der Republik Österreich, XXII. Gesetzgebungsperiode, October 14, 2004, Stenographisches Protokoll, p. 9, <ptr target="https://www.parlament.gv.at/PAKT/VHG/XXII/NRSITZ/NRSITZ_00079/fnameorig_031347.html"/>.</note>
+                  </p>
+                  <p>Example: <hi rendition="#italic">(Abg. <hi rendition="#bold">Grosz</hi> – in Richtung des sich zum Rednerpult begebenden Abg. <hi rendition="#bold">Scheibner</hi> –: Bedank dich für die Neujahrswünsche!)</hi>
+                    <note>10. Sitzung des Nationalrates der Republik Österreich, XXIV. Gesetzgebungsperiode, January 21, 2009, Stenographisches Protokoll, p. 195, <ptr target="https://www.parlament.gv.at/PAKT/VHG/XXIV/NRSITZ/NRSITZ_00010/fnameorig_149810.html"/>.</note>
+                  </p>               
+                </item>
+                <item>
+                  <p>Description of parliamentary procedure</p>
+                  <p>These descriptions are not interruptions as defined in <ptr type="crossref" target="#interruptions"/>. They are included in this list for the sake of completeness.</p>
+                  <p>Example: (<hi rendition="#italic">Die Sitzung wird um 10.37 Uhr unterbrochen und um 10.44 Uhr wieder aufgenommen.)</hi><note>100. Sitzung des Nationalrates der Republik Österreich XXI. Gesetzgebungsperiode, April 17, 2002, p. 45, <ptr target="https://www.parlament.gv.at/PAKT/VHG/XXI/NRSITZ/NRSITZ_00100/fnameorig_114555.html"/>.</note>
+                  </p>
+                </item>
+              </list>
+            </item>
+         </list>
+          <p>One type of interruption that is mentioned in Ilie’s (<ref type="bibl" target="#ilie05">2005</ref>) classification—the institutionalized interruptions, for example, a call to order (<q>Ordnungsruf</q>)—are not found as parenthetical comments in the Austrian Parliamentary Records. They are recorded as regular speech, as shown in <ptr type="crossref" target="#figure6"/>.
+            <figure xml:id="figure6">
+              <graphic url="images/figure6.png" height="75px" width="579px"/>
+              <head type="legend">Recording of a call to order in an Austrian Parliamentary Record (XXI, 100th sitting, April 17, 2002).</head>
+            </figure>
+          </p>
+          <p>My goal in looking in detail at already existing classification of parliamentary records in the literature, at recordings of interruptions in different parliamentary records, and at the Austrian Parliamentary Records data was twofold: to elaborate a SKOS vocabulary to be used for the encoding (see <ptr type="crossref" target="#parlat"/>) and to recognize patterns in order to write rule-based scripts to identify and encode those interruptions automatically.</p>
+        </div>
+      </div>
+      <div xml:id="availablecorpora">
+        <head>Available Parliamentary Corpora and Their Encodings</head>
+        <p>In <ptr type="crossref" target="#recordings"/> we described the parliamentary records, usually available from the websites of the respective national parliaments in PDF or HTML format. In addition, there are parliamentary corpora containing collections of these parliamentary records in machine-readable form, enriched with metadata and various types of annotations.</p>
+        <p>A large number of parliamentary corpora is available (see <ref type="bibl" target="#fiser18">Fišer, Lenardič, and Erjavec 2018, 1321</ref>) with a variety of different encodings. Looking at the available corpora, we can distinguish between three main types of encodings in parliamentary corpora:
+          <list rend="ordered">
+            <item>custom or ad-hoc encodings, mostly in XML,</item>
+            <item>encodings in Akoma Ntoso, an XML-based format for parliamentary, legislative, and judiciary documents (<ref type="bibl" target="#akoma18">Akoma Ntoso 2018</ref>), and</item>
+            <item>encodings in TEI (see <ref type="bibl" target="#erjavec19">Erjavec and Pančur 2019</ref>).</item>
+          </list>
+        </p>
+        <p>As we have seen in the previous examples of parliamentary records, interruptions are clearly marked and it is easy to detect and manually extract them (e.g., as demonstrated by <ref type="bibl" target="#truan17">Truan [2017]</ref>) by applying close-reading methods. But how is this realized in the digital sphere, and specifically in parliamentary corpora that are machine-readable? In the next section we will look at examples of parliamentary corpora and how they encode interruptions in order to develop computational methods for analysis. In this paper, we will not go into detail in the encodings in general, but will focus on how interruptions are encoded.</p>
+        <div xml:id="custom">
+          <head>Corpora Encoded in Custom or Ad-hoc Encodings</head>
+          <p>Some examples of custom or ad-hoc encoded corpora are the CzechParl corpus (see <ref type="bibl" target="#jakubicek10">Jakubíček and Kovář 2010</ref>), the beta version of the ParlAT Corpus (see <ref type="bibl" target="#wissik18">Wissik and Pirker 2018</ref>), the collection of Swedish Parliamentary Data (see <ref type="bibl" target="#rodveneide19a">Rødven Eide 2019a</ref>), and the Knesset Corpus of transcriptions of Israeli parliament (see <ref type="bibl" target="#itai19">Itai and Wintner 2019</ref>). A comprehensive overview of corpora using custom encodings can be found in Erjavec and Pančur (<ref type="bibl" target="#erjavec19">2019</ref>).</p>
+          <p>Let us now have a closer look at the encodings of the Swedish Parliamentary Data used by Rødven Eide (<ref type="bibl" target="#rodveneide19a">2019a</ref>, <ref type="bibl" target="#rodveneide19b">2019b</ref>) and how interruptions are encoded there. The data of the parliamentary speeches used in these encodings is downloaded directly from the website <foreign xml:lang="se">Riksdagens öppna data</foreign> (Open Parliamentary Data)<note>Last accessed June 17, 2022, <ptr target="https://data.riksdagen.se"/>.</note> (see <ref type="bibl" target="#rodveneide19b">Rødven Eide 2019b</ref>) in different formats; in <ptr type="crossref" target="#example1"/> an example in XML can be seen. The speeches are enriched with different types of metadata—for example, speaker <gi>talar</gi> and party <gi>parti</gi>—and the text of the speech is encoded with <gi>anforandetext</gi> and structured in paragraphs <gi>p</gi>. As shown in the example, the nonverbal interruption applause (<foreign xml:lang="se">Applåder</foreign>) is encoded within the speech <gi>aforandetext</gi> as a paragraph <gi>p</gi>.</p>
+          <figure xml:id="example1">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <anforande>
+                <dok_hangar_id datatype="int32">5038419</dok_hangar_id>
+                <dok_id datatype="string">H7092</dok_id>
+                <dok_titel datatype="string">Protokoll 2019/20:2 Tisdagen den 10 september</dok_titel>
+                <dok_rm datatype="string">2019/20</dok_rm>
+                <dok_nummer datatype="int32">2</dok_nummer>
+                <dok_datum datatype="datetime">2019-09-10 00:00:00</dok_datum>
+                <avsnittsrubrik datatype="string">Riksmötets öppnande</avsnittsrubrik>
+                <underrubrik datatype="string"></underrubrik>
+                <kammaraktivitet datatype="string"></kammaraktivitet>
+                <anforande_id datatype="string">8bc861f9-4ee4-e911-9128-901b0e9b71a0</anforande_id>
+                <anforande_nummer datatype="int32">2</anforande_nummer>
+                <talare datatype="string">HANS MAJESTÄT KONUNGEN</talare>
+                <parti datatype="string">HANS MAJESTÄT KONUNGEN</parti>
+                <anforandetext datatype="string">&lt;p&gt;Herr talman! Ärade ledamöter! För 30 år sedan stod jag här i riksdagens plenisal för att förklara riksmötet 1989/90 öppnat. Det var den 3 oktober, och vi visste ännu inte vad som skulle ske bara en dryg månad senare. Berlinmurens fall i november 1989 blev kulmen på en utveckling som förändrade Europa och världen i grunden. Det var en tid av avspänning mellan supermakterna och av närmare europeiskt samarbete.&lt;/p&gt;&lt;p&gt;Riksmötets öppnande&lt;/p&gt;&lt;p&gt;På den svenska politiska agendan stod vid denna tid bland annat försvarets inriktning och omfattning, Sveriges framtida energiförsörjning och miljöproblem såsom markförsurning, drivhuseffekten och påverkan på ozonlagret. I dag, tre årtionden senare, har utvecklingen i många avseenden gått framåt. Men på andra områden har utmaningarna snarare vuxit.&lt;/p&gt;&lt;p&gt;Herr talman! Ärade ledamöter! Riksdagsprotokollen berättar om vår tid för kommande generationer - om våra ideal och värderingar och om våra utmaningar och vår förmåga att möta dem.&lt;/p&gt;&lt;p&gt;För 100 år sedan fattade Sveriges riksdag en rad avgörande beslut som tillsammans ledde fram till lika och allmän rösträtt. Jubileet påminner oss om vikten av att tänka och agera långsiktigt för vårt lands bästa.&lt;/p&gt;&lt;p&gt;Sveriges framtid formas inte enbart i denna kammare utan lika mycket av utvecklingen i vår omvärld. Men de beslut som fattas här inne påverkar ändå alla i vårt land, inte sällan generationer framöver. De är trådar i den väv som utgör vår framtid.&lt;/p&gt;&lt;p&gt;Hur skapar vi trygghet, säkerhet och gemenskap för alla som lever här? Hur säkerställer vi att Sverige ligger i framkant när det gäller forskning och utveckling? Hur bygger vi en hållbar framtid för kommande generationer? Det är stora och svåra frågor som medborgarna har gett er förtroendet att hantera. Jag önskar er, valda ombud för Sveriges folk, kraft, mod och visdom i ert viktiga arbete.&lt;/p&gt;&lt;p&gt;Härmed förklarar jag 2019/20 års riksmöte öppnat.&lt;/p&gt;&lt;p&gt;(Applåder)&lt;/p&gt;</anforandetext>
+                <intressent_id datatype="string"></intressent_id>
+                <rel_dok_id datatype="string"></rel_dok_id>
+                <replik datatype="string">N</replik>
+                <systemdatum datatype="datetime">2019-10-01 15:26:06</systemdatum>
+              </anforande>
+            </egXML>
+            <head type="legend">Example from the Swedish Parliamentary Data (2019/20:2, September 10, 2019, H7092-2)<note><bibl><orgName>Sveriges Riksdag</orgName>, <title level="m">Öppna data, Anföranden</title> (Swedish Parliamentary, Open Data, Speeches), Protocol 2019/20:2, <date>September 10, 2019</date>, H7092-2, <ptr target="https://data.riksdagen.se/data/anforanden/"/>.</bibl></note>
+            </head>
+          </figure>
+          <p>In the ParlAT beta version, for example, all interruptions were marked up with the XML element <gi>comment</gi> without distinguishing between verbal and nonverbal interruptions.</p>
+        </div>
+        <div xml:id="akomantoso">
+          <head>Corpora Encoded in Akoma Ntoso</head>
+          <p>As mentioned above, Akoma Ntoso is an XML-based format for parliamentary, legislative, and judiciary documents (<ref type="bibl" target="#akoma18">Akoma Ntoso 2018</ref>) that is used for legal drafting processes and other workflows in various institutions. It is used only sporadically in the research community for building parliamentary corpora, mainly because the researchers who are building these corpora are not as familiar with the Akoma Ntoso standard as they are with, for example, TEI (see <ref type="bibl" target="#erjavec19">Erjavec and Pančur 2019</ref>). One research example is the study of Nigerian Senate debates by Lewis (<ref type="bibl" target="#lewis18">2018</ref>). In the example encoding from the Akoma Ntoso specification (<ref type="bibl" target="#akoma18">Akoma Ntoso 2018</ref>) there are two different ways of encoding nonverbal interruptions: with the element <tag>remark type="scene description"</tag> or with the element <gi>scene</gi>. For verbal interruptions no examples are given.
+            <figure xml:id="example2">
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <debate name="record">
+                  <meta>...</meta>
+                  <coverPage>...</coverPage>
+                  <preface>...</preface>
+                  <debateBody>
+                    <debateSection eId="dbsect_1" name="Preliminary">
+                      <rollCall eId="dbsect_1__rollCall_1">...</rollCall>
+                      <prayers eId="dbsect_1__prayers_1">...</prayers>
+                    </debateSection>
+                    <debateSection eId="dbsect_2" name="Actas">
+                      <speech eId="dbsect_2__speech_1" by="#Ascencio">
+                        <from>El señor ASCENCIO (Presidente).- </from>
+                        <p>El señor Secretario dará lectura a los pareos.
+                          <remark type="sceneDescription">(Aplausos)</remark>.</p>
+                        
+                        .....
+                      </speech>
+                      <narrative eId="dbsect_2__narrative_1" >-Con posterioridad, la Sala se pronunció sobre el proyecto en los siguientes términos:</narrative>
+                      <summary eId="dbsect_2__summary_1" >
+                        <outcome refersTo="#seAbstiene">   -Se abstuvieron los diputados señores:
+                          <vote by="#persona">
+                            <person eId="p3517" refersTo="#GalileaVidaurreJoseAntonio">Galilea Vidaurre José Antonio;</person>
+                          </vote>
+                        </outcome>
+                      </summary>
+                      <scene eId="dbsect_2__scene_1" >-Aplausos.</scene>
+                    </debateSection>
+                  </debateBody>
+                </debate>
+              </egXML>
+              <head type="legend">Example encoding in Akoma Ntoso (<ref type="bibl" target="#akoma18">Akoma Ntoso 2018</ref>)</head>
+            </figure>
+          </p>
+        </div>
+        <div xml:id="tei">
+          <head>Corpora Encoded in TEI</head>
+          <p>There are several parliamentary corpora that are encoded in TEI (<ref type="bibl" target="#erjavec19">Erjavec and Pančur 2019</ref>) using one or more TEI modules. Within the Parla-CLARIN initiative a set of recommendations for harmonizing the TEI encoding of parliamentary corpora has been proposed (<ref type="bibl" target="#erjavec19">Erjavec and Pančur 2019</ref>). The most popular modules are the performance text module (<ident>drama</ident>) and the transcription of speech module (<ident>spoken</ident>). I will now take a closer look at the encoding of interruptions in some of these corpora.</p>
+          <p>For the automatic encoding of the GermaParl (<ref type="bibl" target="#blatte18">Blätte and Blessing 2018</ref>), the corpus of the German parliamentary records, the TEI module for performance text was used. The first version of the SlovParl Corpus, the corpus of Slovenian Parliamentary Records, was also encoded using this module (see <ref type="bibl" target="#pancur16">Pančur 2016</ref>), while the Danish Parliamentary Corpus uses elements from the transcriptions of speech module (see <ref type="bibl" target="#haltrup19">Haltrup Hansen and Navaretta 2019</ref>). The performance text module is intended for the encoding of printed dramatic texts, screenplays, or written transcriptions of other types of performances according to the TEI P5 Guidelines (see <ref type="bibl" target="#tei19">TEI Consortium 2019</ref>). Using it for parliamentary records is not a completely inappropriate choice, because there are similarities in interruption patterns in parliamentary discourse and drama dialogue, as discussed by Ilie (<ref type="bibl" target="#ilie05">2005</ref>) and by Klein (<ref type="bibl" target="#klein82">1982, 234</ref>). As noted above, Klein even points to stenographers’ jargon that calls the notes of interruption <soCalled>Regiebemerkungen</soCalled> (stage directions).</p>
+          <p>As an example for a corpus using the performance text module, we will examine the GermaParl corpus. In this corpus the following information is annotated: the speaker’s name, the party affiliation, and whether an utterance is a speech or an interjection (see <ref type="bibl" target="#blatte18">Blätte and Blessing 2018, 812</ref>). Individual utterances in speeches are annotated as <gi>sp</gi> with paragraphs as <gi>p</gi>. Interjections are encoded as <tag>stage type="interjection"</tag> within speeches. However, as can be seen in <ptr type="crossref" target="#example3"/>, the encoders do not distinguish between nonverbal interruptions such as <q>(Beifall bei der FDP und der CDU/CSU)</q> and verbal interruptions such as <q>(Hans Büttner [Ingolstadt] [SPD]: Immer schon!)</q> which makes computer-based analysis of interruptions more difficult.
+            <figure xml:id="example3">
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <sp who="Jörg van Essen" parliamentary_group="FDP" role="mp" position="NA" party="FDP" name="Jörg van Essen">
+                  <speaker>Jörg van Essen (FDP):</speaker>
+                  <p>Herr Präsident! Ich gratuliere Ihnen auch im Namen meiner Fraktion sehr herzlich zu Ihrer Wiederwahl. 
+                    Wir haben mit sehr großer Freude gehört, dass Sie die Wahrung der Interessen des ganzen Bundestages und aller 
+                    Abgeordneten in den Mittelpunkt Ihrer zweiten Wahlzeit stellen wollen. </p>
+                  <stage type="interjection">(Hans Büttner [Ingolstadt] [SPD]: Immer schon!)</stage>
+                  <p>Sie haben dabei unsere volle Unterstützung.</p>
+                  <stage type="interjection">(Beifall bei der FDP und der CDU/CSU)</stage>
+                  <p>Die FDP-Bundestagsfraktion unterstützt den Antrag der CDU/CSU-Fraktion. 
+                    Wer sich das Wahlergebnis anschaut, stellt fest, dass es wenige Tausend Stimmen Unterschied zwischen beiden großen Parteien gibt. 
+                    Die SPD stellt den Präsidenten, die SPD stellt eine Vizepräsiden- tin - also zwei Personen im Präsidium. 
+                    Dann ist es doch nur eine Frage der Fairness, dass auch die zweite große Fraktion mit zwei Personen im Präsidium des Deutschen Bundestages vertreten ist.</p>
+                  <stage type="interjection">(Beifall bei der FDP und der CDU/CSU)</stage>
+                  <p>Diese schlichte Fairness, diese Gerechtigkeit</p>
+                  <stage type="interjection">(Wilhelm Schmidt [Salzgitter] [SPD]: Vor vier Jahren waren Sie anderer Meinung)</stage>
+                  <p>sollte unsere Zusammenarbeit bestimmen. 
+                    Das Argument, das der Kollege Schmidt gebracht hat, dass sich die Mehrheit auch im Präsidium widerspiegeln müsse, trifft gar nicht zu. 
+                    Die letzte Legislaturperiode - da hatten wir auf beiden Seiten jeweils drei Vertreter - hat gezeigt, dass eine Zusammenarbeit möglich ist. 
+                    Dies hat zu keinerlei Nachteilen geführt. Ich bin sicher, dass es auch hier wieder so wäre. </p>
+                  <p>Von daher wird von der FDP-Bundestagsfraktion mit Nachdruck unterstützt, dass es einen zweiten 
+                    Vizeprä sidenten oder eine Vizepräsidentin für die zweitgrößte Fraktion im Deutschen Bundestag gibt.</p>
+                  <stage type="interjection">(Beifall bei der FDP und der CDU/CSU - Hans Büttner [Ingolstadt] [SPD]: Heuchelei ist das!)</stage>
+                </sp>
+              </egXML>
+              <head type="legend">Example encoding of interruptions in the GermaParl Corpus (BT, October 17, 2002)<note>GermaParl, v0.1.1, Deutscher Bundestag, Plenarprotokoll, 15th legislative period, 1st session, October 17, 2002, <ptr target="https://github.com/PolMine/GermaParlTEI/blob/master/15/BT_15_001.xml"/></note>
+              </head>
+            </figure>
+          </p>
+          <p>The other TEI module that is often used for encoding parliamentary data is the transcription of speech module. This is not surprising since parliamentary records, especially the parts covering plenary debate, are close to the spoken word, despite being edited. For example, in the Austrian Parliamentary Records, voiced pauses such as <q>äh</q> or grammatical errors are removed, dialectal elements are changed into standard elements, and at the end the MPs also have the right to ask for stylistic changes (see <ref type="bibl" target="#stopfner13">Stopfner 2013</ref>). In the UK, the reporters use, for example, the Hansard style guide when editing the records (see <ref type="bibl" target="#shaw18">Shaw 2018</ref>). Among others, SlovParl 2.0 (<ref type="bibl" target="#pancur18">Pančur, Šorn, and Erjavec 2018</ref>), the TAPS-fr corpus, the corpus of French parliamentary debates (see <ref type="bibl" target="#diwersy18">Diwersy, Frontini, and Luxardo 2018</ref>), and de-parl (Parliamentary Debates on Europe at the Deutscher Bundestag [1998–2005]) (see <ref type="bibl" target="#truan19a">Truan 2019a</ref>) use elements of the transcription of speech encoding. In the manually annotated de-parl corpus the speeches and verbal interruptions are encoded as utterances with the element <gi>u</gi>. Nonverbal interruptions such as applause are annotated with <gi>incident</gi> and other comments by the stenographers with <gi>note</gi> (see <ref type="bibl" target="#truan19b">Truan 2019b, 10</ref>). In <ptr type="crossref" target="#example4"/>, utterances and incidences can be identified. However, without having the original records there is no way to categorize the utterance <egXML xmlns="http://www.tei-c.org/ns/Examples"><u who="#HAUSSMANN"> Sie sind doch in der Regierung!</u></egXML> as a verbal interruption, an interjection. There is no attribute with a value indicating that in the original transcript this <gi>u</gi> was an interruption, typographically marked as intended text within brackets. As a consequence, it is impossible, relying only on the encoded corpus, to distinguish between speech and verbal interruptions, and therefore to extract, for example, only the verbal interruptions. Furthermore, there is no markup for interrupted speech, such as speech by the same speaker that continues after the interruption, which in the original is implied with the dash <q>–</q> at the beginning of the sentence (see <ptr type="crossref" target="#figure7"/>).
+            <figure xml:id="example4">
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <u who="#FISCHER">Herr Präsident! Meine Damen und Herren! Herr Kollege Haussmann, wenn
+                  Sie meinen, daß das europäische Anliegen besser durch solche Vorträge voran gebracht
+                  werden kann, wie Sie ihn hier gehalten haben, und wenn Sie dem Kollegen Struck
+                  vorwerfen, daß er eine ruhigere Gangart gewählt hat, dann kann ich Ihnen nur
+                  folgendes sagen; ich habe Ihnen da sehr sorgfältig zugehört. </u>
+                
+                <incident>
+                  <desc>Widerspruch bei der CDU/CSU und der F.D.P.</desc>
+                </incident>
+                
+                <u who="#HAUSSMANN">Das ist ja peinlich!</u>
+                
+                <u who="#FISCHER">Herr Kollege Haussmann, in der Zeit, in der ich hier im Plenum war, <incident>
+                  <desc>Lachen bei der F.D.P. sowie bei Abgeordneten der CDU/CSU</desc>
+                </incident>habe ich Ihnen sehr sorgfältig zugehört.</u>
+                
+                <u who="#HAUSSMANN">Ein bißchen billig!</u>
+                
+                <u who="#FISCHER">Das ist überhaupt nicht billig.</u>
+                
+                <u who="#HAUSSMANN">Doch! Aber Sie sind nicht kollegial!</u>
+              </egXML>
+              <head type="legend">Example from the de-parl encoding (BT, December 10, 1998)<note>de-parl, v1.1. Deutscher Bundestag, Plenarprotokoll, December 10, 1998, 14th sitting, in <ref type="bibl" target="#truan19a">Truan 2019a</ref>.</note>
+              </head>
+            </figure>
+            <figure xml:id="figure7">
+              <graphic url="images/figure7.png" height="394px" width="336px"/>
+              <head type="legend">Example from the original parliamentary record in PDF format (BT, December 10, 1998)<note>Deutscher Bundestag, Plenarprotokoll, December 10, 1998, 14th sitting, <ptr target="https://dserver.bundestag.de/btp/14/14014.pdf"/>.</note>
+              </head>
+            </figure>
+          </p>
+          <p>The Parla-CLARIN recommendations are <quote source="#quoteref5">intended for the encoding of corpora of parliamentary proceedings, regardless of the language or country of origin, for the purposes of scholarly investigations, be they from the field of linguistics, political science, history or other humanities and social sciences disciplines. The recommendations are, in principle, not meant as the primary storage format of parliamentary proceedings, such as kept by governmental offices, for which Akoma Ntoso might be preferred</quote> (<ref xml:id="quoteref5" type="bibl" target="#erjavec22">Erjavec and Pančur 2022</ref>). In Parla-CLARIN the transcription of speech module (<ident>spoken</ident>) is used in addition to other modules like TEI Corpus (<ident>corpus</ident>) or TEI person (<ident>namesdates</ident>, see <ref type="bibl" target="#erjavec19">Erjavec and Pančur 2019</ref>). In the Parla-CLARIN guidelines there are specific sections dealing with interrupted utterances and incidents. The recommendations state that although an <quote source="#quoteref6">interruption might be <gap/> encoded as a <gi>note</gi><gap/>, it is more precisely encoded as a separate utterance</quote> (<ref type="bibl" target="#erjavec22">Erjavec and Pančur 2022</ref>). However, the recommendations do not suggest any attributes to indicate that these utterances are verbal interruptions or interjections. Once they are encoded as <gi>u</gi> they are not distinguishable from other speech encoded as <gi>u</gi> unless they are splitting utterances. In this case the guidelines suggest using the <att>next</att> attribute on the first part of the split utterance and the <att>prev</att> attribute on the second part. However, not all interjections or interruptions split a speech; they can also occur at either end, where there are no means to distinguish them from other utterances.</p>
+          <p>As for nonverbal interruptions, Parla-CLARIN suggests using <gi>note</gi> for transcribers’ comments in general. For more specific purposes, the following elements from the transcription of speech module can be used:
+            <cit>
+              <quote source="#quoteref6">
+                <list rend="bulleted">
+              <item><ref target="https://clarin-eric.github.io/parla-clarin/#TEI.vocal"><gi>vocal</gi></ref> marks any vocalized but not necessarily lexical phenomenon, e.g., laughter, sounds of (dis)agreement from the benches etc.</item>
+              <item><ref target="https://clarin-eric.github.io/parla-clarin/#TEI.kinesic"><gi>kinesic</gi></ref> marks any communicative phenomenon, not necessarily vocalized, for example a gesture, frown, etc.</item>
+              <item><ref target="https://clarin-eric.github.io/parla-clarin/#TEI.incident"><gi>incident</gi></ref> marks any phenomenon or occurrence, not necessarily vocalized or communicative, for example incidental noises or other events affecting communication.</item>
+            </list></quote>
+              <ref xml:id="quoteref6" type="bibl" target="#erjavec22">Erjavec and Pančur 2022 <ref target="https://clarin-eric.github.io/parla-clarin/#sec-comments">sec. 5.2: Transcriber comments</ref></ref>
+            </cit>
+          </p>
+        </div>
+      </div>
+      <div xml:id="parlat">
+        <head>Encoding Interruptions: Experiences from the Austrian Parliamentary Records Corpus</head>
+        <p>As described in <ptr type="crossref" target="#austria"/>, several types of interruptions can be found in the Austrian Parliamentary Records in the form of transcribers’ notes. In this section, we will describe how these notes can be encoded in order to facilitate quantitative computational analysis and computer-aided studies of parliamentary interruptions.</p>
+        <p>As a general rule, we followed the Parla-CLARIN recommendations (<ref type="bibl" target="#erjavec22">Erjavec and Pančur 2022</ref>), adding more detailed encodings as necessary, especially through attributes. As we have seen in <ptr type="crossref" target="#recordings"/>, the Austrian records provide some of the most detailed descriptions of interruptions. Designing an encoding scheme with the Austrian Parliamentary Records in mind, we will offer an encoding suggestion that is fine-grained enough to deal with their level of detail regarding interruptions. That same scheme, because it relies upon the Parla-CLARIN recommendations, can be used to encode records containing less-detailed descriptions.</p>
+        <p>To organize these attributes, further described below, we used SKOS vocabularies. We created two concept schemes: one for utterances with the prefix <code>ucat:</code> (which stands for <soCalled>utterance categories</soCalled>) and one for notes with the prefix <code>ncat:</code> (for <soCalled>note categories</soCalled>). The definition of the prefix is included in a <gi>prefixDef</gi> element in the <gi>encodingDesc</gi> and points to the SKOS vocabulary. The values of <att>ana</att> are defined in a scope note. In the following sections we will describe the encodings for verbal interruptions and nonverbal interruptions.</p>
+        <div xml:id="verbal">
+          <head>Encoding Verbal Interruptions</head>
+          <p>We encoded verbal interruptions where the wording is recorded as utterances <gi>u</gi>; we encoded verbal interruptions where the wording is not recorded like nonverbal interruptions (see <ptr type="crossref" target="#nonverbal #example6"/>), as notes. In order to distinguish verbal interruptions encoded as utterances from the authorized speeches, which are also encoded as utterances, we used the attribute <att>ana</att> with the value <val>ucat:unauthorized</val> for interjections (see <ptr type="crossref" target="#example5"/>) and the value <val>ucat:regular</val> for authorized speeches. Interjections frequently interrupt speeches and, therefore, we used the attributes <att>prev</att> and <att>next</att> to connect parts of interrupted speeches. This practice is also suggested by the Parla-CLARIN recommendations. We also transformed verbal interruptions by a collective into utterances encoded with <gi>u</gi>. The earlier example <hi rendition="#italic">(Ruf bei den Grünen: Freudenau gibt’s nicht! – Ruf beim BZÖ: <hi rendition="#bold">Was</hi> ist mit der Freudenau?)</hi> was split up into two utterances. Usually the <att>who</att> attribute is associated with a specific individual. Since the interruption at hand is by a collective, no single speaker is specified. To handle such cases, we introduced <gi>personGrp</gi>s for the collectives in each file header, to which the <att>who</att> attribute can point (e.g., <val>#SPEAKER_COLLECTIVE_Grünen</val>, <val>#SPEAKER_COLLECTIVE_BZÖ</val>, and analogously for any other party). In our encoding proposal, we not only encode the utterance itself, as for example Truan (<ref type="bibl" target="#truan16">2016</ref>, <ref type="bibl" target="#truan19a">2019a</ref>) did in de-parl, but we also encode the associated description in the parliamentary records. In the example above there are the phrases <q>Ruf bei den Grünen:</q> and <q>Ruf beim BZÖ</q>, which denote interjections from the Green party and from the BZÖ party. These descriptions are encoded as <gi>note</gi> with <att>type</att> value <val>comment</val> and <att>ana</att> value <val>ncat:interjection_speaker_collective</val>. An example of the encoding can be seen in <ptr type="crossref" target="#example5"/>. For interjections where the wording is recorded by the stenographer but which are anonymous, no <att>who</att> attribute is assigned.
+            <figure xml:id="example5">
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <note ana="ncat:interjection_speaker_collective" type="comment"> Ruf bei den Grünen: </note>
+                <u ana="ucat:unauthorized" xml:id="d7e8727" who="#SPEAKER_COLLECTIVE_GRÜNEN">
+                  <seg rend="inline"> Freudenau gibt’s nicht! </seg></u>
+                <note ana="ncat:interjection_speaker_collective" type="comment"> Ruf beim BZÖ: </note>
+                <u ana="ucat:unauthorized" xml:id="d7e8735" who="#SPEAKER_COLLECTIVE_BZÖ"><seg rend="inline"> Was ist mit der Freudenau? </seg></u>
+              </egXML>
+              <head type="legend">Encoding of verbal collective interruptions</head>
+            </figure>
+          </p>
+        </div>
+        <div xml:id="nonverbal">
+          <head>Encoding Nonverbal Interruptions</head>
+          <p>As described in the Parla-CLARIN recommendations, transcribers’ comments are encoded as <gi>note</gi>. We followed these recommendations. Since transcribers’ comments may cover more than just interruptions (see <ptr type="crossref" target="#austria"/>) and also because other information is commonly encoded as <gi>note</gi> we used the following values for <att>type</att>: <val>speaker</val>, <val>comment</val>, and <val>time</val> (see also <ref type="bibl" target="#erjavec22">Erjavec and Pančur 2022</ref>). The notes of <att>type</att>=<val>comment</val> were further subcategorized with the attribute <att>ana</att>, which can have the following values to describe a nonverbal interruption: <val>ncat:applause</val>, <val>ncat:bell</val>, or <val>ncat:laughter</val> (see <ptr type="crossref" target="#example6"/>). Moreover, descriptions related to verbal or nonverbal interruptions can be encoded as <gi>note</gi> of <att>type</att> value <val>comment</val> with the following values for <att>ana</att>: <val>ncat:direction</val> to describe if the interrupter is facing toward a specific person or party group; <val>ncat:nonverbal_hands</val> to denote that the interrupter is holding something up like a sign, document, newspaper article, or picture; this encoding may be further combined with <val>ncat:inscription</val> in cases where the sign’s content is reported; and, finally, <val>ncat:nonverbal</val> for other nonverbal phenomena that are not covered by the values specified above.</p>
+          <p>Furthermore, as mentioned in <ptr type="crossref" target="#verbal"/>, verbal interruptions where the wording is not recorded are also encoded as <gi>note</gi> using an <att>ana</att> value of <val>ncat:interjection</val> (see <ptr type="crossref" target="#example7"/>). Here are two examples of encodings for nonverbal interruptions:
+            <figure xml:id="example6">
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <note ana="ncat:applause" type="comment"> (Beifall beim BZÖ.) </note>
+              </egXML>
+              <head type="legend">Example of the encoding of a nonverbal interruption.</head>
+            </figure>
+            <figure xml:id="example7">
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <note ana="ncat:interjection"  type="comment"> (weitere Zwischenrufe bei der ÖVP) </note> 
+              </egXML>
+              <head type="legend">Example of the encoding of a verbal comment, where the wording is not recorded.</head>
+            </figure>
+          </p>
+          <p>It might seem inconsistent that we use both <att>type</att> and <att>ana</att> and do not choose one or the other. There are two main reasons for this. First, <att>type</att> is also used in the Parla-CLARIN recommendations and we wanted to be as compatible as possible with them in order to do comparative studies with other corpora that are encoded according to the Parla-CLARIN recommendations. Second, the values for <att>type</att>, like <val>speaker</val>, <val>comment</val>, and <val>time</val>, are less interpretative and can be inferred from the text, whereas the values we used for <att>ana</att> are more interpretative. Therefore we use both <att>type</att> and <att>ana</att>.</p>
+        </div>
+      </div>
+      <div xml:id="conclusions">
+        <head>Conclusions</head>
+        <p>Parliamentary data is a comprehensive and unique resource for many different fields in the humanities and social sciences. In this paper we have shown that research on parliamentary interruptions is one of the areas that can benefit from the growing availability of machine-readable and annotated parliamentary corpora especially regarding computer-based quantitative analysis.</p>
+        <p>In this paper, I have shown that although interruptions are clearly marked in the original parliamentary records, and are easily recognizable using close reading methods, they are, nevertheless, not always encoded unambiguously in machine-readable parliamentary corpora and, therefore, are not easily extractable. I have discussed how the Parla-CLARIN recommendations provide a good basis for encoding parliamentary corpora and that they already include guidelines on how to encode interjections and nonverbal interruptions. However, they are only a basic framework; more detailed encoding of verbal and nonverbal interruptions are needed to enable the analysis of parliamentary interruptions. In this paper, I have proposed recommendations for encoding interjections to distinguish them from authorized speech and to differentiate between types of nonverbal interruptions. My examples were drawn from the encoding of the interruptions in the Austrian Parliamentary Records. The recommendations are customizable, and the chosen values defined in the SKOS vocabulary will depend on the specific data being encoded. In summary, I argue that a more detailed encoding of parliamentary interruptions, as explained in this paper, is needed in order to make verbal and nonverbal interruptions identifiable and extractable and to facilitate computer-based quantitative analysis.</p>
+        <p> </p>
+      </div>
+    </body>
+    <back>
+      <div type="bibliography">
+        <listBibl>
+          <bibl xml:id="akoma18"><orgName>OASIS</orgName>. <date>2018</date>. <title level="m">Akoma Ntoso Version 1.0 Part 1: XML Vocabulary</title>. Edited by <editor>Monica Palmirani</editor>, <editor>Roger Sperberg</editor>, <editor>Grant Vergottini</editor>, and <editor>Fabio Vitali</editor>. August 29. OASIS Standard. <ptr target="http://docs.oasis-open.org/legaldocml/akn-core/v1.0/os/part1-vocabulary/akn-core-v1.0-os-part1-vocabulary.html"/>. Latest version: <ptr target="http://docs.oasis-open.org/legaldocml/akn-core/v1.0/akn-core-v1.0-part1-vocabulary.html"/>.</bibl>
+          <bibl xml:id="bevitori04"><author>Bevitori, Cinzia</author>. <date>2004</date>. <title level="a">Negotiating Conflict: Interruptions in British and Italian Parliamentary Debates.</title> In <title level="m">Cross-Cultural Perspectives on Parliamentary Discourse</title>, edited by <editor>Paul Bayley</editor>, <biblScope unit="page">87–109</biblScope>. <pubPlace>Amsterdam</pubPlace>: <publisher>John Benjamins</publisher>.</bibl>
+          <bibl xml:id="blatte18"><author>Blätte, Andreas</author>, and <author>Andre Blessing</author>. <date>2018</date>. <title level="a">The GermaParl Corpus of Parliamentary Protocols</title>. In <title level="m">Proceedings of the Eleventh International Conference on Language Resources and Evaluation (LREC 2018)</title>, edited by <editor>Nicoletta Calzolari</editor>, <editor>Khalid Choukri</editor>, <editor>Christopher Cieri</editor>, <editor>Thierry Declerck</editor>, <editor>Sara Goggi</editor>, <editor>Koiti Hasida</editor>, <editor>Hitoshi Isahara</editor>, et al., <biblScope unit="page">810–16</biblScope>. <pubPlace>N.p.</pubPlace>: <publisher>European Language Resources Association</publisher>. <ptr target="http://www.lrec-conf.org/proceedings/lrec2018/summaries/1024.html"/>.</bibl>
+          <bibl xml:id="burkhardt04"><author>Burkhardt, Armin</author>. <date>2004</date>. <title level="m">Zwischen Monolog und Dialog: Zur Theorie, Typologie und Geschichte des Zwischenrufs im deutschen Parlamentarismus.</title> <pubPlace>Berlin</pubPlace>: <publisher>de Gruyter</publisher>.</bibl>
+          <bibl xml:id="diwersy18"><author>Diwersy, Sascha</author>, <author>Francesca Frontini</author>, and <author>Giancarlo Luxardo</author>. <date>2018</date>. <title level="a">The Parliamentary Debates as a Resource for the Textometric Study of the French Political Discourse</title>. In <title level="m">Proceedings of the LREC2018 Workshop ParlaCLARIN: Creating and Using Parliamentary Corpora</title>, edited by <editor>Darja Fišer</editor>, <editor>Maria Eskevich</editor>, and <editor>Franciska de Jong</editor>, <biblScope>73–77</biblScope>. <pubPlace>Paris</pubPlace>: <publisher>European Language Resources Association</publisher>. <ptr target="http://lrec-conf.org/workshops/lrec2018/W2/summaries/22_W2.html"/>.</bibl>
+          <bibl xml:id="erjavec19"><author>Erjavec, Tomaž</author>, and <author>Andrej Pančur</author>. <date>2019</date>. <title level="u">Parla-CLARIN: TEI Guidelines for Corpora of Parliamentary Proceedings</title>. Presentation at the TEI Conference and Members Meeting, Graz, Austria, September 16–20, 2019. doi:<idno type="DOI">10.5281/zenodo.3446164</idno>.</bibl>
+          <bibl xml:id="erjavec22"><author>Erjavec, Tomaž</author>, and <author>Andrej Pančur</author>. <date>2022</date>. <title level="u">Parla-CLARIN: A TEI Schema for Corpora of Parliamentary Proceedings</title>. <edition>Version 0.3</edition>. Last updated 3 May 2022. <ptr target="https://clarin-eric.github.io/parla-clarin/"/>.</bibl>
+          <bibl xml:id="fiser18"><author>Fišer, Darja</author>, <author>Jakob Lenardič</author>, and <author>Tomaž Erjavec</author>. <date>2018</date>. <title level="a">CLARIN’s Key Resource Families</title>. In <title level="m">Proceedings of the Eleventh International Conference on Language Resources and Evaluation (LREC 2018)</title>, edited by <editor>Nicoletta Calzolari</editor>, <editor>Khalid Choukri</editor>, <editor>Christopher Cieri</editor>, <editor>Thierry Declerck</editor>, <editor>Sara Goggi</editor>, <editor>Koiti Hasida</editor>, <editor>Hitoshi Isahara</editor>, et al., <biblScope unit="page">1320–25</biblScope>. <pubPlace>N.p.</pubPlace>: <publisher>European Language Resources Association</publisher>. <ptr target="http://www.lrec-conf.org/proceedings/lrec2018/summaries/829.html"/>.</bibl>
+          <bibl xml:id="haltrup19"><author>Haltrup Hansen, Dorte</author>, and <author>Costanza Navarretta</author>. <date>2019</date>. <title level="u">A TEI-encoding of the Danish Parliament Corpus</title>. Presentation at the Parla Format Workshop, Amersfoort, May 23–24, 2019. <ptr target="https://www.clarin.eu/sites/default/files/hansen-clarin_dk-parlaformat.pdf"/>.</bibl>
+          <bibl xml:id="ilie01"><author>Ilie, Cornelia</author>. <date>2001</date>. <title level="a">Semi-institutional Discourse: The Case of Talk Shows</title>. <title level="j">Journal of Pragmatics</title> <biblScope unit="volume">33</biblScope> (<biblScope unit="issue">2</biblScope>): <biblScope unit="page">209–54</biblScope>. doi:<idno type="DOI">10.1016/S0378-2166(99)00133-2</idno>.</bibl>
+          <bibl xml:id="ilie05"><author>Ilie, Cornelia</author>. <date>2005</date>. <title level="a">Interruption Patterns in British Parliamentary Debates and Drama Dialogue</title>. In <title level="m">Dialogue Analysis IX: Dialogue in Literature and the Media: Selected Papers from the 9th IADA Conference, Salzburg 2003. Part 1, Literature</title>, edited by <editor>Anne Betten</editor> and <editor>Monika Dannerer</editor>, <biblScope unit="page">415–30</biblScope>. <pubPlace>Tübingen</pubPlace>: <publisher>Max Niemeyer Verlag</publisher>.</bibl>
+          <bibl xml:id="ilie10"><author>Ilie, Cornelia</author>. <date>2010</date>. <title level="a">Strategic Uses of Parliamentary Forms of Address: The Case of the U.K. Parliament and the Swedish Riksdag</title>. <title level="j">Journal of Pragmatics</title> <biblScope unit="volume">42</biblScope> (<biblScope unit="issue">4</biblScope>): <biblScope unit="page">885–911</biblScope>. doi:<idno type="DOI">10.1016/j.pragma.2009.08.017</idno>.</bibl>
+          <bibl xml:id="itai19"><author>Itai, Alon</author>, and <author>Shuly Wintner</author>. <date>2019</date>. <title level="u">The Knesset Meetings Corpus 2004–2005 [Data set]</title>. <edition>Version 1.0.0</edition>. Zenodo, <ptr target="http://doi.org/10.5281/zenodo.2707356"/>.</bibl>
+          <bibl xml:id="jakubicek10"><author>Jakubíček, Miloš</author>, and <author>Vojtěch Kovář</author>. <date>2010</date>. <title level="a">CzechParl: Corpus of Stenographic Protocols from Czech Parliament</title>. In <title level="m">Proceedings of the Fourth Workshop on Recent Advances in Slavonic Natural Language Processing, RASLAN 2010</title>, edited by <editor>Petr Sojka</editor> and <editor>Aleš Horák</editor>, <biblScope unit="page">41–46</biblScope>. <pubPlace>Brno</pubPlace>: <publisher>Tribun EU</publisher>. <ptr target="http://raslan2010.nlp-consulting.net/"/>; <ptr target="https://nlp.fi.muni.cz/raslan/raslan10.pdf"/>.</bibl>
+          <bibl xml:id="klein82"><author>Klein, Friedrich-Ludwig</author>. <date>1982</date>. <title level="a">Das Plenarprotokoll</title>. In <title level="m">Plenarsitzungen des Deutschen Bundestages: Festgabe für Werner Blischke</title>, edited by <editor>Hans-Achim Roll</editor>, <biblScope unit="page">231–48</biblScope>. <pubPlace>Berlin</pubPlace>: <publisher>Duncker &amp; Humblot</publisher>.</bibl>
+          <bibl xml:id="lewis18"><author>Lewis, Jonathan</author>. <date>2018</date>. <title level="a">Producing Structured Parliamentary Debate Records: The Case of Nigeria</title>. <title level="j">Hitotsubashi Journal of Social Studies</title> <biblScope unit="volume">49</biblScope> (<biblScope unit="issue">1</biblScope>): <biblScope unit="page">29–36</biblScope>. doi:<idno type="DOI">10.15057/29018</idno>.</bibl>
+          <bibl xml:id="pancur16"><author>Pančur, Andrej</author>. <date>2016</date>. <title level="u">Označevanje zbirke zapisnikov sej slovenskega parlamenta s smernicami TEI</title>. In <title level="m">Proceedings of the Conference on Language Technologies &amp; Digital Humanities</title>, edited by <editor>Tomaž Erjavec</editor> and <editor>Darja Fišer</editor>, <biblScope unit="page">142–48</biblScope>. <pubPlace>Ljubljana</pubPlace>: <publisher>Znanstvena založba Filozofske fakultete v Ljubljani</publisher>. <ptr target="http://nl.ijs.si/isjt16/proceedings-sl.html"/>; <ptr target="http://nl.ijs.si/isjt16/proceedings-en.html"/>.</bibl>
+          <bibl xml:id="pancur18"><author>Pančur, Andrej</author>, <author>Mojca Šorn</author>, <author>Tomaž Erjavec</author>. <date>2018</date>. <title level="a">SlovParl 2.0: The Collection of Slovene Parliamentary Debates from the Period of Secession</title>. In <title level="m">Proceedings of the LREC2018 Workshop ParlaCLARIN: Creating and Using Parliamentary Corpora</title>, edited by <editor>Darja Fišer</editor>, <editor>Maria Eskevich</editor>, and <editor>Franciska de Jong</editor>, <biblScope unit="page">8–14</biblScope>. <pubPlace>Paris</pubPlace>: <publisher>European Language Resources Association</publisher>. <ptr target="http://lrec-conf.org/workshops/lrec2018/W2/summaries/4_W2.html"/>.</bibl>
+          <bibl xml:id="rodveneide19a"><author>Rødven Eide, Stian</author>. <date>2019</date>a. <title level="u">The Swedish PoliGraph: A Semantic Graph for Argument Mining of Swedish Parliamentary Data</title>. Presentation at the ParlaFormat Workshop, May 23–24, 2019, Amersfoort, Netherlands. <ptr target="https://www.clarin.eu/sites/default/files/eide-stian-presentation-parlaformat2019.pdf"/>.</bibl>
+          <bibl xml:id="rodveneide19b"><author>Rødven Eide, Stian</author>. <date>2019</date>b. <title level="a">The Swedish PoliGraph: A Semantic Graph for Argument Mining of Swedish Parliamentary Data</title>. In <title level="m">Proceedings of the 6th Workshop on Argument Mining</title>, edited by <editor>Benno Stein</editor> and <editor>Henning Wachsmuth</editor>, <biblScope unit="page">52–57</biblScope>. <pubPlace>Stroudsburg, PA</pubPlace>: <publisher>Association for Computational Linguistics</publisher>. doi:<idno type="DOI">10.18653/v1/W19-4506</idno>.</bibl>
+          <bibl xml:id="shaw18"><author>Shaw, Sylvia</author>. <date>2018</date>. <title level="a">Off the Record: The Transcription of Parliamentary Debates for Political Discourse Analysis</title>. In <title level="m">Doing Politics: Discursivity, Performativity, and Mediation in Political Discourse</title>, edited by <editor>Michael Kranert</editor> and <editor>Geraldine Horan</editor>, <biblScope unit="page">105–26</biblScope>. <pubPlace>Amsterdam</pubPlace>: <publisher>John Benjamins</publisher>.</bibl>
+          <bibl xml:id="stopfner13"><author>Stopfner, Maria</author>. <date>2013</date>. <title level="m">Streitkultur im Parlament: Linguistische Analyse der Zwischenrufe im österreichischen Nationalrat</title>. <pubPlace>Tübingen</pubPlace>: <publisher>Narr</publisher>.</bibl>
+          <bibl xml:id="tei19"><orgName>TEI Consortium</orgName>. <date>2019</date>. <title level="m">TEI P5: Guidelines for Electronic Text Encoding and Interchange</title>. <edition>Version 3.6.0</edition>. Last updated <date>July 16 2019</date>. <ptr target="https://www.tei-c.org/Vault/P5/3.6.0/doc/tei-p5-doc/en/html/"/>.</bibl>
+          <bibl xml:id="truan16"><author>Truan, Naomi</author>. <date>2016</date>. <title level="a">On the Pragmatics of Interjections in Parliamentary Interruptions</title>. <title level="j">Revue de Sémantique et Pragmatique</title> <biblScope unit="issue">40</biblScope>: <biblScope unit="page">125–44</biblScope>. <ptr target="https://journals.openedition.org/rsp/323"/>; doi:<idno type="DOI">10.4000/rsp.323</idno>.</bibl>
+          <bibl xml:id="truan17"><author>Truan, Naomi</author>. <date>2017</date>. <title level="a">Zwischenrufe zwischen parlamentarischer Routine und Kreativität: Die Bundestagsdebatten aus dem Blickwinkel von unautorisierten Unterbrechungen</title>. <title level="j">Cahiers d’Études Germaniques</title> <biblScope unit="issue">73</biblScope>: <biblScope unit="page">127–40</biblScope>. <ptr target="https://journals.openedition.org/ceg/2370"/>; doi:<idno type="DOI">10.4000/ceg.2370</idno>.</bibl>
+          <bibl xml:id="truan19a"><author>Truan, Naomi</author>. <date>2019</date>a. <title level="m">Débats parlementaires sur l’Europe au Bundestag (1998–2015)</title> [Corpus] <edition>v.1.1</edition>. ORTOLANG (Open Resources and TOols for LANGuage) - <ptr target="http://www.ortolang.fr"/>, v1.1, <ptr target="https://hdl.handle.net/11403/de-parl/v1.1"/>.</bibl>
+          <bibl xml:id="truan19b"><author>Truan, Naomi</author>. <date>2019</date>b. <title level="a">Corpus Annotation</title>. In <title level="m">Débats parlementaires sur l’Europe au Bundestag (1998–2015)</title> [Corpus] <edition>v1.1</edition>. ORTOLANG (Open Resources and TOols for LANGuage) - <ptr target="https://www.ortolang.fr/"/>, v1.1, <ptr target="https://hdl.handle.net/11403/de-parl/v1.1"/>.</bibl>
+          <bibl xml:id="winters17"><author>Winters, Jane</author>. <date>2017</date>. <title level="a">Tackling Complexity in Humanities Big Data: From Parliamentary Proceedings to the Archived Web</title>. In <title level="m">Big and Rich Data in English Corpus Linguistics: Methods and Variations</title>, edited by <editor>Turo Hiltunen</editor>, <editor>Joe McVeigh</editor>, and <editor>Tanja Säily</editor>. <series>Studies in Variation, Contacts and Change in English</series> <biblScope unit="issue">19</biblScope>. <pubPlace>Helsinki</pubPlace>: <publisher>Research Unit for Variation, Contacts and Change in English (VARIENG), University of Helsinki</publisher>. <ptr target="https://varieng.helsinki.fi/series/volumes/19/winters/"/>.</bibl>
+          <bibl xml:id="wissik18"><author>Wissik, Tanja</author>, and <author>Hannes Pirker</author>. 2018. <title level="a">ParlAT Beta Corpus of Austrian Parliamentary Records</title>. In <title level="m">Proceedings of the LREC2018 Workshop ParlaCLARIN: Creating and Using Parliamentary Corpora</title>, edited by <editor>Darja Fišer</editor>, <editor>Maria Eskevich</editor>, and <editor>Franciska de Jong</editor>, <biblScope unit="page">20–23</biblScope>. <pubPlace>Paris</pubPlace>: <publisher>European Language Resources Association (ELRA)</publisher>. <ptr target="http://lrec-conf.org/workshops/lrec2018/W2/summaries/2_W2.html"/>.</bibl>
+          <bibl xml:id="wodak90"><author>Wodak, Ruth</author>, <author>Peter Nowak</author>, <author>Johanna Pelikan</author>, <author>Helmut Gruber</author>, <author>Rudolf de Cillia</author>, and <author>Richard Mitten</author>. <date>1990</date>. <title level="m"><q>Wir sind alle unschuldige Täter</q>: Diskurshistorische Studien zum Nachkriegsantisemitismus.</title> <pubPlace>Frankfurt am Main</pubPlace>: <publisher>Suhrkamp</publisher>.</bibl>
+          <bibl xml:id="zima10"><author>Zima, Elisabeth</author>, <author>Geert Brône</author>, and <author>Kurt Feyaerts</author>. <date>2010</date>. <title level="a">Patterns of Interaction in Austrian Parliamentary Debates: On the Pragmasemantics of Unauthorized Interruptive Comments</title>. In <title level="m">European Parliaments under Scrutiny: Discourse Strategies and Interaction Practices</title>, edited by <editor>Cornelia Ilie</editor>, <biblScope unit="page">135–64</biblScope>. <pubPlace>Amsterdam</pubPlace>: <publisher>John Benjamins</publisher>.</bibl>
+        </listBibl>
+      </div>
+    </back>
+  </text>
+</TEI>

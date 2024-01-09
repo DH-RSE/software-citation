@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="main">Towards a Model for Encoding Correspondence in the TEI: Developing and Implementing <gi>correspDesc</gi></title>        
+        <author>
+          <name>
+            <forename>Peter</forename>
+            <surname>Stadler</surname>
+          </name>
+          <affiliation>Peter Stadler is a <roleName>researcher</roleName> at <title level="m">Carl Maria von Weber—Collected Works</title> at the <orgName>University of Paderborn</orgName>, Germany, where he is in charge of the digital edition of Weber’s letters, diaries, and writings. He was the co-initiator (in 2008) and is currently co-convener of the TEI Correspondence SIG and an elected member of the TEI Technical Council for the term 2014–15.</affiliation>
+          <email>stadler@weber-gesamtausgabe.de</email>
+        </author>
+        <author>
+          <name>
+            <forename>Marcel</forename>
+            <surname>Illetschko</surname>
+          </name>
+          <affiliation>Marcel Illetschko holds a PhD in Modern German Literature from the University of Vienna (2011) and is one of the conveners of the TEI Correspondence SIG. He is a <roleName>researcher</roleName> at the Literature Archive of the <orgName>Austrian National Library</orgName> (working on <title level="m">The letters of August Sauer and Bernhard Seuffert</title>, Austrian Science Fund/FWF: I730-G20) and also works at the Federal Institute for Education Research, Innovation &amp; Development of the Austrian School System (Bundesinstitut für Bildungsforschung, Innovation &amp; Entwicklung des österreichischen Schulwesens, BIFIE).</affiliation>
+          <email>m.illetschko@bifie.at</email>
+        </author>
+        <author>
+          <name>
+            <forename>Sabine</forename>
+            <surname>Seifert</surname>
+          </name>
+          <affiliation>Sabine Seifert is a PhD candidate in Modern German Literature at Humboldt University Berlin and is one of the conveners of the TEI Correspondence SIG. She is a <roleName>researcher</roleName> at the Theodor Fontane Archive at <orgName>Potsdam University</orgName>. From 2010 to 2015, she worked at the Berlin Intellectuals 1800–1830 project at Humboldt University Berlin, where she contributed to the development of the digital edition <title level="m">Letters and Texts: Intellectual Berlin around 1800</title>.</affiliation>
+          <email>sabine.seifert@uni-potsdam.de</email>
+        </author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>TEI Consortium</publisher>
+        <date>24/09/2016</date>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by/4.0/">
+            <p>For this publication a Creative Commons Attribution 4.0 International license has been granted by the author(s) who retain full copyright.</p>
+          </licence> 
+        </availability>
+      </publicationStmt>
+      <seriesStmt>
+        <title level="j">Journal of the Text Encoding Initiative</title>
+        <editor role="guest">Martin Müller</editor>
+        <editor role="chief">John Walsh</editor>
+        <editor role="managing">Anne Baillot</editor>
+        <editor role="technical">Ron Van den Branden</editor>
+        <biblScope unit="issue" n="9">Selected Papers from the 2014 TEI Conference; TEI and Materiality</biblScope>
+      </seriesStmt>
+      <sourceDesc>
+        <p>No source, born digital.</p>
+      </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+      <projectDesc>
+        <p>Revues.org -centre for open electronic publishing- is the platform for journals in the
+          humanities and social sciences, open to quality periodicals looking to publish full-text
+          articles online.</p>
+      </projectDesc>
+    </encodingDesc>
+    <profileDesc>
+      <langUsage>
+        <language ident="en">en</language>
+      </langUsage>
+      <textClass>
+        <keywords xml:lang="en">
+          <term>correspondence</term>
+          <term>communication</term>
+          <term>digital edition</term>
+          <term>interchange</term>
+          <term>metadata</term>
+          <term>authority files</term>
+        </keywords>
+      </textClass>
+    </profileDesc>
+    <revisionDesc>
+      <change/>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <front>
+      <div type="abstract" xml:id="abstract">
+        <p>The encoding of letters has a long tradition in the TEI but there have been no official recommendations in the TEI Guidelines on how to deal with correspondence. Two TEI customizations present exemplary models: <title level="m">DALF: Digital Archive of Letters in Flanders</title> and <title level="m">Carl Maria von Weber—Collected Works (WeGA)</title>. These were the basis of the work of the TEI Correspondence Special Interest Group that formed a task force—consisting of the three authors of this article—for developing encoding guidelines. This article discusses correspondence theory in brief, letters as an act of communication, and how these aspects of correspondence can be expressed by TEI entities. The development of the communication-oriented concept of correspondence and its direct implementation in correspondence-specific metadata structures will be discussed. Central is the new wrapper element <gi>correspDesc</gi> (correspondence description), which stores key metadata about the encoded piece of correspondence. After addressing this first question of how one should encode correspondence with the TEI, we will discuss the question of linking and interchange between projects and editions dealing with correspondence material. To facilitate this, the Correspondence Metadata Interchange (CMI) format has been developed by the TEI Correspondence SIG’s task force as a subset of <gi>correspDesc</gi>. Finally, we will describe some organizational difficulties in implementing the new elements and encoding model into the TEI Guidelines in 2015.</p>        
+      </div>
+    </front>
+    <body>
+      <div xml:id="currenteditions">
+        <head>Current Digital Editions of Correspondence Material</head>
+        <div xml:id="digitaleditions">
+          <head>Digital Editions and Main Questions</head>
+          <p>For several years now, digital projects and editions have been dealing with many varieties of correspondence. The encoding of letters <note>The term <soCalled>letter</soCalled> in the following means <soCalled>piece of correspondence</soCalled> in general.</note> and the methodological reflection on this process have a long tradition in the TEI. One early achievement in this area was the <title level="m"><ref target="http://wyatt.elasticbeanstalk.com/mep/home">Model Editions Partnership: Historical Editions in the Digital Age</ref></title><note><ptr target="http://wyatt.elasticbeanstalk.com/mep/home"/></note> (MEP), developed during the 1990s, which provided several sample editions of historical documents, including letters. On the basis of these, the project editors reflected on new approaches and a general model for preparing digital editions. Working with SGML (later XML) and TEI, a number of custom MEP elements were added to the official TEI elements for the marking up of letter-specific phenomena, for example, the sender and addressee, typical closing phrases, or a postscript (<gi>mep:sender</gi>, <gi>mep:addressee</gi>, <gi>mep:closing</gi>, <gi>mep:ps</gi>).<note><p>See <bibl><author>David Chesnutt</author>, <author>C. M. Sperberg-McQueen</author>, and <author>Susan Hockey</author>, <title level="u">TEI/MEP Encoding Scheme</title>, <edition>version 4.0</edition>, January 16, <date>2002</date>, <ptr target="http://wyatt.elasticbeanstalk.com/mep/misc/mepw04.html"/></bibl>, and <bibl><author>David R. Chesnutt</author>, <author>Susan M. Hockey</author>, and <author>C. M. Sperberg-McQueen</author>, <title level="u">Markup Guidelines for Documentary Editions</title>, July 4, <date>1999</date>, <ptr target="http://wyatt.elasticbeanstalk.com/mep/misc/mepguide.xmlver.html"/></bibl>.</p> <p>Although no explicit namespace is used in the MEP project, we nevertheless prefix element names under discussion (in running text) for better comprehensibility. Elements without namespace prefix are from the official TEI standard.</p></note></p>
+          <p>Current outstanding correspondence projects include <title level="m"><ref target="http://ctb.kantl.be/project/dalf/index.htm.">DALF: Digital Archive of Letters in Flanders</ref></title> (DALF)<note>Centrum voor Teksteditie en Bronnenstudie, Koninklijke Academie voor Nederlandse Taal- en Letterkunde (Centre for Scholarly Editing and Document Studies, Royal Academy of Dutch Language and Literature), <ptr target="http://ctb.kantl.be/project/dalf/index.htm"/>.</note> and <title level="m"><ref target="http://vangoghletters.org/">Vincent Van Gogh: The Letters</ref></title>,<note>Edited by Leo Jansen, Hans Luijten, and Nienke Bakker, 2009, <ptr target="http://vangoghletters.org/"/>. This project adapted some elements needed for the encoding of letters from the DALF project, such as the element <gi>vg:letDesc</gi> for bundling together the core metadata of the letters: see <ptr target="http://vangoghletters.org/vg/about_6.html#intro.VI.6.1"/>.</note> the latter of which is, in many respects, an admirable example of a digital edition. In addition to the emergence of these significant correspondence projects, efforts to conceptualize and standardize the encoding of correspondence within the TEI itself began to become more visible. For example, a feature request for a <soCalled>letters/memos module</soCalled> was submitted in 2004. This request generated interest, but was not realized.<note>Feature request by Nick Finke, May 20, 2004, closed March 2, 2007, Text Encoding Initiative SourceForge site, <ptr target="http://sourceforge.net/p/tei/feature-requests/3/"/>.</note></p>
+          <p>Numerous digital editions of letters are currently in development. The <title level="m"><ref target="http://www.briefedition.alfred-escher.ch/">Alfred Escher Letters Edition</ref></title><note><bibl><editor>Joseph Jung</editor>, ed., <title level="m">Digitale Briefedition Alfred Escher</title> (rev. ed. Zürich: Alfred Escher-Stiftung, July <date>2015</date>), <ptr target="http://www.briefedition.alfred-escher.ch"/>.</bibl></note> launched with extensive revisions in July 2015, and <title level="m"><ref target="http://burckhardtsource.org/">BurckhardtSource</ref></title><note><bibl><editor>Maurizio Ghelardi</editor> et al., <title level="m">Burckhardtsource Project</title> (The European Correspondence to Jacob Burckhardt) (<date>2015</date>– ), accessed March 18, 2016, <ptr target="http://burckhardtsource.org"/>.</bibl></note> transitioned from a beta version to an official release in September 2015. Other active projects include <title level="m"><ref target="http://www.weber-gesamtausgabe.de/en/">Carl Maria von Weber—Collected Works (WeGA)</ref></title>,<note><bibl><editor>Peter Stadler</editor> and <editor>Joachim Veit</editor>, eds., <title level="m">Carl-Maria-von-Weber-Gesamtausgabe</title> (<date>2003</date>– ), accessed March 18, 2016, <ptr target="http://www.weber-gesamtausgabe.de/en/"/>.</bibl></note> <title level="m"><ref target="http://tei.ibi.hu-berlin.de/berliner-intellektuelle/?en">Letters and Texts: Intellectual Berlin around 1800</ref></title>,<note><bibl><editor>Anne Baillot</editor>, ed., <title level="m">Letters and Texts. Intellectual Berlin around 1800.</title> (<date>2012</date>– ), accessed July 25, 2016, <ptr target="http://www.berliner-intellektuelle.eu/?en"/>.</bibl></note> <title level="m"><ref target="http://letters1916.ie/">Letters of 1916</ref></title>,<note><bibl><editor>Susan Schreibman</editor> et al. (<date>2013</date>– ), accessed March 18, 2016, <ptr target="http://letters1916.ie/"/>.</bibl></note> <title level="m"><ref target="http://www.whitmanarchive.org/">The Walt Whitman Archive</ref></title>,<note><bibl><editor>Ed Folsom</editor> and <editor>Kenneth M. Price</editor>, eds., <publisher>Center for Digital Research in the Humanities, University of Nebraska–Lincoln</publisher> (<date>1995</date>– ), accessed March 18, 2016, <ptr target="http://www.whitmanarchive.org/"/>.</bibl></note> <title level="m"><ref target="http://codyarchive.org/">The William F. Cody Archive</ref></title>,<note><bibl><orgName>Buffalo Bill Center of the West</orgName> and <orgName>University of Nebraska-Lincoln</orgName>, accessed March 18, 2016, <ptr target="http://codyarchive.org/"/>.</bibl></note> and <title level="m"><ref target="http://august-wilhelm-schlegel.de/">August Wilhelm Schlegel’s Correspondence</ref></title>.<note><bibl><title level="m">Digitale Edition der Korrespondenz August Wilhelm Schlegels</title>, accessed March 21, 2016, <ptr target="http://august-wilhelm-schlegel.de/"/>.</bibl></note> All of these projects struggled with the specific requirements of encoding correspondence, and most developed new elements or borrowed some from other projects for situations not adequately covered by the TEI Guidelines.</p>
+          <p>Projects currently in development but not yet online include, for example, <title level="m">The Complete Letters of Willa Cather</title><note><bibl><editor>Andrew Jewell</editor>, <editor>Janis P. Stout</editor>, and <editor>Melissa J. Homestead</editor>, eds., <publisher>Center for Digital Research in the Humanities at the University of Nebraska–Lincoln</publisher>, last modified February 2016, <ptr target="http://cather.unl.edu/completeletters.html"/>.</bibl></note> and <title level="m">Epistolary Networks</title>.<note><title level="m">Epistolary Networks: Visualising Multi-dimensional Information Structures in Correspondence Corpora</title> (Vernetzte Korrespondenzen: Erforschung und Visualisierung sozialer, räumlicher, zeitlicher und thematischer Netze in Briefkorpora), Trier Center for Digital Humanities, accessed March 21, 2016, <ptr target="http://exilnetz33.de/en/"/>.</note> Besides editions, interfaces for editorial work or correspondence-specific search queries have been developed, such as <title level="m"><ref target="http://correspsearch.bbaw.de/index.xql">correspSearch</ref></title><note>Berlin-Brandenburg Academy of Sciences and Humanities, accessed March 24, 2016, <ptr target="http://correspsearch.bbaw.de/"/>.</note> or <title level="m"><ref target="http://emlo.bodleian.ox.ac.uk/">Early Modern Letters Online</ref></title> (EMLO).<note xml:id="note18">Cultures of Knowledge Project, Bodleian Library, University of Oxford, accessed March 21, 2016, <ptr target="http://emlo.bodleian.ox.ac.uk/"/>.</note> All of these editions, interface projects, and also visualization tools such as <title level="m"><ref target="http://republicofletters.stanford.edu/">Mapping the Republic of Letters</ref></title><note>Stanford University, accessed March 21, 2016, <ptr target="http://republicofletters.stanford.edu/"/>. This project and EMLO (see <ptr target="#note18" type="crossref"/>) both work with linked open data in which TEI is included but not the only possibility.</note> or <title level="m"><ref target="http://letters.nialloleary.ie/">Visual Correspondence</ref></title>,<note>Visual Correspondence: Analysing Letters through Data Visualisation, Niall O’Leary Services, accessed March 21, 2016, <ptr target="http://letters.nialloleary.ie/"/>.</note> rely heavily on capturing precisely the metadata of each letter.</p>
+          <p>This short overview of editions and projects is by no means exhaustive.<note>For more digital correspondence editions, see the catalogue compiled by Patrick Sahle (<title level="m">A Catalog of Digital Scholarly Editions. Material: Letters</title>, Institute for Documentology and Scholarly Editing, accessed March 21, 2016, <ptr target="http://www.digitale-edition.de/vlet_letters.html"/>), or the Correspondence SIG’s wiki page (last modified December 6, 2015, <ptr target="http://wiki.tei-c.org/index.php/SIG:Correspondence"/>). There are also correspondence editions that decided against using the TEI, like the project <title level="m">The Diplomatic Correspondence of Thomas Bodley, 1585–1597</title> (version 5, edited by Robyn Adams, Centre for Editing Lives and Letters, 2011, <ptr target="http://www.livesandletters.ac.uk/bodley/encoding.html"/>). However, the possibility of transforming all XML files into a format compatible with TEI after the completion of the project was kept open.</note> In all of these endeavors, much technical development has been done and many elaborate encodings have been produced. However, the lack of common, community-endorsed encoding guidelines, especially for letters and other types of correspondence, has resulted in much duplicated work, often hugely varying encoding practices, and obstacles—caused by different encoding schemes—to the interchange of texts. This situation leads to two main questions about digital editions of correspondence:</p>
+          <list rend="bulleted">
+            <item>What changes to the current TEI Guidelines are needed to better support (and standardize) the encoding of correspondence?</item>
+            <item>And, going a step further, how can correspondence editions most effectively be <emph>linked</emph> to one another?</item>
+          </list>
+        </div>
+        <div xml:id="inspiration">
+          <head>Two Inspiring Examples: DALF and WeGA</head>
+          <p>When DALF and WeGA each started, the TEI Guidelines were extensive and covered a wide variety of ways to encode manuscripts, but specific encoding guidelines for epistolary material were still missing. Because of this, both projects tried to address the problem by developing their own customizations and documentation for encoding metadata and text transcriptions. The Belgian <title level="m"><ref target="http://www.kantl.be/ctb/project/dalf/">DALF</ref></title> project,<note><ptr target="http://www.kantl.be/ctb/project/dalf/"/>.</note> a pioneer of encoding correspondence, was launched by the Centre for Scholarly Editing and Document Studies (CTB). In 2003, the <title level="m">DALF Guidelines for the Description and Encoding of Modern Correspondence Material</title> (<ref type="bibl" target="#vanhoutte03">Vanhoutte and Van den Branden 2003</ref>) were published, with the encoding based on TEI P4. The DALF customization was extensively documented and served as a model for several correspondence projects thereafter. In 2012, a trial update to TEI P5 was tested in conjunction with a re-evaluation of the DALF guidelines. They followed two principles: first, changing existing TEI P5 elements as little as possible, and second, isolating the project-specific changes from the official TEI P5 elements whenever possible. This new customization was documented in <title level="u"><ref target="http://ctb.kantl.be/project/dalf/P5/DALF_P5-p0.1.zip">DALF: A Preliminary P5 Proposal</ref></title> (<ref type="bibl" target="#vandenbranden13">Van den Branden 2013</ref>).</p>
+          <p>In 2011, before DALF’s trial update to P5, the <title level="m"><ref target="http://www.weber-gesamtausgabe.de/en/">Carl Maria von Weber—Collected Works</ref></title> (WeGA) project, founded at the University of Paderborn and funded by the Academy of Sciences and Literature Mainz, had launched with access to many manuscripts and letters. TEI P5 was used right from the beginning and in the same year, <title level="u">TEI P5 for Correspondence: A Recommendation for the Encoding of Correspondence Material</title> (<ref type="bibl" target="#stadler11">Stadler 2011</ref>) was developed and made available to the community. Subsequently, all development of the WeGA correspondence schema was publicly accessible at GitHub<note><title level="u">ODD files for documenting the Digital Edition of the Carl-Maria-von-Weber-Gesamtausgabe</title>, accessed March 22, 2016, <ptr target="https://github.com/Edirom/WeGA-ODD"/>.</note> and became a model for several correspondence projects that used TEI P5 from the outset.</p>
+          <p>In keeping with best practice, both projects tried to keep the changes to the existing TEI elements as minimal as possible. They defined a special wrapper element, firstly in order to keep correspondence metadata in a single place for convenient encoding and querying, and secondly to keep the rest of the TEI header untainted by these additions. In each case, the correspondence description was understood as forming a part of the description of the source (that is a manuscript, print document, or digital file). Hence the wrapper element became part of the <gi>sourceDesc</gi> element.</p>
+          <div xml:id="dalfexample">
+            <head>Encoding Example of <title level="m">Digital Archive of Letters in Flanders</title></head>
+            <p>Comparing the correspondence wrapper elements in both DALF and WeGA shows that the structure and the introduced child elements differ slightly. In the DALF project, the wrapper element <gi>dalf:letDesc</gi> (letter description) <quote source="#quoteref1"><supplied>g</supplied>roups together all letter-specific metadata for a DALF document.</quote><note>Definition of the element in <ref xml:id="quoteref1" type="bibl" target="#vandenbranden13">Van den Branden 2013</ref>, file <ident>DALF.htm</ident>.</note> The main child element is <gi>dalf:letHeading</gi> which <quote source="#quoteref2"><supplied>c</supplied>ontains a structured description of bibliographical information of a letter</quote>.<note>Definition of the element in <ref xml:id="quoteref2" type="bibl" target="#vandenbranden13">Van den Branden 2013</ref>, file <ident>DALF.htm</ident>.</note> These consist of four key metadata fields that are defined as follows, each with new elements:</p>
+            <list rend="bulleted">
+              <item><gi>dalf:letAuthor</gi>: the author of the letter (no differentiation was made between the notions of an <soCalled>author</soCalled> and a <soCalled>sender</soCalled>),</item>
+              <item><gi>dalf:letAddressee</gi>: the addressee of the letter,</item>
+              <item><gi>dalf:letPlace</gi>: the place where the letter was written, and</item>
+              <item><gi>dalf:letDate</gi>: the date of the letter’s origin.</item>
+            </list>
+            <p>Information on parties other than the author who were responsible for the content of the letter are encoded within the already existing TEI element <gi>respStmt</gi> within <gi>dalf:letHeading</gi>.</p>
+            <p>Besides these basic characteristics of a letter in <gi>dalf:letHeading</gi>, additional information can be provided in other new elements. These are restricted to:</p>
+            <list rend="bulleted">
+              <item><gi>dalf:type</gi>: the formal classification of the letter,</item>
+              <item><gi>dalf:envOcc</gi>: the occurrence of envelopes,</item>
+              <item><gi>dalf:figOcc</gi>: the occurrence of illustrations in the letter.</item>
+            </list>
+            <p>Extra notes on the letter can be added in the TEI element <gi>note</gi>. All other information, for example on provenance, physical appearance, or history of the letter, are put in <gi>msDesc</gi> (manuscript description), as there are already sufficient TEI elements with which to encode such data.</p>
+            <p>Within <gi>sourceDesc</gi> the grouping is thus first <gi>biblStruct</gi>, second <gi>dalf:letDesc</gi>, and third <gi>msDesc</gi>. <ptr type="crossref" target="#example1"/> shows the encoding for a letter from the DALF corpus (with a repeated <gi>dalf:letHeading</gi>, since there are actually two letters on one sheet of paper in this case):</p>
+            <figure xml:id="example1">
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <dalf:letDesc xmlns:dalf="http://ctb.kantl.be/DALF/2.0">
+                  <!-- 5.1 Composite Letters: multiple letHeading elements for each subdivision in the letter -->
+                  <dalf:letHeading xml:id="KVDW.part" default="true">
+                    <dalf:letAuthor ref="names.xml#KVDW" attested="yes">Karel van de Woestijne</dalf:letAuthor>
+                    <dalf:letAddressee ref="names.xml#EDB" attested="yes">Emmanuel de Bom</dalf:letAddressee>
+                    <dalf:letPlace attested="no"/>
+                    <dalf:letDate notAfter="1904-07-25" notBefore="1904-08-02">na 1904-07-25 en voor 1904-08-02</dalf:letDate>
+                    <!-- 5.1 Composite Letters: multiple letHeading elements for each subdivision in the letter -->
+                  </dalf:letHeading>
+                  <dalf:letHeading xml:id="MVDW.part">
+                    <dalf:letAuthor ref="names.xml#MVDW" attested="yes">Mariette van de Woestijne</dalf:letAuthor>
+                    <dalf:letAddressee ref="names.xml#EDB" attested="yes">Emmanuel de Bom</dalf:letAddressee>
+                    <dalf:letPlace attested="no"/>
+                    <dalf:letDate notAfter="1904-07-25" notBefore="1904-08-02">na 1904-07-25 en voor 1904-08-02</dalf:letDate>
+                  </dalf:letHeading>
+                  <dalf:envOcc occ="false"/>
+                  <dalf:figOcc quantity="1"/>
+                  <dalf:type>Brief, geen omslag</dalf:type>
+                </dalf:letDesc>
+                
+              </egXML>
+              <head type="legend">Encoding example from DALF (<ref type="bibl" target="#vandenbranden13">Van den Branden 2013</ref>, file <ident>dalfP5test.xml</ident>).</head>
+            </figure>
+          </div>
+          <div xml:id="wegexample">
+            <head>Encoding Example of <title level="m">Carl Maria von Weber—Collected Works</title></head>
+            <p>The WeGA offers a different, shallower structure which groups the key metadata parallel to each other directly within the wrapper element called <gi>wega:correspDesc</gi> (correspondence description). The <gi>wega:correspDesc</gi> wrapper <quote source="#quoteref3">groups together meta data about the (historic) correspondence such as sender, addressee etc.</quote> (<ref xml:id="quoteref3" type="bibl" target="#stadler11">Stadler 2011</ref>). The variety of the selected metadata also differs slightly. Newly defined elements are:</p>
+            <list rend="bulleted">
+              <item>the sender, encoded within the element <gi>wega:sender</gi> (here, a differentiation was made between an <soCalled>author</soCalled> and a <soCalled>sender</soCalled>),</item>
+              <item>the addressee in the element <gi>wega:addressee</gi>,</item>
+              <item>the place where the letter was written in <gi>wega:placeSender</gi>,</item>
+              <item>the date when the letter was written in <gi>wega:dateSender</gi>,</item>
+              <item>the place where the letter was received in <gi>wega:placeAddressee</gi>,</item>
+              <item>the date when the letter was received in <gi>wega:dateAddressee</gi>, and</item>
+              <item>the position of the letter within the whole thread of correspondence in <gi>wega:context</gi>.</item>
+            </list>
+            <p>For capturing the beginning of the letter, the already existing element <gi>incipit</gi> was borrowed from the manuscript description and included within <gi>wega:correspDesc</gi>. As in the DALF guidelines, there is no encoding of information on the source and its history, which remain in the manuscript description.</p>
+            <p>Within the source description, the first element is <gi>wega:correspDesc</gi>, and the second contains the bibliographic information (<gi>msDesc</gi>, <gi>listWit</gi>, <gi>biblStruct</gi>, or similar). <ptr type="crossref" target="#example2"/> shows the encoding for a letter from WeGA:</p>
+            <figure xml:id="example2">
+              <!-- [RvdB] added (dummy) 'wega' namespace to differentiate between then new WEGA elements and regular TEI content (analogous to previous DALF example) -->
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <wega:correspDesc xmlns:wega="http://www.weber-gesamtausgabe.de">
+                  <wega:sender>
+                    <persName key="A002068">Weber, Carl Maria von</persName>
+                  </wega:sender>
+                  <wega:addressee>
+                    <persName key="A000213">Weber, Caroline</persName>
+                  </wega:addressee>
+                  <wega:placeSender>
+                    <placeName>Berlin</placeName>
+                  </wega:placeSender>
+                  <wega:placeAddressee>
+                    <placeName>Prag</placeName>
+                  </wega:placeAddressee>
+                  <wega:dateSender>
+                    <date from="1817-01-01" to="1817-01-04" n="01">1. bis 4. Januar 1817</date>
+                  </wega:dateSender>
+                  <incipit>Prost Neujahr!! Millionen Bußen. und gute Nacht</incipit>
+                  <wega:context>
+                    <ref target="http://www.weber-gesamtausgabe.de/A041003" n="next">Brief Webers an Caroline Brandt vom 5.–7. Januar 1817</ref>
+                  </wega:context>
+                </wega:correspDesc>
+              </egXML>
+              <head type="legend">Encoding example from WeGA (file <ident>A041001.xml</ident> from <ref type="bibl" target="#stadler11">Stadler 2011</ref>)</head>
+            </figure>
+            <p>It goes without saying that there are several possible ways to encode the many different types of correspondence (letters, postcards, and so on), and each approach needs to fit the respective project’s aims. DALF and WeGA present detailed and exemplary models. These two encoding models and editions were the basis of the work of the TEI Correspondence Special Interest Group presented below.</p>
+          </div>
+        </div>
+        <div xml:id="correspsig">
+          <head>The TEI Correspondence SIG’s Task Force <soCalled>correspDesc</soCalled></head>
+          <p>In 2013, the TEI Correspondence SIG put together a task force called <soCalled>correspDesc</soCalled> to address the question of how to modify the TEI in order to better support the encoding of correspondence. This task force consisted of the three authors of this article, who have been co-conveners of the Correspondence SIG since 2014. Our goal was to create a formal proposal for a correspondence metadata element (with appropriate child elements) for approval by the TEI Council as a new feature of the TEI standard. Dealing with transcriptional elements was set aside as a second step. We put the focus on standardization of the editorial information and its encoding within the <gi>teiHeader</gi>, and discussed and selected the <soCalled>core</soCalled> correspondence-specific metadata that should be encoded—and thus be conveniently identifiable—in one fixed location in the TEI header.</p>
+          <p>The development of this model for encoding correspondence-specific metadata was inspired largely by the work of DALF and WeGA, for these projects had offered the most successful and <soCalled>reusable</soCalled> customizations thus far. We built on these customizations rather than starting from scratch and began with an evaluation of the overlaps and differences between the two customizations. We followed both DALF and WeGA in their two basic assumptions: on the one hand, the TEI standard should be modified cautiously by adding only a few elements while not changing existing elements. On the other hand, there should be a new wrapper element to store the key metadata on the encoded piece of correspondence instead of scattering this information throughout the TEI header. This wrapper element is called <gi>correspDesc</gi> (correspondence description), and it covers correspondence-specific metadata only. All information describing the manuscript (or any other text-bearing object) still resides within the manuscript description <gi>msDesc</gi>. This also means that the element <gi>correspDesc</gi> alone does not provide a complete description of a letter or other piece of correspondence, but gives <emph>selected</emph> correspondence-specific data. A full description of a given letter is provided by <gi>correspDesc</gi> in conjunction with the manuscript description in <gi>msDesc</gi>.</p>
+          <p>During the course of developing <gi>correspDesc</gi> and refining the underlying definition of correspondence in general, the resulting correspondence-specific guidelines and the setup of the added TEI elements moved somewhat away from the concepts of DALF and WeGA. This, however, does not diminish their importance for conceptualizing <gi>correspDesc</gi> and the encoding guidelines for correspondence.</p>
+        </div>
+      </div>
+      <div xml:id="theory">
+        <head>Theory</head>
+        <p>As outlined above, providing better support (and standardization) for the encoding of correspondence was one of the central goals of the task force. The process of conceptualizing was guided by two things: first, a theory of correspondence in general, and second, the possible application of existing TEI elements (as well as the need for new elements) for a given set of letters or other pieces of correspondence.</p>
+        <div xml:id="correspondence">
+          <head>Theory of Correspondence in General</head>
+          <p>We first had to settle on what constitutes a letter or any other piece of correspondence, e.g., a postcard or a telegram. Inspiration came from many different sources, the significant ones being <ref type="bibl" target="#halsband58">Halsband (1958)</ref>, <ref type="bibl" target="#bluhm93">Bluhm and Meier (1993)</ref>, <ref type="bibl" target="#roloff98">Roloff (1998)</ref>, <ref target="#barton00" type="bibl">Barton and Hall (2000)</ref>, <ref target="#zeller02" type="bibl">Zeller (2002)</ref>, <ref target="#how03" type="bibl">How (2003)</ref>, <ref target="#stanley04" type="bibl">Stanley (2004)</ref>, <ref target="#wietholter10" type="bibl">Wiethölter and Bohnenkamp (2010)</ref>, <ref target="#berg11" type="bibl">Berg (2011)</ref>, <ref target="#bohnenkamp13" type="bibl">Bohnenkamp and Richter (2013)</ref>, and <ref target="#hankins15" type="bibl">Hankins (2015)</ref>. Three aspects emerged as the central ones: The materiality of a piece of correspondence, the text of the message, and the <soCalled>eventness</soCalled> of the communicative act.</p>
+          <div xml:id="materiality">
+            <head>The Letter as an Object</head>
+            <p>It seems obvious that any piece of correspondence is tightly bound to its materiality. First, the available space on a text-bearing object not only limits the amount of the text, it also puts stylistic constraints on the message; compare, for example, a postcard with a letter, where on the former you will not usually find such elaborate openers or closers as on the latter. Second, there are implications for the communicative act, since <list rend="inline"><item>the object is part of the (social contexts of the) message—was expensive paper used or just some scrap of paper?—and</item> <item>some material forms of correspondence conceal their contents while others bear text visibly</item></list>.</p>
+            <p>Since these material aspects play a distinct role for many editions of texts in general (editions of correspondence being a subset of these), the TEI fortunately already features a full-fledged module for the encoding of manuscripts (and other text-bearing objects in general) with <gi>msDesc</gi> (cf. <ref target="#pierazzo11" type="bibl">Pierazzo 2011</ref>). The particular characteristics of correspondences—those material aspects that are genuinely related to correspondence (e.g., attachments, enclosures, and envelopes)—can also be encoded within <gi>sourceDesc</gi>. A taxonomy of media types (e.g., postcard, letter, or email) may be specified in the <gi>profileDesc</gi>.</p>
+          </div>
+          <div xml:id="text">
+            <head>The Text of the Letter</head>
+            <p>For the encoding of textual content of a message, the TEI Guidelines (<ref target="#tei15" type="bibl">TEI Consortium 2015</ref>) provide a most comprehensive tag set. One can elaborately encode names, dates, places, and their relationships. One can, as well, document all sorts of editorial interventions and features of the copy text. Again, particular textual characteristics of correspondence can already be dealt with. For example, the existing elements <gi>postscript</gi>, <gi>opener</gi>, and <gi>closer</gi> provide for encoding the prototypic text structure of a letter. Of course, this prototypic structure does not apply to all letters, nor to correspondence in general, so the aforementioned elements and their applicability are constantly called into question. Yet, as pointed out in <ptr target="#correspsig" type="crossref"/>, this issue was not part of the task force’s mandate but needs to be addressed in a subsequent step.</p>
+          </div>
+          <div xml:id="event">
+            <head>The Letter as an Event</head>
+            <p>Besides the material and the textual features of a message, its <soCalled>eventness</soCalled> is of exceptional importance. In general, an event introduces change to the associated parties and to the particular communication continuum in which the correspondence takes place (<ref target="#bohnenkamp13" type="bibl">Bohnenkamp and Richter 2013, 4</ref>). Each individual message is not a sole entity but a reaction to some previous message, and triggers a reaction itself. For some, this <quote source="#quoteref4">temporal sequence of the Before and After with something happening in the middle of those</quote> plays a predominant role: <quote source="#quoteref4">More important than the question of what happens is the fact that something happens, that is the mere carrying out</quote><note>German original version: <quote source="#quoteref4">Wichtiger als die Frage, was sich ereignet, ist die Tatsache, daß sich etwas ereignet, also der bloße Vollzug.</quote> Translation by the authors.</note> (<ref xml:id="quoteref4" target="#stenger10" type="bibl">Stenger 2010, 30</ref>). In fact, the mere (written) text of a message was not emphasized until the seventeenth and eighteenth centuries, Stenger argues. Very often, <quote source="#quoteref5">the surrounding circumstances—sent works, presents, works of art, other oral messages—show that the letter is embedded within a whole ensemble of communication media that made correspondence a multimedia process</quote><note>German original version: <quote source="#quoteref5">Die <gap/> Begleitumstände – übersandte Schriften, Geschenke, Kunstwerke, weitere, mündliche Nachrichten – zeigen, daß der Brief in ein ganzes Ensemble aus Kommunikationsmedien eingebunden war, welche die Korrespondenz zu einem multimedialen Prozeß machten.</quote> Translation by the authors.</note> (<ref xml:id="quoteref5" type="bibl" target="#stenger10">ibid., 32</ref>).</p>
+            <p>Correspondence is frequently called a <soCalled>half dialogue</soCalled>, a <soCalled>conversation amongst absentees</soCalled>; Janet Gurkin Altman, for example, speaks about <quote source="#quoteref6">the letter’s function as a connector between two distant points, as a bridge between sender and receiver</quote> (<ref xml:id="quoteref6" type="bibl" target="#altman82">Altman 1982, 13</ref>). This view has much in common with the classic model of communication as laid out by Claude Elwood Shannon and Warren Weaver in the 1940s (<ref target="#shannon49" type="bibl">Shannon and Weaver 1949</ref>). The so-called Shannon–Weaver model can be reduced to the entities sender, receiver, and a connecting transmission.</p>
+            <p>We therefore tried to incorporate the basic principles of this communication model into our concept of what constitutes correspondence. Although, of course, not every letter follows the same basic pattern, it nevertheless seemed reasonable to concentrate on these key points:</p>
+            <list rend="bulleted">
+              <item>sender</item>
+              <item>receiver</item>
+              <item>origin location</item>
+              <item>destination location</item>
+              <item>message(s) before and after</item>
+              <item>date sent</item>
+              <item>method of transmission</item>
+              <item>date received</item>
+            </list>
+            <p>Hence, the proposed correspondence description needed to provide information about persons (or organizations) as sender, receiver, or messenger. In addition to this, it needed to support the encoding of the respective dates and places as well as to provide a mechanism that would point at (or reference) preceding and subsequent messages.</p>
+          </div>
+        </div>
+        <div xml:id="correspondencetei">
+          <head>Theory of Correspondence and TEI Entities</head>
+          <p>The previously outlined <soCalled>eventness</soCalled> of correspondence, that is, the communicative act associated with correspondence, can be decomposed into various <soCalled>actions</soCalled>. These actions (which include sending, receiving, and transmitting) form the atomic events of a communicative act and are associated with people, dates, and places.</p>
+          <div xml:id="persons">
+            <head>Persons</head>
+            <p>An act of communication has a sender of a message who is not necessarily identical to the author of the text of the message. In the TEI Guidelines, <quote source="#quoteref7"><gi>author</gi> in a bibliographic reference, contains the name(s) of an author, personal or corporate, of a work; for example in the same form as that provided by a recognized bibliographic name authority.</quote> (<ref xml:id="quoteref7" target="#tei15" type="bibl">TEI Consortium 2015</ref>, <title level="a"><ref target="http://www.tei-c.org/Vault/P5/2.8.0/doc/tei-p5-doc/en/html/ref-author.html"><gi>author</gi></ref></title>)<note><ptr target="http://www.tei-c.org/Vault/P5/2.8.0/doc/tei-p5-doc/en/html/ref-author.html"/>.</note> Obviously, this definition is connected to specific concepts of <soCalled>authorship</soCalled> and <soCalled>work</soCalled> which cannot be discussed in great detail here. Of course, it is possible in an act of communication or correspondence to send a copy of a Shakespearean poem instead of writing an original love letter; it is possible for a writer to send a publishing contract in order to discuss it with a friend; and it is possible to send a disembodied ear in order to threaten an enemy instead of writing a message at all. Still, correspondence and communication happen in each of these instances. These sorts of possibilities make it crucial to differentiate between the <soCalled>author</soCalled> and the <soCalled>sender</soCalled> of a letter. If author and sender are the same person—which in most letters will be the case—one can use a pointer to the corresponding part of the TEI header to indicate that.</p>
+            <p>Furthermore, correspondence generally has one or more intended (perhaps fictional) <soCalled>addressees</soCalled> or <soCalled>receivers</soCalled>. It is important to point out that the addressee <soCalled>spoken</soCalled> to by the piece of correspondence is not necessarily the same person as the one who actually <soCalled>receives</soCalled> the letter. One might also want to encode persons involved in the transmission of the letter, such as a dear friend entrusted with the letter, a personal messenger, or an official letter carrier.</p>
+          </div>
+          <div xml:id="dates">
+            <head>Dates</head>
+            <p>A piece of correspondence generally has certain points in time when it was written and sent which are not necessarily the same, and may even be unknown, approximate, or indeterminate. One could also argue that the date of receipt of a letter is documented in some cases and should thus be encoded as well.</p>
+          </div>
+          <div xml:id="places">
+            <head>Places</head>
+            <p>Similarly, a piece of correspondence is generally sent <emph>from</emph> a particular location, which may or may not be the same as the place(s) of composition. A letter is also typically sent <emph>to</emph> a specific location. Very often these bits of information are evident in the text of the message, in an address line, postmark, or in the automatically generated header metadata in an email message, so they can and should be captured in the encoding.</p>
+          </div>
+          <div xml:id="transmission">
+            <head>Transmitting, Redirecting, Forwarding</head>
+            <p>A piece of correspondence generally has a process or a medium and/or one or more executor(s) of transfer (messenger, carrier, postman, carriage, fax machine, Internet) and may be redirected (usually unread/without acknowledgement of the content) or forwarded (usually read/with acknowledgement of the content). Again, this vital information should be recorded in the encoding.</p>
+          </div>
+          <div xml:id="context">
+            <head>Context</head>
+            <p>Typically, a piece of correspondence is not an isolated entity but a (written) act of communication within a communication continuum (see <ref target="#bohnenkamp13" type="bibl">Bohnenkamp and Richter 2013, 4</ref>), in which the correspondence is defined by its relative position between messages sent <soCalled>before</soCalled> and <soCalled>after</soCalled>. Frequently, a piece of correspondence is sent as a reaction to another piece of correspondence and triggers an answer itself. This communicative thread does not necessarily have a simple chronological order, but may contain overlaps due, for example, to postal delivery issues or procrastination. Establishing this succession is a common editorial task; thus, the envisioned encoding model should accommodate detailed description of context.</p>
+          </div>
+        </div>
+      </div>
+      <div xml:id="practice">
+        <head>Putting Theory into Practice</head>
+        <p>Starting from the main question, <q>What changes to the current TEI Guidelines would be needed to support scholarly encoding of correspondence?</q>, and after considering the above-mentioned communicational aspects, we finally tried to define as few new correspondence-related elements as necessary while maximizing reliance on the already existing TEI framework. In spite of our initial idea of just implementing dedicated elements such as <gi>sender</gi>, <gi>addressee</gi>, <gi>placeSender</gi>, or <gi>transmission</gi> (based on the customizations used by DALF and WeGA), we were influenced by the arguments of some contributors on the TEI Correspondence SIG list. These contributors suggested that it would be more appropriate to understand correspondence as an involvement of various persons and responsibilities rather than just sender, addressee, or transmitter, and, therefore, that it would be best to use one overall term (<gi>participant</gi>) with different roles (e.g., <att>role</att> = <val>author</val>, <val>sender</val>, <val>signer</val>, or <val>co-signer</val>). We created encoding examples with this model but soon reached its limitations because of the sole emphasis on persons. However, in combination with a different suggestion—namely to wrap all information about the sending (or receiving) side of the correspondence in one element each and to encode names, dates, and places using existing TEI elements—we finally managed to develop a specification that seemed both theoretically justifiable and practically useful.</p>
+        <div xml:id="correspdesc">
+          <head><gi>correspDesc</gi></head>
+          <p>The direct implementation of our communication-oriented concept of correspondence starts with the new element <gi>correspDesc</gi> (correspondence description) that stores the key metadata about the communicative act. This element has one or more <gi>correspAction</gi> and <gi>correspContext</gi> elements as children. All other contents are supplied using already existing elements.</p>
+          <p>Initially, we wanted to include <gi>correspDesc</gi> in <gi>sourceDesc</gi> (and by that means make it <ident>model.biblLike</ident> in order to create, for example, <gi>listBibl</gi>s for collections of letters). After discussions with the TEI Council, we finally decided that <gi>profileDesc</gi> would be more appropriate. In spite of the <soCalled>bibliographical</soCalled> character of information like sender, date, and place of writing, correspondence-related metadata puts the emphasis not on specifying the source but on describing the text and its several aspects. It is therefore better described by the <quote source="#quoteref8">non-bibliographic aspects of a text, <gap/> the situation in which it was produced, the participants and their setting</quote> (<ref xml:id="quoteref8" target="#tei15" type="bibl">TEI Consortium 2015</ref>, <title level="a"><ref target="http://www.tei-c.org/Vault/P5/2.8.0/doc/tei-p5-doc/en/html/ref-profileDesc.html"><gi>profileDesc</gi></ref></title>).<note><ptr target="http://www.tei-c.org/Vault/P5/2.8.0/doc/tei-p5-doc/en/html/ref-profileDesc.html"/>.</note></p>
+          <p>Below is a very simple example of an encoded letter using the new <gi>correspDesc</gi> which <quote source="#quoteref9">contains a description of the actions related to one act of correspondence</quote> (<ref xml:id="quoteref9" target="#tei15" type="bibl">TEI Consortium 2015</ref>, <title level="a"><ref target="http://www.tei-c.org/Vault/P5/2.8.0/doc/tei-p5-doc/en/html/ref-correspDesc.html"><gi>correspDesc</gi></ref></title>):<note><ptr target="http://www.tei-c.org/Vault/P5/2.8.0/doc/tei-p5-doc/en/html/ref-correspDesc.html"/>.</note></p>
+          <figure xml:id="example3">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <correspDesc>
+                <correspAction type="sent">
+                  <persName>Carl Maria von Weber</persName>
+                  <settlement>Dresden</settlement>
+                  <date when="1817-06-23">23 June 1817</date>
+                </correspAction>
+                <correspAction type="received">
+                  <persName>Caroline Brandt</persName>
+                  <settlement>Prag</settlement>
+                </correspAction>
+                <correspContext>
+                  <ref type="prev" target="http://www.weber-gesamtausgabe.de/A041209">Previous letter of <persName>Carl Maria von Weber</persName> to <persName>Caroline Brandt</persName>: <date from="1817-06-19" to="1817-06-20">June 19/20, 1817</date>
+                  </ref>
+                  <ref type="next" target="http://www.weber-gesamtausgabe.de/A041217">Next letter of <persName>Carl Maria von Weber</persName> to <persName>Caroline Brandt</persName>: <date when="1817-06-27">June 27, 1817</date>
+                  </ref>
+                </correspContext>
+              </correspDesc>
+            </egXML>
+            <head type="legend">Encoding example of the TEI element <gi>correspDesc</gi> (<ref target="#tei15" type="bibl">TEI Consortium 2015</ref>, <title level="a"><ref target="http://www.tei-c.org/Vault/P5/2.8.0/doc/tei-p5-doc/en/html/ref-correspDesc.html"><gi>correspDesc</gi></ref></title>)</head>
+          </figure>
+        </div>
+        <div xml:id="correspaction">
+          <head><gi>correspAction</gi></head>
+          <p><gi>correspAction</gi> is the <soCalled>heart</soCalled> of the new model for encoding correspondence with the TEI. It is the <soCalled>atomic unit</soCalled> relating to events of a given communicative act and gives flexible opportunities to include all the information about associated people, dates, and places as described in <ptr target="#theory" type="crossref"/> by using existing TEI elements. The <gi>correspAction</gi> element <quote source="#quoteref10">contains a structured description of the place, the name of a person/organization and the date related to the sending/receiving of a message or any other action related to the correspondence</quote>. (<ref xml:id="quoteref10" target="#tei15" type="bibl">TEI Consortium 2015</ref>, <title level="a"><ref target="http://www.tei-c.org/Vault/P5/2.8.0/doc/tei-p5-doc/en/html/ref-correspAction.html"><gi>correspAction</gi></ref></title>)<note><ptr target="http://www.tei-c.org/Vault/P5/2.8.0/doc/tei-p5-doc/en/html/ref-correspAction.html"/>.</note> Suggested values for its <att>type</att> attribute are:</p>
+          <list rend="bulleted">
+            <item><val>sent</val> (information concerning the sending or dispatch of a message),</item>
+            <item><val>received</val> (information concerning the receipt of a message),</item>
+            <item><val>transmitted</val> (information concerning the transmission of a message, that is, between the dispatch and the next receipt, redirect, or forwarding),</item>
+            <item><val>redirected</val> (information concerning the redirection of an unread message), and</item>
+            <item><val>forwarded</val> (information concerning the forwarding of a message).</item>
+          </list>
+          <p><ptr type="crossref" target="#example3"/> above shows how to encode a single letter with the actions <val>sent</val> (a known author/writer/sender sends the letter from a known place on a known date) and <val>received</val> (a known addressee/receiver receives the letter at a known place—but on an unknown date). Information about the context in which the letter was sent is also supplied (in this case by referencing the previous and next letters of the author/sender).</p>
+        </div>
+        <div xml:id="correspcontext">
+          <head><gi>correspContext</gi></head>
+          <p>The element <quote source="#quoteref11"><gi>correspContext</gi> (correspondence context) provides references to preceding or following correspondence related to this piece of correspondence</quote> (<ref xml:id="quoteref11" target="#tei15" type="bibl">TEI Consortium 2015</ref>, <title level="a"><ref target="http://www.tei-c.org/Vault/P5/current/doc/tei-p5-doc/en/html/ref-correspContext.html"><gi>correspContext</gi></ref></title>).<note><ptr target="http://www.tei-c.org/Vault/P5/current/doc/tei-p5-doc/en/html/ref-correspContext.html"/>.</note> It therefore identifies the proper place of a particular piece of correspondence (a letter, for example) in the communication continuum, as it is defined by its relative position between messages sent <soCalled>before</soCalled> and <soCalled>after</soCalled>. This may be very useful in capturing the correspondence network of a single person, where different letters written on the same day may be part of different discussions with different addressees, or where one and the same (forwarded) letter generates different answers from different writers.</p>
+          <p>Sometimes one will have to deal with pieces of correspondence within other texts (such as biographies) and use a combination of <gi>div</gi> and <gi>correspDesc</gi>. Very often it will be necessary to combine many different letters, for instance, while encoding an anthology. One could then encode the text of each letter in a single <gi>div</gi> in the <gi>body</gi> and link to the corresponding <gi>correspDesc</gi> (one for each letter) in the <gi>teiHeader</gi>. For facilitating this use case, <gi>correspDesc</gi> is made a <soCalled>declarable element</soCalled> (<ref target="#tei15" type="bibl">TEI Consortium 2015</ref>, sec. 15.3.2, <title level="a"><ref target="http://www.tei-c.org/Vault/P5/2.8.0/doc/tei-p5-doc/en/html/CC.html#CCAS2">Declarable Elements</ref></title>),<note><ptr target="http://www.tei-c.org/Vault/P5/2.8.0/doc/tei-p5-doc/en/html/CC.html#CCAS2"/>.</note> and thus can be linked to by means of a <att>decls</att> attribute on the corresponding element within <gi>text</gi>, as demonstrated in the following example:</p>
+          <figure xml:id="example5">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <teiHeader>
+                <profileDesc>
+                  <!-- Every letter gets its own correspDesc -->
+                  <correspDesc xml:id="letter1">
+                    <correspAction type="sent">
+                      <persName>Amalia Beer</persName>
+                      <placeName>Berlin</placeName>
+                      <date when="1815-02-28">28 February 1815</date>
+                    </correspAction>
+                    <correspAction type="received">
+                      <persName>Giacomo Meyerbeer</persName>
+                      <placeName>Paris</placeName>
+                    </correspAction>
+                  </correspDesc>
+                  <correspDesc xml:id="letter2">
+                    <correspAction type="sent">
+                      <persName>L. Schoenberger</persName>
+                      <placeName>London</placeName>
+                      <date when="1815-03-04">4 March 1815</date>
+                    </correspAction>
+                    <correspAction type="received">
+                      <persName>Giacomo Meyerbeer</persName>
+                      <placeName>Paris</placeName>
+                    </correspAction>
+                  </correspDesc>
+                </profileDesc>
+              </teiHeader>
+              <text>
+                <body>
+                  <!-- We put every letter in a <div> of its own and link to the respective <correspDesc> via @decls -->
+                  <div decls="#letter1">
+                    <opener>
+                      <dateline>Berlin den 28t Februar <choice><sic>1814</sic><corr>1815</corr></choice></dateline>
+                    </opener>
+                    <p>Mein lieber Sohn, …</p>
+                  </div>
+                  <div decls="#letter2">
+                    <opener>
+                      <dateline>London d. 4. März <supplied>1</supplied>815</dateline>
+                      <salute>Schätzbarster Freund!</salute>
+                    </opener>
+                    <p>Wir sind ganz wohlbehalten …</p>
+                  </div>
+                </body>
+              </text>
+            </egXML>
+            <head type="legend">Encoding example of an anthology of letters (<ref target="https://github.com/TEI-Correspondence-SIG/correspDesc/blob/master/examples/example07_anthology-of-letters.xml">TEI Correspondence SIG GitHub repository</ref>, <gi>correspDesc</gi> example 7)<note xml:id="note34">Last modified March 19, 2015, <ptr target="https://github.com/TEI-Correspondence-SIG/correspDesc/blob/master/examples/example07_anthology-of-letters.xml"/>.</note></head>
+          </figure>
+          <p>More examples of suggested encodings as well as unusual encoding challenges (such as emails, multiple senders/receivers, fictional letters, redirections, a single document comprising two acts of correspondence, or one act of correspondence with multiple witnesses) can be found at <ref target="https://github.com/TEI-Correspondence-SIG/correspDesc/">the SIG’s GitHub repository</ref>.<note><title level="a">A Proposal for a Correspondence Module and a correspDesc Element</title>, last modified March 20, 2015, <ptr target="https://github.com/TEI-Correspondence-SIG/correspDesc/"/>.</note></p>
+        </div>
+      </div>
+      <div xml:id="interchange">
+        <head>Interchange Format</head>
+        <p>A crucial aspect of the development of <gi>correspDesc</gi> has been the wish to facilitate interchange—even interoperability—of the metadata from encoded correspondence texts, as there is a general and growing demand from correspondence projects for interchange and linked-data capabilities. To provide for this, we developed a model of the <gi>correspDesc</gi> element in a concentrated form that is essentially a constrained subset of the full TEI standard. This Correspondence Metadata Interchange (CMI) format relies heavily on authority files and external standard formats. Authority files like the <ref target="http://www.dnb.de/EN/gnd">Integrated Authority File</ref> (GND)<note>Deutsche Nationalbibliothek, last modified February 29, 2016, <ptr target="http://www.dnb.de/EN/Standardisierung/GND/gnd.html"/>.</note> or the <ref target="http://viaf.org/">Virtual International Authority File</ref> (VIAF)<note>OCLC, accessed March 24, 2016, <ptr target="http://viaf.org/"/>.</note> are used for identifying persons and places, and the stricter <ref target="http://www.w3.org/TR/NOTE-datetime">W3C format</ref><note><bibl><author>Misha Wolf</author> and <author>Charles Wicksteed</author>, <title level="u">Date and Time Formats</title>, <publisher>W3 Consortium</publisher>, September 15, <date>1997</date>, <ptr target="http://www.w3.org/TR/NOTE-datetime"/>.</bibl></note> (being a subset of ISO 8601) is used for the encoding of dates. Including such standards can introduce new problems, however, when there are several authority files for one piece of information or when there are none.</p>
+        <p>Nevertheless, along with the development of the CMI format, a corresponding Web service using this customization was created by Stefan Dumont at the Berlin-Brandenburg Academy of Sciences and Humanities. This Web service called <title level="m"><ref target="http://correspsearch.bbaw.de/">correspSearch</ref></title><note><ptr target="http://correspsearch.net/"/>.</note> makes the correspondence-specific metadata of (to this day) seven German- and French-language correspondence editions searchable with one query. This service gives an idea of what is possible when correspondence projects are linked. The CMI format and the <title level="m">correspSearch</title> Web service, still under development, aim to address in greater detail the question of linking and interchange between correspondence projects.</p>
+      </div>
+      <div xml:id="difficulties">
+        <head>Organizational Difficulties and Achieving Official TEI Status</head>
+        <p>As already noted in <ptr target="#currenteditions" type="crossref"/>, a TEI letters/memos module was previously requested in 2004. It was deferred in 2007 (with the advent of TEI P5) with a note by Syd Bauman, a member of the TEI Technical Council: <q>I still think it is quite a good idea to have better support for letters &amp; memos in TEI, and I am hopeful that the original poster, the DALF folks, and others will help make this a reality for a subsequent release of P5.</q><note>Syd Bauman, comment on TEI SourceForge feature request no. 3, <title level="u">Letters/memos module</title>, March 2, 2007, <ptr target="https://sourceforge.net/p/tei/feature-requests/3/"/>.</note> There is almost no information documented on the TEI Sourceforge ticket tracker for the time between the creation of the ticket and the closing of the ticket in 2007, so most probably the initial momentum was lost and not much activity followed.</p>
+        <p>In 2008, the Correspondence SIG was established and held its first meeting during the TEI members’ meeting in London. That meeting was rather successful in reaching out to and involving various people and projects. However, it took another year before the first steps were taken. At the 2009 TEI meeting in Ann Arbor, Michigan, an initial task force was set up consisting of Markus Flatscher, Bert Van Raemdonck, and Peter Stadler. Their goal was to map the DALF TEI P4 customization to TEI P5 as a basis for further work on a correspondence customization; hence the code name <soCalled>Dalfy</soCalled>. One of the problems for this task force was the transatlantic makeup of the task force, with Markus Flatscher located in Virginia (USA) and the others located respectively in Belgium and Germany. Modern telecommunication offers a variety of tools for conference calls, but different time zones limit the intersection of work hours, and face-to-face meetings remain a much more productive way to embark on such a venture. Some efforts were made to acquire funding, but the task force failed to secure funding and no <soCalled>Dalfy</soCalled> mapping was developed.</p>
+        <p>At the Correspondence SIG meeting during the 2012 TEI Conference in College Station, Texas, a spontaneous <soCalled>hack session</soCalled> led to the <title level="a"><ref target="http://wiki.tei-c.org/index.php/SIG:Correspondence/ODD_work">second draft for a correspondence ODD</ref></title>.<note>SIG:Correspondence/ODD work, TEI Wiki, <ptr target="http://wiki.tei-c.org/index.php/SIG:Correspondence/ODD_work"/>. The <soCalled>first draft</soCalled> was by Peter Stadler (<ref target="#stadler11" type="bibl">Stadler 2011</ref>).</note> At the 2013 TEI members’ meeting in Rome, the second task force named <soCalled>correspDesc</soCalled> was established consisting of—as mentioned above—the three authors of this paper. The organizational preconditions were more favorable this time since all members were native German speakers and several face-to-face meetings could be arranged in Berlin thanks to the generous funding of home institutions. This time, the goal was explicitly to continue the work that had been started in College Station and to create a formal proposal for a <gi>correspDesc</gi> element for approval by the TEI Council as a new element of the TEI standard. A GitHub repository for developing the ODD customization and providing access to examples and documentation<note>Cf. <ptr target="#note34" type="crossref"/>.</note> was set up, and the task force’s work was documented on the SIG’s wiki space.</p>
+        <p>The task force sought but did not receive substantial feedback from the wider TEI community during our work on the <gi>correspDesc</gi> proposal. This may have had to do with the communication channels we chose to use for interacting with the wider community: besides the SIG’s wiki page and the GitHub repository, we used the SIG and the TEI mailing lists and were co-hosts of the first ever TEI tweet chat. Perhaps a series of workshops would have helped us acquire additional input from other domain experts.<note>The Manuscripts SIG workgroup on Genetic Editions could serve as a role model here. They held two workshops refining their draft proposal, described by Elena Pierazzo on her blog (<bibl><title level="a">At the TEI Technical Council: Genetic Criticism Encoding</title>, <title level="m">Elena Pierazzo’s Blog</title>, November 8, <date>2011</date>, <ptr target="http://epierazzo.blogspot.de/2011/11/at-tei-technical-council-genetic.html"/></bibl>).</note> The feedback we <emph>did</emph> receive during the process was quite encouraging, though, and in June 2014 we had the proposal—that is, the formal specification with documentary prose and examples—in good enough shape to open a <ref target="https://sourceforge.net/p/tei/feature-requests/510/">feature request</ref> on the TEI Sourceforge ticket tracker.<note>Peter Stadler, feature request #510: <title level="u">Add a Correspondence Module and Elements for Capturing Correspondence Specific Meta Data</title>, last modified May 20, 2015, <ptr target="https://sourceforge.net/p/tei/feature-requests/510/"/>.</note> This initiated the official process of integrating <gi>correspDesc</gi> and related elements into the <title level="m">TEI Guidelines</title>. Fortunately, one member of our task force was also a member of the TEI Council during this period, so the Council was constantly reminded about this issue, and queries about the proposal could be answered instantly by the task force member also serving on the TEI Council. Nonetheless, the TEI Council had some concerns and suggestions, and the proposal required a few revisions to address the Council’s concerns and obtain approval. In November 2014, this issue was finally discussed during the Council’s face-to-face meeting at Duke University and accepted for implementation into the TEI Guidelines. It was duly implemented in February 2015 and found its way into the official TEI standard with the TEI P5 release 2.8.0 in April 2015.</p>
+        <p>We would like to thank all members of the greater TEI community and the Correspondence SIG who took part in the development of the correspDesc-proposal with feedback and advice. Special thanks are due to the TEI Council of the term 2014–15 and to Ron Van den Branden for continuous support and counseling.</p>
+      </div>
+    </body>
+    <back>
+      <div type="bibliography">
+        <listBibl>
+          <bibl xml:id="altman82"><author>Altman, Janet Gurkin</author>. <date>1982</date>. <title level="m">Epistolarity: Approaches to a Form</title>. <pubPlace>Columbus</pubPlace>: <publisher>Ohio State University Press</publisher>.</bibl>
+          <bibl xml:id="barton00"><editor>Barton, David</editor>, and <editor>Nigel Hall</editor>, eds. <date>2000</date>. <title level="m">Letter Writing as a Social Practice.</title> <pubPlace>Amsterdam</pubPlace>: <publisher>John Benjamins Publishing Co</publisher>.</bibl>
+          <bibl xml:id="berg11"><author>Berg, Temma</author>. <date>2011</date>. <title level="a">Truly Yours: Arranging a Letter Collection</title>. <title level="j">Eighteenth-Century Life</title> <biblScope unit="volume">35</biblScope>(<biblScope unit="issue">1</biblScope>): <biblScope unit="page">29–50</biblScope>. doi:<idno type="doi">10.1215/00982601-2010-026</idno>.</bibl>
+          <bibl xml:id="bluhm93"><editor>Bluhm, Lothar</editor>, and <editor>Andreas Meier</editor>, eds. <date>1993</date>. <title level="m">Der Brief in Klassik und Romantik: Aktuelle Probleme der Briefedition</title>. <pubPlace>Würzburg</pubPlace>: <publisher>Königshausen &amp; Neumann</publisher>.</bibl>
+          <bibl xml:id="bohnenkamp13"><editor>Bohnenkamp, Anne</editor>, and <editor>Elke Richter</editor>, eds. <date>2013</date>. <title level="m">Brief-Edition im digitalen Zeitalter</title>. <pubPlace>Berlin</pubPlace>: <publisher>De Gruyter</publisher>.</bibl>
+          <bibl xml:id="halsband58"><author>Halsband, Robert</author>. <date>1958</date>. <title level="a">Editing the Letters of Letter-Writers.</title> <title level="j">Studies in Bibliography</title> <biblScope unit="issue">11</biblScope>: <biblScope unit="page">25–37</biblScope>.</bibl>
+          <bibl xml:id="hankins15"><author>Hankins, Gabriel</author>. <date>2015</date>. <title level="a">Correspondence: Theory, Practice, and Horizons.</title> In <title level="m">Literary Studies in the Digital Age</title>, edited by <editor>Kenneth M. Price</editor> and <editor>Ray Siemens</editor>. Accessed March 11, 2016. <ptr target="https://dlsanthology.commons.mla.org/correspondence-theory-practice-and-horizons/"/>.</bibl>
+          <bibl xml:id="how03"><author>How, James</author>. <date>2003</date>. <title level="m">Epistolary Spaces: English Letter-writing from the Foundation of the Post Office to Richardson’s Clarissa.</title> <pubPlace>London</pubPlace>: <publisher>Ashgate</publisher>.</bibl>
+          <bibl xml:id="pierazzo11"><author>Pierazzo, Elena</author>. <date>2011</date>. <title level="a">A Rationale of Digital Documentary Editions.</title> <title level="j">Literary and Linguistic Computing</title> <biblScope unit="volume">26</biblScope> (<biblScope unit="issue">4</biblScope>): <biblScope unit="page">463–77</biblScope>. doi:<idno type="doi">10.1093/llc/fqr033</idno>.</bibl>
+          <bibl xml:id="roloff98"><editor>Roloff, Hans-Gert</editor>, ed. <date>1998</date>. <title level="m">Wissenschaftliche Briefeditionen und ihre Probleme. Editionswissenschaftliches Symposion</title>. <pubPlace>Berlin</pubPlace>: <publisher>Weidler</publisher>.</bibl>
+          <bibl xml:id="stadler11"><author>Stadler, Peter</author>. <date>2011</date>. <title level="u">TEI P5 for Correspondence: A Recommendation for the Encoding of Correspondence Material.</title> Accessed June 30, 2015. <ptr target="http://wiki.tei-c.org/index.php/File:CorrespondenceProposal.zip"/>, available at <ptr target="http://wiki.tei-c.org/index.php/SIG:Correspondence/ODD_work"/>.</bibl>
+          <bibl xml:id="stanley04"><author>Stanley, Liz</author>. <date>2004</date>. <title level="a">The Epistolarium: On Theorizing Letters and Correspondences.</title> <title level="j">Auto/Biography</title> <biblScope unit="volume">12</biblScope> (<biblScope unit="issue">3</biblScope>): <biblScope unit="page">201–35</biblScope>. doi:<idno type="doi">10.1191/0967550704ab014oa</idno>.</bibl>
+          <bibl xml:id="stenger10"><author>Stenger, Jan</author>. <date>2010</date>. <title level="a">Reich an Worten, arm an Inhalt? Der spätantike Brief als Ereignis</title>. In <title level="m">Der Brief—Ereignis &amp; Objekt</title>, edited by <editor>Waltraud Wiethölter</editor> and <editor>Anne Bohnenkamp</editor>, <biblScope unit="page">26–41</biblScope>. <pubPlace>Frankfurt am Main</pubPlace>: <publisher>Stroemfeld</publisher>.</bibl>
+          <bibl xml:id="tei15"><orgName>TEI Consortium</orgName>. <date>2015</date>. <title level="m">TEI P5: Guidelines for Electronic Text Encoding and Interchange.</title> <edition>Version 2.9.1</edition>. Last updated on October 15. <ptr target="http://www.tei-c.org/Vault/P5/2.9.1/doc/tei-p5-doc/en/html/"/>.</bibl>
+          <bibl xml:id="vanhoutte03"><editor>Vanhoutte, Edward</editor>, and <editor>Ron Van den Branden</editor>, eds. <date>2003</date>. <title level="m">DALF Guidelines for the Description and Encoding of Modern Correspondence Material,</title> <edition>version 1.0</edition>. <pubPlace>Gent</pubPlace>: <publisher>Centrum voor Teksteditie en Bronnenstudie, Koninklijke Academie voor Nederlandse Taal- en Letterkunde</publisher>. Revised May 4, 2005. <ptr target="http://www.kantl.be/ctb/project/dalf/dalfdoc"/>/.</bibl>
+          <bibl xml:id="shannon49"><author>Shannon, Claude Elwood</author>, and <author>Warren Weaver</author>. <date>1949</date>. <title level="m">The Mathematical Theory of Communication</title>. <pubPlace>Urbana</pubPlace>: <publisher>Univ. of Illinois Press</publisher>.</bibl>
+          <bibl xml:id="vandenbranden13"><author>Van den Branden, Ron</author>. <date>2013</date>. <title level="u">DALF: A Preliminary P5 Proposal.</title> August 21. <ptr target="http://ctb.kantl.be/project/dalf/P5/DALF_P5-p0.1.zip"/>.</bibl>
+          <bibl xml:id="wietholter10"><editor>Wiethölter, Waltraud</editor>, and <editor>Anne Bohnenkamp</editor>, eds. <date>2010</date>. <title level="m">Der Brief—Ereignis &amp; Objekt: Frankfurter Tagung</title>. <pubPlace>Frankfurt am Main</pubPlace>: <publisher>Stroemfeld</publisher>.</bibl>
+          <bibl xml:id="zeller02"><author>Zeller, Hans</author>. <date>2002</date>. <title level="a">Authentizität in der Briefedition: Integrale Darstellung nichtsprachlicher Informationen des Originals.</title> <title level="j">editio</title> <biblScope unit="issue">16</biblScope>: <biblScope unit="page">36–56</biblScope>.</bibl>
+        </listBibl>
+      </div>
+    </back>
+  </text>
+</TEI>

@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="UTF-8"?><!--<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>-->
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:acdh="acdh" rend="jTEI">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="main">Modeling Frequency Data</title>
+        <title type="sub">Methodological Considerations on the Relationship between Dictionaries and Corpora</title>         
+        <author>
+          <name>
+            <forename>Karlheinz</forename>
+            <surname>Mörth</surname>
+          </name>
+          <affiliation>Karlheinz Mörth is currently <roleName>director of the Austrian Centre for Digital Humanities</roleName> of the <orgName>Austrian Academy of Sciences</orgName>, senior researcher and project leader, lecturer at the University of Vienna, head of the DARIAH National Coordinator Committee and vice-chair of the CLARIN Standards Committee. With a broad background in cultural, literary, and linguistic studies, he has worked on a number of scholarly digital projects. He has contributed to the design and creation of a number of digital language resources, taking responsibility for text encoding and software development. His current research activities focus on eLexicography, text technology for linguistic research and standards for digital language resources.</affiliation>
+          <email>karlheinz.moerth@oeaw.ac.at</email>
+        </author>
+        <author>
+          <name>
+            <forename>Laurent</forename>
+            <surname>Romary</surname>
+          </name>
+          <affiliation>Laurent Romary is <roleName>Directeur de Recherche</roleName> for <orgName>INRIA</orgName> (France) and a guest scientist at Humboldt University (Berlin, Germany). He carries out research on the modeling of semi-structured documents, with a specific emphasis on texts and linguistic resources. He received a PhD in computational linguistics in 1989 and his Habilitation in 1999. He launched and directed the Langue et Dialogue team at Loria (Nancy, France) and participated in several national and international projects related to the representation and dissemination of language resources and to human–machine interaction, coordinating the MLIS/DHYDRO, IST/MIAMM, and eContent/Lirics projects. He has been the editor of ISO standard 16642 (TMF – Terminological Markup Framework) and is the chairman of ISO committee TC 37/SC 4 on Language Resource Management, as well as member (2001–2007), then chair (2008–2011), of the TEI Council. In recent years, he has led the Scientific Information directorate at CNRS (2005–2006) and established the Max-Planck Digital Library (Sept. 2006–Dec. 2008). He is currently director of DARIAH-EU.</affiliation>
+          <email>laurent.romary@inria.fr</email>
+        </author>
+        <author>
+          <name>
+            <forename>Gerhard</forename>
+            <surname>Budin</surname>
+          </name>
+          <affiliation>Gerhard Budin is a <roleName>full professor</roleName> of terminology studies and translation technologies at the Centre of Translation Studies at the <orgName>University of Vienna</orgName>, former director of the Institute for Corpus Linguistics and Text Technology of the Austrian Academy of Sciences, member (kM) of the Austrian Academy of Sciences, and holder of the UNESCO Chair for Multilingual, Transcultural Communication in the Digital Age. He also serves as vice president of the International Institute for Terminology Research and chair of a technical subcommittee in the International Standards Organization (ISO) focusing on terminology and language resources (ISO/TC 37/SC 2 2001–2009, SC 1 2009–present). His main research interests are language technologies, corpus linguistics, and knowledge engineering, E-Learning technologies and collaborative work systems, distributed digital research environments, terminology studies, ontology engineering, cognitive systems, cross-cultural knowledge communication and knowledge organization, philosophy of science, and information science.</affiliation>
+          <email>gerhard.budin@univie.ac.at</email>
+        </author>
+        <author>
+          <name>
+            <forename>Daniel</forename>
+            <surname>Schopper</surname>
+          </name>
+          <affiliation>Daniel Schopperis a <roleName>junior scientist</roleName> at the Austrian Centre for Digital Humanities of the <orgName>Austrian Academy of Sciences</orgName> and head of its working group <emph>Data, Resources and Standards</emph>. Coming from a background of German philology and literature studies, he became involved with the digital humanities over the course of various edition projects, ranging from seventeenth-century drama to database-driven analysis of autobiographic writing, and is currently expanding his field of activity into linguistic-related areas. His research interests include interdisciplinary applications and methodologies between language corpora and literature studies, user–text interfaces, and web-based research environments.</affiliation>
+          <email>daniel.schopper@oeaw.ac.at</email>
+        </author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>TEI Consortium</publisher>
+        <date>07/12/2015</date>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by/4.0/">
+            <p>For this publication a Creative Commons Attribution 4.0 International license has been granted by the author(s) who retain full copyright.</p>
+          </licence> 
+        </availability>
+      </publicationStmt>
+      <seriesStmt>
+        <title level="j">Journal of the Text Encoding Initiative</title>
+        <editor role="guest">Arianna Ciula</editor>
+        <editor role="guest">Fabio Ciotti</editor>
+        <editor role="chief">John Walsh</editor>
+        <editor role="managing">Martin Holmes</editor>
+        <editor role="technical">Ron Van den Branden</editor>
+        <biblScope unit="issue" n="8">Selected Papers from the 2013 TEI Conference</biblScope>        
+      </seriesStmt>
+      <sourceDesc>
+        <p>No source, born digital.</p>
+      </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+      <projectDesc>
+        <p>Revues.org -centre for open electronic publishing- is the platform for journals in the
+          humanities and social sciences, open to quality periodicals looking to publish full-text
+          articles online.</p>
+      </projectDesc>
+    </encodingDesc>
+    <profileDesc>
+      <langUsage>
+        <language ident="en">en</language>
+      </langUsage>
+      <textClass>
+        <keywords xml:lang="en">
+          <term>lexicography</term>
+          <term>language resources</term>
+          <term>digital corpora</term>
+          <term>statistics</term>
+        </keywords>
+      </textClass>
+    </profileDesc>
+  </teiHeader>
+  <text>
+    <front>
+      <div type="abstract" xml:id="abstract">
+        <p>Academic dictionary writing is making greater and greater use of the TEI Guidelines’ dictionary module. And as increasing numbers of TEI dictionaries become available, there is an ever more palpable need to work towards greater interoperability among dictionary writing systems and other language resources that are needed by dictionaries and dictionary tools. In particular this holds true for the crucial role that statistical data obtained from language resources play in lexicographic workflow—a role that also has to be reflected in the model of the data produced in these workflows. Presenting a range of current projects, the authors address two main questions in this area: How can the relationship between a dictionary and other language resources be conceptualized, irrespective of whether they are used in the production of the dictionary or to enrich existing lexicographic data? And how can this be documented using the TEI Guidelines? Discussing a variety of options, this paper proposes a customization of the TEI dictionary module that tries to respond to the emerging requirements in an environment of increasingly intertwined language resources.</p>
+      </div>
+    </front>
+    <body>
+      <div xml:id="introduction">
+        <head>Introduction</head>
+        <p>Academic dictionary writing is making greater and greater use of the TEI Guidelines’ dictionary module. And as increasing numbers of TEI dictionaries become available, there is an ever more palpable need to work towards greater interoperability among dictionary writing systems and other language resources that are needed by dictionaries and dictionary tools. In a world of exponentially increasing information, the borders between different types of digital language resources are assuming a role that requires increased attention. Two particularly important instances of such language resources are digital text corpora and dictionaries, both of which play an important part in the TEI community.</p>
+        <p>The research described in this paper has been based on work accomplished in a bundle of linguistically focused projects that—among other activities—also work on glossaries and dictionaries which are intended to be usable both by human readers and by particular NLP applications. The main questions that will be addressed are:</p>
+        <list rend="bulleted">
+          <item>How can we define the relationship between a dictionary and other language resources such as digital corpora, irrespective of whether they are used in the production of the dictionary or to enrich existing lexicographic data?</item>
+          <item>How can this best be documented using the TEI Guidelines?</item>
+        </list>
+        <p>The paper comprises two parts: in the first, the authors give a concise overview of the scholarly background of the projects involved and their goals. The second part touches on encoding issues in the related dictionary production. We will focus particularly on the modeling of an encoding scheme for statistical information on lexicographic data gleaned from digital corpora.</p>
+      </div>
+      <div xml:id="dictionariesandprojects">
+        <head>The Dictionaries and Projects Involved</head>
+        <p>The projects in which the dictionaries and related technologies have been developed are tightly interlinked: they are all joint endeavors of the Austrian Academy of Sciences and the University of Vienna, and all conduct research in the field of variational Arabic linguistics. It is important to note that Arabic is characterized by a complex polyglossic situation, with Modern Standard Arabic (MSA) on one side of the spectrum and spoken vernaculars on the other side. Linguists and lexicographers may be confronted with three or even four varieties being used by the same speakers in one and the same linguistic biotope in some regions.</p>
+        <p>The first project to be mentioned is the <title level="m">Vienna Corpus of Arabic Varieties</title> (VICAV; see <ptr target="#figure1" type="crossref"/>), which was started two years ago with a low budget, and was intended as an attempt at setting up a comprehensive research environment for scholars pursuing comparative interests in the study of Arabic dialects. The evolving VICAV platform aims at pooling linguistic research data, including various language resources such as language profiles, dictionaries, glossaries, corpora, and bibliographies. One of the main objectives of the project is the creation of a number of dictionaries of Arabic varieties that are primarily intended for comparative purposes.</p>
+        <figure xml:id="figure1">
+          <graphic url="images/figure1.png" width="1280px" height="770px"/>
+          <head type="legend">A screenshot of a prototype of the VICAV website in 2012.</head>
+        </figure>
+        <p>The second project to be mentioned here is <title level="m">Linguistic Dynamics in the Greater Tunis Area: A Corpus-based Approach</title> (TUNICO). This project is financed by a grant from the Austrian Science Fund and aims at the exploration of hitherto poorly-documented contemporary Arabic of the Tunisian capital, which is linguistically and demographically a highly dynamic region. A particular feature of the project is the importance of the dictionary–corpus interface, which will allow the researcher to navigate from the corpus to the dictionary and <foreign xml:lang="la">vice versa</foreign>.The TUNICO project is producing two digital language resources: a corpus of spoken youth language and a diachronic dictionary of Tunisian Arabic. The project started in August 2013 and will run for three years.</p>
+        <p>The third project has grown out of a master’s thesis and deals with the lexicographic analysis of the Egyptian vernacular Arabic Wikipedia (<ref type="bibl" target="#siam13">Siam 2013</ref>). Siam extracted the two hundred most frequent words from <title level="m">Wikipedia Masri</title>,<note><ref target="https://arz.wikipedia.org/wiki/%D9%88%D9%8A%D9%83%D9%8A%D8%A8%D9%8A%D8%AF%D9%8A%D8%A7:Introduction_in_English">Masri Wikipedia Introduction in English</ref> </note> which given the scarcity of available tools proved to be quite a challenge. The idea of incorporating statistical information gathered in this project was the initial incentive to start thinking about how to encode such information in accordance with the TEI Guidelines.</p>
+        <p>Four of the dictionaries created in the above-mentioned projects (namely Egyptian, Damascene, Moroccan, and Tunisian) can be correlated with digital corpora that already exist. This does not imply that the existing data have been compiled on the basis of these corpora, none of which are very large. Nonetheless, they are so far the only available digital text collections that can be used to underpin this dictionary-building process with empirical methods. Egyptian is the most widely used Arabic dialect. There is plenty of material on the Internet: of particular interest is the great amount of data that can be found in social media sites and on personal web pages. However, most of this data is of a very hybrid nature and intermixed with MSA. Therefore, it is difficult to use for dialectological research. The only resource we could easily avail ourselves of so far is the Egyptian Wikipedia, which has been made accessible as a corpus as part of another ACDH project working on the conversion of Wikipedias into TEI. This work is particularly interesting for under-resourced languages without other digital texts suitable for linguistic research.</p>
+        <p>VICAV contains a small corpus of samples of Damascene Arabic, which was compiled by Carmen Berlinches during her seven-year stay in Damascus. In addition, there exists the Graz Corpus of Moroccan Arabic, compiled as part of a project funded by the Austrian Science Fund,<note><title level="m">Arabic in the Middle Atlas Mountains (Morocco)</title>, University of Graz, FWF Project Number P 21722-G20. See <ptr target="http://sprachausbau.uni-graz.at/de/forschen/sprachen-in-nordafrika-marokko/beschreibung/"/>.</note> and the above-mentioned TUNICO corpus which is currently being compiled.<note>The first campaign was undertaken in 2013. The two investigators recorded some 22 hours of audio material, which has been transcribed and are being analyzed.</note></p>
+        <p>Some of these data have already been used to enhance the existing dictionaries, in particular the Egyptian and the Moroccan ones. Many of the words, word forms, and example sentences contained in the corpora have been integrated into the dictionaries. The idea of integrating frequency data grew out of the question as to which lemmas were more important than others.</p>
+        <table xml:id="table1">
+          <head>Arabic language corpora</head>
+          <row role="label">
+            <cell>Source lang.</cell>
+            <cell>Target lang.</cell>
+            <cell>Corpus</cell>
+            <cell>Size (entries)</cell>
+          </row>
+          <row>
+            <cell role="label">Egyptian</cell>
+            <cell>en, de</cell>
+            <cell>Wikipedia Masri</cell>
+            <cell>~3,000</cell>
+          </row>
+          <row>
+            <cell role="label">Damascus</cell>
+            <cell>en, de, sp</cell>
+            <cell>CB-Corpus</cell>
+            <cell>~3,000</cell>
+          </row>
+          <row>
+            <cell role="label">Tunis</cell>
+            <cell>en, de, (fr)</cell>
+            <cell>TUNICO</cell>
+            <cell>~4,000</cell>
+          </row>
+          <row>
+            <cell role="label">Rabat</cell>
+            <cell>en, de</cell>
+            <cell>(GCMA)</cell>
+            <cell>~500</cell>
+          </row>
+        </table>
+        <p>More dictionaries are under preparation. The VICAV database also contains data on Sudanese Arabic, Maltese, Modern Standard Arabic, and the Shawi dialects. One overarching goal of all these endeavors is the creation of a comparative dictionary with an integrated research environment that allows access to all of these data.</p>
+        <div xml:id="dictionaryschema">
+          <head>A Trimmed Dictionary Schema</head>
+          <p>Using the TEI dictionary module to encode digitized print dictionaries has become a fairly common standard procedure in digital humanities. Our paper will not reprise the discussion of TEI vs. LMF vs. LEXml vs. Lift vs. RDF vs. other standards;<note>For a concise overview of these formats compare section 3 <title level="a"><ref target="http://jtei.revues.org/522#tocfrom1n3">Data Formats</ref></title> in <ref type="bibl" target="#budin12">Budin, Majewski, and Mörth 2012</ref> (<ptr target="http://jtei.revues.org/522#tocto1n3"/>).</note> we assume that the TEI dictionary module is sufficiently well developed to cope with all requirements of our projects. The basic schema used has already been tested in several projects for various languages and will furnish the foundation for the intended customizations.</p>
+          <p>Created to serve as sources for comparative research, all of the above-mentioned dictionaries have to fulfill a series of requirements: Technically, they have to be processable by various tools, most importantly by several web services on which the dictionary tools build. They have to be compatible with one another and the tools used in their creation. Therefore, they have to be encoded following one single schema in order to allow electronic tools to work on them in tandem and to allow users to execute meaningful queries across all of the dictionaries. This goal has so far been achieved by applying a narrowly defined schema that imposes a number of specific constraints, which were meant to serve as a mechanism to enhance interoperability. In all design issues we have strived for a high degree of compliance with LMF. The main methods of imposing such constraints are reducing alternate constructs and matching with constructs of LMF (<ref type="bibl" target="#iso08">ISO 2008</ref>).<note>See <ref type="bibl" target="#budin12">Budin, Majewski, and Mörth 2012</ref> and <ref type="bibl" target="#romary13">Romary 2013b</ref>.</note></p>
+          <p>Since all of these data are <soCalled>born digital</soCalled>, it is comparatively easy to ensure the structural uniformity of the dictionaries. Basically, our dictionaries are conceptualized as a specific type of text and are therefore encoded with <gi>text</gi> elements. Each dictionary starts with a <gi>teiHeader</gi> which contains the metadata of the dictionary. The <gi>body</gi> of the VICAV dictionaries contains two <gi>div</gi> elements: one typed <val>entries</val>, holding all entries of the dictionary, and another typed <val>examples</val>, which is populated with a series of <gi>cit</gi> / <gi>quote</gi> constructs containing example sentences.<note>While entries and example sentences were originally located directly inside the <gi>body</gi>, we have now settled for a clearer distinction between the two. Since most of our dictionary data is created and maintained using the Viennese Lexicographic Editor and held in a relational database (described in <ref type="bibl" target="#budin12">Budin, Majewski, and Mörth 2012</ref>), format changes like this can be applied transparently on all of our dictionaries, making it easy to ensure structural homogeneity.</note> Treating these examples as independent units allows dictionary writers to reuse the same sentence in various parts of a dictionary. The schema uses the <gi>entry</gi> element, does not make use of the <gi>hom</gi> element, and does not allow <gi>superEntry</gi>, <gi>entryFree</gi>, or <gi>dictScrap</gi>.<note>For more detail see <ref type="bibl" target="#budin12">Budin, Majewski, and Mörth 2012</ref>.</note></p>
+          <p>Thus, our TEI dictionaries basically look like this:
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <TEI>
+                <body>
+                  <div type="entries">
+                    <entry>...</entry>
+                    <entry>...</entry>
+                    <entry>...</entry>
+                    ...
+                  </div>
+                  <div type="examples">
+                    <cit type="example">...</cit>
+                    <cit type="example">...</cit>
+                    <cit type="example">...</cit>
+                    ...
+                    ...
+                  </div>
+                </body>
+              </TEI>
+            </egXML>
+          </p>
+          <p>A typical, slightly simplified <gi>entry</gi> taken from the Egyptian dictionary is shown below:
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <entry xml:id="kitaab_001">
+                <form type="lemma">
+                  <orth xml:lang="ar-arz-x-cairo-vicav">kitāb</orth>
+                  <orth xml:lang="ar-arz-x-cairo-arabic">كتاب</orth>
+                </form>
+                
+                <gramGrp>
+                  <gram type="pos">noun</gram>
+                  <gram type="root" xml:lang="ar-arz-x-cairo-vicav">ktb</gram>
+                </gramGrp>
+                
+                <form type="inflected" ana="#n_pl">
+                  <orth xml:lang="ar-arz-x-cairo-vicav">kutub</orth>
+                  <orth xml:lang="ar-arz-x-cairo-arabic">كتب</orth>
+                </form>
+                
+                <sense>
+                  <cit type="translation" xml:lang="en">
+                    <quote>book</quote>
+                  </cit>
+                  
+                  <cit type="translation" xml:lang="de">
+                    <quote>Buch</quote>
+                  </cit>
+                </sense>
+              </entry>
+            </egXML>
+          </p>
+          <p>To minimize processing overhead, hierarchical nesting is avoided whenever possible; even inflected forms of the lemma are treated like other variant word forms and are encoded as <gi>form</gi> elements on the same hierarchical level as the lemma itself.</p>
+          <p>The above structure is the one actually implemented at the moment. All VICAV dictionaries and most other dictionaries being produced at the ACDH follow this basic structure.<note>The example above exhibits some features which might seem idiosyncratic at first glance, namely the usage of the <att>ana</att> attribute and the values in the <att>xml:lang</att> attributes. The fragment identifier in <att>ana</att> refers to a feature library in the <gi>teiHeader</gi>, providing a concise notation for morphosyntactic annotations. In the example above, it defines the inflected <gi>form</gi> to bear the features <mentioned>noun</mentioned> and <mentioned>plural</mentioned>. The composition of the <att>xml:lang</att> attributes is an extension to the BCP 47 standard tags, which proved necessary in order to provide a higher degree of locational granularity (see <ref type="bibl" target="#budin12">Budin, Majewski, and Mörth 2012</ref>).</note></p>
+        </div>
+        <div xml:id="frequencydata">
+          <head>Frequency Data</head>
+          <p>Lexicostatistical data and methods are used in many fields of modern linguistics, lexicography being only one of them. Modern dictionary production relies on corpora, and statistics play an important role in lexicographers’ decisions, for instance when selecting lemmas to be included in dictionaries or selecting senses to be incorporated into dictionary entries. However, lexicostatistical data are not only of interest for the lexicographer; they might also be useful to the users of lexicographic resources, especially digital lexicographic resources. The question as to how to make such information available takes us to the issue of how to encode it.</p>
+          <p>Reflecting on the dictionary–corpus interface and on the issue of how to bind corpus-based statistical data into the lexicographic editing workflow, two prototypical approaches are conceivable: <list rend="inline ordered"><item>either statistical information is statically embedded in the dictionary entries or</item> <item>a dictionary interface provides functionalities to access services capable of providing the required data.</item></list></p>
+          <p>A group of people working on methodologies to implement functionalities of the second type is the Federated Content Search (FCS) working group, an initiative of the CLARIN-ERIC infrastructure which strives to enhance search capabilities in locally distributed data stores (<ref type="bibl" target="#stehouwer12">Stehouwer et al. 2012</ref>). FCS is intended to work with heterogeneous data, and dictionaries are only one type of language resource to be taken into consideration. In view of the growing prevalence of more dynamic digital environments, the second of the above-mentioned approaches is more appealing. In practice, the digital workbench will require both options. This is particularly true given that corpora change and grow over time. Resolving polysemy and grouping instances into senses remain tasks that cannot be achieved automatically—yet for the sake of verifiability these should be as accountable as possible. The prevalence of digital workflows in lexicographic editing in combination with the availability of large-scale data storage at reasonable cost provide the technological prerequisites to envision systems that keep track of such editorial processes and make the lexicographers’ decisions more transparent and verifiable.</p>
+        </div>
+      </div>
+      <div xml:id="documentingcorpora">
+        <head>Documenting Consulted Corpora</head>
+        <p>If traceability is to be one of the fundamental benefits of a digital lexicographic workflow, documenting the provenance of the language data which editorial decisions rely upon becomes a basic requirement. Among the various possible elements to accommodate such metadata in the current TEI Schema, the dictionary’s <gi>sourceDesc</gi> element with <gi>bibl</gi>elements (or their finer-grained variants <gi>biblStruct</gi> or <gi>biblFull</gi>) might seem an obvious fit.</p>
+        <egXML xmlns="http://www.tei-c.org/ns/Examples">
+          <sourceDesc>
+            <bibl>Österreichisches Wörterbuch. 42. Auflage. Wien: ÖBV 2012</bibl>
+            <bibl>amc – Austrian media Corpus. Austrian Centre for Digital Humanities. Austrian Academy of Sciences http://www.oeaw.ac.at/acdh/amc</bibl>
+          </sourceDesc>
+        </egXML>
+        <p>This solution, however, is far from ideal, at least in cases where the digital dictionary stems from a printed original, as their different relations with respect to the <gi>text</gi> would be indiscernible in the markup. Adding <att>type</att> attributes to both <gi>bibl</gi> elements would not help either, as that would merely classify the bibliographic records, not the function of the entities they describe.<note>One might wish to have a <att>role</att> attribute at hand to express this differentiation, yet given its already fairly vague semantics that does not seem advisable either. While <att>role</att> is predominantly used in the realm of names and named entities, it is also defined in <ident>att.tableDecoration</ident>, where it indicates whether a cell holds actual data or just a label. Defining it locally on <gi>bibl</gi> would only overload it with another, highly specialized sense and seems a makeshift strategy.</note> Thus, the distinction between two kinds of <soCalled>sources</soCalled> should be made on a more general level. The following construct would be formally valid:</p>
+        <egXML xmlns="http://www.tei-c.org/ns/Examples">
+          <sourceDesc>
+            <listBibl type="printedSource">
+              <bibl>Österreichisches Wörterbuch. 42. Auflage. Wien: ÖBV 2012</bibl>
+            </listBibl>
+            
+            <listBibl type="consultedCorpora">
+              <bibl>amc – Austrian media Corpus. Austrian Centre for Digital Humanities. Austrian Academy of Sciences http://www.oeaw.ac.at/acdh/amc</bibl>
+            </listBibl>
+          </sourceDesc>
+        </egXML>
+        <p>Grouping those two kinds of bibliographic references in separate <ident>listBibl</ident> elements with appropriate <att>type</att> attributes—for instance <val>printedSource</val> and <val>consultedCorpora</val>—solves the issue of ambiguity at least on the surface. There remain concerns, however. First of all, relying on attribute values on parallel constructs to encode such a fundamental difference is not as expressive as one might wish—especially in the case of a much-used attribute like <att>type.</att> More importantly, does this kind of markup (or any other of the approaches mentioned above) sufficiently denote the specific type of relationship between the digital dictionary and a corpus, which obviously cannot be reduced to one of a <soCalled>source</soCalled> and its <soCalled>derivation</soCalled>? This conceptual problem pertains to nearly all possible solutions we could think of.</p>
+        <p>One solution would be embedding this kind of metadata into the <gi>editorialDecl</gi> element, which <quote source="#quoteref1">provides details of editorial principles and practices applied during the encoding of a text</quote>,<!-- [RvdB] why not a regular bibliographic reference in the text? --><note><ref type="bibl" xml:id="quoteref1" target="#tei14">TEI Consortium 2014</ref>: Appendix C Elements, <ptr target="http://www.tei-c.org/Vault/P5/2.6.0/doc/tei-p5-doc/en/html/ref-editorialDecl.html"/>.</note> or even into <gi>samplingDecl</gi>, where <quote source="#quoteref2">the rationale and methods used in selecting texts, or parts of text, for inclusion in the resource</quote><note><ref type="bibl" xml:id="quoteref2" target="#tei14">TEI Consortium 2014</ref>: Appendix C Elements, <ptr target="http://www.tei-c.org/Vault/P5/2.6.0/doc/tei-p5-doc/en/html/ref-samplingDecl.html"/>.</note> are documented. Although this seems more accurate with respect to the role of language resources in dictionary writing, the definition of their common ancestor <gi>encodingDesc</gi> (<quote source="#quoteref3">documents the relationship between an electronic text and the source or sources from which it was derived</quote>)<note><ref type="bibl" xml:id="quoteref3" target="#tei14">TEI Consortium 2014</ref>: Appendix C Elements, <ptr target="http://www.tei-c.org/Vault/P5/2.6.0/doc/tei-p5-doc/en/html/ref-encodingDesc.html"/>.</note> explicitly refers to a relation of dependency of one on the other, which seems inappropriate in our case.</p>
+        <p>Surprisingly, it is the Critical Apparatus module which provides an appropriate solution for our problem. Originating in the tradition of textual criticism, this module defines the phrase-level element <gi>app</gi> to embed various versions of a passage in-line, optionally declaring one as the preferred reading. The resulting TEI <gi>text</gi> is a compound object that does not have one single <soCalled>non-electronic</soCalled> counterpart, but documents a multitude of fragments from various resources. Likewise, a dictionary, which is closely intertwined with data from language resources, can be conceptualized as the abstraction of this instance data. In order to express the specific nature of its <soCalled>sources</soCalled>, the <ident>textcrit</ident> module has to define a new child to <gi>sourceDesc</gi>, the <gi>listWit</gi> element.</p>
+        <p>Following this example, we propose the introduction of a <gi>listResource</gi> element to hold a list of any language resources from which the dictionary in the document’s <gi>body</gi> draws its statistical information. This list consists of one or more <gi>resource</gi> elements, which provide relevant metadata about each language resource and include pointers to its content.</p>
+        <list rend="bulleted">
+          <item><gi>resource</gi> describes a language resource of any kind (including, but not limited
+            to, text corpora) that has been used as source material in the creation of a dictionary.</item>
+          <item><gi>listResource</gi> (language resource list) contains a list of language resources of
+            any kind that have been used as source material in the creation of a dictionary.</item>
+        </list>
+        <p>By choosing a deliberately broad term as the new element’s name, we try to keep the range of possible language resource types as open as possible without confining their possible function to that of a statistical source.</p>
+        <!-- [RvdB] shouldn't the acdh namespace be introduced (in the running text, probably)? -->
+        <egXML xmlns="http://www.tei-c.org/ns/Examples">
+          <teiHeader>
+            <fileDesc>
+              <sourceDesc>
+                <bibl>Österreichisches Wörterbuch ...</bibl>
+                <acdh:listResource>
+                  <acdh:resource xml:id="corpus1">...</acdh:resource>
+                  <acdh:resource xml:id="corpus2">...</acdh:resource>
+                  <acdh:resource xml:id="corpus3">...</acdh:resource>
+                </acdh:listResource> 
+              </sourceDesc>
+              ...
+            </fileDesc>
+          </teiHeader>
+        </egXML>
+        <p>Making <gi>listResource</gi>a child element of <gi>sourceDesc</gi> tries to address both kinds of corpus–dictionary relations we have come across in our projects: it takes into account cases where a <soCalled>born-digital</soCalled> dictionary draws most of its material from language resources—making them thus an important, but still intermediate source—while possibly drawing a clear line between a source of a dictionary’s <gi>text</gi> and the source of statistical data the <gi>text</gi> has been enriched with.</p>
+        <p>The purpose of the <gi>resource</gi> element is twofold: first of all, it enables a user to locate and access the language resource personally. Secondly, it provides a basic description of it through a series of appropriate properties. Although this information is likely to be part of the metadata held alongside the corpus data itself, it seems reasonable to keep a summary of it with the dictionary, especially as corpora may become inaccessible or evolve over time. The TEI Guidelines already provide the components for this in the <gi>bibl</gi> element’s content model, with the <gi>extent</gi>/<gi>measure</gi> construct being a natural candidate for the representation of corpus size.</p>
+        <egXML xmlns="http://www.tei-c.org/ns/Examples">
+          <acdh:resource xml:id="amc" type="digitalcorpus" subtype="media" status="closed">
+            <title>Austrian Media Corpus</title>
+            <ptr target="http://acdh.oeaw.ac.at/corpora/amc"/>
+            <publisher>
+              <name>Austrian Centre for Digital Humanities. Austrian Academy of Sciences</name>
+              <address>
+                <street>Sonnenfelsgasse 19/8</street>
+                <postCode>1010</postCode>
+                <name type="settlement">Vienna</name>
+                <name type="country">Austria</name>
+              </address>
+            </publisher>
+            <date type="content" notBefore="1987" notAfter="2012">1987–2012</date>
+            <date type="published">2013</date>
+            <date type="lastAccess">2014-01-30</date>
+            <extent>
+              <measure commodity="tokens" quantity="8512255860"/>
+              <measure commodity="words" quantity="6228727272"/>
+              <measure commodity="sentences" quantity="425830965"/>
+              <measure commodity="paragraphs" quantity="61235319"/>
+              <measure commodity="documents" quantity="33662024"/>
+            </extent>
+            <note type="description">Contains articles from Austrian newspapers and magazines between 1987 and May 2012. PoS tagging with “Tree Tagger” and “RFTagger”</note>
+          </acdh:resource>
+        </egXML>
+        <p>Modeling <gi>resource</gi> after <gi>bibl</gi> helps us address some specific limitations of the language resources we currently have to make do with: it lets us distinguish between various kinds of data via the <att>type</att> and <att>subtype</att> attributes, while the <att>status</att>attribute indicates whether the data in question are expected to be subject to change or not. Since we consider it important to document the essential properties of a corpus (status, size, date of its content) in a consistent manner, we decided to narrow down the possible components of <gi>bibl</gi> significantly and create a specially tailored version from it.</p>
+        <p>Many other aspects of language resources may be desirable to record—especially considering questions of mid- and long-term preservation. Since data used in lexicographic production are most likely to be distributed over a wide range of organizations and locations, accessibility cannot be assumed in all cases. In order for a user to be able to assess the relevance of any language resource in the context of the final dictionary, a multitude of parameters has to be taken into consideration. For instance, it would be important to identify inherent biases in the sociologic, geographic, or diachronic sampling of language data or technical limitations in its markup. The German LAUDATIO Project has developed a comprehensive, <gi>teiHeader</gi>-based corpus description specification which is directly aimed at this purpose.<note><ptr target="http://www.laudatio-repository.org/repository/files/documentation/corpus/teiODD_LAUDATIODocumentation_S6.zip"/>.</note> In light of such issues it seems advisable to allow the inclusionof the <gi>teiHeader</gi> of a corpus (or possibly any descriptive metadata) inside our <gi>resource</gi> element, to document its state at the time of the dictionary’s publication.</p>
+      </div>
+      <div xml:id="documentingqueries">
+        <head>Documenting Corpus Queries</head>        
+        <p>So far, we have defined a way to describe the language resources we want to refer to in the dictionary’s <gi>teiHeader</gi>. This leaves the following questions to be addressed: which information is to be encoded when documenting our corpus queries? Which parts of those entries do we need to attach this information to? And, finally, how can we establish the linkage between our description of the corpus instance data, the dictionary, and the corpus metadata held in the <gi>listResource</gi>element?</p>
+        <div xml:id="tenets">
+          <head>The Tenets of Frequency Information</head>
+          <p>What is needed is a definitive system to register quantifications of particular items represented in dictionary entries. This of course raises the question as to which parts of a dictionary entry can be considered relevant. First to come to mind, of course, are headwords. But there are many other constituents of dictionary entries that might be furnished with frequency data: inflected word forms, collocations, multiword units, and particular senses are relevant items in this respect.</p>
+          <p>The data model should not only provide elements to encode frequencies within elements describing the above-listed constituents of entries, but also allow indication of the source from which the data were gleaned and how the statistical information was created. The basic constituents of our model should contain these items:
+            <list rend="bulleted">
+              <item>Value (number of occurrences of the particular item)</item>
+              <item>Rank</item>
+              <item>Provenance (source from which the data is taken)</item>
+              <item>Retrieval method (how the statistical information was created)</item>
+              <item>Query type</item>
+              <item>Evaluation mode</item>
+            </list>
+          </p>
+          <p>Ideally, persistent identifiers should be used to identify not only the corpora but also
+          the services involved in creating the statistical data.</p>
+        </div>
+        <div xml:id="spoiltforchoice">
+          <head>Spoilt for Choice</head>
+          <p>In our attempts to design a viable solution to our encoding problems, we went through three stages: <list rend="inline ordered"><item>we tried to make use of some TEI elements with very flexible semantics and to provide them with <att>type</att> attributes;</item> <item>we tried to apply TEI feature structures; and</item> <item>we started to work on a new customization</item></list>.</p>
+          <div xml:id="catchall">
+            <head>Catch-all Elements</head>
+            <p>As is well known, there are some TEI elements which can be used for almost anything by furnishing them with <att>type</att> attributes. The most commonly used ones are <gi>note</gi>, <gi>ab</gi>, and <gi>seg</gi>, which readily lend themselves to purposes such as ours through their very general semantics. Early attempts of ours to model frequency data also made use of <gi>list</gi> and <gi>item</gi> elements, resulting in constructs such as those in the example below:</p>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <entry xml:id="mashcal_001">
+                <form type="lemma">
+                  <orth xml:lang="ar-arz-x-cairo-vicav">mašʕal</orth>
+                  <orth xml:lang="ar-arz-x-cairo-arabic">مشعل</orth>
+                  
+                  <list type="statData">
+                    <item>
+                      <ref target="http://acdh.oeaw.ac.at/wikiMasri"/>
+                      <measure type="lemmaNumber">6</measure>
+                      <measure type="rank">2456</measure>
+                    </item>
+                  </list>
+                </form>
+                
+                <gramGrp>
+                  <gram type="pos">noun</gram>
+                  <gram type="root" xml:lang="ar-arz-x-cairo-vicav">šʕl</gram>
+                </gramGrp>
+                
+                <form type="inflected" ana="#n_pl">
+                  <orth xml:lang="ar-arz-x-cairo-vicav">mašāʕil</orth>
+                  <orth xml:lang="ar-arz-x-cairo-arabic">مشاعل</orth>
+                  
+                  <list type="statData">
+                    <item>
+                      <ref target="http://acdh.oeaw.ac.at/wikiMasri"/>
+                      <measure type="tokenNumber">2</measure>
+                      <measure type="rank">23765</measure>
+                    </item>
+                  </list>
+                </form>
+              </entry>
+            </egXML>
+            <p>In this example, the statistical information indicated by means of <gi>item</gi> elements refers to the <gi>form</gi> elements. This attempt soon seemed unsatisfactory: although sufficiently versatile in its content, <gi>list</gi> is intended only to be placed in specific <soCalled>wrapper</soCalled> elements of the dictionary module (<gi>entry</gi>, <gi>form</gi>, and<gi>sense</gi>amongst others) but is disallowed in a lot of other contexts where frequency information is potentially relevant. In particular, this would have excluded the possibility to embed frequency data in elements containing grammatical information (<gi>gram</gi> and its syntactic-sugar equivalents <gi>case</gi>, <gi>gen</gi>, <gi>number</gi>, etc.) as well as <gi>usg</gi> and <gi>def</gi>. The other constructs mentioned above proved equally problematic: the definition of <gi>seg</gi> (<quote source="#quoteref4">represents any segmentation of text below the <soCalled>chunk</soCalled> level </quote>)<note><ref type="bibl" xml:id="quoteref4" target="#tei14">TEI Consortium 2014</ref>: Appendix C Elements,<ptr target="http://www.tei-c.org/Vault/P5/2.6.0/doc/tei-p5-doc/de/html/ref-seg.html"/>.</note> hardly permits arbitrary data structures like the ones we needed; <gi>note</gi>, on the other hand, was too likely to semantically interfere with editorial notes (footnotes, marginal notes) in a retro-digitized dictionary; and <gi>ab</gi> would have forced us to use bulky pointing mechanisms to express the relationship between the various parts of an entry and the attached frequency information, since it is only allowed as a sibling of <gi>entry</gi>.</p>
+          </div>
+          <div xml:id="featurestructures">
+            <head>Feature Structures</head>
+            <p>In a second approach, we used feature structures, a very versatile, sufficiently well-explored tool for formalizing all kinds of linguistic phenomena. One of the advantages of the <gi>fs</gi> element is that it can be placed inside most elements used to encode dictionaries.</p>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <entry xml:id="mashcal_001">
+                <form type="lemma">
+                  <orth xml:lang="ar-arz-x-cairo-vicav">mašʕal</orth>
+                  <orth xml:lang="ar-arz-x-cairo-arabic">مشعل</orth>
+                  
+                  <fs type="corpFreq">
+                    <f name="corpus" fVal="#wikiMasri"/>
+                    <f name="frequency"><numeric value="6"/></f>
+                    <f name="rank"><numeric value="2456"/></f>
+                  </fs>
+                </form>
+                
+                <gramGrp>
+                  <gram type="pos">noun</gram>
+                  <gram type="root" xml:lang="ar-arz-x-cairo-vicav">šʕl</gram>
+                </gramGrp>
+                
+                <form type="inflected" ana="#n_pl">
+                  <orth xml:lang="ar-arz-x-cairo-vicav">mašāʕil</orth>
+                  <orth xml:lang="ar-arz-x-cairo-arabic">مشاعل</orth>
+                  
+                  <fs type="corpFreq">
+                    <f name="corpus" fVal="#wikiMasri"/>
+                    <f name="frequency"><numeric value="2"/></f>
+                    <f name="rank"><numeric value="23765"/></f>
+                  </fs>
+                </form>
+              </entry>
+            </egXML>
+            <p>Feature structures are impressively simple to use and have a lot of advantages when it comes to modeling abstract structures and their relations. However, they are not very human-readable, nor are frequencies a <soCalled>feature</soCalled> of the entry’s components in the strict sense of the word.</p>
+          </div>
+          <div xml:id="customization">
+            <head>Attempting Customization</head>
+            <p>All these <soCalled>conservative</soCalled> attempts adopted existing elements and resulted in solutions which appeared to be far from perfect, especially <gi>item</gi> and <gi>fs</gi> being void of relevant semantics. This—in the end—made us think of alternatives by customizing our dictionary scheme and adding a set of objects (attributes and elements) to describe frequencies in context. With a wide range of different application scenarios in mind, we attempted to design something like a statistical crystal that could also be reused beyond our particular projects.</p>
+            <p>We named the root element to carry frequencies <soCalled>statistical information</soCalled>. We chose a generic name rather than making use of narrower terms such as <soCalled>corpusFrequency</soCalled>, as the data we wanted to use might come from other language resources than text corpora, such as word lists, other dictionaries, or databases aggregating statistical data from external sources. The chosen term appeared to be semantically correct and would allow us to keep options open to other scenarios.</p>
+            <list rend="bulleted">
+              <item><gi>statInfo</gi> (statistical information) contains statistical information about instances of any component of a dictionary entry in one or more language resources.</item>
+            </list>
+            <p>The next step was to find a way to indicate where the statistical information came from. Intuitively, one might expect a <gi>source</gi> element. However, <gi>source</gi> already exists in the Manuscript Description module (and can only be used as a child of a <gi>recordHist</gi> element). As we considered it good practice to avoid denominational ambiguities, we eschewed using <soCalled>source</soCalled> in the namespace of the customization, but introduced a <gi>dataset</gi> element which, through membership of the <ident>att.canonical</ident> class, inherits the attributes <att>key</att> and <att>ref</att>, with the latter providing the mechanism to point to a <gi>resource</gi> element in the <gi>teiHeader</gi>.</p>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <entry xml:id="mashcal_001">
+                <form type="lemma">
+                  <orth xml:lang="ar-arz-x-cairo-vicav">mašʕal</orth>
+                  <orth xml:lang="ar-arz-x-cairo-arabic">مشعل</orth>
+                  
+                  <acdh:statInfo>
+                    <acdh:dataset ref="#wikiMasri"> ... </acdh:dataset>
+                  </acdh:statInfo> 
+                  ... 
+                </form>
+              </entry>
+            </egXML>
+            <p>In the field of our research, we are still far away from reliable reference corpora in the proper sense of the word. At the moment, we are instead in a situation where we have to integrate anything available in default of anything better. For comparative purposes it might therefore be important to have a list with several <gi>dataset</gi> elements to give users a more complete picture of the available data beyond the resource proper.</p>
+            <p>The statistical information itself would remain in the TEI namespace. This is exactly the same construct which we have already proposed above.</p>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <measure commodity="tokens" quantity="6" unit="count" type="absolute"/>
+              <measure type="rank" quantity="2456"/>
+            </egXML>
+            <p>A key issue here is the access mode. The element <gi>retrievalMethod</gi> has been proposed to accommodate information regarding the query and possible modifications to the result set. This information is dealt with in two child elements: <gi>query</gi> and <gi>evalMode</gi>.</p>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <acdh:retrievalMethod>
+                <acdh:query type="CQP">lemma="go"</acdh:query>
+                <acdh:evalMode>manual</acdh:evalMode>
+              </acdh:retrievalMethod>
+            </egXML>
+            <p>The <gi>query</gi> element contains the query string. It should also have a <att>type</att> attribute indicating the applied query language. In the example above, CQP (Corpus Query Processor) refers to the query language of the IMS<note> Institut für Maschinelle Sprachverarbeitung, Stuttgart.</note> Corpus Workbench. The element <gi>evalMode</gi> can be filled with either <val>none</val>, which implies that the data was retrieved automatically, or <val>manual</val>, which should be applied when some kind of postprocessing has been done.</p> 
+            <p>For purposes of reproducibility it may be desirable to document the various steps that produced the final set of records with finer granularity. In this case, <gi>evalMode</gi> could be replaced by an <gi>evalDesc</gi> element, containing a series of <gi>filter</gi> tags with one child <gi>query</gi> each.</p>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <acdh:retrievalMethod>
+                <acdh:query type="CQL">word=".*lein"</acdh:query>
+                <acdh:evalDesc>
+                  <acdh:filter n="1" type="negative" selectedToken="first" from="0" to="0" includeKwic="true">
+                    <note>Filtering out named entities</note>
+                    <acdh:query type="CQL">[pos="NE"]</acdh:query>
+                  </acdh:filter>
+                  <acdh:filter n="2" type="negative" selectedToken="first" from="0" to="0" includeKwic="true">
+                    <note>Filtering out adjectives and adverbs</note>
+                    <acdh:query type="CQL">[pos="ADJ|ADJD|ADV"]</acdh:query>
+                  </acdh:filter>
+                </acdh:evalDesc>
+              </acdh:retrievalMethod>
+            </egXML>
+        <p>The construct above indicates that the results of the original query (<code>'word=“.*lein”'</code>) were first reduced by excluding any named entities (<gi>filter</gi> number 1), and the resulting subset narrowed down by removing any adjectives and adverbs (<gi>filter</gi> number 2). The frequency data in a subsequent <gi>measure</gi> element would relate to the final set of records in <gi>evalDesc</gi>.</p>
+            <p>Of course, this kind of detail is not attainable without the help of specialized software. Aiming toward tighter integration of language resources with dictionaries, we imagine a next generation of dictionary editors providing facilities to query language resources and keep track of user-driven modifications of the results, and offering functions to embed them in the markup. Until implementations have reached this level of integration, we have to rely on a combination of components to support this functionality. An example for this is the commercial product Sketch Engine,<note><ptr target="https://www.sketchengine.co.uk"/>.</note>which includes a web interface for querying language corpora. In particular, it offers the ability to download the resulting frequency data (as well as concordances) in its own, vendor-specific, XML format. This format also contains the sequence of query expressions that leads to the final result set. Thus, a simple XSL stylesheet can be used to transform this into the format we have proposed above.</p>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <frequency>
+                <heading>
+                  <corpus>amc</corpus>
+                  <query>word,[word=".*lein"] 0 0 1 [pos="NE"]0 0 1 [pos="ADJ|ADJD|ADV"]</query>
+                </heading>
+                <block>
+                  <name>word</name>
+                  <items>
+                    ...
+                    <item>
+                      <str>fräulein</str>
+                      <freq>23515</freq>
+                    </item>
+                    ...
+                  </items>
+                </block>
+              </frequency>
+            </egXML>
+            <p>A sufficiently descriptive markup for query results, however, is quite verbose by nature. Depending on the context this practice can have undesirable consequences; for instance, the XML data may become hard to read or, more seriously, whitespace issues may be introduced. If, for example, a dictionary writer states that an entry’s headword can occur in two orthographic forms and wants to underpin this assertion with frequency data from a corpus, he or she would have to use a construct like the following, leaving it technically unclear where the headword ends and the statistical metadata begins.</p>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <form type="lemma">
+                <orth type="main">eintepschen
+                  <acdh:statInfo>
+                    <acdh:dataset ref="#amc">
+                      <acdh:retrievalMethod>
+                        <acdh:query>[word=".*tepsch.*"]</acdh:query>
+                        <acdh:evalDesc>
+                          <acdh:filter type="negative" from="0" to="0" includeKwic="true">
+                            <acdh:query>[word="Step.*"]</acdh:query>
+                            <acdh:note>excluding composites with “Step”</acdh:note>
+                          </acdh:filter>
+                        </acdh:evalDesc>
+                      </acdh:retrievalMethod>
+                      <measure quantity="35" commodity="tokens" type="absolute"/>
+                      <measure quantity="0.0" commodity="tokens" type="relative"/>
+                    </acdh:dataset>
+                  </acdh:statInfo>
+                </orth>
+                <orth type="variant">eindepschen
+                  <acdh:statInfo>
+                    <acdh:dataset ref="#amc">
+                      <acdh:retrievalMethod>
+                        <acdh:query>[word=".*depsch.*"]</acdh:query>
+                        <acdh:evalMode>none</acdh:evalMode>
+                      </acdh:retrievalMethod>
+                      <measure quantity="6" commodity="tokens" type="absolute"/>
+                      <measure quantity="0.0" commodity="tokens" type="relative"/>
+                    </acdh:dataset>
+                  </acdh:statInfo>
+                </orth>
+              </form>
+            </egXML>
+            <p>In order to avoid ambiguities, we propose an alternative encoding style: instead of specifying the relation between the instance data and the lexicographic description by nesting the former inside the latter, we suggest using the <ident>linking</ident> module’s <att>corresp</att> attribute to point from the dictionary to a <gi>statInfo</gi> element which can be kept in the dictionary’s back matter or in another document instance. Although this might add some processing overhead to an application, it improves maintainability and readability significantly by dividing the two layers of information.</p>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <entry>
+                <form type="lemma">
+                  <orth type="main" corresp="#si1">eintepschen</orth>
+                  <orth type="variant" corresp="#si2">eindepschen</orth>
+                </form>
+                ...
+              </entry>
+              ...
+              <back>
+                <acdh:statInfo xml:id="si1">
+                  <acdh:dataset ref="#amc">
+                    <acdh:retrievalMethod>
+                      <acdh:query>[word=".*tepsch.*"]</acdh:query>
+                      <acdh:evalDesc>
+                        <acdh:filter type="negative" from="0" to="0" includeKwic="true">
+                          <acdh:query>[word="Step.*"]</acdh:query>
+                          <acdh:note>excluding composites with “Step”</acdh:note>
+                        </acdh:filter>
+                      </acdh:evalDesc>
+                    </acdh:retrievalMethod>
+                    <measure quantity="35" commodity="tokens" type="absolute"/>
+                    <measure quantity="0.0" commodity="tokens" type="relative"/>
+                  </acdh:dataset>
+                </acdh:statInfo>
+                <acdh:statInfo xml:id="si2">
+                  <acdh:dataset ref="#amc">
+                    <acdh:retrievalMethod>
+                      <acdh:query>[word=".*depsch.*"]</acdh:query>
+                      <acdh:evalMode>none</acdh:evalMode>
+                    </acdh:retrievalMethod>
+                    <measure quantity="6" commodity="tokens" type="absolute"/>
+                    <measure quantity="0.0" commodity="tokens" type="relative"/>
+                  </acdh:dataset>
+                </acdh:statInfo>
+              </back>
+            </egXML>
+            <p>To take all of this further, we will first create more real-world data with the customized schema and test them in applications currently under development. In addition, it will be necessary to keep discussing the customized dictionary schema with the community. A final goal (the realization of which is admittedly not yet near at hand) is the integration of a viable solution into the TEI Guidelines.</p>
+          </div>
+        </div>
+      </div>
+      <div xml:id="conclusions">
+        <head>Conclusions</head>
+        <p>A major interest that has accompanied our experiments is the clearly discernible phenomenon of blurring boundaries between digital language resources. Data available in one resource can be integrated into others; creating new resources from pre-existing ones has become much more feasible. We strongly believe that the permeability between language resources will also change our way of how we look at corpora and dictionaries. In the digital world the two grow closer and closer. Not only do they depend on each other (dictionaries need corpora to be compiled, while corpus tools need dictionaries for annotation); users will increasingly want to use them together, ideally in the same interfaces.</p>
+        <p>Some of the problems described in this paper have not been dealt with so far because readily and freely accessible language resources are not as abundant as one might assume. However, funding agencies increasingly insist on open access not only to research results but also to research data. It is therefore to be hoped that the situation with respect to openly accessible lexicographic data as well as to electronic corpora will improve in the years to come. Solutions for integrating these data and/or accessing various resources simultaneously will become even more important. Thinking about how particular language resources can interact and working on appropriate interfaces is an indispensable prerequisite for more linked (open) data and service-based architectures. The more such data become available, the more important it will become for the TEI to provide viable solutions for dealing with them.</p>
+      </div>
+    </body>
+    <back>
+      <div type="bibliography">
+        <listBibl>
+          <bibl xml:id="budin12"><author>Budin, Gerhard</author>, <author>Stefan Majewski</author>, and <author>Karlheinz Mörth</author>. <date>2012</date>. <title level="a">Creating Lexical Resources in TEI P5: A Schema for Multi-purpose Digital Dictionaries</title>. <title level="j">Journal of the Text Encoding Initiative</title> <biblScope unit="issue">3</biblScope>. <ptr target="http://jtei.revues.org/522"/>. doi:<idno type="doi">10.4000/jtei.522</idno>.</bibl>
+          <bibl xml:id="iso08"><orgName>ISO (International Organization for Standardization)</orgName>. <date>2008</date>. <title level="m">Language Resource Management — Lexical Markup Framework (LMF)</title>. ISO 24613:2008. <pubPlace>Geneva</pubPlace>: <publisher>ISO</publisher>.</bibl>
+          <bibl xml:id="romary13"><author>Romary, Laurent</author>. <date>2013</date>. <title level="a">TEI and LMF Crosswalks</title>. In <title level="m">Digital Humanities: Wissenschaft vom Verstehen</title> (forthcoming), edited by <editor>Stefan Gradmann</editor> and <editor>Felix Sasaki</editor>. <publisher>Humboldt Universität zu Berlin</publisher>. <ptr target="http://hal.inria.fr/hal-00762664"/>.</bibl>
+          <bibl xml:id="siam13"><author>Siam, Omar</author>. <date>2013</date>. <title level="u">Ein digitales Wörterbuch der 200 häufigsten Wörter der Wikipedia in ägyptischer Umgangssprache</title>. MPhil thesis, University of Vienna. <ptr target="http://othes.univie.ac.at/26036"/>.</bibl>
+          <bibl xml:id="stehouwer12"><author>Stehouwer, Herman</author>, <author>Matej Durco</author>, <author>Eric Auer</author>, and <author>Daan Broeder</author>. <date>2012</date>. <title level="a">Federated Search: Towards a Common Search Infrastructure</title>. In <title level="m">Proceedings of LREC 2012: 8th International Conference on Language Resources and Evaluation (LREC 2012)</title>, edited by <editor>Nicoletta Calzolari</editor> et al., <biblScope unit="page">3255–59</biblScope>. <publisher>European Language Resources Association</publisher>. <ptr target="http://hdl.handle.net/11858/00-001M-0000-000F-9E1D-8"/>.</bibl>
+          <bibl xml:id="tei14"><orgName>TEI Consortium</orgName>. <date>2014</date>. <title level="m">TEI P5: Guidelines for Electronic Text Encoding and Interchange</title>. <edition>Version 2.6.0</edition>. Last updated January 20. <ptr target="http://www.tei-c.org/Vault/P5/2.6.0/doc/tei-p5-doc/en/html/"/>.</bibl>
+        </listBibl>
+      </div>
+    </back>
+  </text>
+</TEI>

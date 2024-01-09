@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<!-- $Id: jtei-cc-pn-arneil-159-source.xml 824 2019-09-06 00:51:26Z ron $ -->
+<TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="main">Encoding Disappearing Characters: The Case of Twentieth-Century Japanese-Canadian Names</title>
+        <author>
+          <name>
+            <forename>Stewart</forename>
+            <surname>Arneil</surname>
+          </name>
+          <affiliation>Stewart Arneil is a <roleName>programmer/consultant</roleName> at <orgName>the Humanities Computing and Media Centre at the University of Victoria</orgName>, Canada. He holds an MA in computational theory and certifications in instructional design and in project management. He has thirty years of experience in the private and public sectors managing academic projects and developing software, databases, and websites for research and educational purposes in collaboration with language and subject matter experts.</affiliation>
+          <email>sarneil@uvic.ca</email>
+        </author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>TEI Consortium</publisher>
+        <date>26/08/2019</date>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by/4.0/">
+            <p>For this publication a Creative Commons Attribution 4.0 International license has been granted by the author(s) who retain full copyright.</p>
+          </licence>
+        </availability>
+      </publicationStmt>
+      <seriesStmt>
+        <title level="j">Journal of the Text Encoding Initiative</title>
+        <editor role="guest">Janelle Jenstad</editor>
+        <editor role="guest">Kathryn Tomasek</editor>
+        <editor role="guest">Martin Holmes</editor>
+        <editor role="chief">John Walsh</editor>
+        <editor role="managing">Anne Baillot</editor>
+        <editor role="technical">Ron Van den Branden</editor>
+        <biblScope unit="issue" n="12">Selected Papers from the 2017 TEI Conference</biblScope>
+      </seriesStmt>
+      <sourceDesc>
+        <p>No source, born digital.</p>
+      </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+      <projectDesc>
+        <p/>
+      </projectDesc>
+    </encodingDesc>
+    <profileDesc>
+      <langUsage>
+        <language ident="en">en</language>
+      </langUsage>
+      <textClass>
+        <keywords xml:lang="en">
+          <term>kanji</term>
+          <term>unicode</term>
+          <term>glyph</term>
+          <term>variant</term>
+          <term>Japanese</term>
+        </keywords>
+      </textClass>
+    </profileDesc>
+    <revisionDesc>
+      <change when="2019-08-28">Martin Holmes entered Anne Baillot’s proofing corrections.</change>
+      <change when="2019-08-28">Ron Van den Branden updated revision description.</change>
+      <change when="2019-08-27">Ron Van den Branden updated publication date.</change>
+      <change when="2019-08-26">Martin Holmes entered proofing corrections.</change>
+      <change when="2019-08-26">Ron Van den Branden reformatted and checked the encoding.</change>
+      <change when="2019-08-22">Amy Tang encoded the file.</change>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <front>
+      <div type="abstract" xml:id="abstract">
+        <p><title level="m">The Landscapes of Injustice</title> project seeks to encode mid-twentieth-century documents by and about the Japanese-Canadian community so they are accessible to modern audiences. The fundamental problem is that some of the kanji used at that time have been replaced since then by different kanji, and others have been removed from lists of formally acceptable characters. This report documents our efforts with two technologies designed to address this situation. The first is the Standardized Variation Sequence <!-- [RvdB] added abbreviation -->(SVS) feature of Unicode. Our work revealed that this set of variation sequences does not completely cover the old and new glyph pairs identified by the Japanese authorities, and that the pairs formally identified by the Japanese authorities do not completely cover all the new glyph forms in general use. We turned to TEI’s <gi>charDecl</gi>, <gi>glyph</gi>, and <gi>mapping</gi> elements as a second technology to augment the support provided by Unicode. Lastly, we dealt with the issue of finding suitably qualified people to do the markup. The result is markup which retains the original glyphs and relates them to the modern glyphs, so that in our output products we will be able to support search and display using either form of the glyph.</p>
+      </div>
+    </front>
+    <body>
+      <div xml:id="problem">
+        <head>The Problem of Disappearing Japanese Characters</head>
+        <p><title level="m"><ref target="https://landscapesofinjustice.com">The Landscapes of Injustice</ref></title><note><p><ptr target="https://landscapesofinjustice.com"/>.</p></note> project seeks to integrate data from various sources (such as oral histories, court records, government minutes, land title documents, maps, community directories, and personal letters) to capture multiple perspectives on events affecting Canadians of Japanese descent in the 1940s and to create products based on that research for modern academic and public audiences. The Japanese-language documents (for example, community directories) used kanji (Chinese characters used in Japanese script) which were perfectly acceptable at the time, but which have since been superseded (either officially or practically) by other kanji glyphs. The project’s concern with the changing forms of kanji over the twentieth century is primarily practical, rather than a scholarly focus.</p>
+        <p>In 1946 and 1981 the Japanese government specified simpler forms (known as <emph>shinjitai</emph> kanji) for certain characters and deprecated their older, traditional forms (known as <emph>kyūjitai</emph> kanji) for many purposes such as education and government publication (<ref target="#agency2010" type="bibl">Agency for Cultural Affairs 2010</ref>). Although the kyūjitai kanji were not banned, the obsolete kyūjitai kanji have become unreadable to more and more readers over time, thus making texts including them difficult for modern readers, but at least there is a recognized mapping from new form to old form. In addition to the officially recognized shinjitai-kyūjitai pairs of kanji, there are other forms which are outside the lists of current kanji as identified by the Japanese government in Agency 2010. These <emph>hyōgaiji</emph> kanji may still appear (particularly in names), or in some cases may have counterpart modern forms. We have so far found just over 1,000 instances of what I call non-conventional kanji, consisting of just over 110 different shinjitai-kyūjitai pairs (some of which appear more than once in our documents) and about 5 hyōgaiji (all of which are single instances).</p>
+        <p>Our pre-1945 source documents include both classes of non-conventional kanji forms, particularly in personal names. Personal names are especially problematic as they are proper nouns, and as such the correct reading is dependent almost entirely on the characters in the name rather than grammatical or other context clues. The project is particularly sensitive to the representation of names as the community involved was largely erased as a community from Canadian society in the 1940s. Changes to the kanji thus risk the names of the individuals affected being <soCalled>disappeared</soCalled> from the historical record we are creating in a way which echoes the disappearance from history suffered by the actual community. More practically, people searching for specific names may not find the records they seek due to a mismatch of kanji, and similarly for people reading results who do not recognize a name.</p>
+      </div>
+      <div xml:id="representing">
+        <head>Representing Disappeared Characters in Unicode</head>
+        <p>The project’s focus is on the historical treatment of the Japanese Canadian community, and not the evolution of the Japanese language, so we sought the simplest solution that would meet our needs. Initial research suggested exploiting features in the Unicode character encoding standard.</p>
+        <p>Unicode has a remarkably complex treatment for mapping certain non-conventional to conventional kanji (<ref target="#unicode2018a" type="bibl">Unicode Consortium 2018a, 23.4, 872–74</ref>), the full details of which are beyond the scope of this paper. It uses what are known as Standardized Variation Sequences (<ref target="#unicode2018b" type="bibl">Unicode Consortium 2018b</ref>). Even the following simplified consideration raises problems with this approach for our situation.</p>
+        <p>We want to preserve the forms as found yet maintain an association with a conventional form where one exists. A Standardized Variation Sequence consists of one entity for the conventional form of the kanji (e.g., &amp;#x793E;) followed immediately by one of several other entities (&amp;#xFE00;, &amp;#xFE01;, and so on), yielding, for example, &amp;#x793E;&amp;#xFE00;. Unicode also specifies lookup tables to map from the conventional form to the non-conventional form. Note that the non-conventional form is not explicitly encoded in the document, so this approach precludes an application normalizing a non-conventional form to a conventional one in inconsistent or unpredictable ways—which of course is helpful to us. However, we are still at the mercy of <list rend="inline ordered"><item>font developers and the degree of support they have built in to their fonts for variation sequences, and</item> <item>application developers and the extent to which the application tries to locate a font that supports the variation sequence</item></list> (<ref type="bibl" target="#lunde2015">Lunde 2015</ref>). For an example with visibly clear results, note in the following how the Firefox browser differs from Chrome and Safari in representing the Standardized Variation Sequence (in the last row). I use an image to display these text characters, because the very problems of inconsistent font and application support may otherwise corrupt which forms the reader sees: <figure xml:id="figure1">
+          <graphic url="images/arneil_159_image_1.png" height="374px" width="1900px"/>
+          <head type="legend">How three browsers display five encodings for conventional and non-conventional forms</head>
+        </figure> The Firefox implementation is at the time of writing more sophisticated than the other browsers in that it can search for a font supporting the SVS and display the correct form; the other browsers require that a font supporting the SVS be specified.</p>
+        <p>Differences in support are apparent in searching, too. We searched the five encodings listed above for each of the two kanji. Chrome and Safari ignore the variant sequence and thus treat the two glyphs as interchangeable (whether searching for <soCalled>社</soCalled> or <soCalled>社</soCalled>, all five instances of either character are found). That is generally the desired behavior for all but scholars of historical Japanese. Firefox pays attention to the variant sequence, but it also fails to normalize as it should, so when we searched for <soCalled>社</soCalled> we got no hits, but when we searched for <soCalled>社</soCalled> we got three hits, one of which was the Standardized Variant, which as just noted is displayed to the user as <soCalled>社</soCalled>. These findings are summarized in <ptr target="#table1" type="crossref"/>: <table xml:id="table1">
+          <head>Hits for five instances of conventional and non-conventional kanji in various browsers</head>
+          <row role="label">
+            <cell role="label">Search for</cell>
+            <cell role="label">Firefox finds</cell>
+            <cell role="label">Chrome finds</cell>
+            <cell role="label">Safari finds</cell>
+          </row>
+          <row>
+            <cell role="label">社</cell>
+            <cell>0</cell>
+            <cell>5</cell>
+            <cell>5</cell>
+          </row>
+          <row>
+            <cell role="label">社</cell>
+            <cell>3</cell>
+            <cell>5</cell>
+            <cell>5</cell>
+          </row>
+        </table> Beyond the specific details of our examples, the main problem is the inconsistency of support in applications and the difficulty of using Unicode Standardized Variation Sequences in processing environments.</p>
+        <p>Even if support for Standardized Variants were robust and consistent, it would be inadequate for our data set because few of the shinjitai-kyūjitai pairings and virtually no hyōgaiji forms we discovered in our data appear in the Standardized Variant list. As shown in <ptr target="#table2" type="crossref"/>, under 20% of the non-conventional forms in our data appear on the Standardized Variants list, while over 80% do not. <table xml:id="table2">
+          <head>Frequency of three types of pairings of non-conventional and conventional kanji</head>
+          <row role="label">
+            <cell>Description</cell>
+            <cell># of pairs (%)</cell>
+            <cell>non-conventional kanji (code point)</cell>
+            <cell>conventional kanji (code point)</cell>
+          </row>
+          <row>
+            <cell role="label">kyūjitai with shinjitai counterpart specified by Standardized Variation Sequence</cell>
+            <cell>22 (19%)</cell>
+            <cell>社 (FA4C)</cell>
+            <cell>社 (793E)</cell>
+          </row>
+          <row>
+            <cell role="label">kyūjitai not unifiable with shinjitai, encoded in Unicode as separate CJK unified ideograph</cell>
+            <cell>91 (77%)</cell>
+            <cell>會 (6703)</cell>
+            <cell>会 (4F1A)</cell>
+          </row>
+          <row>
+            <cell role="label">hyōgaiji (no Standardized Variant counterpart, but likely one in JIS standards, e.g., JIS X 0208)</cell>
+            <cell>5 (4%)</cell>
+            <cell>塲 (5872)</cell>
+            <cell>場 (5834)</cell>
+          </row>
+        </table> With these results, we could not rely on the Standardized Variant approach. We turned to a more elaborate, explicit encoding that would cope with the classes of kanji forms described above and summarized in <ptr target="#table2" type="crossref"/> to make our intentions clear regardless of subsequent processing or display applications.</p>
+      </div>
+      <div xml:id="representingIntei">
+        <head>Representing Disappeared Characters in TEI</head>
+        <p>We were already using TEI to encode the documents, so we needed to find and implement TEI markup to capture the three classes of problematic kanji. Specifically, we employed the gaiji module’s <gi>charDecl</gi>, <gi>g</gi>, <gi>glyph</gi>, and <gi>mapping</gi> elements to represent each non-conventional kanji, the conventional kanji associated with that non-conventional kanji (if one exists), and whether the mapping appears in the kyujitai-shinjitai list and/or the Standardized Variant list (<ref target="#teiConsortium2017" type="bibl">TEI Consortium 2017</ref>, <ref target="https://www.tei-c.org/Vault/P5/3.2.0/doc/tei-p5-doc/en/html/WD.html#D25-20">sec. 5.2</ref>).<note><p>Ken Lunde has pointed out that while it is straightforward to provide this kind of mapping in TEI, in fact the Unicode Consortium, through its Unihan Database, already has a mechanism for mapping equivalences such as these, and it would be worthwhile to propose updates to the Unihan Database for any mappings it does not yet handle. Coincidentally, at the TEI 2018 conference in Tokyo, <ref target="#paterson2018" type="bibl">Duncan Paterson</ref> proposed a new <gi>uniHan</gi> element for TEI, which would be a child of <gi>charProp</gi>, and whose content would be one of the Unihan Database properties (<ref target="#jenkins2018" type="bibl">Jenkins, Cook, and Lunde 2018</ref>). So by using existing properties and proposing new ones where necessary, then capturing those properties through the <gi>uniHan</gi> element, these relationships could be efficiently encoded.</p></note>
+        </p>
+        <p>We created a TEI file named <ident>chars.xml</ident> consisting of a character declaration (<gi>charDecl</gi>) element which contains a <gi>glyph</gi> element for each non-conventional form (kyūjitai or hyōgaiji) to describe it and its conventional equivalent. Within each <gi>glyph</gi> element, we use a <gi>mapping</gi> element with a specific value for the <att>type</att> attribute for each variant of the glyph. In the body of the data file, we use a <gi>g</gi> element to encode the kanji with an <att>xml:id</att> attribute which points to the appropriate <gi>glyph</gi> element in the <ident>chars.xml</ident> file. This approach allows us to capture the three classes of pairs of non-conventional and conventional forms consistently, as shown in the following three examples (note that some characters may not display properly on some user agents).</p>
+        <p>Example of kyūjitai with shinjitai counterpart and in Unicode Standardized Variation Sequences:</p>
+        <p>In <ident>chars.xml</ident>: 
+          <egXML xmlns="http://www.tei-c.org/ns/Examples">
+            <charDecl>
+              <glyph xml:id="u793E">
+                <mapping type="kyūjitai">社</mapping>
+                <mapping type="shinjitai">社</mapping>
+                <mapping type="uniStdVar">&amp;#x793E;&amp;#xFE00;</mapping>
+              </glyph>
+            </charDecl>
+          </egXML> 
+          In <ident>data.xml</ident>: 
+          <egXML xmlns="http://www.tei-c.org/ns/Examples">
+            <body> ... <g ref="chars.xml#u793E">社</g> ... </body>
+          </egXML>
+        </p>
+        <p>Example of kyūjitai with shinjitai counterpart, but not in Unicode Standardized Variation Sequences:</p>
+        <p>In <ident>chars.xml</ident>: 
+          <egXML xmlns="http://www.tei-c.org/ns/Examples">
+            <charDecl>
+              <glyph xml:id="u6703">
+                <mapping type="kyūjitai">會</mapping>
+                <mapping type="shinjitai">会</mapping>
+              </glyph>
+            </charDecl>
+          </egXML> 
+          In <ident>data.xml</ident>: 
+          <egXML xmlns="http://www.tei-c.org/ns/Examples">
+            <body> ... <g ref="chars.xml#u6703">會</g> ... </body>
+        </egXML></p>
+        <p>Example of hyōgaiji that does not appear in the kyūjitai-shinjitai list nor in Standardized Variation Sequences:</p>
+        <p>In <ident>chars.xml</ident>: 
+          <egXML xmlns="http://www.tei-c.org/ns/Examples">
+            <charDecl>
+              <glyph xml:id="u5834">
+                <mapping type="hyōgaiji">塲</mapping>
+                <mapping type="regularization">場</mapping>
+              </glyph>
+            </charDecl>
+          </egXML> 
+          In <ident>data.xml</ident>: 
+          <egXML xmlns="http://www.tei-c.org/ns/Examples">
+            <body> ... <g ref="chars.xml#u5834">塲</g> ... </body>
+          </egXML></p>
+        <p>The values we used for the <att>type</att> attribute (<val>kyūjitai</val>, <val>shinjitai</val>, and <val>hyōgaij</val>) reflect our circumstances; for anyone not already familiar with the twentieth-century history of kanji, their meanings would be explained by a simple search for those terms in Wikipedia. The specific values we have used for the <att>type</att> attribute may not be semantically accurate for other languages or other eras of Japanese. However, the utility of the approach does not depend on those specific values, so it could easily be implemented using more appropriate values for the <att>type</att> attribute tailored to the specific circumstances.</p>
+      </div>
+      <div xml:id="training">
+        <head>Training Encoders of Texts Containing Disappeared Characters</head>
+        <p>Having established a data model, we then turned to the job of applying that model to the relevant documents. There are three stages involved in this kind of markup: identify the kanji that are instances of kyūjitai or hyōgaiji, determine if the non-conventional form appears in the Standardized Variation Sequence, and associate the non-conventional form with a conventional form if possible. Within the context of a TEI encoding project, the required skill sets are knowledge of and facility with <list rend="inline ordered"><item>what is to some degree arcane Japanese, especially for second-language users and those outside Japan;</item> <item>the Unicode standard, especially Standardized Variants; and</item> <item>TEI XML and specifically the elements described above.</item></list></p>
+        <p>An important aspect of the project is engagement with the Japanese-Canadian community and providing that community with a sense of editorial input, if not authorship, of the material. Clearly the most critical skill set is facility with the non-conventional kanji forms. In general, it is usually better to start with someone with subject matter expertise and train them in the technical and workflow skills. In our circumstance, and after substantial consultations with colleagues at our partner Japanese-Canadian museum, we concluded that the most suitable candidate to do the volume of work we required to an adequate level of competence would be a student who is reasonably fluent in Japanese, knowledgeable about the history, and technically competent. That person would focus on improving their facility with the various forms of kanji within the documents. This approach has proven workable given that our project’s primary scholarly focus is not on the evolution of kanji, though it has approximately doubled the amount of time required to encode the document.</p>
+      </div>
+      <div xml:id="conclusions">
+        <head>Conclusions</head>
+        <p>Our goal is to encode documents containing non-conventional forms of kanji so that all forms are available for processing and for use by human users. A potential solution based on Unicode Standardized Variation Sequences did not cover enough of the instances we encountered. Of the problematic forms in our data, the proportion of kyūjitai-shinjitai pairs was much lower than we expected, and the proportion of hyōgaiji much higher. We therefore decided to encode the variant glyphs explicitly, using the features provided in the gaiji module in TEI. This allowed us to specify type attributes to describe different classes of kanji forms and the Unicode Standardized Variant in our encoding of the document. It was difficult to find people with all the necessary skills to do this encoding. The best solution for us was to train an otherwise competent encoder of Japanese to recognize and accurately encode the non-conventional kanji.</p>
+        <p>We now have a robust and consistent encoding which covers all the instances in our data. The next phase of the project will focus on processing the TEI to represent the characters in output products for use by researchers and by the public. The project will produce not only web-based outputs, but also print-based and museum installations, and for these we will need to make careful editorial decisions about which kanji to use to balance our wish to honor the names (as they were at the time) of the people who suffered the injustices presented by the project, and our wish to ensure that those names (and the people they represent) do not disappear to modern readers.</p>
+      </div>
+    </body>
+    <back>
+      <div type="bibliography">
+        <listBibl>
+          <bibl xml:id="agency2010"><author>Agency for Cultural Affairs, Government of Japan</author>. <date>2010</date>. <title level="a">Academic Index of Kanji Table</title>. Accessed May 8, 2019. <ptr target="http://www.bunka.go.jp/kokugo_nihongo/sisaku/joho/joho/kijun/naikaku/kanji/joyokanjisakuin/"/>.</bibl>
+          <bibl xml:id="jenkins2018"><author>Jenkins, John H.</author>, <author>Richard Cook</author>, and <author>Ken Lunde</author>. <date>2018</date>. <title level="a">Unicode Han Database (UniHan)</title> (report). Unicode Standard Annex #38, revision 27, February 15. <pubPlace>Mountain View</pubPlace>: <publisher>Unicode Consortium</publisher>. <ptr target="                      https://www.unicode.org/reports/tr38/"/>.</bibl>
+          <bibl xml:id="lunde2015"><author>Lunde, Ken</author>. <date>2015</date>. <title level="a">Exploring Typekit’s New Dynamic Kits</title>. <title level="m">CJK Type Blog</title>, June 16. <ptr target="https://blogs.adobe.com/CCJKType/2015/06/typekit-dynamic-kits.html"/>.</bibl>
+          <bibl xml:id="paterson2018"><author>Paterson, Duncan</author>. <date>2018</date>. <title level="a">I Just Want to Be Normal: Character Normalization between Unicode and TEI</title>. Panel paper presented at the TEI Members’ Meeting, Tokyo, Japan, September 11.</bibl>
+          <bibl xml:id="teiConsortium2017"><author>TEI Consortium</author>. <date>2017</date>. <title level="m">TEI P5: Guidelines for Electronic Text Encoding and Interchange. Version 3.2.0. Last updated July 10</title>. <pubPlace>N.p.</pubPlace>: <publisher>TEI Consortium</publisher>. <ptr target="https://www.tei-c.org/Vault/P5/3.2.0/doc/tei-p5-doc/en/html/"/>.</bibl>
+          <bibl xml:id="unicode2018a"><author>Unicode Consortium</author>. <date>2018a</date>. <title level="a">Chapter 23: Special Areas and Format Characters</title>. In <title level="m">The Unicode® Standard Version 11.0 – Core Specification</title>, <biblScope unit="page">855–90</biblScope>. <pubPlace>Mountain View</pubPlace>: <publisher>Unicode Consortium</publisher>. <ptr target="http://www.unicode.org/versions/Unicode11.0.0/ch23.pdf"/>.</bibl>
+          <bibl xml:id="unicode2018b"><author>Unicode Consortium</author>. <date>2018b</date>. <title level="a">Specification of the Variation Sequences That Are Defined in the Unicode Standard</title>, v. 11.0.0. February 2. <ptr target="https://unicode.org/Public/11.0.0/ucd/StandardizedVariants.txt"/>.</bibl>
+        </listBibl>
+      </div>
+    </back>
+  </text>
+</TEI>
