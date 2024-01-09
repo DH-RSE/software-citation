@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml"
-	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml version="1.0" encoding="UTF-8"?> <?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?> <?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" <?xml-model href="https://github.com/DH-RSE/software-citation/raw/main/schema/tei_software_annotation.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI">
   <teiHeader>
     <fileDesc>
@@ -79,7 +78,8 @@
           <term>medieval metrics</term>
           <term>repertoire</term>
           <term>RDBMS</term>
-          <term>MySQL</term>
+          <term><ptr type="software" xml:id="MySQL" target="#MySQL"/><rs type="soft.name"
+              ref="#MySQL">MySQL</rs></term>
           <term>verse</term>
           <term>stanza</term>
         </keywords>
@@ -121,9 +121,9 @@
           most important values is that it is a born-digital project designed to be interoperable
           with other existing poetry databases and digital repertoires, as conceptualized within the
             <ref
-            target="http://www.remetca.uned.es/index.php?option=com_content&amp;view=article&amp;id=76:megarep-a-comprehensive-research-tool-in-medieval-and-renaissance-poetic-and-metrical-repertoires&amp;catid=80&amp;Itemid=514&amp;lang=es"
+            target="http://www.remetca.uned.es/index.php?option=com_content&view=article&id=76:megarep-a-comprehensive-research-tool-in-medieval-and-renaissance-poetic-and-metrical-repertoires&catid=80&Itemid=514&lang=es"
             >Megarep</ref><note><ptr
-              target="http://www.remetca.uned.es/index.php?option=com_content&amp;view=article&amp;id=76:megarep-a-comprehensive-research-tool-in-medieval-and-renaissance-poetic-and-metrical-repertoires&amp;catid=80&amp;Itemid=514&amp;lang=es"
+              target="http://www.remetca.uned.es/index.php?option=com_content&view=article&id=76:megarep-a-comprehensive-research-tool-in-medieval-and-renaissance-poetic-and-metrical-repertoires&catid=80&Itemid=514&lang=es"
             />.</note> project, in which Spanish researchers are already working in collaboration
           with the Hungarian team led by Levente Seláf (<ref type="bibl" target="#blanco14"
             >González-Blanco and Seláf 2014</ref>). The Spanish repertoire is conceived as an
@@ -158,10 +158,9 @@
           searchable through the web, in which research time has been considerably reduced by richer
           search capabilities and the accessibility of online interfaces, especially compared with
           the complexity of printed indexes and lists of metrical schemes. The first online digital
-          poetic repertoire was the <!-- [RvdB] consistency: some are italic, others not? --><ref
-            target="http://rpha.elte.hu/"><title level="m">RPHA: Répertoire de la Poésie hongroise
-              ancienne jusqu’à 1600</title></ref> (<ref type="bibl" target="#horvath91">Horváth
-            1991–</ref>); Galician researchers created <ref
+          poetic repertoire was the <ref target="http://rpha.elte.hu/"><title level="m">RPHA:
+              Répertoire de la Poésie hongroise ancienne jusqu’à 1600</title></ref> (<ref
+            type="bibl" target="#horvath91">Horváth 1991–</ref>); Galician researchers created <ref
             target="http://www.cirp.es/bdo/med/meddb.html">MedDB: Base de datos da Lírica profana
             galego-portuguesa</ref> (<ref type="bibl" target="#brea94">Brea et al. 1994–</ref>);
           Italian researchers digitalized <ref target="http://www.bedt.it/"><title level="m">BEdT:
@@ -316,14 +315,12 @@
               <lg type="estrofa" asonancia="consonante" met="8,8" rhyme="+b+a">
                 <note>estos dos versos son de vuelta</note>
                 <l n="40">y pues al niño bend<rhyme label="b">ito</rhyme></l>
-                <l n="41" rhyme="aste">y a nosotros tú sac<rhyme label="a">aste</rhyme>,</l> <lg
-                  type="estribillo" asonancia="consonante" met="8,8,8" rhyme="*a*b*b">
+                <l n="41" rhyme="aste">y a nosotros tú sac<rhyme label="a">aste</rhyme>,</l>
+                <lg type="estribillo" asonancia="consonante" met="8,8,8" rhyme="*a*b*b">
                   <l n="42">Ángel, tú que me mand<rhyme label="a">aste</rhyme></l>
                   <l n="43">de Judea ir a Eg<rhyme label="b">ipto</rhyme>,</l>
                   <l n="44">guíanos con el chiqu<rhyme label="b">ito</rhyme>.</l>
                 </lg>
-                <!-- lg are nested because "estribillo" belongs to the stanza but it needs 
-                        to be marked as an indepent structure -->
               </lg>
             </egXML>
             <head type="legend"><title level="m">Auto de la huida a Egipto</title>, escena III, vv.
@@ -353,10 +350,10 @@
                 <item><att>met</att> contains the metrical structure, based on the number of
                   syllables in each line and on the number of lines, separated by commas. A stanza
                   of four lines of octosyllables would be encoded as
-                  <code>met="8,8,8,8"</code>.</item>
+                    <code>met=&quot;8,8,8,8&quot;</code>.</item>
                 <item><att>rhyme</att> contains the rhyming structure of each stanza, represented by
-                  letters, as for example in <code>rhyme="abba"</code>, to show that the first and
-                  fourth lines have the same rhymes and so do the second and third.</item>
+                  letters, as for example in <code>rhyme=&quot;abba&quot;</code>, to show that the
+                  first and fourth lines have the same rhymes and so do the second and third.</item>
                 <item><att>asonancia</att> is a new attribute which does not exist in the TEI Verse
                   module and has been added to our schema. Although our philosophy is to respect and
                   follow the TEI Guidelines (<ref type="bibl" target="#tei13">TEI Consortium
@@ -408,53 +405,65 @@
           RBDMS model, seeing that most of the online repertoires are built on similar systems. The
           problem lay in choosing a combined system to integrate both types of information: E-R
           relational structures and text marked up with XML. We compared two of the most popular E-R
-          database systems: MySQL and Oracle9i XML. Both of them offered the possibility of adding
-          an XMLType data column, thus offering the possibility of introducing hierarchical
-          structures inside the relational model via the provision of XML nesting structures. The
-          combination of both systems offers great advantages, such as the possibility of making
-          combined queries with SQL and XPath languages.<note>The disadvantage of MySQL compared to
-            Oracle is that MySQL does not offer validation for XML fields, as it considers them just
-            as text fields, and there are no added XSD schemas or any kind of transformational
-            stylesheets, like XSLT. TEI code has to be composed and validated outside the database
-            by using XML editors (we use Oxygen), since the MySQL RDBMS exploitation of XML
-            technologies is limited to XPath and can only be recovered through the
-              <ident>extractValue</ident> function of MySQL, which shows important limitations.
-            Oracle Database 9i and 10g, however, are much more powerful in that sense, as they
-            combine their E-R nature with XML technologies, resulting in a much more advanced tool
-            to work with both systems, hierarchical and relational, at the same time.</note></p>
-        <p>This first trial model of ReMetCa, combining the MySQL RDBMS and TEI XML fields, is
-          already working online and can be visited at <ptr target="http://ww.remetca.uned.es"/>. To
-          access the database, it is necessary to log in to <soCalled>Área de trabajo</soCalled> and
-          then into <soCalled>base de datos</soCalled>, using a username and password that can be
-          requested from the same website. Eventually the search screen will be online, free and
+          database systems: <ptr type="software" xml:id="MySQL" target="#MySQL"/><rs
+            type="soft.name" ref="#MySQL">MySQL</rs> and Oracle9i XML. Both of them offered the
+          possibility of adding an XMLType data column, thus offering the possibility of introducing
+          hierarchical structures inside the relational model via the provision of XML nesting
+          structures. The combination of both systems offers great advantages, such as the
+          possibility of making combined queries with <ptr type="software" xml:id="SQL"
+            target="#SQL"/><rs type="soft.name" ref="#SQL">SQL</rs> and XPath languages.<note>The
+            disadvantage of <ptr type="software" xml:id="MySQL" target="#MySQL"/><rs
+              type="soft.name" ref="#MySQL">MySQL</rs> compared to Oracle is that <ptr
+              type="software" xml:id="MySQL" target="#MySQL"/><rs type="soft.name" ref="#MySQL"
+              >MySQL</rs> does not offer validation for XML fields, as it considers them just as
+            text fields, and there are no added XSD schemas or any kind of transformational
+            stylesheets, like <ptr type="software" xml:id="XSLT" target="#XSLT"/><rs
+              type="soft.name" ref="#XSLT">XSLT</rs>. TEI code has to be composed and validated
+            outside the database by using XML editors (we use Oxygen), since the <ptr
+              type="software" xml:id="MySQL" target="#MySQL"/><rs type="soft.name" ref="#MySQL"
+              >MySQL</rs> RDBMS exploitation of XML technologies is limited to XPath and can only be
+            recovered through the <ident>extractValue</ident> function of <ptr type="software"
+              xml:id="MySQL" target="#MySQL"/><rs type="soft.name" ref="#MySQL">MySQL</rs>, which
+            shows important limitations. Oracle Database 9i and 10g, however, are much more powerful
+            in that sense, as they combine their E-R nature with XML technologies, resulting in a
+            much more advanced tool to work with both systems, hierarchical and relational, at the
+            same time.</note></p>
+        <p>This first trial model of ReMetCa, combining the <ptr type="software" xml:id="MySQL"
+            target="#MySQL"/><rs type="soft.name" ref="#MySQL">MySQL</rs> RDBMS and TEI XML fields,
+          is already working online and can be visited at <ptr target="http://ww.remetca.uned.es"/>.
+          To access the database, it is necessary to log in to <soCalled>Área de trabajo</soCalled>
+          and then into <soCalled>base de datos</soCalled>, using a username and password that can
+          be requested from the same website. Eventually the search screen will be online, free and
           open with no password, but not yet, as we are still working on populating the database and
           designing the search engine.</p>
         <p>Oracle databases contain fields defined as <ident>XMLType</ident>, thanks to the XDB
           component. This component is usually installed by default, but its status can be checked
-          by using the following SQL statement: <eg><![CDATA[
-            SQL> select comp_name, status from dba_registry where comp_name=’Oracle XML Database’;
-            COMP_NAME
+          by using the following <ptr type="software" xml:id="SQL" target="#SQL"/><rs
+            type="soft.name" ref="#SQL">SQL</rs> statement: <eg>
+            <ptr type="software" xml:id="SQL" target="#SQL"/><rs type="soft.name" ref="#SQL"
+              >SQL</rs>&gt; select comp_name, status from dba_registry where comp_name=’Oracle XML
+            Database’; COMP_NAME
             ----------------------------------------------------------------------------------------------
-            STATUS
-            ----------------------------------------------------------------
-            Oracle XML Database
-            VALID
-          ]]></eg>
+            STATUS ---------------------------------------------------------------- Oracle XML
+            Database VALID </eg>
         </p>
         <p>In the case of ReMetCa, this <ident>XMLType</ident> field needs to appear only once, in
           the table <ident>Poema</ident>, which contains <gi>lg</gi> elements and their content, as
-          described above. Oracle SQL Developer also allows updates to contents with its unique
-          record view.</p>
+          described above. Oracle <ptr type="software" xml:id="SQL" target="#SQL"/><rs
+            type="soft.name" ref="#SQL">SQL</rs> Developer also allows updates to contents with its
+          unique record view.</p>
         <figure xml:id="figure3">
           <graphic url="images/jtei-8-blanco-figure-03-oracle-editor.png" height="555px"
             width="626px"/>
-          <head type="legend">Oracle SQL Developer</head>
+          <head type="legend">Oracle <ptr type="software" xml:id="SQL" target="#SQL"/><rs
+              type="soft.name" ref="#SQL">SQL</rs> Developer</head>
         </figure>
         <p>Oracle stores XSD schemas into its system, so the XML introduced is validated. To test
           this property, we tried introducing an XSD schema for this <gi>lg</gi> element, adding
           attributes and constraints, and as figure 4 shows, it was perfectly validated. The system
-          also accepts XSLT stylesheets. Oracle registers stylesheets and can apply them to any
-          XMLType field.</p>
+          also accepts <ptr type="software" xml:id="XSLT" target="#XSLT"/><rs type="soft.name"
+            ref="#XSLT">XSLT</rs> stylesheets. Oracle registers stylesheets and can apply them to
+          any XMLType field.</p>
         <figure xml:id="figure4">
           <graphic url="images/jtei-8-blanco-figure-04-oracle-validation.png" height="284px"
             width="608px"/>
@@ -479,10 +488,11 @@
           model to allow interoperability among the different European repertoires based on a common
           ontology.</p>
         <p>Although we have adopted Oracle because of its power to work with XML technologies and
-          TEI, there are other open-source systems like MySQL or PostgreSQL which offer enough
-          functions to implement a mixed system like the one proposed in this paper. Actually, it is
-          predictable that both systems will include similar tools in the future to work with
-          XMLType fields, as XML is becoming more and more widely used.</p>
+          TEI, there are other open-source systems like <ptr type="software" xml:id="MySQL"
+            target="#MySQL"/><rs type="soft.name" ref="#MySQL">MySQL</rs> or PostgreSQL which offer
+          enough functions to implement a mixed system like the one proposed in this paper.
+          Actually, it is predictable that both systems will include similar tools in the future to
+          work with XMLType fields, as XML is becoming more and more widely used.</p>
       </div>
     </body>
     <back>
@@ -492,7 +502,7 @@
           <bibl xml:id="beltran07"><author>Beltrán, Vicenç</author>. <date>2007</date>. <title
               level="a">Bibliografía sobre Poesía medieval y Cancioneros</title>. In <title
               level="m">Biblioteca Virtual Joan Lluís Vives.</title> Accessed 5 February, 2014. <ptr
-              target="http://www.lluisvives.com/FichaObra.html?Ref=25467&amp;portal=1"/>.</bibl>
+              target="http://www.lluisvives.com/FichaObra.html?Ref=25467&portal=1"/>.</bibl>
           <bibl xml:id="caparros85"><author>Domínguez Caparrós, José</author>. <date>1985</date>.
               <title level="m">Diccionario de métrica española</title>. <pubPlace>Madrid</pubPlace>:
               <publisher>Paraninfo</publisher>.</bibl>
@@ -614,7 +624,7 @@
               >MedDB: Base de datos da Lírica Profana Galego-Portuguesa</title>. Centro Ramón
             Piñeiro para a Investigación en Humanidades. Accessed February 5, 2014. <ptr
               target="http://www.cirp.es/bdo/med/meddb.html"/>.</bibl>
-          <!-- [RvdB] no references in text -->
+
           <bibl xml:id="dreves13"><author>Dreves, Guido M.</author>, <author>Clemens Blume</author>,
               <author>H.M. Bannister</author>, <author>González-Blanco, Elena</author>, et al.
               <date>2013–</date>. <title level="m">ReMetCa: Repertorio métrico digital de la poesía

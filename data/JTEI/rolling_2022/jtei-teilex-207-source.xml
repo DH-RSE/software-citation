@@ -1,13 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml"
-	schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<!-- $Id: jtei-teilex-207-source.xml 1138 2022-09-13 19:10:33Z pietro.liuzzo $ -->
+<?xml version="1.0" encoding="UTF-8"?> <?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?> <?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" <?xml-model href="https://github.com/DH-RSE/software-citation/raw/main/schema/tei_software_annotation.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI">
    <teiHeader>
       <fileDesc>
          <titleStmt>
             <title type="main">TEI Lex-0 Etym: Toward Terse Recommendations for the Encoding of
                Etymological Information</title>
-            <!-- author information in separate <author> elements per author -->
+
             <author>
                <name>
                   <forename>Jack</forename>
@@ -27,7 +25,7 @@
                   (TC37). He has worked at: Inria (Paris, France), the Austrian Center for Digital
                   Humanities (Vienna, Austria), and currently works at <orgName>Amazon Web
                      Services</orgName> (AWS) in the San Francisco Bay Area (USA).</affiliation>
-               <email><!-- this author's email address --></email>
+               <email/>
             </author>
 
             <author>
@@ -43,7 +41,7 @@
                   and interoperability of lexical resources. He is the coordinator for the lexical
                   resources task area in the German Text+ project (<ptr
                      target="https://www.text-plus.org/"/>). </affiliation>
-               <email><!-- this author's email address --></email>
+               <email/>
             </author>
 
             <author>
@@ -58,7 +56,7 @@
                   infrastructures. He is the co-leader of the DARIAH Working Group on Lexical
                   Resources and co-author of TEI Lex-0, a baseline encoding for lexicographic data,
                   which received the 2020 Rahtz Prize for TEI Ingenuity.</affiliation>
-               <email><!-- this author's email address --></email>
+               <email/>
             </author>
 
             <author>
@@ -77,7 +75,7 @@
                   information (now called open science) policies and corresponding infrastructure
                   deployments (HAL and Episciences) since 2005 within various research-performing
                   organizations.</affiliation>
-               <email><!-- this author's email address --></email>
+               <email/>
             </author>
          </titleStmt>
          <publicationStmt>
@@ -116,7 +114,7 @@
          </langUsage>
          <textClass>
             <keywords xml:lang="en">
-               <!-- a list of keywords, each in its own <term> -->
+
                <term>Dictionary</term>
                <term>etymology</term>
                <term>TEI</term>
@@ -124,7 +122,7 @@
          </textClass>
       </profileDesc>
       <revisionDesc>
-         <change><!-- Description of a change to the article; we recommend using @who and @when. --></change>
+         <change/>
       </revisionDesc>
    </teiHeader>
    <text>
@@ -154,7 +152,7 @@
          </div>
       </front>
       <body>
-         <!-- text divisions, each with an @xml:id and <head> -->
+
          <div xml:id="intro">
             <head>Introduction</head>
             <p>Since the beginning of the Text Encoding Initiative and the first publication of the
@@ -182,8 +180,9 @@
                   2018</ref>), an initiative launched in 2016 under the auspices of the DARIAH
                Working Group on Lexical Resources, which aims to define a pivot format for the
                integration and querying of heterogeneous TEI-based lexical resources.<note>See the
-                  project’s GitHub repository, accessed June 17, 2022, <ptr
-                     target="https://github.com/DARIAH-ERIC/lexicalresources"/>.</note>
+                  project’s <ptr type="software" xml:id="GitHub" target="#GitHub"/><rs
+                     type="soft.name" ref="#GitHub">GitHub</rs> repository, accessed June 17, 2022,
+                     <ptr target="https://github.com/DARIAH-ERIC/lexicalresources"/>.</note>
             </p>
             <p>The scope of our proposal covers the usage of the following concepts central to
                etymological description:</p>
@@ -257,11 +256,11 @@
                            type="bibl" target="#romary2012">2012</ref>).</note> with <att>type</att>
                      for complex descriptions of linguistic signs and their properties. The two most
                      common usages in the context of etymological representation are etymons
-                        (<code>cit[type="etymon"]</code>) and cognates
-                        (<code>cit[type="cognate"]</code>).<note>For a complete list of customized
-                           <att>type</att> values on <gi>cit</gi> in TEI Lex-0, see <ref type="bibl"
-                           target="#tasovac2018">Tasovac et al. 2018, sec. 12.1.19</ref>:
-                           <gi>cit</gi>, <ptr
+                        (<code>cit[type=&quot;etymon&quot;]</code>) and cognates
+                        (<code>cit[type=&quot;cognate&quot;]</code>).<note>For a complete list of
+                        customized <att>type</att> values on <gi>cit</gi> in TEI Lex-0, see <ref
+                           type="bibl" target="#tasovac2018">Tasovac et al. 2018, sec.
+                        12.1.19</ref>: <gi>cit</gi>, <ptr
                            target="https://dariah-eric.github.io/lexicalresources/pages/TEILex0/TEILex0.html#TEI.cit"
                         />.</note> We follow here the recent developments related to <ref
                         type="bibl" target="#iso2021a">ISO standard 24613–3</ref>: see Khan and
@@ -281,15 +280,15 @@
                         <gi>lang</gi>).</item>
                   <item><gi>bibl</gi> and <gi>biblStruct</gi> for (complete) bibliographical
                      references presented inline.</item>
-                  <item><tag>ref type="bibl"</tag> for pointers to bibliographical entries stored
-                     elsewhere, which may also contain a <att>target</att> attribute when the
+                  <item><tag>ref type=&quot;bibl&quot;</tag> for pointers to bibliographical entries
+                     stored elsewhere, which may also contain a <att>target</att> attribute when the
                      bibliographic description is available.</item>
-                  <item>As an option depending on editorial practices, <tag>seg type="desc"</tag>
-                     for spans of prose that do not represent any of the information types described
-                     above.</item>
+                  <item>As an option depending on editorial practices, <tag>seg
+                        type=&quot;desc&quot;</tag> for spans of prose that do not represent any of
+                     the information types described above.</item>
                   <item><gi>note</gi> for editorial notes that are not part of the actual
                      etymological description (see the previous discussion concerning<tag>seg
-                        type="desc"</tag>).</item>
+                        type=&quot;desc&quot;</tag>).</item>
                   <item><gi>lbl</gi> to mark up short intertwining descriptive or connecting
                      markers, particularly in cases of cross references (e.g., <hi rend="italic"
                         >cf.</hi>and<hi rend="italic">see</hi>).</item>
@@ -310,12 +309,13 @@
             <div xml:id="basicompetym">
                <head>Basic Components of Etymons, Related Forms, and Other Components of
                   Etymologies</head>
-               <p>Other than <tag>seg type="desc"</tag>, <gi>bibl</gi>, <gi>date</gi>, and
+               <p>Other than <tag>seg type=&quot;desc&quot;</tag>, <gi>bibl</gi>, <gi>date</gi>, and
                      <gi>note</gi>, the rest of the most important components of an etymology, which
                   are described in the following sections, are encoded as children of a typed
-                     <gi>cit</gi> element for describing etymons (<code>type="etymon"</code>) or
-                  cognates (<code>type="cognate"</code>) , both of which are discussed in detail in
-                     <ptr target="#etymons" type="crossref"/>.</p>
+                     <gi>cit</gi> element for describing etymons
+                     (<code>type=&quot;etymon&quot;</code>) or cognates
+                     (<code>type=&quot;cognate&quot;</code>) , both of which are discussed in detail
+                  in <ptr target="#etymons" type="crossref"/>.</p>
                <p>The element <gi>cit</gi> can contain:</p>
                <list>
                   <item><gi>form</gi> for describing the actual form corresponding to the intended
@@ -369,10 +369,10 @@
                            target="#crist2005">2005</ref>) for an in-depth discussion of such
                         possible relations.</note>
                   </item>
-                  <item><tag>ref type="bibl"</tag> with a <att>target</att> attribute for references
-                     to bibliographic entries described elsewhere in the encompassing document, and
-                     possibly <gi>bibl</gi> as an alternative, when no central bibliographical
-                     management is anticipated for the current dictionary.</item>
+                  <item><tag>ref type=&quot;bibl&quot;</tag> with a <att>target</att> attribute for
+                     references to bibliographic entries described elsewhere in the encompassing
+                     document, and possibly <gi>bibl</gi> as an alternative, when no central
+                     bibliographical management is anticipated for the current dictionary.</item>
                </list>
                <p>As can be seen already, and in continuity with Bowers and Romary (<ref type="bibl"
                      target="#bowers2017">2017</ref>), the TEI Lex-0 recommendation departs
@@ -413,10 +413,10 @@
                   the data itself. Minimal adherence to TEI Lex-0 Etym requires only that the data
                   be encoded using the elements described above: all text content must be wrapped in
                   the particular element(s) specified for their data type, with <tag>seg
-                     type="desc"</tag> remaining an option depending on editorial practices.
-                  Optionally, users can include multiple layered <gi>etym</gi> elements which may
-                  also be typed. In the sections below we describe each basic possibility, their
-                  uses, and the specifics of their encoding.</p>
+                     type=&quot;desc&quot;</tag> remaining an option depending on editorial
+                  practices. Optionally, users can include multiple layered <gi>etym</gi> elements
+                  which may also be typed. In the sections below we describe each basic possibility,
+                  their uses, and the specifics of their encoding.</p>
                <p>In <ptr target="#example1" type="crossref"/>, from Kluge’s etymological dictionary
                   of German (<ref type="bibl" target="#kluge1975">Kluge 1975</ref>), we demonstrate
                   the minimal encoding of the entry components.</p>
@@ -485,8 +485,8 @@
                      <q>lat. introitus</q>
                   <hi rend="italic">of the Latin introitus</hi> which contains the source language.
                   Additionally, the presence of the Middle High German language
-                     (<code>&lt;lang>mhd.&lt;/lang></code>) would enable researchers to infer the
-                  process of inheritance into Modern German.</p>
+                     (<code>&lt;lang&gt;mhd.&lt;/lang&gt;</code>) would enable researchers to infer
+                  the process of inheritance into Modern German.</p>
                <p>In any given project where terminology is consistent,<note>In the case of data
                      sets (original or legacy) that do not use consistent terminology, variation in
                      the terminology should be normalized to allow for maximally systematic search
@@ -571,7 +571,6 @@
                            <lang expand="Mittelhochdeutsch" norm="gmh">mhd.</lang>
                            <form><orth>īnganc</orth></form>
                         </cit>
-                        <!-- cognates here -->
                         <etym type="borrowing" subtype="calque">
                            <lbl>Lehnübersetzung des</lbl>
                            <cit type="etymon" xml:lang="la">
@@ -605,11 +604,11 @@
                   alone untagged (text can be placed directly in <gi>etym</gi>); specifically
                   annotated with <gi>lbl</gi> or <gi>note</gi> elements when appropriate; or, when
                   one wants to uniformly embed all linguistic descriptions at the same encoding
-                  level in the XML tree, with the systematic use of a <tag>seg type="desc"</tag>
-                  element. In some cases the descriptions found in print dictionaries may occur in
-                  multiple discontinuous parts interrupted by examples or other structured content.
-                  In such cases, where the editors wish, the attribute <att>part</att> can be used
-                  with a value of <val>I</val>
+                  level in the XML tree, with the systematic use of a <tag>seg
+                     type=&quot;desc&quot;</tag> element. In some cases the descriptions found in
+                  print dictionaries may occur in multiple discontinuous parts interrupted by
+                  examples or other structured content. In such cases, where the editors wish, the
+                  attribute <att>part</att> can be used with a value of <val>I</val>
                   <hi rend="italic">initial</hi>, <val>M</val>
                   <hi rend="italic">medial</hi>, or <val>F</val>
                   <hi rend="italic">final</hi>,<note>
@@ -647,7 +646,7 @@
                      </etym>
                   </egXML>
                   <head type="legend">Use of <gi>lbl</gi>, <gi>date</gi>, <gi>bibl</gi>, and
-                        <tag>seg type="desc"</tag> with discontinuous prose. (Source: <ref
+                        <tag>seg type=&quot;desc&quot;</tag> with discontinuous prose. (Source: <ref
                         type="bibl" target="#kluge1975">Kluge 1975</ref>)</head>
                </figure>
 
@@ -659,10 +658,11 @@
                often represented by a form and which may include other information typical of any
                lexical entry: for example, a language name, grammatical properties, usage
                descriptions, semantic descriptions, or bibliographic sources. Etymons are encoded in
-                  <tag>cit type="etymon"</tag> and are used analogously to the organization of
-                  <gi>entry</gi> both conceptually and structurally as shown by the side-by-side
-               comparison of Entry structure and contents (<ptr target="#example6" type="crossref"
-               />) and basic etymon (<ptr target="#example6a" type="crossref"/>).</p>
+                  <tag>cit type=&quot;etymon&quot;</tag> and are used analogously to the
+               organization of <gi>entry</gi> both conceptually and structurally as shown by the
+               side-by-side comparison of Entry structure and contents (<ptr target="#example6"
+                  type="crossref"/>) and basic etymon (<ptr target="#example6a" type="crossref"
+               />).</p>
 
             <figure xml:id="example6">
 
@@ -731,7 +731,7 @@
                   description with no form. This is possible because in cases of polysemy, the form
                   of the new meaning/lexical item remains the same as the headword of the entry. In
                   the encoding in <ptr target="#example8" type="crossref"/>, the <att>corresp</att>
-                  attribute added to the <tag>cit type="etymon"</tag> points to the
+                  attribute added to the <tag>cit type=&quot;etymon&quot;</tag> points to the
                      <att>xml:id</att> value of the source sense. <ptr target="#example8"
                      type="crossref"/> shows the etymon with only sense change; <ptr
                      target="#example8a" type="crossref"/> shows the entry to which the etymon is
@@ -756,12 +756,11 @@
                                  <colloc norm="landmark">LM</colloc>
                               </gramGrp>
                               <def xml:lang="en">The front of (sth).</def> … <cit type="example">
-                                 <quote xml:lang="mix">nuu ve'e</quote>
+                                 <quote xml:lang="mix">nuu ve&apos;e</quote>
                                  <cit type="translation">
                                     <quote xml:lang="en">the front of the house</quote>
                                  </cit>
-                              </cit> … <!-- <etym> goes here -->
-                           </sense> … </sense>
+                              </cit> … </sense> … </sense>
                      </entry>
                   </egXML>
                   <head type="legend">Etymon with only sense change.</head>
@@ -916,9 +915,10 @@
                   source. The structure of a basic representation of cognates mirrors that of
                   etymons and uses the same <gi>cit</gi> structure, with the difference that the
                   value of <att>type</att> should be <soCalled>cognate</soCalled>. Note that in <ptr
-                     target="#example12" type="crossref"/>, <tag>ref type="bibl"</tag> is used
-                  instead of <gi>bibl</gi> because in the project from which the examples are taken
-                  all bibliographical sources are listed in the header with <att>xml:id</att>s.</p>
+                     target="#example12" type="crossref"/>, <tag>ref type=&quot;bibl&quot;</tag> is
+                  used instead of <gi>bibl</gi> because in the project from which the examples are
+                  taken all bibliographical sources are listed in the header with
+                  <att>xml:id</att>s.</p>
 
                <figure xml:id="example12">
                   <egXML xmlns="http://www.tei-c.org/ns/Examples">
@@ -959,15 +959,15 @@
                   source etymology as a set or list. Often these would have some kind of referential
                   function word or abbreviation: for example, <q>cf. …</q> In such cases it may be
                   desirable to present the list of cognates as the source intended and thus group
-                  them in a single wrapper <tag>cit type="cognateSet"</tag>.</p>
+                  them in a single wrapper <tag>cit type=&quot;cognateSet&quot;</tag>.</p>
                <p>In the case of a cognate set where there is a referential function word or
                   abbreviation, it should be tagged with <gi>lbl</gi> and included as a child of
-                     <tag>cit type="cognateSet"</tag>, preceding the etymons (see <ptr
+                     <tag>cit type=&quot;cognateSet&quot;</tag>, preceding the etymons (see <ptr
                      target="#example13" type="crossref"/>). Where there is a common bibliographic
-                  source, <gi>bibl</gi> or <tag>ref type="bibl"</tag> (if the bibliographic sources
-                  are already declared elsewhere) should be a child of the <tag>cit
-                     type="cognateSet"</tag> and placed after the given forms (see <ptr
-                     target="#example13" type="crossref"/>).</p>
+                  source, <gi>bibl</gi> or <tag>ref type=&quot;bibl&quot;</tag> (if the
+                  bibliographic sources are already declared elsewhere) should be a child of the
+                     <tag>cit type=&quot;cognateSet&quot;</tag> and placed after the given forms
+                  (see <ptr target="#example13" type="crossref"/>).</p>
                <figure xml:id="example13">
                   <egXML xmlns="http://www.tei-c.org/ns/Examples">
                      <cit type="cognateSet">
@@ -1029,13 +1029,13 @@
                      <entry> ... <lbl>Derivatives</lbl><pc>:</pc>
                         <entry type="derivative" xml:lang="la">
                            <form><orth>amārilūdō</orth></form>
-                           <sense><gloss>'bitterness'</gloss></sense>
+                           <sense><gloss>&apos;bitterness&apos;</gloss></sense>
                            <ref type="bibliography">(Varro+)</ref>
                         </entry><pc>,</pc>
                         <entry type="derivative" xml:lang="la">
                            <form><orth>amāror</orth></form>
                            <pc>[</pc><gramGrp><gen>m.</gen></gramGrp><pc>]</pc>
-                           <sense><gloss>‘bitter taste'</gloss></sense>
+                           <sense><gloss>‘bitter taste&apos;</gloss></sense>
                            <ref type="bibliography">(Lucr.+)</ref>
                         </entry><pc>.</pc>
                      </entry>
@@ -1080,8 +1080,8 @@
                <p>In this first case, the entry is for the Latin <hi rend="italic">arcessō, -ere /
                      accersō, -ere</hi>; within the etymology section of that entry there are
                   references to the two lemma variants. The cross-references are encoded in <tag>xr
-                     type="crossReference" xml:lang="la"</tag>
-                  <tag>ref type="entry"</tag>. This format would also apply to external
+                     type=&quot;crossReference&quot; xml:lang=&quot;la&quot;</tag>
+                  <tag>ref type=&quot;entry&quot;</tag>. This format would also apply to external
                   cross-references. In either case, the editors would also have the option of
                   including a pointer to the given internal or external form(s) with the
                      <att>target</att> attribute on <gi>ref</gi>.</p>
@@ -1105,7 +1105,8 @@
                         <att>next</att> can be used to denote temporal sequences of referenced
                      forms.</note>). In such examples as the following, the use of <gi>xr</gi>
                   encodes an important conceptual distinction in the data as it allows <tag>cit
-                     type="etymon"</tag> to be reserved for the form(s) in the given entry.</p>
+                     type=&quot;etymon&quot;</tag> to be reserved for the form(s) in the given
+                  entry.</p>
                <p>….Nussbaum 2007b gives two more arguments for regarding <hi rend="italic"
                      >accerso</hi>as original: the noun <hi rend="bold">
                      <hi rend="italic">dorsum → dossum</hi>
@@ -1125,13 +1126,13 @@
 
                <p>Finally, we have an example in which there is a cross-reference to a sense of an
                   external entry (<ptr target="#example17" type="crossref"/>). This is also encoded
-                  as <tag>xr type="crossReference"</tag> but differs in that it is a reference to
-                  the sense of a given entry; thus we use <tag>ref @type="sense"</tag> and the
-                  embedded <gi>gloss</gi> within, which needs to have the <att>xml:lang</att> to
-                  distinguish from the value declared at the <gi>xr</gi> level. In this case there
-                  is also a form (included here in a separate <tag>ref type="sense"</tag>); however,
-                  it is also possible that a cross-reference to a sense could occur without an
-                  accompanying form.</p>
+                  as <tag>xr type=&quot;crossReference&quot;</tag> but differs in that it is a
+                  reference to the sense of a given entry; thus we use <tag>ref
+                     @type=&quot;sense&quot;</tag> and the embedded <gi>gloss</gi> within, which
+                  needs to have the <att>xml:lang</att> to distinguish from the value declared at
+                  the <gi>xr</gi> level. In this case there is also a form (included here in a
+                  separate <tag>ref type=&quot;sense&quot;</tag>); however, it is also possible that
+                  a cross-reference to a sense could occur without an accompanying form.</p>
                <p>
                   <hi rend="italic">...</hi> a verb in <hi rend="bold">
                      <hi rend="italic">-cesso</hi>
@@ -1142,8 +1143,8 @@
                   <egXML xmlns="http://www.tei-c.org/ns/Examples"> ….a verb in <xr type="related"
                         xml:lang="la"><ref type="sense">-cessō</ref>
                         <lbl>meaning</lbl>
-                        <pc>'</pc><gloss xml:lang="en">go get</gloss><pc>'</pc></xr> would be
-                     favoured by its semantic neighbours... </egXML>
+                        <pc>&apos;</pc><gloss xml:lang="en">go get</gloss><pc>&apos;</pc></xr> would
+                     be favoured by its semantic neighbours... </egXML>
                   <head type="legend">Cross-reference to a sense from an external entry.</head>
 
                </figure>
@@ -1173,7 +1174,8 @@
             <p>In the following examples, we have tried to illustrate interesting cases of
                etymological processes that show how TEI Lex-0 Etym can seamlessly take into account
                a variety of situations. All examples have been validated and included in the TEI
-               Lex-0 GitHub environment.</p>
+               Lex-0 <ptr type="software" xml:id="GitHub" target="#GitHub"/><rs type="soft.name"
+                  ref="#GitHub">GitHub</rs> environment.</p>
 
             <div xml:id="embeddedsenses">
                <head>Embedded Senses, Metaphor, and Compounding</head>
@@ -1181,10 +1183,11 @@
                   the Mixtepec-Mixtec TEI dictionary (<ref type="bibl" target="#bowers2020">Bowers
                      2020</ref>) in which the lemma form <hi rend="italic">xini ve’e</hi> is a
                   compound with one component that is metaphorical in nature. The portion of the
-                  etymology that is metaphorical (<tag>etym type="metaphor"</tag>) is embedded
-                  within the <tag>etym type="compounding"</tag>, and as it is relevant to the
-                  process of metaphor, within the <tag>etym type="metaphor"</tag> is the domain
-                     (<tag>usg type="domain"</tag>).</p>
+                  etymology that is metaphorical (<tag>etym type=&quot;metaphor&quot;</tag>) is
+                  embedded within the <tag>etym type=&quot;compounding&quot;</tag>, and as it is
+                  relevant to the process of metaphor, within the <tag>etym
+                     type=&quot;metaphor&quot;</tag> is the domain (<tag>usg
+                     type=&quot;domain&quot;</tag>).</p>
 
                <figure xml:id="example18">
                   <egXML xmlns="http://www.tei-c.org/ns/Examples">
@@ -1213,7 +1216,7 @@
                            </etym>
                            <cit type="etymon" xml:lang="mix">
                               <form type="lemma" corresp="#house">
-                                 <orth>ve'e</orth>
+                                 <orth>ve&apos;e</orth>
                               </form>
                               <gloss xml:lang="en">house</gloss>
                               <gloss xml:lang="es">casa</gloss>
@@ -1270,7 +1273,6 @@
                            </cit>
                            <pc>)</pc>
                         </etym>
-                        <!--  rest of entry here -->
                      </entry>
                   </egXML>
                   <head type="legend">Derivational/morphological analysis. (Source: <ref type="bibl"
@@ -1282,15 +1284,15 @@
                <head>Phonological Changes</head>
                <p>It is very common in etymological dictionaries to have discussions about sequences
                   of sound changes. These most often take place in the context of running prose. As
-                  described above, prose can be represented using <tag>seg type="desc"</tag>, and
-                  where interrupted with etymons (or other content), the <att>part</att> attribute
-                  can be used. The phonetic or phonological units described as having undergone
-                  particular changes are represented the same way as full word forms, using <tag>cit
-                     type="etymon"</tag>. In order to attribute a unit’s particular place in the
-                  sequence of sound changes, the <att>prev</att> and <att>next</att> attributes can
-                  be used to point to the <att>xml:id</att> of the previous or next form in the
-                  diachrony. <ptr target="#example20" type="crossref"/> illustrates these
-                  mechanisms.</p>
+                  described above, prose can be represented using <tag>seg
+                     type=&quot;desc&quot;</tag>, and where interrupted with etymons (or other
+                  content), the <att>part</att> attribute can be used. The phonetic or phonological
+                  units described as having undergone particular changes are represented the same
+                  way as full word forms, using <tag>cit type=&quot;etymon&quot;</tag>. In order to
+                  attribute a unit’s particular place in the sequence of sound changes, the
+                     <att>prev</att> and <att>next</att> attributes can be used to point to the
+                     <att>xml:id</att> of the previous or next form in the diachrony. <ptr
+                     target="#example20" type="crossref"/> illustrates these mechanisms.</p>
                <p>Others have proposed an etymology *<hi rend="italic">ad-arti-</hi> with
                   intervocalic *<hi rend="bold">
                      <hi rend="italic">d</hi>
@@ -1351,14 +1353,7 @@
                <figure xml:id="example21">
                   <egXML xmlns="http://www.tei-c.org/ns/Examples">
                      <etym>
-                        <!-- PIt, PIE etymons-->
-                        <!-- cognates -->
                         <etym cert="medium">
-                           <!-- Lat. sollers 
-                                 < *soti-arti- to 
-                                 sollus 'entire'; 
-                                 al(l)ers < *all-arti- 
-                                 to O. alio- 'entire'. -->
                            <seg type="desc" part="I">According to <ref type="bibliography">Untermann
                                  2000</ref>, </seg>
                            <xr type="crossReference"><lang>Latin</lang>
@@ -1368,18 +1363,20 @@
                                  >Sabellic</lang></cit>, <seg type="desc" part="F">since <lang
                                  norm="la">Latin</lang> does not have this word in its lexicon. For
                               a word only occurring in glosses, this is of course possible.</seg>
-                        </etym> <etym cert="medium"><seg type="desc" part="I">Others have proposed
-                              an etymology</seg>
+                        </etym>
+                        <etym cert="medium"><seg type="desc" part="I">Others have proposed an
+                              etymology</seg>
                            <cit type="etymon" xml:id="ad-arti-" xml:lang="und-x-pie"
-                                    ><form><orth>*ad-arti-</orth></form></cit> <etym
-                              corresp="#ad-arti-">
+                                    ><form><orth>*ad-arti-</orth></form></cit>
+                           <etym corresp="#ad-arti-">
                               <seg type="desc" part="I">with intervocalic </seg><cit type="etymon"
-                                 xml:id="c1" next="#c2"><form><orth>d</orth></form></cit> <seg
-                                 type="desc" part="F">becoming</seg>
+                                 xml:id="c1" next="#c2"><form><orth>d</orth></form></cit>
+                              <seg type="desc" part="F">becoming</seg>
                               <cit type="etymon" xml:id="c2" prev="#c1"
                                  ><form><orth>l</orth></form></cit>
                               <pc>;</pc>
-                           </etym> <seg type="desc" part="F">the spelling <xr type="related"><ref
+                           </etym>
+                           <seg type="desc" part="F">the spelling <xr type="related"><ref
                                     xml:lang="la">allers</ref></xr> would then be <xr
                                  type="crossReference"><lbl>analogical to</lbl>
                                  <ref xml:lang="la">sollers</ref></xr><pc>.</pc></seg></etym>
@@ -1395,7 +1392,7 @@
       </body>
       <back>
          <div type="bibliography">
-            <!-- the bibliography for the article, organized as a series of <bibl> elements inside <listBibl> -->
+
             <listBibl>
                <bibl xml:id="banski2017"><author>Bański, Piotr</author>, <author>Jack
                      Bowers</author>, and <author>Tomaž Erjavec</author>. <date>2017</date>. <title

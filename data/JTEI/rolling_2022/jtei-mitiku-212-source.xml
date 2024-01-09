@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml"
-	schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<!-- $Id: jtei-mitiku-212-source.xml 1107 2022-04-22 13:56:38Z pietro.liuzzo $-->
+<?xml version="1.0" encoding="UTF-8"?> <?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?> <?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" <?xml-model href="https://github.com/DH-RSE/software-citation/raw/main/schema/tei_software_annotation.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI.internal">
    <teiHeader>
       <fileDesc>
@@ -14,9 +12,11 @@
                   University and in Digital Humanities and Digital Knowledge at University of
                   Bologna. His main interests concern programming and natural language processing.
                   Hizkiel did his traineeship at the Hiob Ludolf Centre for Ethiopian and Eritrean
-                  Studies, Universität Hamburg. He dealt with Ethiopic HTR using Transkribus.
-                  Currently, he is a <roleName>Research Assistant</roleName> at the
-                     <orgName>University of Paderborn</orgName>.</affiliation>
+                  Studies, Universität Hamburg. He dealt with Ethiopic HTR using <ptr
+                     type="software" xml:id="Transkribus" target="#Transkribus"/><rs
+                     type="soft.name" ref="#Transkribus">Transkribus</rs>. Currently, he is a
+                     <roleName>Research Assistant</roleName> at the <orgName>University of
+                     Paderborn</orgName>.</affiliation>
                <email>hizkiel.alemayehu@uni-paderborn.de</email>
             </author>
          </titleStmt>
@@ -56,7 +56,8 @@
             <keywords xml:lang="en">
                <term>Ethiopic literature</term>
                <term>Manuscripts</term>
-               <term>Transkribus</term>
+               <term><ptr type="software" xml:id="Transkribus" target="#Transkribus"/><rs
+                     type="soft.name" ref="#Transkribus">Transkribus</rs></term>
             </keywords>
          </textClass>
       </profileDesc>
@@ -131,8 +132,10 @@
                   Bausi.</note> In order to obtain a TEI file with an initial text transcription
                from manuscripts, to be published alongside the catalogue description of the
                manuscript itself, we have investigated a series of options, among which we have
-               chosen to use the <ref target="https://transkribus.eu/Transkribus/">Transkribus</ref>
-               sofware by READ Coop.<note>Accessed February 2, 2022, <ptr
+               chosen to use the <ref target="https://transkribus.eu/Transkribus/"><ptr
+                     type="software" xml:id="Transkribus" target="#Transkribus"/><rs
+                     type="soft.name" ref="#Transkribus">Transkribus</rs></ref> sofware by READ
+                  Coop.<note>Accessed February 2, 2022, <ptr
                      target="https://transkribus.eu/Transkribus/"/>.</note></p>
             <p>The transcription matches and complements the cataloguing efforts of the project,
                which encodes in the <gi>teiHeader</gi> the description of the manuscript. Within
@@ -148,25 +151,26 @@
                of features of the object described in <gi>msDesc</gi>, but, thinking of the work for
                an historical catalogue that involves copying from the former cataloguer
                transcription. Having a new transcription, based on autopsy or at least on the images
-               of the manuscript would be preferable and technology as Transkribus allows one to
-               obtain this transcription in an almost entirely automated way. Additionally, most of
-               the internal referencing within a manuscript is done with the indication of the
-               ranges of folios, and in TEI with <gi>locus</gi>. While normally a transcription
-               either in an historical catalogue, or done by a researcher by hand, seldom records
-               more than the folio ranges, automated techniques can identify text areas, like
-               columns, for example, and each line, and have the necessary information to encode the
-                  <gi>pb</gi>, <gi>cb</gi> and <gi>lb</gi> which would be needed to encode the
-               structure of the manuscript and would be a tedious task, when manually done. Having
-               the structured text completed by the information about the layout, linked to the
-               images, already in the source and linking to it with the <gi>locus</gi> elements
-               allows to effectively point to an exact section of the transcribed text. The syntax
-               of the textual content of the attributes <att>from</att>, <att>to</att> and
-                  <att>target</att> is defined by the project’s Guidelines and so is the use of the
-               above elements, which make the references machine operable. <note>This is the case
-                  for Beta maṣāḥǝft, which implements this experimentally, via the <ref
-                     target="https://distributed-text-services.github.io/">Distributed Text
-                     Services</ref> API Specifications. See <ref type="bibl" target="#bmgl">Beta
-                     maṣāḥǝft Guidelines</ref>, accessed February 2, 2022, <ptr
+               of the manuscript would be preferable and technology as <ptr type="software"
+                  xml:id="Transkribus" target="#Transkribus"/><rs type="soft.name"
+                  ref="#Transkribus">Transkribus</rs> allows one to obtain this transcription in an
+               almost entirely automated way. Additionally, most of the internal referencing within
+               a manuscript is done with the indication of the ranges of folios, and in TEI with
+                  <gi>locus</gi>. While normally a transcription either in an historical catalogue,
+               or done by a researcher by hand, seldom records more than the folio ranges, automated
+               techniques can identify text areas, like columns, for example, and each line, and
+               have the necessary information to encode the <gi>pb</gi>, <gi>cb</gi> and <gi>lb</gi>
+               which would be needed to encode the structure of the manuscript and would be a
+               tedious task, when manually done. Having the structured text completed by the
+               information about the layout, linked to the images, already in the source and linking
+               to it with the <gi>locus</gi> elements allows to effectively point to an exact
+               section of the transcribed text. The syntax of the textual content of the attributes
+                  <att>from</att>, <att>to</att> and <att>target</att> is defined by the project’s
+               Guidelines and so is the use of the above elements, which make the references machine
+               operable. <note>This is the case for Beta maṣāḥǝft, which implements this
+                  experimentally, via the <ref target="https://distributed-text-services.github.io/"
+                     >Distributed Text Services</ref> API Specifications. See <ref type="bibl"
+                     target="#bmgl">Beta maṣāḥǝft Guidelines</ref>, accessed February 2, 2022, <ptr
                      target="https://betamasaheft.eu/Guidelines/?id=references"/>.</note>
             </p>
             <p>The output of any automated process will never be perfect. However, we have
@@ -198,8 +202,10 @@
                Oriental tradition, this is a vital support for text identification.</p>
             <p>The following steps have been taken to carry out an investigation of the
                possibilities for the automated production of text transcriptions based on images of
-               manuscripts, before we opted for Transkribus and its integration in the workflow to
-               make texts available in the Beta maṣāḥǝft research environment.</p>
+               manuscripts, before we opted for <ptr type="software" xml:id="Transkribus"
+                  target="#Transkribus"/><rs type="soft.name" ref="#Transkribus">Transkribus</rs>
+               and its integration in the workflow to make texts available in the Beta maṣāḥǝft
+               research environment.</p>
          </div>
          <div xml:id="SoA">
             <head>Related works</head>
@@ -286,7 +292,8 @@
                      one script.</p>
                </div>
                <div xml:id="transkri">
-                  <head>Transkribus</head>
+                  <head><ptr type="software" xml:id="Transkribus" target="#Transkribus"/><rs
+                        type="soft.name" ref="#Transkribus">Transkribus</rs></head>
                   <p>This software is freely accessible and has a subscription model based on
                      credits. The platform was created within the framework of the EU projects
                      tranScriptorium and READ (Recognition and Enrichment of Archival Documents -
@@ -298,8 +305,10 @@
                      platform. The Pattern Recognition and Human Language Technology (PRHLT) group
                      of the Universitat Politècnica de València and the CITlab group of the
                      University of Rostock should be mentioned in particular.</p>
-                  <p>Transkribus comes as an <soCalled>expert tool</soCalled> in its downloadable
-                     version and its online version,<note>Accessed February 2, 2022, <ptr
+                  <p><ptr type="software" xml:id="Transkribus" target="#Transkribus"/><rs
+                        type="soft.name" ref="#Transkribus">Transkribus</rs> comes as an
+                        <soCalled>expert tool</soCalled> in its downloadable version and its online
+                        version,<note>Accessed February 2, 2022, <ptr
                            target="https://transkribus.eu/lite/"/>.</note> and it allows to upload
                      images privately and perform the transcription task without neural networks
                      knowledge, but just following concise and easily retrievable documentation.</p>
@@ -328,13 +337,16 @@
                training data. However, there is no organized and freely available dataset for
                Ethiopic handwriting character recognition.</p>
             <p>Thus, the first stage for developing a model was gathering the data and preparing an
-               initial dataset. Also for this aspect, Transkribus proved superior to all other
-               options offering support also for this step. Colleagues which we called to contribute
-               could be added to a collection, share their images without publishing them and add
-               their transcriptions in the tool with a very mild learning curve.</p>
-            <p>Within Transkribus we have trained a model called <title level="u">Manuscripts from
-                  Ethiopia and Eritrea in Classical Ethiopic (Gǝʿǝz)</title>.<note>See, accessed
-                  February 2, 2022, <ptr
+               initial dataset. Also for this aspect, <ptr type="software" xml:id="Transkribus"
+                  target="#Transkribus"/><rs type="soft.name" ref="#Transkribus">Transkribus</rs>
+               proved superior to all other options offering support also for this step. Colleagues
+               which we called to contribute could be added to a collection, share their images
+               without publishing them and add their transcriptions in the tool with a very mild
+               learning curve.</p>
+            <p>Within <ptr type="software" xml:id="Transkribus" target="#Transkribus"/><rs
+                  type="soft.name" ref="#Transkribus">Transkribus</rs> we have trained a model
+               called <title level="u">Manuscripts from Ethiopia and Eritrea in Classical Ethiopic
+                  (Gǝʿǝz)</title>.<note>See, accessed February 2, 2022, <ptr
                      target="https://readcoop.eu/model/ethiopic-classical-ethiopic-scripts-from-ethiopia-and-eritrea/"
                   />.</note> Checked transcriptions for the training set have been kindly provided
                by</p>
@@ -395,11 +407,15 @@
                set.</p>
          </div>
          <div xml:id="training">
-            <head>Training a model in Transkribus</head>
-            <p>Gathering data to train an HTR model in Transkribus was not easy. Researchers were
-               directly asked to contribute images of which they had already done the correct
-               transcription. Sets of images with the relative transcription was thus obtained
-               thanks to the generosity of contributors listed above.</p>
+            <head>Training a model in <ptr type="software" xml:id="Transkribus"
+                  target="#Transkribus"/><rs type="soft.name" ref="#Transkribus"
+               >Transkribus</rs></head>
+            <p>Gathering data to train an HTR model in <ptr type="software" xml:id="Transkribus"
+                  target="#Transkribus"/><rs type="soft.name" ref="#Transkribus">Transkribus</rs>
+               was not easy. Researchers were directly asked to contribute images of which they had
+               already done the correct transcription. Sets of images with the relative
+               transcription was thus obtained thanks to the generosity of contributors listed
+               above.</p>
             <p>As stated earlier, we have trained a generic model using various styles and
                manuscripts. The simple fact of having the images and the transcriptions was not
                enough of course. These needed to be cleaned up at least for what concerns the file
@@ -421,9 +437,10 @@
                enter more of the available transcription by hand as discussed above, than to wait
                for the available time of the colleagues to fix the work of the machine, since we
                intended to train the model again. After three months with a full-time dedicated
-               person, we had more than 50k words in the Transkribus expert tool, and we could train
-               a model which could be made public, since this is the unofficial threshold to make a
-               model available to everyone.</p>
+               person, we had more than 50k words in the <ptr type="software" xml:id="Transkribus"
+                  target="#Transkribus"/><rs type="soft.name" ref="#Transkribus">Transkribus</rs>
+               expert tool, and we could train a model which could be made public, since this is the
+               unofficial threshold to make a model available to everyone.</p>
             <p>The features of the final model can be seen in <ptr target="#fig_1" type="crossref"
                />.</p>
             <figure xml:id="fig_1">
@@ -440,18 +457,24 @@
                Once the model is publicly available eventually anyone will be able to do so.</p>
          </div>
          <div xml:id="transcription">
-            <head>Adding transcriptions to Beta maṣāḥǝft from Transkribus</head>
+            <head>Adding transcriptions to Beta maṣāḥǝft from <ptr type="software"
+                  xml:id="Transkribus" target="#Transkribus"/><rs type="soft.name"
+                  ref="#Transkribus">Transkribus</rs></head>
             <p>Even if a user already worked through each page of a manuscript to produce a
-               transcription, doing it again with Transkribus and checking it has many advantages,
-               chiefly the alignment of the text regions and lines on the base image to the
-                  transcription.<note>Guidelines are provided for this steps to the users in the<ref
-                     type="bibl" target="#bmgl">project Guidelines</ref>, accessed February 2, 2022,
-                     <ptr target="https://betamasaheft.eu/Guidelines/?id=transcription-transkribus"
+               transcription, doing it again with <ptr type="software" xml:id="Transkribus"
+                  target="#Transkribus"/><rs type="soft.name" ref="#Transkribus">Transkribus</rs>
+               and checking it has many advantages, chiefly the alignment of the text regions and
+               lines on the base image to the transcription.<note>Guidelines are provided for this
+                  steps to the users in the<ref type="bibl" target="#bmgl">project Guidelines</ref>,
+                  accessed February 2, 2022, <ptr
+                     target="https://betamasaheft.eu/Guidelines/?id=transcription-transkribus"
                   />.</note></p>
             <p>With the transcribed images, either by hand with the help of the tool, or using the
-               HTR model, the export functionalities of the Transkribus tool, allow to download a
-               TEI encoded version of this transcription where we encourage users to use Line Breaks
-                  (<gi>lb</gi>) instead of <gi>l</gi> and preserve the coordinates of the boxes.</p>
+               HTR model, the export functionalities of the <ptr type="software"
+                  xml:id="Transkribus" target="#Transkribus"/><rs type="soft.name"
+                  ref="#Transkribus">Transkribus</rs> tool, allow to download a TEI encoded version
+               of this transcription where we encourage users to use Line Breaks (<gi>lb</gi>)
+               instead of <gi>l</gi> and preserve the coordinates of the boxes.</p>
             <p>This TEI file contains all the aligned transcription, links between the regions of
                the image, and the text. It has however to follow the structure of the set of images.
                If you transcribed images, for example, of openings, logically you will have a page
@@ -462,8 +485,11 @@
                manuscript and not of the image set. Most of this can be fixed by preparing the image
                set accurately, but we assume in most real-life use cases this will not be the
                case.</p>
-            <p>We have then prepared a bespoke XSLT transformation which can be used to transform
-               the rich TEI from Transkribus, called <ref
+            <p>We have then prepared a bespoke <ptr type="software" xml:id="XSLT" target="#XSLT"
+                  /><rs type="soft.name" ref="#XSLT">XSLT</rs> transformation which can be used to
+               transform the rich TEI from <ptr type="software" xml:id="Transkribus"
+                  target="#Transkribus"/><rs type="soft.name" ref="#Transkribus">Transkribus</rs>,
+               called <ref
                   target="https://github.com/BetaMasaheft/Documentation/blob/master/utility/transkribus2bm.xsl"
                   >transkribus2Beta maṣāḥǝft.xsl</ref>. This transformation, given a few parameters,
                restructures the TEI to fit the project requirements. The needed parameters are: the
@@ -485,23 +511,24 @@
          </div>
          <div xml:id="conclusions">
             <head>Conclusions</head>
-            <p>Working with Transkribus for the Beta maṣāḥǝft project gives the community of users a
-               way to support the process of transcribing to the text on source manuscripts without
-               typing it down. This is not intended to substitute the work of the editor of a text,
-               but to support it, producing a transcription that still needs a lot of care for its
-               content and encoding, but also comes with a lot of added value, like the precise
-               alignment of the text to the image set and its encoding in the TEI. Files thus
-               obtained are huge and not as easy to maintain in a database or edit directly.
-               However, even if the text of the transcription is still unchecked and thus subject to
-               at least the percentage of the error the model provides, several benefits become
-               immediately available to the users, both encoders and users of the web application
-               hosting the texts. Encoders can point to a part of the transcription using
-                  <gi>locus</gi> and avoid keying in the text from the transcription of a cataloguer
-               in the <gi>teiHeader</gi>. Similarly, a user of the application can identify an
-               unknown text using the functionality of the search index, which is capable of
-               performing fuzzy searches which will return results also where a query term is
-               partially different from the matching result, e.g., in case this contains an error
-               originated from the automated transcription process.</p>
+            <p>Working with <ptr type="software" xml:id="Transkribus" target="#Transkribus"/><rs
+                  type="soft.name" ref="#Transkribus">Transkribus</rs> for the Beta maṣāḥǝft project
+               gives the community of users a way to support the process of transcribing to the text
+               on source manuscripts without typing it down. This is not intended to substitute the
+               work of the editor of a text, but to support it, producing a transcription that still
+               needs a lot of care for its content and encoding, but also comes with a lot of added
+               value, like the precise alignment of the text to the image set and its encoding in
+               the TEI. Files thus obtained are huge and not as easy to maintain in a database or
+               edit directly. However, even if the text of the transcription is still unchecked and
+               thus subject to at least the percentage of the error the model provides, several
+               benefits become immediately available to the users, both encoders and users of the
+               web application hosting the texts. Encoders can point to a part of the transcription
+               using <gi>locus</gi> and avoid keying in the text from the transcription of a
+               cataloguer in the <gi>teiHeader</gi>. Similarly, a user of the application can
+               identify an unknown text using the functionality of the search index, which is
+               capable of performing fuzzy searches which will return results also where a query
+               term is partially different from the matching result, e.g., in case this contains an
+               error originated from the automated transcription process.</p>
             <p>With this process started, the model publicly available, and thousands of images of
                manuscripts, we work for more transcriptions, more text distributed as TEI on the
                web, and more collaboration to improve each of these aspects.</p>
@@ -551,7 +578,7 @@
                      <author>Hadi Samer Jomaa</author>. <date>2019</date>. <title level="a"
                      >Handwritten Amharic Character Recognition Using a Convolutional Neural
                      Network</title>. <ptr target="http://arxiv.org/abs/1909.12943"/>.</bibl>
-               <!-- [RvdB] et. al.?-->
+
                <bibl xml:id="transkribus">
                   <author>Muehlberger, Guenter</author>, <author>Louise Seaward</author>,
                      <author>Melissa Terras</author>, <author>Sofia Ares Oliveira</author>,
@@ -580,11 +607,12 @@
                      Vidal</author>, <author>Johanna Walcher</author>, <author>Max
                      Weidemann</author>, <author>Herbert Wurster</author>, and <author>Konstantinos
                      Zagoris</author>. <date>2019</date>. <title level="a">Transforming scholarship
-                     in the archives through handwritten text recognition: Transkribus as a case
-                     study</title>. <title level="j">Journal of Documentation</title>, <biblScope
-                     unit="volume">75</biblScope> (<biblScope unit="issue">5</biblScope>) <biblScope
-                     unit="page">954–976</biblScope>. <idno type="DOI"
-                     >10.1108/JD-07-2018-0114</idno>.</bibl>
+                     in the archives through handwritten text recognition: <ptr type="software"
+                        xml:id="Transkribus" target="#Transkribus"/><rs type="soft.name"
+                        ref="#Transkribus">Transkribus</rs> as a case study</title>. <title
+                     level="j">Journal of Documentation</title>, <biblScope unit="volume"
+                     >75</biblScope> (<biblScope unit="issue">5</biblScope>) <biblScope unit="page"
+                     >954–976</biblScope>. <idno type="DOI">10.1108/JD-07-2018-0114</idno>.</bibl>
                <bibl xml:id="mace"><editor>Andrews, Tara L.</editor>, <editor>Caroline Macé</editor>
                   (eds.). <date>2014</date>. <title level="m">Analysis of Ancient and Medieval Texts
                      and Manuscripts: Digital Approaches</title>. <series>Lectio Studies in the
@@ -594,7 +622,6 @@
                <bibl xml:id="reule2018"><author>Reule, Dorothea</author>. <date>2018</date>. <title
                      level="a"><title level="m">Beta maṣāḥǝft</title>: Manuscripts of Ethiopia and
                      Eritrea</title>. <title level="m">COMSt Bulletin</title>
-                  <!-- <title type="conferenceName">&lt;hi rend="italics"&gt;workshop&lt;/hi&gt; Linking Manuscripts from the Coptic, Ethiopian, and Syriac Domain: Present and Future Synergy Strategies, &lt;hi rend="italics"&gt;Hamburg&lt;/hi&gt;, &lt;hi rend="italics"&gt;23 and 24 February 2018&lt;/hi&gt;</title>-->
                   <editor>Bausi, Alessandro</editor>, <editor>Paola Buzi</editor>, <editor>Pietro
                      Maria Liuzzo</editor>, <editor>Eugenia Sokolinski</editor> (eds). <biblScope
                      unit="volume">4/1</biblScope>

@@ -1,7 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml"
-	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml version="1.0" encoding="UTF-8"?> <?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?> <?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" <?xml-model href="https://github.com/DH-RSE/software-citation/raw/main/schema/tei_software_annotation.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI.internal">
    <teiHeader>
       <fileDesc>
@@ -334,10 +331,7 @@
                   discussed above: <figure xml:id="example1">
 
                      <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                        <text>
-                           <!-- some markup and text --> another task <del>soon</del><add>also</add>
-                           devolved <!-- some more markup and text -->
-                        </text>
+                        <text> another task <del>soon</del><add>also</add> devolved </text>
                      </egXML>
 
                      <head type="legend">Example of inline revision</head>
@@ -630,9 +624,7 @@
                      be expressed in TEI XML as follows (<ptr target="#example_tagml3"
                         type="crossref"/>): <figure xml:id="example_tagml3">
                         <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                           <text>
-                              <!-- some text and markup --> difference of opinion, <del>impossible
-                                 barriers</del> prejudices <!-- some more text and markup -->
+                           <text> difference of opinion, <del>impossible barriers</del> prejudices
                            </text>
                         </egXML>
                         <head type="legend">TAGML of a single deletion.</head>
@@ -692,7 +684,8 @@
                         <egXML xmlns="http://www.tei-c.org/ns/Examples">
                            <text><del instant="true">This</del> the idea has grown . . .</text>
                         </egXML>
-                        <head type="legend">Example of <tag>del instant='true'</tag></head>
+                        <head type="legend">Example of <tag>del
+                           instant=&apos;true&apos;</tag></head>
                      </figure>. Without a schema and an ODD, however, an XML processor would have no
                      way of knowing what the attributes <att>instant</att>, <att>seq</att>, or
                         <att>rend</att> imply. In other words, it would not distinguish a regular
@@ -708,17 +701,18 @@
                         <head type="legend">Representation of the TAGML hypergraph of the immediate
                            deletion.</head>
                      </figure> In TAGML, it is possible to make this subtle distinction:
-                        <code>[text>[del>This&lt;del] The idea has grown . . . &lt;text]</code>. By
-                     omitting the affix <code>?</code> on the <code>del</code> we indicate that the
-                        <code>del</code> tag is not optional: there is just one path through the
-                     text stream. Compare the visualization of the immediate deletion in <ptr
-                        target="#TAGML-immediate-del" type="crossref"/> with that of the regular
-                     deletion in <ptr type="crossref" target="#TAGML-del"/>. In the hypergraph of
-                     the immediate deletion there is only one branch, whereas in the hypergraph of
-                     the regular deletion there are two. This corresponds to the way we interpreted
-                     the source manuscript and encoded the text. It is not necessary to add an
-                     annotation on the <code>del</code> element to indicate that it is an immediate
-                     deletion, so the information is accessible to any TAGML parser.</p>
+                        <code>[text&gt;[del&gt;This&lt;del] The idea has grown . . .
+                        &lt;text]</code>. By omitting the affix <code>?</code> on the
+                        <code>del</code> we indicate that the <code>del</code> tag is not optional:
+                     there is just one path through the text stream. Compare the visualization of
+                     the immediate deletion in <ptr target="#TAGML-immediate-del" type="crossref"/>
+                     with that of the regular deletion in <ptr type="crossref" target="#TAGML-del"
+                     />. In the hypergraph of the immediate deletion there is only one branch,
+                     whereas in the hypergraph of the regular deletion there are two. This
+                     corresponds to the way we interpreted the source manuscript and encoded the
+                     text. It is not necessary to add an annotation on the <code>del</code> element
+                     to indicate that it is an immediate deletion, so the information is accessible
+                     to any TAGML parser.</p>
                </div>
                <div xml:id="grouped-rev">
                   <head>Grouped Revision</head>
@@ -745,11 +739,10 @@
                         target="#grouped_rev"/>) can be transcribed as follows in TEI XML: <figure
                         xml:id="example4">
                         <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                           <text>
-                              <!-- some text and markup --> for being <subst>
+                           <text> for being <subst>
                                  <del>so</del>
                                  <add>certainly</add>
-                              </subst> disagreeable <!-- some more text and markup...--></text>
+                              </subst> disagreeable </text>
                         </egXML>
                         <head type="legend">Transcription of <ptr type="crossref"
                               target="#grouped_rev"/></head>
@@ -763,8 +756,8 @@
                      branches is semantically related, the divergence of the text stream can be
                      flagged with <code>&lt;|</code>; the individual branches are separated with a
                      vertical bar <code>|</code> and the converging of the branches is indicated
-                     with a <code>|></code>. The TAGML notation of the example above would thus be
-                     as in <ptr target="#grouped-rev-tagml" type="crossref"/>. <figure
+                     with a <code>|&gt;</code>. The TAGML notation of the example above would thus
+                     be as in <ptr target="#grouped-rev-tagml" type="crossref"/>. <figure
                         xml:id="grouped-rev-tagml">
                         <graphic url="img/tagml3.png" width="1642px" height="78px"/>
                         <head type="legend">A TAGML transcription of a grouped revision.</head>
@@ -826,7 +819,7 @@
                         <egXML xmlns="http://www.tei-c.org/ns/Examples"><text>. . . marginal
                               comments which indicate that the <choice>
                                  <corr>dates</corr>
-                                 <sic>date's</sic>
+                                 <sic>date&apos;s</sic>
                               </choice> mentioned in the main body of the text are
                            incorrect.</text></egXML>
                         <head type="legend">Example of <gi>sic</gi> and <gi>corr</gi></head>
@@ -867,8 +860,8 @@
                      <egXML xmlns="http://www.tei-c.org/ns/Examples">
                         <text>
                            <s>
-                              <q xml:id="1" next="#2">"Dear Marion:</q> (wrote Ada.) <q xml:id="2"
-                                 prev="#1"> We are all very glad..."</q>
+                              <q xml:id="1" next="#2">&quot;Dear Marion:</q> (wrote Ada.) <q
+                                 xml:id="2" prev="#1"> We are all very glad...&quot;</q>
                            </s>
                         </text>
                      </egXML>
@@ -955,13 +948,11 @@
                         <text>
                            <div type="page">
                               <p>
-                                 <!-- some text -->
                                  <delSpan spanTo="#1"/>
-                                 <!-- some text -->
                               </p>
                            </div>
                            <div type="page">
-                              <p><!-- some text --></p>
+                              <p/>
                               <anchor xml:id="1"/>
                            </div>
                         </text>
@@ -974,10 +965,11 @@
                   that the deleted text runs over two pages but is part of one and the same
                   deletion. <list rend="ordered">
                      <item>one layer for the document structure containing the pages and the
-                        deletions (text > page > del), with the layer identifier <q>D</q>;</item>
+                        deletions (text &gt; page &gt; del), with the layer identifier
+                        <q>D</q>;</item>
 
-                     <item>one for the book structure with the paragraphs (text > p), with the layer
-                        identifier <q>B</q>.</item>
+                     <item>one for the book structure with the paragraphs (text &gt; p), with the
+                        layer identifier <q>B</q>.</item>
                   </list> A simplification of the TAGML transcription would look as follows (<ptr
                      target="#example-tagml-layers" type="crossref"/>): <figure
                      xml:id="example-tagml-layers">
@@ -1049,11 +1041,12 @@
                retrieve all quotes together. The first would not pose a problem for TEI XML, but
                retrieving the disjointed quotations as one (merged) utterance would only be possible
                with additional, vocabulary-specific coding. Processing the two <gi>q</gi> elements
-               as a single <gi>q</gi> requires a set of XSLT instructions that check the values of
-               the <att>xml:id</att> and the <att>next</att> and <att>prev</att> attributes in order
-               to know which <gi>q</gi> elements should be stitched together. In TAGML, both
-               scenarios would be equally straightforward. The hypergraph can be queried for the
-                  <code>q</code> element(s) and their textual content as a whole, or for the
+               as a single <gi>q</gi> requires a set of <ptr type="software" xml:id="XSLT"
+                  target="#XSLT"/><rs type="soft.name" ref="#XSLT">XSLT</rs> instructions that check
+               the values of the <att>xml:id</att> and the <att>next</att> and <att>prev</att>
+               attributes in order to know which <gi>q</gi> elements should be stitched together. In
+               TAGML, both scenarios would be equally straightforward. The hypergraph can be queried
+               for the <code>q</code> element(s) and their textual content as a whole, or for the
                   <code>q</code> elements that have been suspended and resumed. </p>
             <p>Processing discontinuous structures can become quite complex. Consider the following
                fragment (<ptr target="#discont3" type="crossref"/>): <figure xml:id="discont3">
@@ -1081,30 +1074,31 @@
             <p>Now consider a TEI XML transcription of the same fragment, simplified for
                   readability:<figure xml:id="example9">
                   <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                     <text><!-- some text and markup --> the wonders to which he had looked forward
-                           <del instant="true">th</del>
+                     <text> the wonders to which he had looked forward <del instant="true">th</del>
                         <del instant="true">br</del>
                         <del xml:id="del1">brought</del> within touch <del prev="#del1">so near —
                            only a night &amp; a sail</del><add>with</add> a dazzling, uneasy
-                        disquietude, <!-- some text and markup --></text>
+                        disquietude, </text>
                   </egXML>
                   <head type="legend">TEI transcription of <ptr target="#discont4" type="crossref"
                      /></head>
                </figure> To process the text of this fragment correctly, one needs to write a rather
-               complicated set of XSLT instructions. At the very least, these instructions need to
-               match the values of the <att>xml:id</att> and <att>prev</att> in order to process the
-               first part of the deletion, look for the second part of the deletion, and then
-               concatenate their textual content. At the same time, one has to prevent the second
-               part from being processed twice (first as the second part of the deletion, and the
-               second time together with the regular <gi>del</gi> elements). After some
-               experimenting and consulting several XSLT specialists, we have come to no less than
-               three different sets of instructions.<note>The authors are grateful to Peter Boot,
-                  Vincent Neyt, and Frederike Neuber for sharing their expertise and invaluable
-                  insights.</note> And considering the ingenuity and technical expertise of the TEI
-               community, we are quite certain there are even more ways. In short, it can be a
-               challenging and time-consuming process to write and tweak vocabulary-specific and
-               schema-aware tools—a daunting task for any TEI XML user who lacks a certain level of
-               technical expertise. </p>
+               complicated set of <ptr type="software" xml:id="XSLT" target="#XSLT"/><rs
+                  type="soft.name" ref="#XSLT">XSLT</rs> instructions. At the very least, these
+               instructions need to match the values of the <att>xml:id</att> and <att>prev</att> in
+               order to process the first part of the deletion, look for the second part of the
+               deletion, and then concatenate their textual content. At the same time, one has to
+               prevent the second part from being processed twice (first as the second part of the
+               deletion, and the second time together with the regular <gi>del</gi> elements). After
+               some experimenting and consulting several <ptr type="software" xml:id="XSLT"
+                  target="#XSLT"/><rs type="soft.name" ref="#XSLT">XSLT</rs> specialists, we have
+               come to no less than three different sets of instructions.<note>The authors are
+                  grateful to Peter Boot, Vincent Neyt, and Frederike Neuber for sharing their
+                  expertise and invaluable insights.</note> And considering the ingenuity and
+               technical expertise of the TEI community, we are quite certain there are even more
+               ways. In short, it can be a challenging and time-consuming process to write and tweak
+               vocabulary-specific and schema-aware tools—a daunting task for any TEI XML user who
+               lacks a certain level of technical expertise. </p>
          </div>
          <div xml:id="conclusion">
             <head>Conclusion</head>

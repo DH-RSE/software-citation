@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml"
-	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml version="1.0" encoding="UTF-8"?> <?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?> <?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" <?xml-model href="https://github.com/DH-RSE/software-citation/raw/main/schema/tei_software_annotation.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI">
   <teiHeader>
     <fileDesc>
@@ -88,29 +87,33 @@
           processing of marked-up documents. We describe the method used to design and implement the
           TeiCoPhiLib, outlining the design patterns as well as discussing general benefits of the
           overall architecture. Finally, we present case studies in which some components of our
-          library currently implemented in Java have been used.</p>
+          library currently implemented in <ptr type="software" xml:id="Java" target="#Java"/><rs
+            type="soft.name" ref="#Java">Java</rs> have been used.</p>
       </div>
     </front>
     <body>
       <div xml:id="introduction">
         <head>Introduction</head>
-        <p>The TeiCoPhiLib library is a collection of components currently implemented in Java (JSR
-          270), which parses documents encoded according to a basic subset of TEI tags defined in an
-          ODD file<note>The ODD files currently available can be downloaded from GitHub: <ptr
-              target="https://github.com/CoPhi"/>. The TEI schema we intend eventually to adopt
-            conforms to the EpiDoc vocabulary, following the policy of the Perseus Catalog (<ref
-              type="bibl" target="#crane14">Crane et al. 2014</ref>).</note> and creates an
-          object-oriented data structure in order to handle the textual content and its processing.
-          The overall architecture is based on the well known Model-View-Controller (MVC) pattern,
-          which separates the representation of data from the rendering and management of the
-          content for the sake of flexibility and reusability. TeiCoPhiLib maps the structured
-          document onto an aggregation of objects. The library enables the visualization through a
-          web browser by instantiating a collection of widgets rendered on the client through
-          standard web technologies. Specifically, the server-side environment jointly processes
-          data and visualization templates,<note>Facelets XML templates are used under the Java
-            Server Faces 2.0 specification.</note> and generates HTML pages rendered on the client.
-          Special components are devoted to monitoring the behavior and interactions among the
-          objects generated from the input TEI documents.</p>
+        <p>The TeiCoPhiLib library is a collection of components currently implemented in <ptr
+            type="software" xml:id="Java" target="#Java"/><rs type="soft.name" ref="#Java">Java</rs>
+          (JSR 270), which parses documents encoded according to a basic subset of TEI tags defined
+          in an ODD file<note>The ODD files currently available can be downloaded from <ptr
+              type="software" xml:id="GitHub" target="#GitHub"/><rs type="soft.name" ref="#GitHub"
+              >GitHub</rs>: <ptr target="https://github.com/CoPhi"/>. The TEI schema we intend
+            eventually to adopt conforms to the EpiDoc vocabulary, following the policy of the
+            Perseus Catalog (<ref type="bibl" target="#crane14">Crane et al. 2014</ref>).</note> and
+          creates an object-oriented data structure in order to handle the textual content and its
+          processing. The overall architecture is based on the well known Model-View-Controller
+          (MVC) pattern, which separates the representation of data from the rendering and
+          management of the content for the sake of flexibility and reusability. TeiCoPhiLib maps
+          the structured document onto an aggregation of objects. The library enables the
+          visualization through a web browser by instantiating a collection of widgets rendered on
+          the client through standard web technologies. Specifically, the server-side environment
+          jointly processes data and visualization templates,<note>Facelets XML templates are used
+            under the <ptr type="software" xml:id="Java" target="#Java"/><rs type="soft.name"
+              ref="#Java">Java</rs> Server Faces 2.0 specification.</note> and generates HTML pages
+          rendered on the client. Special components are devoted to monitoring the behavior and
+          interactions among the objects generated from the input TEI documents.</p>
         <p>In distributed and collaborative environments, the maintenance of links and relations
           among editable XML documents is a challenging task (<ref type="bibl" target="#diiorio09"
             >Di Iorio et al. 2009</ref>; <ref type="bibl" target="#peroni13">Peroni, Poggi, and
@@ -156,7 +159,8 @@
           achieving great results and benefits for both scholars and developers. Among others, the
           open-source general-purpose framework <ref target="http://cocoon.apache.org/"
               >Cocoon</ref><note><ptr target="http://cocoon.apache.org/"/>.</note> and the native
-          XML database <ref target="http://exist-db.org/">eXist-db</ref><note><ptr
+          XML database <ref target="http://exist-db.org/"><ptr type="software" xml:id="eXist-db"
+              target="#eXist-db"/><rs type="soft.name" ref="#eXist-db">eXist-db</rs></ref><note><ptr
               target="http://exist-db.org/"/>.</note> deserve to be mentioned. Specifically for
           TEI-annotated documents, <ref target="http://www.tustep.uni-tuebingen.de/tustep_eng.html"
             >TUSTEP</ref>,<note><ptr target="http://www.tustep.uni-tuebingen.de/tustep_eng.html"
@@ -236,13 +240,17 @@
             </list>. It is important to point out that the new data structure is the result of
             transformations (by XSLT DOM transformations or SAX event-driven transformations)
             managed during the parsing process. Thus, the current implementation of the TeiCoPhiLib
-            exposes methods that parse the XML file and create Java objects. The resources are
-            stored and maintained in a native XML database management system (i.e., eXist-db). The
-            APIs and services provided by Lucene, a software library developed and hosted by the
-            Apache Foundation, have been used for indexing the textual data.</p>
+            exposes methods that parse the XML file and create <ptr type="software" xml:id="Java"
+              target="#Java"/><rs type="soft.name" ref="#Java">Java</rs> objects. The resources are
+            stored and maintained in a native XML database management system (i.e., <ptr
+              type="software" xml:id="eXist-db" target="#eXist-db"/><rs type="soft.name"
+              ref="#eXist-db">eXist-db</rs>). The APIs and services provided by Lucene, a software
+            library developed and hosted by the Apache Foundation, have been used for indexing the
+            textual data.</p>
           <p>For instance, the information conveyed by the following TEI snippet is distributed
-            among the appropriate Java objects that handle the four levels described above: <egXML
-              xmlns="http://www.tei-c.org/ns/Examples" valid="true">
+            among the appropriate <ptr type="software" xml:id="Java" target="#Java"/><rs
+              type="soft.name" ref="#Java">Java</rs> objects that handle the four levels described
+            above: <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true">
               <div type="chapter" n="1" style="font-variant:normal"> [...] <p xml:lang="ita">
                   <lb n="1"/>Io nacqui veneziano ai 18 ottobre del 1775, giorno <lb n="2"
                   />dell’evangelista san Luca; e morrò per la grazia di Dio <lb n="3"/>italiano
@@ -262,14 +270,16 @@
               and linked to the related DOM node.</item>
             <item><emph>Style</emph>. The style is managed by separated renderers, which point to
               textual positions affected by stylistic features. For instance, the information
-              extracted from the <att>style</att> attribute is used to instantiate the Java objects
-              devoted to managing the rendering information.</item>
+              extracted from the <att>style</att> attribute is used to instantiate the <ptr
+                type="software" xml:id="Java" target="#Java"/><rs type="soft.name" ref="#Java"
+                >Java</rs> objects devoted to managing the rendering information.</item>
             <item><emph>Behavior</emph>. Behaviors are handled by objects that process textual
               resources according to the current state of the data structure and the rules to manage
               such a state. For example, a hyphenator performs its tasks according to the language
               of the textual data (encoded in the original TEI file, e.g., by
-                <code>@xml:lang="it"</code>) and the related hyphenation rules (such as the
-              hyphenation rules for the Italian language, managed by the hyphenator bundles).</item>
+                <code>@xml:lang=&quot;it&quot;</code>) and the related hyphenation rules (such as
+              the hyphenation rules for the Italian language, managed by the hyphenator
+              bundles).</item>
           </list>
           <p>The object-oriented representation of the document allows data to be processed
             dynamically, taking account of its physical and logical structure, in an attempt to
@@ -297,8 +307,9 @@
             polymorphic entities, the management of decoupled modules, or the selection at run time
             of the most suitable algorithm for the current task. The general idea of object-oriented
             patterns is to encapsulate functionality and data inside an efficient and flexible
-            collection of classes. The current implementation of the prototype exploits the Java
-            programming language technologies.</p>
+            collection of classes. The current implementation of the prototype exploits the <ptr
+              type="software" xml:id="Java" target="#Java"/><rs type="soft.name" ref="#Java"
+              >Java</rs> programming language technologies.</p>
           <list rend="ordered">
             <item>The <emph>Model-View-Controller</emph> (MVC) pattern (<ref type="bibl"
                 target="#burbeck92">Burbeck 1992</ref>) determines the architecture of the library
@@ -371,9 +382,10 @@
                 Document data type, and objects that need to be notified, such as the Annotation or
                 the Comment data types. Consequently, the Document class implements the Subject
                 interface, whereas the Annotation and Comment classes implement the Observer
-                interface. The following simplified Java snippet illustrates this concept
-                programmatically. <eg> Observer annotation = new Annotation(); Observer comment =
-                  new Comment(); Subject teiDocument = new Document();
+                interface. The following simplified <ptr type="software" xml:id="Java"
+                  target="#Java"/><rs type="soft.name" ref="#Java">Java</rs> snippet illustrates
+                this concept programmatically. <eg> Observer annotation = new Annotation(); Observer
+                  comment = new Comment(); Subject teiDocument = new Document();
                   teiDocument.subscribe(ObserverType.ANNOTATION, annotation);
                   teiDocument.subscribe(ObserverType.COMMENT, comment); // some processing that
                   modifies the teiDocument object // accordingly the observers have to be notified
@@ -411,9 +423,10 @@
             uses TeiCoPhiLib APIs invokes the building method of the abstract Builder class.
             Moreover, the resulting document object is a concretization of an abstract class
             representing the current structure of the TEI-encoded resource, as illustrated in the
-            following Java statement: <eg> Document teiDocument =
-              AbstractBuilderFactory.buildDocument(new File("features.properties"),new
-              File("teiDocument.xml")); </eg>
+            following <ptr type="software" xml:id="Java" target="#Java"/><rs type="soft.name"
+              ref="#Java">Java</rs> statement: <eg> Document teiDocument =
+              AbstractBuilderFactory.buildDocument(new File(&quot;features.properties&quot;),new
+              File(&quot;teiDocument.xml&quot;)); </eg>
           </p>
           <p>The Builder object needs two input files: <list rend="inline ordered">
               <item>a property file containing the suitable configuration for the instantiation of
@@ -480,7 +493,6 @@
             <row role="data" rows="1" cols="1">
               <cell role="data" rows="1" cols="1">
                 <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true">
-                  <!-- www.perseus.tufts.edu -->
                   <div1 type="Book" n="2" org="uniform" sample="complete">
                     <milestone ed="p" n="1" unit="card"/>
                     <l>Conticuere omnes, intentique ora tenebant.</l>
@@ -501,12 +513,11 @@
               </cell>
               <cell role="data" rows="1" cols="1">
                 <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true">
-                  <!-- www.bibliotecaitaliana.it -->
                   <div1 sample="complete"> [...] <lg sample="complete">
-                      <l>Tutti ammutiro e s'affisaro. Enea</l>
-                      <l>Da l'alto seggio incominciava. Infando,</l>
-                      <l>O Regina, è il dolor cui tu m'imponi</l>
-                      <l>Ch'io rinnovelli. I' dovrò dir da' Greci</l>
+                      <l>Tutti ammutiro e s&apos;affisaro. Enea</l>
+                      <l>Da l&apos;alto seggio incominciava. Infando,</l>
+                      <l>O Regina, è il dolor cui tu m&apos;imponi</l>
+                      <l>Ch&apos;io rinnovelli. I&apos; dovrò dir da&apos; Greci</l>
                       <l>I teucri averi e il miserando regno</l>
                       <l>Come fosser diserti; io dire i casi</l>
                       <l>Tristissimi dovrò, cui vidi io stesso</l>
@@ -517,10 +528,10 @@
                       <l>Precipita la notte umida, e gli astri</l>
                       <l>Vanno in cader persuadendo il sonno.</l>
                       <l>Ma se tanto desio nel cor ti siede</l>
-                      <l>De l'ascoltar de' nostri casi e in breve</l>
-                      <l>Udir di Troia l'ultima sciaura,</l>
+                      <l>De l&apos;ascoltar de&apos; nostri casi e in breve</l>
+                      <l>Udir di Troia l&apos;ultima sciaura,</l>
                       <l>Benchè pur del pensiero io mi spaventi,</l>
-                      <l>Comincerò. Dopo tant'anni infine</l> [...] </lg> [...] </div1>
+                      <l>Comincerò. Dopo tant&apos;anni infine</l> [...] </lg> [...] </div1>
                 </egXML>
               </cell>
             </row>
@@ -544,16 +555,17 @@
                   <sp id="sp_ita_0002" corresp="#sp_grc_0002">
                     <speaker>ELENA</speaker>: <p>
                       <lb/>Perché, qual che tu sia, misero, gli occhi <lb/>torci da me, pei falli
-                      altrui m'aborri? </p>
+                      altrui m&apos;aborri? </p>
                   </sp>
                 </egXML>
               </cell>
             </row>
           </table>
           <p>Parallel texts are visualized and managed through EuporiaWebApp (<ptr type="crossref"
-              target="#figure4"/>), which is a server-side Java web application compliant with the
-            JSR 314 specification intended for educational purposes. Students, the end users of
-            Euporia, are allowed to query texts, both jointly and independently, through
+              target="#figure4"/>), which is a server-side <ptr type="software" xml:id="Java"
+              target="#Java"/><rs type="soft.name" ref="#Java">Java</rs> web application compliant
+            with the JSR 314 specification intended for educational purposes. Students, the end
+            users of Euporia, are allowed to query texts, both jointly and independently, through
             multilingual or monolingual keywords.</p>
           <figure xml:id="figure4">
             <graphic url="images/jtei-8-boschetti_04.png" height="788px" width="1303px"/>
@@ -624,14 +636,18 @@
         <p>Reusable software components promote the management of stand-off annotation at any level
           (such as editing, searching, or visualizing), improving the experience of the annotation
           and use of TEI documents.</p>
-        <p>The document parsing in the current Java implementation takes place on the server side,
-          where the Java virtual machine runs within the web application environment.</p>
+        <p>The document parsing in the current <ptr type="software" xml:id="Java" target="#Java"
+            /><rs type="soft.name" ref="#Java">Java</rs> implementation takes place on the server
+          side, where the <ptr type="software" xml:id="Java" target="#Java"/><rs type="soft.name"
+            ref="#Java">Java</rs> virtual machine runs within the web application environment.</p>
         <p> The marshalling and unmarshalling process handles the serialization of the object
           representation of the TEI document, in order to store and retrieve data on the filesystem
-          or in native XML databases, such as eXist-db.</p>
+          or in native XML databases, such as <ptr type="software" xml:id="eXist-db"
+            target="#eXist-db"/><rs type="soft.name" ref="#eXist-db">eXist-db</rs>.</p>
         <p>Performance measurement tools such as JMeter will help to optimize the performance of the
           library components.</p>
-        <p> Software currently under development will be available on GitHub at <ptr
+        <p> Software currently under development will be available on <ptr type="software"
+            xml:id="GitHub" target="#GitHub"/><rs type="soft.name" ref="#GitHub">GitHub</rs> at <ptr
             target="https://github.com/CoPhi/cophilib"/>.</p>
       </div>
     </body>
@@ -684,7 +700,7 @@
               Multimedia</title> [Proceedings], edited by <editor>Philip Davies</editor> and
               <editor>David Newell</editor>, <biblScope unit="page">46–51</biblScope>.
               <pubPlace>N.p.</pubPlace>: <publisher>IARIA</publisher>. <ptr
-              target="http://www.thinkmind.org/index.php?view=article&amp;articleid=mmedia_2013_3_10_40059"
+              target="http://www.thinkmind.org/index.php?view=article&articleid=mmedia_2013_3_10_40059"
             />.</bibl>
           <bibl xml:id="diiorio09"><author>Di Iorio, Angelo</author>, <author>Michele
               Schirinzi</author>, <author>Fabio Vitali</author>, and <author>Carlo

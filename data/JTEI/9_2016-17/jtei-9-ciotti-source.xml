@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml"
-	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml version="1.0" encoding="UTF-8"?> <?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?> <?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" <?xml-model href="https://github.com/DH-RSE/software-citation/raw/main/schema/tei_software_annotation.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI.internal">
   <teiHeader>
     <fileDesc>
@@ -418,40 +417,25 @@
             2009</ref>; <ref target="#peroni11" type="bibl">Peroni, Gangemi, and Vitali
           2011</ref>).</p>
         <p>The general EARMARK class to define any markup element is <ident>earmark:Element</ident>.
-          For instance, the <gi>abbr</gi> element is defined as follows (in Manchester Syntax): <eg><![CDATA[
-              Prefix earmark: <http://www.essepuntato.it/2008/12/earmark#>
-              
-              Prefix tei: <http://www.tei-c.org/ns/1.0/>
-              
-              Class: tei:abbr a
-              earmark:Element that
-              earmark:hasGeneralIdentifier "abbr" and
-              earmark:hasNamespace "http://www.tei-c.org/ns/1.0"
-            ]]>
-          </eg>
+          For instance, the <gi>abbr</gi> element is defined as follows (in Manchester Syntax): <eg>
+            Prefix earmark: &lt;http://www.essepuntato.it/2008/12/earmark#&gt; Prefix tei:
+            &lt;http://www.tei-c.org/ns/1.0/&gt; Class: tei:abbr a earmark:Element that
+            earmark:hasGeneralIdentifier &quot;abbr&quot; and earmark:hasNamespace
+            &quot;http://www.tei-c.org/ns/1.0&quot; </eg>
         </p>
         <p>We need to create appropriate restrictions of classes in order to identify and
           characterize possible subsets of elements described by the schema. This is achieved by
           adopting the classes and properties of the Collections Ontology (CO), which in OWL defines
           unordered and ordered collections (<ref target="#ciccarese14" type="bibl">Ciccarese and
             Peroni 2014</ref>). For instance, the class of all the <gi>tei:p</gi> elements that
-          occur inside <gi>tei:text</gi> and not inside <gi>tei:teiHeader</gi>: <eg><![CDATA[
-              <tei:teiHeader>:
-              Prefix earmark: <http://www.essepuntato.it/2008/12/earmark#>
-              Prefix co: <http://purl.org/co/>
-              Prefix tei: <http://www.tei-c.org/ns/1.0/>
-
-              Class: tei:pInText
-              	EquivalentTo:
-              		earmark:Element that
-              			earmark:hasGeneralIdentifier "p" and
-              			earmark:hasNamespace "http://www.tei-c.org/ns/1.0" and
-              			co:elementOf some (
-              				earmark:Element that
-              				 earmark:hasGeneralIdentifier "body" and
-              				 earmark:hasNamespace "http://www.tei-c.org/ns/1.0")
-            ]]>
-          </eg>
+          occur inside <gi>tei:text</gi> and not inside <gi>tei:teiHeader</gi>: <eg>
+            &lt;tei:teiHeader&gt;: Prefix earmark:
+            &lt;http://www.essepuntato.it/2008/12/earmark#&gt; Prefix co:
+            &lt;http://purl.org/co/&gt; Prefix tei: &lt;http://www.tei-c.org/ns/1.0/&gt; Class:
+            tei:pInText EquivalentTo: earmark:Element that earmark:hasGeneralIdentifier
+            &quot;p&quot; and earmark:hasNamespace &quot;http://www.tei-c.org/ns/1.0&quot; and
+            co:elementOf some ( earmark:Element that earmark:hasGeneralIdentifier &quot;body&quot;
+            and earmark:hasNamespace &quot;http://www.tei-c.org/ns/1.0&quot;) </eg>
         </p>
         <p>This class is disjoint from <ident>tei:pInTeiHeader</ident> class.</p>
         <p>LA-EARMARK allows us to link particular classes of elements with the actual semantics
@@ -478,8 +462,8 @@
             rend="ordered">
             <item>one XML element on its own: e.g., <gi>abbr</gi>;</item>
             <item>an XML element/attribute couple or a compound of so-called <soCalled>Janus
-                elements</soCalled>: e.g., <code>&lt;corr resp=></code> or
-                <code><![CDATA[<choice><sic><corr>]]></code>
+                elements</soCalled>: e.g., <code>&lt;corr resp=&gt;</code> or
+                <code>&lt;choice&gt;&lt;sic&gt;&lt;corr&gt;</code>
             </item>
             <item>one XML element in a given context: e.g., <gi>p</gi> in <gi>text</gi> vs.
                 <gi>p</gi> in <gi>teiHeader</gi>.</item>
@@ -650,7 +634,8 @@
         <p>In order to finalize the model from an LOD cloud perspective—as regards the collection of
           TEI-based documents—various methods will have to be explored, beginning with the creation
           of an RDF triple store by converting some pertinent elements of the refined TEI XML files
-          into RDF through XSLT. Experiments in converting XML files into RDF have already been
+          into RDF through <ptr type="software" xml:id="XSLT" target="#XSLT"/><rs type="soft.name"
+            ref="#XSLT">XSLT</rs>. Experiments in converting XML files into RDF have already been
           undertaken: <quote source="#quoteref7">a transformation to RDF has to create the URIs of
             its resources and connect them through the RDF triple structure consisting of subject,
             predicate and object</quote> (<ref target="#breitling09" xml:id="quoteref7" type="bibl"
@@ -662,12 +647,11 @@
           The topic is difficult and we are now trying to address this complexity. A first approach
           we are attempting is the following. In general we can assert that: TEI elements are
             <ident>rdf:description</ident> about a node id (e.g., through an <att>ref</att>) that we
-          could manage in XSLT for transforming the <att>ref</att> value into a URI. This approach
-          yields: <eg><![CDATA[
-            SUBJECT = rdf:description about a TEI element (the @ref value)
-            PREDICATE = an attribute of the element in the subject (for managing cross-references) or, simplest, the child element
-            OBJECT = literal (the content of the element)
-]]></eg>
+          could manage in <ptr type="software" xml:id="XSLT" target="#XSLT"/><rs type="soft.name"
+            ref="#XSLT">XSLT</rs> for transforming the <att>ref</att> value into a URI. This
+          approach yields: <eg> SUBJECT = rdf:description about a TEI element (the @ref value)
+            PREDICATE = an attribute of the element in the subject (for managing cross-references)
+            or, simplest, the child element OBJECT = literal (the content of the element) </eg>
         </p>
         <p>An example of an XML TEI markup in a document: <egXML
             xmlns="http://www.tei-c.org/ns/Examples">
@@ -676,7 +660,8 @@
             </person>
           </egXML> That is: an entity (person) with a value (a fragment) referring to a
             <att>xml:id</att> (<val>persona01</val>) to be converted in dereferenceable URI (e.g.,
-            <ident>http://www.person.it/about#persona01</ident>) through XSLT, a predicate
+            <ident>http://www.person.it/about#persona01</ident>) through <ptr type="software"
+            xml:id="XSLT" target="#XSLT"/><rs type="soft.name" ref="#XSLT">XSLT</rs>, a predicate
           corresponding to the child element (<ident>persname</ident>) and a literal as the object
           (Vespasiano). Another fundamental issue is the identification of pertinent authorities for
           the data matching (e.g., VIAF, Geonames, Worldcat, SNAP, or DBpedia). In order for the
@@ -737,8 +722,9 @@
               target="http://subs.emis.de/LNI/Proceedings/Proceedings72/GI-Proceedings.72-11.pdf"
             />.</bibl>
           <bibl xml:id="breitling09"><author>Breitling, Frank</author>. <date>2009</date>. <title
-              level="a">A Standard Transformation from XML to RDF via XSLT</title>. <title level="j"
-              >Astronomische Nachrichten</title>
+              level="a">A Standard Transformation from XML to RDF via <ptr type="software"
+                xml:id="XSLT" target="#XSLT"/><rs type="soft.name" ref="#XSLT">XSLT</rs></title>.
+              <title level="j">Astronomische Nachrichten</title>
             <biblScope unit="volume">330</biblScope>(<biblScope unit="issue">7</biblScope>):
               <biblScope unit="page">755–60</biblScope>. <ptr
               target="http://arxiv.org/abs/0906.2291"/>. doi:<idno type="doi"

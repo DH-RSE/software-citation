@@ -1,13 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml"
-	schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<!-- $Id: jtei-barabuccietal-196-source.xml 1114 2022-05-12 07:21:36Z tiago.sousa-garcia $ -->
+<?xml version="1.0" encoding="UTF-8"?> <?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?> <?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" <?xml-model href="https://github.com/DH-RSE/software-citation/raw/main/schema/tei_software_annotation.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI.internal">
    <teiHeader>
       <fileDesc>
          <titleStmt>
             <title type="main">Signs of the Times: Medieval Punctuation, Diplomatic Encoding and
                Rendition</title>
-            <!-- author information in separate <author> elements per author -->
+
             <author>
                <name>
                   <forename>Elisa</forename>
@@ -112,19 +110,20 @@
                the paradigms and the technologies of the TEI.</p>
             <p>This paper describes how we dealt with the encoding and transformation of the
                punctuation in the Early New High German edition of Marco Polo’s travel account.
-               Technically, we implemented a set of general rules (as XSLT templates) plus various
-               exceptions (as descriptive instructions in XML attributes), and applied them in an
-               automated fashion (using XProc pipelines). In addition to this, we discuss the
-               philological foundation of this method and, contextually, we address the topic of the
-               transformation of a single original source into different transcriptions: from a
-               highly diplomatic edition to an interpretative one, going through a spectrum of
-               intermediate levels of normalization. We also reflect on the separation between
-               transcription and analysis, as well as on the role of the editor when the edition is
-               the output of a semi-automated process.</p>
+               Technically, we implemented a set of general rules (as <ptr type="software"
+                  xml:id="XSLT" target="#XSLT"/><rs type="soft.name" ref="#XSLT">XSLT</rs>
+               templates) plus various exceptions (as descriptive instructions in XML attributes),
+               and applied them in an automated fashion (using XProc pipelines). In addition to
+               this, we discuss the philological foundation of this method and, contextually, we
+               address the topic of the transformation of a single original source into different
+               transcriptions: from a highly diplomatic edition to an interpretative one, going
+               through a spectrum of intermediate levels of normalization. We also reflect on the
+               separation between transcription and analysis, as well as on the role of the editor
+               when the edition is the output of a semi-automated process.</p>
          </div>
       </front>
       <body>
-         <!-- text divisions, each with an @xml:id and <head> -->
+
          <div xml:id="introduction">
             <head>Introduction</head>
             <p>Since its inception, the critical edition of the Early New High German (ENHG) Marco
@@ -186,8 +185,9 @@
             <p>This paper provides an overview of our approach (section 3) and shows how our
                approach addresses both issues. In particular we show how normalizing punctuation
                represents a dramatic step beyond the more classical normalization of words. The
-               current implementation of our approach, based on XProc and XSLT, is also presented in
-               section 3.</p>
+               current implementation of our approach, based on XProc and <ptr type="software"
+                  xml:id="XSLT" target="#XSLT"/><rs type="soft.name" ref="#XSLT">XSLT</rs>, is also
+               presented in section 3.</p>
             <p>Moving to an editorial workflow with such a level of automation requires a
                reevaluation of the role of the editor, from wordsmith to formalizer of rules (and
                exceptions). In section 4 we discuss how our approach fits the recent
@@ -876,9 +876,10 @@
                <item>the edition files, despite being the main concrete output of the editorial
                   project, are ephemeral and never modified directly.</item>
             </list>
-            <p>The implementation consists of a series of XSLT transformations, each representing
-               and implementing a single rule, coordinated by three different XProc pipelines, one
-               for each level of edition. The source code is available at <ptr
+            <p>The implementation consists of a series of <ptr type="software" xml:id="XSLT"
+                  target="#XSLT"/><rs type="soft.name" ref="#XSLT">XSLT</rs> transformations, each
+               representing and implementing a single rule, coordinated by three different XProc
+               pipelines, one for each level of edition. The source code is available at <ptr
                   target="https://marcopolo.cceh.uni-koeln.de/"/>.</p>
             <p>This methodology contrasts with the established editorial practice of mingling
                transcription, normalization, and critical amendments. Instead of just performing the
@@ -930,52 +931,52 @@
                   particular punctuation rules, often modify the structure of the text. A technical
                   system that does not allow for this interaction to happen is not able to deal in
                   properly with normalization in general and punctuation in particular.</p>
-               <p>Each rule is implemented as a small and self-contained XSLT transformation. At the
-                  time of writing, the ENHG Marco Polo project comprises about a hundred rules,
-                  grouped in twenty macro categories. On average, the core of each rule is
-                  implemented in less than three lines of XSLT.</p>
+               <p>Each rule is implemented as a small and self-contained <ptr type="software"
+                     xml:id="XSLT" target="#XSLT"/><rs type="soft.name" ref="#XSLT">XSLT</rs>
+                  transformation. At the time of writing, the ENHG Marco Polo project comprises
+                  about a hundred rules, grouped in twenty macro categories. On average, the core of
+                  each rule is implemented in less than three lines of <ptr type="software"
+                     xml:id="XSLT" target="#XSLT"/><rs type="soft.name" ref="#XSLT">XSLT</rs>.</p>
                <p>To give the readers an impression of the simplicity of the rule implementation, we
-                  show here the main parts of the XSLT that implement one of the example rules
-                  described above.</p>
+                  show here the main parts of the <ptr type="software" xml:id="XSLT" target="#XSLT"
+                     /><rs type="soft.name" ref="#XSLT">XSLT</rs> that implement one of the example
+                  rules described above.</p>
                <div xml:id="examplerule">
                   <head>Example: Rule to Join Words Split at the End of a Line</head>
                   <p>In ENHG, a punctuation sign that we nowadays call a double oblique hyphen was
                      used to mark that a word has been split at the end of a line. In the diplomatic
                      rendition we want to preserve this word division and the forced line break,
                      while in other renditions we want to reconstruct the complete word.</p>
-                  <p>The XSLT excerpt in <ref type="crossref" target="#example3">Example 3</ref>
-                     shows how split words are joined when a middle double oblique hyphen is found.
-                     The joining is performed in a lossless way: all information present in the
-                     original witness is preserved. This is possible because this step operates on a
-                     supertextual structure that contains information about the structure of the
-                     text and the positioning of a token (e.g., <att>eol</att>=<val>true</val>). It
-                     must be stressed that this last piece of information, and the supertextual
-                     structure in general, are not part of the master TEI file and have been added
-                     in the preceding steps. It should also be noted that this rule does not delete
-                     any text, it just marks that two words have been joined and what the result of
-                     this operation is. Another rule will take care of modifying the structure, and
-                     yet another will remove the now superfluous partial word in the next line
-                     before creating the final edition file. However, while removing and carrying
-                     out all these changes, comments about what is being done will be added as an
-                     aid to the readers of the final edition file.</p>
+                  <p>The <ptr type="software" xml:id="XSLT" target="#XSLT"/><rs type="soft.name"
+                        ref="#XSLT">XSLT</rs> excerpt in <ref type="crossref" target="#example3"
+                        >Example 3</ref> shows how split words are joined when a middle double
+                     oblique hyphen is found. The joining is performed in a lossless way: all
+                     information present in the original witness is preserved. This is possible
+                     because this step operates on a supertextual structure that contains
+                     information about the structure of the text and the positioning of a token
+                     (e.g., <att>eol</att>=<val>true</val>). It must be stressed that this last
+                     piece of information, and the supertextual structure in general, are not part
+                     of the master TEI file and have been added in the preceding steps. It should
+                     also be noted that this rule does not delete any text, it just marks that two
+                     words have been joined and what the result of this operation is. Another rule
+                     will take care of modifying the structure, and yet another will remove the now
+                     superfluous partial word in the next line before creating the final edition
+                     file. However, while removing and carrying out all these changes, comments
+                     about what is being done will be added as an aid to the readers of the final
+                     edition file.</p>
                   <figure xml:id="example3">
                      <egXML xmlns="http://www.tei-c.org/ns/Examples" xmlns:xsl="www.example.com"
                         valid="true">
                         <xsl:template
                            match="mp:TOKEN[@eol='true'][ends-with(., $char-double-oblique-hyphen)]">
-                           <!-- First, the two parts of the split word are identified. -->
                            <xsl:variable name="part1-raw" select="string(.)"/>
                            <xsl:variable name="part1"
                               select="substring-before($part1-raw, $char-double-oblique-hyphen)"/>
                            <xsl:variable name="part2" select="string(following::p:TOKEN[1])"/>
-                           <!-- Then the joined word is computed. -->
                            <xsl:variable name="joined-parts">
                               <xsl:value-of select="$part1"/>
                               <xsl:value-of select="$part2"/>
                            </xsl:variable>
-                           <!-- Finally, the content of the original element is replaced by
-                  the joined word, and the source pieces stored and
-                  carried along in extra attributes. -->
                            <xsl:copy>
                               <xsl:apply-templates select="@*"/>
                               <xsl:attribute name="joined" select="true()"/>
@@ -985,8 +986,9 @@
                            </xsl:copy>
                         </xsl:template>
                      </egXML>
-                     <head type="legend">XSLT implementation of the rule <q>Join words split with a
-                           double oblique hyphen</q>.</head>
+                     <head type="legend"><ptr type="software" xml:id="XSLT" target="#XSLT"/><rs
+                           type="soft.name" ref="#XSLT">XSLT</rs> implementation of the rule <q>Join
+                           words split with a double oblique hyphen</q>.</head>
                   </figure>
                   <p>The rule in <ref type="crossref" target="#example3">Example 3</ref> is
                      independent from other rules in the pipeline. The scholar is free to use this
@@ -1019,12 +1021,13 @@
                   encoded using TEI elements directly in the master TEI file.</p>
                <p>One-off normalizations are marked in the master TEI file using one of the
                   non-standard attributes defined by the ENHG ODD. For example attaching
-                     <eg>mp:n1-subst="foo"</eg> to any element will force the substitution of the
-                  word <q>foo</q> for the content of that element, but only at the normalization
-                  level denoted by N1 (<q>semi-interpretative</q>). Such exceptions are marked using
-                     <gi scheme="TEI">w</gi> or <gi scheme="TEI">pc</gi> elements, together with the
-                  already cited project-specific <ident>mp:nX-subst</ident> attributes, as shown in
-                     <ref type="crossref" target="#example4">Example 4</ref>.</p>
+                     <eg>mp:n1-subst=&quot;foo&quot;</eg> to any element will force the substitution
+                  of the word <q>foo</q> for the content of that element, but only at the
+                  normalization level denoted by N1 (<q>semi-interpretative</q>). Such exceptions
+                  are marked using <gi scheme="TEI">w</gi> or <gi scheme="TEI">pc</gi> elements,
+                  together with the already cited project-specific <ident>mp:nX-subst</ident>
+                  attributes, as shown in <ref type="crossref" target="#example4">Example
+                  4</ref>.</p>
                <figure xml:id="example4">
                   <egXML xmlns="http://www.tei-c.org/ns/Examples" xmlns:mp="www.example.com"
                      valid="true">
@@ -1181,15 +1184,19 @@
                like to experiment with creating <term>declarative rule generators</term>. Many rules
                are repetitive in their nature (for example, the normalization of single characters)
                and it should be possible to express them in a declarative fashion. These abstract
-               rules would then be translated into XSLT transformations. Another aspect we would
-               like to reflect on is how the transformation process directed by the pipelines
+               rules would then be translated into <ptr type="software" xml:id="XSLT" target="#XSLT"
+                  /><rs type="soft.name" ref="#XSLT">XSLT</rs> transformations. Another aspect we
+               would like to reflect on is how the transformation process directed by the pipelines
                influences the various levels of abstraction of the document being transformed,
                drawing parallels with stratified document models such as CMV+P (<ref type="bibl"
                   target="#barabucci2019">Barabucci 2019</ref>). A final thing we would like to test
-               is the replacement of the XProc pipelines with pure XSLT pipelines (<ref type="bibl"
-                  target="#birnbaum2017">Birnbaum 2017</ref>). Replacing XProc with XSLT pipelines
-               would reduce the number of technologies that other scholars have to be familiar with
-               in order to understand the editorial process in its entirety.</p>
+               is the replacement of the XProc pipelines with pure <ptr type="software"
+                  xml:id="XSLT" target="#XSLT"/><rs type="soft.name" ref="#XSLT">XSLT</rs> pipelines
+                  (<ref type="bibl" target="#birnbaum2017">Birnbaum 2017</ref>). Replacing XProc
+               with <ptr type="software" xml:id="XSLT" target="#XSLT"/><rs type="soft.name"
+                  ref="#XSLT">XSLT</rs> pipelines would reduce the number of technologies that other
+               scholars have to be familiar with in order to understand the editorial process in its
+               entirety.</p>
             <p>Another future development that we envision is the deconstruction of the
                visualization of the edition into a series of small, explicit steps, taking place one
                after the other, just like their counterparts in the pipelines: one click would show
@@ -1214,7 +1221,7 @@
       </body>
       <back>
          <div type="bibliography">
-            <!-- the bibliography for the article, organized as a series of <bibl> elements inside <listBibl> -->
+
             <listBibl>
                <bibl xml:id="andrews2020"><author>Andrews, Tara</author>. <date>2020</date>. <title
                      level="a">Transcription and Collation.</title> Chap. 3.3 in <title level="m"
@@ -1274,9 +1281,11 @@
                      Polo</author>. Prima edizione integrale. <pubPlace>Firenze</pubPlace>:
                      <publisher>Leo S. Olschki</publisher>.</bibl>
                <bibl xml:id="birnbaum2017"><author>Birnbaum, David J</author>. <date>2017</date>.
-                     <title level="a">Patterns and Antipatterns in XSLT Micropipelining.</title> In
-                     <title level="m">Proceedings of Balisage: The Markup Conference 2017</title>.
-                     <title level="s">Balisage Series on Markup Technologies</title>
+                     <title level="a">Patterns and Antipatterns in <ptr type="software"
+                        xml:id="XSLT" target="#XSLT"/><rs type="soft.name" ref="#XSLT">XSLT</rs>
+                     Micropipelining.</title> In <title level="m">Proceedings of Balisage: The
+                     Markup Conference 2017</title>. <title level="s">Balisage Series on Markup
+                     Technologies</title>
                   <biblScope unit="volume">19</biblScope>. <idno type="DOI"
                      >doi:10.4242/BalisageVol19.Birnbaum01.</idno></bibl>
                <bibl xml:id="bosco2003"><author>Bosco Coletsos, Sandra</author>. <date>2003</date>.
