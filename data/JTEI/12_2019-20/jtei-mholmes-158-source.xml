@@ -13,7 +13,11 @@
             <forename>Martin</forename>
             <surname>Holmes</surname>
           </name>
-          <affiliation>Martin Holmes is a <roleName>programmer</roleName> in <orgName>the University of Victoria Humanities Computing and Media Centre</orgName>. He served on the <orgName>TEI Technical Council</orgName> (2010–2015) and was <roleName>Managing Editor</roleName> of the <title level="j">Journal of the TEI</title> (2013–2015).</affiliation>
+          <affiliation>Martin Holmes is a <roleName>programmer</roleName> in <orgName>the University
+              of Victoria Humanities Computing and Media Centre</orgName>. He served on the
+              <orgName>TEI Technical Council</orgName> (2010–2015) and was <roleName>Managing
+              Editor</roleName> of the <title level="j">Journal of the TEI</title>
+            (2013–2015).</affiliation>
           <email>mholmes@uvic.ca</email>
         </author>
       </titleStmt>
@@ -22,7 +26,8 @@
         <date>19/08/2019</date>
         <availability>
           <licence target="https://creativecommons.org/licenses/by/4.0/">
-            <p>For this publication a Creative Commons Attribution 4.0 International license has been granted by the author(s) who retain full copyright.</p>
+            <p>For this publication a Creative Commons Attribution 4.0 International license has
+              been granted by the author(s) who retain full copyright.</p>
           </licence>
         </availability>
       </publicationStmt>
@@ -56,8 +61,9 @@
         </keywords>
       </textClass>
     </profileDesc>
-    <revisionDesc>      
-      <change when="2019-08-28">Ron Van den Branden updated publication date and revision description.</change>
+    <revisionDesc>
+      <change when="2019-08-28">Ron Van den Branden updated publication date and revision
+        description.</change>
       <change when="2019-08-20">Martin Holmes added more copyediting changes.</change>
       <change when="2019-08-15">Martin Holmes added more copyediting changes.</change>
       <change when="2019-07-05">Martin Holmes integrated some copyediting changes.</change>
@@ -68,103 +74,354 @@
   <text>
     <front>
       <div type="abstract" xml:id="abstract">
-        <p>The cryptic crossword is a highly sophisticated and challenging type of intellectual puzzle that has been a daily feature of British newspapers<note><p>Cryptic crosswords exist in other languages, including Italian, Finnish, and Hebrew, and they are also common in English-language periodicals outside Britain, but this article deals only with the British tradition.</p></note> for nearly a century, and yet the culture and traditions surrounding it have received little scholarly attention. This article outlines a short history of the cryptic crossword and explains how cryptic clues work. I argue that cryptic crossword clues have a great deal in common with poetry, and that we have much to learn from their structure. Many cryptic clues depend for their effect on confusing the solver through the use of overlapping syntactic and semantic hierarchies, so they serve as evidence that overlapping hierarchies are not merely an unfortunate limitation afflicting XML languages but are psychologically and linguistically real. Finally, I present a TEI schema and an approach to encoding the components of cryptic crossword clues in a way that enables algorithmic analysis of trends, features, and clue types, with a view to creating a historical corpus of encoded clues which will illuminate the evolution of the tradition.</p>
+        <p>The cryptic crossword is a highly sophisticated and challenging type of intellectual
+          puzzle that has been a daily feature of British newspapers<note><p>Cryptic crosswords
+              exist in other languages, including Italian, Finnish, and Hebrew, and they are also
+              common in English-language periodicals outside Britain, but this article deals only
+              with the British tradition.</p></note> for nearly a century, and yet the culture and
+          traditions surrounding it have received little scholarly attention. This article outlines
+          a short history of the cryptic crossword and explains how cryptic clues work. I argue that
+          cryptic crossword clues have a great deal in common with poetry, and that we have much to
+          learn from their structure. Many cryptic clues depend for their effect on confusing the
+          solver through the use of overlapping syntactic and semantic hierarchies, so they serve as
+          evidence that overlapping hierarchies are not merely an unfortunate limitation afflicting
+          XML languages but are psychologically and linguistically real. Finally, I present a TEI
+          schema and an approach to encoding the components of cryptic crossword clues in a way that
+          enables algorithmic analysis of trends, features, and clue types, with a view to creating
+          a historical corpus of encoded clues which will illuminate the evolution of the
+          tradition.</p>
       </div>
     </front>
     <body>
       <div xml:id="howTheyWork">
         <head>How Do Cryptic Crossword Clues Work?</head>
-        <p>Whereas a <soCalled>simple</soCalled> crossword clue is merely a definition, a cryptic clue is a more sophisticated puzzle typically consisting of two parts: a definition and a set of codified instructions for building the solution. These components are woven into a phrase or sentence which has its own internal logic usually unconnected with the actual answer, intended to mislead the solver. This is a recent example from a <title level="j">Guardian</title> crossword: <cit>
-          <quote source="#quoteref9">Amending pub sign, add in Cook’s vessel (7,5)</quote>
-          <ref type="bibl" target="#nutmeg2017" xml:id="quoteref9">Nutmeg<note><p><soCalled>Cruciverbalists</soCalled> (crossword compilers) are customarily known by pseudonyms, a tradition which goes back to the earliest days. The same compiler will often publish under distinct pseudonyms in different publications.</p></note> 2017</ref>
-        </cit> The answer is <mentioned>PUDDING BASIN</mentioned>, an anagram of <quote source="#quoteref9">pub sign add in</quote>, defined by <quote source="#quoteref9">Cook’s vessel</quote>. The instruction to decode an anagram is provided by the word <quote source="#quoteref9">amending</quote>. The complete clue suggests perhaps the addition of HMS Endeavour to a pub signboard. The words comprising the <soCalled>constructor</soCalled> (my term for instructions for constructing the answer) are purposely obscured by their distribution across a phrasal boundary. Here is a second example: <cit>
-          <quote source="#quoteref5">Guard dog kept within sight (6)</quote>
-          <ref target="#telegraph2002" type="bibl" xml:id="quoteref5"><title level="j">Daily Telegraph</title> 2002</ref>
-        </cit> The definition here is the first word alone. The <soCalled>constructor</soCalled> can be explained thus: put a word for <quote source="#quoteref5">dog</quote> (CUR) inside a word for <quote source="#quoteref5">insight</quote> (SEE) to create <mentioned>SECURE</mentioned>, which can be glossed as <quote source="#quoteref5">guard</quote>. The coherence of the familiar phrase <quote source="#quoteref5">guard dog</quote> confounds the solver’s attempt to separate the constructor from the definition, as does the fact that the word <quote source="#quoteref5">sight</quote> is a noun in the context of the whole clue, but a verb when used as part of the constructor. Other types of cryptic clues exist, but this type (definition with instructions for construction) is the most common in modern cryptic crosswords and will be the focus of this article.</p>
+        <p>Whereas a <soCalled>simple</soCalled> crossword clue is merely a definition, a cryptic
+          clue is a more sophisticated puzzle typically consisting of two parts: a definition and a
+          set of codified instructions for building the solution. These components are woven into a
+          phrase or sentence which has its own internal logic usually unconnected with the actual
+          answer, intended to mislead the solver. This is a recent example from a <title level="j"
+            >Guardian</title> crossword: <cit>
+            <quote source="#quoteref9">Amending pub sign, add in Cook’s vessel (7,5)</quote>
+            <ref type="bibl" target="#nutmeg2017" xml:id="quoteref9"
+                    >Nutmeg<note><p><soCalled>Cruciverbalists</soCalled> (crossword compilers) are
+                  customarily known by pseudonyms, a tradition which goes back to the earliest days.
+                  The same compiler will often publish under distinct pseudonyms in different
+                  publications.</p></note> 2017</ref>
+          </cit> The answer is <mentioned>PUDDING BASIN</mentioned>, an anagram of <quote
+            source="#quoteref9">pub sign add in</quote>, defined by <quote source="#quoteref9"
+            >Cook’s vessel</quote>. The instruction to decode an anagram is provided by the word
+            <quote source="#quoteref9">amending</quote>. The complete clue suggests perhaps the
+          addition of HMS Endeavour to a pub signboard. The words comprising the
+            <soCalled>constructor</soCalled> (my term for instructions for constructing the answer)
+          are purposely obscured by their distribution across a phrasal boundary. Here is a second
+          example: <cit>
+            <quote source="#quoteref5">Guard dog kept within sight (6)</quote>
+            <ref target="#telegraph2002" type="bibl" xml:id="quoteref5"><title level="j">Daily
+                Telegraph</title> 2002</ref>
+          </cit> The definition here is the first word alone. The <soCalled>constructor</soCalled>
+          can be explained thus: put a word for <quote source="#quoteref5">dog</quote> (CUR) inside
+          a word for <quote source="#quoteref5">insight</quote> (SEE) to create
+            <mentioned>SECURE</mentioned>, which can be glossed as <quote source="#quoteref5"
+            >guard</quote>. The coherence of the familiar phrase <quote source="#quoteref5">guard
+            dog</quote> confounds the solver’s attempt to separate the constructor from the
+          definition, as does the fact that the word <quote source="#quoteref5">sight</quote> is a
+          noun in the context of the whole clue, but a verb when used as part of the constructor.
+          Other types of cryptic clues exist, but this type (definition with instructions for
+          construction) is the most common in modern cryptic crosswords and will be the focus of
+          this article.</p>
       </div>
       <div xml:id="historyOfcrosswords">
         <head>A Brief History of the Cryptic Crossword in Britain</head>
-        <p>Word-square puzzles such as the Sator Square (<ptr target="#fig_1_satorSquare" type="crossref"/>) have existed since ancient time (<ref target="#austin1939" type="bibl">Austin 1939</ref>), and riddles such as those found in the <title level="m">Exeter Book</title> (<ptr target="#fig_2_riddle" type="crossref"/>) are among the earliest English-language documents we have. However, the first modern crossword did not appear until 1913, when Arthur Wynne authored a word-square puzzle which was published in the <title level="j">New York World</title> (<ptr target="#fig_3_firstCrossword" type="crossref"/>).
-          <figure xml:id="fig_1_satorSquare">
+        <p>Word-square puzzles such as the Sator Square (<ptr target="#fig_1_satorSquare"
+            type="crossref"/>) have existed since ancient time (<ref target="#austin1939"
+            type="bibl">Austin 1939</ref>), and riddles such as those found in the <title level="m"
+            >Exeter Book</title> (<ptr target="#fig_2_riddle" type="crossref"/>) are among the
+          earliest English-language documents we have. However, the first modern crossword did not
+          appear until 1913, when Arthur Wynne authored a word-square puzzle which was published in
+          the <title level="j">New York World</title> (<ptr target="#fig_3_firstCrossword"
+            type="crossref"/>). <figure xml:id="fig_1_satorSquare">
             <graphic url="img/Sator_Square_at_Oppede.jpg" width="1024px" height="1021px"/>
-            <head type="legend">Sator Square at Oppède. Taken by M Disdero at Oppede, Luberon, France [<ref target="https://commons.wikimedia.org/wiki/File:Sator_Square_at_Opp%C3%A8de.jpg">via Wikimedia Commons</ref>].</head>
+            <head type="legend">Sator Square at Oppède. Taken by M Disdero at Oppede, Luberon,
+              France [<ref
+                target="https://commons.wikimedia.org/wiki/File:Sator_Square_at_Opp%C3%A8de.jpg">via
+                Wikimedia Commons</ref>].</head>
           </figure>
           <figure xml:id="fig_2_riddle">
             <graphic url="img/Exeter-Book-R-24-106v-768x341.png" width="768px" height="341px"/>
-            <head type="legend">Riddle 24 on folio 106v, the <title level="m">Exeter Book</title>, Exeter Cathedral Library MS 3501 (tenth century). Image reproduced with permission of the University of Exeter, Digital Humanities and the Dean &amp; Chapter, Exeter Cathedral.</head>
+            <head type="legend">Riddle 24 on folio 106v, the <title level="m">Exeter Book</title>,
+              Exeter Cathedral Library MS 3501 (tenth century). Image reproduced with permission of
+              the University of Exeter, Digital Humanities and the Dean &amp; Chapter, Exeter
+              Cathedral.</head>
           </figure>
           <figure xml:id="fig_3_firstCrossword">
             <graphic url="img/First_crossword.png" width="300px" height="615px"/>
-            <head type="legend">Recreation of the first crossword puzzle, created by Arthur Wynne, published in the <title level="j">New York World</title> on <date>December 21, 1913</date>. [<ref target="https://commons.wikimedia.org/wiki/File:First_crossword.png">Via Wikimedia Commons</ref>].</head>
-          </figure> Crosswords featured in British newspapers from 1923, and, within a few years, some began to include clues which were more than <quote source="#quoteref8">plain definitions</quote>, such as <quote source="#quoteref8">elusive definitions</quote>, anagrams, and <quote source="#quoteref8">hints</quote> (<ref xml:id="quoteref8" target="#Macnutt1966" type="bibl">Macnutt 1966, 19</ref>). The wholly cryptic crossword evolved by the early 1940s, since which time cryptic crosswords have appeared daily in all major British newspapers.</p>
-        <p>Several different types of cryptic clue emerged in the first forty years of the tradition, and the <soCalled>rules</soCalled> for setting clues were codified by the influential early setters <ref target="#afrit1949" type="bibl">Afrit (Alistair Ferguson Ritchie)</ref> and <ref target="#Macnutt1966" type="bibl">Ximenes (Derrick Somerset Macnutt)</ref>. In his seminal work <title level="m">Ximenes on the Art of the Crossword</title> (<ref target="#Macnutt1966" type="bibl">1966</ref>), Ximenes presents a taxonomy of clue types and principles for setters to adhere to in the interests of fairness. In the decades since, crossword setters have largely conformed to these core principles. Although some have been more rigorously <soCalled>Ximenean</soCalled> than others, it is fair to say that the tradition of <quote source="#quoteref82">cluesmanship</quote> (<ref target="#Macnutt1966" xml:id="quoteref82" type="bibl">Macnutt 1966, 42</ref>) has been remarkably consistent; a crossword solver doing a regular puzzle in a daily newspaper over the last 50 years would not have experienced much change in the form and style of clues. Some clue types, such as those based on literary quotation, appear to be less common in recent years, while some new conventions and clue types have developed. At least one species of clue, in which the answer comes from describing the clue itself, seems to be more common recently. This type is not covered by Macnutt’s taxonomy, presumably, it would fall into his miscellaneous <soCalled>various</soCalled> category, and might be characterized as an <soCalled>embodiment</soCalled> clue. An excellent example from the master setter Araucaria (John Graham) is this: <cit>
-          <quote source="#quoteref2">Of of of of of of of of of of (10) <note><p>The answer is <mentioned>OFTENTIMES.</mentioned></p></note></quote>
-          <ref target="#hoggart2013" xml:id="quoteref2" type="bibl">quoted in Hoggart 2013</ref>
-        </cit>
+            <head type="legend">Recreation of the first crossword puzzle, created by Arthur Wynne,
+              published in the <title level="j">New York World</title> on <date>December 21,
+                1913</date>. [<ref
+                target="https://commons.wikimedia.org/wiki/File:First_crossword.png">Via Wikimedia
+                Commons</ref>].</head>
+          </figure> Crosswords featured in British newspapers from 1923, and, within a few years,
+          some began to include clues which were more than <quote source="#quoteref8">plain
+            definitions</quote>, such as <quote source="#quoteref8">elusive definitions</quote>,
+          anagrams, and <quote source="#quoteref8">hints</quote> (<ref xml:id="quoteref8"
+            target="#Macnutt1966" type="bibl">Macnutt 1966, 19</ref>). The wholly cryptic crossword
+          evolved by the early 1940s, since which time cryptic crosswords have appeared daily in all
+          major British newspapers.</p>
+        <p>Several different types of cryptic clue emerged in the first forty years of the
+          tradition, and the <soCalled>rules</soCalled> for setting clues were codified by the
+          influential early setters <ref target="#afrit1949" type="bibl">Afrit (Alistair Ferguson
+            Ritchie)</ref> and <ref target="#Macnutt1966" type="bibl">Ximenes (Derrick Somerset
+            Macnutt)</ref>. In his seminal work <title level="m">Ximenes on the Art of the
+            Crossword</title> (<ref target="#Macnutt1966" type="bibl">1966</ref>), Ximenes presents
+          a taxonomy of clue types and principles for setters to adhere to in the interests of
+          fairness. In the decades since, crossword setters have largely conformed to these core
+          principles. Although some have been more rigorously <soCalled>Ximenean</soCalled> than
+          others, it is fair to say that the tradition of <quote source="#quoteref82"
+            >cluesmanship</quote> (<ref target="#Macnutt1966" xml:id="quoteref82" type="bibl"
+            >Macnutt 1966, 42</ref>) has been remarkably consistent; a crossword solver doing a
+          regular puzzle in a daily newspaper over the last 50 years would not have experienced much
+          change in the form and style of clues. Some clue types, such as those based on literary
+          quotation, appear to be less common in recent years, while some new conventions and clue
+          types have developed. At least one species of clue, in which the answer comes from
+          describing the clue itself, seems to be more common recently. This type is not covered by
+          Macnutt’s taxonomy, presumably, it would fall into his miscellaneous
+            <soCalled>various</soCalled> category, and might be characterized as an
+            <soCalled>embodiment</soCalled> clue. An excellent example from the master setter
+          Araucaria (John Graham) is this: <cit>
+            <quote source="#quoteref2">Of of of of of of of of of of (10) <note><p>The answer is
+                    <mentioned>OFTENTIMES.</mentioned></p></note></quote>
+            <ref target="#hoggart2013" xml:id="quoteref2" type="bibl">quoted in Hoggart 2013</ref>
+          </cit>
         </p>
       </div>
       <div xml:id="crosswordGrids">
         <head>Crossword Grids</head>
-        <p>Ordinary daily newspaper crosswords (as opposed to themed special crosswords, which appear on holidays or special occasions) have symmetrical grids consisting of 15 x 15 squares, and ideally at least half of the <soCalled>lights</soCalled> (white squares) are <soCalled>checked</soCalled> (meaning that they form part of two separate answers). Macnutt (<ref target="#Macnutt1966" type="bibl">1966, 32ff</ref>) provides detailed advice on the construction of the grid and discusses different arrangements. However, grids are not in themselves particularly interesting and are not the focus of this article.</p>
+        <p>Ordinary daily newspaper crosswords (as opposed to themed special crosswords, which
+          appear on holidays or special occasions) have symmetrical grids consisting of 15 x 15
+          squares, and ideally at least half of the <soCalled>lights</soCalled> (white squares) are
+            <soCalled>checked</soCalled> (meaning that they form part of two separate answers).
+          Macnutt (<ref target="#Macnutt1966" type="bibl">1966, 32ff</ref>) provides detailed advice
+          on the construction of the grid and discusses different arrangements. However, grids are
+          not in themselves particularly interesting and are not the focus of this article.</p>
       </div>
       <div xml:id="whyStudythem">
         <head>Why Study Cryptic Crosswords?</head>
-        <p>The cryptic crossword tradition stretches back nearly a century and has been stable for over fifty years. The best cryptic crossword clues exhibit the allusive compression, elegance, and wit that characterize good poetry, and they can elicit similarly delighted responses from solvers. Cryptic crosswords also make common use of a literary technique which is of particular interest to the XML encoding community. Philip Larkin’s poem <title level="a">Myxomatosis</title> (<ptr target="#fig_4_myxomatosis" type="crossref"/>) illustrates the technique (<ref target="#larkin1966" type="bibl">[1955] 1966, 31</ref>): <figure xml:id="fig_4_myxomatosis">
+        <p>The cryptic crossword tradition stretches back nearly a century and has been stable for
+          over fifty years. The best cryptic crossword clues exhibit the allusive compression,
+          elegance, and wit that characterize good poetry, and they can elicit similarly delighted
+          responses from solvers. Cryptic crosswords also make common use of a literary technique
+          which is of particular interest to the XML encoding community. Philip Larkin’s poem <title
+            level="a">Myxomatosis</title> (<ptr target="#fig_4_myxomatosis" type="crossref"/>)
+          illustrates the technique (<ref target="#larkin1966" type="bibl">[1955] 1966, 31</ref>):
+            <figure xml:id="fig_4_myxomatosis">
             <graphic url="img/myxomatosis.jpg" width="1528px" height="800px"/>
-            <head type="legend"><ref target="#larkin1966" type="bibl">Philip Larkin, <title level="a">Myxomatosis</title>, <title level="m">The Less Deceived</title></ref>, p.31</head>
-          </figure> This poem imagines an encounter between the speaker and a rabbit stricken by the disease myxomatosis, which was spreading through the UK at the time Larkin wrote the poem in the mid-1950s. The middle of the poem contains a brief imaginary conversation: <quote source="#quoteref7">What trap is this? Where were its teeth concealed? / You seem to ask. / I make a sharp reply <gap/></quote> (<ref target="#larkin1966" type="bibl" xml:id="quoteref7">[1955] 1966, 31</ref>). The reader is initially disconcerted by the realization that the reply is in fact the act of killing the rabbit. <note><p>It is not clear to me whether the killing is done by a blow from an actual stick, or whether the <soCalled>stick</soCalled> is actually a rifle, which would need to be cleaned after shooting a creature at close range.</p></note> The <soCalled>conversation</soCalled> and the killing overlap; this technique is purposely deployed by the poet to increase the shock of the reader in encountering the sudden and brutal (but sadly necessary) act. The overlap is shown in <ptr target="#fig_5_myxomatosisOverlap" type="crossref"/>. <figure xml:id="fig_5_myxomatosisOverlap">
+            <head type="legend"><ref target="#larkin1966" type="bibl">Philip Larkin, <title
+                  level="a">Myxomatosis</title>, <title level="m">The Less Deceived</title></ref>,
+              p.31</head>
+          </figure> This poem imagines an encounter between the speaker and a rabbit stricken by the
+          disease myxomatosis, which was spreading through the UK at the time Larkin wrote the poem
+          in the mid-1950s. The middle of the poem contains a brief imaginary conversation: <quote
+            source="#quoteref7">What trap is this? Where were its teeth concealed? / You seem to
+            ask. / I make a sharp reply <gap/></quote> (<ref target="#larkin1966" type="bibl"
+            xml:id="quoteref7">[1955] 1966, 31</ref>). The reader is initially disconcerted by the
+          realization that the reply is in fact the act of killing the rabbit. <note><p>It is not
+              clear to me whether the killing is done by a blow from an actual stick, or whether the
+                <soCalled>stick</soCalled> is actually a rifle, which would need to be cleaned after
+              shooting a creature at close range.</p></note> The <soCalled>conversation</soCalled>
+          and the killing overlap; this technique is purposely deployed by the poet to increase the
+          shock of the reader in encountering the sudden and brutal (but sadly necessary) act. The
+          overlap is shown in <ptr target="#fig_5_myxomatosisOverlap" type="crossref"/>. <figure
+            xml:id="fig_5_myxomatosisOverlap">
             <graphic url="img/mixomatosis_overlap.png" width="1528px" height="800px"/>
-            <head type="legend">Overlap of imagined conversation (in red) with killing (in blue) in <ref target="#larkin1966" type="bibl"><title level="a">Myxomatosis</title></ref>.</head>
-          </figure> We see the same technique applied in the cryptic clues exemplified above. In the example of the <quote source="#quoteref5">guard dog</quote> from the <title level="j">Daily Telegraph</title>, for instance, the phrasal hierarchy of the overall clue and the coherence of the phrase <quote source="#quoteref5">guard dog</quote> disguise the overlapping hierarchy of the parsed clue.</p>
-        <p>This overlap presents a scenario familiar to most XML encoders; attempting to encode these two components of the poem would require the use of workarounds such as anchors and pointers rather than conventional wrapping tags. The issue of overlapping hierarchies has long been presented as a <soCalled>problem</soCalled> for the <soCalled>Ordered Hierarchy of Content Objects</soCalled> approach which is inherent to XML encoding. Robinson (<ref target="#robinson2017" type="bibl">2007</ref>), for example, provides a good summary of the issue, particularly as it relates to the competing hierarchies of the conceptual work and its physical realization in a paginated book. However, in Larkin’s poem and the cryptic clues, we see two overlapping conceptual hierarchies. It is also important to notice that, since these devices <soCalled>work</soCalled>—we are (initially at least) fooled by the clue and jarred by the killing in the poem—they must in fact represent something psychologically and linguistically real.<note><p>I use these terms rather loosely to mean that the reader experiences a noticeable effect at the same point in the text where we can identify an overlap between the conceptual hierarchy and the syntactic hierarchy, and therefore that the hierarchical overlap in our model plausibly represents something similar in the reader’s mental model of the text.</p></note> In other words, rather than being an irritating and merely technical problem for a markup language, the workarounds required to encode such phenomena reflect the mental discomfort we experience as readers.</p>
-        <p>In the paragraphs above, I have discussed a single literary technique which is manifested both in well-written cryptic clues and in poetry. There are many other techniques which deserve similar investigation—exploitation of homonyms and homophones, ambiguity in word categories, and suggestive use of imagery are some of the more obvious. I argue that cryptic crossword clues should be studied as a distinct, albeit tiny, form of literary text. In addition to examining the use of such techniques, and how they relate to similar devices in other literary forms, it would also be illuminating to examine the evolution of clue types and conventions over the last eighty years, and investigate how the content and themes of cryptic clues reflect the changing world of the compilers and solvers. To my knowledge, no such investigation has ever been published. To do such work, a systematic method of encoding clues is a fundamental requirement.</p>
+            <head type="legend">Overlap of imagined conversation (in red) with killing (in blue) in
+                <ref target="#larkin1966" type="bibl"><title level="a"
+              >Myxomatosis</title></ref>.</head>
+          </figure> We see the same technique applied in the cryptic clues exemplified above. In the
+          example of the <quote source="#quoteref5">guard dog</quote> from the <title level="j"
+            >Daily Telegraph</title>, for instance, the phrasal hierarchy of the overall clue and
+          the coherence of the phrase <quote source="#quoteref5">guard dog</quote> disguise the
+          overlapping hierarchy of the parsed clue.</p>
+        <p>This overlap presents a scenario familiar to most XML encoders; attempting to encode
+          these two components of the poem would require the use of workarounds such as anchors and
+          pointers rather than conventional wrapping tags. The issue of overlapping hierarchies has
+          long been presented as a <soCalled>problem</soCalled> for the <soCalled>Ordered Hierarchy
+            of Content Objects</soCalled> approach which is inherent to XML encoding. Robinson (<ref
+            target="#robinson2017" type="bibl">2007</ref>), for example, provides a good summary of
+          the issue, particularly as it relates to the competing hierarchies of the conceptual work
+          and its physical realization in a paginated book. However, in Larkin’s poem and the
+          cryptic clues, we see two overlapping conceptual hierarchies. It is also important to
+          notice that, since these devices <soCalled>work</soCalled>—we are (initially at least)
+          fooled by the clue and jarred by the killing in the poem—they must in fact represent
+          something psychologically and linguistically real.<note><p>I use these terms rather
+              loosely to mean that the reader experiences a noticeable effect at the same point in
+              the text where we can identify an overlap between the conceptual hierarchy and the
+              syntactic hierarchy, and therefore that the hierarchical overlap in our model
+              plausibly represents something similar in the reader’s mental model of the
+            text.</p></note> In other words, rather than being an irritating and merely technical
+          problem for a markup language, the workarounds required to encode such phenomena reflect
+          the mental discomfort we experience as readers.</p>
+        <p>In the paragraphs above, I have discussed a single literary technique which is manifested
+          both in well-written cryptic clues and in poetry. There are many other techniques which
+          deserve similar investigation—exploitation of homonyms and homophones, ambiguity in word
+          categories, and suggestive use of imagery are some of the more obvious. I argue that
+          cryptic crossword clues should be studied as a distinct, albeit tiny, form of literary
+          text. In addition to examining the use of such techniques, and how they relate to similar
+          devices in other literary forms, it would also be illuminating to examine the evolution of
+          clue types and conventions over the last eighty years, and investigate how the content and
+          themes of cryptic clues reflect the changing world of the compilers and solvers. To my
+          knowledge, no such investigation has ever been published. To do such work, a systematic
+          method of encoding clues is a fundamental requirement.</p>
       </div>
       <div xml:id="encoding">
         <head>Encoding Cryptic Clues</head>
-        <p>Computing methods have been applied to cryptic crosswords to auto-generate grids and clues (<ref target="#berghel1989" type="bibl">Berghel and Yi 1989</ref>), as well as to parse clues (<ref target="#hart1992" type="bibl">Hart and Davis 1992</ref>). P. W. Williams and D. Woodhead (<ref target="#williams1979" type="bibl">1979</ref>) proposed a formal notation called LACROSS, in which they represent clues as sequences of simple and compound components linked by operators. However, as far as my research has shown, no systematic approach to encoding cryptic clues in XML has been developed. After I presented this work at the TEI 2017 conference, Bethan Tovey made a presentation at Balisage on encoding crossword clues in XML (<ref target="#tovey2018" type="bibl">Tovey 2018</ref>). Tovey uses a custom (non-TEI) schema, whereas this article proposes a TEI schema and guidelines for encoding the components of clues and solutions using <gi>taxonomy</gi>, <gi>seg</gi>, and <att>ana</att>. I initially created this schema for a personal project aiming to encode a representative sample of puzzles from British newspapers over the last eighty years, enabling algorithmic analysis of trends, features, and clue types. Currently, I am in the process of developing two taxonomies, one of clue types (starting from the lists in chapters 6, 7, and 8 of <ref target="#Macnutt1966" type="bibl">Macnutt 1966</ref>), and the other of clue components. The objective is to assign each clue to one or more categories and to break down its structure to clarify the way it works, showing how it misleads the solver. The following example of my proposed encoding is from the setter Picaroon (<ref target="#picaroon2017" type="bibl">2017</ref>) in <title level="j">The Guardian</title>. The clue is <q>Four card players wrapping party gifts (6)</q>: <egXML xmlns="http://www.tei-c.org/ns/Examples">
-          <item ana="crs:ctpContainerContents">
-            <seg ana="crs:ccpForm">
-              <seg ana="crs:ccpConvention">Four card players</seg>
-              <seg ana="crs:ccpSignal">wrapping</seg>
-              <anchor xml:id="item_003_1"/>party </seg>
-            <seg ana="crs:ccpDef" xml:id="item_003_2">gifts</seg><anchor xml:id="item_003_3"/>
-            <seg ana="crs:ccpLength">(6)</seg>
-            <span ana="crs:ccpMisdirection" from="#item_003_1" to="#item_003_3"> The phrase
-              <mentioned>party gifts</mentioned> crosses the definition/form
-              boundary.</span>
-            <span ana="crs:ccpMisdirection" target="#item_003_2"> The definition
-              <mentioned>gifts</mentioned> is a noun in the context of the complete
-              clue, but needs to be read as a verb to function as the
-              definition.</span></item>
-        </egXML> The answer, <mentioned>ENDOWS</mentioned>, is defined by <q>gifts</q>. The <q>four card players</q> are the points of the compass, ENWS (East, North, West, and South), as used in writing on bridge and other four-player card games; inside these four letters is a common British word for a party, <mentioned>do</mentioned>. Note that the coherent phrase <q>party gifts</q> spans the boundary between the form (constructor) component and the definition component. This is another instance of the overlapping hierarchy phenomenon discussed above, undermining the solver’s ability to parse the clue correctly.</p>
+        <p>Computing methods have been applied to cryptic crosswords to auto-generate grids and
+          clues (<ref target="#berghel1989" type="bibl">Berghel and Yi 1989</ref>), as well as to
+          parse clues (<ref target="#hart1992" type="bibl">Hart and Davis 1992</ref>). P. W.
+          Williams and D. Woodhead (<ref target="#williams1979" type="bibl">1979</ref>) proposed a
+          formal notation called LACROSS, in which they represent clues as sequences of simple and
+          compound components linked by operators. However, as far as my research has shown, no
+          systematic approach to encoding cryptic clues in XML has been developed. After I presented
+          this work at the TEI 2017 conference, Bethan Tovey made a presentation at Balisage on
+          encoding crossword clues in XML (<ref target="#tovey2018" type="bibl">Tovey 2018</ref>).
+          Tovey uses a custom (non-TEI) schema, whereas this article proposes a TEI schema and
+          guidelines for encoding the components of clues and solutions using <gi>taxonomy</gi>,
+            <gi>seg</gi>, and <att>ana</att>. I initially created this schema for a personal project
+          aiming to encode a representative sample of puzzles from British newspapers over the last
+          eighty years, enabling algorithmic analysis of trends, features, and clue types.
+          Currently, I am in the process of developing two taxonomies, one of clue types (starting
+          from the lists in chapters 6, 7, and 8 of <ref target="#Macnutt1966" type="bibl">Macnutt
+            1966</ref>), and the other of clue components. The objective is to assign each clue to
+          one or more categories and to break down its structure to clarify the way it works,
+          showing how it misleads the solver. The following example of my proposed encoding is from
+          the setter Picaroon (<ref target="#picaroon2017" type="bibl">2017</ref>) in <title
+            level="j">The Guardian</title>. The clue is <q>Four card players wrapping party gifts
+            (6)</q>: <egXML xmlns="http://www.tei-c.org/ns/Examples">
+            <item ana="crs:ctpContainerContents">
+              <seg ana="crs:ccpForm">
+                <seg ana="crs:ccpConvention">Four card players</seg>
+                <seg ana="crs:ccpSignal">wrapping</seg>
+                <anchor xml:id="item_003_1"/>party </seg>
+              <seg ana="crs:ccpDef" xml:id="item_003_2">gifts</seg><anchor xml:id="item_003_3"/>
+              <seg ana="crs:ccpLength">(6)</seg>
+              <span ana="crs:ccpMisdirection" from="#item_003_1" to="#item_003_3"> The phrase
+                  <mentioned>party gifts</mentioned> crosses the definition/form boundary.</span>
+              <span ana="crs:ccpMisdirection" target="#item_003_2"> The definition
+                  <mentioned>gifts</mentioned> is a noun in the context of the complete clue, but
+                needs to be read as a verb to function as the definition.</span></item>
+          </egXML> The answer, <mentioned>ENDOWS</mentioned>, is defined by <q>gifts</q>. The
+            <q>four card players</q> are the points of the compass, ENWS (East, North, West, and
+          South), as used in writing on bridge and other four-player card games; inside these four
+          letters is a common British word for a party, <mentioned>do</mentioned>. Note that the
+          coherent phrase <q>party gifts</q> spans the boundary between the form (constructor)
+          component and the definition component. This is another instance of the overlapping
+          hierarchy phenomenon discussed above, undermining the solver’s ability to parse the clue
+          correctly.</p>
         <p>The encoding may be analyzed as follows: <list rend="bulleted">
-          <item>Throughout the encoding, values from the two taxonomies are referenced by using a private URI scheme with the prefix <code>crs</code> (A private URI scheme is a machine-processable method of encoding potentially long or complex URIs in a shortened form, documented through the use of the TEI <gi>prefixDef</gi>.) These abbreviated pointers are supplied in the global <att>ana</att> attribute.</item>
-          <item>The entire clue is an <gi>item</gi> with the clue type <val>crs:ctpContainerContents</val>, derived from Macnutt’s <soCalled>Container and contents</soCalled> clue type.</item>
-          <item>The <gi>item</gi> is divided into three <gi>seg</gi>s, the form or constructor (<val>crs:ccpForm</val>), the definition (<val>crs:ccpDef</val>), and the solution length (<val>crs:ccpLength</val>).</item>
-          <item>The constructor contains a call to a well-known convention (<val>crs:ccpConvention</val>), the use of points of the compass to identify card players in four-player games.</item>
-          <item>Following this is a signal word (<val>crs:ccpSignal</val>), <soCalled>wrapping</soCalled>, which acts as an instruction to include one component inside another.</item>
-          <item>The final part of the constructor is the word <q>party</q>, the component whose synonym is to be wrapped.</item>
-          <item>Two <gi>anchor</gi>s are used to delimit the beginning and end of the phrase whose coherence disguises the parsed clue hierarchy.</item>
-          <item>Two <gi>span</gi>s describe instances of misdirection (<val>crs:ccpMisdirection</val>) employed by the compiler to make the clue more difficult. (A TEI <gi>span</gi> element, unlike the HTML element of the same name, is a standoff element used to point to a range within a block of XML, and is useful particularly when such a range is not amenable to direct tagging due to overlapping hierarchy issues.)</item>
-        </list> The home for this project is <ref target="https://github.com/martindholmes/cryptic">Github</ref>, and the two taxonomies are encoded in the <ref target="https://github.com/martindholmes/cryptic/blob/master/xml/schema/cryptic.odd">ODD file</ref> which is available from the repository. The first phase of the project, which is just getting started, involves the collection and encoding of a small representative sample of clues taken from the entire history of the British cryptic crossword, a process facilitated by the increasing availability of historical newspaper archives online. This initial stage will test and develop the two taxonomies. When the taxonomies are fully developed and tested, I propose to begin encoding entire puzzles from the major British newspapers which have published cryptic crosswords since the 1920s.</p>
+            <item>Throughout the encoding, values from the two taxonomies are referenced by using a
+              private URI scheme with the prefix <code>crs</code> (A private URI scheme is a
+              machine-processable method of encoding potentially long or complex URIs in a shortened
+              form, documented through the use of the TEI <gi>prefixDef</gi>.) These abbreviated
+              pointers are supplied in the global <att>ana</att> attribute.</item>
+            <item>The entire clue is an <gi>item</gi> with the clue type
+                <val>crs:ctpContainerContents</val>, derived from Macnutt’s <soCalled>Container and
+                contents</soCalled> clue type.</item>
+            <item>The <gi>item</gi> is divided into three <gi>seg</gi>s, the form or constructor
+                (<val>crs:ccpForm</val>), the definition (<val>crs:ccpDef</val>), and the solution
+              length (<val>crs:ccpLength</val>).</item>
+            <item>The constructor contains a call to a well-known convention
+                (<val>crs:ccpConvention</val>), the use of points of the compass to identify card
+              players in four-player games.</item>
+            <item>Following this is a signal word (<val>crs:ccpSignal</val>),
+                <soCalled>wrapping</soCalled>, which acts as an instruction to include one component
+              inside another.</item>
+            <item>The final part of the constructor is the word <q>party</q>, the component whose
+              synonym is to be wrapped.</item>
+            <item>Two <gi>anchor</gi>s are used to delimit the beginning and end of the phrase whose
+              coherence disguises the parsed clue hierarchy.</item>
+            <item>Two <gi>span</gi>s describe instances of misdirection
+                (<val>crs:ccpMisdirection</val>) employed by the compiler to make the clue more
+              difficult. (A TEI <gi>span</gi> element, unlike the HTML element of the same name, is
+              a standoff element used to point to a range within a block of XML, and is useful
+              particularly when such a range is not amenable to direct tagging due to overlapping
+              hierarchy issues.)</item>
+          </list> The home for this project is <ref
+            target="https://github.com/martindholmes/cryptic">Github</ref>, and the two taxonomies
+          are encoded in the <ref
+            target="https://github.com/martindholmes/cryptic/blob/master/xml/schema/cryptic.odd">ODD
+            file</ref> which is available from the repository. The first phase of the project, which
+          is just getting started, involves the collection and encoding of a small representative
+          sample of clues taken from the entire history of the British cryptic crossword, a process
+          facilitated by the increasing availability of historical newspaper archives online. This
+          initial stage will test and develop the two taxonomies. When the taxonomies are fully
+          developed and tested, I propose to begin encoding entire puzzles from the major British
+          newspapers which have published cryptic crosswords since the 1920s.</p>
       </div>
     </body>
     <back>
       <div type="bibliography">
         <listBibl>
-          <bibl xml:id="afrit1949"><author>Afrit [Alistair Ferguson Ritchie]</author>. <date>1949</date>. <title level="m">Armchair Crosswords. By Afrit.</title> <pubPlace>London</pubPlace>: <publisher>Frederick Warne &amp; Co.</publisher></bibl>
-          <bibl xml:id="austin1939"><author>Austin, R. P.</author> <date>1939</date>. <title level="a">Across and Down</title>. <title level="j">Greece and Rome</title> <biblScope unit="volume">8</biblScope> (<biblScope unit="issue">24</biblScope>): <biblScope unit="page">129–138</biblScope>. <ptr target="http://www.jstor.org/stable/641256"/>.</bibl>
-          <bibl xml:id="berghel1989"><author>Berghel, H.</author>, and <author>C. Yi</author>. <date>1989</date>. <title level="a">Crossword Compiler-Compilation</title>. <title level="j">The Computer Journal</title> <biblScope unit="volume">32</biblScope> (<biblScope unit="issue">3</biblScope>): <biblScope unit="page">276–80</biblScope>. <ptr target="https://academic.oup.com/comjnl/article/32/3/276/331540"/>.</bibl>
-          <bibl xml:id="telegraph2002"><author>Daily Telegraph</author>. <date>2002</date>. <title level="m">The Daily Telegraph Big Book of Cryptic Crosswords</title>. <biblScope unit="volume">9</biblScope>. <pubPlace>London</pubPlace>: <publisher>Pan</publisher>.</bibl>
-          <bibl xml:id="hart1992"><author>Hart, M.</author>, and <author>R. H. Davis</author>. <date>1992</date>. <title level="a">Cryptic crossword clue interpreter</title>. <title level="j">Information and Software Technology</title> <biblScope unit="volume">34</biblScope> (<biblScope unit="issue">1</biblScope>):<biblScope unit="page">16–27</biblScope>. <ptr target="https://doi.org/10.1016/0950-5849(92)90091-3"/>.</bibl>
-          <bibl xml:id="hoggart2013"><author>Hoggart, Simon</author>. <date>2013</date>. <title level="a">Araucaria’s last puzzle: crossword master dies.</title> <title level="j">The Guardian</title>, <date>November 26, 2013</date>. <ptr target="https://www.theguardian.com/crosswords/2013/nov/26/araucaria-puzzle-crossword-master-dies"/>.</bibl>
-          <bibl xml:id="larkin1966"><author>Larkin, Philip</author>. <date>(1955) 1966</date>. <title level="a">Myxomatosis</title>. <title level="m">The Less Deceived: Poems</title>. <edition>6th edition</edition>. <biblScope unit="page">31</biblScope>. <pubPlace>Hessle, Yorkshire</pubPlace>: <publisher>The Marvell Press</publisher>.</bibl>
-          <bibl xml:id="Macnutt1966"><author>Macnutt, D. S.</author> <date>1966</date>. <title level="m">Ximenes on the Art of the Crossword</title>. <pubPlace>London</pubPlace>: <publisher>Methuen</publisher>.</bibl>
-          <bibl xml:id="nutmeg2017"><author>Nutmeg [pseud.]</author>. <date>2017</date>. <title level="a">Guardian Cryptic Crossword No. 27,183.</title> <date>April 28, 2017</date>. <ptr target="https://www.theguardian.com/crosswords/cryptic/27183"/>.</bibl>
-          <bibl xml:id="picaroon2017"><author>Picaroon [pseud.]</author>. <date>2017</date>. <title level="a">Guardian Cryptic Crossword No. 27,192.</title> <date>May 9, 2017</date>. <ptr target="https://www.theguardian.com/crosswords/cryptic/27192"/>.</bibl>
-          <bibl xml:id="robinson2017"><author>Robinson, Peter</author>. <date>2017</date>. <title level="a">Some principles for making collaborative scholarly editions in digital form</title>. <title level="j">Digital Humanities Quarterly</title> <biblScope unit="volume">11</biblScope> (<biblScope unit="issue">2</biblScope>). <ptr target="http://www.digitalhumanities.org/dhq/vol/11/2/000293/000293.html"/>.</bibl>
-          <bibl xml:id="tovey2018"><author>Tovey, Bethan S. T.</author> <date>2018</date>. <title level="a">The Cryptic Crossword Corpus Project: first steps in establishing a markup vocabulary</title>. <title level="m">Markup UK 2018 Proceedings</title>. <biblScope unit="page">29–35</biblScope>. <ptr target="http://markupuk.org/Markup-UK-2018-proceedings.pdf"/>.</bibl>
-          <bibl xml:id="williams1979"><author>Williams, P. W.</author>, and <author>D. Woodhead</author>. <date>1979</date>. <title level="a">Computer assisted analysis of cryptic crosswords</title>. <title level="j">The Computer Journal</title> <biblScope unit="volume">22</biblScope> (<biblScope unit="issue">1</biblScope>): <biblScope unit="page">67–70</biblScope>. <ptr target="https://academic.oup.com/comjnl/article/22/1/67/353483"/>.</bibl>
+          <bibl xml:id="afrit1949"><author>Afrit [Alistair Ferguson Ritchie]</author>.
+              <date>1949</date>. <title level="m">Armchair Crosswords. By Afrit.</title>
+            <pubPlace>London</pubPlace>: <publisher>Frederick Warne &amp; Co.</publisher></bibl>
+          <bibl xml:id="austin1939"><author>Austin, R. P.</author>
+            <date>1939</date>. <title level="a">Across and Down</title>. <title level="j">Greece and
+              Rome</title>
+            <biblScope unit="volume">8</biblScope> (<biblScope unit="issue">24</biblScope>):
+              <biblScope unit="page">129–138</biblScope>. <ptr
+              target="http://www.jstor.org/stable/641256"/>.</bibl>
+          <bibl xml:id="berghel1989"><author>Berghel, H.</author>, and <author>C. Yi</author>.
+              <date>1989</date>. <title level="a">Crossword Compiler-Compilation</title>. <title
+              level="j">The Computer Journal</title>
+            <biblScope unit="volume">32</biblScope> (<biblScope unit="issue">3</biblScope>):
+              <biblScope unit="page">276–80</biblScope>. <ptr
+              target="https://academic.oup.com/comjnl/article/32/3/276/331540"/>.</bibl>
+          <bibl xml:id="telegraph2002"><author>Daily Telegraph</author>. <date>2002</date>. <title
+              level="m">The Daily Telegraph Big Book of Cryptic Crosswords</title>. <biblScope
+              unit="volume">9</biblScope>. <pubPlace>London</pubPlace>:
+            <publisher>Pan</publisher>.</bibl>
+          <bibl xml:id="hart1992"><author>Hart, M.</author>, and <author>R. H. Davis</author>.
+              <date>1992</date>. <title level="a">Cryptic crossword clue interpreter</title>. <title
+              level="j">Information and Software Technology</title>
+            <biblScope unit="volume">34</biblScope> (<biblScope unit="issue"
+              >1</biblScope>):<biblScope unit="page">16–27</biblScope>. <ptr
+              target="https://doi.org/10.1016/0950-5849(92)90091-3"/>.</bibl>
+          <bibl xml:id="hoggart2013"><author>Hoggart, Simon</author>. <date>2013</date>. <title
+              level="a">Araucaria’s last puzzle: crossword master dies.</title>
+            <title level="j">The Guardian</title>, <date>November 26, 2013</date>. <ptr
+              target="https://www.theguardian.com/crosswords/2013/nov/26/araucaria-puzzle-crossword-master-dies"
+            />.</bibl>
+          <bibl xml:id="larkin1966"><author>Larkin, Philip</author>. <date>(1955) 1966</date>.
+              <title level="a">Myxomatosis</title>. <title level="m">The Less Deceived:
+              Poems</title>. <edition>6th edition</edition>. <biblScope unit="page">31</biblScope>.
+              <pubPlace>Hessle, Yorkshire</pubPlace>: <publisher>The Marvell
+            Press</publisher>.</bibl>
+          <bibl xml:id="Macnutt1966"><author>Macnutt, D. S.</author>
+            <date>1966</date>. <title level="m">Ximenes on the Art of the Crossword</title>.
+              <pubPlace>London</pubPlace>: <publisher>Methuen</publisher>.</bibl>
+          <bibl xml:id="nutmeg2017"><author>Nutmeg [pseud.]</author>. <date>2017</date>. <title
+              level="a">Guardian Cryptic Crossword No. 27,183.</title>
+            <date>April 28, 2017</date>. <ptr
+              target="https://www.theguardian.com/crosswords/cryptic/27183"/>.</bibl>
+          <bibl xml:id="picaroon2017"><author>Picaroon [pseud.]</author>. <date>2017</date>. <title
+              level="a">Guardian Cryptic Crossword No. 27,192.</title>
+            <date>May 9, 2017</date>. <ptr
+              target="https://www.theguardian.com/crosswords/cryptic/27192"/>.</bibl>
+          <bibl xml:id="robinson2017"><author>Robinson, Peter</author>. <date>2017</date>. <title
+              level="a">Some principles for making collaborative scholarly editions in digital
+              form</title>. <title level="j">Digital Humanities Quarterly</title>
+            <biblScope unit="volume">11</biblScope> (<biblScope unit="issue">2</biblScope>). <ptr
+              target="http://www.digitalhumanities.org/dhq/vol/11/2/000293/000293.html"/>.</bibl>
+          <bibl xml:id="tovey2018"><author>Tovey, Bethan S. T.</author>
+            <date>2018</date>. <title level="a">The Cryptic Crossword Corpus Project: first steps in
+              establishing a markup vocabulary</title>. <title level="m">Markup UK 2018
+              Proceedings</title>. <biblScope unit="page">29–35</biblScope>. <ptr
+              target="http://markupuk.org/Markup-UK-2018-proceedings.pdf"/>.</bibl>
+          <bibl xml:id="williams1979"><author>Williams, P. W.</author>, and <author>D.
+              Woodhead</author>. <date>1979</date>. <title level="a">Computer assisted analysis of
+              cryptic crosswords</title>. <title level="j">The Computer Journal</title>
+            <biblScope unit="volume">22</biblScope> (<biblScope unit="issue">1</biblScope>):
+              <biblScope unit="page">67–70</biblScope>. <ptr
+              target="https://academic.oup.com/comjnl/article/22/1/67/353483"/>.</bibl>
         </listBibl>
       </div>
     </back>

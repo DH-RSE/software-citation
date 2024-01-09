@@ -5,8 +5,16 @@
       <titleStmt>
         <title type="main">Towards an Interoperable Digital Scholarly Edition</title>
         <author>
-          <name><forename>Desmond</forename> <surname>Schmidt</surname></name>
-          <affiliation>Desmond Schmidt has degrees in classical Greek papyrology from the University of Cambridge, UK, and in Information Technology from the University of Queensland, Australia. He has worked in the software industry, in information security, on the Vienna Edition of Ludwig Wittgenstein, on Leximancer, a concept-mining tool, and on the AustESE (Australian electronic scholarly editing) project at the University of Queensland. He is currently a <roleName>Research Scientist</roleName> at the <orgName>Institute for Future Environments, Queensland University of Technology</orgName>.</affiliation>
+          <name><forename>Desmond</forename>
+            <surname>Schmidt</surname></name>
+          <affiliation>Desmond Schmidt has degrees in classical Greek papyrology from the University
+            of Cambridge, UK, and in Information Technology from the University of Queensland,
+            Australia. He has worked in the software industry, in information security, on the
+            Vienna Edition of Ludwig Wittgenstein, on Leximancer, a concept-mining tool, and on the
+            AustESE (Australian electronic scholarly editing) project at the University of
+            Queensland. He is currently a <roleName>Research Scientist</roleName> at the
+              <orgName>Institute for Future Environments, Queensland University of
+              Technology</orgName>.</affiliation>
           <email>desmond.allan.schmidt@gmail.com</email>
         </author>
       </titleStmt>
@@ -47,178 +55,700 @@
   <text>
     <front>
       <div type="abstract" xml:id="abstract">
-        <p>Recent proposals for creating digital scholarly editions (DSEs) through the crowdsourcing of transcriptions and collaborative scholarship, for the establishment of national repositories of digital humanities data, and for the referencing, sharing, and storage of DSEs, have underlined the need for greater data interoperability. The TEI Guidelines have tried to establish standards for encoding transcriptions since 1988. However, because the choice of tags is guided by human interpretation, TEI-XML encoded files are in general not interoperable. One way to fix this problem may be to break down the current all-in-one approach to encoding so that DSEs can be specified instead by a bundle of separate resources that together offer greater interoperability: plain text versions, markup, annotations, and metadata. This would facilitate not only the development of more general software for handling DSEs, but also enable existing programs that already handle these kinds of data to function more efficiently.</p>
+        <p>Recent proposals for creating digital scholarly editions (DSEs) through the crowdsourcing
+          of transcriptions and collaborative scholarship, for the establishment of national
+          repositories of digital humanities data, and for the referencing, sharing, and storage of
+          DSEs, have underlined the need for greater data interoperability. The TEI Guidelines have
+          tried to establish standards for encoding transcriptions since 1988. However, because the
+          choice of tags is guided by human interpretation, TEI-XML encoded files are in general not
+          interoperable. One way to fix this problem may be to break down the current all-in-one
+          approach to encoding so that DSEs can be specified instead by a bundle of separate
+          resources that together offer greater interoperability: plain text versions, markup,
+          annotations, and metadata. This would facilitate not only the development of more general
+          software for handling DSEs, but also enable existing programs that already handle these
+          kinds of data to function more efficiently.</p>
       </div>
     </front>
     <body>
       <div xml:id="introduction">
         <head>Introduction</head>
-        <p>The Text Encoding Initiative has sought to define a <quote source="#quoteref1">standard or normalized practice</quote> (<ref type="bibl" xml:id="quoteref1" target="#ide88">Ide et al. 1988</ref>) for the encoding of a variety of text types since 1988, focusing on a uniform encoding format (SGML, later XML) and a recommended set of tag and attribute names. Although the purpose of the TEI Guidelines (<ref type="bibl" target="#tei14">TEI Consortium 2014</ref>) is to provide a general encoding scheme for texts of all types, its main applications to date have been in the field of historical literary and documentary texts. Of the 158 projects listed as using the Guidelines on the <ref target="http://www.tei-c.org/Activities/Projects/">TEI website</ref>,<note><p><title level="a">Projects Using the TEI</title>, accessed February 13, 2014 <ptr target="http://www.tei-c.org/Activities/Projects/"/>.</p></note> 123 fall into this category. TEI-encoded texts thus often form an important part of a digital scholarly edition (DSE), which may be defined as the modeling in the digital medium of the scholar’s interactions with the text. This naturally includes much more than mere transcriptions: exegetic commentary, textual notes, contextual information in the form of biographies and other personal data, facsimile images of manuscripts and books, as well as functionalities such as the ability to annotate, select versions, and compare transcribed text with the originals (<ref type="bibl" target="#gabler10">Gabler 2010</ref>). But the encoded transcriptions of the original sources form the crux of it: they are the things upon which all this depends.</p>
-        <p>The change in context between the pre-Web world of 1988, its isolated microcomputers and CD-ROMs, and the modern connected, mobile world of Web 2.0 is stark. Texts now have a different purpose: they need to be much more than simply exchangeable via disk or email, they need to instantly respond to heterogenous needs. Inevitably, this has resulted in a growing discontent with traditional approaches to encoding one-off literary and historical documentary texts (<ref type="bibl" target="#mueller13">Mueller 2013</ref>; <ref type="bibl" target="#robinson10">Robinson 2010</ref>). This discontent has focused on the size of the TEI Guidelines (currently 553 tags), the consequent difficulty of comprehending it enough to use it (<ref type="bibl" target="#usdin09">Usdin 2009</ref>), and its inability to elegantly represent overlapping structures that are common in born-material texts (<ref type="bibl" target="#renear93">Renear, Mylonas, and Durand 1993</ref>). But arguably the most serious problem, now generally recognized (<ref type="bibl" target="#unsworth11">Unsworth 2011</ref>; <ref type="bibl" target="#bauman11">Bauman 2011</ref>), is that TEI-encoded texts are not interoperable: that is, they cannot be fully used in various applications without preliminary, and often substantial, conversion.</p>
-        <p>The Web 2.0 world takes such interoperability for granted. No one is surprised by Word documents that load (almost) flawlessly into Google Docs, or by the possibility of editing image files produced in various formats by others, or by the mundane (but still amazing) fact that every Web page is readable in a variety of browsers, on a variety of devices, or that the complex interactivity of those pages works in each such environment. But all of these things did not happen by chance; they had to be engineered to work that way.</p>
-        <p>These forces of change have also affected the digital humanities. It has been argued that much of the recent growth in the field is precisely due to the increasing use of social networks and in the rise of mobile and interactive use of data at the expense of older static forms (<ref type="bibl" target="#jones14">Jones 2014</ref>). Recent developments in the construction of international and national repositories of humanities texts (<ref target="http://www.textgrid.de">TextGrid</ref>, <ref target="http://huni.net.au">HuNI</ref>, INKE, and Islandora),<note><p>Dariah, last modified July 30, 2013: <ptr target="http://www.daria.eu"/>; TextGrid: <ptr target="http://www.textgrid.de"/>; HuNI: <ptr target="http://huni.net.au"/>; Islandora: <ref type="bibl" target="#stapelfeldt13">Stapelfeldt and Moses 2013</ref>.</p></note> experiments in crowd-sourcing (<ref type="bibl" target="#causer12">Causer, Tonra, and Wallace 2012</ref>), and <quote source="#quoteref2">social</quote> applications designed to construct DSEs by contributions from geographically dispersed scholars (<ref type="bibl" xml:id="quoteref2" target="#crompton12">Crompton and Siemens 2012</ref>), have all underlined the importance of interoperability. Another area where digital scholarly editions need to work better together is in providing a stable means for parts of editions to be referred to (<ref type="bibl" target="#blackwell12">Blackwell and Smith 2012</ref>), and for the software supporting those references to interact with various applications over time.</p> 
-        <p>So what can be done to make these digital <soCalled>surrogates</soCalled> of culturally important texts more generally amenable to scholarly processes? How can software be built that successfully models the former interactions of scholars with the print edition: the ability to compare, annotate, find, reference, catalog, edit, and study texts? And how can these operations be shared effectively? If all these processes are now to be remodeled in the digital medium, the thing on which they operate, like the printed book before it, must itself be an interoperable object. One way to achieve this may be to separate out the different kinds of information currently stored in the same file format. TEI-encoded data falls naturally into four classes: <list rend="inline"><item>markup,</item> <item>annotation,</item> <item>metadata, and</item> <item>plain text versions</item></list>. It is no accident that these four classes correspond to the forms of data expected by modern applications. For example, metadata is now mostly stored separately from the texts it describes in repositories such as <ref target="http://www.fedora-commons.org">Fedora</ref><note><p><ptr target="http://www.fedora-commons.org"/>.</p></note> or <ref target="http://www.dspace.org/">Dspace</ref>,<note><p><ptr target="http://www.dspace.org/"/>.</p></note> not embedded in a TEI header. Annotations are also external, as in the <ref target="http://www.openannotation.org/spec/core/">Open Annotation Data Model</ref>,<note><p>Last revised February 8, 2013, <ptr target="http://www.openannotation.org/spec/core/"/>.</p></note> not embedded in the same text they describe. Markup systems like XML and SGML were originally designed to format linear text (<ref type="bibl" target="#goldfarb96">Goldfarb 1996</ref>), not to represent variations in the very information they are describing. Separating out markup from text and splitting texts into their variant components would thus clarify their respective roles in the digital scholarly edition. Plain text is also the most widely supported format for text analysis. Of the 54 current text analysis tools listed on the <ref target="https://digitalresearchtools.pbworks.com/w/page/17801708/Text%20Analysis%20Tools">DiRT Wiki</ref>,<note><p>Digital Research Tools Wiki <ptr target="https://digitalresearchtools.pbworks.com/w/page/17801708/Text%20Analysis%20Tools"/>.</p></note> 49 can read plain text.</p> 
-        <p>The rest of this paper treats each of these points in more detail. <ptr type="crossref" target="#interoperability"/> describes the nature of the interoperability problem. <ptr type="crossref" target="#removingmarkup"/> looks at how and why markup is best stored separately from the text it describes. <ptr type="crossref" target="#metaannotations"/> looks at metadata and annotation, and how it also benefits the overall scheme of <soCalled>big tent</soCalled> humanities to record it outside of transcriptions. <ptr type="crossref" target="#layers"/> looks at how texts containing internal variations can be split into individual coherent layers. <ptr type="crossref" target="#puttingtogether"/> outlines how the proposed reorganization of the data of the DSE could be expressed as a bundle of highly interoperable resources. The <ref type="crossref" target="#conclusion">conclusion</ref> then draws together each of the points and makes the overall case for the benefits of this approach.</p>
+        <p>The Text Encoding Initiative has sought to define a <quote source="#quoteref1">standard
+            or normalized practice</quote> (<ref type="bibl" xml:id="quoteref1" target="#ide88">Ide
+            et al. 1988</ref>) for the encoding of a variety of text types since 1988, focusing on a
+          uniform encoding format (SGML, later XML) and a recommended set of tag and attribute
+          names. Although the purpose of the TEI Guidelines (<ref type="bibl" target="#tei14">TEI
+            Consortium 2014</ref>) is to provide a general encoding scheme for texts of all types,
+          its main applications to date have been in the field of historical literary and
+          documentary texts. Of the 158 projects listed as using the Guidelines on the <ref
+            target="http://www.tei-c.org/Activities/Projects/">TEI website</ref>,<note><p><title
+                level="a">Projects Using the TEI</title>, accessed February 13, 2014 <ptr
+                target="http://www.tei-c.org/Activities/Projects/"/>.</p></note> 123 fall into this
+          category. TEI-encoded texts thus often form an important part of a digital scholarly
+          edition (DSE), which may be defined as the modeling in the digital medium of the scholar’s
+          interactions with the text. This naturally includes much more than mere transcriptions:
+          exegetic commentary, textual notes, contextual information in the form of biographies and
+          other personal data, facsimile images of manuscripts and books, as well as functionalities
+          such as the ability to annotate, select versions, and compare transcribed text with the
+          originals (<ref type="bibl" target="#gabler10">Gabler 2010</ref>). But the encoded
+          transcriptions of the original sources form the crux of it: they are the things upon which
+          all this depends.</p>
+        <p>The change in context between the pre-Web world of 1988, its isolated microcomputers and
+          CD-ROMs, and the modern connected, mobile world of Web 2.0 is stark. Texts now have a
+          different purpose: they need to be much more than simply exchangeable via disk or email,
+          they need to instantly respond to heterogenous needs. Inevitably, this has resulted in a
+          growing discontent with traditional approaches to encoding one-off literary and historical
+          documentary texts (<ref type="bibl" target="#mueller13">Mueller 2013</ref>; <ref
+            type="bibl" target="#robinson10">Robinson 2010</ref>). This discontent has focused on
+          the size of the TEI Guidelines (currently 553 tags), the consequent difficulty of
+          comprehending it enough to use it (<ref type="bibl" target="#usdin09">Usdin 2009</ref>),
+          and its inability to elegantly represent overlapping structures that are common in
+          born-material texts (<ref type="bibl" target="#renear93">Renear, Mylonas, and Durand
+            1993</ref>). But arguably the most serious problem, now generally recognized (<ref
+            type="bibl" target="#unsworth11">Unsworth 2011</ref>; <ref type="bibl"
+            target="#bauman11">Bauman 2011</ref>), is that TEI-encoded texts are not interoperable:
+          that is, they cannot be fully used in various applications without preliminary, and often
+          substantial, conversion.</p>
+        <p>The Web 2.0 world takes such interoperability for granted. No one is surprised by Word
+          documents that load (almost) flawlessly into Google Docs, or by the possibility of editing
+          image files produced in various formats by others, or by the mundane (but still amazing)
+          fact that every Web page is readable in a variety of browsers, on a variety of devices, or
+          that the complex interactivity of those pages works in each such environment. But all of
+          these things did not happen by chance; they had to be engineered to work that way.</p>
+        <p>These forces of change have also affected the digital humanities. It has been argued that
+          much of the recent growth in the field is precisely due to the increasing use of social
+          networks and in the rise of mobile and interactive use of data at the expense of older
+          static forms (<ref type="bibl" target="#jones14">Jones 2014</ref>). Recent developments in
+          the construction of international and national repositories of humanities texts (<ref
+            target="http://www.textgrid.de">TextGrid</ref>, <ref target="http://huni.net.au"
+            >HuNI</ref>, INKE, and Islandora),<note><p>Dariah, last modified July 30, 2013: <ptr
+                target="http://www.daria.eu"/>; TextGrid: <ptr target="http://www.textgrid.de"/>;
+              HuNI: <ptr target="http://huni.net.au"/>; Islandora: <ref type="bibl"
+                target="#stapelfeldt13">Stapelfeldt and Moses 2013</ref>.</p></note> experiments in
+          crowd-sourcing (<ref type="bibl" target="#causer12">Causer, Tonra, and Wallace
+          2012</ref>), and <quote source="#quoteref2">social</quote> applications designed to
+          construct DSEs by contributions from geographically dispersed scholars (<ref type="bibl"
+            xml:id="quoteref2" target="#crompton12">Crompton and Siemens 2012</ref>), have all
+          underlined the importance of interoperability. Another area where digital scholarly
+          editions need to work better together is in providing a stable means for parts of editions
+          to be referred to (<ref type="bibl" target="#blackwell12">Blackwell and Smith 2012</ref>),
+          and for the software supporting those references to interact with various applications
+          over time.</p>
+        <p>So what can be done to make these digital <soCalled>surrogates</soCalled> of culturally
+          important texts more generally amenable to scholarly processes? How can software be built
+          that successfully models the former interactions of scholars with the print edition: the
+          ability to compare, annotate, find, reference, catalog, edit, and study texts? And how can
+          these operations be shared effectively? If all these processes are now to be remodeled in
+          the digital medium, the thing on which they operate, like the printed book before it, must
+          itself be an interoperable object. One way to achieve this may be to separate out the
+          different kinds of information currently stored in the same file format. TEI-encoded data
+          falls naturally into four classes: <list rend="inline">
+            <item>markup,</item>
+            <item>annotation,</item>
+            <item>metadata, and</item>
+            <item>plain text versions</item>
+          </list>. It is no accident that these four classes correspond to the forms of data
+          expected by modern applications. For example, metadata is now mostly stored separately
+          from the texts it describes in repositories such as <ref
+            target="http://www.fedora-commons.org">Fedora</ref><note><p><ptr
+                target="http://www.fedora-commons.org"/>.</p></note> or <ref
+            target="http://www.dspace.org/">Dspace</ref>,<note><p><ptr
+                target="http://www.dspace.org/"/>.</p></note> not embedded in a TEI header.
+          Annotations are also external, as in the <ref
+            target="http://www.openannotation.org/spec/core/">Open Annotation Data
+              Model</ref>,<note><p>Last revised February 8, 2013, <ptr
+                target="http://www.openannotation.org/spec/core/"/>.</p></note> not embedded in the
+          same text they describe. Markup systems like XML and SGML were originally designed to
+          format linear text (<ref type="bibl" target="#goldfarb96">Goldfarb 1996</ref>), not to
+          represent variations in the very information they are describing. Separating out markup
+          from text and splitting texts into their variant components would thus clarify their
+          respective roles in the digital scholarly edition. Plain text is also the most widely
+          supported format for text analysis. Of the 54 current text analysis tools listed on the
+            <ref
+            target="https://digitalresearchtools.pbworks.com/w/page/17801708/Text%20Analysis%20Tools"
+            >DiRT Wiki</ref>,<note><p>Digital Research Tools Wiki <ptr
+                target="https://digitalresearchtools.pbworks.com/w/page/17801708/Text%20Analysis%20Tools"
+              />.</p></note> 49 can read plain text.</p>
+        <p>The rest of this paper treats each of these points in more detail. <ptr type="crossref"
+            target="#interoperability"/> describes the nature of the interoperability problem. <ptr
+            type="crossref" target="#removingmarkup"/> looks at how and why markup is best stored
+          separately from the text it describes. <ptr type="crossref" target="#metaannotations"/>
+          looks at metadata and annotation, and how it also benefits the overall scheme of
+            <soCalled>big tent</soCalled> humanities to record it outside of transcriptions. <ptr
+            type="crossref" target="#layers"/> looks at how texts containing internal variations can
+          be split into individual coherent layers. <ptr type="crossref" target="#puttingtogether"/>
+          outlines how the proposed reorganization of the data of the DSE could be expressed as a
+          bundle of highly interoperable resources. The <ref type="crossref" target="#conclusion"
+            >conclusion</ref> then draws together each of the points and makes the overall case for
+          the benefits of this approach.</p>
       </div>
       <div xml:id="interoperability">
         <head>Interoperability and the TEI Guidelines</head>
-        <p><term>Interoperability</term> may be defined as the property of data that allows it to be loaded <emph>unmodified</emph> and fully used in a <emph>variety</emph> of software applications. <term>Interchange</term> is basically the same property that applies after a preliminary conversion of the data (<ref type="bibl" target="#bauman11">Bauman 2011</ref>; <ref type="bibl" target="#unsworth11">Unsworth 2011</ref>), and implies some loss of information in the process. Interchange can thus be seen as an easier, less stringent, or less useful kind of information exchange than pure interoperability.</p>
-        <p>From its inception, the TEI Guidelines were conceived as a format for interchange, specifically to overcome the then prevalent use of multiple character encoding standards in 1987. But it is clear from the original grant proposal (<ref type="bibl" target="#ide88">Ide et al. 1988</ref>), and from the Poughkeepsie principles drawn up after the inaugural TEI conference in 1987 (<ref type="bibl" target="#tei88">TEI Consortium 1988</ref>), that the TEI was also conceived as an interchange format based on standardized tags that would eventually form the basis of an interoperable format for the writing of <emph>shared</emph> software:
-        <cit>
-          <quote source="#quoteref3">If a common encoding scheme existed <gap/> the materials created by these projects would be in a uniform format <gap/> Even more important, we can assume that the existence of a common format will prompt software developers to accommodate this format.<gap/> Therefore, the materials created by projects over the next decade could serve as input to as-yet undeveloped software designed for any number of text analytic tasks. If both the creators of textual scholarly materials and software developers utilize a common encoding format, the texts may be used with any software package.</quote>
-          <ref type="bibl" xml:id="quoteref3" target="#ide88">Ide et al. 1988, 1.4</ref>
-        </cit>
+        <p><term>Interoperability</term> may be defined as the property of data that allows it to be
+          loaded <emph>unmodified</emph> and fully used in a <emph>variety</emph> of software
+          applications. <term>Interchange</term> is basically the same property that applies after a
+          preliminary conversion of the data (<ref type="bibl" target="#bauman11">Bauman 2011</ref>;
+            <ref type="bibl" target="#unsworth11">Unsworth 2011</ref>), and implies some loss of
+          information in the process. Interchange can thus be seen as an easier, less stringent, or
+          less useful kind of information exchange than pure interoperability.</p>
+        <p>From its inception, the TEI Guidelines were conceived as a format for interchange,
+          specifically to overcome the then prevalent use of multiple character encoding standards
+          in 1987. But it is clear from the original grant proposal (<ref type="bibl"
+            target="#ide88">Ide et al. 1988</ref>), and from the Poughkeepsie principles drawn up
+          after the inaugural TEI conference in 1987 (<ref type="bibl" target="#tei88">TEI
+            Consortium 1988</ref>), that the TEI was also conceived as an interchange format based
+          on standardized tags that would eventually form the basis of an interoperable format for
+          the writing of <emph>shared</emph> software: <cit>
+            <quote source="#quoteref3">If a common encoding scheme existed <gap/> the materials
+              created by these projects would be in a uniform format <gap/> Even more important, we
+              can assume that the existence of a common format will prompt software developers to
+              accommodate this format.<gap/> Therefore, the materials created by projects over the
+              next decade could serve as input to as-yet undeveloped software designed for any
+              number of text analytic tasks. If both the creators of textual scholarly materials and
+              software developers utilize a common encoding format, the texts may be used with any
+              software package.</quote>
+            <ref type="bibl" xml:id="quoteref3" target="#ide88">Ide et al. 1988, 1.4</ref>
+          </cit>
         </p>
-        <p>Whatever this meant at the time, Syd Bauman (<ref type="bibl" xml:id="quoteref4" target="#bauman11">2011</ref>), one of the original editors of TEI P5, has since observed that interoperability of TEI-encoded texts today—that is, the exchange of unmodified TEI files between different programs—is <quote source="#quoteref4">impossible</quote>. Bauman is more optimistic about interchange, but he admits that interchange remains <quote source="#quoteref4">difficult</quote> and that it involves considerable human intervention. Martin Mueller, as chairman of the TEI Board, remarked that in his experience, detailed TEI markup is generally ignored in practical applications, and currently offers no advantage over plain text, HTML or ePub formats (<ref type="bibl" target="#mueller11">2011, 5</ref>). A recently published report on Project Bamboo likewise described the stripping out of all TEI encoding so that texts gathered from various sources could be made to interoperate (<ref type="bibl" target="#dombrowski13">Dombrowski and Denbo 2013</ref>). As John Unsworth (<ref type="bibl" xml:id="quoteref5" target="#unsworth11">2011</ref>) says: <quote source="#quoteref5">The <mentioned>I</mentioned> in TEI sometimes stands for interchange, but it never stands for interoperability</quote>.</p>
-        <p>These express admissions by those involved closely with the TEI seem at odds with the user community’s needs for standardization and interoperability that gave rise to the TEI in the first place (<ref type="bibl" target="#cummings07">Cummings 2007, §4</ref>). The interpretive data contained in the tags is instead locked up in specific projects or <quote source="#quoteref6">digital islands</quote> (<ref type="bibl" xml:id="quoteref6" target="#robinson10">Robinson 2010, 158</ref>) that are of little use to the wider community of scholars. As Martin Mueller asks: <quote source="#quoteref7">What about the added value of TEI specific encoding for the historian, linguist, philosopher, literary critic etc.? How can they decode or get at it, and what does it do for them? The answer is that for the most part they cannot get at it at all.</quote> (<ref type="bibl" xml:id="quoteref7" target="#mueller11">2011, 5</ref>)</p>
-        <p>To those involved in the creation of digital scholarly editions, interoperability seems to matter a great deal. The whole point of the large European Interedition project was to create <quote source="#quoteref8">an interoperable supranational infrastructure for digital editions.</quote><note><p><bibl xml:id="quoteref8"><title level="m">An Interoperable Supranational Infrastructure for Digital Editions (Interedition)</title>, <ptr target="http://w3.cost.eu/fileadmin/domain_files/ISCH/Action_IS0704/progress_report/progress_report-IS0704.pdf"/>.</bibl></p></note> Likewise, one of Peter Robinson’s five desiderata for scholarly digital editions was that <quote source="#quoteref9">all the materials in a digital edition should be available independent of any one interface</quote> (<ref type="bibl" xml:id="quoteref9" target="#robinson13">Robinson 2013</ref>). In a similar vein Dot Porter writes: <quote source="#quoteref10">Notably, from 1992 through today, the papers, sessions, and workshops at the Congress that focus on digital editing focus on the creation of those editions, but there is very little if anything to be found on how those editions might be used by the scholarly community</quote> (<ref type="bibl" xml:id="quoteref10" target="#porter13">Porter 2013</ref>). Or as Maria Morrás puts it: <quote source="#quoteref11">I doubt much that there will ever exist definitive computer programs, or even a stable format for presenting and connecting texts in hypermedia archives.<gap/> It is essential that texts are transcribed in accordance with a universal system which enables the transference from one program to another <gap/></quote> (<ref type="bibl" xml:id="quoteref11" target="#morrás03">Morrás 2003, 235</ref>—my translation). Indeed, if sharing of edition data stored in repositories, and collaboration on their preparation by contributors across the world, is to happen at all, it seems clear that the required benchmark is data <emph>interoperability</emph>, not mere data interchange. As Martin Mueller complains, <quote source="#quoteref12">the TEI keeps insisting on a distinction between <term>interoperability</term> and <term>interchange</term> that makes very little sense to folks outside the TEI’s discursive realm</quote> (<ref type="bibl" xml:id="quoteref12" target="#mueller13">2013</ref>).</p>
+        <p>Whatever this meant at the time, Syd Bauman (<ref type="bibl" xml:id="quoteref4"
+            target="#bauman11">2011</ref>), one of the original editors of TEI P5, has since
+          observed that interoperability of TEI-encoded texts today—that is, the exchange of
+          unmodified TEI files between different programs—is <quote source="#quoteref4"
+            >impossible</quote>. Bauman is more optimistic about interchange, but he admits that
+          interchange remains <quote source="#quoteref4">difficult</quote> and that it involves
+          considerable human intervention. Martin Mueller, as chairman of the TEI Board, remarked
+          that in his experience, detailed TEI markup is generally ignored in practical
+          applications, and currently offers no advantage over plain text, HTML or ePub formats
+            (<ref type="bibl" target="#mueller11">2011, 5</ref>). A recently published report on
+          Project Bamboo likewise described the stripping out of all TEI encoding so that texts
+          gathered from various sources could be made to interoperate (<ref type="bibl"
+            target="#dombrowski13">Dombrowski and Denbo 2013</ref>). As John Unsworth (<ref
+            type="bibl" xml:id="quoteref5" target="#unsworth11">2011</ref>) says: <quote
+            source="#quoteref5">The <mentioned>I</mentioned> in TEI sometimes stands for
+            interchange, but it never stands for interoperability</quote>.</p>
+        <p>These express admissions by those involved closely with the TEI seem at odds with the
+          user community’s needs for standardization and interoperability that gave rise to the TEI
+          in the first place (<ref type="bibl" target="#cummings07">Cummings 2007, §4</ref>). The
+          interpretive data contained in the tags is instead locked up in specific projects or
+            <quote source="#quoteref6">digital islands</quote> (<ref type="bibl" xml:id="quoteref6"
+            target="#robinson10">Robinson 2010, 158</ref>) that are of little use to the wider
+          community of scholars. As Martin Mueller asks: <quote source="#quoteref7">What about the
+            added value of TEI specific encoding for the historian, linguist, philosopher, literary
+            critic etc.? How can they decode or get at it, and what does it do for them? The answer
+            is that for the most part they cannot get at it at all.</quote> (<ref type="bibl"
+            xml:id="quoteref7" target="#mueller11">2011, 5</ref>)</p>
+        <p>To those involved in the creation of digital scholarly editions, interoperability seems
+          to matter a great deal. The whole point of the large European Interedition project was to
+          create <quote source="#quoteref8">an interoperable supranational infrastructure for
+            digital editions.</quote><note><p><bibl xml:id="quoteref8"><title level="m">An
+                  Interoperable Supranational Infrastructure for Digital Editions
+                  (Interedition)</title>, <ptr
+                  target="http://w3.cost.eu/fileadmin/domain_files/ISCH/Action_IS0704/progress_report/progress_report-IS0704.pdf"
+                />.</bibl></p></note> Likewise, one of Peter Robinson’s five desiderata for
+          scholarly digital editions was that <quote source="#quoteref9">all the materials in a
+            digital edition should be available independent of any one interface</quote> (<ref
+            type="bibl" xml:id="quoteref9" target="#robinson13">Robinson 2013</ref>). In a similar
+          vein Dot Porter writes: <quote source="#quoteref10">Notably, from 1992 through today, the
+            papers, sessions, and workshops at the Congress that focus on digital editing focus on
+            the creation of those editions, but there is very little if anything to be found on how
+            those editions might be used by the scholarly community</quote> (<ref type="bibl"
+            xml:id="quoteref10" target="#porter13">Porter 2013</ref>). Or as Maria Morrás puts it:
+            <quote source="#quoteref11">I doubt much that there will ever exist definitive computer
+            programs, or even a stable format for presenting and connecting texts in hypermedia
+            archives.<gap/> It is essential that texts are transcribed in accordance with a
+            universal system which enables the transference from one program to another
+            <gap/></quote> (<ref type="bibl" xml:id="quoteref11" target="#morrás03">Morrás 2003,
+            235</ref>—my translation). Indeed, if sharing of edition data stored in repositories,
+          and collaboration on their preparation by contributors across the world, is to happen at
+          all, it seems clear that the required benchmark is data <emph>interoperability</emph>, not
+          mere data interchange. As Martin Mueller complains, <quote source="#quoteref12">the TEI
+            keeps insisting on a distinction between <term>interoperability</term> and
+              <term>interchange</term> that makes very little sense to folks outside the TEI’s
+            discursive realm</quote> (<ref type="bibl" xml:id="quoteref12" target="#mueller13"
+            >2013</ref>).</p>
         <div xml:id="paradox">
           <head>The TEI Paradox</head>
-          <p>And here is the paradox for the modern digital humanist who works with transcriptions of the textual content of original artifacts. Everyone knows that XML itself, the base technology for the TEI Guidelines, is a highly interoperable format. No one is disputing that there are many applications able to understand XML, such as Apache Cocoon, XML parsers, XQuery, oXygen, XSLT processors, etc. Valid XML data can be loaded unmodified into such applications and can be successfully parsed, merged, edited, searched, and transformed. But in spite of these properties of XML itself, information encoded at the TEI level, at the <soCalled>tag</soCalled> level, is mostly <emph>not</emph> interoperable, for reasons first explained most cogently by Alan Renear (<ref type="bibl" target="#renear00">2000</ref>). Renear argued that there is an important distinction to be drawn between 
-          <list rend="ordered">
-            <item>a title tag inserted by the transcriber of a physical document as an interpretation of what he/she sees (but it may not be true), and</item>
-            <item>the same tag used by an author to declare that his/her digital text is in fact a title.</item>
-          </list>
-          TEI tags are usually of type 1, because they are the result of human interpretation. Most other XML tags, however, are of type 2.</p>
-          <p>Renear characterizes the distinction as one of mood. Type 1 corresponds to the indicative mood, and type 2 to the imperative, where the author of the text is effectively issuing the command: <q>be a title!</q> Markup is so often created in situation 2 that one can easily be tricked into thinking that it is always so. For example, markup generated by a machine is easy for another machine to read. All that is needed is to reverse the algorithm that wrote it. An example using the TEI Guidelines would be an XML text generated by a natural language parser. Such XML files <emph>may</emph> be interoperable, if standardized, because they are part of a machine-to-machine conversation. Even a program that translates objects created by humans using a GUI interface, such as a drawing program or a word-processor, can save the result in an interoperable format because it is the <emph>program</emph> that reads and writes the tags, not the human. An example of such a format is SVG (Scalable Vector Graphics), which is an XML format. Drawings saved in <ref target="http://www.w3.org/Graphics/SVG/">SVG</ref><note><p>Scalable Vector Graphics, <ptr target="http://www.w3.org/Graphics/SVG/"/>.</p></note> can be rendered and edited in a variety of programs. Even when a human creates a file in HTML the result is usually interoperable because all the tags created are of type 2. But when a humanist transcribes original historical documents, such as the contents of a printed novel, the result is markup that is <emph>not</emph> interoperable because what is guiding the selection and application of the tags is a human brain, and every step the human takes is an interpretation of type 1.</p>
-          <p>Patrick Durusau illustrates the significance of this distinction with a practical example. He enumerates more than <emph>four million ways</emph> to encode a simple sentence taken from a printed book using the TEI Guidelines. And this huge figure <quote source="#quoteref13">is by no means exhaustive</quote>. This illustrates, as he says, <quote source="#quoteref13">the unlikelihood that any two encoders or even the same encoder on different days will make, without formal guidance, the same decisions</quote> (<ref type="bibl" xml:id="quoteref13" target="#durusau06">Durusau 2006, 302</ref>). Durusau argues that this demonstrates the importance of documenting encoding choices, of modeling texts in advance, of training encoders, checking syntax, and reviewing transcriptions. Although all these measures taken together will probably prove effective, the author knows from the experience of having worked for more than ten years on the Vienna Edition of Wittgenstein that these methods are very costly to implement, and in cases where the contributors to a project are from different geographical locations, they are probably also hard to enforce.</p>
-          <p>The reason behind this difficulty is the nature of being human: everyone sees different features when they look at the same text in a manuscript. And everyone understands the meaning of the tags to which they must map those features differently. It is easy to make texts syntactically correct, even conform grammatically to a given markup scheme, but one also must ask, are they internally <emph>consistent</emph>, and can they be <emph>kept</emph> in that state in the face of continued editing? As Tommie Usdin (<ref type="bibl" target="#usdin02">2002</ref>) points out, having more than one way to encode the same thing increases choice but does not make things any easier; in fact it <emph>magnifies</emph> the work of encoding.</p>
+          <p>And here is the paradox for the modern digital humanist who works with transcriptions
+            of the textual content of original artifacts. Everyone knows that XML itself, the base
+            technology for the TEI Guidelines, is a highly interoperable format. No one is disputing
+            that there are many applications able to understand XML, such as Apache Cocoon, XML
+            parsers, XQuery, oXygen, XSLT processors, etc. Valid XML data can be loaded unmodified
+            into such applications and can be successfully parsed, merged, edited, searched, and
+            transformed. But in spite of these properties of XML itself, information encoded at the
+            TEI level, at the <soCalled>tag</soCalled> level, is mostly <emph>not</emph>
+            interoperable, for reasons first explained most cogently by Alan Renear (<ref
+              type="bibl" target="#renear00">2000</ref>). Renear argued that there is an important
+            distinction to be drawn between <list rend="ordered">
+              <item>a title tag inserted by the transcriber of a physical document as an
+                interpretation of what he/she sees (but it may not be true), and</item>
+              <item>the same tag used by an author to declare that his/her digital text is in fact a
+                title.</item>
+            </list> TEI tags are usually of type 1, because they are the result of human
+            interpretation. Most other XML tags, however, are of type 2.</p>
+          <p>Renear characterizes the distinction as one of mood. Type 1 corresponds to the
+            indicative mood, and type 2 to the imperative, where the author of the text is
+            effectively issuing the command: <q>be a title!</q> Markup is so often created in
+            situation 2 that one can easily be tricked into thinking that it is always so. For
+            example, markup generated by a machine is easy for another machine to read. All that is
+            needed is to reverse the algorithm that wrote it. An example using the TEI Guidelines
+            would be an XML text generated by a natural language parser. Such XML files
+              <emph>may</emph> be interoperable, if standardized, because they are part of a
+            machine-to-machine conversation. Even a program that translates objects created by
+            humans using a GUI interface, such as a drawing program or a word-processor, can save
+            the result in an interoperable format because it is the <emph>program</emph> that reads
+            and writes the tags, not the human. An example of such a format is SVG (Scalable Vector
+            Graphics), which is an XML format. Drawings saved in <ref
+              target="http://www.w3.org/Graphics/SVG/">SVG</ref><note><p>Scalable Vector Graphics,
+                  <ptr target="http://www.w3.org/Graphics/SVG/"/>.</p></note> can be rendered and
+            edited in a variety of programs. Even when a human creates a file in HTML the result is
+            usually interoperable because all the tags created are of type 2. But when a humanist
+            transcribes original historical documents, such as the contents of a printed novel, the
+            result is markup that is <emph>not</emph> interoperable because what is guiding the
+            selection and application of the tags is a human brain, and every step the human takes
+            is an interpretation of type 1.</p>
+          <p>Patrick Durusau illustrates the significance of this distinction with a practical
+            example. He enumerates more than <emph>four million ways</emph> to encode a simple
+            sentence taken from a printed book using the TEI Guidelines. And this huge figure <quote
+              source="#quoteref13">is by no means exhaustive</quote>. This illustrates, as he says,
+              <quote source="#quoteref13">the unlikelihood that any two encoders or even the same
+              encoder on different days will make, without formal guidance, the same
+              decisions</quote> (<ref type="bibl" xml:id="quoteref13" target="#durusau06">Durusau
+              2006, 302</ref>). Durusau argues that this demonstrates the importance of documenting
+            encoding choices, of modeling texts in advance, of training encoders, checking syntax,
+            and reviewing transcriptions. Although all these measures taken together will probably
+            prove effective, the author knows from the experience of having worked for more than ten
+            years on the Vienna Edition of Wittgenstein that these methods are very costly to
+            implement, and in cases where the contributors to a project are from different
+            geographical locations, they are probably also hard to enforce.</p>
+          <p>The reason behind this difficulty is the nature of being human: everyone sees different
+            features when they look at the same text in a manuscript. And everyone understands the
+            meaning of the tags to which they must map those features differently. It is easy to
+            make texts syntactically correct, even conform grammatically to a given markup scheme,
+            but one also must ask, are they internally <emph>consistent</emph>, and can they be
+              <emph>kept</emph> in that state in the face of continued editing? As Tommie Usdin
+              (<ref type="bibl" target="#usdin02">2002</ref>) points out, having more than one way
+            to encode the same thing increases choice but does not make things any easier; in fact
+            it <emph>magnifies</emph> the work of encoding.</p>
         </div>
         <div xml:id="examples">
           <head>Some Examples</head>
-          <p>If Renear is right, then it is the <term>illocutionary force</term> of TEI markup as applied to original documents that leads to its non-interoperability, and not simply the size of the tag set. Even if the TEI Guidelines were reduced to a single tag, <gi>title</gi>, there would still be dispute as to which pieces of text were titles and which were not: 
-            <cit>
-              <quote source="#quoteref14">Suppose <title level="m">The Babylonian Captivity of the Church</title> does not display as a title. Thinking that the stylesheet author has failed in some regard, the user attempts to search the document for titles of works cited. Oddly enough far fewer titles appear than are known (or assumed) to occur in the text.</quote>
+          <p>If Renear is right, then it is the <term>illocutionary force</term> of TEI markup as
+            applied to original documents that leads to its non-interoperability, and not simply the
+            size of the tag set. Even if the TEI Guidelines were reduced to a single tag,
+              <gi>title</gi>, there would still be dispute as to which pieces of text were titles
+            and which were not: <cit>
+              <quote source="#quoteref14">Suppose <title level="m">The Babylonian Captivity of the
+                  Church</title> does not display as a title. Thinking that the stylesheet author
+                has failed in some regard, the user attempts to search the document for titles of
+                works cited. Oddly enough far fewer titles appear than are known (or assumed) to
+                occur in the text.</quote>
               <ref type="bibl" xml:id="quoteref14" target="#durusau06">Durusau 2006, 302</ref>
             </cit>
           </p>
-            <p>Although entirely plausible, Durusau’s example is still hypothetical. However, in the DTA (Deutsches Textarchiv), an attempt to homogenize a number of digitized texts encoded in various subsets of TEI led to this same scenario being played out for real: 
-            <cit>
-              <quote source="#quoteref15">machine-exploitable extraction of document components such as <q>retrieve all letters of the document collection</q> or <q>display all quotations in a chapter</q> pose an enormous problem since division types or entity encoding for quotes do not have to be realized in an ubiquitous way across document collections</quote>
-              <ref type="bibl" xml:id="quoteref15" target="#geyken12">Geyken, Haaf, and Wiegand 2012, 384</ref>
+          <p>Although entirely plausible, Durusau’s example is still hypothetical. However, in the
+            DTA (Deutsches Textarchiv), an attempt to homogenize a number of digitized texts encoded
+            in various subsets of TEI led to this same scenario being played out for real: <cit>
+              <quote source="#quoteref15">machine-exploitable extraction of document components such
+                as <q>retrieve all letters of the document collection</q> or <q>display all
+                  quotations in a chapter</q> pose an enormous problem since division types or
+                entity encoding for quotes do not have to be realized in an ubiquitous way across
+                document collections</quote>
+              <ref type="bibl" xml:id="quoteref15" target="#geyken12">Geyken, Haaf, and Wiegand
+                2012, 384</ref>
             </cit>
-            </p>
-            <p>Another real-world example is the interesting experiment undertaken by Dombrowski and Denbo (<ref type="bibl" xml:id="quoteref16" target="#dombrowski13">2013</ref>) as part of Project Bamboo. Their idea was to develop an <quote source="#quoteref16">XSLT web service engine to transform XML-marked up bibliographic entries into HTML</quote>. Unlike markup for literary documents, the TEI tags for marking up bibliographies are relatively constrained. The project was planned to take three weeks. In the end it took a year and involved a considerable amount of manual data and stylesheet manipulation: 
-            <cit><quote source="#quoteref17">This revealed markup inconsistencies within the TEI-encoded data (such as the ordering of authors’ first and last names), which Hooper then revised. The revised TEI, in turn, brought to light legitimate variation in the data that the XSLT stylesheets did not correctly account for. In this way, both the data and the stylesheets underwent iterative development for a number of months.</quote>
-              <ref type="bibl" xml:id="quoteref17" target="#dombrowski13">Dombrowski and Denbo 2013</ref></cit>
-            This demonstrates the difference between interchange and interoperability. If the files had been in an interoperable format in the first place they could have been ingested and processed immediately.</p>
-            <p>Another, more subtle example is the experiment in interpretative encoding conducted by Kate Singer (<ref type="bibl" target="#singer13">2013</ref>). When her students marked up the same poem using TEI tags for different tropes, each group of students ended up recording very different features in the same text, and at the end of the experiment it became clear that all their work had been frozen in their individual copies: 
-            <cit>
-              <quote source="#quoteref18">my students began to dream of an interface that allowed them to bring our class’s particular collections of text and commentary to bear on a primary text, one with the ability to then permit future classes to render their own versions in the space of the same edition.</quote> 
+          </p>
+          <p>Another real-world example is the interesting experiment undertaken by Dombrowski and
+            Denbo (<ref type="bibl" xml:id="quoteref16" target="#dombrowski13">2013</ref>) as part
+            of Project Bamboo. Their idea was to develop an <quote source="#quoteref16">XSLT web
+              service engine to transform XML-marked up bibliographic entries into HTML</quote>.
+            Unlike markup for literary documents, the TEI tags for marking up bibliographies are
+            relatively constrained. The project was planned to take three weeks. In the end it took
+            a year and involved a considerable amount of manual data and stylesheet manipulation: <cit>
+              <quote source="#quoteref17">This revealed markup inconsistencies within the
+                TEI-encoded data (such as the ordering of authors’ first and last names), which
+                Hooper then revised. The revised TEI, in turn, brought to light legitimate variation
+                in the data that the XSLT stylesheets did not correctly account for. In this way,
+                both the data and the stylesheets underwent iterative development for a number of
+                months.</quote>
+              <ref type="bibl" xml:id="quoteref17" target="#dombrowski13">Dombrowski and Denbo
+                2013</ref>
+            </cit> This demonstrates the difference between interchange and interoperability. If the
+            files had been in an interoperable format in the first place they could have been
+            ingested and processed immediately.</p>
+          <p>Another, more subtle example is the experiment in interpretative encoding conducted by
+            Kate Singer (<ref type="bibl" target="#singer13">2013</ref>). When her students marked
+            up the same poem using TEI tags for different tropes, each group of students ended up
+            recording very different features in the same text, and at the end of the experiment it
+            became clear that all their work had been frozen in their individual copies: <cit>
+              <quote source="#quoteref18">my students began to dream of an interface that allowed
+                them to bring our class’s particular collections of text and commentary to bear on a
+                primary text, one with the ability to then permit future classes to render their own
+                versions in the space of the same edition.</quote>
               <ref type="bibl" xml:id="quoteref18" target="#singer13">Singer 2013</ref>
-            </cit>
-            The poetic tropes recorded by embedding markup tags in the texts they described had led to a form of non-interoperability: it prevented them from sharing their interpretations with other future students, or from collaborating with other current groups.</p>
+            </cit> The poetic tropes recorded by embedding markup tags in the texts they described
+            had led to a form of non-interoperability: it prevented them from sharing their
+            interpretations with other future students, or from collaborating with other current
+            groups.</p>
         </div>
         <div xml:id="purposes">
           <head>Encoding Documents for Different Purposes</head>
-          <p>If it is hard to make files all with the same purpose interoperate, how far-fetched is it then to expect that files with different purposes might also one day interoperate? For example, the <ref target="http://www.tei-c.org/Activities/Projects/">TEI website</ref><note><p><ptr target="http://www.tei-c.org/Activities/Projects/"/></p></note> lists a number of projects creating linguistic corpora of historical texts, like the <ref target="http://bfm.ens-lyon.fr/">Base de Français Médiéval</ref>, which contains 4.7 million words, and has been morphologically tagged, but the material is also of considerable literary and historical interest.<note><p>Base de Français Médiéval, <ptr target="http://bfm.ens-lyon.fr/"/></p></note> Another example is the <ref target="http://riznica.ihjj.hr/">Croatian Language Repository</ref>,<note><p>Croatian Language Repository, <ptr target="http://riznica.ihjj.hr/"/>.</p></note> which contains a linguistic corpus that includes novels, short stories, drama, and poetry from the mid-nineteenth century onwards. A similar picture emerges from the <ref target="http://uwdc.library.wisc.edu/collections/IcelOnline">Icelandic Online Dictionary and Readings</ref>. This linguistic corpus consists of readings taken from newspapers and both modern and nineteenth-century literature.<note><p>Icelandic Online Dictionary and Readings, <ptr target="http://uwdc.library.wisc.edu/collections/IcelOnline"/>.</p></note> Yet another case is the syntactic tagging of the fourteenth-century French work by Jehan de Joinville, entitled <title level="m">La Vie de Saint Louis</title>, a mixture of standard and Champenois French, which is <quote source="#quoteref19">extremely important for historical and literary, as well as for linguistic reasons</quote> (<ref type="bibl" xml:id="quoteref19" target="#estival97">Estival and Nicholas 1997</ref>). One may well ask the question, what is the point of digitizing all these texts if the end result will not be reusable for a variety of purposes? Repurposing a text that has already been marked up for one application should not mean that it must be re-digitized or undergo a time-consuming conversion, possibly damaging the underlying content in the process. The tags for linguistic corpora have little in common with those used for literary texts, but often the underlying material is shared between them. The next few sections will examine how and why digitized texts should be prepared from the start with such re-use already in mind.</p>
+          <p>If it is hard to make files all with the same purpose interoperate, how far-fetched is
+            it then to expect that files with different purposes might also one day interoperate?
+            For example, the <ref target="http://www.tei-c.org/Activities/Projects/">TEI
+              website</ref><note><p><ptr target="http://www.tei-c.org/Activities/Projects/"
+              /></p></note> lists a number of projects creating linguistic corpora of historical
+            texts, like the <ref target="http://bfm.ens-lyon.fr/">Base de Français Médiéval</ref>,
+            which contains 4.7 million words, and has been morphologically tagged, but the material
+            is also of considerable literary and historical interest.<note><p>Base de Français
+                Médiéval, <ptr target="http://bfm.ens-lyon.fr/"/></p></note> Another example is the
+              <ref target="http://riznica.ihjj.hr/">Croatian Language
+                Repository</ref>,<note><p>Croatian Language Repository, <ptr
+                  target="http://riznica.ihjj.hr/"/>.</p></note> which contains a linguistic corpus
+            that includes novels, short stories, drama, and poetry from the mid-nineteenth century
+            onwards. A similar picture emerges from the <ref
+              target="http://uwdc.library.wisc.edu/collections/IcelOnline">Icelandic Online
+              Dictionary and Readings</ref>. This linguistic corpus consists of readings taken from
+            newspapers and both modern and nineteenth-century literature.<note><p>Icelandic Online
+                Dictionary and Readings, <ptr
+                  target="http://uwdc.library.wisc.edu/collections/IcelOnline"/>.</p></note> Yet
+            another case is the syntactic tagging of the fourteenth-century French work by Jehan de
+            Joinville, entitled <title level="m">La Vie de Saint Louis</title>, a mixture of
+            standard and Champenois French, which is <quote source="#quoteref19">extremely important
+              for historical and literary, as well as for linguistic reasons</quote> (<ref
+              type="bibl" xml:id="quoteref19" target="#estival97">Estival and Nicholas 1997</ref>).
+            One may well ask the question, what is the point of digitizing all these texts if the
+            end result will not be reusable for a variety of purposes? Repurposing a text that has
+            already been marked up for one application should not mean that it must be re-digitized
+            or undergo a time-consuming conversion, possibly damaging the underlying content in the
+            process. The tags for linguistic corpora have little in common with those used for
+            literary texts, but often the underlying material is shared between them. The next few
+            sections will examine how and why digitized texts should be prepared from the start with
+            such re-use already in mind.</p>
         </div>
       </div>
       <div xml:id="removingmarkup">
         <head>Removing Markup from the Text</head>
-        <p>One obvious remedy to this problem is to remove the main source of non-interoperability, namely the embedded markup itself, from the text. By removing it, the part which contains all the significant interpretation can later be added or substituted at will.</p>
-        <p>What remains when the markup is removed is a residue of plain text that is highly interoperable, which can be exchanged with other researchers, just as the files on Gutenberg.org are downloaded by the tens of thousands every day (<ref type="bibl" target="#leibert08">Leibert 2008</ref>). However, if one suggests this to someone who regularly uses TEI-XML, the immediate objection is made that this will solve nothing, because even plain ASCII texts are still an interpretation of what the transcriber sees on the page (e.g. <ref type="bibl" target="#msmq91">Sperberg-McQueen 1991, 35</ref>). This point, although valid to a degree, misses an important distinction.</p>
-        <p>But first consider what exactly is the nature of the interpretation exercised when a text is transcribed. A digital text encoding system, even one as expansive as Unicode, has a limited power to capture the features of abstract <soCalled>text</soCalled>, which may be understood as the entire content of a page to be transcribed (<ref type="bibl" target="#sahle13">Sahle 2013, 244</ref>). Certainly there is much that cannot be represented directly in this way: for example, unconventional characters found in manuscripts and early printed books, including abbreviations.<note><p>Medieval Unicode Font Initiative, <ptr target="http://www.mufi.info/"/>.</p></note> Many of these cases are ligatures, which can be encoded in their decomposed forms. Unicode is <quote source="#quoteref20">a <emph>character</emph> encoding standard, and is not intended to standardize ligatures or other presentation forms</quote> (<ref type="bibl" xml:id="quoteref20" target="#unicode10">Unicode 2010</ref>). For example, there is no Unicode character for old Latin <mentioned>sescuncia</mentioned> (like a pound-sign, means <soCalled>one eighth</soCalled>), since it can be composed from <mentioned>semuncia</mentioned> (character 10192) and an EN-dash (<ref type="bibl" target="#perry06">Perry 2006, 4</ref>). However, even in modern texts there are inline mathematics and graphics, which pose a similar problem. In such cases markup must be used to extend the capabilities of plain text. But let these exceptions be set aside for the moment, because the discussion on markup below also applies to them. Encodable character data or <soCalled>plain text</soCalled> is so overwhelmingly prevalent in literary and historical documents that it should be treated as a separate case.</p>
-        <p>An encodable character on a page is either illegible, unclear, or clear. If the character is simply illegible, then a gap, qualified by some markup describing how long it is and how it has been rendered illegible can be added (<ref type="bibl" target="#tei14">TEI Consortium 2014, 3.4.3</ref>). If the letter is not clear then it admits of several various readings. It is thus like a variant and can be treated by the mechanisms for recording variants. But in by far the most common case, if the character symbol is clear and the letter has, say, the shape of the letter <mentioned>t</mentioned>, choosing to encode it as the Unicode character code 116 for <mentioned>t</mentioned> is probably not an interpretation, because no reasonable person would dispute the point. On the other hand, choosing to record it or not <emph>is</emph> an interpretation. Patrick Sahle (<ref type="bibl" xml:id="quoteref21" target="#sahle13">2013, 244f</ref>) argues in his <quote source="#quoteref21">pluralistic text model</quote> that different texts will be needed for different purposes. For instance, whether or not to encode the running header, or the index at the back, or the text in an image, would be an editorial decision. This interpretation is binary in nature: the editor can only choose to encode it or not.</p>
-        <p>On the other hand, the interpretation about which format or logical structure an italicized <mentioned>t</mentioned> belongs to involves assigning it to one of a myriad of possible encodings. In the TEI-Lite schema alone one may choose, for example, between <tag>hi rend="italic"</tag>, <tag>hi rend="italics"</tag>, <gi>foreign</gi>, <gi>stage</gi>, <gi>term</gi>, <gi>soCalled</gi>, and <gi>head</gi>. The problem with choosing one formulation of <soCalled>italics</soCalled> or another and inserting it into the text is that this constitutes a declaration of intent to write software that will act upon those specific interpretative codes. Even just encoding it in any kind of XML declares an intent to process it in an XML-aware application. Encoding it in a specific customization of TEI-XML presupposes that there is software that can understand that encoding, including its interpretation of the TEI Guidelines, which specifies how the chosen attributes and tags should be applied to the text in question.</p>
-        <p>Encoding a text in Unicode is also admittedly a declaration of intent to process it in a Unicode-aware application, but programs that understand the Unicode character encoding are now practically universal.</p>
-        <p>To achieve interoperability—the ability to load a transcription into various programs without modification—it is thus obvious that the markup must first be removed from the text, because it is the markup that contains virtually all of the interpretation, and what little interpretation remains does not stop the text from being interoperable.</p>
-        <p>Admittedly, there are many features recorded in markup that are really part of the <soCalled>text</soCalled> and vice-versa, such as tabs, spaces, and carriage-returns—which are, at least in part, layout instructions found in plain text—and paragraph breaks, which are a kind of text content described via markup. However, since interoperability is a technological property (the ability to load a file unmodified into several programs), the distinction must be drawn on technological grounds. There are simply too many ways to mark things that might be interpreted as paragraph breaks—for example, <gi>div</gi>, <gi>ab</gi>, <gi>sp</gi>,—for any combination of text plus basic markup to serve as an interoperable format.</p>
+        <p>One obvious remedy to this problem is to remove the main source of non-interoperability,
+          namely the embedded markup itself, from the text. By removing it, the part which contains
+          all the significant interpretation can later be added or substituted at will.</p>
+        <p>What remains when the markup is removed is a residue of plain text that is highly
+          interoperable, which can be exchanged with other researchers, just as the files on
+          Gutenberg.org are downloaded by the tens of thousands every day (<ref type="bibl"
+            target="#leibert08">Leibert 2008</ref>). However, if one suggests this to someone who
+          regularly uses TEI-XML, the immediate objection is made that this will solve nothing,
+          because even plain ASCII texts are still an interpretation of what the transcriber sees on
+          the page (e.g. <ref type="bibl" target="#msmq91">Sperberg-McQueen 1991, 35</ref>). This
+          point, although valid to a degree, misses an important distinction.</p>
+        <p>But first consider what exactly is the nature of the interpretation exercised when a text
+          is transcribed. A digital text encoding system, even one as expansive as Unicode, has a
+          limited power to capture the features of abstract <soCalled>text</soCalled>, which may be
+          understood as the entire content of a page to be transcribed (<ref type="bibl"
+            target="#sahle13">Sahle 2013, 244</ref>). Certainly there is much that cannot be
+          represented directly in this way: for example, unconventional characters found in
+          manuscripts and early printed books, including abbreviations.<note><p>Medieval Unicode
+              Font Initiative, <ptr target="http://www.mufi.info/"/>.</p></note> Many of these cases
+          are ligatures, which can be encoded in their decomposed forms. Unicode is <quote
+            source="#quoteref20">a <emph>character</emph> encoding standard, and is not intended to
+            standardize ligatures or other presentation forms</quote> (<ref type="bibl"
+            xml:id="quoteref20" target="#unicode10">Unicode 2010</ref>). For example, there is no
+          Unicode character for old Latin <mentioned>sescuncia</mentioned> (like a pound-sign, means
+            <soCalled>one eighth</soCalled>), since it can be composed from
+            <mentioned>semuncia</mentioned> (character 10192) and an EN-dash (<ref type="bibl"
+            target="#perry06">Perry 2006, 4</ref>). However, even in modern texts there are inline
+          mathematics and graphics, which pose a similar problem. In such cases markup must be used
+          to extend the capabilities of plain text. But let these exceptions be set aside for the
+          moment, because the discussion on markup below also applies to them. Encodable character
+          data or <soCalled>plain text</soCalled> is so overwhelmingly prevalent in literary and
+          historical documents that it should be treated as a separate case.</p>
+        <p>An encodable character on a page is either illegible, unclear, or clear. If the character
+          is simply illegible, then a gap, qualified by some markup describing how long it is and
+          how it has been rendered illegible can be added (<ref type="bibl" target="#tei14">TEI
+            Consortium 2014, 3.4.3</ref>). If the letter is not clear then it admits of several
+          various readings. It is thus like a variant and can be treated by the mechanisms for
+          recording variants. But in by far the most common case, if the character symbol is clear
+          and the letter has, say, the shape of the letter <mentioned>t</mentioned>, choosing to
+          encode it as the Unicode character code 116 for <mentioned>t</mentioned> is probably not
+          an interpretation, because no reasonable person would dispute the point. On the other
+          hand, choosing to record it or not <emph>is</emph> an interpretation. Patrick Sahle (<ref
+            type="bibl" xml:id="quoteref21" target="#sahle13">2013, 244f</ref>) argues in his <quote
+            source="#quoteref21">pluralistic text model</quote> that different texts will be needed
+          for different purposes. For instance, whether or not to encode the running header, or the
+          index at the back, or the text in an image, would be an editorial decision. This
+          interpretation is binary in nature: the editor can only choose to encode it or not.</p>
+        <p>On the other hand, the interpretation about which format or logical structure an
+          italicized <mentioned>t</mentioned> belongs to involves assigning it to one of a myriad of
+          possible encodings. In the TEI-Lite schema alone one may choose, for example, between
+            <tag>hi rend="italic"</tag>, <tag>hi rend="italics"</tag>, <gi>foreign</gi>,
+            <gi>stage</gi>, <gi>term</gi>, <gi>soCalled</gi>, and <gi>head</gi>. The problem with
+          choosing one formulation of <soCalled>italics</soCalled> or another and inserting it into
+          the text is that this constitutes a declaration of intent to write software that will act
+          upon those specific interpretative codes. Even just encoding it in any kind of XML
+          declares an intent to process it in an XML-aware application. Encoding it in a specific
+          customization of TEI-XML presupposes that there is software that can understand that
+          encoding, including its interpretation of the TEI Guidelines, which specifies how the
+          chosen attributes and tags should be applied to the text in question.</p>
+        <p>Encoding a text in Unicode is also admittedly a declaration of intent to process it in a
+          Unicode-aware application, but programs that understand the Unicode character encoding are
+          now practically universal.</p>
+        <p>To achieve interoperability—the ability to load a transcription into various programs
+          without modification—it is thus obvious that the markup must first be removed from the
+          text, because it is the markup that contains virtually all of the interpretation, and what
+          little interpretation remains does not stop the text from being interoperable.</p>
+        <p>Admittedly, there are many features recorded in markup that are really part of the
+            <soCalled>text</soCalled> and vice-versa, such as tabs, spaces, and
+          carriage-returns—which are, at least in part, layout instructions found in plain text—and
+          paragraph breaks, which are a kind of text content described via markup. However, since
+          interoperability is a technological property (the ability to load a file unmodified into
+          several programs), the distinction must be drawn on technological grounds. There are
+          simply too many ways to mark things that might be interpreted as paragraph breaks—for
+          example, <gi>div</gi>, <gi>ab</gi>, <gi>sp</gi>,—for any combination of text plus basic
+          markup to serve as an interoperable format.</p>
         <div xml:id="standoffeditor">
           <head>A Stand-off Editor</head>
-          <p>So how would this work in practice? <ptr target="#figure1" type="crossref"/> sketches the design of a practical web-based editing system that could be assembled using existing components. At the bottom the user interface is just a standard WYSIWYG editing environment for XML or a Markdown-like language (adapted for TEI). The latter are now ubiquitous on the Web and have the advantage of offering a forgiving syntax.<note><p><ptr target="http://www.markdownviewer.com/"/>.</p></note> Rather than parsing the user-input formally, they convert it into approximate HTML, then <soCalled>tidy</soCalled> it into valid HTML. The user can thus see the result immediately without receiving any puzzling <q>syntax error</q> messages. When the user presses <mentioned>save</mentioned> the client sends to the server the HTML or XML (depending on the interface), which is immediately stripped of markup, and the two components are stored separately.</p>
-          <p>Only one editorial layer or internal version of the document can be edited at a time. If there are other stand-off markup sets attached to this version they could be updated on save, by first computing the differences between the submitted copy and the one stored on the server. These differences could then be used to delete, curtail or expand the range of existing markup properties (<ref type="bibl" target="#nelson97">Nelson 1997</ref>; <ref type="bibl" target="#vulpe98">Vulpe and Owens 1998</ref>). The user would be entirely unaware that there were any stand-off properties attached to the text; the formatting would appear naturally inline, but the benefits of the separation would always be present in the system. In this form the text+markup can be saved as a coherent copy through export, or reformatted for another purpose using a different markup set or sets. The ability to convert stand-off properties into valid HTML already exists in the formatter tool in <ref target="http://austese.net/">AustESE</ref>.<note><p>Australian Electronic Scholarly Editing, <ptr target="http://austese.net/"/>.</p></note> This could easily be extended to generate Markdown or XML. When the user requests that version again, the digital document is reconstructed from the stand-off markup properties and the base text and a new XML or Markdown document is created for editing. This data flow has the advantage of silently fixing any coding errors present in the user’s input, and painlessly enforcing the correct coding syntax.</p>
+          <p>So how would this work in practice? <ptr target="#figure1" type="crossref"/> sketches
+            the design of a practical web-based editing system that could be assembled using
+            existing components. At the bottom the user interface is just a standard WYSIWYG editing
+            environment for XML or a Markdown-like language (adapted for TEI). The latter are now
+            ubiquitous on the Web and have the advantage of offering a forgiving
+                  syntax.<note><p><ptr target="http://www.markdownviewer.com/"/>.</p></note> Rather
+            than parsing the user-input formally, they convert it into approximate HTML, then
+              <soCalled>tidy</soCalled> it into valid HTML. The user can thus see the result
+            immediately without receiving any puzzling <q>syntax error</q> messages. When the user
+            presses <mentioned>save</mentioned> the client sends to the server the HTML or XML
+            (depending on the interface), which is immediately stripped of markup, and the two
+            components are stored separately.</p>
+          <p>Only one editorial layer or internal version of the document can be edited at a time.
+            If there are other stand-off markup sets attached to this version they could be updated
+            on save, by first computing the differences between the submitted copy and the one
+            stored on the server. These differences could then be used to delete, curtail or expand
+            the range of existing markup properties (<ref type="bibl" target="#nelson97">Nelson
+              1997</ref>; <ref type="bibl" target="#vulpe98">Vulpe and Owens 1998</ref>). The user
+            would be entirely unaware that there were any stand-off properties attached to the text;
+            the formatting would appear naturally inline, but the benefits of the separation would
+            always be present in the system. In this form the text+markup can be saved as a coherent
+            copy through export, or reformatted for another purpose using a different markup set or
+            sets. The ability to convert stand-off properties into valid HTML already exists in the
+            formatter tool in <ref target="http://austese.net/">AustESE</ref>.<note><p>Australian
+                Electronic Scholarly Editing, <ptr target="http://austese.net/"/>.</p></note> This
+            could easily be extended to generate Markdown or XML. When the user requests that
+            version again, the digital document is reconstructed from the stand-off markup
+            properties and the base text and a new XML or Markdown document is created for editing.
+            This data flow has the advantage of silently fixing any coding errors present in the
+            user’s input, and painlessly enforcing the correct coding syntax.</p>
           <figure xml:id="figure1">
             <graphic url="img/figure1.png" width="445px" height="431px"/>
             <head type="legend">Design of a stand-off editor</head>
           </figure>
-          <p>Although this design is not yet fully realized, much of it is. The import and export facilities, from XML to plain text plus markup, the export to a variety of interoperable formats including HTML, XML, and plain text, the formatter and stripper programs, already exist as components of AustESE. All that is lacking is adapting it to an editing interface such as Markdownviewer. But this would also not preclude the use of XML-based WYSIWYG editors like the Islandora TEI editor (<ref type="bibl" target="#stapelfeldt13">Stapelfeldt and Moses 2013</ref>) or the <ref target="http://standoffmarkup.org/">Standoff Markup Editor</ref><note><p><ptr target="http://standoffmarkup.org/"/>.</p></note> being developed at Loyola.</p>
+          <p>Although this design is not yet fully realized, much of it is. The import and export
+            facilities, from XML to plain text plus markup, the export to a variety of interoperable
+            formats including HTML, XML, and plain text, the formatter and stripper programs,
+            already exist as components of AustESE. All that is lacking is adapting it to an editing
+            interface such as Markdownviewer. But this would also not preclude the use of XML-based
+            WYSIWYG editors like the Islandora TEI editor (<ref type="bibl" target="#stapelfeldt13"
+              >Stapelfeldt and Moses 2013</ref>) or the <ref target="http://standoffmarkup.org/"
+              >Standoff Markup Editor</ref><note><p><ptr target="http://standoffmarkup.org/"
+              />.</p></note> being developed at Loyola.</p>
         </div>
       </div>
       <div xml:id="metaannotations">
         <head>TEI, Metadata, and Annotations</head>
-        <p>The standard definition of metadata as <soCalled>data about data</soCalled> seems to pose more questions than it answers. Metadata has come to mean many things, including any form of data that describes digital resources on the Web. But in the context of TEI, metadata means data describing the digital document as a whole, and in TEI it <!-- [RvdB] metadata: singular/plural? -->is embodied in the Header, which is an obligatory part of every TEI document. (In this section <term>document</term> refers to the digital surrogate, not the physical document.) The problem with embedded metadata is that they are not interoperable. The more common approach now is to store metadata separately from the documents they describe (<ref type="bibl" target="#haynes04">Haynes 2004, 107</ref>). The increasing tendency toward user-driven data models for repository design, inspired by the growth of cultural resources websites, has fueled the development of cross-disciplinary repositories and increased demand for interoperability of metadata (<ref type="bibl" target="#spinazzè04">Spinazzè 2004</ref>). This has led to two basic strategies: 
-        <list rend="ordered">
-          <item><p>Federation of existing metadata formats by specifying a translation of metadata properties between formats.</p></item>
-          <item><p>Reduction of the metadata to the lowest common denominator across the whole collection. The most common format used for this purpose is <ref target="http://dublincore.org/documents/">Dublin Core</ref>,<note><p>Dublin Core Metadata Initiative, <ptr target="http://dublincore.org/documents/"/>.</p></note> as used in DSpace, or even the more reductionist approach used in TextGrid.</p></item>
-        </list>
+        <p>The standard definition of metadata as <soCalled>data about data</soCalled> seems to pose
+          more questions than it answers. Metadata has come to mean many things, including any form
+          of data that describes digital resources on the Web. But in the context of TEI, metadata
+          means data describing the digital document as a whole, and in TEI it
+          <!-- [RvdB] metadata: singular/plural? -->is embodied in the Header, which is an
+          obligatory part of every TEI document. (In this section <term>document</term> refers to
+          the digital surrogate, not the physical document.) The problem with embedded metadata is
+          that they are not interoperable. The more common approach now is to store metadata
+          separately from the documents they describe (<ref type="bibl" target="#haynes04">Haynes
+            2004, 107</ref>). The increasing tendency toward user-driven data models for repository
+          design, inspired by the growth of cultural resources websites, has fueled the development
+          of cross-disciplinary repositories and increased demand for interoperability of metadata
+            (<ref type="bibl" target="#spinazzè04">Spinazzè 2004</ref>). This has led to two basic
+          strategies: <list rend="ordered">
+            <item><p>Federation of existing metadata formats by specifying a translation of metadata
+                properties between formats.</p></item>
+            <item><p>Reduction of the metadata to the lowest common denominator across the whole
+                collection. The most common format used for this purpose is <ref
+                  target="http://dublincore.org/documents/">Dublin Core</ref>,<note><p>Dublin Core
+                    Metadata Initiative, <ptr target="http://dublincore.org/documents/"
+                  />.</p></note> as used in DSpace, or even the more reductionist approach used in
+                TextGrid.</p></item>
+          </list>
         </p>
-        <p>Since the advent of <soCalled>big tent</soCalled> humanities the digital scholarly edition has had to contemplate a future within a mixture of resources (images, video, audio, or other document types) from related disciplines like archaeology, sociology, history, philosophy, and art history. Functionally, if metadata about a document is not available in a separate database, retrieval is complicated and slow. This means that either the TEI header has to be extracted and transformed into the repository standard metadata, or generated and inserted into the document, based on the repository metadata. Either way, the TEI header looks increasingly as if it is redundant in its present form.</p>
-        <p>The primary uses of metadata are to describe resources and to aid in their discovery (<ref type="bibl" target="#day01">Day 2001</ref>). But metadata also play a role in management and description of a resource. Once the resource is found, it would help the user to know more about it. But here the main problem is cost: detailed metadata are expensive to produce. So two forces—cost and the need for interoperability—are both pushing towards external, brief, and standard metadata. The TEIHeader, on the other hand, is embedded, detailed, and non-standard.</p>
-        <p>One quarter of the TEI Guidelines are dedicated to metadata. Part of the bulk comes from the specialized manuscript description module (<ident>msdescription</ident>). This can be part of the TEIHeader, or it can be used as a separate document format. Apart from this module, the TEIHeader itself mostly contains tags that are already provided by other metadata schemas, such as <ref target="http://www.loc.gov/standards/mods/">MODS</ref>,<note><p>Metadata Object Description Schema, <ptr target="http://www.loc.gov/standards/mods/"/>.</p></note> Dublin Core, and <ref target="http://www.loc.gov/ead/tglib/index.html">EAD</ref>,<note><p>Encoded Archival Description Tag Library, version 2002, EAD Technical Document no. 2, <ptr target="http://www.loc.gov/ead/tglib/index.html"/>.</p></note> which is a serviceable substitute for TEIHeader. Removing it altogether, and storing the information externally, would significantly reduce the complexity of the TEI Guidelines without harming its usefulness. Applications that need <ident>msdescription</ident> could simply connect the separate manuscript descriptions to the source texts, using standard metadata.</p>
+        <p>Since the advent of <soCalled>big tent</soCalled> humanities the digital scholarly
+          edition has had to contemplate a future within a mixture of resources (images, video,
+          audio, or other document types) from related disciplines like archaeology, sociology,
+          history, philosophy, and art history. Functionally, if metadata about a document is not
+          available in a separate database, retrieval is complicated and slow. This means that
+          either the TEI header has to be extracted and transformed into the repository standard
+          metadata, or generated and inserted into the document, based on the repository metadata.
+          Either way, the TEI header looks increasingly as if it is redundant in its present
+          form.</p>
+        <p>The primary uses of metadata are to describe resources and to aid in their discovery
+            (<ref type="bibl" target="#day01">Day 2001</ref>). But metadata also play a role in
+          management and description of a resource. Once the resource is found, it would help the
+          user to know more about it. But here the main problem is cost: detailed metadata are
+          expensive to produce. So two forces—cost and the need for interoperability—are both
+          pushing towards external, brief, and standard metadata. The TEIHeader, on the other hand,
+          is embedded, detailed, and non-standard.</p>
+        <p>One quarter of the TEI Guidelines are dedicated to metadata. Part of the bulk comes from
+          the specialized manuscript description module (<ident>msdescription</ident>). This can be
+          part of the TEIHeader, or it can be used as a separate document format. Apart from this
+          module, the TEIHeader itself mostly contains tags that are already provided by other
+          metadata schemas, such as <ref target="http://www.loc.gov/standards/mods/"
+              >MODS</ref>,<note><p>Metadata Object Description Schema, <ptr
+                target="http://www.loc.gov/standards/mods/"/>.</p></note> Dublin Core, and <ref
+            target="http://www.loc.gov/ead/tglib/index.html">EAD</ref>,<note><p>Encoded Archival
+              Description Tag Library, version 2002, EAD Technical Document no. 2, <ptr
+                target="http://www.loc.gov/ead/tglib/index.html"/>.</p></note> which is a
+          serviceable substitute for TEIHeader. Removing it altogether, and storing the information
+          externally, would significantly reduce the complexity of the TEI Guidelines without
+          harming its usefulness. Applications that need <ident>msdescription</ident> could simply
+          connect the separate manuscript descriptions to the source texts, using standard
+          metadata.</p>
         <div xml:id="annotations">
           <head>Annotations</head>
-          <p>Embedded annotations can also be removed from TEI texts. The elements <gi>note</gi>, <gi>interp</gi>, and <gi>interpGrp</gi> describe content that, like metadata, is <emph>about</emph> the text, not the text itself. These are really annotations, and should ideally be represented via the established standards and practices of <emph>external</emph> annotation (<ref type="bibl" target="#hunter12">Hunter and Gerber 2012</ref>). Annotations are stored in <term>triple stores</term> or graph databases like <ref target="http://www.neo4j.org/">Neo4J</ref>,<note><p><ptr target="http://www.neo4j.org/"/></p></note> which record the identifiers of each component of the annotation and its data. Keeping track of how all these objects interrelate is a specialized task that should be assigned to a dedicated annotation engine. And annotation should point to the document, not the other way around. Otherwise, any alteration to the annotations will break the document. Strangely, the <gi>interp</gi> element in TEI does exactly that: it is assigned an <ident>id</ident>, and then the textual element <emph>points to it</emph> via its <att>ana</att> attribute. A similar awkwardness can be seen with <gi>span</gi>, which can be used similarly to embed short annotations directly in the text. The problems this caused for Singer’s students have already been noted in <ptr target="#examples" type="crossref"/> above. As with metadata, the TEI mechanisms for annotation need to be brought more into line with modern practice.</p>
+          <p>Embedded annotations can also be removed from TEI texts. The elements <gi>note</gi>,
+              <gi>interp</gi>, and <gi>interpGrp</gi> describe content that, like metadata, is
+              <emph>about</emph> the text, not the text itself. These are really annotations, and
+            should ideally be represented via the established standards and practices of
+              <emph>external</emph> annotation (<ref type="bibl" target="#hunter12">Hunter and
+              Gerber 2012</ref>). Annotations are stored in <term>triple stores</term> or graph
+            databases like <ref target="http://www.neo4j.org/">Neo4J</ref>,<note><p><ptr
+                  target="http://www.neo4j.org/"/></p></note> which record the identifiers of each
+            component of the annotation and its data. Keeping track of how all these objects
+            interrelate is a specialized task that should be assigned to a dedicated annotation
+            engine. And annotation should point to the document, not the other way around.
+            Otherwise, any alteration to the annotations will break the document. Strangely, the
+              <gi>interp</gi> element in TEI does exactly that: it is assigned an <ident>id</ident>,
+            and then the textual element <emph>points to it</emph> via its <att>ana</att> attribute.
+            A similar awkwardness can be seen with <gi>span</gi>, which can be used similarly to
+            embed short annotations directly in the text. The problems this caused for Singer’s
+            students have already been noted in <ptr target="#examples" type="crossref"/> above. As
+            with metadata, the TEI mechanisms for annotation need to be brought more into line with
+            modern practice.</p>
         </div>
       </div>
       <div xml:id="layers">
         <head>Splitting the Text into Layers</head>
-        <p>Even though markup is subjective, and makes the transcription non-interoperable, it is often said that this doesn’t matter, because stripping markup from TEI-encoded texts is <!-- [RvdB] not sure if this is the most adequate encoding --><quote source="#quoteref22">a piece of cake</quote> or <quote source="#quoteref22">five minutes’ work</quote>.<note><p><bibl xml:id="quoteref22"><orgName>Humanist</orgName>, <date>2010</date>. <title level="a">inadequacies of Markup</title>. <title level="m">Humanist Discussion Group archives</title>, <biblScope unit="volume">vol. 23</biblScope>, <biblScope unit="issue">digest 789</biblScope>, 3; <biblScope unit="issue">795</biblScope>, 1. <ptr target="http://dhhumanist.org/Archives/Current/Humanist.vol23.txt"/></bibl>. <q>piece of cake</q>: Wendell Piez, 30 April 2010. <q>five minutes work</q>: John Walsh, 4 May 2010.</p></note> This section will argue and demonstrate that it is in fact far more trouble than five minutes’ work, and that there is no guarantee, even after several weeks of programming, that one may obtain consistent results for TEI files that use any form of variant encoding, including abbreviation and expansion and spelling normalization (i.e. <gi>mod</gi>, <gi>subst</gi>, <gi>choice</gi>, <gi>sic</gi>, <gi>corr</gi>, <gi>add</gi>, <gi>del</gi>, <gi>abbr</gi>, <gi>expan</gi>, <gi>orig</gi>, <gi>reg</gi>, <gi>app</gi>, <gi>lem</gi>, and <gi>rdg</gi>). Tags are stripped from XML far more often than might be imagined. Whenever a program compares the content (not just the structure) of one XML file with another, whenever it analyzes the text content of a file, what the program sees is effectively the digital document stripped of all its tags. The example chosen for this demonstration is the poem <title level="a">Social Charity</title> from manuscript C376 by Charles Harpur, one of the first Australian poets. This documentary version dates to 1851, but there are four others extant, dating from 1848 to 1867. Consider the following half-page of MS C376:<note><p>The Sydney Electronic Text and Image Service, <ptr target="http://setis.library.usyd.edu.au/ozedits/harpur/"/>.</p></note> 
+        <p>Even though markup is subjective, and makes the transcription non-interoperable, it is
+          often said that this doesn’t matter, because stripping markup from TEI-encoded texts is
+            <!-- [RvdB] not sure if this is the most adequate encoding --><quote
+            source="#quoteref22">a piece of cake</quote> or <quote source="#quoteref22">five
+            minutes’ work</quote>.<note><p><bibl xml:id="quoteref22"><orgName>Humanist</orgName>,
+                  <date>2010</date>. <title level="a">inadequacies of Markup</title>. <title
+                  level="m">Humanist Discussion Group archives</title>, <biblScope unit="volume"
+                  >vol. 23</biblScope>, <biblScope unit="issue">digest 789</biblScope>, 3;
+                  <biblScope unit="issue">795</biblScope>, 1. <ptr
+                  target="http://dhhumanist.org/Archives/Current/Humanist.vol23.txt"/></bibl>.
+                <q>piece of cake</q>: Wendell Piez, 30 April 2010. <q>five minutes work</q>: John
+              Walsh, 4 May 2010.</p></note> This section will argue and demonstrate that it is in
+          fact far more trouble than five minutes’ work, and that there is no guarantee, even after
+          several weeks of programming, that one may obtain consistent results for TEI files that
+          use any form of variant encoding, including abbreviation and expansion and spelling
+          normalization (i.e. <gi>mod</gi>, <gi>subst</gi>, <gi>choice</gi>, <gi>sic</gi>,
+            <gi>corr</gi>, <gi>add</gi>, <gi>del</gi>, <gi>abbr</gi>, <gi>expan</gi>, <gi>orig</gi>,
+            <gi>reg</gi>, <gi>app</gi>, <gi>lem</gi>, and <gi>rdg</gi>). Tags are stripped from XML
+          far more often than might be imagined. Whenever a program compares the content (not just
+          the structure) of one XML file with another, whenever it analyzes the text content of a
+          file, what the program sees is effectively the digital document stripped of all its tags.
+          The example chosen for this demonstration is the poem <title level="a">Social
+            Charity</title> from manuscript C376 by Charles Harpur, one of the first Australian
+          poets. This documentary version dates to 1851, but there are four others extant, dating
+          from 1848 to 1867. Consider the following half-page of MS C376:<note><p>The Sydney
+              Electronic Text and Image Service, <ptr
+                target="http://setis.library.usyd.edu.au/ozedits/harpur/"/>.</p></note>
           <figure xml:id="figure2">
             <graphic url="img/figure2.png" width="687px" height="629px"/>
             <head type="legend">Page 111 of C376 (00000059.jpg)</head>
             <head type="license">© State Library of New South Wales (The Mitchell Library)</head>
           </figure>
         </p>
-        <p>This exhibits only a modest amount of revision—for an autograph. Here is the transcription, as produced by the encoding team, omitting the header for brevity: 
-        <figure xml:id="example1">
-          <egXML xmlns="http://www.tei-c.org/ns/Examples">
-            <head>Social Charity</head> 
-            <lg type="poem"><l>Tis Life's prime household wisdom<del>,</del> not to scorn</l> 
-              <l>An erring Friend too <app><rdg><del>bitterly</del></rdg><rdg><del>sternly</del></rdg> <rdg>grimly</rdg></app>. If <add>but</add> tried</l> 
-              <l>Severely in some weakness, all will turn</l> 
-              <l>To folly sometimes,–<del>till</del><add>and</add> Love's cheek be dyed</l> 
-              <l>With blushes<del>,</del> such as for the fallen burn:</l> 
-              <l>So much<del> there is</del>, even in the best <add>is there </add>to mourn.</l> 
-              <l>And knowing this, we should be sadly kind,</l> 
-              <l>Not cruel, in reproof, nor sourly churn</l> 
-              <l>Sin into madness. Though in One we find</l> 
-              <l>Those gems of worth, <del>pure feelings and high parts</del><add>high motives, feelings <del>strong</del><add>pure</add></add>,</l> 
-              <l>Set in the fine gold of a constant mind?</l> 
-              <l>Yet even <app><rdg>that one <del>subject is to</del> starts</rdg> 
-                <rdg><del>that one's prone to starts of wrong</del></rdg> 
-                <rdg><emph>he</emph> shall sometimes prove insure:</rdg></app></l> 
-              <l><app><rdg><del>Of evil</del>: in the clearest <del>well <sic>their</sic><corr>there</corr></del> lies</rdg> 
-                <rdg><del>As ever</del> in the clearest fountain lies</rdg> 
-                <rdg><del>So</del> in the clearest fountain ever lies</rdg> 
-                <rdg>As in the clearest fountain ever lies</rdg></app></l> 
-              <l>A sediment—disturb it, and ’twill rise.</l></lg>
-          </egXML>
-          <head type="legend">A transcription of Page 111 of C376</head>
-        </figure>
-        </p>
-        <p>Now the same text with a simple XSLT stripping script applied.<note><p>Wendell Piez, Humanist Discussion Group Vol 23, digest 789, 3. <ptr target="http://dhhumanist.org/Archives/Current/Humanist.vol23.txt"/>.</p></note> This just naively removes all the tags: 
-          <figure xml:id="example2">
-            <eg>
-              Social Charity 
-              Tis Life's prime household wisdom, not to scorn 
-              An erring Friend too bitterlysternlygrimly. 
-              If but tried Severely in some weakness, all will turn 
-              To folly sometimes,–tilland Love’s cheek be dyed 
-              With blushes, such as for the fallen burn: 
-              So much there is, even in the best is there to mourn. 
-              And knowing this, we should be sadly kind, 
-              Not cruel, in reproof, nor sourly churn 
-              Sin into madness. Though in One we find 
-              Those gems of worth, pure feelings and high partshigh motives, feelings strongpure, 
-              Set in the fine gold of a constant mind? 
-              Yet even that one subject is to starts 
-              that one’s prone to starts of wrong 
-              he shall sometimes prove insure: 
-              Of evil: in the clearest well theirthere lies 
-              As ever in the clearest fountain lies
-              So in the clearest fountain ever lies
-              As in the clearest fountain ever lies
-              A sediment–disturb it, and ’twill rise.
-            </eg>
-            <head type="legend">A stripped transcription of Page 111 of C376</head>
+        <p>This exhibits only a modest amount of revision—for an autograph. Here is the
+          transcription, as produced by the encoding team, omitting the header for brevity: <figure
+            xml:id="example1">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <head>Social Charity</head>
+              <lg type="poem"><l>Tis Life's prime household wisdom<del>,</del> not to scorn</l>
+                <l>An erring Friend too
+                      <app><rdg><del>bitterly</del></rdg><rdg><del>sternly</del></rdg>
+                    <rdg>grimly</rdg></app>. If <add>but</add> tried</l>
+                <l>Severely in some weakness, all will turn</l>
+                <l>To folly sometimes,–<del>till</del><add>and</add> Love's cheek be dyed</l>
+                <l>With blushes<del>,</del> such as for the fallen burn:</l>
+                <l>So much<del> there is</del>, even in the best <add>is there </add>to mourn.</l>
+                <l>And knowing this, we should be sadly kind,</l>
+                <l>Not cruel, in reproof, nor sourly churn</l>
+                <l>Sin into madness. Though in One we find</l>
+                <l>Those gems of worth, <del>pure feelings and high parts</del><add>high motives,
+                    feelings <del>strong</del><add>pure</add></add>,</l>
+                <l>Set in the fine gold of a constant mind?</l>
+                <l>Yet even <app><rdg>that one <del>subject is to</del> starts</rdg>
+                    <rdg><del>that one's prone to starts of wrong</del></rdg>
+                    <rdg><emph>he</emph> shall sometimes prove insure:</rdg></app></l>
+                <l><app><rdg><del>Of evil</del>: in the clearest <del>well
+                          <sic>their</sic><corr>there</corr></del> lies</rdg>
+                    <rdg><del>As ever</del> in the clearest fountain lies</rdg>
+                    <rdg><del>So</del> in the clearest fountain ever lies</rdg>
+                    <rdg>As in the clearest fountain ever lies</rdg></app></l>
+                <l>A sediment—disturb it, and ’twill rise.</l></lg>
+            </egXML>
+            <head type="legend">A transcription of Page 111 of C376</head>
           </figure>
-          This is likely to be what a text-analysis program will see if it reads this particular XML file. Treatment of both whitespace and alternatives is obviously problematic.</p>
-        <p>As regards whitespace, spaces cannot be placed between all elements, since this is often not desired, as in the cases of partially formatted or canceled words and individual letters or syllables. And in XML not all whitespaces are equal: some are for pretty-printing the XML itself and some are content (<ref type="bibl" target="#bray08">Bray et al. 2008, §2.10</ref>), and a parser cannot tell which is which without reference to a schema. Furthermore, even if the parser uses a schema it will likely join up alternatives, because there is no significant whitespace between <gi>rdg</gi> elements in an <gi>app</gi>.</p>
-          <p>As regards searching, the juxtaposition of alternatives in the same text stream will lead to invalid results. In lines 13–15 <q>that one subject is to starts</q>, <q>that one’s prone to starts of wrong</q> and <q>he shall sometimes prove insure</q> belong to different layers, but a search engine would treat them all as part of the same sentence.</p>
-        <p>The solution to all this seems simple enough. One can just write a program that understands this particular encoding, and is able to tease apart the layers, or to take the first or last layer and discard the rest. This splitting into layers is an accepted technique, as used in Gabler’s edition of <title level="m">Ulysses</title> (<ref type="bibl" target="#gabler84">Gabler, Steppe, and Melchior 1984, x</ref>), and also in HNML (<ref type="bibl" target="#zapf06">Zapf 2006</ref>). But how easy is it, exactly?</p>
-        <p>Consider the sequences of variants in line 3 and in lines 16–19 in example 1. In line 3 there are three successive alternatives, and in lines 16–19 there are four. Since the last alternative in line 3 is uncanceled it belongs by default to both the third and fourth layers of lines 16–19. It is <soCalled>by default</soCalled> because in autographs like this there is usually no way of telling which layer in line 3 was current when the unrelated changes were made to lines 16–19 (<ref type="bibl" target="#pierazzo09">Pierazzo 2009, 185</ref>). By marking it up as a sequence of corrections, whether as <gi>rdg</gi> or via <gi>add</gi> and <gi>del</gi>, there is already an implicit ordering of variants. The only difference is that here the alternatives are being assigned to default numbered layers; otherwise the information recorded is exactly the same. (A diplomatic rendition could still be produced from the layered representation.) So the main objective is to read coherent layers from the marked-up text, but for this to work, alternatives in one place must be coupled with sensible alternatives elsewhere. <ptr type="crossref" target="#table1"/> shows how the alternatives are linked by the splitter program in AustESE, which is used for importing TEI-XML files:
-          <table xml:id="table1" rend="border">
+        </p>
+        <p>Now the same text with a simple XSLT stripping script applied.<note><p>Wendell Piez,
+              Humanist Discussion Group Vol 23, digest 789, 3. <ptr
+                target="http://dhhumanist.org/Archives/Current/Humanist.vol23.txt"/>.</p></note>
+          This just naively removes all the tags: <figure xml:id="example2">
+            <eg> Social Charity Tis Life's prime household wisdom, not to scorn An erring Friend too
+              bitterlysternlygrimly. If but tried Severely in some weakness, all will turn To folly
+              sometimes,–tilland Love’s cheek be dyed With blushes, such as for the fallen burn: So
+              much there is, even in the best is there to mourn. And knowing this, we should be
+              sadly kind, Not cruel, in reproof, nor sourly churn Sin into madness. Though in One we
+              find Those gems of worth, pure feelings and high partshigh motives, feelings
+              strongpure, Set in the fine gold of a constant mind? Yet even that one subject is to
+              starts that one’s prone to starts of wrong he shall sometimes prove insure: Of evil:
+              in the clearest well theirthere lies As ever in the clearest fountain lies So in the
+              clearest fountain ever lies As in the clearest fountain ever lies A sediment–disturb
+              it, and ’twill rise. </eg>
+            <head type="legend">A stripped transcription of Page 111 of C376</head>
+          </figure> This is likely to be what a text-analysis program will see if it reads this
+          particular XML file. Treatment of both whitespace and alternatives is obviously
+          problematic.</p>
+        <p>As regards whitespace, spaces cannot be placed between all elements, since this is often
+          not desired, as in the cases of partially formatted or canceled words and individual
+          letters or syllables. And in XML not all whitespaces are equal: some are for
+          pretty-printing the XML itself and some are content (<ref type="bibl" target="#bray08"
+            >Bray et al. 2008, §2.10</ref>), and a parser cannot tell which is which without
+          reference to a schema. Furthermore, even if the parser uses a schema it will likely join
+          up alternatives, because there is no significant whitespace between <gi>rdg</gi> elements
+          in an <gi>app</gi>.</p>
+        <p>As regards searching, the juxtaposition of alternatives in the same text stream will lead
+          to invalid results. In lines 13–15 <q>that one subject is to starts</q>, <q>that one’s
+            prone to starts of wrong</q> and <q>he shall sometimes prove insure</q> belong to
+          different layers, but a search engine would treat them all as part of the same
+          sentence.</p>
+        <p>The solution to all this seems simple enough. One can just write a program that
+          understands this particular encoding, and is able to tease apart the layers, or to take
+          the first or last layer and discard the rest. This splitting into layers is an accepted
+          technique, as used in Gabler’s edition of <title level="m">Ulysses</title> (<ref
+            type="bibl" target="#gabler84">Gabler, Steppe, and Melchior 1984, x</ref>), and also in
+          HNML (<ref type="bibl" target="#zapf06">Zapf 2006</ref>). But how easy is it, exactly?</p>
+        <p>Consider the sequences of variants in line 3 and in lines 16–19 in example 1. In line 3
+          there are three successive alternatives, and in lines 16–19 there are four. Since the last
+          alternative in line 3 is uncanceled it belongs by default to both the third and fourth
+          layers of lines 16–19. It is <soCalled>by default</soCalled> because in autographs like
+          this there is usually no way of telling which layer in line 3 was current when the
+          unrelated changes were made to lines 16–19 (<ref type="bibl" target="#pierazzo09">Pierazzo
+            2009, 185</ref>). By marking it up as a sequence of corrections, whether as <gi>rdg</gi>
+          or via <gi>add</gi> and <gi>del</gi>, there is already an implicit ordering of variants.
+          The only difference is that here the alternatives are being assigned to default numbered
+          layers; otherwise the information recorded is exactly the same. (A diplomatic rendition
+          could still be produced from the layered representation.) So the main objective is to read
+          coherent layers from the marked-up text, but for this to work, alternatives in one place
+          must be coupled with sensible alternatives elsewhere. <ptr type="crossref"
+            target="#table1"/> shows how the alternatives are linked by the splitter program in
+          AustESE, which is used for importing TEI-XML files: <table xml:id="table1" rend="border">
             <!-- [RvdB] heading is needed for cross-reference, so I provided one -->
             <head>Linking of alternatives by the splitter program in AustESE</head>
             <row>
@@ -253,78 +783,326 @@
             </row>
           </table>
         </p>
-        <p>Since the <gi>sic</gi>/<gi>corr</gi> is an editorial directive, rather than an authorial change, it effectively splits layer 1 into two sublayers. Writing a general program to extract such layers from any TEI file is hard because different encoders use different ways to record deletions and alternatives. For example, the encoders here opted to mark text inside <gi>rdg</gi> codes that disappeared in the next layer with <gi>del</gi>, treating it effectively as a crossing-out format. But the <gi>del</gi> codes outside of the <gi>app</gi> <emph>do</emph> create new layers: that is, they are not mere formats. Another encoder might find that too confusing, and regard all <gi>del</gi> codes as introducing a new layer, forcing the program to be adjusted. And what if <q>grimly</q> had been canceled instead of <q>sternly</q>? Then <q>sternly</q> would replace <q>grimly</q> in layer 4, but not in 3. And what about the bare <gi>add</gi> in line 3: the content of this element belongs to layers 2, 3, and 4 but not to 1.</p>
-          <p>It is obvious from considerations like these that what seems on the surface to be a simple problem is actually very messy and difficult to handle. A program has to compute all this correctly, for as wide a range of texts as possible. In fact it took the author a week of continuous work to adapt an already existing splitter program to work with this material.</p>
-          <p>These problems would all disappear if layers were stored separately. This would greatly simplify editing, since the user and the programmer would only have to deal with one layer at a time. The simple text editor described above in section 3 could be used, since all the complex markup would already be expressed through layers.</p>
+        <p>Since the <gi>sic</gi>/<gi>corr</gi> is an editorial directive, rather than an authorial
+          change, it effectively splits layer 1 into two sublayers. Writing a general program to
+          extract such layers from any TEI file is hard because different encoders use different
+          ways to record deletions and alternatives. For example, the encoders here opted to mark
+          text inside <gi>rdg</gi> codes that disappeared in the next layer with <gi>del</gi>,
+          treating it effectively as a crossing-out format. But the <gi>del</gi> codes outside of
+          the <gi>app</gi>
+          <emph>do</emph> create new layers: that is, they are not mere formats. Another encoder
+          might find that too confusing, and regard all <gi>del</gi> codes as introducing a new
+          layer, forcing the program to be adjusted. And what if <q>grimly</q> had been canceled
+          instead of <q>sternly</q>? Then <q>sternly</q> would replace <q>grimly</q> in layer 4, but
+          not in 3. And what about the bare <gi>add</gi> in line 3: the content of this element
+          belongs to layers 2, 3, and 4 but not to 1.</p>
+        <p>It is obvious from considerations like these that what seems on the surface to be a
+          simple problem is actually very messy and difficult to handle. A program has to compute
+          all this correctly, for as wide a range of texts as possible. In fact it took the author a
+          week of continuous work to adapt an already existing splitter program to work with this
+          material.</p>
+        <p>These problems would all disappear if layers were stored separately. This would greatly
+          simplify editing, since the user and the programmer would only have to deal with one layer
+          at a time. The simple text editor described above in section 3 could be used, since all
+          the complex markup would already be expressed through layers.</p>
       </div>
       <div xml:id="puttingtogether">
         <head>Putting it All Together</head>
-        <p>As argued here, one way forward is to divide data into functional categories. A digital scholarly edition could be re-expressed as a bundle containing:
-        <list rend="ordered">
-          <item>plain text or HTML versions, one per internal layer, for each document that witnesses the work in question</item>
-          <item>separate markup if plain text is used</item>
-          <item>annotations, and</item>
-          <item>metadata about the documents stored separately from the text.</item>
-        </list>
+        <p>As argued here, one way forward is to divide data into functional categories. A digital
+          scholarly edition could be re-expressed as a bundle containing: <list rend="ordered">
+            <item>plain text or HTML versions, one per internal layer, for each document that
+              witnesses the work in question</item>
+            <item>separate markup if plain text is used</item>
+            <item>annotations, and</item>
+            <item>metadata about the documents stored separately from the text.</item>
+          </list>
         </p>
-        <p>AustESE currently uses a zipped folder structure to represent all this information, including paratextual information such as biographies, in as application-independent a manner as possible. Alternative formats like HTML, TEXT, MVD, and XML are provided for the source documents, and the application that is reading it only has to choose one. Single or multiple editions can be stored in the one container, and these can be uploaded to or downloaded from digital scholarly editions on the Web using the <ref target="https://github.com/AustESE-Infrastructure/psef-tool">psef-tool</ref>,<note><p><ptr target="https://github.com/AustESE-Infrastructure/psef-tool"/>.</p></note> to create a portable scholarly edition format. In future psef-archives may be expressed in standard formats such as <ref target="http://www.idpf.org/epub/30/spec/epub30-overview.html">EPUB</ref>.<note><p>EPUB3 Overview: Recommended Specification, October 11, 2011, <ptr target="http://www.idpf.org/epub/30/spec/epub30-overview.html"/>.</p></note> However, EPUB3 doesn’t currently support annotations, although they are likely to be added to the next version of EPUB.<note><p>EPUB3 Annotation. Epub-revision. <ptr target="http://code.google.com/p/epub-revision/wiki/ImplementationProposalAnnotations"/>.</p></note></p>
-        <p>But the main advantage of this entire approach is that, however it is realized, the model is designed to support interoperability from the start. Scholars need a separate package of data that they can exchange and use in a variety of programs and platforms, a package they can identify with clearly as a <soCalled>digital scholarly edition</soCalled>, however it is rendered or edited in practice.</p>
+        <p>AustESE currently uses a zipped folder structure to represent all this information,
+          including paratextual information such as biographies, in as application-independent a
+          manner as possible. Alternative formats like HTML, TEXT, MVD, and XML are provided for the
+          source documents, and the application that is reading it only has to choose one. Single or
+          multiple editions can be stored in the one container, and these can be uploaded to or
+          downloaded from digital scholarly editions on the Web using the <ref
+            target="https://github.com/AustESE-Infrastructure/psef-tool"
+                >psef-tool</ref>,<note><p><ptr
+                target="https://github.com/AustESE-Infrastructure/psef-tool"/>.</p></note> to create
+          a portable scholarly edition format. In future psef-archives may be expressed in standard
+          formats such as <ref target="http://www.idpf.org/epub/30/spec/epub30-overview.html"
+            >EPUB</ref>.<note><p>EPUB3 Overview: Recommended Specification, October 11, 2011, <ptr
+                target="http://www.idpf.org/epub/30/spec/epub30-overview.html"/>.</p></note>
+          However, EPUB3 doesn’t currently support annotations, although they are likely to be added
+          to the next version of EPUB.<note><p>EPUB3 Annotation. Epub-revision. <ptr
+                target="http://code.google.com/p/epub-revision/wiki/ImplementationProposalAnnotations"
+              />.</p></note></p>
+        <p>But the main advantage of this entire approach is that, however it is realized, the model
+          is designed to support interoperability from the start. Scholars need a separate package
+          of data that they can exchange and use in a variety of programs and platforms, a package
+          they can identify with clearly as a <soCalled>digital scholarly edition</soCalled>,
+          however it is rendered or edited in practice.</p>
       </div>
       <div xml:id="conclusion">
         <head>Conclusion</head>
-        <p>If there is one point to be drawn from this whole question of interoperability, it is that what is being advocated here is a divide-and-conquer approach, as opposed to the all-in-one design of the TEI document. This is not really mitigated by the common practice of pipelining, or building a TEI document from separate components. The schema still specifies that it is all-in-one, and markup and internal versions are still embedded within the text. This document-centric nature of TEI contrasts with the modern data-centric world, where the focus is much more on connecting relatively smaller chunks of data (<ref type="bibl" target="#berners-lee06">Berners-Lee 2006</ref>).</p>
-        <p>Interoperability also is not a goal that can be ignored simply because it is judged to be <q>impossible</q> using current technology. What matters is what users need, and they need interoperability now more than ever. Human interpretations will never be interoperable on their own, but it is possible to incorporate them into a technological structure that takes into account their variability.</p>
-        <p>The creation of customized SGML/XML encodings of literary and historical documents has not yet led to general sharing and collaboration in twenty-six years of trying, and the case has been made here that it never will. There is something fundamentally different about the way digital humanists encode texts that seems to make this impossible.</p>
-        <p>The objective of AustESE is to create digital scholarly editions that are as far as possible interoperable, and general tools to manage and visualize them. There is still much work to be done, for example, in building the stand-off editor outlined here, and tools for linking text and images need to be completed. But ideally the digital scholarly edition should be an <emph>abstract</emph> specification or model that can be realized in a variety of technological ways, so that it may conform to the ever-present currents of change.</p>
+        <p>If there is one point to be drawn from this whole question of interoperability, it is
+          that what is being advocated here is a divide-and-conquer approach, as opposed to the
+          all-in-one design of the TEI document. This is not really mitigated by the common practice
+          of pipelining, or building a TEI document from separate components. The schema still
+          specifies that it is all-in-one, and markup and internal versions are still embedded
+          within the text. This document-centric nature of TEI contrasts with the modern
+          data-centric world, where the focus is much more on connecting relatively smaller chunks
+          of data (<ref type="bibl" target="#berners-lee06">Berners-Lee 2006</ref>).</p>
+        <p>Interoperability also is not a goal that can be ignored simply because it is judged to be
+            <q>impossible</q> using current technology. What matters is what users need, and they
+          need interoperability now more than ever. Human interpretations will never be
+          interoperable on their own, but it is possible to incorporate them into a technological
+          structure that takes into account their variability.</p>
+        <p>The creation of customized SGML/XML encodings of literary and historical documents has
+          not yet led to general sharing and collaboration in twenty-six years of trying, and the
+          case has been made here that it never will. There is something fundamentally different
+          about the way digital humanists encode texts that seems to make this impossible.</p>
+        <p>The objective of AustESE is to create digital scholarly editions that are as far as
+          possible interoperable, and general tools to manage and visualize them. There is still
+          much work to be done, for example, in building the stand-off editor outlined here, and
+          tools for linking text and images need to be completed. But ideally the digital scholarly
+          edition should be an <emph>abstract</emph> specification or model that can be realized in
+          a variety of technological ways, so that it may conform to the ever-present currents of
+          change.</p>
       </div>
     </body>
     <back>
       <div type="bibliography">
         <listBibl>
-          <bibl xml:id="bauman11"><author>Bauman, Syd</author>. <date>2011</date>. <title level="a">Interchange vs. Interoperability</title>. In <title level="m">Proceedings of Balisage: The Markup Conference 2011</title>. <series>Balisage Series on Markup Technologies</series>, <biblScope unit="volume">vol. 7</biblScope>. <ptr target="https://balisage.net/Proceedings/vol7/html/Bauman01/BalisageVol7-Bauman01.html"/>. doi:<idno type="doi">10.4242/BalisageVol7.Bauman01</idno>.</bibl>
-          <bibl xml:id="berners-lee06"><author>Berners-Lee, Tim</author>. <date>2006</date>. <title level="a">Linked Data</title>. <title level="a">Design Issues: Architectural and Philosophical Points</title>. Last modified June 18, 2009. <ptr target="http://www.w3.org/DesignIssues/LinkedData.html"/>.</bibl>
-          <bibl xml:id="blackwell12"><author>Blackwell, Christopher</author>, and <author>Neel Smith</author>, <date>2012</date>. <title level="a">The CITE Architecture</title>. <title level="m">Homer Multitext Project: Documentation</title>. Last modified May 19, 2013. <ptr target="http://www.homermultitext.org/hmt-doc/cite/"/>.</bibl>
-          <bibl xml:id="bray08"><author>Bray, Tim</author>, <author>Jean Paoli</author>, <author>C. M. Sperberg-McQueen</author>, <author>Eve Maler</author>, and <author>François Yergeau</author>. <date>2008</date>. <title level="m">Extensible Markup Language (XML) 1.0 (Fifth Edition)</title>. W3C Recommendation 26 November 2008. Last modified February 7, 2013. <ptr target="http://www.w3.org/TR/REC-xml/"/>.</bibl>
-          <bibl xml:id="causer12"><author>Causer, Tim</author>, <author>Justin Tonra</author>, and <author>Valerie Wallace</author>. <date>2012</date>. <title level="a">Transcription Maximized; Expense minimized? Crowdsourcing and Editing The Collected Works of Jeremy Bentham.</title> <title level="j">Literary and Linguistic Computing</title> <biblScope unit="volume">27</biblScope>(<biblScope unit="issue">2</biblScope>): <biblScope unit="page">119–37</biblScope>. doi:<idno type="doi">10.1093/llc/fqs004</idno>.</bibl>
-          <bibl xml:id="crompton12"><author>Crompton, Constance</author>, and <author>Raymond Siemens</author>. <date>2012</date>. <title level="a">The Social Edition: Scholarly Editing Across Communities</title>. Presented at Digital Humanities Hamburg, Germany, July 16–20. <ptr target="http://www.dh2012.uni-hamburg.de/conference/programme/abstracts/the-social-edition-scholarly-editing-across-communities/"/>.</bibl>
-          <bibl xml:id="cummings07"><author>Cummings, James</author>. <date>2007</date>. <title level="a">The Text Encoding Initiative and the Study of Literature</title>. In <title level="m">A Companion to Digital Literary Studies</title>, edited by <editor>Ray Siemens</editor> and <editor>Susan Schreibman</editor>, <biblScope unit="page">451–76</biblScope>. <pubPlace>Oxford</pubPlace>: <publisher>Blackwell</publisher>.</bibl>
-          <bibl xml:id="day01"><author>Day, Michael</author>. <date>2001</date>. <title level="u">Metadata in a Nutshell</title>. Draft of an article published in <title level="j">Information Europe</title> <biblScope unit="volume">6</biblScope>(<biblScope unit="issue">2</biblScope>): <biblScope unit="page">11</biblScope>. <ptr target="http://www.ukoln.ac.uk/metadata/publications/nutshell/"/>.</bibl>
-          <bibl xml:id="dombrowski13"><author>Dombrowski, Quinn</author>, and <author>Seth Denbo</author>. <date>2013</date>. <title level="a">TEI and Project Bamboo</title>. <title level="j">Journal of the Text Encoding Initiative</title> <biblScope unit="issue">5</biblScope>. <ptr target="http://jtei.revues.org/787"/>. doi:<idno type="doi">10.4000/jtei.787</idno>.</bibl>
-          <bibl xml:id="durusau06"><author>Durusau, Patrick</author>. <date>2006</date>. <title level="a">Why and How to Document Your Markup Choices</title>. In <title level="m">Electronic Scholarly Editing</title>, edited by <editor>Lou Burnard</editor>, <editor>Katherine O’Brien O’Keeffe</editor>, and <editor>John Unsworth</editor>, <biblScope unit="page">299–309</biblScope>. <pubPlace>New York</pubPlace>: <publisher>MLA</publisher>.</bibl>
-          <bibl xml:id="estival97"><author>Estival, Dominique</author>, and <author>Nick Nicholas</author>. <date>1997</date>. <title level="a">TEI Encoding and Syntactic Tagging of an Old French Text</title>. Paper presented at the Text Encoding Initiative Tenth Anniversary User Conference, Providence, Rhode Island, November 14–16. <ptr target="http://cds.library.brown.edu/conferences/tei10/tei10.papers/estival.html"/>.</bibl>
-          <bibl xml:id="gabler84"><editor>Gabler, Hans Walter</editor>, <editor>Wolfhard Steppe</editor>, and <editor>Claus Melchior</editor>, eds. <date>1984</date>. <title level="m">Ulysses: A Critical and Synoptic Edition</title>. By <author>James Joyce</author>. <pubPlace>New York and London</pubPlace>: <publisher>Garland</publisher>.</bibl>
-          <bibl xml:id="gabler10"><author>Gabler, Hans Walter</author>. <date>2010</date>. <title level="a">Theorizing the Digital Scholarly Edition</title>. <title level="j">Literature Compass</title> <biblScope unit="volume">7</biblScope>(<biblScope unit="issue">2</biblScope>): <biblScope unit="page">43–56</biblScope>. doi:<idno type="doi">10.1111/j.1741-4113.2009.00675.x</idno>.</bibl>
-          <bibl xml:id="geyken12"><author>Geyken, Alexander</author>, <author>Susanne Haaf</author>, and <author>Frank Wiegand</author>. <date>2012</date>. <title level="a">The DTA ‘base format: A TEI-Subset for the Compilation of Interoperable Corpora</title>. Paper presented at KONVENS 2012 (LThist 2012: First International Workshop on Language Technology for Historical Texts), Vienna, September 21. In <title level="m">Empirical Methods in Natural Language Processing: Proceedings of the Conference on Natural Language Processing 2012</title>, edited by <editor>Jeremy Jancsary</editor>, <biblScope unit="page">383–91</biblScope>. <pubPlace>Vienna</pubPlace>: <publisher>Österreichischen Gesellschaft für Artificial Intelligende (ÖGAI)</publisher>. <ptr target="http://www.oegai.at/konvens2012/proceedings/57_geyken12w/"/>.</bibl>
-          <bibl xml:id="goldfarb96"><author>Goldfarb, Charles F.</author> <date>1996</date>. <title level="m">The Roots of SGML—A Personal Recollection</title>. Accessed August 20, 2014. <ptr target="http://www.sgmlsource.com/history/roots.htm"/>.</bibl>
-          <bibl xml:id="haynes04"><author>Haynes, David</author>. <date>2004</date>. <title level="m">Metadata for Information Management and Retrieval</title>. <pubPlace>London</pubPlace>: <publisher>Facet</publisher>.</bibl>
-          <bibl xml:id="hunter12"><author>Hunter, Jane</author>, and <author>Anna Gerber</author>. <date>2012</date>. <title level="a">Towards Annotopia—Enabling the Semantic Interoperability of Web-Based Annotations</title>. <title level="j">Future Internet</title> <biblScope unit="volume">4</biblScope>(<biblScope unit="issue">3</biblScope>): <biblScope unit="page">788–806</biblScope>.</bibl>
-          <bibl xml:id="ide88"><author>Ide, Nancy</author>, <author>C. M. Sperberg-McQueen</author>, <author>Robert Amsler</author>, <author>Donald Walker</author>, <author>Susan Hockey</author>, and <author>Antonio Zampolli</author>. <date>1988</date>. <title level="u">Proposal for Funding for an Initiative to Formulate Guidelines for the Encoding and Interchange of Machine-Readable Texts</title>. Last modified April 1988. <ptr target="http://www.tei-c.org/Vault/SC/scg02.html"/>.</bibl>
-          <bibl xml:id="jones14"><author>Jones, Stephen E.</author> <date>2014</date>. <title level="m">The Emergence of the Digital Humanities</title>. <pubPlace>New York</pubPlace> and <pubPlace>London</pubPlace>: <publisher>Routledge</publisher>.</bibl>
-          <bibl xml:id="leibert08"><author>Leibert, Marie</author>. <date>2008</date>. <!-- [RvdB] title level? --><title level="m">Project Gutenberg (1971–2008)</title>. eBook. Released October 26. <ptr target="http://www.gutenberg.org/ebooks/27045"/>.</bibl>
-          <bibl xml:id="morrás03"><author>Morrás, Maria</author>. <date>2003</date>. <title level="a">Informática y crítica textual: realidades y deseos</title>. In <title level="m">Literatura hipertextual y teoría literaria</title>, edited by <editor>María José Vega</editor>, <biblScope unit="page">225–41</biblScope>. <pubPlace>Madrid</pubPlace>: <publisher>Mare Nostrum Communicación</publisher>.</bibl>
-          <bibl xml:id="mueller11"><author>Mueller, Martin</author>. <date>2011</date>. <title level="u">To Members of the TEI-C Board and Council, From Martin Mueller, chair, TEI-C Board</title>. Accessed August 20, 2014. <ptr target="http://ariadne.northwestern.edu/mmueller/teiletter.pdf"/>.</bibl>
-          <bibl xml:id="mueller13"><author>Mueller, Martin</author>. <date>2013</date>. <title level="a">TEI-Nudge or Libraries and the TEI</title>. Guest post, <title level="m">Digital Humanities blog</title>, Northwestern University Library Center for Scholarly Communication &amp; Digital Curation. <ptr target="http://cscdc.northwestern.edu/blog/?p=872"/>.</bibl>
-          <bibl xml:id="nelson97"><author>Nelson, Theodore Holm</author>. <date>1997</date>. <title level="a">Embedded Markup Considered Harmful</title>. October 2. <ptr target="http://www.xml.com/pub/a/w3j/s3.nelson.html"/>.</bibl>
-          <bibl xml:id="perry06"><author>Perry, David J.</author> <date>2006</date>. <title level="u">Proposal to Add Ancient Roman Weights and Monetary Signs to UCS</title>. <ptr target="http://www.unicode.org/L2/L2006/06173-roman-coinage.pdf"/>.</bibl>
-          <bibl xml:id="pierazzo09"><author>Pierazzo, Elena</author>. <date>2009</date>. <title level="a">Digital Genetic Editions: The Encoding of Time in Manuscript Transcription</title>. In <title level="m">Text Editing, Print and the Digital World</title>, edited by <editor>Marilyn Deegan</editor> and <editor>Kathryn Sutherland</editor>, <biblScope unit="page">169–86</biblScope>. <pubPlace>Farnham</pubPlace>: <publisher>Ashgate</publisher>.</bibl>
-          <bibl xml:id="porter13"><author>Porter, Dot</author>. <date>2013</date>. <title level="a">Medievalists and the Scholarly Digital Edition</title>. <title level="j">Scholarly Editing</title> <biblScope unit="issue">34</biblScope>. <ptr target="http://www.scholarlyediting.org/2013/essays/essay.porter.html"/>.</bibl>
-          <bibl xml:id="renear93"><author>Renear, Alan</author>, <author>Elli Mylonas</author>, and <author>David Durand</author>. <date>1993</date>. <title level="a">Refining our Notion of What Text Really Is: The Problem of Overlapping Hierarchies</title>. Final version, January 6. <ptr target="http://cds.library.brown.edu/resources/stg/monographs/ohco.html"/>.</bibl>
-          <bibl xml:id="renear00"><author>Renear, Alan</author>. <date>2000</date>. <title level="a">The Descriptive/Procedural Distinction Is Flawed</title>. <title level="j">Markup Languages: Theory &amp; Practice</title> <biblScope unit="volume">2</biblScope>(<biblScope unit="issue">4</biblScope>): <biblScope unit="page">411–20</biblScope>.</bibl> 
-          <bibl xml:id="robinson10"><author>Robinson, Peter</author>. <date>2010</date>. <title level="a">Electronic Editions for Everyone</title>. In <title level="m">Text and Genre in Reconstruction</title>, edited by <editor>Willard McCarty</editor>, <biblScope unit="page">145–63</biblScope>. <pubPlace>Cambridge</pubPlace>: <publisher>Open Book Publishers</publisher>.</bibl>
-          <bibl xml:id="robinson13"><author>Robinson, Peter</author>. <date>2013</date>. <title level="a">Five Desiderata for Scholarly Editions in Digital Form</title>. Paper presented at Digital Humanities 2013, University of Nebraska–Lincoln, 16–19 July. <ptr target="http://dh2013.unl.edu/abstracts/ab-314.html"/>.</bibl>
-          <bibl xml:id="sahle13"><author>Sahle, Patrick</author>. <date>2013</date>. <title level="m">Digitale Editionsformen. Zum Umgang mit der Überlieferung unter den Bedingungen des Medienwandels. Teil 3: Textbegriffe und Recodierung</title>. <series>Schriften des Instituts für Dokumentologie und Editorik</series>, <biblScope unit="volume">Band 9</biblScope>. <pubPlace>Norderstedt</pubPlace>: <publisher>Books on Demand (BoD)</publisher>.</bibl>
-          <bibl xml:id="singer13"><author>Singer, Kate</author>. <date>2013</date>. <title level="a">Digital Close Reading: TEI for Teaching Poetic Vocabularies</title>. <title level="j">Journal of Interactive Technology and Pedagogy</title> <biblScope unit="issue">3</biblScope>. <ptr target="http://jitp.commons.gc.cuny.edu/digital-close-reading-tei-for-teaching-poetic-vocabularies/"/></bibl>
-          <bibl xml:id="msmq91"><author>Sperberg-McQueen, C. M..</author> <date>1991</date>. <title level="a">Text in the Electronic Age: Textual Study and Text Encoding, with Examples from Medieval Texts</title>. <title level="j">Literary and Linguistic Computing</title> <biblScope unit="volume">6</biblScope>(<biblScope unit="issue">1</biblScope>): <biblScope unit="page">34–46</biblScope>. doi:<idno type="doi">10.1093/llc/6.1.34</idno>.</bibl>
-          <bibl xml:id="spinazzè04"><author>Spinazzè, Angela</author>. <date>2004</date>. <title level="a">Museums and Metadata: A Shifting Paradigm</title>. In <title level="m">Metadata in Practice</title>, edited by <editor>Diane I. Hillman</editor> and <editor>Elaine L. Westbrooks</editor>, <biblScope unit="page">37–50</biblScope>. <pubPlace>Chicago</pubPlace>: <publisher>American Library Association</publisher>.</bibl>
-          <bibl xml:id="stapelfeldt13"><author>Stapelfeldt, Kirsta</author>, and <author>Donald Moses</author>. <date>2013</date>. <title level="a">Islandora and TEI: Current and Emerging Applications/Approaches</title>. <title level="j">Journal of the Text Encoding Initiative</title> <biblScope unit="issue">5</biblScope>. <ptr target="http://jtei.revues.org/790"/>. doi:<idno type="doi">10.4000/jtei.790</idno>.</bibl>
-          <bibl xml:id="tei88"><orgName>TEI Consortium</orgName>. <date>1988</date>. <title level="m">Design Principles for Text Encoding Guidelines: TEI ED P1</title>. Last revised January 9, 1990. <ptr target="http://www.tei-c.org/Vault/ED/edp01.htm"/>.</bibl>
-          <bibl xml:id="tei14"><orgName>TEI Consortium</orgName>. <date>2014</date>. <title level="m">TEI P5: Guidelines for Electronic Text Encoding and Interchange</title>. Version 2.6.0. Last updated January 20 2014. <pubPlace>N.p.</pubPlace>: <publisher>TEI Consortium</publisher>. <ptr target="http://www.tei-c.org/Vault/P5/2.6.0/doc/tei-p5-doc/en/html/"/>.</bibl>
-          <bibl xml:id="unicode10"><orgName>Unicode</orgName>. <date>2010</date>. <title level="a">Ligatures, Digraphs, Presentation Forms vs. Plain Text</title>. Frequently Asked Questions. Last modified September 3. <ptr target="http://www.unicode.org/faq/ligature_digraph.html"/>.</bibl>
-          <bibl xml:id="unsworth11"><author>Unsworth, John</author>. <date>2011</date>. <title level="a">Computational Work with Very Large Text Collections: Interoperability, Sustainability, and the TEI</title>. <title level="j">Journal of the Text Encoding Initiative</title> <biblScope unit="issue">1</biblScope>. <ptr target="http://jtei.revues.org/215"/>. doi:<idno type="doi">10.4000/jtei.215</idno>.</bibl>
-          <bibl xml:id="usdin02"><author>Usdin, B. Tommie</author>. <date>2002</date>. <title level="a">When <q>It Doesn’t Matter</q> Means <q>It Matters</q></title>. In <title level="m">Proceedings of Extreme Markup Languages</title>. <ptr target="http://conferences.idealliance.org/extreme/html/2002/Usdin01/EML2002Usdin01.html"/>.</bibl>
-          <bibl xml:id="usdin09"><author>Usdin, B. Tommie</author>. <date>2009</date>. <title level="a">Standards Considered Harmful</title>. In <title level="m">Proceedings of Balisage: The Markup Conference 2009</title>. <series>Balisage Series on Markup Technologies</series>, <biblScope unit="volume">vol. 3</biblScope>. <ptr target="http://www.balisage.net/Proceedings/vol3/html/Usdin01/BalisageVol3-Usdin01.html"/>. doi:<idno type="doi">10.4242/BalisageVol3.Usdin01</idno>.</bibl>
-          <bibl xml:id="vulpe98"><author>Vulpe, Michael J. M. G.</author>, and <author>Stephen P. Owens</author>. <date>1998</date>. <title level="m">Method and system for manipulating the architecture and the content of a document separately from each other</title>. US Patent 5,787,449, filed June 2, 1994, and issued July 28, 1998. <ptr target="http://patft.uspto.gov/netacgi/nph-Parser?Sect2=HITOFF&amp;p=1&amp;u=/netahtml/PTO/search-bool.html&amp;r=1&amp;f=G&amp;l=50&amp;d=PALL&amp;RefSrch=yes&amp;Query=PN/5787449"/>.</bibl>
-          <bibl xml:id="zapf06"><author>Zapf, Volker</author>. <date>2006</date>. <title level="m">HNML: HyperNietzsche Markup Language</title>. <ptr target="http://www.hypernietzsche.org/events/sew/post/Slides%20and%20Texts_files/HNML.pdf"/>.</bibl>
+          <bibl xml:id="bauman11"><author>Bauman, Syd</author>. <date>2011</date>. <title level="a"
+              >Interchange vs. Interoperability</title>. In <title level="m">Proceedings of
+              Balisage: The Markup Conference 2011</title>. <series>Balisage Series on Markup
+              Technologies</series>, <biblScope unit="volume">vol. 7</biblScope>. <ptr
+              target="https://balisage.net/Proceedings/vol7/html/Bauman01/BalisageVol7-Bauman01.html"
+            />. doi:<idno type="doi">10.4242/BalisageVol7.Bauman01</idno>.</bibl>
+          <bibl xml:id="berners-lee06"><author>Berners-Lee, Tim</author>. <date>2006</date>. <title
+              level="a">Linked Data</title>. <title level="a">Design Issues: Architectural and
+              Philosophical Points</title>. Last modified June 18, 2009. <ptr
+              target="http://www.w3.org/DesignIssues/LinkedData.html"/>.</bibl>
+          <bibl xml:id="blackwell12"><author>Blackwell, Christopher</author>, and <author>Neel
+              Smith</author>, <date>2012</date>. <title level="a">The CITE Architecture</title>.
+              <title level="m">Homer Multitext Project: Documentation</title>. Last modified May 19,
+            2013. <ptr target="http://www.homermultitext.org/hmt-doc/cite/"/>.</bibl>
+          <bibl xml:id="bray08"><author>Bray, Tim</author>, <author>Jean Paoli</author>, <author>C.
+              M. Sperberg-McQueen</author>, <author>Eve Maler</author>, and <author>François
+              Yergeau</author>. <date>2008</date>. <title level="m">Extensible Markup Language (XML)
+              1.0 (Fifth Edition)</title>. W3C Recommendation 26 November 2008. Last modified
+            February 7, 2013. <ptr target="http://www.w3.org/TR/REC-xml/"/>.</bibl>
+          <bibl xml:id="causer12"><author>Causer, Tim</author>, <author>Justin Tonra</author>, and
+              <author>Valerie Wallace</author>. <date>2012</date>. <title level="a">Transcription
+              Maximized; Expense minimized? Crowdsourcing and Editing The Collected Works of Jeremy
+              Bentham.</title>
+            <title level="j">Literary and Linguistic Computing</title>
+            <biblScope unit="volume">27</biblScope>(<biblScope unit="issue">2</biblScope>):
+              <biblScope unit="page">119–37</biblScope>. doi:<idno type="doi"
+              >10.1093/llc/fqs004</idno>.</bibl>
+          <bibl xml:id="crompton12"><author>Crompton, Constance</author>, and <author>Raymond
+              Siemens</author>. <date>2012</date>. <title level="a">The Social Edition: Scholarly
+              Editing Across Communities</title>. Presented at Digital Humanities Hamburg, Germany,
+            July 16–20. <ptr
+              target="http://www.dh2012.uni-hamburg.de/conference/programme/abstracts/the-social-edition-scholarly-editing-across-communities/"
+            />.</bibl>
+          <bibl xml:id="cummings07"><author>Cummings, James</author>. <date>2007</date>. <title
+              level="a">The Text Encoding Initiative and the Study of Literature</title>. In <title
+              level="m">A Companion to Digital Literary Studies</title>, edited by <editor>Ray
+              Siemens</editor> and <editor>Susan Schreibman</editor>, <biblScope unit="page"
+              >451–76</biblScope>. <pubPlace>Oxford</pubPlace>:
+            <publisher>Blackwell</publisher>.</bibl>
+          <bibl xml:id="day01"><author>Day, Michael</author>. <date>2001</date>. <title level="u"
+              >Metadata in a Nutshell</title>. Draft of an article published in <title level="j"
+              >Information Europe</title>
+            <biblScope unit="volume">6</biblScope>(<biblScope unit="issue">2</biblScope>):
+              <biblScope unit="page">11</biblScope>. <ptr
+              target="http://www.ukoln.ac.uk/metadata/publications/nutshell/"/>.</bibl>
+          <bibl xml:id="dombrowski13"><author>Dombrowski, Quinn</author>, and <author>Seth
+              Denbo</author>. <date>2013</date>. <title level="a">TEI and Project Bamboo</title>.
+              <title level="j">Journal of the Text Encoding Initiative</title>
+            <biblScope unit="issue">5</biblScope>. <ptr target="http://jtei.revues.org/787"/>.
+              doi:<idno type="doi">10.4000/jtei.787</idno>.</bibl>
+          <bibl xml:id="durusau06"><author>Durusau, Patrick</author>. <date>2006</date>. <title
+              level="a">Why and How to Document Your Markup Choices</title>. In <title level="m"
+              >Electronic Scholarly Editing</title>, edited by <editor>Lou Burnard</editor>,
+              <editor>Katherine O’Brien O’Keeffe</editor>, and <editor>John Unsworth</editor>,
+              <biblScope unit="page">299–309</biblScope>. <pubPlace>New York</pubPlace>:
+              <publisher>MLA</publisher>.</bibl>
+          <bibl xml:id="estival97"><author>Estival, Dominique</author>, and <author>Nick
+              Nicholas</author>. <date>1997</date>. <title level="a">TEI Encoding and Syntactic
+              Tagging of an Old French Text</title>. Paper presented at the Text Encoding Initiative
+            Tenth Anniversary User Conference, Providence, Rhode Island, November 14–16. <ptr
+              target="http://cds.library.brown.edu/conferences/tei10/tei10.papers/estival.html"
+            />.</bibl>
+          <bibl xml:id="gabler84"><editor>Gabler, Hans Walter</editor>, <editor>Wolfhard
+              Steppe</editor>, and <editor>Claus Melchior</editor>, eds. <date>1984</date>. <title
+              level="m">Ulysses: A Critical and Synoptic Edition</title>. By <author>James
+              Joyce</author>. <pubPlace>New York and London</pubPlace>:
+              <publisher>Garland</publisher>.</bibl>
+          <bibl xml:id="gabler10"><author>Gabler, Hans Walter</author>. <date>2010</date>. <title
+              level="a">Theorizing the Digital Scholarly Edition</title>. <title level="j"
+              >Literature Compass</title>
+            <biblScope unit="volume">7</biblScope>(<biblScope unit="issue">2</biblScope>):
+              <biblScope unit="page">43–56</biblScope>. doi:<idno type="doi"
+              >10.1111/j.1741-4113.2009.00675.x</idno>.</bibl>
+          <bibl xml:id="geyken12"><author>Geyken, Alexander</author>, <author>Susanne Haaf</author>,
+            and <author>Frank Wiegand</author>. <date>2012</date>. <title level="a">The DTA ‘base
+              format: A TEI-Subset for the Compilation of Interoperable Corpora</title>. Paper
+            presented at KONVENS 2012 (LThist 2012: First International Workshop on Language
+            Technology for Historical Texts), Vienna, September 21. In <title level="m">Empirical
+              Methods in Natural Language Processing: Proceedings of the Conference on Natural
+              Language Processing 2012</title>, edited by <editor>Jeremy Jancsary</editor>,
+              <biblScope unit="page">383–91</biblScope>. <pubPlace>Vienna</pubPlace>:
+              <publisher>Österreichischen Gesellschaft für Artificial Intelligende
+              (ÖGAI)</publisher>. <ptr
+              target="http://www.oegai.at/konvens2012/proceedings/57_geyken12w/"/>.</bibl>
+          <bibl xml:id="goldfarb96"><author>Goldfarb, Charles F.</author>
+            <date>1996</date>. <title level="m">The Roots of SGML—A Personal Recollection</title>.
+            Accessed August 20, 2014. <ptr target="http://www.sgmlsource.com/history/roots.htm"
+            />.</bibl>
+          <bibl xml:id="haynes04"><author>Haynes, David</author>. <date>2004</date>. <title
+              level="m">Metadata for Information Management and Retrieval</title>.
+              <pubPlace>London</pubPlace>: <publisher>Facet</publisher>.</bibl>
+          <bibl xml:id="hunter12"><author>Hunter, Jane</author>, and <author>Anna Gerber</author>.
+              <date>2012</date>. <title level="a">Towards Annotopia—Enabling the Semantic
+              Interoperability of Web-Based Annotations</title>. <title level="j">Future
+              Internet</title>
+            <biblScope unit="volume">4</biblScope>(<biblScope unit="issue">3</biblScope>):
+              <biblScope unit="page">788–806</biblScope>.</bibl>
+          <bibl xml:id="ide88"><author>Ide, Nancy</author>, <author>C. M. Sperberg-McQueen</author>,
+              <author>Robert Amsler</author>, <author>Donald Walker</author>, <author>Susan
+              Hockey</author>, and <author>Antonio Zampolli</author>. <date>1988</date>. <title
+              level="u">Proposal for Funding for an Initiative to Formulate Guidelines for the
+              Encoding and Interchange of Machine-Readable Texts</title>. Last modified April 1988.
+              <ptr target="http://www.tei-c.org/Vault/SC/scg02.html"/>.</bibl>
+          <bibl xml:id="jones14"><author>Jones, Stephen E.</author>
+            <date>2014</date>. <title level="m">The Emergence of the Digital Humanities</title>.
+              <pubPlace>New York</pubPlace> and <pubPlace>London</pubPlace>:
+              <publisher>Routledge</publisher>.</bibl>
+          <bibl xml:id="leibert08"><author>Leibert, Marie</author>. <date>2008</date>.
+              <!-- [RvdB] title level? --><title level="m">Project Gutenberg (1971–2008)</title>.
+            eBook. Released October 26. <ptr target="http://www.gutenberg.org/ebooks/27045"
+            />.</bibl>
+          <bibl xml:id="morrás03"><author>Morrás, Maria</author>. <date>2003</date>. <title
+              level="a">Informática y crítica textual: realidades y deseos</title>. In <title
+              level="m">Literatura hipertextual y teoría literaria</title>, edited by <editor>María
+              José Vega</editor>, <biblScope unit="page">225–41</biblScope>.
+              <pubPlace>Madrid</pubPlace>: <publisher>Mare Nostrum Communicación</publisher>.</bibl>
+          <bibl xml:id="mueller11"><author>Mueller, Martin</author>. <date>2011</date>. <title
+              level="u">To Members of the TEI-C Board and Council, From Martin Mueller, chair, TEI-C
+              Board</title>. Accessed August 20, 2014. <ptr
+              target="http://ariadne.northwestern.edu/mmueller/teiletter.pdf"/>.</bibl>
+          <bibl xml:id="mueller13"><author>Mueller, Martin</author>. <date>2013</date>. <title
+              level="a">TEI-Nudge or Libraries and the TEI</title>. Guest post, <title level="m"
+              >Digital Humanities blog</title>, Northwestern University Library Center for Scholarly
+            Communication &amp; Digital Curation. <ptr
+              target="http://cscdc.northwestern.edu/blog/?p=872"/>.</bibl>
+          <bibl xml:id="nelson97"><author>Nelson, Theodore Holm</author>. <date>1997</date>. <title
+              level="a">Embedded Markup Considered Harmful</title>. October 2. <ptr
+              target="http://www.xml.com/pub/a/w3j/s3.nelson.html"/>.</bibl>
+          <bibl xml:id="perry06"><author>Perry, David J.</author>
+            <date>2006</date>. <title level="u">Proposal to Add Ancient Roman Weights and Monetary
+              Signs to UCS</title>. <ptr
+              target="http://www.unicode.org/L2/L2006/06173-roman-coinage.pdf"/>.</bibl>
+          <bibl xml:id="pierazzo09"><author>Pierazzo, Elena</author>. <date>2009</date>. <title
+              level="a">Digital Genetic Editions: The Encoding of Time in Manuscript
+              Transcription</title>. In <title level="m">Text Editing, Print and the Digital
+              World</title>, edited by <editor>Marilyn Deegan</editor> and <editor>Kathryn
+              Sutherland</editor>, <biblScope unit="page">169–86</biblScope>.
+              <pubPlace>Farnham</pubPlace>: <publisher>Ashgate</publisher>.</bibl>
+          <bibl xml:id="porter13"><author>Porter, Dot</author>. <date>2013</date>. <title level="a"
+              >Medievalists and the Scholarly Digital Edition</title>. <title level="j">Scholarly
+              Editing</title>
+            <biblScope unit="issue">34</biblScope>. <ptr
+              target="http://www.scholarlyediting.org/2013/essays/essay.porter.html"/>.</bibl>
+          <bibl xml:id="renear93"><author>Renear, Alan</author>, <author>Elli Mylonas</author>, and
+              <author>David Durand</author>. <date>1993</date>. <title level="a">Refining our Notion
+              of What Text Really Is: The Problem of Overlapping Hierarchies</title>. Final version,
+            January 6. <ptr target="http://cds.library.brown.edu/resources/stg/monographs/ohco.html"
+            />.</bibl>
+          <bibl xml:id="renear00"><author>Renear, Alan</author>. <date>2000</date>. <title level="a"
+              >The Descriptive/Procedural Distinction Is Flawed</title>. <title level="j">Markup
+              Languages: Theory &amp; Practice</title>
+            <biblScope unit="volume">2</biblScope>(<biblScope unit="issue">4</biblScope>):
+              <biblScope unit="page">411–20</biblScope>.</bibl>
+          <bibl xml:id="robinson10"><author>Robinson, Peter</author>. <date>2010</date>. <title
+              level="a">Electronic Editions for Everyone</title>. In <title level="m">Text and Genre
+              in Reconstruction</title>, edited by <editor>Willard McCarty</editor>, <biblScope
+              unit="page">145–63</biblScope>. <pubPlace>Cambridge</pubPlace>: <publisher>Open Book
+              Publishers</publisher>.</bibl>
+          <bibl xml:id="robinson13"><author>Robinson, Peter</author>. <date>2013</date>. <title
+              level="a">Five Desiderata for Scholarly Editions in Digital Form</title>. Paper
+            presented at Digital Humanities 2013, University of Nebraska–Lincoln, 16–19 July. <ptr
+              target="http://dh2013.unl.edu/abstracts/ab-314.html"/>.</bibl>
+          <bibl xml:id="sahle13"><author>Sahle, Patrick</author>. <date>2013</date>. <title
+              level="m">Digitale Editionsformen. Zum Umgang mit der Überlieferung unter den
+              Bedingungen des Medienwandels. Teil 3: Textbegriffe und Recodierung</title>.
+              <series>Schriften des Instituts für Dokumentologie und Editorik</series>, <biblScope
+              unit="volume">Band 9</biblScope>. <pubPlace>Norderstedt</pubPlace>: <publisher>Books
+              on Demand (BoD)</publisher>.</bibl>
+          <bibl xml:id="singer13"><author>Singer, Kate</author>. <date>2013</date>. <title level="a"
+              >Digital Close Reading: TEI for Teaching Poetic Vocabularies</title>. <title level="j"
+              >Journal of Interactive Technology and Pedagogy</title>
+            <biblScope unit="issue">3</biblScope>. <ptr
+              target="http://jitp.commons.gc.cuny.edu/digital-close-reading-tei-for-teaching-poetic-vocabularies/"
+            /></bibl>
+          <bibl xml:id="msmq91"><author>Sperberg-McQueen, C. M..</author>
+            <date>1991</date>. <title level="a">Text in the Electronic Age: Textual Study and Text
+              Encoding, with Examples from Medieval Texts</title>. <title level="j">Literary and
+              Linguistic Computing</title>
+            <biblScope unit="volume">6</biblScope>(<biblScope unit="issue">1</biblScope>):
+              <biblScope unit="page">34–46</biblScope>. doi:<idno type="doi"
+              >10.1093/llc/6.1.34</idno>.</bibl>
+          <bibl xml:id="spinazzè04"><author>Spinazzè, Angela</author>. <date>2004</date>. <title
+              level="a">Museums and Metadata: A Shifting Paradigm</title>. In <title level="m"
+              >Metadata in Practice</title>, edited by <editor>Diane I. Hillman</editor> and
+              <editor>Elaine L. Westbrooks</editor>, <biblScope unit="page">37–50</biblScope>.
+              <pubPlace>Chicago</pubPlace>: <publisher>American Library
+            Association</publisher>.</bibl>
+          <bibl xml:id="stapelfeldt13"><author>Stapelfeldt, Kirsta</author>, and <author>Donald
+              Moses</author>. <date>2013</date>. <title level="a">Islandora and TEI: Current and
+              Emerging Applications/Approaches</title>. <title level="j">Journal of the Text
+              Encoding Initiative</title>
+            <biblScope unit="issue">5</biblScope>. <ptr target="http://jtei.revues.org/790"/>.
+              doi:<idno type="doi">10.4000/jtei.790</idno>.</bibl>
+          <bibl xml:id="tei88"><orgName>TEI Consortium</orgName>. <date>1988</date>. <title
+              level="m">Design Principles for Text Encoding Guidelines: TEI ED P1</title>. Last
+            revised January 9, 1990. <ptr target="http://www.tei-c.org/Vault/ED/edp01.htm"/>.</bibl>
+          <bibl xml:id="tei14"><orgName>TEI Consortium</orgName>. <date>2014</date>. <title
+              level="m">TEI P5: Guidelines for Electronic Text Encoding and Interchange</title>.
+            Version 2.6.0. Last updated January 20 2014. <pubPlace>N.p.</pubPlace>: <publisher>TEI
+              Consortium</publisher>. <ptr
+              target="http://www.tei-c.org/Vault/P5/2.6.0/doc/tei-p5-doc/en/html/"/>.</bibl>
+          <bibl xml:id="unicode10"><orgName>Unicode</orgName>. <date>2010</date>. <title level="a"
+              >Ligatures, Digraphs, Presentation Forms vs. Plain Text</title>. Frequently Asked
+            Questions. Last modified September 3. <ptr
+              target="http://www.unicode.org/faq/ligature_digraph.html"/>.</bibl>
+          <bibl xml:id="unsworth11"><author>Unsworth, John</author>. <date>2011</date>. <title
+              level="a">Computational Work with Very Large Text Collections: Interoperability,
+              Sustainability, and the TEI</title>. <title level="j">Journal of the Text Encoding
+              Initiative</title>
+            <biblScope unit="issue">1</biblScope>. <ptr target="http://jtei.revues.org/215"/>.
+              doi:<idno type="doi">10.4000/jtei.215</idno>.</bibl>
+          <bibl xml:id="usdin02"><author>Usdin, B. Tommie</author>. <date>2002</date>. <title
+              level="a">When <q>It Doesn’t Matter</q> Means <q>It Matters</q></title>. In <title
+              level="m">Proceedings of Extreme Markup Languages</title>. <ptr
+              target="http://conferences.idealliance.org/extreme/html/2002/Usdin01/EML2002Usdin01.html"
+            />.</bibl>
+          <bibl xml:id="usdin09"><author>Usdin, B. Tommie</author>. <date>2009</date>. <title
+              level="a">Standards Considered Harmful</title>. In <title level="m">Proceedings of
+              Balisage: The Markup Conference 2009</title>. <series>Balisage Series on Markup
+              Technologies</series>, <biblScope unit="volume">vol. 3</biblScope>. <ptr
+              target="http://www.balisage.net/Proceedings/vol3/html/Usdin01/BalisageVol3-Usdin01.html"
+            />. doi:<idno type="doi">10.4242/BalisageVol3.Usdin01</idno>.</bibl>
+          <bibl xml:id="vulpe98"><author>Vulpe, Michael J. M. G.</author>, and <author>Stephen P.
+              Owens</author>. <date>1998</date>. <title level="m">Method and system for manipulating
+              the architecture and the content of a document separately from each other</title>. US
+            Patent 5,787,449, filed June 2, 1994, and issued July 28, 1998. <ptr
+              target="http://patft.uspto.gov/netacgi/nph-Parser?Sect2=HITOFF&amp;p=1&amp;u=/netahtml/PTO/search-bool.html&amp;r=1&amp;f=G&amp;l=50&amp;d=PALL&amp;RefSrch=yes&amp;Query=PN/5787449"
+            />.</bibl>
+          <bibl xml:id="zapf06"><author>Zapf, Volker</author>. <date>2006</date>. <title level="m"
+              >HNML: HyperNietzsche Markup Language</title>. <ptr
+              target="http://www.hypernietzsche.org/events/sew/post/Slides%20and%20Texts_files/HNML.pdf"
+            />.</bibl>
         </listBibl>
       </div>
     </back>

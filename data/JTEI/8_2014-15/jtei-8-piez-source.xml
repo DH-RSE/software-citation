@@ -10,7 +10,8 @@
             <forename>Wendell</forename>
             <surname>Piez</surname>
           </name>
-          <affiliation>Wendell Piez is an <roleName>independent consultant</roleName> based in Rockville, Maryland, specializing in XML and XSLT.</affiliation>
+          <affiliation>Wendell Piez is an <roleName>independent consultant</roleName> based in
+            Rockville, Maryland, specializing in XML and XSLT.</affiliation>
           <email>wapiez@wendellpiez.com</email>
         </author>
       </titleStmt>
@@ -59,156 +60,482 @@
   <text>
     <front>
       <div type="abstract" xml:id="abstract">
-        <p>LMNL (the Layered Markup and Annotation Language) is a small, if ambitious, research project in text encoding. Unlike XML, LMNL markup does not represent document components or constituents (as <soCalled>elements</soCalled>) within a structure, but rather simply labels ranges of text within the document for identification and processing. Avoiding choices between structures, any and all structures can be elucidated; this reveals not only new capabilities for the digital processing of humanities texts—simultaneously building on TEI and extending it to new uses—but also something about the way our tools condition our view of our objects of study.</p>
+        <p>LMNL (the Layered Markup and Annotation Language) is a small, if ambitious, research
+          project in text encoding. Unlike XML, LMNL markup does not represent document components
+          or constituents (as <soCalled>elements</soCalled>) within a structure, but rather simply
+          labels ranges of text within the document for identification and processing. Avoiding
+          choices between structures, any and all structures can be elucidated; this reveals not
+          only new capabilities for the digital processing of humanities texts—simultaneously
+          building on TEI and extending it to new uses—but also something about the way our tools
+          condition our view of our objects of study.</p>
         <p>This paper presents LMNL and suggests some of its strengths in the context of TEI.</p>
       </div>
     </front>
     <body>
       <div xml:id="teilmnl">
         <head>TEI in LMNL</head>
-        <p>LMNL, the Layered Markup and Annotation Language, describes a data model and syntax for an experimental prototype in document description, modeling, and markup. Properly a meta-markup language, LMNL has no native semantics beyond the idea of annotated ranges over texts. Proposed over ten years ago (<ref type="bibl" target="#tennison02">Tennison and Piez 2002</ref>) and developed intermittently since then, LMNL is not so much an alternative to XML as a foil for it, substituting the information contained in XML hierarchies with <quote source="#quoteref1">a more rudimentary data model that would capture the information we needed, while not itself trying to assert containment or sibling relations</quote> (<ref type="bibl" xml:id="quoteref1" target="#tennison02">Tennison and Piez 2002</ref>). For years we have had only partial or prototype implementations of LMNL-based processing systems (see <ref type="bibl" target="#czmiel04">Czmiel 2004</ref>, <ref type="bibl" target="#caton05">Caton 2005</ref>, and <ref type="bibl" target="#piez12">Piez 2012</ref>), or mockups of what LMNL would be like (<ref type="bibl" target="#piez04">Piez 2004</ref>)—tantalizingly capable even while fragile and short-lived—and we have had more and more LMNL-like solutions (both within and outside XML) to the problems of representation addressed by LMNL (including multiple concurrent hierarchies and <soCalled>arbitrary overlap</soCalled>, that is, the overlap between ranges of the same type such as texts marked for indexing for annotation). However, it has become more and more apparent that what Jeni Tennison and I dreamed up then was, in a certain sense, <soCalled>obvious</soCalled>, and (as such) one of those things that will continually be rediscovered. As if it were a territory only now being mapped, LMNL was always there, and indeed visited, before Jeni and I discussed it. One might say that the LMNL we proposed is nothing more than a particular, peculiar way of generalizing some solutions that are increasingly all around us every day. Nonetheless, with a LMNL processor in hand, it turns out one can start doing some interesting things, as it does indeed move the boundaries of what is possible. Both the analysis and the representation of literary texts (just to take the examples with which I have worked) are enabled in new ways by being able to overlap freely in the model. We find LMNL gives us a way of approaching modeling and markup that sheds an oblique light on systems (such as XML-based systems or the HTML-based web) with which we are more familiar. Indeed this is, perhaps, what has stimulated such interest as it has attracted, despite its evident weaknesses and immaturity.</p>
-        <p>In one important respect, LMNL is similar to XML. While it projects a model of a text in a hierarchy of <term>elements</term>, whose properties (names, contents, organization) are regular enough to support higher-level application semantics to be described for a particular process (and/or a generalized set of processes), XML imposes no <soCalled>native semantics</soCalled> in the sense that it is left to an application designer to define element types, permissible relations among element types, and their behaviors and <soCalled>meaning</soCalled> in application. This is done in XML by designing and deploying a controlled vocabulary—a tag set—along with rules for its use, which together describe an XML document type along with an abstract document model. Of course, TEI is an example of this. The semantics of TEI element types are defined not by XML but by TEI; TEI-conformant applications can and do take advantage of the categories and relations described by TEI (not just those that might be inferred directly from the XML structure) in doing useful things with TEI data.</p>
-        <p>Similarly, LMNL does not preclude any naming or any expression of constraints, instead leaving the assignment of range names and semantics to its user; and this (as it is in XML) may be a significant burden. TEI gives us a good place to start whenever we have to consider naming and typing problems. (While largely unappreciated, this is one aspect of TEI that is invaluable.) Then, too, if we could pull TEI data easily into LMNL-based systems, we would be able to take advantage of the prior investment in TEI and perhaps save ourselves steps (at least in areas where the TEI markup remains serviceable).</p>
-        <p>This leads to the intriguing idea that we might build on TEI semantics when working with data in LMNL. The tagging could be TEI XML, or it could be a LMNL rendition of the same structures, but the data model would be LMNL and could represent any overlapping ranges in the data directly, rather than implicitly by means of stand-off or pointer mechanisms, as has to be done in XML.</p>
-        <p>A small example (the first quatrain of a sonnet of Petrarch, in TEI XML) appears below. Two hierarchies are encoded: the poetic structure (prioritized in the XML structure) and the linguistic (sentences and phrases), with the components of the latter linked using the TEI <att>part</att> attribute. (Of course this is a vast simplication of what one might actually wish to do.)</p>
+        <p>LMNL, the Layered Markup and Annotation Language, describes a data model and syntax for
+          an experimental prototype in document description, modeling, and markup. Properly a
+          meta-markup language, LMNL has no native semantics beyond the idea of annotated ranges
+          over texts. Proposed over ten years ago (<ref type="bibl" target="#tennison02">Tennison
+            and Piez 2002</ref>) and developed intermittently since then, LMNL is not so much an
+          alternative to XML as a foil for it, substituting the information contained in XML
+          hierarchies with <quote source="#quoteref1">a more rudimentary data model that would
+            capture the information we needed, while not itself trying to assert containment or
+            sibling relations</quote> (<ref type="bibl" xml:id="quoteref1" target="#tennison02"
+            >Tennison and Piez 2002</ref>). For years we have had only partial or prototype
+          implementations of LMNL-based processing systems (see <ref type="bibl" target="#czmiel04"
+            >Czmiel 2004</ref>, <ref type="bibl" target="#caton05">Caton 2005</ref>, and <ref
+            type="bibl" target="#piez12">Piez 2012</ref>), or mockups of what LMNL would be like
+            (<ref type="bibl" target="#piez04">Piez 2004</ref>)—tantalizingly capable even while
+          fragile and short-lived—and we have had more and more LMNL-like solutions (both within and
+          outside XML) to the problems of representation addressed by LMNL (including multiple
+          concurrent hierarchies and <soCalled>arbitrary overlap</soCalled>, that is, the overlap
+          between ranges of the same type such as texts marked for indexing for annotation).
+          However, it has become more and more apparent that what Jeni Tennison and I dreamed up
+          then was, in a certain sense, <soCalled>obvious</soCalled>, and (as such) one of those
+          things that will continually be rediscovered. As if it were a territory only now being
+          mapped, LMNL was always there, and indeed visited, before Jeni and I discussed it. One
+          might say that the LMNL we proposed is nothing more than a particular, peculiar way of
+          generalizing some solutions that are increasingly all around us every day. Nonetheless,
+          with a LMNL processor in hand, it turns out one can start doing some interesting things,
+          as it does indeed move the boundaries of what is possible. Both the analysis and the
+          representation of literary texts (just to take the examples with which I have worked) are
+          enabled in new ways by being able to overlap freely in the model. We find LMNL gives us a
+          way of approaching modeling and markup that sheds an oblique light on systems (such as
+          XML-based systems or the HTML-based web) with which we are more familiar. Indeed this is,
+          perhaps, what has stimulated such interest as it has attracted, despite its evident
+          weaknesses and immaturity.</p>
+        <p>In one important respect, LMNL is similar to XML. While it projects a model of a text in
+          a hierarchy of <term>elements</term>, whose properties (names, contents, organization) are
+          regular enough to support higher-level application semantics to be described for a
+          particular process (and/or a generalized set of processes), XML imposes no
+            <soCalled>native semantics</soCalled> in the sense that it is left to an application
+          designer to define element types, permissible relations among element types, and their
+          behaviors and <soCalled>meaning</soCalled> in application. This is done in XML by
+          designing and deploying a controlled vocabulary—a tag set—along with rules for its use,
+          which together describe an XML document type along with an abstract document model. Of
+          course, TEI is an example of this. The semantics of TEI element types are defined not by
+          XML but by TEI; TEI-conformant applications can and do take advantage of the categories
+          and relations described by TEI (not just those that might be inferred directly from the
+          XML structure) in doing useful things with TEI data.</p>
+        <p>Similarly, LMNL does not preclude any naming or any expression of constraints, instead
+          leaving the assignment of range names and semantics to its user; and this (as it is in
+          XML) may be a significant burden. TEI gives us a good place to start whenever we have to
+          consider naming and typing problems. (While largely unappreciated, this is one aspect of
+          TEI that is invaluable.) Then, too, if we could pull TEI data easily into LMNL-based
+          systems, we would be able to take advantage of the prior investment in TEI and perhaps
+          save ourselves steps (at least in areas where the TEI markup remains serviceable).</p>
+        <p>This leads to the intriguing idea that we might build on TEI semantics when working with
+          data in LMNL. The tagging could be TEI XML, or it could be a LMNL rendition of the same
+          structures, but the data model would be LMNL and could represent any overlapping ranges in
+          the data directly, rather than implicitly by means of stand-off or pointer mechanisms, as
+          has to be done in XML.</p>
+        <p>A small example (the first quatrain of a sonnet of Petrarch, in TEI XML) appears below.
+          Two hierarchies are encoded: the poetic structure (prioritized in the XML structure) and
+          the linguistic (sentences and phrases), with the components of the latter linked using the
+          TEI <att>part</att> attribute. (Of course this is a vast simplication of what one might
+          actually wish to do.)</p>
         <egXML xmlns="http://www.tei-c.org/ns/Examples">
           <lg type="quatrain">
-            <l><seg type="s" part="I"><seg type="phr" part="N">L’arbor gentil che forte amai molt’anni,</seg></seg></l>
-            <l><seg type="s" part="M"><seg type="phr" part="I">mentre i bei rami non m’ebber a sdegno</seg></seg></l>
-            <l><seg type="s" part="M"><seg type="phr" part="M">fiorir faceva il mio debile ingegno</seg></seg></l>
-            <l><seg type="s" part="F"><seg type="phr" part="F">e la sua ombra,</seg> <seg type="phr">et crescer negli affanni.</seg></seg></l>
+            <l><seg type="s" part="I"><seg type="phr" part="N">L’arbor gentil che forte amai
+                  molt’anni,</seg></seg></l>
+            <l><seg type="s" part="M"><seg type="phr" part="I">mentre i bei rami non m’ebber a
+                  sdegno</seg></seg></l>
+            <l><seg type="s" part="M"><seg type="phr" part="M">fiorir faceva il mio debile
+                  ingegno</seg></seg></l>
+            <l><seg type="s" part="F"><seg type="phr" part="F">e la sua ombra,</seg>
+                <seg type="phr">et crescer negli affanni.</seg></seg></l>
           </lg>
         </egXML>
         <p>Transposed into LMNL <soCalled>naïvely</soCalled> using a generic transformation:</p>
         <figure xml:id="example1">
-          <eg>
-          [lg [type}quatrain{]}
-            [l}[seg [type}s{][part}I{]}[seg [type}phr{][part}N{]}L’arbor gentil che forte amai molt’anni,{seg]{seg]{l]
-            [l}[seg [type}s{][part}M{]}[seg [type}phr{][part}I{]}mentre i bei rami non m’ebber a sdegno{seg]{seg]{l]
-            [l}[seg [type}s{][part}M{]}[seg [type}phr{][part}M{]}fiorir faceva il mio debile ingegno{seg]{seg]{l]
-            [l}[seg [type}s{][part}F{]} [seg [type}phr{][part}F{]}e la sua ombra,{seg][seg [type}phr{][part}N{]}et crescer negli affanni.{seg]{seg]{l]
-          {lg]
-          </eg>
-          <head type="legend">LMNL representation of a quatrain (see <ref type="bibl" target="#piez12">Piez 2012</ref> for a detailed explanation of LMNL syntax)</head>
+          <eg> [lg [type}quatrain{]} [l}[seg [type}s{][part}I{]}[seg [type}phr{][part}N{]}L’arbor
+            gentil che forte amai molt’anni,{seg]{seg]{l] [l}[seg [type}s{][part}M{]}[seg
+            [type}phr{][part}I{]}mentre i bei rami non m’ebber a sdegno{seg]{seg]{l] [l}[seg
+            [type}s{][part}M{]}[seg [type}phr{][part}M{]}fiorir faceva il mio debile
+            ingegno{seg]{seg]{l] [l}[seg [type}s{][part}F{]} [seg [type}phr{][part}F{]}e la sua
+            ombra,{seg][seg [type}phr{][part}N{]}et crescer negli affanni.{seg]{seg]{l] {lg] </eg>
+          <head type="legend">LMNL representation of a quatrain (see <ref type="bibl"
+              target="#piez12">Piez 2012</ref> for a detailed explanation of LMNL syntax)</head>
         </figure>
         <p>Or, using a transformation amended to recognize the semantics of TEI <att>part</att>:</p>
         <figure xml:id="example2">
-          <eg>
-          [lg [type}quatrain{]}
-            [l}[seg [type}s{]}[seg [type}phr{]}L’arbor gentil che forte amai molt’anni,{seg]{l]
-            [l}[seg [type}phr{]}mentre i bei rami non m’ebber a sdegno{l]
-            [l}fiorir faceva il mio debile ingegno{l]
-            [l}e la sua ombra,{seg] [seg [type}phr{]}et crescer negli affanni.{seg]{seg]{l]
-          {lg]
-          </eg>
-          <head type="legend">LMNL representation of a quatrain including <att>part</att> attribute information</head>
+          <eg> [lg [type}quatrain{]} [l}[seg [type}s{]}[seg [type}phr{]}L’arbor gentil che forte
+            amai molt’anni,{seg]{l] [l}[seg [type}phr{]}mentre i bei rami non m’ebber a sdegno{l]
+            [l}fiorir faceva il mio debile ingegno{l] [l}e la sua ombra,{seg] [seg [type}phr{]}et
+            crescer negli affanni.{seg]{seg]{l] {lg] </eg>
+          <head type="legend">LMNL representation of a quatrain including <att>part</att> attribute
+            information</head>
         </figure>
-        <p>In this case, ranges mapped from elements marked as <code>@part='I'</code> get start tags but no end tags, since they are taken not to end their ranges. Similarly, elements marked as <code>@part="F"</code> get no start tags, while those marked as <code>@part="M"</code> get no tags at all.</p>
-        <p>Note that even this transformation is not lossy, since a reverse transformation that induced an element hierarchy from the ranges would be able to mark elements that had to be segmented with their appropriate <att>part</att> attributes. (To be sure, a processor that wrote such segmented elements would have to respect the intended semantics of TEI <att>part</att> in doing so—<val>I</val> for the first segment in the <ident>seg</ident> range, <val>F</val> for the last, and <val>M</val> for all the others. Yet since the sequencing is determinable from the data, the process can be automated.)</p>
-        <p>Finally, one is tempted to promote <att>type</att> values here into range names. This is no longer TEI, but nonetheless corresponds semantically to the TEI we began with:</p>
+        <p>In this case, ranges mapped from elements marked as <code>@part='I'</code> get start tags
+          but no end tags, since they are taken not to end their ranges. Similarly, elements marked
+          as <code>@part="F"</code> get no start tags, while those marked as <code>@part="M"</code>
+          get no tags at all.</p>
+        <p>Note that even this transformation is not lossy, since a reverse transformation that
+          induced an element hierarchy from the ranges would be able to mark elements that had to be
+          segmented with their appropriate <att>part</att> attributes. (To be sure, a processor that
+          wrote such segmented elements would have to respect the intended semantics of TEI
+            <att>part</att> in doing so—<val>I</val> for the first segment in the <ident>seg</ident>
+          range, <val>F</val> for the last, and <val>M</val> for all the others. Yet since the
+          sequencing is determinable from the data, the process can be automated.)</p>
+        <p>Finally, one is tempted to promote <att>type</att> values here into range names. This is
+          no longer TEI, but nonetheless corresponds semantically to the TEI we began with:</p>
         <figure xml:id="example3">
-          <eg>
-          [quatrain}
-            [l}[s}[phr}L’arbor gentil che forte amai molt’anni,{phr]{l]
-            [l}[phr}mentre i bei rami non m’ebber a sdegno{l]
-            [l}fiorir faceva il mio debile ingegno{l]
-            [l}e la sua ombra,{phr] [phr}et crescer negli affanni.{phr]{s]{l]
-          {quatrain]
-          </eg>
-          <head type="legend">LNML representation including information from TEI <att>type</att></head>
+          <eg> [quatrain} [l}[s}[phr}L’arbor gentil che forte amai molt’anni,{phr]{l] [l}[phr}mentre
+            i bei rami non m’ebber a sdegno{l] [l}fiorir faceva il mio debile ingegno{l] [l}e la sua
+            ombra,{phr] [phr}et crescer negli affanni.{phr]{s]{l] {quatrain] </eg>
+          <head type="legend">LNML representation including information from TEI
+            <att>type</att></head>
         </figure>
         <p>All of these LMNL instances are ready for processing by a LMNL processor.</p>
-        <p>This capability of manipulating the data directly raises many questions for modeling documentary data using markup, as outlined below.</p>
+        <p>This capability of manipulating the data directly raises many questions for modeling
+          documentary data using markup, as outlined below.</p>
       </div>
       <div xml:id="implications">
         <head>Implications for Modeling</head>
-        <p>The foregoing examples show how LMNL’s ability to represent overlapping ranges opens modeling opportunities. But there is more to it than this.</p>
-        <p>LMNL also supports structured annotations on ranges. In a way analogous to XML attributes attached to XML ranges, LMNL annotations can be associated with LMNL ranges. However, they also offer several features that XML attributes do not:</p>
+        <p>The foregoing examples show how LMNL’s ability to represent overlapping ranges opens
+          modeling opportunities. But there is more to it than this.</p>
+        <p>LMNL also supports structured annotations on ranges. In a way analogous to XML attributes
+          attached to XML ranges, LMNL annotations can be associated with LMNL ranges. However, they
+          also offer several features that XML attributes do not:</p>
         <list rend="ordered">
-          <item>LMNL annotations may be marked up. Thus, they may be structured in the same way as documents may be structured (in other words, LMNL annotations are isomorphic to documents).</item>
+          <item>LMNL annotations may be marked up. Thus, they may be structured in the same way as
+            documents may be structured (in other words, LMNL annotations are isomorphic to
+            documents).</item>
           <item>The order of annotations assigned to a range is preserved in the model.</item>
-          <item>Annotations may have the same name as other annotations on the same range. And (like ranges) they may be anonymous.</item>
-          <item>Since ranges may also be anonymous, all the properties assigned to a range may be represented in its annotations.</item>
-          <item>Annotations may be annotated. Accordingly, a range may have a <soCalled>tree</soCalled> of annotations, each annotation further annotated. This also makes LMNL annotations composable.<note>Referring specifically to <soCalled>composability</soCalled> in the technical sense as described at <ptr target="https://en.wikipedia.org/wiki/Composability"/>.</note>
+          <item>Annotations may have the same name as other annotations on the same range. And (like
+            ranges) they may be anonymous.</item>
+          <item>Since ranges may also be anonymous, all the properties assigned to a range may be
+            represented in its annotations.</item>
+          <item>Annotations may be annotated. Accordingly, a range may have a
+              <soCalled>tree</soCalled> of annotations, each annotation further annotated. This also
+            makes LMNL annotations composable.<note>Referring specifically to
+                <soCalled>composability</soCalled> in the technical sense as described at <ptr
+                target="https://en.wikipedia.org/wiki/Composability"/>.</note>
           </item>
         </list>
-        <p>In LMNL syntax, annotations are shown using the same syntax as ranges; the only differences are that they are placed in tags (start or end tags for marked ranges, or in tags representing empty ranges or atoms) and that they may not, unlike ranges, overlap with one another. (Every annotation is discrete even though its contents may include overlapping ranges.) Finally, in order to reduce tagging overhead, end tags for simple annotations (those with no internal markup) may be represented using anonymous end-tag notation, as <code>{]</code>.</p>
-        <p>So this is a (single) legal LMNL start tag: <code>[sonnet [author [name}Francesco Petrarca{] [born [year}1304{][place}Arezzo{]] [deceased [year}1374{][place}Arquà{]]]}</code> The range tagged as <ident>sonnet</ident> (whose start tag is shown) has an annotation named <ident>author</ident> with three annotations of its own: <ident>name</ident>, <ident>born</ident>, and <ident>deceased</ident>. The annotations <ident>born</ident> and <ident>deceased</ident> each have a <ident>year</ident> and <ident>place</ident> annotation. So we have four levels of annotations annotating annotations; for example, <code>sonnet/author/born/place</code> here is <mentioned>Arezzo</mentioned>. Thus LMNL annotations present an XML-like capability of structure and hierarchy, presenting navigable, structured data sets in much the way XML does—even while ranges can overlap within a single layer (whether in the document itself, or in an annotation’s value or <soCalled>text layer</soCalled>).</p>
-        <p>Below is the same code, except using indentation to indicate where annotations have annotations. The key is to understand that <code>[born [year}1304{]]</code> represents an empty annotation (which uses the same tagging syntax as an empty range), itself with a single annotation (named <soCalled>year</soCalled>, with a value of <soCalled>1304</soCalled>). The tagging syntax is recursive—range markup is used inside tags to indicate annotations on the ranges indicated by those tags. In this example, <code>{]</code> serves as an abbreviation for <code>{year]</code> (an end-tag for the <soCalled>year</soCalled> annotation).</p>
+        <p>In LMNL syntax, annotations are shown using the same syntax as ranges; the only
+          differences are that they are placed in tags (start or end tags for marked ranges, or in
+          tags representing empty ranges or atoms) and that they may not, unlike ranges, overlap
+          with one another. (Every annotation is discrete even though its contents may include
+          overlapping ranges.) Finally, in order to reduce tagging overhead, end tags for simple
+          annotations (those with no internal markup) may be represented using anonymous end-tag
+          notation, as <code>{]</code>.</p>
+        <p>So this is a (single) legal LMNL start tag: <code>[sonnet [author [name}Francesco
+            Petrarca{] [born [year}1304{][place}Arezzo{]] [deceased
+            [year}1374{][place}Arquà{]]]}</code> The range tagged as <ident>sonnet</ident> (whose
+          start tag is shown) has an annotation named <ident>author</ident> with three annotations
+          of its own: <ident>name</ident>, <ident>born</ident>, and <ident>deceased</ident>. The
+          annotations <ident>born</ident> and <ident>deceased</ident> each have a
+            <ident>year</ident> and <ident>place</ident> annotation. So we have four levels of
+          annotations annotating annotations; for example, <code>sonnet/author/born/place</code>
+          here is <mentioned>Arezzo</mentioned>. Thus LMNL annotations present an XML-like
+          capability of structure and hierarchy, presenting navigable, structured data sets in much
+          the way XML does—even while ranges can overlap within a single layer (whether in the
+          document itself, or in an annotation’s value or <soCalled>text layer</soCalled>).</p>
+        <p>Below is the same code, except using indentation to indicate where annotations have
+          annotations. The key is to understand that <code>[born [year}1304{]]</code> represents an
+          empty annotation (which uses the same tagging syntax as an empty range), itself with a
+          single annotation (named <soCalled>year</soCalled>, with a value of
+            <soCalled>1304</soCalled>). The tagging syntax is recursive—range markup is used inside
+          tags to indicate annotations on the ranges indicated by those tags. In this example,
+            <code>{]</code> serves as an abbreviation for <code>{year]</code> (an end-tag for the
+            <soCalled>year</soCalled> annotation).</p>
         <figure xml:id="example4">
-          <eg>
-            [sonnet
-               [author [name}Francesco Petrarca{]
-                       [born [year}1304{][place}Arezzo{]]
-                       [deceased [year}1374{][place}Arquà{]]]} 
-          </eg>
+          <eg> [sonnet [author [name}Francesco Petrarca{] [born [year}1304{][place}Arezzo{]]
+            [deceased [year}1374{][place}Arquà{]]]} </eg>
           <head type="legend">A range in LMNL, with embedded annotations</head>
         </figure>
-        <p>Overlapping ranges and structured annotations together give LMNL capabilities for modeling very different from those of XML. Just as a transposition from XML syntax to LMNL syntax can expose whatever overlap is indicated by TEI XML directly (by showing start and end tags only where the entire range starts and ends, not every place an XML element boundary appears), it can also promote XML elements into LMNL annotation structures instead of LMNL ranges. Nothing need be flattened: because LMNL annotations can support structure and markup, annotations are first-class objects. For example, it might be considered natural to present a TEI header as an annotation (with its own annotations for <gi>fileDesc</gi>, <gi>sourceDesc</gi>, etc.) in the start tag of a TEI instance. In such a LMNL document, the header would not be considered part of the content of the document, but would be considered an annotation of it—an arrangement which, arguably, better reflects its status as metadata.</p>
-        <p>Modeling in LMNL is thus more flexible and adaptable than modeling in XML. If subordinate information such as alternative readings, analytical descriptions, or component-level metadata can be represented in annotations, the main text itself can maintain its integrity as a distinct artifact—unlike in XML, in which a transcription’s editorial apparatus, as soon as it gets too complicated to represent in attributes (i.e., name/value pairs), must be (if it is to be stored in the same document) promoted into element contents within the same conceptual <soCalled>tree</soCalled> as the transcription itself. Similarly, when a text must be organized into multiple concurrent hierarchies (such as grammatical, rhetorical, narratological, and prosodic hierarchies, or a hierarchy representing the physical organization of text in volumes and pages), these can simply be tagged in LMNL and processed appropriately according to rules that respect their semantics.</p>
-        <p>This can be demonstrated in a LMNL representation of a Shakespeare play (converted, like the sonnet example given above, from TEI source data, in this case from the Folger Digital Editions of Shakespeare). Here, the dramatic and dialogic form is represented directly along with the verse structure (where the plays are in verse). Tagged in LMNL, a line of verse is always a line, and does not have to be split between two speeches when it spans across them:</p>
+        <p>Overlapping ranges and structured annotations together give LMNL capabilities for
+          modeling very different from those of XML. Just as a transposition from XML syntax to LMNL
+          syntax can expose whatever overlap is indicated by TEI XML directly (by showing start and
+          end tags only where the entire range starts and ends, not every place an XML element
+          boundary appears), it can also promote XML elements into LMNL annotation structures
+          instead of LMNL ranges. Nothing need be flattened: because LMNL annotations can support
+          structure and markup, annotations are first-class objects. For example, it might be
+          considered natural to present a TEI header as an annotation (with its own annotations for
+            <gi>fileDesc</gi>, <gi>sourceDesc</gi>, etc.) in the start tag of a TEI instance. In
+          such a LMNL document, the header would not be considered part of the content of the
+          document, but would be considered an annotation of it—an arrangement which, arguably,
+          better reflects its status as metadata.</p>
+        <p>Modeling in LMNL is thus more flexible and adaptable than modeling in XML. If subordinate
+          information such as alternative readings, analytical descriptions, or component-level
+          metadata can be represented in annotations, the main text itself can maintain its
+          integrity as a distinct artifact—unlike in XML, in which a transcription’s editorial
+          apparatus, as soon as it gets too complicated to represent in attributes (i.e., name/value
+          pairs), must be (if it is to be stored in the same document) promoted into element
+          contents within the same conceptual <soCalled>tree</soCalled> as the transcription itself.
+          Similarly, when a text must be organized into multiple concurrent hierarchies (such as
+          grammatical, rhetorical, narratological, and prosodic hierarchies, or a hierarchy
+          representing the physical organization of text in volumes and pages), these can simply be
+          tagged in LMNL and processed appropriately according to rules that respect their
+          semantics.</p>
+        <p>This can be demonstrated in a LMNL representation of a Shakespeare play (converted, like
+          the sonnet example given above, from TEI source data, in this case from the Folger Digital
+          Editions of Shakespeare). Here, the dramatic and dialogic form is represented directly
+          along with the verse structure (where the plays are in verse). Tagged in LMNL, a line of
+          verse is always a line, and does not have to be split between two speeches when it spans
+          across them:</p>
         <figure xml:id="example5">
-          <eg>
-            [sp [speaker}ARIEL{speaker]} 
-            [line [n}1.2.231{]}To every article.{line] 
-            [line [n}1.2.232{]}I boarded the King’s ship; now on the beak,{line] 
-            
-            [...] 
-            
-            [line [n}1.2.242{]}Yea, his dread trident shake. {sp] 
-            [sp [speaker}PROSPERO{speaker]}My brave spirit!{line] 
-            [line [n}1.2.244{]}Who was so firm, so constant, that this coil{line] 
-            [line [n}1.2.245{]}Would not infect his reason? {sp] 
-          </eg>
-          <head type="legend">An extract from Act 1, Scene 2 of <title level="m">The Tempest</title></head>
+          <eg> [sp [speaker}ARIEL{speaker]} [line [n}1.2.231{]}To every article.{line] [line
+            [n}1.2.232{]}I boarded the King’s ship; now on the beak,{line] [...] [line
+            [n}1.2.242{]}Yea, his dread trident shake. {sp] [sp [speaker}PROSPERO{speaker]}My brave
+            spirit!{line] [line [n}1.2.244{]}Who was so firm, so constant, that this coil{line]
+            [line [n}1.2.245{]}Would not infect his reason? {sp] </eg>
+          <head type="legend">An extract from Act 1, Scene 2 of <title level="m">The
+            Tempest</title></head>
         </figure>
-        <p>Interestingly, it becomes possible to represent settings, stage directions, and metadata (such as act and scene headers) in the play in the form of annotations, thus <soCalled>hiding</soCalled> them away from the base text, while making them readily available should we want them. Since annotations can be annotated, they provide a convenient way of presenting data (such as complex metadata) that truly is hierarchical, while markup in the text flow can freely describe whatever the researcher deems to be important, irrespective of any structural relations (or lack thereof) among features of interest.</p> 
+        <p>Interestingly, it becomes possible to represent settings, stage directions, and metadata
+          (such as act and scene headers) in the play in the form of annotations, thus
+            <soCalled>hiding</soCalled> them away from the base text, while making them readily
+          available should we want them. Since annotations can be annotated, they provide a
+          convenient way of presenting data (such as complex metadata) that truly is hierarchical,
+          while markup in the text flow can freely describe whatever the researcher deems to be
+          important, irrespective of any structural relations (or lack thereof) among features of
+          interest.</p>
       </div>
       <div xml:id="capabilities">
         <head>Current Capabilities, Potentials, and Work to be Done</head>
-        <p>As shown above, LMNL markup is not difficult to generate programmatically from TEI data; moreover, where TEI markup can be taken to indicate range relations rather than structure (either by marking with milestones or by element alignment), a little logic can translate it into LMNL start/end tag pairs, thus representing the range directly (as in the third quatrain example above). Otherwise, any hierarchies that happen to be present in the XML, will persist, albeit expressed as sets of <soCalled>enclosing</soCalled> and <soCalled>enclosed</soCalled> ranges (and no longer <soCalled>parents</soCalled> and <soCalled>children</soCalled>).</p>
-        <p>In order to process LMNL syntax inputs, however, we need a parser and some sort of processing stack. Since 2011 I have been prototyping such a LMNL framework in the form of Luminescent (see <ref type="bibl" target="#piez12">Piez 2012</ref>). Luminescent is implemented as an XSLT pipeline capable of <soCalled>compiling</soCalled> LMNL markup into a database-like representation, expressed as XML, which presents all the same information as stand-off pointers into a sequence of segments of the text. This same technique is used internally by several systems dealing with overlap in XML (see in particular <ref target="http://www.catma.de/">CATMA</ref><note>CATMA: Computer Aided Textual Markup and Analysis. See <ptr target="http://www.catma.de/"/>.</note> and <ref target="http://www.xstandoff.net/">XStandoff</ref><note><ptr target="http://www.xstandoff.net/"/>.</note>), though details differ. As it is XML-based, this format can in turn be queried, processed, and transformed using XML technologies including XPath and XSLT to generate outputs in XML, HTML, SVG, or plain text for display or any other application.</p>
-        <p>One such target format of LMNL processing is a hierarchical <soCalled>view</soCalled> of a LMNL document—an XML hierarchy interpolated on request, promoting any range types to (nesting) elements. Given a set of LMNL ranges, in other words, it is possible to stipulate that you want a structured document promoting whichever ranges you wish into first-class element structures in an XML document—which becomes the so-called <soCalled>sacred</soCalled> hierarchy as described by Marinelli, Vitali, and Zacchiroli (<ref type="bibl" target="#marinelli08">2008</ref>), while <soCalled>profane</soCalled> hierarchies remain implicit.<note>Naturally, in mapping from LMNL to XML, one has to stipulate particular sets of ranges that are known to fall into hierarchies, to map to the XML hierarchy, lest the processor breaks elements into segments at points of overlap; fortunately another feature of LMNL is analytic processing that can report which range types overlap with which, and where.</note> This might be a convenient form to have on the way to a presentational format such as HTML. Then, for another purpose, you can return to the LMNL source (or its compiled XML representation) and request a different hierarchy. XML, in other words, remains available and useful for transitional formats between LMNL and the results one ultimately wishes to produce.</p>
-        <p>Some of the outputs offered by Luminescent are on display in the supplementary materials provided with this article.</p>
-        <p>However intriguing some of these may be, in many cases the TEI practitioner may ask what is the point of working so hard not to use XML? Or more closely: if the data is TEI going in, and the first thing that happens to the LMNL is to convert it back into XML, then why not skip the LMNL syntax? Both of these are fair questions. I would in fact agree that everything being done with LMNL here might actually be more straightforwardly and easily done by processing straight from TEI into the various target formats. After all, we actually have ways of dealing with overlap now in XSLT 2.0, as I have reported (<ref type="bibl" target="#piez11">Piez 2011</ref>).</p>
-        <p>However, it can be argued that efficiency and ease of use are not actually among the primary goals of practitioners of TEI, who have had various research agendas. The intent here is not to demonstrate anything as superior or inferior, either in general or for particular purposes. LMNL may be useful, or it may merely be interesting for the light it casts. To be sure, it supports, in a generalized way, certain operations that are difficult or onerous to engineer in XML natively (and have to be done case by case), such as hierarchical transposition (for example, converting a document representing pages, such as a TEI Genetic Editions instance, into a <soCalled>logical</soCalled> view of the same document), or filtering and extraction of ranges of text associated with structures not directly represented in the primary hierarchy of an XML document, such as narrative or dialogic structures. It is not that these operations cannot be done in TEI—they can be and have been done (typically using advanced features in XSLT or XQuery). However, when it comes to a certain kind of work with markup (especially an application of markup one might call exploratory as well as descriptive [<ref type="bibl" target="#piez01">Piez 2001</ref>]), there is something liberating about LMNL’s simplicity and flexibility. In particular, when multiple concurrent hierarchies (MCH) are of special interest, to be unburdened of the chore of assigning and maintaining pointers or references (something without which XML simply cannot approach these problems) comes as a considerable relief: even in a plain text editor, one can simply <emph>tag,</emph> focusing on the tasks of tagging. Then too, in LMNL one can simply start tagging, both without worrying about the startup development that inevitably goes with an XML application of this sort,<note>Such as the CSS/Schematron apparatus one typically wants, in a structured XML editor, as an aid to editing the very pointers that one has no need for in LMNL.</note> and with confidence that certain very generic processes (including processes that can convert LMNL ranges into XML element hierarchies) can be applied to LMNL at any time without any commitment at all to specialized application code for any particular application semantic. This ease of use has an important consequence: essentially, LMNL allows the text encoder to delay commitments to one or another hierarchy as primary until later in the process. This makes it an appealing <soCalled>counter case</soCalled> for the use of text-based markup as well as for the tree-shaped model an XML document must normally take.</p>
-        <p>It should not need to be stressed that LMNL (as a technology, not simply a conception) has a long way to go to be dependable; the gain in expressiveness when tagged structures can overlap, and annotations can be annotated, comes at a price. At this point the greatest difficulty is obviously the fact that the processing stack is entirely custom-built and <soCalled>bespoke</soCalled>, using XML technologies to implement both the parsing of LMNL syntax and processing the range-based data model it was designed to represent. Yet even if this were not an impediment for users other than myself, there are nonetheless important caveats. Without anything strictly analogous to schemas in XML, LMNL is unsuitable for many of the tasks for which XML is so good, such as the preparation of documents for publishing—a task for which validation to a schema, more or less explicit, is essential. Yet even this contrast is instructive, as much of what makes LMNL so interesting is how it provokes thinking about such questions as what a schema language would look like that could account for overlap and MCH (see <ref type="bibl" target="#msmq06">Sperberg-McQueen 2006</ref> and <ref type="bibl" target="#tennison07">Tennison 2007</ref>), as well as prompting experiments such as an XQuery function library that supports querying a LMNL data model (including overlaps), something I have more recently been doing in Luminescent.</p>
-        <p>Yet the considerable difference between a mature, robust set of standards-based technologies and a small research project (however ambitious in its conception) may also shed light on the greatest strengths of TEI and XML even while it prompts us to think about what is interesting about LMNL, especially in the context of TEI. The primary goal of text encoding in the humanities should not be to conform to standards, although that may be a necessary means to important ends. Rather, we encode texts and represent them digitally in order to present, examine, study, and reflect on the rich heritage of knowledge and expression presented to us in our cultural legacy. TEI markup does this, and the practicability of getting the information out of a TEI XML file and into something quite different shows us how much we do <emph>not</emph> have to make up, from scratch, even while we grab arbitrary data sets from the Internet. LMNL is both possible and interesting largely because it already has XML technologies, including TEI, to do so much of the heavy lifting. Yet, while it has been evident from early days that texts in the humanities pose special problems for digital processing—because they are characterized by complex structures including concurrent hierarchies (see, especially, <ref type="bibl" target="#msmq91">Sperberg-McQueen 1991</ref>; <ref type="bibl" target="#renear93">Renear, Mylonas, and Durand 1993</ref>; and <ref type="bibl" target="#huitfeldt94">Huitfeldt 1994–95</ref>)—we have also been hampered by the fact that the best technologies available have been optimized for one structure at a time. Experimenting with a markup and modeling technology that does not force the false choice between one structure and another, we discover not only new capabilities for the digital processing of humanities texts—simultaneously building on TEI and extending it to new uses—but also something about the way our tools condition our view of our texts.</p>
+        <p>As shown above, LMNL markup is not difficult to generate programmatically from TEI data;
+          moreover, where TEI markup can be taken to indicate range relations rather than structure
+          (either by marking with milestones or by element alignment), a little logic can translate
+          it into LMNL start/end tag pairs, thus representing the range directly (as in the third
+          quatrain example above). Otherwise, any hierarchies that happen to be present in the XML,
+          will persist, albeit expressed as sets of <soCalled>enclosing</soCalled> and
+            <soCalled>enclosed</soCalled> ranges (and no longer <soCalled>parents</soCalled> and
+            <soCalled>children</soCalled>).</p>
+        <p>In order to process LMNL syntax inputs, however, we need a parser and some sort of
+          processing stack. Since 2011 I have been prototyping such a LMNL framework in the form of
+          Luminescent (see <ref type="bibl" target="#piez12">Piez 2012</ref>). Luminescent is
+          implemented as an XSLT pipeline capable of <soCalled>compiling</soCalled> LMNL markup into
+          a database-like representation, expressed as XML, which presents all the same information
+          as stand-off pointers into a sequence of segments of the text. This same technique is used
+          internally by several systems dealing with overlap in XML (see in particular <ref
+            target="http://www.catma.de/">CATMA</ref><note>CATMA: Computer Aided Textual Markup and
+            Analysis. See <ptr target="http://www.catma.de/"/>.</note> and <ref
+            target="http://www.xstandoff.net/">XStandoff</ref><note><ptr
+              target="http://www.xstandoff.net/"/>.</note>), though details differ. As it is
+          XML-based, this format can in turn be queried, processed, and transformed using XML
+          technologies including XPath and XSLT to generate outputs in XML, HTML, SVG, or plain text
+          for display or any other application.</p>
+        <p>One such target format of LMNL processing is a hierarchical <soCalled>view</soCalled> of
+          a LMNL document—an XML hierarchy interpolated on request, promoting any range types to
+          (nesting) elements. Given a set of LMNL ranges, in other words, it is possible to
+          stipulate that you want a structured document promoting whichever ranges you wish into
+          first-class element structures in an XML document—which becomes the so-called
+            <soCalled>sacred</soCalled> hierarchy as described by Marinelli, Vitali, and Zacchiroli
+            (<ref type="bibl" target="#marinelli08">2008</ref>), while <soCalled>profane</soCalled>
+          hierarchies remain implicit.<note>Naturally, in mapping from LMNL to XML, one has to
+            stipulate particular sets of ranges that are known to fall into hierarchies, to map to
+            the XML hierarchy, lest the processor breaks elements into segments at points of
+            overlap; fortunately another feature of LMNL is analytic processing that can report
+            which range types overlap with which, and where.</note> This might be a convenient form
+          to have on the way to a presentational format such as HTML. Then, for another purpose, you
+          can return to the LMNL source (or its compiled XML representation) and request a different
+          hierarchy. XML, in other words, remains available and useful for transitional formats
+          between LMNL and the results one ultimately wishes to produce.</p>
+        <p>Some of the outputs offered by Luminescent are on display in the supplementary materials
+          provided with this article.</p>
+        <p>However intriguing some of these may be, in many cases the TEI practitioner may ask what
+          is the point of working so hard not to use XML? Or more closely: if the data is TEI going
+          in, and the first thing that happens to the LMNL is to convert it back into XML, then why
+          not skip the LMNL syntax? Both of these are fair questions. I would in fact agree that
+          everything being done with LMNL here might actually be more straightforwardly and easily
+          done by processing straight from TEI into the various target formats. After all, we
+          actually have ways of dealing with overlap now in XSLT 2.0, as I have reported (<ref
+            type="bibl" target="#piez11">Piez 2011</ref>).</p>
+        <p>However, it can be argued that efficiency and ease of use are not actually among the
+          primary goals of practitioners of TEI, who have had various research agendas. The intent
+          here is not to demonstrate anything as superior or inferior, either in general or for
+          particular purposes. LMNL may be useful, or it may merely be interesting for the light it
+          casts. To be sure, it supports, in a generalized way, certain operations that are
+          difficult or onerous to engineer in XML natively (and have to be done case by case), such
+          as hierarchical transposition (for example, converting a document representing pages, such
+          as a TEI Genetic Editions instance, into a <soCalled>logical</soCalled> view of the same
+          document), or filtering and extraction of ranges of text associated with structures not
+          directly represented in the primary hierarchy of an XML document, such as narrative or
+          dialogic structures. It is not that these operations cannot be done in TEI—they can be and
+          have been done (typically using advanced features in XSLT or XQuery). However, when it
+          comes to a certain kind of work with markup (especially an application of markup one might
+          call exploratory as well as descriptive [<ref type="bibl" target="#piez01">Piez
+          2001</ref>]), there is something liberating about LMNL’s simplicity and flexibility. In
+          particular, when multiple concurrent hierarchies (MCH) are of special interest, to be
+          unburdened of the chore of assigning and maintaining pointers or references (something
+          without which XML simply cannot approach these problems) comes as a considerable relief:
+          even in a plain text editor, one can simply <emph>tag,</emph> focusing on the tasks of
+          tagging. Then too, in LMNL one can simply start tagging, both without worrying about the
+          startup development that inevitably goes with an XML application of this sort,<note>Such
+            as the CSS/Schematron apparatus one typically wants, in a structured XML editor, as an
+            aid to editing the very pointers that one has no need for in LMNL.</note> and with
+          confidence that certain very generic processes (including processes that can convert LMNL
+          ranges into XML element hierarchies) can be applied to LMNL at any time without any
+          commitment at all to specialized application code for any particular application semantic.
+          This ease of use has an important consequence: essentially, LMNL allows the text encoder
+          to delay commitments to one or another hierarchy as primary until later in the process.
+          This makes it an appealing <soCalled>counter case</soCalled> for the use of text-based
+          markup as well as for the tree-shaped model an XML document must normally take.</p>
+        <p>It should not need to be stressed that LMNL (as a technology, not simply a conception)
+          has a long way to go to be dependable; the gain in expressiveness when tagged structures
+          can overlap, and annotations can be annotated, comes at a price. At this point the
+          greatest difficulty is obviously the fact that the processing stack is entirely
+          custom-built and <soCalled>bespoke</soCalled>, using XML technologies to implement both
+          the parsing of LMNL syntax and processing the range-based data model it was designed to
+          represent. Yet even if this were not an impediment for users other than myself, there are
+          nonetheless important caveats. Without anything strictly analogous to schemas in XML, LMNL
+          is unsuitable for many of the tasks for which XML is so good, such as the preparation of
+          documents for publishing—a task for which validation to a schema, more or less explicit,
+          is essential. Yet even this contrast is instructive, as much of what makes LMNL so
+          interesting is how it provokes thinking about such questions as what a schema language
+          would look like that could account for overlap and MCH (see <ref type="bibl"
+            target="#msmq06">Sperberg-McQueen 2006</ref> and <ref type="bibl" target="#tennison07"
+            >Tennison 2007</ref>), as well as prompting experiments such as an XQuery function
+          library that supports querying a LMNL data model (including overlaps), something I have
+          more recently been doing in Luminescent.</p>
+        <p>Yet the considerable difference between a mature, robust set of standards-based
+          technologies and a small research project (however ambitious in its conception) may also
+          shed light on the greatest strengths of TEI and XML even while it prompts us to think
+          about what is interesting about LMNL, especially in the context of TEI. The primary goal
+          of text encoding in the humanities should not be to conform to standards, although that
+          may be a necessary means to important ends. Rather, we encode texts and represent them
+          digitally in order to present, examine, study, and reflect on the rich heritage of
+          knowledge and expression presented to us in our cultural legacy. TEI markup does this, and
+          the practicability of getting the information out of a TEI XML file and into something
+          quite different shows us how much we do <emph>not</emph> have to make up, from scratch,
+          even while we grab arbitrary data sets from the Internet. LMNL is both possible and
+          interesting largely because it already has XML technologies, including TEI, to do so much
+          of the heavy lifting. Yet, while it has been evident from early days that texts in the
+          humanities pose special problems for digital processing—because they are characterized by
+          complex structures including concurrent hierarchies (see, especially, <ref type="bibl"
+            target="#msmq91">Sperberg-McQueen 1991</ref>; <ref type="bibl" target="#renear93"
+            >Renear, Mylonas, and Durand 1993</ref>; and <ref type="bibl" target="#huitfeldt94"
+            >Huitfeldt 1994–95</ref>)—we have also been hampered by the fact that the best
+          technologies available have been optimized for one structure at a time. Experimenting with
+          a markup and modeling technology that does not force the false choice between one
+          structure and another, we discover not only new capabilities for the digital processing of
+          humanities texts—simultaneously building on TEI and extending it to new uses—but also
+          something about the way our tools condition our view of our texts.</p>
       </div>
       <div xml:id="supportingmaterials">
         <head>Supporting Materials</head>
-        <p>This article includes a number of small demonstrations of LMNL-tagged documents and of processing outputs from Luminescent. These outputs vary in quality (and in some cases, large file sizes may stress available system resources), but should be self-explanatory. Any of the HTML or SVG files may be opened in a browser, although for best results, an SVG viewer which supports zoom to arbitrary levelssuch as Apache Batik (available alone or as the SVG Viewer in the oXygen XML editor) should be used. LMNL text files can be viewed in any browser or text editor.</p>
+        <p>This article includes a number of small demonstrations of LMNL-tagged documents and of
+          processing outputs from Luminescent. These outputs vary in quality (and in some cases,
+          large file sizes may stress available system resources), but should be self-explanatory.
+          Any of the HTML or SVG files may be opened in a browser, although for best results, an SVG
+          viewer which supports zoom to arbitrary levelssuch as Apache Batik (available alone or as
+          the SVG Viewer in the oXygen XML editor) should be used. LMNL text files can be viewed in
+          any browser or text editor.</p>
         <list rend="bulleted">
-          <item>Sonnet examples: Several sonnets, including the Petrarch example above, are given in LMNL, along with HTML/SVG-formatted display versions, with diagrams showing their structure, including overlap between verse and grammatical form.</item>
-          <item>Longer poems: Percy Shelley’s <title level="a">Julian and Maddalo</title> and William Butler Yeats’s <title level="a">Easter 1916</title> are provided with similar treatments.</item>
-          <item>Folger Digital Texts, converted into LMNL: These editions of several of Shakespeare’s plays are converted from TEI inputs and show TEI semantic usage in LMNL data, with some structural adjustments. Also included are SVG <soCalled>maps</soCalled> of the plays, showing their structure by means of an illustration of the extent of acts, scenes, and speeches.</item>
-          <item>A novel: Mary Shelley’s epistolary novel <title level="m">Frankenstein</title> is marked up in LMNL syntax. Again, for the most part TEI element and attribute names and semantics are used. Three concurrent hierarchies are encoded: pages in the source edition; narrative and dialogic structures; and the logical structure of letters, chapters, and paragraphs.</item>
+          <item>Sonnet examples: Several sonnets, including the Petrarch example above, are given in
+            LMNL, along with HTML/SVG-formatted display versions, with diagrams showing their
+            structure, including overlap between verse and grammatical form.</item>
+          <item>Longer poems: Percy Shelley’s <title level="a">Julian and Maddalo</title> and
+            William Butler Yeats’s <title level="a">Easter 1916</title> are provided with similar
+            treatments.</item>
+          <item>Folger Digital Texts, converted into LMNL: These editions of several of
+            Shakespeare’s plays are converted from TEI inputs and show TEI semantic usage in LMNL
+            data, with some structural adjustments. Also included are SVG <soCalled>maps</soCalled>
+            of the plays, showing their structure by means of an illustration of the extent of acts,
+            scenes, and speeches.</item>
+          <item>A novel: Mary Shelley’s epistolary novel <title level="m">Frankenstein</title> is
+            marked up in LMNL syntax. Again, for the most part TEI element and attribute names and
+            semantics are used. Three concurrent hierarchies are encoded: pages in the source
+            edition; narrative and dialogic structures; and the logical structure of letters,
+            chapters, and paragraphs.</item>
         </list>
-        <p>LMNL is documented at <ptr target="http://www.lmnl-markup.org/"/>; Luminescent is available on Github, at <ptr target="https://github.com/wendellpiez/Luminescent"/>.</p>
+        <p>LMNL is documented at <ptr target="http://www.lmnl-markup.org/"/>; Luminescent is
+          available on Github, at <ptr target="https://github.com/wendellpiez/Luminescent"/>.</p>
         <figure xml:id="figure1">
           <graphic url="images/frankenstein-graph.png" height="600px" width="800px"/>
           <head type="legend">Mary Shelley’s <title level="m">Frankenstein</title></head>
         </figure>
-        <p>Depicted in <ptr type="crossref" target="#figure1"/> is a diagram generated programmatically from a data instance, marked up in LMNL, representing the disposition of ranges within the nineteenth-century novel.The size and placement of <soCalled>bubbles</soCalled> indicate the extent of ranges within the text, as identified by markup. At <ptr target="http://wendellpiez.com/FrankensteinTransformed"/>, a more highly developed and perhaps intelligible version is available.</p>
+        <p>Depicted in <ptr type="crossref" target="#figure1"/> is a diagram generated
+          programmatically from a data instance, marked up in LMNL, representing the disposition of
+          ranges within the nineteenth-century novel.The size and placement of
+            <soCalled>bubbles</soCalled> indicate the extent of ranges within the text, as
+          identified by markup. At <ptr target="http://wendellpiez.com/FrankensteinTransformed"/>, a
+          more highly developed and perhaps intelligible version is available.</p>
       </div>
     </body>
     <back>
       <div type="bibliography">
         <listBibl>
-          <bibl xml:id="caton05"><author>Caton, Paul</author>. <date>2005</date>. <title level="u">LMNL Matters?</title> Paper presented at Extreme Markup Languages 2005, Montréal, Quebec, August 1–5. Abstract: <ptr target="http://conferences.idealliance.org/extreme/html/2005/Caton01/EML2005Caton01.html"/>.</bibl>
-          <bibl xml:id="czmiel04"><author>Czmiel, Alexander</author>. <date>2004</date>. <title level="u">XML for Overlapping Structures (XfOS) Using a Non XML Data Model</title>. Paper presented at ALLC/ACH 2004, Gothenburg, Sweden, June 11–16.</bibl>
-          <bibl xml:id="huitfeldt94"><author>Huitfeldt, Claus</author>. <date>1994–95</date>. <title level="a">Multi-Dimensional Texts in a One-Dimensional Medium</title>. In <soCalled>Humanities Computing in Norway</soCalled>, special issue, <title level="j">Computers and the Humanities</title> <biblScope unit="volume">28</biblScope> (<biblScope unit="issue">4/5</biblScope>): <biblScope unit="page">235–41</biblScope>. doi:<idno type="doi">10.1007/BF01830270</idno>.</bibl>
-          <bibl xml:id="marinelli08"><author>Marinelli, Paolo</author>, <author>Fabio Vitali</author>, and <author>Stefano Zacchiroli</author>. <date>2008</date>. <title level="a">Towards the unification of formats for overlapping markup</title>. <title level="j">New Review of Hypermedia and Multimedia</title>,<biblScope unit="volume">14</biblScope>,<biblScope unit="issue">1</biblScope>. <ptr target="https://hal.archives-ouvertes.fr/hal-00340578"/>. Doi: <idno type="bibl">10.1080/13614560802316145</idno>.</bibl>
-          <bibl xml:id="piez01"><author>Piez, Wendell</author>. <date>2001</date>. <title level="a">Beyond the <soCalled>Descriptive vs. Procedural</soCalled> Distinction</title>. <title level="j">Markup Languages: Theory &amp; Practice</title> <biblScope unit="volume">3</biblScope> (<biblScope unit="issue">2</biblScope>). <ptr target="http://www.wendellpiez.com/resources/publications/beyonddistinction.pdf"/>.</bibl>
-          <bibl xml:id="piez04"><author>Piez, Wendell</author>. <date>2004</date>. <title level="a">Half-steps toward LMNL</title>. In <title level="m">Proceedings of Extreme Markup Languages 2004</title>. <ptr target="http://conferences.idealliance.org/extreme/html/2004/Piez01/EML2004Piez01.html"/>.</bibl>
-          <bibl xml:id="piez11"><author>Piez, Wendell</author>. <date>2011</date>. <title level="u">TEI Overlap Demonstration: Processing TEI P5, with Overlap, Using XSLT 2.0 in the Client</title>. For the Interedition 2011 Boot Camp, TEI Members Meeting 2011, Würzburg, Lower Franconia. Last updated February 2014. <ptr target="http://piez.org/wendell/projects/Interedition2011/"/>.</bibl>
-          <bibl xml:id="piez12"><author>Piez, Wendell</author>. <date>2012</date>. <title level="a">Luminescent: Parsing LMNL by XSLT Upconversion</title>. In <title level="m">Proceedings of Balisage: The Markup Conference 2012</title>. Balisage Series on Markup Technologies, vol. 8. doi:<idno type="doi">10.4242/BalisageVol8.Piez01</idno>.</bibl>
-          <bibl xml:id="renear93"><author>Renear, Allen</author>, <author>Elli Mylonas</author>, and <author>David Durand</author>. <date>1993</date>. <title level="u">Refining Our Notion of What Text Really Is: The Problem of Overlapping Hierarchies</title>. Final version, January 6. <ptr target="http://www.stg.brown.edu/resources/stg/monographs/ohco.html"/>.</bibl>
-          <bibl xml:id="msmq91"><author>Sperberg-McQueen, C. M.</author> <date>1991</date>. <title level="a">Text in the Electronic Age: Textual Study and Text Encoding, with Examples from Medieval Texts</title>. <title level="j">Literary and Linguistic Computing</title> <biblScope unit="volume">6</biblScope> (<biblScope unit="issue">1</biblScope>): <biblScope unit="page">34–46</biblScope>. doi:<idno type="doi">10.1093/llc/6.1.34</idno>.</bibl>
-          <bibl xml:id="msmq06"><author>Sperberg-McQueen, C. M.</author> <date>2006</date>. <title level="a">Rabbit/Duck Grammars: A Validation Method for Overlapping Structures</title>. In <title level="m">Proceedings of Extreme Markup Languages 2006</title>. <ptr target="http://www.idealliance.org/papers/extreme/proceedings/html/2006/SperbergMcQueen01/EML2006SperbergMcQueen01.html"/>.</bibl>
-          <bibl xml:id="tennison02"><author>Tennison, Jeni</author>, and <author>Wendell Piez</author>. <date>2002</date>. <title level="u">The Layered Markup and Annotation Language (LMNL).</title> Paper presented at Extreme Markup Languages 2002, Montréal, Quebec, August 4–9. Abstract: <ptr target="http://xml.coverpages.org/LMNL-Abstract.html"/>.</bibl>
-          <bibl xml:id="tennison07"><author>Tennison, Jeni</author>. <date>2007</date>. <title level="u">Creole: Validating Overlapping Markup</title>. Paper presented at XTech 2007, Paris, France, May 15–18. <ptr target="http://www.princexml.com/howcome/2007/xtech/papers/output/0077-30.pdf"/></bibl>
-          <bibl xml:id="tei14"><orgName>TEI Consortium</orgName>. <date>2014</date>. <title level="a">Non-hierarchical Structures</title> (chapter 20). In <title level="m">TEI P5: Guidelines for Electronic Text Encoding and Interchange</title>. <edition>Version 2.6.0</edition>. Last updated January 20. N.p.: TEI Consortium. <ptr target="http://www.tei-c.org/Vault/P5/2.6.0/doc/tei-p5-doc/en/html/NH.html"/>.</bibl>
+          <bibl xml:id="caton05"><author>Caton, Paul</author>. <date>2005</date>. <title level="u"
+              >LMNL Matters?</title> Paper presented at Extreme Markup Languages 2005, Montréal,
+            Quebec, August 1–5. Abstract: <ptr
+              target="http://conferences.idealliance.org/extreme/html/2005/Caton01/EML2005Caton01.html"
+            />.</bibl>
+          <bibl xml:id="czmiel04"><author>Czmiel, Alexander</author>. <date>2004</date>. <title
+              level="u">XML for Overlapping Structures (XfOS) Using a Non XML Data Model</title>.
+            Paper presented at ALLC/ACH 2004, Gothenburg, Sweden, June 11–16.</bibl>
+          <bibl xml:id="huitfeldt94"><author>Huitfeldt, Claus</author>. <date>1994–95</date>. <title
+              level="a">Multi-Dimensional Texts in a One-Dimensional Medium</title>. In
+              <soCalled>Humanities Computing in Norway</soCalled>, special issue, <title level="j"
+              >Computers and the Humanities</title>
+            <biblScope unit="volume">28</biblScope> (<biblScope unit="issue">4/5</biblScope>):
+              <biblScope unit="page">235–41</biblScope>. doi:<idno type="doi"
+              >10.1007/BF01830270</idno>.</bibl>
+          <bibl xml:id="marinelli08"><author>Marinelli, Paolo</author>, <author>Fabio
+              Vitali</author>, and <author>Stefano Zacchiroli</author>. <date>2008</date>. <title
+              level="a">Towards the unification of formats for overlapping markup</title>. <title
+              level="j">New Review of Hypermedia and Multimedia</title>,<biblScope unit="volume"
+              >14</biblScope>,<biblScope unit="issue">1</biblScope>. <ptr
+              target="https://hal.archives-ouvertes.fr/hal-00340578"/>. Doi: <idno type="bibl"
+              >10.1080/13614560802316145</idno>.</bibl>
+          <bibl xml:id="piez01"><author>Piez, Wendell</author>. <date>2001</date>. <title level="a"
+              >Beyond the <soCalled>Descriptive vs. Procedural</soCalled> Distinction</title>.
+              <title level="j">Markup Languages: Theory &amp; Practice</title>
+            <biblScope unit="volume">3</biblScope> (<biblScope unit="issue">2</biblScope>). <ptr
+              target="http://www.wendellpiez.com/resources/publications/beyonddistinction.pdf"
+            />.</bibl>
+          <bibl xml:id="piez04"><author>Piez, Wendell</author>. <date>2004</date>. <title level="a"
+              >Half-steps toward LMNL</title>. In <title level="m">Proceedings of Extreme Markup
+              Languages 2004</title>. <ptr
+              target="http://conferences.idealliance.org/extreme/html/2004/Piez01/EML2004Piez01.html"
+            />.</bibl>
+          <bibl xml:id="piez11"><author>Piez, Wendell</author>. <date>2011</date>. <title level="u"
+              >TEI Overlap Demonstration: Processing TEI P5, with Overlap, Using XSLT 2.0 in the
+              Client</title>. For the Interedition 2011 Boot Camp, TEI Members Meeting 2011,
+            Würzburg, Lower Franconia. Last updated February 2014. <ptr
+              target="http://piez.org/wendell/projects/Interedition2011/"/>.</bibl>
+          <bibl xml:id="piez12"><author>Piez, Wendell</author>. <date>2012</date>. <title level="a"
+              >Luminescent: Parsing LMNL by XSLT Upconversion</title>. In <title level="m"
+              >Proceedings of Balisage: The Markup Conference 2012</title>. Balisage Series on
+            Markup Technologies, vol. 8. doi:<idno type="doi"
+            >10.4242/BalisageVol8.Piez01</idno>.</bibl>
+          <bibl xml:id="renear93"><author>Renear, Allen</author>, <author>Elli Mylonas</author>, and
+              <author>David Durand</author>. <date>1993</date>. <title level="u">Refining Our Notion
+              of What Text Really Is: The Problem of Overlapping Hierarchies</title>. Final version,
+            January 6. <ptr target="http://www.stg.brown.edu/resources/stg/monographs/ohco.html"
+            />.</bibl>
+          <bibl xml:id="msmq91"><author>Sperberg-McQueen, C. M.</author>
+            <date>1991</date>. <title level="a">Text in the Electronic Age: Textual Study and Text
+              Encoding, with Examples from Medieval Texts</title>. <title level="j">Literary and
+              Linguistic Computing</title>
+            <biblScope unit="volume">6</biblScope> (<biblScope unit="issue">1</biblScope>):
+              <biblScope unit="page">34–46</biblScope>. doi:<idno type="doi"
+              >10.1093/llc/6.1.34</idno>.</bibl>
+          <bibl xml:id="msmq06"><author>Sperberg-McQueen, C. M.</author>
+            <date>2006</date>. <title level="a">Rabbit/Duck Grammars: A Validation Method for
+              Overlapping Structures</title>. In <title level="m">Proceedings of Extreme Markup
+              Languages 2006</title>. <ptr
+              target="http://www.idealliance.org/papers/extreme/proceedings/html/2006/SperbergMcQueen01/EML2006SperbergMcQueen01.html"
+            />.</bibl>
+          <bibl xml:id="tennison02"><author>Tennison, Jeni</author>, and <author>Wendell
+              Piez</author>. <date>2002</date>. <title level="u">The Layered Markup and Annotation
+              Language (LMNL).</title> Paper presented at Extreme Markup Languages 2002, Montréal,
+            Quebec, August 4–9. Abstract: <ptr target="http://xml.coverpages.org/LMNL-Abstract.html"
+            />.</bibl>
+          <bibl xml:id="tennison07"><author>Tennison, Jeni</author>. <date>2007</date>. <title
+              level="u">Creole: Validating Overlapping Markup</title>. Paper presented at XTech
+            2007, Paris, France, May 15–18. <ptr
+              target="http://www.princexml.com/howcome/2007/xtech/papers/output/0077-30.pdf"
+            /></bibl>
+          <bibl xml:id="tei14"><orgName>TEI Consortium</orgName>. <date>2014</date>. <title
+              level="a">Non-hierarchical Structures</title> (chapter 20). In <title level="m">TEI
+              P5: Guidelines for Electronic Text Encoding and Interchange</title>. <edition>Version
+              2.6.0</edition>. Last updated January 20. N.p.: TEI Consortium. <ptr
+              target="http://www.tei-c.org/Vault/P5/2.6.0/doc/tei-p5-doc/en/html/NH.html"/>.</bibl>
         </listBibl>
       </div>
     </back>

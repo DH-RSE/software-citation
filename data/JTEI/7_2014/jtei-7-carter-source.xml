@@ -9,11 +9,15 @@
   <teiHeader xml:lang="en">
     <fileDesc>
       <titleStmt>
-        <title type="main">A Design Methodology for Exploring and Communicating System Values and Assumptions
-        </title>
+        <title type="main">A Design Methodology for Exploring and Communicating System Values and
+          Assumptions </title>
         <author>
-          <name><forename>Daniel</forename> <surname>Carter</surname></name>
-          <affiliation>Daniel Carter has an MA in English Literature from The Ohio State University and is currently a <roleName>PhD student</roleName> in Information Studies at the <orgName>University of Texas at Austin</orgName>. He’s online at <ptr target="http://www.daniel.inletters.com"/>.</affiliation>
+          <name><forename>Daniel</forename>
+            <surname>Carter</surname></name>
+          <affiliation>Daniel Carter has an MA in English Literature from The Ohio State University
+            and is currently a <roleName>PhD student</roleName> in Information Studies at the
+              <orgName>University of Texas at Austin</orgName>. He’s online at <ptr
+              target="http://www.daniel.inletters.com"/>.</affiliation>
           <email>carter.daniel.w@gmail.com</email>
         </author>
       </titleStmt>
@@ -55,272 +59,889 @@
   <text>
     <front>
       <div type="abstract" xml:id="abstract">
-        <p>This paper attempts to make two contributions to discussions related to TEI: <list rend="ordered inline"><item>an analysis of how tools used for working with TEI documents encourage certain values and make certain assumptions about the work of textual editing and</item> <item>a report on a methodological framework from outside the humanities that suggests a unique way to study such systems</item></list>. Borrowing models of design research from the fields of design and human-computer interaction, I argue that prototypes can be used to create new conceptual knowledge, to investigate the values and assumptions of sociotechnical systems, and to communicate alternative visions of those systems. I first analyze an existing tool, the <!--<title level="m">-->Versioning Machine<!--</title>-->, as a way of focusing the design of a prototype that reimagines several aspects of that original—specifically, I argue that the <!--<title level="m">-->Versioning Machine<!--</title>--> creates an environment that to some extent assumes that TEI documents are created by one editor and intended for one instantiation. The prototype presented experiments with an alternative vision of textual editing as bringing encoded texts and interpretations together in multiple and flexible instantiations. Rather than a technical problem with an optimal solution, I approach this design process as an opportunity to ask how prototypes can give designers access to conceptual issues and allow users to enact alternative values and imagine alternative futures. This research was supported by the Modernist Versions Project, which is funded by a Social Sciences and Humanities Research Council of Canada Partnership Development Grant.</p>
+        <p>This paper attempts to make two contributions to discussions related to TEI: <list
+            rend="ordered inline">
+            <item>an analysis of how tools used for working with TEI documents encourage certain
+              values and make certain assumptions about the work of textual editing and</item>
+            <item>a report on a methodological framework from outside the humanities that suggests a
+              unique way to study such systems</item>
+          </list>. Borrowing models of design research from the fields of design and human-computer
+          interaction, I argue that prototypes can be used to create new conceptual knowledge, to
+          investigate the values and assumptions of sociotechnical systems, and to communicate
+          alternative visions of those systems. I first analyze an existing tool, the
+          <!--<title level="m">-->Versioning Machine<!--</title>-->, as a way of focusing the design
+          of a prototype that reimagines several aspects of that original—specifically, I argue that
+          the <!--<title level="m">-->Versioning Machine<!--</title>--> creates an environment that
+          to some extent assumes that TEI documents are created by one editor and intended for one
+          instantiation. The prototype presented experiments with an alternative vision of textual
+          editing as bringing encoded texts and interpretations together in multiple and flexible
+          instantiations. Rather than a technical problem with an optimal solution, I approach this
+          design process as an opportunity to ask how prototypes can give designers access to
+          conceptual issues and allow users to enact alternative values and imagine alternative
+          futures. This research was supported by the Modernist Versions Project, which is funded by
+          a Social Sciences and Humanities Research Council of Canada Partnership Development
+          Grant.</p>
       </div>
     </front>
     <body>
       <div xml:id="intro">
         <head>Introduction</head>
-        <p>This project adopts the process of building a prototype for displaying TEI documents that encode collations of different text versions as a method for exploring and intervening in a sociotechnical system comprised of technical standards, theoretical goals, available tools, and social configurations. In addition to asking the methodological question of what is gained from the process of designing a prototype, I also explore conceptual issues related to the TEI standard, asking how technical choices and theoretical goals influence conceptions of textual editing.</p>
-        
-        <p>This methodology is influenced by work in the fields of design and human-computer interaction (HCI) that asks what can be learned and achieved through the design of prototypes. Specifically, I take three points to be especially relevant to this project:</p>
-        
+        <p>This project adopts the process of building a prototype for displaying TEI documents that
+          encode collations of different text versions as a method for exploring and intervening in
+          a sociotechnical system comprised of technical standards, theoretical goals, available
+          tools, and social configurations. In addition to asking the methodological question of
+          what is gained from the process of designing a prototype, I also explore conceptual issues
+          related to the TEI standard, asking how technical choices and theoretical goals influence
+          conceptions of textual editing.</p>
+
+        <p>This methodology is influenced by work in the fields of design and human-computer
+          interaction (HCI) that asks what can be learned and achieved through the design of
+          prototypes. Specifically, I take three points to be especially relevant to this
+          project:</p>
+
         <list rend="ordered">
-          <item>
-            Design can build conceptual knowledge. Daniel Fallman (<ref type="bibl" target="#fallman07">2007</ref>) argues that in addition to solving problems and producing products, design can lead to the creation of new knowledge. Building prototypes that explore possibilities outside current paradigms and placing them in use, Fallman claims, allows researchers to arrive at an understanding or description of the world that might be otherwise unobtainable. While this knowledge may come from observing a prototype in use, Fallman (<ref type="bibl" target="#fallman03">2003, 231</ref>) also notes that the design process itself may lead researchers to new understanding through reflection. Seen in this way, prototypes do not solve technical problems but create situations for creating knowledge. Thus, these prototypes do not attempt the technical completeness of a final product, instead occupying a space Fallman describes as <quote source="#quoteref1">a kind of middle ground between a thought experiment and a real thing</quote> (<ref type="bibl" xml:id="quoteref1" target="#fallman03">2007, 197</ref>).
-          </item>
-          <item>
-            Design can allow for critical reflection. Matt Ratto (<ref type="bibl" target="#ratto11">2011, 253</ref>) extends Fallman’s interest in design as a research method by introducing a critical dimension to the process, suggesting that working with materials and standards is a way to understand the values present in existing (and potential) systems. He describes critical making as a method for negotiating the perceived divide between critical thinking and pragmatic making. Prototypes are, for Ratto, not ends in themselves but instead means to better understand a system—combined with critical reflection on materials, processes, and outcomes, the act of making allows for a consideration of both practical and theoretical issues. 
-          </item>
-          <item>
-            Design can communicate alternative visions. Where Ratto’s critical making is primarily a process in which an individual or group explores a concept, Dunne (<ref type="bibl" target="#dunne05">2005</ref>) introduces the term <term>value fictions</term> to refer to objects that are primarily rhetorical and that use the material reality and technical feasibility of a prototype to intervene in an existing conversation. In addition to considering prototypes as built and used, Dunne also considers them as rhetorical objects that are seen and imagined. While Dunne’s work tends to be in the aestheticized realms of personal electronics and biotechnology, I’m interested in transporting the idea of value fictions to academic informatics and asking how a functioning prototype can be created to explore and communicate alternative values and methods of working. 
-          </item>
+          <item> Design can build conceptual knowledge. Daniel Fallman (<ref type="bibl"
+              target="#fallman07">2007</ref>) argues that in addition to solving problems and
+            producing products, design can lead to the creation of new knowledge. Building
+            prototypes that explore possibilities outside current paradigms and placing them in use,
+            Fallman claims, allows researchers to arrive at an understanding or description of the
+            world that might be otherwise unobtainable. While this knowledge may come from observing
+            a prototype in use, Fallman (<ref type="bibl" target="#fallman03">2003, 231</ref>) also
+            notes that the design process itself may lead researchers to new understanding through
+            reflection. Seen in this way, prototypes do not solve technical problems but create
+            situations for creating knowledge. Thus, these prototypes do not attempt the technical
+            completeness of a final product, instead occupying a space Fallman describes as <quote
+              source="#quoteref1">a kind of middle ground between a thought experiment and a real
+              thing</quote> (<ref type="bibl" xml:id="quoteref1" target="#fallman03">2007,
+            197</ref>). </item>
+          <item> Design can allow for critical reflection. Matt Ratto (<ref type="bibl"
+              target="#ratto11">2011, 253</ref>) extends Fallman’s interest in design as a research
+            method by introducing a critical dimension to the process, suggesting that working with
+            materials and standards is a way to understand the values present in existing (and
+            potential) systems. He describes critical making as a method for negotiating the
+            perceived divide between critical thinking and pragmatic making. Prototypes are, for
+            Ratto, not ends in themselves but instead means to better understand a system—combined
+            with critical reflection on materials, processes, and outcomes, the act of making allows
+            for a consideration of both practical and theoretical issues. </item>
+          <item> Design can communicate alternative visions. Where Ratto’s critical making is
+            primarily a process in which an individual or group explores a concept, Dunne (<ref
+              type="bibl" target="#dunne05">2005</ref>) introduces the term <term>value
+              fictions</term> to refer to objects that are primarily rhetorical and that use the
+            material reality and technical feasibility of a prototype to intervene in an existing
+            conversation. In addition to considering prototypes as built and used, Dunne also
+            considers them as rhetorical objects that are seen and imagined. While Dunne’s work
+            tends to be in the aestheticized realms of personal electronics and biotechnology, I’m
+            interested in transporting the idea of value fictions to academic informatics and asking
+            how a functioning prototype can be created to explore and communicate alternative values
+            and methods of working. </item>
         </list>
-        <p>Taken together, these theories suggest a process of design that moves from the exploration of concepts and values to an intervention in an existing system. While researchers working with TEI often build prototypes and systems as part of their work—and often see such building as producing conceptual knowledge—theories like those discussed above suggest a potentially productive framework for viewing and articulating that building and knowledge production.</p>
+        <p>Taken together, these theories suggest a process of design that moves from the
+          exploration of concepts and values to an intervention in an existing system. While
+          researchers working with TEI often build prototypes and systems as part of their work—and
+          often see such building as producing conceptual knowledge—theories like those discussed
+          above suggest a potentially productive framework for viewing and articulating that
+          building and knowledge production.</p>
       </div>
       <div xml:id="methodology">
         <head>Methodology</head>
-        
-        <p>In the following, I begin with a discussion of how technical systems and standards interact with theoretical positions and social configurations and analyze how an existing system for displaying TEI documents, the <ref target="http://www.v-machine.org/"><!--<title level="m">-->Versioning Machine<!--</title>--></ref>,<note><p>More information about the <!--<title level="m">-->Versioning Machine<!--</title>--> is available at <ptr target="http://www.v-machine.org/"/>.</p></note> influences conceptions of textual editing. I then present a prototype that uses this analysis to reimagine the <!--<title level="m">-->Versioning Machine<!--</title>-->. While I begin with analysis and proceed to design, one of my claims is that these two processes are intertwined—understanding a sociotechnical system and designing a prototype to intervene in that system do not, in practice, happen sequentially but instead reinforce and feed back into each other. Designers draw on sociotechnical analysis as a way to identify issues and focus attention on areas of interest. Similarly, designers interact with technical systems in a way that provides a unique perspective from which to analyze those same systems.</p>
-        
-        <p>Approaches to communicating these intertwined processes vary. Some researchers in HCI (see <ref type="bibl" target="#aoki07">Aoki 2007</ref>, <ref type="bibl" target="#hook10">Höök 2010</ref> and <ref type="bibl" target="#rosner12">Rosner 2012</ref>) have argued for various autoethnographic approaches, relying on their personal experiences and self-documentation to reflect on knowledge obtained through action. These researchers respond to the same conditions that prompt Donald Schön (<ref type="bibl" target="#schon83">1983</ref>) to claim that technical rationality and the scientific method are insufficient to describe the work of professionals such as designers. Claiming that professional knowledge is bound up in action, Schön (<ref type="bibl" target="#schon83">1983</ref>) argues that when confronted with a problematic situation, a professional <quote source="#quoteref2">reflects on the understandings which have been implicit in action, understandings which he surfaces, criticizes, restructures, and embodies in further action</quote> (<ref type="bibl" xml:id="quoteref2" target="#schon83">1983, 50</ref>). Autoethnographic narratives seem designed to present this reflection in a straightforward and transparent manner. Indeed, for knowledge that pertains to processes that are closely tied to the body and that do not produce an artifact, autoethnography seems a particularly apt method.</p>
-        
-        <p>However, for communicating design research that does produce artifacts, John Bowers (<ref type="bibl" target="#bowers12" xml:id="quoteref3">2012, 68</ref>) suggests the value of creating annotated portfolios that <quote source="#quoteref3">captur<supplied>e</supplied> the family resemblances that exist in a collection of artefacts, simultaneously respecting the particularity of specific designs and engaging with broader concerns</quote>. While annotated portfolios move away from the direct recording of reflection, they offer the researcher a way to structure a research process around issues that extend beyond an individual’s experience. For the kind of investigation into sociotechnical systems suggested here, annotated portfolios seem to offer a way to focus design research, picking out features of design that can be used to guide further work. As Bowers (<ref type="bibl" target="#bowers12">2012, 70</ref>) points out, designed artifacts engage with a heterogeneous set of concerns (practical, aesthetic, social, psychological), and written accounts can only remark on some of these facets. William Gaver (<ref type="bibl" target="#gaver12">2012</ref>) similarly describes this process of narrowing, claiming that annotated portfolios position an individual artifact within a range of possibilities and communicate a designer’s opinions on the central concerns in a given domain. In this way, a written account of design research will respond to only some of the issues raised by an object, serving not as a replacement for the process of design but as a strategic product made possible by that process. By annotating a set of objects, researchers are able to use the reflective process of design to focus and communicate a set of theoretical goals in a way that bridges local, tacit knowledge and broader issues of relevance to a sociotechnical system. And while Bowers and Gaver both describe annotated portfolios as drawing together artifacts created by an individual designer (or a group of related designers), the method of focused annotation also seems a productive method for identifying the central concerns of a system prior to (and during) the design of a prototype meant to intervene in that system.</p>
-        
-        <p>In communicating my own design research, I adopt here a method similar to the annotated portfolio, first giving an analysis of the <!--<title level="m">-->Versioning Machine<!--</title>--> that draws out issues central to the tool’s conception of the work of textual editing and then using those issues to focus my discussion of the prototype presented. This prototype is not intended to be an optimized solution to the issues discussed—indeed, several of the technical choices made in its design may be most productively viewed as pointing to difficult questions that remain unresolved. As one reviewer of this essay noted, the particularly thorny issue of whether a system for working with encoded texts can avoid imposing an interpretive schema is addressed in the prototype only by introducing other, equally serious problems. This is certainly the case. The prototype requires a somewhat idiosyncratic modification of the parallel segmentation method of encoding variance, and it stores annotations to texts externally and in the JavaScript Object Notation (JSON) format. For the purposes of the prototype, this file was manually created, but it could of course be automatically generated from <gi>note</gi> elements encoded in a TEI document. However, these debatable choices can be seen as ways of testing limits, sketching boundaries, and communicating questions related to a system. As thought experiments that draw on the experiences of design and use, prototypes offer perspectives that can further current conceptual understandings and build toward better future systems.</p>
+
+        <p>In the following, I begin with a discussion of how technical systems and standards
+          interact with theoretical positions and social configurations and analyze how an existing
+          system for displaying TEI documents, the <ref target="http://www.v-machine.org/"
+            ><!--<title level="m">-->Versioning Machine<!--</title>--></ref>,<note><p>More
+              information about the <!--<title level="m">-->Versioning Machine<!--</title>--> is
+              available at <ptr target="http://www.v-machine.org/"/>.</p></note> influences
+          conceptions of textual editing. I then present a prototype that uses this analysis to
+          reimagine the <!--<title level="m">-->Versioning Machine<!--</title>-->. While I begin
+          with analysis and proceed to design, one of my claims is that these two processes are
+          intertwined—understanding a sociotechnical system and designing a prototype to intervene
+          in that system do not, in practice, happen sequentially but instead reinforce and feed
+          back into each other. Designers draw on sociotechnical analysis as a way to identify
+          issues and focus attention on areas of interest. Similarly, designers interact with
+          technical systems in a way that provides a unique perspective from which to analyze those
+          same systems.</p>
+
+        <p>Approaches to communicating these intertwined processes vary. Some researchers in HCI
+          (see <ref type="bibl" target="#aoki07">Aoki 2007</ref>, <ref type="bibl" target="#hook10"
+            >Höök 2010</ref> and <ref type="bibl" target="#rosner12">Rosner 2012</ref>) have argued
+          for various autoethnographic approaches, relying on their personal experiences and
+          self-documentation to reflect on knowledge obtained through action. These researchers
+          respond to the same conditions that prompt Donald Schön (<ref type="bibl"
+            target="#schon83">1983</ref>) to claim that technical rationality and the scientific
+          method are insufficient to describe the work of professionals such as designers. Claiming
+          that professional knowledge is bound up in action, Schön (<ref type="bibl"
+            target="#schon83">1983</ref>) argues that when confronted with a problematic situation,
+          a professional <quote source="#quoteref2">reflects on the understandings which have been
+            implicit in action, understandings which he surfaces, criticizes, restructures, and
+            embodies in further action</quote> (<ref type="bibl" xml:id="quoteref2"
+            target="#schon83">1983, 50</ref>). Autoethnographic narratives seem designed to present
+          this reflection in a straightforward and transparent manner. Indeed, for knowledge that
+          pertains to processes that are closely tied to the body and that do not produce an
+          artifact, autoethnography seems a particularly apt method.</p>
+
+        <p>However, for communicating design research that does produce artifacts, John Bowers (<ref
+            type="bibl" target="#bowers12" xml:id="quoteref3">2012, 68</ref>) suggests the value of
+          creating annotated portfolios that <quote source="#quoteref3">captur<supplied>e</supplied>
+            the family resemblances that exist in a collection of artefacts, simultaneously
+            respecting the particularity of specific designs and engaging with broader
+            concerns</quote>. While annotated portfolios move away from the direct recording of
+          reflection, they offer the researcher a way to structure a research process around issues
+          that extend beyond an individual’s experience. For the kind of investigation into
+          sociotechnical systems suggested here, annotated portfolios seem to offer a way to focus
+          design research, picking out features of design that can be used to guide further work. As
+          Bowers (<ref type="bibl" target="#bowers12">2012, 70</ref>) points out, designed artifacts
+          engage with a heterogeneous set of concerns (practical, aesthetic, social, psychological),
+          and written accounts can only remark on some of these facets. William Gaver (<ref
+            type="bibl" target="#gaver12">2012</ref>) similarly describes this process of narrowing,
+          claiming that annotated portfolios position an individual artifact within a range of
+          possibilities and communicate a designer’s opinions on the central concerns in a given
+          domain. In this way, a written account of design research will respond to only some of the
+          issues raised by an object, serving not as a replacement for the process of design but as
+          a strategic product made possible by that process. By annotating a set of objects,
+          researchers are able to use the reflective process of design to focus and communicate a
+          set of theoretical goals in a way that bridges local, tacit knowledge and broader issues
+          of relevance to a sociotechnical system. And while Bowers and Gaver both describe
+          annotated portfolios as drawing together artifacts created by an individual designer (or a
+          group of related designers), the method of focused annotation also seems a productive
+          method for identifying the central concerns of a system prior to (and during) the design
+          of a prototype meant to intervene in that system.</p>
+
+        <p>In communicating my own design research, I adopt here a method similar to the annotated
+          portfolio, first giving an analysis of the <!--<title level="m">-->Versioning
+          Machine<!--</title>--> that draws out issues central to the tool’s conception of the work
+          of textual editing and then using those issues to focus my discussion of the prototype
+          presented. This prototype is not intended to be an optimized solution to the issues
+          discussed—indeed, several of the technical choices made in its design may be most
+          productively viewed as pointing to difficult questions that remain unresolved. As one
+          reviewer of this essay noted, the particularly thorny issue of whether a system for
+          working with encoded texts can avoid imposing an interpretive schema is addressed in the
+          prototype only by introducing other, equally serious problems. This is certainly the case.
+          The prototype requires a somewhat idiosyncratic modification of the parallel segmentation
+          method of encoding variance, and it stores annotations to texts externally and in the
+          JavaScript Object Notation (JSON) format. For the purposes of the prototype, this file was
+          manually created, but it could of course be automatically generated from <gi>note</gi>
+          elements encoded in a TEI document. However, these debatable choices can be seen as ways
+          of testing limits, sketching boundaries, and communicating questions related to a system.
+          As thought experiments that draw on the experiences of design and use, prototypes offer
+          perspectives that can further current conceptual understandings and build toward better
+          future systems.</p>
       </div>
-      
+
       <div xml:id="currentstates">
         <head>Current States</head>
-        
-        <p>During the creation of software tools, the assumptions and intentions of creators combine with pragmatic choices and accidental variations to encourage or discourage certain user behaviors. While aspects of these tools may reflect technological limitations or unintended consequences entailed by the complicated process of writing software, intentional authorial choices are also incorporated as rules into code, suggested in documentation, or encouraged through interface design. Lawrence Lessig (<ref type="bibl" target="#lessig06">2006, 6</ref>), for example, examines the ways code has been used to design an Internet with various values built into its structure and suggests that we should ask who does this building and with what values in mind. Similarly, Florence Millerand and Geoffrey C. Bowker (<ref type="bibl" target="#millerand09">2009, 152</ref>) point to the way technical standards are never merely technical, acting as social forces that arrive bearing assumptions about the configuration of people and tools with which they will interact. While the TEI Guidelines are adopted in various ways and for various purposes, their values and assumptions—as well as those of tools built to interact with these standards—similarly structure the social and theoretical work of textual editing. As tools and interfaces are built, as guidelines are refined, and as institutions and scholars make decisions about whether and how to adopt TEI, these values and assumptions should be made transparent.</p>
-        
-        <p>When preparing a digital scholarly edition, a textual editor must negotiate between technical constraints, theoretical goals, available tools, and social configurations. Standards and guidelines influence technical and theoretical possibilities. Available tools and interfaces influence the practice of encoding texts. And encoding practices influence how users access and scholars work with texts. The Modern Language Association’s (MLA) <title level="m">Guidelines for Editors of Scholarly Editions</title> (<ref type="bibl" xml:id="quoteref4" target="#mla11">2011</ref>) notes the diversity of possible approaches to textual editing, suggesting that editors focus on different aspects of a text based on their theoretical perspective and that these perspectives <quote source="#quoteref4">range broadly across a spectrum <gap/> and editors may select a given methodology for a variety of reasons</quote>. In this way, interfaces and theories may be contingent on each other, with some theoretical approaches to textual editing producing documents that are incompatible with the assumptions of some tools (and vice versa). Tanya Clement (<ref type="bibl" target="#clement11" xml:id="quoteref5">2011, 8</ref>) suggests that the process of choosing what to encode may even begin with a consideration of an eventual interface and claims that <quote source="#quoteref5">the standard or model for encoding a text depends on how the scholar defines the digital textual event in which it will be enacted</quote>. This interaction between theoretical goals and imagined uses, with the process of encoding caught up in the middle, draws attention to the way a text encoded in TEI might, to some extent, be linked to an eventual instantiation.</p>
-        
-        <p>For example, as part of his <!-- [RvdB] project title: <title level="m">? --><!--<title level="m">-->Visualizing Variation<!--</title>--> project, Alan Galey presents a prototype that shifts between witnesses, visually fading between textual variants without warning. Based on a theory of textual editing that claims digital editions can <quote source="#quoteref6">represent variants dynamically, presenting their ambiguity to readers not as a problem to solve, but as a field of interpretive possibility</quote>, Galey’s prototype works within the TEI standard to create an interface that meets these preexisting theoretical goals (<ref type="bibl" xml:id="quoteref6" target="#galey13">Galey 2013</ref>). It also makes choices about how texts should be encoded to meet his theoretical and technical needs. For example, of the three methods described by the TEI Guidelines for encoding textual variants, Galey’s prototype is designed to work with texts encoded using the <term>parallel segmentation</term> method. Parallel segmentation encodes textual variants by creating <gi>app</gi> elements inside which the aligned textual variants from all witnesses are presented and compared. For example, a simplified version of the encoded text used by Galey records three variants from <title level="m">Hamlet</title>:<note><p>In order to present a basic example of parallel segmentation, I’ve removed several attributes from this example and replaced one <gi>lem</gi>element with a <gi>rdg</gi> element.</p></note>
+
+        <p>During the creation of software tools, the assumptions and intentions of creators combine
+          with pragmatic choices and accidental variations to encourage or discourage certain user
+          behaviors. While aspects of these tools may reflect technological limitations or
+          unintended consequences entailed by the complicated process of writing software,
+          intentional authorial choices are also incorporated as rules into code, suggested in
+          documentation, or encouraged through interface design. Lawrence Lessig (<ref type="bibl"
+            target="#lessig06">2006, 6</ref>), for example, examines the ways code has been used to
+          design an Internet with various values built into its structure and suggests that we
+          should ask who does this building and with what values in mind. Similarly, Florence
+          Millerand and Geoffrey C. Bowker (<ref type="bibl" target="#millerand09">2009, 152</ref>)
+          point to the way technical standards are never merely technical, acting as social forces
+          that arrive bearing assumptions about the configuration of people and tools with which
+          they will interact. While the TEI Guidelines are adopted in various ways and for various
+          purposes, their values and assumptions—as well as those of tools built to interact with
+          these standards—similarly structure the social and theoretical work of textual editing. As
+          tools and interfaces are built, as guidelines are refined, and as institutions and
+          scholars make decisions about whether and how to adopt TEI, these values and assumptions
+          should be made transparent.</p>
+
+        <p>When preparing a digital scholarly edition, a textual editor must negotiate between
+          technical constraints, theoretical goals, available tools, and social configurations.
+          Standards and guidelines influence technical and theoretical possibilities. Available
+          tools and interfaces influence the practice of encoding texts. And encoding practices
+          influence how users access and scholars work with texts. The Modern Language Association’s
+          (MLA) <title level="m">Guidelines for Editors of Scholarly Editions</title> (<ref
+            type="bibl" xml:id="quoteref4" target="#mla11">2011</ref>) notes the diversity of
+          possible approaches to textual editing, suggesting that editors focus on different aspects
+          of a text based on their theoretical perspective and that these perspectives <quote
+            source="#quoteref4">range broadly across a spectrum <gap/> and editors may select a
+            given methodology for a variety of reasons</quote>. In this way, interfaces and theories
+          may be contingent on each other, with some theoretical approaches to textual editing
+          producing documents that are incompatible with the assumptions of some tools (and vice
+          versa). Tanya Clement (<ref type="bibl" target="#clement11" xml:id="quoteref5">2011,
+            8</ref>) suggests that the process of choosing what to encode may even begin with a
+          consideration of an eventual interface and claims that <quote source="#quoteref5">the
+            standard or model for encoding a text depends on how the scholar defines the digital
+            textual event in which it will be enacted</quote>. This interaction between theoretical
+          goals and imagined uses, with the process of encoding caught up in the middle, draws
+          attention to the way a text encoded in TEI might, to some extent, be linked to an eventual
+          instantiation.</p>
+
+        <p>For example, as part of his
+          <!-- [RvdB] project title: <title level="m">? --><!--<title level="m">-->Visualizing
+          Variation<!--</title>--> project, Alan Galey presents a prototype that shifts between
+          witnesses, visually fading between textual variants without warning. Based on a theory of
+          textual editing that claims digital editions can <quote source="#quoteref6">represent
+            variants dynamically, presenting their ambiguity to readers not as a problem to solve,
+            but as a field of interpretive possibility</quote>, Galey’s prototype works within the
+          TEI standard to create an interface that meets these preexisting theoretical goals (<ref
+            type="bibl" xml:id="quoteref6" target="#galey13">Galey 2013</ref>). It also makes
+          choices about how texts should be encoded to meet his theoretical and technical needs. For
+          example, of the three methods described by the TEI Guidelines for encoding textual
+          variants, Galey’s prototype is designed to work with texts encoded using the
+            <term>parallel segmentation</term> method. Parallel segmentation encodes textual
+          variants by creating <gi>app</gi> elements inside which the aligned textual variants from
+          all witnesses are presented and compared. For example, a simplified version of the encoded
+          text used by Galey records three variants from <title level="m">Hamlet</title>:<note><p>In
+              order to present a basic example of parallel segmentation, I’ve removed several
+              attributes from this example and replaced one <gi>lem</gi>element with a <gi>rdg</gi>
+              element.</p></note>
           <figure xml:id="example1">
-            <egXML xmlns="http://www.tei-c.org/ns/Examples">
-          O that this too too
-          <app>
-            <rdg>solid</rdg>
-            <rdg>sallied</rdg>
-            <rdg>sullied</rdg>
-          </app>
-          flesh would melt,
-            </egXML>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples"> O that this too too <app>
+                <rdg>solid</rdg>
+                <rdg>sallied</rdg>
+                <rdg>sullied</rdg>
+              </app> flesh would melt, </egXML>
             <head type="legend">Variants encoded using the parallel segmentation method.</head>
           </figure>
         </p>
-        
-        <p>From a theoretical perspective, parallel segmentation works well with Galey’s stated goals, as it does not require that the editor establish a hierarchy by specifying a base text, a witness that will be taken as the original or the reading against which all other witnesses will be compared. From a technical perspective, parallel segmentation makes the design of Galey’s prototype simpler by bringing all variants together in one element where they can easily be manipulated, whereas the <term>double end-point attachment</term> method allows variants to be distributed either within a single file or across several. And from a perspective that considers how editors currently work with TEI, parallel segmentation has the advantage of being relatively easy to write and interpret in a basic text editor.</p>
-        
-        <p>The choice to work with the parallel segmentation method means that texts encoded using other methods cannot be used with Galey’s prototype. <!-- [RvdB] "This" in following sentence refers to location-referenced, surely? Agreed MDH; changed accordingly. -->The <term>location-referenced</term> method requires editors to identify only the beginning of the text to which a variant refers, although they may also use the <gi>lem</gi> element to specify the full text referred to. Using the <gi>lem</gi> element in this way, however, would create additional work in programming the interface (which would need to perform text-matching to identify the location of the variants) as well as in specifying the lemmas in the encoded text. Indeed the TEI Guidelines notes that editors often choose not to perform the extra work of including lemmas and that, if a full reconstruction of all witnesses is desired (as it is with Galey’s prototype), the location-referenced method is less appropriate than other methods (<ref type="bibl" target="#tei12">TEI Consortium 2012</ref>). Galey’s choice, then, of parallel segmentation can be seen as an example of how theoretical goals, technical constraints, and social configurations can determine how texts are encoded.</p>
-        
-        <p>The <!--<title level="m">-->Versioning Machine<!--</title>--> provides an opportunity for a more nuanced exploration of these relationships, as well as a discussion of how they influence conceptions of textual editing. Conceived by Susan Schreibman, the <!--<title level="m">-->Versioning Machine<!--</title>--> is a set of XSLT, HTML, CSS, and JavaScript files that allows textual editors to create web interfaces to display TEI documents that encode collations of different text versions (<ref type="bibl" target="#schreibman03">Schreibman, Kumar, and McDonald 2003, 102</ref>). As I worked to redesign and reimagine the <!--<title level="m">-->Versioning Machine<!--</title>-->, I asked how certain technical features determine how texts are encoded and how these choices might be seen as encouraging—but not formally enforcing—a conception of textual editing as the creation, by a single editor, of a document that is intended for one instantiation. I also asked how a prototype could be designed that would experiment with alternate conceptions of textual editing, exploring ways that an encoded document might be shared by researchers and instantiated in a variety of ways. The observations below result from repeated cycles of interaction with the <!--<title level="m">-->Versioning Machine<!--</title>--> and development of the prototype presented here, which I am arguing can be used not to fix, improve, or innovate on a given system but to come to understand the values and assumptions of that system and to communicate alternatives. In this way, the following annotations are not a complete description of the <!--<title level="m">-->Versioning Machine<!--</title>--> but instead a focused interpretation that delimits a field of interest discussed in the <ref type="crossref" target="#alternatestates">next section</ref>.</p>
-        
+
+        <p>From a theoretical perspective, parallel segmentation works well with Galey’s stated
+          goals, as it does not require that the editor establish a hierarchy by specifying a base
+          text, a witness that will be taken as the original or the reading against which all other
+          witnesses will be compared. From a technical perspective, parallel segmentation makes the
+          design of Galey’s prototype simpler by bringing all variants together in one element where
+          they can easily be manipulated, whereas the <term>double end-point attachment</term>
+          method allows variants to be distributed either within a single file or across several.
+          And from a perspective that considers how editors currently work with TEI, parallel
+          segmentation has the advantage of being relatively easy to write and interpret in a basic
+          text editor.</p>
+
+        <p>The choice to work with the parallel segmentation method means that texts encoded using
+          other methods cannot be used with Galey’s prototype.
+          <!-- [RvdB] "This" in following sentence refers to location-referenced, surely? Agreed MDH; changed accordingly. -->The
+            <term>location-referenced</term> method requires editors to identify only the beginning
+          of the text to which a variant refers, although they may also use the <gi>lem</gi> element
+          to specify the full text referred to. Using the <gi>lem</gi> element in this way, however,
+          would create additional work in programming the interface (which would need to perform
+          text-matching to identify the location of the variants) as well as in specifying the
+          lemmas in the encoded text. Indeed the TEI Guidelines notes that editors often choose not
+          to perform the extra work of including lemmas and that, if a full reconstruction of all
+          witnesses is desired (as it is with Galey’s prototype), the location-referenced method is
+          less appropriate than other methods (<ref type="bibl" target="#tei12">TEI Consortium
+            2012</ref>). Galey’s choice, then, of parallel segmentation can be seen as an example of
+          how theoretical goals, technical constraints, and social configurations can determine how
+          texts are encoded.</p>
+
+        <p>The <!--<title level="m">-->Versioning Machine<!--</title>--> provides an opportunity for
+          a more nuanced exploration of these relationships, as well as a discussion of how they
+          influence conceptions of textual editing. Conceived by Susan Schreibman, the
+          <!--<title level="m">-->Versioning Machine<!--</title>--> is a set of XSLT, HTML, CSS, and
+          JavaScript files that allows textual editors to create web interfaces to display TEI
+          documents that encode collations of different text versions (<ref type="bibl"
+            target="#schreibman03">Schreibman, Kumar, and McDonald 2003, 102</ref>). As I worked to
+          redesign and reimagine the <!--<title level="m">-->Versioning Machine<!--</title>-->, I
+          asked how certain technical features determine how texts are encoded and how these choices
+          might be seen as encouraging—but not formally enforcing—a conception of textual editing as
+          the creation, by a single editor, of a document that is intended for one instantiation. I
+          also asked how a prototype could be designed that would experiment with alternate
+          conceptions of textual editing, exploring ways that an encoded document might be shared by
+          researchers and instantiated in a variety of ways. The observations below result from
+          repeated cycles of interaction with the <!--<title level="m">-->Versioning
+          Machine<!--</title>--> and development of the prototype presented here, which I am arguing
+          can be used not to fix, improve, or innovate on a given system but to come to understand
+          the values and assumptions of that system and to communicate alternatives. In this way,
+          the following annotations are not a complete description of the
+          <!--<title level="m">-->Versioning Machine<!--</title>--> but instead a focused
+          interpretation that delimits a field of interest discussed in the <ref type="crossref"
+            target="#alternatestates">next section</ref>.</p>
+
         <figure xml:id="figure1">
           <graphic url="img/versioning_machine_joyce.png" width="1280px" height="702px"/>
-          <head type="legend">Excerpts from the <title level="a">Lestrygonians</title> chapter of James Joyce’s <title level="m">Ulysses</title> displayed in the <!--<title level="m">-->Versioning Machine<!--</title>--> interface.</head>
+          <head type="legend">Excerpts from the <title level="a">Lestrygonians</title> chapter of
+            James Joyce’s <title level="m">Ulysses</title> displayed in the
+            <!--<title level="m">-->Versioning Machine<!--</title>--> interface.</head>
         </figure>
-        
+
         <div xml:id="vm.annotations">
-          
+
           <head>Creating Annotations</head>
-          
-          <p>The conception of textual editing implied by the <!--<title level="m">-->Versioning Machine<!--</title>--> is perhaps best seen in its treatment of editorial annotations. Using the <gi>note</gi> element, editors place annotations directly within the text, adjacent to the element on which they want to comment. The TEI Guidelines refer to this method as <term>implicit linking</term>, as the relationship between annotation and text must be understood through positioning rather than a more explicit declaration (<ref type="bibl" target="#tei12">TEI Consortium 2012</ref>). While the method is less precise than using <att>target</att> and <att>targetEnd</att> attributes to specify the exact scope of the reference, it does allow for notes to be placed within larger units (for example, adjacent to a single letter within a line) and is easy for editors to implement in a basic text editor.</p>
-          
-          <p>However, the <!--<title level="m">-->Versioning Machine<!--</title>-->’s implementation of implicit linking can also encourage a conception of the encoded text as entangled with content specific to an editor (or consistent editorial team). While the  <gi>note</gi> element allows for a <att>resp</att> attribute to differentiate the contributions of multiple editors, this information is not reflected by the <!--<title level="m">-->Versioning Machine<!--</title>--> interface. In the <!--<title level="m">-->Versioning Machine<!--</title>-->’s provided sample texts, editorial responsibility is claimed in the <gi>teiHeader</gi> for the entire document, and in the instances when the <att>resp</att> attribute is attached to elements, the value of <val>editor</val> is used, implying that responsibility is consistent across the document. Together with the interface’s lack of support for the <att>resp</att> attribute, these examples suggest how systems can encourage certain assumptions without formally requiring them. While a text could be encoded with annotations from multiple editors with differing interpretations, the <!--<title level="m">-->Versioning Machine<!--</title>--> is not designed to make these choices visible. Further, its sample texts model encoding as a process that enmeshes a set of interpretations with a text, encouraging the document to be seen as the work of a specific editor or editorial team following a specific interpretational framework. This conception of textual editing is not unusual—indeed, John Bryant (<ref type="bibl" target="#bryant02">2002</ref>) notes that an editor’s critical goals will influence choices made in compiling an edition, and the MLA’s <title level="m">Guidelines for Editors of Scholarly Editions</title> (<ref type="bibl" target="#mla11">2011</ref>) makes similar claims. Still, the relationship between individual interpretation and systems for working with encoded text presents an interesting problem, and the <!--<title level="m">-->Versioning Machine<!--</title>--> represents a useful marker for thinking within that space.</p>
-          
-          <p>Stand-off markup, described by Piotr Bański (<ref type="bibl" xml:id="quoteref7" target="#banski10">2010</ref>) as <quote source="#quoteref7">creating/organizing a structure in resource A out of elements of resource B by pointing to them</quote> offers an alternative approach to this issue. Essentially, stand-off markup represents a broad approach to encoding in which annotations are separated from the elements to which they refer. In the context of editorial annotations, for example, the concept of stand-off markup suggests that notes and other features specific to an editor might be stored in a separate file. </p>
-          
-          <p>While the <!--<title level="m">-->Versioning Machine<!--</title>--> assumes that <gi>note</gi> elements will be placed directly in the text, the TEI Guidelines describe alternative methods that would allow these notes to exist in other locations. For example, <gi>note</gi> elements can be linked to sections of text either by inserting <gi>ptr</gi> elements into the text or by using the XPointer Framework, which relieves the need to clutter a text with a potentially large number of <gi>ptr</gi>s. Both methods suggests different conceptions of the work of textual editing. For example, moving an individual editor’s annotations into an external file suggests that encoded texts might be used by multiple editors to express various critical goals and interpretations. Similarly, storing annotations externally suggests that an interface to display encoded texts might bring together multiple interpretations in flexible ways. Rather than seeing an encoded text as the work of one editor, this conception of textual editing imagines that interpretations might be mixed and matched and that encoded texts might have a variety of instantiations. And while a system that relies on implicit linking might not technically foreclose these possibilities, the relationship between standards, practice, and interfaces is more than technical—editors work based on models of what is possible and, to some extent, imagine those outcomes that available tools encourage.</p>
-          
+
+          <p>The conception of textual editing implied by the <!--<title level="m">-->Versioning
+            Machine<!--</title>--> is perhaps best seen in its treatment of editorial annotations.
+            Using the <gi>note</gi> element, editors place annotations directly within the text,
+            adjacent to the element on which they want to comment. The TEI Guidelines refer to this
+            method as <term>implicit linking</term>, as the relationship between annotation and text
+            must be understood through positioning rather than a more explicit declaration (<ref
+              type="bibl" target="#tei12">TEI Consortium 2012</ref>). While the method is less
+            precise than using <att>target</att> and <att>targetEnd</att> attributes to specify the
+            exact scope of the reference, it does allow for notes to be placed within larger units
+            (for example, adjacent to a single letter within a line) and is easy for editors to
+            implement in a basic text editor.</p>
+
+          <p>However, the <!--<title level="m">-->Versioning Machine<!--</title>-->’s implementation
+            of implicit linking can also encourage a conception of the encoded text as entangled
+            with content specific to an editor (or consistent editorial team). While the
+              <gi>note</gi> element allows for a <att>resp</att> attribute to differentiate the
+            contributions of multiple editors, this information is not reflected by the
+            <!--<title level="m">-->Versioning Machine<!--</title>--> interface. In the
+            <!--<title level="m">-->Versioning Machine<!--</title>-->’s provided sample texts,
+            editorial responsibility is claimed in the <gi>teiHeader</gi> for the entire document,
+            and in the instances when the <att>resp</att> attribute is attached to elements, the
+            value of <val>editor</val> is used, implying that responsibility is consistent across
+            the document. Together with the interface’s lack of support for the <att>resp</att>
+            attribute, these examples suggest how systems can encourage certain assumptions without
+            formally requiring them. While a text could be encoded with annotations from multiple
+            editors with differing interpretations, the <!--<title level="m">-->Versioning
+            Machine<!--</title>--> is not designed to make these choices visible. Further, its
+            sample texts model encoding as a process that enmeshes a set of interpretations with a
+            text, encouraging the document to be seen as the work of a specific editor or editorial
+            team following a specific interpretational framework. This conception of textual editing
+            is not unusual—indeed, John Bryant (<ref type="bibl" target="#bryant02">2002</ref>)
+            notes that an editor’s critical goals will influence choices made in compiling an
+            edition, and the MLA’s <title level="m">Guidelines for Editors of Scholarly
+              Editions</title> (<ref type="bibl" target="#mla11">2011</ref>) makes similar claims.
+            Still, the relationship between individual interpretation and systems for working with
+            encoded text presents an interesting problem, and the <!--<title level="m">-->Versioning
+            Machine<!--</title>--> represents a useful marker for thinking within that space.</p>
+
+          <p>Stand-off markup, described by Piotr Bański (<ref type="bibl" xml:id="quoteref7"
+              target="#banski10">2010</ref>) as <quote source="#quoteref7">creating/organizing a
+              structure in resource A out of elements of resource B by pointing to them</quote>
+            offers an alternative approach to this issue. Essentially, stand-off markup represents a
+            broad approach to encoding in which annotations are separated from the elements to which
+            they refer. In the context of editorial annotations, for example, the concept of
+            stand-off markup suggests that notes and other features specific to an editor might be
+            stored in a separate file. </p>
+
+          <p>While the <!--<title level="m">-->Versioning Machine<!--</title>--> assumes that
+              <gi>note</gi> elements will be placed directly in the text, the TEI Guidelines
+            describe alternative methods that would allow these notes to exist in other locations.
+            For example, <gi>note</gi> elements can be linked to sections of text either by
+            inserting <gi>ptr</gi> elements into the text or by using the XPointer Framework, which
+            relieves the need to clutter a text with a potentially large number of <gi>ptr</gi>s.
+            Both methods suggests different conceptions of the work of textual editing. For example,
+            moving an individual editor’s annotations into an external file suggests that encoded
+            texts might be used by multiple editors to express various critical goals and
+            interpretations. Similarly, storing annotations externally suggests that an interface to
+            display encoded texts might bring together multiple interpretations in flexible ways.
+            Rather than seeing an encoded text as the work of one editor, this conception of textual
+            editing imagines that interpretations might be mixed and matched and that encoded texts
+            might have a variety of instantiations. And while a system that relies on implicit
+            linking might not technically foreclose these possibilities, the relationship between
+            standards, practice, and interfaces is more than technical—editors work based on models
+            of what is possible and, to some extent, imagine those outcomes that available tools
+            encourage.</p>
+
         </div>
-        
+
         <div xml:id="vm.styles">
-          
+
           <head>Changing Styles</head>
-          
-          <p>The <!--<title level="m">-->Versioning Machine<!--</title>--> also presents an interesting context to think about the relationship between a text’s encoding and subsequent instantiation in an interface. Specifically, in the <!--<title level="m">-->Versioning Machine<!--</title>-->, environment changes to the interface are seen as connected with changes to the text encoding, suggesting that editors might be encouraged to see the work of encoding as leading to a single instantiation. On a surface level, this can be seen in the way editors choose between the two stylesheets provided for use with the <!--<title level="m">-->Versioning Machine<!--</title>-->. For example, to select the alternate style of interface created by Tanya Clement for her <!-- [RvdB] project title: <title level="m">? --><!--<title level="m">--><ref target="http://digital.lib.umd.edu/transition/introduction">Elsa von Freytag-Loringhoven project</ref><!--</title>-->, an editor is instructed to change the XML stylesheet declaration, found at the top of the TEI document, to reference the <ident>vmachine_evfl.xsl</ident> file that is packaged with the tool. This minor change alters the appearance of the <!--<title level="m">-->Versioning Machine<!--</title>--> interface. More importantly, though, it also has several implications for how encoded texts are processed—and, as a consequence, for how editors encode texts. <gi>note</gi> elements with a <att>type</att> attribute of <val>image</val>, for example, are displayed normally with the default styling but are not displayed at all with the alternate styling. Similarly, if <gi>note</gi> elements with a <att>type</att> attribute of <val>critIntro</val> are included in a specific location in the TEI document, they will be displayed, with the alternate styling, in a special popup panel. Finally, selecting the alternate stylesheet allows editors to use a modified version of the location-referenced method of encoding textual variants in addition to the parallel segmentation method. The <!--<title level="m">-->Versioning Machine<!--</title>--> documentation notes that using this method allows editors to connect sections of text that may appear in different locations, and Tanya Clement and Gaby Divay (<ref type="bibl" target="#clement12">2012</ref>) connect the need for this method of encoding variants with the goal of allowing readers a high level of engagement with a complex text. However, this high level of engagement, performed as described in the documentation, limits the ways the text can be displayed. In the <!--<title level="m">-->Versioning Machine<!--</title>-->, a change to the style of the interface is often accompanied by a change to the way the text is encoded.</p>
-          
-          <p>Thus, an editor who decides to use the alternate stylesheet makes at least one change to an encoded document (by changing the stylesheet declaration) and will likely make other changes to either accommodate the alternate behavior (by changing the <att>type</att> attribute of <gi>note</gi> elements that might have appeared using the original stylesheet or by including location-referenced encoding). While these modifications may be seen as minor, they reinforce a conception of textual editing that sees encoded files as leading to a particular instantiation. As with the issue of stand-off markup noted above, this is in many ways consistent with current understandings of textual editing. Alongside the problem area of how individual interpretations relate to the practice of encoding is the issue of how encoding relates to an eventual instantiation in an interface.</p>
+
+          <p>The <!--<title level="m">-->Versioning Machine<!--</title>--> also presents an
+            interesting context to think about the relationship between a text’s encoding and
+            subsequent instantiation in an interface. Specifically, in the
+            <!--<title level="m">-->Versioning Machine<!--</title>-->, environment changes to the
+            interface are seen as connected with changes to the text encoding, suggesting that
+            editors might be encouraged to see the work of encoding as leading to a single
+            instantiation. On a surface level, this can be seen in the way editors choose between
+            the two stylesheets provided for use with the <!--<title level="m">-->Versioning
+            Machine<!--</title>-->. For example, to select the alternate style of interface created
+            by Tanya Clement for her
+              <!-- [RvdB] project title: <title level="m">? --><!--<title level="m">--><ref
+              target="http://digital.lib.umd.edu/transition/introduction">Elsa von
+              Freytag-Loringhoven project</ref><!--</title>-->, an editor is instructed to change
+            the XML stylesheet declaration, found at the top of the TEI document, to reference the
+              <ident>vmachine_evfl.xsl</ident> file that is packaged with the tool. This minor
+            change alters the appearance of the <!--<title level="m">-->Versioning
+            Machine<!--</title>--> interface. More importantly, though, it also has several
+            implications for how encoded texts are processed—and, as a consequence, for how editors
+            encode texts. <gi>note</gi> elements with a <att>type</att> attribute of
+              <val>image</val>, for example, are displayed normally with the default styling but are
+            not displayed at all with the alternate styling. Similarly, if <gi>note</gi> elements
+            with a <att>type</att> attribute of <val>critIntro</val> are included in a specific
+            location in the TEI document, they will be displayed, with the alternate styling, in a
+            special popup panel. Finally, selecting the alternate stylesheet allows editors to use a
+            modified version of the location-referenced method of encoding textual variants in
+            addition to the parallel segmentation method. The <!--<title level="m">-->Versioning
+            Machine<!--</title>--> documentation notes that using this method allows editors to
+            connect sections of text that may appear in different locations, and Tanya Clement and
+            Gaby Divay (<ref type="bibl" target="#clement12">2012</ref>) connect the need for this
+            method of encoding variants with the goal of allowing readers a high level of engagement
+            with a complex text. However, this high level of engagement, performed as described in
+            the documentation, limits the ways the text can be displayed. In the
+            <!--<title level="m">-->Versioning Machine<!--</title>-->, a change to the style of the
+            interface is often accompanied by a change to the way the text is encoded.</p>
+
+          <p>Thus, an editor who decides to use the alternate stylesheet makes at least one change
+            to an encoded document (by changing the stylesheet declaration) and will likely make
+            other changes to either accommodate the alternate behavior (by changing the
+              <att>type</att> attribute of <gi>note</gi> elements that might have appeared using the
+            original stylesheet or by including location-referenced encoding). While these
+            modifications may be seen as minor, they reinforce a conception of textual editing that
+            sees encoded files as leading to a particular instantiation. As with the issue of
+            stand-off markup noted above, this is in many ways consistent with current
+            understandings of textual editing. Alongside the problem area of how individual
+            interpretations relate to the practice of encoding is the issue of how encoding relates
+            to an eventual instantiation in an interface.</p>
         </div>
-        
+
       </div>
-      
+
       <div xml:id="alternatestates">
-        
+
         <head>Alternate States</head>
-        
+
         <figure xml:id="figure2">
           <graphic url="img/modvers_joyce.png" width="1280px" height="702px"/>
-          <head type="legend">Excerpts from the <title level="a">Lestrygonians</title> chapter of James Joyce’s <title level="m">Ulysses</title> displayed in the prototype interface.</head>
+          <head type="legend">Excerpts from the <title level="a">Lestrygonians</title> chapter of
+            James Joyce’s <title level="m">Ulysses</title> displayed in the prototype
+            interface.</head>
         </figure>
-        
-        <p>While the <ref target="http://github.com/danielcarter/jquery.modVers">prototype</ref> created for this project<note><p>The prototype, with documentation, is available at <ptr target="http://github.com/danielcarter/jquery.modVers"/>.</p></note> is based on the <!--<title level="m">-->Versioning Machine<!--</title>-->, it diverges from that original in several ways designed to experiment with alternative conceptions of textual editing.</p>
-        
+
+        <p>While the <ref target="http://github.com/danielcarter/jquery.modVers">prototype</ref>
+          created for this project<note><p>The prototype, with documentation, is available at <ptr
+                target="http://github.com/danielcarter/jquery.modVers"/>.</p></note> is based on the
+          <!--<title level="m">-->Versioning Machine<!--</title>-->, it diverges from that original
+          in several ways designed to experiment with alternative conceptions of textual
+          editing.</p>
+
         <div xml:id="modvers.styles">
-          
+
           <head>Changing Styles</head>
-          
-          <p>Like the <!--<title level="m">-->Versioning Machine<!--</title>-->, the prototype discussed here provides users with options to change the appearance and behavior of the created interface. However, the options offered by the prototype differ from those of the  <!--<title level="m">-->Versioning Machine<!--</title>--> in several ways. First, the options do not alter the processing of the encoded text—where I argue <ref type="crossref" target="#vm.styles">above</ref> that changing styles in the <!--<title level="m">-->Versioning Machine<!--</title>--> assumes that an editor will return to the text and modify the encoding, the prototype’s options change only the appearance of the interface, meaning there is no reason for an editor to modify an encoded text in response to a change in interface style. Second, where users of the <!--<title level="m">-->Versioning Machine<!--</title>--> select the alternate style of interface by modifying the encoded text, the prototype inserts an intermediary step in the process. Instead of directly transforming an XML file into an interface using XSLT, the prototype includes an additional step, using JavaScript, that specifies options for the appearance and functioning of the created interface.</p>
-          
+
+          <p>Like the <!--<title level="m">-->Versioning Machine<!--</title>-->, the prototype
+            discussed here provides users with options to change the appearance and behavior of the
+            created interface. However, the options offered by the prototype differ from those of
+            the <!--<title level="m">-->Versioning Machine<!--</title>--> in several ways. First,
+            the options do not alter the processing of the encoded text—where I argue <ref
+              type="crossref" target="#vm.styles">above</ref> that changing styles in the
+            <!--<title level="m">-->Versioning Machine<!--</title>--> assumes that an editor will
+            return to the text and modify the encoding, the prototype’s options change only the
+            appearance of the interface, meaning there is no reason for an editor to modify an
+            encoded text in response to a change in interface style. Second, where users of the
+            <!--<title level="m">-->Versioning Machine<!--</title>--> select the alternate style of
+            interface by modifying the encoded text, the prototype inserts an intermediary step in
+            the process. Instead of directly transforming an XML file into an interface using XSLT,
+            the prototype includes an additional step, using JavaScript, that specifies options for
+            the appearance and functioning of the created interface.</p>
+
           <figure xml:id="example2">
-            <eg>
-              $('#teiHolder').data('modVers', {
-              xmlFile: 'data/teiFile.xml'
-              annotations: 'data/annotations.json',
-              fixFirst: false,
-              fullscreen: false,
-              height: 300,
-              ids: 'a,b,c',
-              witnesses: 'v1,v2'             
-              });
-            </eg>
-            <head type="legend">JavaScript code providing options for changing the appearance of the interface created by the prototype.</head>
+            <eg> $('#teiHolder').data('modVers', { xmlFile: 'data/teiFile.xml' annotations:
+              'data/annotations.json', fixFirst: false, fullscreen: false, height: 300, ids:
+              'a,b,c', witnesses: 'v1,v2' }); </eg>
+            <head type="legend">JavaScript code providing options for changing the appearance of the
+              interface created by the prototype.</head>
           </figure>
-          
-          <p>Using these options, users can control the appearance and behavior of the interface, specifying its height, whether the first witness should be scrollable or fixed, and whether the interface should fill the entire browser window or should instead be constrained within another element such as a column of text. Users can also choose to have the interface display only certain segments of text, specified by <att>xml:id</att> attributes of <gi>app</gi> elements, or only certain witnesses. These options allow users to create a variety of instantiations from one encoded text. For example, a user might want to compare only some witnesses from the many encoded in one TEI document or focus on only one section from a long text. These options suggest alternative ways of working with encoded text, giving editors the ability to use (and reuse) documents, experimenting quickly with different configurations of text and interface to, ultimately, make a broad range of arguments. Editors can try out new ways of presenting texts and can present the same text in multiple ways by creating a series of editions based on one TEI document, offering readers of digital editions new ways to experience a text.</p>
-          
+
+          <p>Using these options, users can control the appearance and behavior of the interface,
+            specifying its height, whether the first witness should be scrollable or fixed, and
+            whether the interface should fill the entire browser window or should instead be
+            constrained within another element such as a column of text. Users can also choose to
+            have the interface display only certain segments of text, specified by <att>xml:id</att>
+            attributes of <gi>app</gi> elements, or only certain witnesses. These options allow
+            users to create a variety of instantiations from one encoded text. For example, a user
+            might want to compare only some witnesses from the many encoded in one TEI document or
+            focus on only one section from a long text. These options suggest alternative ways of
+            working with encoded text, giving editors the ability to use (and reuse) documents,
+            experimenting quickly with different configurations of text and interface to,
+            ultimately, make a broad range of arguments. Editors can try out new ways of presenting
+            texts and can present the same text in multiple ways by creating a series of editions
+            based on one TEI document, offering readers of digital editions new ways to experience a
+            text.</p>
+
         </div>
-        
+
         <div xml:id="modvers.annotations">
-          
+
           <head>Creating Annotations</head>
-          
-          <p>As a way of experimenting with how encoded files might be interpreted and presented in multiple ways, the prototype also avoids the implicit linking of annotations that was seen in the <!--<title level="m">-->Versioning Machine<!--</title>-->. Instead, it implements a version of stand-off markup that places annotations in a separate file, encoded in JavaScript Object Notation (JSON). When writing the JavaScript code that instantiates and gives options for the interface, users can specify a file containing annotations, and when the interface is created the annotations in the external file are matched to the <att>xml:id</att> attributes of the document’s <gi>app</gi> elements. In this way, the same TEI document could be used in multiple instantiations, each bringing together the text with a different set of annotations.</p>
-          
+
+          <p>As a way of experimenting with how encoded files might be interpreted and presented in
+            multiple ways, the prototype also avoids the implicit linking of annotations that was
+            seen in the <!--<title level="m">-->Versioning Machine<!--</title>-->. Instead, it
+            implements a version of stand-off markup that places annotations in a separate file,
+            encoded in JavaScript Object Notation (JSON). When writing the JavaScript code that
+            instantiates and gives options for the interface, users can specify a file containing
+            annotations, and when the interface is created the annotations in the external file are
+            matched to the <att>xml:id</att> attributes of the document’s <gi>app</gi> elements. In
+            this way, the same TEI document could be used in multiple instantiations, each bringing
+            together the text with a different set of annotations.</p>
+
           <figure xml:id="example3">
-            <eg>
-            "annotations": {
-                "items": [
-                    {
-                      "id": "1",
-                      "wit": "lr",
-                      "text": "This is an annotation applied to one witness.",
-                      "resp": "Editor 1"
-                    },
-                    {
-                        "id": "38",
-                        "text": "This is an annotation applied to all witnesses.",
-                        "resp": "Editor 2"
-                    }
-                ]
-            },
-          </eg>
+            <eg> "annotations": { "items": [ { "id": "1", "wit": "lr", "text": "This is an
+              annotation applied to one witness.", "resp": "Editor 1" }, { "id": "38", "text": "This
+              is an annotation applied to all witnesses.", "resp": "Editor 2" } ] }, </eg>
             <head type="legend">A sample JSON file of annotations.</head>
           </figure>
-          
-          <p>In <ptr type="crossref" target="#example3"/>, the <ident>id</ident> option refers to <gi>app</gi> elements in the encoded text. The <ident>wit</ident> option declares with which witnesses the annotation should be associated; if it is not included, the annotation will be applied to all witnesses. The <ident>text</ident> option provides the content of the annotation, and the <ident>resp</ident> option specifies the editor responsible for the annotation.</p>
-          
+
+          <p>In <ptr type="crossref" target="#example3"/>, the <ident>id</ident> option refers to
+              <gi>app</gi> elements in the encoded text. The <ident>wit</ident> option declares with
+            which witnesses the annotation should be associated; if it is not included, the
+            annotation will be applied to all witnesses. The <ident>text</ident> option provides the
+            content of the annotation, and the <ident>resp</ident> option specifies the editor
+            responsible for the annotation.</p>
+
           <figure xml:id="example4">
-          <egXML xmlns="http://www.tei-c.org/ns/Examples">
-            <app xml:id="1">
-              <rdg wit="#sb #g">
-                Pineapple rock, lemon platt, butter scotch.
-              </rdg>
-              <rdg wit="#lr">
-                PINEAPPLE rock, lemon platt, butter-scotch.
-              </rdg>	    		
-            </app>
-            <!-- ... -->
-            <app xml:id="38">
-              <rdg wit="#sb #g">
-                Regular world in itself.
-              </rdg>
-              <rdg wit="#lr">
-                Regular town in itself.
-              </rdg>				
-            </app>
-          </egXML>
-            <head type="legend">An excerpt of the XML to which the annotations in <ptr target="#example3" type="crossref"/> refer.</head>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <app xml:id="1">
+                <rdg wit="#sb #g"> Pineapple rock, lemon platt, butter scotch. </rdg>
+                <rdg wit="#lr"> PINEAPPLE rock, lemon platt, butter-scotch. </rdg>
+              </app>
+              <!-- ... -->
+              <app xml:id="38">
+                <rdg wit="#sb #g"> Regular world in itself. </rdg>
+                <rdg wit="#lr"> Regular town in itself. </rdg>
+              </app>
+            </egXML>
+            <head type="legend">An excerpt of the XML to which the annotations in <ptr
+                target="#example3" type="crossref"/> refer.</head>
           </figure>
-          
-          <p>As noted, this adoption of stand-off markup poses technical and theoretical problems. While it removes the more overt marks of an individual editor from the encoded text, there are still significant aspects of the encoding that will stem from specific theoretical goals and choices—for example, the segmentation of the textual variants into <gi>app</gi> elements. Further, only by requiring the use of the <att>xml:id</att> attribute on <gi>app</gi> elements does the prototype overcome the implicit nature of parallel segmentation, but this is a somewhat idiosyncratic solution adopted to deal with the current technical difficulty of working extensively with the double endpoint attachment method. This concession highlights the negotiated nature of any kind of segmentation of the text. While multiple editors may annotate a text and multiple annotations may be brought together in various configurations, the segments that can be commented on are, as described here, a limit to the separation of interpretation and textual markup. Similarly, the tension between standards adoption and idiosyncrasy raises the question of how far this separation can extend, as well as the circumstances in which it would be desirable. The negotiation of segments, after all, could prove to be a productive conversation at the local level while simultaneously representing a failure from a system perspective.</p>
-          
-          <p>While one of the benefits of building prototypes is the opportunity to foster these conversations about the boundaries of practice, I would also argue that there is a benefit to allowing users to see the effects of an imperfect implementation. Moving annotations into an external file, regardless of technical specificities, allows for certain practices of textual editing to be enacted and also for the implications of stand-off markup beyond this prototype to be imagined. By allowing multiple sets of annotations to be created based on a single TEI document and by presenting users with the option to create instantiations that bring encoded texts and annotations together in different ways, the prototype presents and opens for debate an alternative conception of textual editing. James Cummings (<ref type="bibl" xml:id="quoteref8" target="#cummings09">2009, 307</ref>) refers to editions that use a similar kind of stand-off markup as <quote source="#quoteref8">agile editions</quote>, claiming that moving markup that is <quote source="#quoteref9">not directly related to the transcription of the text</quote> into external files allows the encoded documents to be used (and reused) easily and flexibly (<ref type="bibl" xml:id="quoteref9" target="#cummings09">307</ref>). This issue of reuse is fundamentally connected with conceptions of the work of textual editing—both Cummings’ work and the prototype presented here point to ways that a single encoded text could serve as a common hub for multiple editors to come together to annotate a text based on each individual’s theoretical goals, and to ways that an exhibit of these annotations could be created to present, in series, a range of interpretations. At the same time, prototypes, as opposed to written articles, can also make visible the technical and theoretical problems inherent in such a system. Indeed, one reviewer of this article points out that the system described would require multiple editors to comment on a text that has already been segmented: <q>Each individual’s theoretical goals will (by design) still be secondary to those of the first editor <gap/> Additional annotations will always have to function as commentary to some basic editorial decisions.</q> This issue points to areas for further work, suggesting that future systems might require either an extremely fine-grained segmentation (at the word level, for example) of the text or the use of the XPointer framework to specify areas of text without prior segmentation.</p>
-          
+
+          <p>As noted, this adoption of stand-off markup poses technical and theoretical problems.
+            While it removes the more overt marks of an individual editor from the encoded text,
+            there are still significant aspects of the encoding that will stem from specific
+            theoretical goals and choices—for example, the segmentation of the textual variants into
+              <gi>app</gi> elements. Further, only by requiring the use of the <att>xml:id</att>
+            attribute on <gi>app</gi> elements does the prototype overcome the implicit nature of
+            parallel segmentation, but this is a somewhat idiosyncratic solution adopted to deal
+            with the current technical difficulty of working extensively with the double endpoint
+            attachment method. This concession highlights the negotiated nature of any kind of
+            segmentation of the text. While multiple editors may annotate a text and multiple
+            annotations may be brought together in various configurations, the segments that can be
+            commented on are, as described here, a limit to the separation of interpretation and
+            textual markup. Similarly, the tension between standards adoption and idiosyncrasy
+            raises the question of how far this separation can extend, as well as the circumstances
+            in which it would be desirable. The negotiation of segments, after all, could prove to
+            be a productive conversation at the local level while simultaneously representing a
+            failure from a system perspective.</p>
+
+          <p>While one of the benefits of building prototypes is the opportunity to foster these
+            conversations about the boundaries of practice, I would also argue that there is a
+            benefit to allowing users to see the effects of an imperfect implementation. Moving
+            annotations into an external file, regardless of technical specificities, allows for
+            certain practices of textual editing to be enacted and also for the implications of
+            stand-off markup beyond this prototype to be imagined. By allowing multiple sets of
+            annotations to be created based on a single TEI document and by presenting users with
+            the option to create instantiations that bring encoded texts and annotations together in
+            different ways, the prototype presents and opens for debate an alternative conception of
+            textual editing. James Cummings (<ref type="bibl" xml:id="quoteref8"
+              target="#cummings09">2009, 307</ref>) refers to editions that use a similar kind of
+            stand-off markup as <quote source="#quoteref8">agile editions</quote>, claiming that
+            moving markup that is <quote source="#quoteref9">not directly related to the
+              transcription of the text</quote> into external files allows the encoded documents to
+            be used (and reused) easily and flexibly (<ref type="bibl" xml:id="quoteref9"
+              target="#cummings09">307</ref>). This issue of reuse is fundamentally connected with
+            conceptions of the work of textual editing—both Cummings’ work and the prototype
+            presented here point to ways that a single encoded text could serve as a common hub for
+            multiple editors to come together to annotate a text based on each individual’s
+            theoretical goals, and to ways that an exhibit of these annotations could be created to
+            present, in series, a range of interpretations. At the same time, prototypes, as opposed
+            to written articles, can also make visible the technical and theoretical problems
+            inherent in such a system. Indeed, one reviewer of this article points out that the
+            system described would require multiple editors to comment on a text that has already
+            been segmented: <q>Each individual’s theoretical goals will (by design) still be
+              secondary to those of the first editor <gap/> Additional annotations will always have
+              to function as commentary to some basic editorial decisions.</q> This issue points to
+            areas for further work, suggesting that future systems might require either an extremely
+            fine-grained segmentation (at the word level, for example) of the text or the use of the
+            XPointer framework to specify areas of text without prior segmentation.</p>
+
         </div>
-        
+
       </div>
-      
+
       <div xml:id="reflections">
-        
+
         <head>Methodological Reflections</head>
-        
-        <p>There are certainly ways of looking at these modifications to the <!--<title level="m">-->Versioning Machine<!--</title>--> as irrelevant or even wrong. For example, the options that are specified by JavaScript are in many ways similar to those that might be set in an XSLT stylesheet. Similarly, it might be claimed that it makes little difference where annotations are stored; even those stored internally in <gi>note</gi> tags and implicitly linked can easily be processed and moved to an external file. The systems imagined above—in which an encoded text is brought together in various ways with a range of interpretations—are certainly possible without implementing the specific changes described here. And the choice to store annotations in the JSON format instead of XML would be unlikely to hold in a system designed to be technically optimal.</p>
-        
-        <p>Further, the prototype, in responding to the <!--<title level="m">-->Versioning Machine<!--</title>-->, creates its own assumptions about textual editing. It assumes competency in the JSON format as well as the current limitations associated with text editors and the infeasibility of working with extremely complex XML documents. It also opts, in some instances, to limit certain possibilities (the visual differentiation of certain kinds of notes, for example) while integrating others, such as the <att>resp</att> attribute, that speak to the concerns addressed here. And, in requiring the use of the parallel segmentation method, the prototype struggles with questions of the extent to which an encoded text can be displayed in multiple systems. While it was noted that the <!--<title level="m">-->Versioning Machine<!--</title>--> requires a change in encoding to effect a change in appearance, the degree to which the prototype addresses this issue may be seen as slight. The value here is perhaps not in solving a problem but in triangulating its existence: the prototype presents another view of the current situation of textual editing. Placed alongside the <!--<title level="m">-->Versioning Machine<!--</title>-->, I hope the prototype will allow for a richer space of discussion.</p>
-        
-        <p>As Millerand and Bowker (<ref type="bibl" target="#millerand09" xml:id="quoteref10">2009, 152</ref>) note of another specialized XML schema, the <ident>Ecological Metadata Language</ident>, a markup language is <quote source="#quoteref10">defined a priori as a solution to a set of technical problems—a solution from which will issue the one good tool that can be used by all</quote>. However, Millerand and Bowker also note that these technical solutions have social consequences and that the <quote source="#quoteref10">one good tool</quote> must be considered in relation to local enactment, the process by which it is modified for actual use. There may be optimal solutions, but there are also workarounds and experiments that do not necessarily seek optimal solutions to technical problems. Reimagining a system like the <title>Versioning Machine</title> allows designers to confront difficulties and interact with workarounds and experiments. This experience can be used to reflect on conceptual issues, and these issues can be communicated and debated through the prototype designed. Indeed, for design research, the futures imagined need not necessarily be desirable; instead, provocative or even undesirable designs might be used to investigate conceptual issues (<ref type="bibl" target="#odom12">Odom et al. 2012, 339</ref>).</p>
-        
-        <p>And because prototypes like the one described here are based on current technologies and present themselves as available for use, this interaction with conceptual issues is also available to users through experiment and discussion. Stephanie Schlitz and Garrick Bodine (<ref type="bibl" target="#schlitz09" xml:id="quoteref11">2009, 340</ref>) note this value in describing the <!--<title level="m">-->Versioning Machine<!--</title>--> as primarily serving a communicative function, claiming that, while the tool had been used in only one project at the time of their writing, its value in contributing to discussions of tool development <quote source="#quoteref11">cannot be overstated</quote>. Indeed, the greatest value of some tools may be their rhetorical qualities in relation to a field of discourse. As with Dunne’s value fictions, both the <!--<title level="m">-->Versioning Machine<!--</title>--> and the prototype presented here gain rhetorical force because they are based on existing standards; they adhere to current states of knowledge and are placed in a context of use that provokes a certain kind of discussion. While objects displayed in an art gallery, Dunne (<ref type="bibl" target="#dunne05" xml:id="quoteref12">2005, 86</ref>) notes, draw attention to the skill of their creators, they <quote source="#quoteref12">overlook the challenge to the status quo insertion into everyday life might bring about</quote>. Prototypes of academic tools seem especially suited to this kind of intervention. Necessarily grounded in an existing discourse and often remarking on their own theoretical goals—but also put before scholars as potential tools to be picked up and used—these projects can challenge assumptions not just through conventional argument but also through presentation and use. The Software Studies Initiative’s <title level="m">ImagePlot</title> software, for example, allows users to download a software tool and quickly begin experimenting with a new method. Instead of reading an article as a way of evaluating the group’s method of visualizing large numbers of images based on features such as brightness and hue, users can, in a sense, give it a test run. Users can accept the method as useful or find it inappropriate for their area of interest—but in either case, they have interacted with a visualization method put forward as of use in humanities contexts and have considered its merits in a way perhaps not afforded by a written article.</p>
-        
-        <p>Among digital humanities scholars, there has been considerable interest in the epistemological properties of such built objects, from Willard McCarty’s (<ref type="bibl" target="#mccarty04" xml:id="quoteref13">2004</ref>, under <title level="a">Conclusion</title>) notion of modeling as <quote source="#quoteref13">a continual process of coming to know by manipulating representations</quote> to discussions of the rhetorical function of prototypes. Alan Galey and Stan Ruecker (<ref type="bibl" target="#galeyruecker10">2010</ref>) describe prototypes as making arguments, claiming the need for appropriate interpretation and evaluation. Stephen Ramsay and Geoffrey Rockwell (<ref type="bibl" target="#ramsay12" xml:id="quoteref14">2012, 78</ref>) respond that once an object functions discursively, <quote source="#quoteref14">the artifact has ceased to be a tool and has become something else</quote>. One value of the theories I have referenced from outside the humanities is their negotiation of this divide between rhetoric and utility; because a prototype functions, these theories suggest, it can make especially persuasive arguments. If the values and assumptions of systems are of interest, it may be the case that descriptions of proposed standards or technical articles are ill-suited for discussing them. Working prototypes—written about in journals, presented at conferences, or made available, with documentation, for download—ask users to evaluate new methods in relation to existing projects and give the opportunity to enact various logics that may be otherwise inaccessible. Prototypes give users access to potential futures and provide a solid ground on which debate can happen; as Carl Disalvo (<ref type="bibl" target="#disalvo09">2009</ref>) notes, issues alone may not bring together an informed public for debate, but designed objects can communicate issues in a way that invites productive response. The prototype described here can be accepted, rejected, or modified in ways that theoretical arguments cannot—its propositions can, in effect, be downloaded, tested, forked, and modified. Design research is valuable for opening these spaces of critical analysis and discussion, and for imagining and presenting for evaluation alternative futures to the sociotechnical systems that underlie the current academic work of textual editing.</p>
+
+        <p>There are certainly ways of looking at these modifications to the
+          <!--<title level="m">-->Versioning Machine<!--</title>--> as irrelevant or even wrong. For
+          example, the options that are specified by JavaScript are in many ways similar to those
+          that might be set in an XSLT stylesheet. Similarly, it might be claimed that it makes
+          little difference where annotations are stored; even those stored internally in
+            <gi>note</gi> tags and implicitly linked can easily be processed and moved to an
+          external file. The systems imagined above—in which an encoded text is brought together in
+          various ways with a range of interpretations—are certainly possible without implementing
+          the specific changes described here. And the choice to store annotations in the JSON
+          format instead of XML would be unlikely to hold in a system designed to be technically
+          optimal.</p>
+
+        <p>Further, the prototype, in responding to the <!--<title level="m">-->Versioning
+          Machine<!--</title>-->, creates its own assumptions about textual editing. It assumes
+          competency in the JSON format as well as the current limitations associated with text
+          editors and the infeasibility of working with extremely complex XML documents. It also
+          opts, in some instances, to limit certain possibilities (the visual differentiation of
+          certain kinds of notes, for example) while integrating others, such as the <att>resp</att>
+          attribute, that speak to the concerns addressed here. And, in requiring the use of the
+          parallel segmentation method, the prototype struggles with questions of the extent to
+          which an encoded text can be displayed in multiple systems. While it was noted that the
+          <!--<title level="m">-->Versioning Machine<!--</title>--> requires a change in encoding to
+          effect a change in appearance, the degree to which the prototype addresses this issue may
+          be seen as slight. The value here is perhaps not in solving a problem but in triangulating
+          its existence: the prototype presents another view of the current situation of textual
+          editing. Placed alongside the <!--<title level="m">-->Versioning Machine<!--</title>-->, I
+          hope the prototype will allow for a richer space of discussion.</p>
+
+        <p>As Millerand and Bowker (<ref type="bibl" target="#millerand09" xml:id="quoteref10">2009,
+            152</ref>) note of another specialized XML schema, the <ident>Ecological Metadata
+            Language</ident>, a markup language is <quote source="#quoteref10">defined a priori as a
+            solution to a set of technical problems—a solution from which will issue the one good
+            tool that can be used by all</quote>. However, Millerand and Bowker also note that these
+          technical solutions have social consequences and that the <quote source="#quoteref10">one
+            good tool</quote> must be considered in relation to local enactment, the process by
+          which it is modified for actual use. There may be optimal solutions, but there are also
+          workarounds and experiments that do not necessarily seek optimal solutions to technical
+          problems. Reimagining a system like the <title>Versioning Machine</title> allows designers
+          to confront difficulties and interact with workarounds and experiments. This experience
+          can be used to reflect on conceptual issues, and these issues can be communicated and
+          debated through the prototype designed. Indeed, for design research, the futures imagined
+          need not necessarily be desirable; instead, provocative or even undesirable designs might
+          be used to investigate conceptual issues (<ref type="bibl" target="#odom12">Odom et al.
+            2012, 339</ref>).</p>
+
+        <p>And because prototypes like the one described here are based on current technologies and
+          present themselves as available for use, this interaction with conceptual issues is also
+          available to users through experiment and discussion. Stephanie Schlitz and Garrick Bodine
+            (<ref type="bibl" target="#schlitz09" xml:id="quoteref11">2009, 340</ref>) note this
+          value in describing the <!--<title level="m">-->Versioning Machine<!--</title>--> as
+          primarily serving a communicative function, claiming that, while the tool had been used in
+          only one project at the time of their writing, its value in contributing to discussions of
+          tool development <quote source="#quoteref11">cannot be overstated</quote>. Indeed, the
+          greatest value of some tools may be their rhetorical qualities in relation to a field of
+          discourse. As with Dunne’s value fictions, both the <!--<title level="m">-->Versioning
+          Machine<!--</title>--> and the prototype presented here gain rhetorical force because they
+          are based on existing standards; they adhere to current states of knowledge and are placed
+          in a context of use that provokes a certain kind of discussion. While objects displayed in
+          an art gallery, Dunne (<ref type="bibl" target="#dunne05" xml:id="quoteref12">2005,
+            86</ref>) notes, draw attention to the skill of their creators, they <quote
+            source="#quoteref12">overlook the challenge to the status quo insertion into everyday
+            life might bring about</quote>. Prototypes of academic tools seem especially suited to
+          this kind of intervention. Necessarily grounded in an existing discourse and often
+          remarking on their own theoretical goals—but also put before scholars as potential tools
+          to be picked up and used—these projects can challenge assumptions not just through
+          conventional argument but also through presentation and use. The Software Studies
+          Initiative’s <title level="m">ImagePlot</title> software, for example, allows users to
+          download a software tool and quickly begin experimenting with a new method. Instead of
+          reading an article as a way of evaluating the group’s method of visualizing large numbers
+          of images based on features such as brightness and hue, users can, in a sense, give it a
+          test run. Users can accept the method as useful or find it inappropriate for their area of
+          interest—but in either case, they have interacted with a visualization method put forward
+          as of use in humanities contexts and have considered its merits in a way perhaps not
+          afforded by a written article.</p>
+
+        <p>Among digital humanities scholars, there has been considerable interest in the
+          epistemological properties of such built objects, from Willard McCarty’s (<ref type="bibl"
+            target="#mccarty04" xml:id="quoteref13">2004</ref>, under <title level="a"
+            >Conclusion</title>) notion of modeling as <quote source="#quoteref13">a continual
+            process of coming to know by manipulating representations</quote> to discussions of the
+          rhetorical function of prototypes. Alan Galey and Stan Ruecker (<ref type="bibl"
+            target="#galeyruecker10">2010</ref>) describe prototypes as making arguments, claiming
+          the need for appropriate interpretation and evaluation. Stephen Ramsay and Geoffrey
+          Rockwell (<ref type="bibl" target="#ramsay12" xml:id="quoteref14">2012, 78</ref>) respond
+          that once an object functions discursively, <quote source="#quoteref14">the artifact has
+            ceased to be a tool and has become something else</quote>. One value of the theories I
+          have referenced from outside the humanities is their negotiation of this divide between
+          rhetoric and utility; because a prototype functions, these theories suggest, it can make
+          especially persuasive arguments. If the values and assumptions of systems are of interest,
+          it may be the case that descriptions of proposed standards or technical articles are
+          ill-suited for discussing them. Working prototypes—written about in journals, presented at
+          conferences, or made available, with documentation, for download—ask users to evaluate new
+          methods in relation to existing projects and give the opportunity to enact various logics
+          that may be otherwise inaccessible. Prototypes give users access to potential futures and
+          provide a solid ground on which debate can happen; as Carl Disalvo (<ref type="bibl"
+            target="#disalvo09">2009</ref>) notes, issues alone may not bring together an informed
+          public for debate, but designed objects can communicate issues in a way that invites
+          productive response. The prototype described here can be accepted, rejected, or modified
+          in ways that theoretical arguments cannot—its propositions can, in effect, be downloaded,
+          tested, forked, and modified. Design research is valuable for opening these spaces of
+          critical analysis and discussion, and for imagining and presenting for evaluation
+          alternative futures to the sociotechnical systems that underlie the current academic work
+          of textual editing.</p>
       </div>
     </body>
     <back>
       <div xml:id="bibliography" type="bibliography">
         <listBibl>
-          <bibl xml:id="aoki07"><author>Aoki, Paul M.</author> <date>2007</date>. <title level="a">Back Stage on the Front Lines: Perspectives and Performance in the Combat Information Center</title>. In <title level="m">Proceedings of the SIGCHI Conference on Human Factors in Computing Systems</title>, <biblScope unit="page">717–26</biblScope>. CHI ’07. <pubPlace>New York</pubPlace>: <publisher>ACM</publisher>. <ptr target="http://doi.acm.org.ezproxy.lib.utexas.edu/10.1145/1240624.1240735"/>. doi:<idno type="doi">10.1145/1240624.1240735</idno>.</bibl>
+          <bibl xml:id="aoki07"><author>Aoki, Paul M.</author>
+            <date>2007</date>. <title level="a">Back Stage on the Front Lines: Perspectives and
+              Performance in the Combat Information Center</title>. In <title level="m">Proceedings
+              of the SIGCHI Conference on Human Factors in Computing Systems</title>, <biblScope
+              unit="page">717–26</biblScope>. CHI ’07. <pubPlace>New York</pubPlace>:
+              <publisher>ACM</publisher>. <ptr
+              target="http://doi.acm.org.ezproxy.lib.utexas.edu/10.1145/1240624.1240735"/>.
+              doi:<idno type="doi">10.1145/1240624.1240735</idno>.</bibl>
 
-          <bibl xml:id="banski10"><author>Bański, Piotr</author>. <date>2010</date>. <title level="a">Why TEI Stand-off Annotation Doesn’t Quite Work and Why You Might Want to Use It Nevertheless</title>. In <title level="m">Proceedings of Balisage: The Markup Conference 2010</title>. <series>Balisage Series on Markup Technologies</series>, <biblScope unit="volume">vol. 5</biblScope>. doi:<idno type="doi">10.4242/BalisageVol5.Banski01</idno>.</bibl>
+          <bibl xml:id="banski10"><author>Bański, Piotr</author>. <date>2010</date>. <title
+              level="a">Why TEI Stand-off Annotation Doesn’t Quite Work and Why You Might Want to
+              Use It Nevertheless</title>. In <title level="m">Proceedings of Balisage: The Markup
+              Conference 2010</title>. <series>Balisage Series on Markup Technologies</series>,
+              <biblScope unit="volume">vol. 5</biblScope>. doi:<idno type="doi"
+              >10.4242/BalisageVol5.Banski01</idno>.</bibl>
 
-<bibl xml:id="bowers12"><author>Bowers, John</author>. <date>2012</date>. <title level="a">The Logic of Annotated Portfolios: Communicating the Value of <soCalled>Research through Design.</soCalled></title> In <title level="j">Proceedings of the Designing Interactive Systems Conference</title>, <biblScope unit="page">68–77</biblScope>. <title level="s">DIS ’12</title>. <pubPlace>New York</pubPlace>: <publisher>ACM</publisher>. doi:<idno type="doi">10.1145/2317956.2317968</idno>.</bibl>
+          <bibl xml:id="bowers12"><author>Bowers, John</author>. <date>2012</date>. <title level="a"
+              >The Logic of Annotated Portfolios: Communicating the Value of <soCalled>Research
+                through Design.</soCalled></title> In <title level="j">Proceedings of the Designing
+              Interactive Systems Conference</title>, <biblScope unit="page">68–77</biblScope>.
+              <title level="s">DIS ’12</title>. <pubPlace>New York</pubPlace>:
+              <publisher>ACM</publisher>. doi:<idno type="doi"
+            >10.1145/2317956.2317968</idno>.</bibl>
 
-<bibl xml:id="bryant02"><author>Bryant, John</author>. <date>2002</date>. <title level="m">The Fluid Text: A Theory of Revision and Editing for Book and Screen</title>. <pubPlace>Ann Arbor</pubPlace>: <publisher>University of Michigan Press</publisher>.</bibl>
+          <bibl xml:id="bryant02"><author>Bryant, John</author>. <date>2002</date>. <title level="m"
+              >The Fluid Text: A Theory of Revision and Editing for Book and Screen</title>.
+              <pubPlace>Ann Arbor</pubPlace>: <publisher>University of Michigan
+            Press</publisher>.</bibl>
 
 
 
-          <bibl xml:id="clement11"><author>Clement, Tanya</author>. <date>2011</date>. <title level="a">Knowledge Representation and Digital Scholarly Editions in Theory and Practice</title>. <title level="j">Journal of the Text Encoding Initiative</title> <biblScope unit="issue">Issue 1</biblScope>. <ptr target="http://jtei.revues.org/203"/>. doi:<idno type="doi">10.4000/jtei.203</idno>.</bibl>
+          <bibl xml:id="clement11"><author>Clement, Tanya</author>. <date>2011</date>. <title
+              level="a">Knowledge Representation and Digital Scholarly Editions in Theory and
+              Practice</title>. <title level="j">Journal of the Text Encoding Initiative</title>
+            <biblScope unit="issue">Issue 1</biblScope>. <ptr target="http://jtei.revues.org/203"/>.
+              doi:<idno type="doi">10.4000/jtei.203</idno>.</bibl>
 
-<bibl xml:id="clement12"><author>Clement, Tanya</author>, and <author>Gaby Divay</author>. <date>2012</date>. <title level="a">The Firstling/Erstling/He Complex by Baroness Elsa von Freytag-Loringhoven</title>. <title level="j">Scholarly Editing</title> <biblScope unit="issue">33</biblScope>. <ptr target="http://www.scholarlyediting.org/2012/editions/baroness/main.baroness.html"/>.</bibl>
+          <bibl xml:id="clement12"><author>Clement, Tanya</author>, and <author>Gaby Divay</author>.
+              <date>2012</date>. <title level="a">The Firstling/Erstling/He Complex by Baroness Elsa
+              von Freytag-Loringhoven</title>. <title level="j">Scholarly Editing</title>
+            <biblScope unit="issue">33</biblScope>. <ptr
+              target="http://www.scholarlyediting.org/2012/editions/baroness/main.baroness.html"
+            />.</bibl>
 
-<bibl xml:id="cummings09"><author>Cummings, James</author>. <date>2009</date>. <title level="a">Converting Saint Paul: A New TEI P5 Edition of The Conversion of Saint Paul Using Stand-off Methodology</title>. <title level="j">Literary and Linguistic Computing</title> <biblScope unit="volume">24</biblScope> (<biblScope unit="issue">3</biblScope>): <biblScope unit="page">307–17</biblScope>. doi:<idno type="doi">10.1093/llc/fqp019</idno>.
-          </bibl>
+          <bibl xml:id="cummings09"><author>Cummings, James</author>. <date>2009</date>. <title
+              level="a">Converting Saint Paul: A New TEI P5 Edition of The Conversion of Saint Paul
+              Using Stand-off Methodology</title>. <title level="j">Literary and Linguistic
+              Computing</title>
+            <biblScope unit="volume">24</biblScope> (<biblScope unit="issue">3</biblScope>):
+              <biblScope unit="page">307–17</biblScope>. doi:<idno type="doi"
+              >10.1093/llc/fqp019</idno>. </bibl>
 
-<bibl xml:id="disalvo09"><author>DiSalvo, Carl</author>. <date>2009</date>. <title level="a">Design and the Construction of Publics</title>. <title level="j">Design Issues</title> <biblScope unit="volume">25</biblScope> (<biblScope unit="issue">1</biblScope>): <biblScope unit="page">48–63</biblScope>. doi:<idno type="idno">10.1162/desi.2009.25.1.48</idno>.
-          </bibl>
+          <bibl xml:id="disalvo09"><author>DiSalvo, Carl</author>. <date>2009</date>. <title
+              level="a">Design and the Construction of Publics</title>. <title level="j">Design
+              Issues</title>
+            <biblScope unit="volume">25</biblScope> (<biblScope unit="issue">1</biblScope>):
+              <biblScope unit="page">48–63</biblScope>. doi:<idno type="idno"
+              >10.1162/desi.2009.25.1.48</idno>. </bibl>
 
-<bibl xml:id="dunne05"><author>Dunne, Anthony</author>. <date>2005</date>. <title level="m">Hertzian Tales: Electronic Products, Aesthetic Experience, and Critical Design</title>. <pubPlace>Cambridge</pubPlace>: <publisher>MIT Press</publisher>.
-          </bibl>
+          <bibl xml:id="dunne05"><author>Dunne, Anthony</author>. <date>2005</date>. <title
+              level="m">Hertzian Tales: Electronic Products, Aesthetic Experience, and Critical
+              Design</title>. <pubPlace>Cambridge</pubPlace>: <publisher>MIT Press</publisher>. </bibl>
 
-<bibl xml:id="fallman03"><author>Fallman, Daniel</author>. <date>2003</date>. <title level="a">Design-Oriented Human-Computer Interaction</title>. In <title level="m">Proceedings of the SIGCHI Conference on Human Factors in Computing Systems</title>, <biblScope unit="page">225–32</biblScope>. CHI ’03. <pubPlace>New York</pubPlace>: <publisher>ACM</publisher>. doi:<idno type="doi">10.1145/642611.642652</idno>.
-          </bibl>
+          <bibl xml:id="fallman03"><author>Fallman, Daniel</author>. <date>2003</date>. <title
+              level="a">Design-Oriented Human-Computer Interaction</title>. In <title level="m"
+              >Proceedings of the SIGCHI Conference on Human Factors in Computing Systems</title>,
+              <biblScope unit="page">225–32</biblScope>. CHI ’03. <pubPlace>New York</pubPlace>:
+              <publisher>ACM</publisher>. doi:<idno type="doi">10.1145/642611.642652</idno>. </bibl>
 
-<bibl xml:id="fallman07"><author>Fallman, Daniel</author>. <date>2007</date>. <title level="a">Why Research-Oriented Design Isn’t Design-Oriented Research: On the Tensions Between Design and Research in an Implicit Design Discipline</title>. <title level="j">Knowledge, Technology &amp; Policy</title> <biblScope unit="volume">20</biblScope> (<biblScope unit="issue">3</biblScope>): <biblScope unit="page">193–200</biblScope>. doi:<idno type="idno">10.1007/s12130-007-9022-8</idno>.</bibl>
+          <bibl xml:id="fallman07"><author>Fallman, Daniel</author>. <date>2007</date>. <title
+              level="a">Why Research-Oriented Design Isn’t Design-Oriented Research: On the Tensions
+              Between Design and Research in an Implicit Design Discipline</title>. <title level="j"
+              >Knowledge, Technology &amp; Policy</title>
+            <biblScope unit="volume">20</biblScope> (<biblScope unit="issue">3</biblScope>):
+              <biblScope unit="page">193–200</biblScope>. doi:<idno type="idno"
+              >10.1007/s12130-007-9022-8</idno>.</bibl>
 
-<bibl xml:id="galey13"><author>Galey, Alan</author>. <date>2013</date>. <title level="a">Animated Variants</title>. <title level="j">Visualizing Variation</title> (code library). Accessed May 6 2013. <ptr target="http://individual.utoronto.ca/alangaley/visualizingvariation/animated.html"/>.</bibl>
+          <bibl xml:id="galey13"><author>Galey, Alan</author>. <date>2013</date>. <title level="a"
+              >Animated Variants</title>. <title level="j">Visualizing Variation</title> (code
+            library). Accessed May 6 2013. <ptr
+              target="http://individual.utoronto.ca/alangaley/visualizingvariation/animated.html"
+            />.</bibl>
 
-<bibl xml:id="galeyruecker10"><author>Galey, Alan</author>, and <author>Stan Ruecker</author>. <date>2010</date>. <title level="a">How a Prototype Argues</title>. <title level="j">Literary and Linguistic Computing</title> <biblScope unit="volume">25</biblScope> (<biblScope unit="issue">4</biblScope>): <biblScope unit="page">405–24</biblScope>. doi:<idno type="doi">10.1093/llc/fqq021</idno>.</bibl>
+          <bibl xml:id="galeyruecker10"><author>Galey, Alan</author>, and <author>Stan
+              Ruecker</author>. <date>2010</date>. <title level="a">How a Prototype Argues</title>.
+              <title level="j">Literary and Linguistic Computing</title>
+            <biblScope unit="volume">25</biblScope> (<biblScope unit="issue">4</biblScope>):
+              <biblScope unit="page">405–24</biblScope>. doi:<idno type="doi"
+              >10.1093/llc/fqq021</idno>.</bibl>
 
-<bibl xml:id="gaver12"><author>Gaver, William</author>. <date>2012</date>. <title level="a">What Should We Expect from Research through Design?</title> In <title level="m">Proceedings of the 2012 ACM Annual Conference on Human Factors in Computing Systems</title>, <biblScope unit="page">937–46</biblScope>. CHI ’12. <pubPlace>New York</pubPlace>: <publisher>ACM</publisher>. doi:<idno type="doi">10.1145/2207676.2208538</idno>.</bibl>
+          <bibl xml:id="gaver12"><author>Gaver, William</author>. <date>2012</date>. <title
+              level="a">What Should We Expect from Research through Design?</title> In <title
+              level="m">Proceedings of the 2012 ACM Annual Conference on Human Factors in Computing
+              Systems</title>, <biblScope unit="page">937–46</biblScope>. CHI ’12. <pubPlace>New
+              York</pubPlace>: <publisher>ACM</publisher>. doi:<idno type="doi"
+              >10.1145/2207676.2208538</idno>.</bibl>
 
-<bibl xml:id="hook10"><author>Höök, Kristina</author>. <date>2010</date>. <title level="a">Transferring Qualities from Horseback Riding to Design</title>. In <title level="m">Proceedings of the 6th Nordic Conference on Human-Computer Interaction: Extending Boundaries</title>, <biblScope unit="page">226–35</biblScope>. NordiCHI ’10. <pubPlace>New York</pubPlace>: <publisher>ACM</publisher>. doi:<idno type="doi">10.1145/1868914.1868943</idno>.</bibl>
+          <bibl xml:id="hook10"><author>Höök, Kristina</author>. <date>2010</date>. <title level="a"
+              >Transferring Qualities from Horseback Riding to Design</title>. In <title level="m"
+              >Proceedings of the 6th Nordic Conference on Human-Computer Interaction: Extending
+              Boundaries</title>, <biblScope unit="page">226–35</biblScope>. NordiCHI ’10.
+              <pubPlace>New York</pubPlace>: <publisher>ACM</publisher>. doi:<idno type="doi"
+              >10.1145/1868914.1868943</idno>.</bibl>
 
-<bibl xml:id="lessig06"><author>Lessig, Lawrence</author>. <date>2006</date>. <title level="m">Code</title>. <pubPlace>New York</pubPlace>: <publisher>Basic Books</publisher>.</bibl>
+          <bibl xml:id="lessig06"><author>Lessig, Lawrence</author>. <date>2006</date>. <title
+              level="m">Code</title>. <pubPlace>New York</pubPlace>: <publisher>Basic
+              Books</publisher>.</bibl>
 
-<bibl xml:id="mccarty04"><author>McCarty, Willard</author>. <date>2004</date>. <title level="a">Modeling: A Study in Words and Meanings</title>. In <title level="m">Companion to Digital Humanities</title>, edited by <editor>Susan Schreibman</editor>, <editor>Ray Siemens</editor>, and <editor>John Unsworth</editor>. <pubPlace>Oxford</pubPlace>: <publisher>Blackwell Publishing Professional</publisher>. <ptr target="http://www.digitalhumanities.org/companion/"/>.</bibl>
+          <bibl xml:id="mccarty04"><author>McCarty, Willard</author>. <date>2004</date>. <title
+              level="a">Modeling: A Study in Words and Meanings</title>. In <title level="m"
+              >Companion to Digital Humanities</title>, edited by <editor>Susan Schreibman</editor>,
+              <editor>Ray Siemens</editor>, and <editor>John Unsworth</editor>.
+              <pubPlace>Oxford</pubPlace>: <publisher>Blackwell Publishing Professional</publisher>.
+              <ptr target="http://www.digitalhumanities.org/companion/"/>.</bibl>
 
-          <bibl xml:id="millerand09"><author>Millerand, Florence</author>, and <author>Geoffrey C. Bowker</author>. <date>2009</date>. <title level="a">Metadata Standards</title>. In <title level="m">Standards and Their Stories: How Quantifying, Classifying, and Formalizing Practices Shape Everyday Life</title>, edited by <editor>Martha Lampland</editor> and <editor>Susan Leigh Star</editor>, <biblScope unit="page">149–165</biblScope>. <pubPlace>Ithaca</pubPlace>: <publisher>Cornell University Press</publisher>.</bibl>
-          
-          <bibl xml:id="mla11"><orgName>Modern Language Association</orgName>. <date>2011</date>. <title level="m">Guidelines for Editors of Scholarly Editions</title>. <ptr target="http://www.mla.org/cse_guidelines"/>. Last revised 29 June 2011.</bibl>
+          <bibl xml:id="millerand09"><author>Millerand, Florence</author>, and <author>Geoffrey C.
+              Bowker</author>. <date>2009</date>. <title level="a">Metadata Standards</title>. In
+              <title level="m">Standards and Their Stories: How Quantifying, Classifying, and
+              Formalizing Practices Shape Everyday Life</title>, edited by <editor>Martha
+              Lampland</editor> and <editor>Susan Leigh Star</editor>, <biblScope unit="page"
+              >149–165</biblScope>. <pubPlace>Ithaca</pubPlace>: <publisher>Cornell University
+              Press</publisher>.</bibl>
 
-<bibl xml:id="odom12"><author>Odom, William</author>, <author>John Zimmerman</author>, <author>Scott Davidoff</author>, <author>Jodi Forlizzi</author>, <author>Anind K. Dey</author>, and <author>Min Kyung Lee</author>. <date>2012</date>. <title level="a">A Fieldwork of the Future with User Enactments</title>. In <title level="m">Proceedings of the Designing Interactive Systems Conference</title>, <biblScope unit="page">338–47</biblScope>. DIS ’12. <pubPlace>New York</pubPlace>: <publisher>ACM</publisher>. doi:<idno type="doi">10.1145/2317956.2318008</idno>.</bibl>
+          <bibl xml:id="mla11"><orgName>Modern Language Association</orgName>. <date>2011</date>.
+              <title level="m">Guidelines for Editors of Scholarly Editions</title>. <ptr
+              target="http://www.mla.org/cse_guidelines"/>. Last revised 29 June 2011.</bibl>
 
-<bibl xml:id="ramsay12"><author>Ramsay, Stephen</author>, <author>Geoffrey Rockwell</author>, and <author>Matthew K. Gold</author>. <date>2012</date>. <title level="a">Developing Things: Notes toward an Epistemology of Building in the Digital Humanities</title>. In <title level="m">Debates in the Digital Humanities</title>, edited by <editor>Matthew K. Gold</editor>, <biblScope unit="page">75–84</biblScope>. <pubPlace>Minneapolis</pubPlace>: <publisher>University of Minnesota Press</publisher>.</bibl>
+          <bibl xml:id="odom12"><author>Odom, William</author>, <author>John Zimmerman</author>,
+              <author>Scott Davidoff</author>, <author>Jodi Forlizzi</author>, <author>Anind K.
+              Dey</author>, and <author>Min Kyung Lee</author>. <date>2012</date>. <title level="a"
+              >A Fieldwork of the Future with User Enactments</title>. In <title level="m"
+              >Proceedings of the Designing Interactive Systems Conference</title>, <biblScope
+              unit="page">338–47</biblScope>. DIS ’12. <pubPlace>New York</pubPlace>:
+              <publisher>ACM</publisher>. doi:<idno type="doi"
+            >10.1145/2317956.2318008</idno>.</bibl>
 
-<bibl xml:id="ratto11"><author>Ratto, Matt</author>. <date>2011</date>. <title level="a">Critical Making: Conceptual and Material Studies in Technology and Social Life</title>. <title level="j">The Information Society</title> <biblScope unit="volume">27</biblScope> (<biblScope unit="issue">4</biblScope>): <biblScope unit="page">252–60</biblScope>. doi:<idno type="doi">10.1080/01972243.2011.583819</idno>.</bibl>
+          <bibl xml:id="ramsay12"><author>Ramsay, Stephen</author>, <author>Geoffrey
+              Rockwell</author>, and <author>Matthew K. Gold</author>. <date>2012</date>. <title
+              level="a">Developing Things: Notes toward an Epistemology of Building in the Digital
+              Humanities</title>. In <title level="m">Debates in the Digital Humanities</title>,
+            edited by <editor>Matthew K. Gold</editor>, <biblScope unit="page">75–84</biblScope>.
+              <pubPlace>Minneapolis</pubPlace>: <publisher>University of Minnesota
+            Press</publisher>.</bibl>
 
-<bibl xml:id="rosner12"><author>Rosner, Daniela K.</author> <date>2012</date>. <title level="a">The Material Practices of Collaboration</title>. In <title level="m">Proceedings of the ACM 2012 Conference on Computer Supported Cooperative Work</title>, <biblScope unit="page">1155–64</biblScope>. CSCW ’12. <pubPlace>New York</pubPlace>: <publisher>ACM</publisher>. doi:<idno type="doi">10.1145/2145204.2145375</idno>.</bibl>
+          <bibl xml:id="ratto11"><author>Ratto, Matt</author>. <date>2011</date>. <title level="a"
+              >Critical Making: Conceptual and Material Studies in Technology and Social
+              Life</title>. <title level="j">The Information Society</title>
+            <biblScope unit="volume">27</biblScope> (<biblScope unit="issue">4</biblScope>):
+              <biblScope unit="page">252–60</biblScope>. doi:<idno type="doi"
+              >10.1080/01972243.2011.583819</idno>.</bibl>
 
-<bibl xml:id="schlitz09"><author>Schlitz, Stephanie A.</author>, and <author>Garrick S. Bodine</author>. <date>2009</date>. <title level="a">The TEIViewer: Facilitating the Transition from XML to Web Display</title>. <title level="j">Literary and Linguistic Computing</title> <biblScope unit="volume">24</biblScope> (<biblScope unit="issue">3</biblScope>): <biblScope unit="page">339–46</biblScope>. doi:<idno type="doi">10.1093/llc/fqp022</idno>.</bibl>
+          <bibl xml:id="rosner12"><author>Rosner, Daniela K.</author>
+            <date>2012</date>. <title level="a">The Material Practices of Collaboration</title>. In
+              <title level="m">Proceedings of the ACM 2012 Conference on Computer Supported
+              Cooperative Work</title>, <biblScope unit="page">1155–64</biblScope>. CSCW ’12.
+              <pubPlace>New York</pubPlace>: <publisher>ACM</publisher>. doi:<idno type="doi"
+              >10.1145/2145204.2145375</idno>.</bibl>
 
-<bibl xml:id="schon83"><author>Schön, Donald A.</author> <date>1983</date>. <title level="m">The Reflective Practitioner: How Professionals Think in Action</title>. <pubPlace>New York</pubPlace>: <publisher>Basic Books</publisher>.</bibl>
+          <bibl xml:id="schlitz09"><author>Schlitz, Stephanie A.</author>, and <author>Garrick S.
+              Bodine</author>. <date>2009</date>. <title level="a">The TEIViewer: Facilitating the
+              Transition from XML to Web Display</title>. <title level="j">Literary and Linguistic
+              Computing</title>
+            <biblScope unit="volume">24</biblScope> (<biblScope unit="issue">3</biblScope>):
+              <biblScope unit="page">339–46</biblScope>. doi:<idno type="doi"
+              >10.1093/llc/fqp022</idno>.</bibl>
 
-<bibl xml:id="schreibman03"><author>Schreibman, Susan</author>, <author>Amit Kumar</author>, and <author>Jarom McDonald</author>. <date>2003</date>. <title level="a">The Versioning Machine</title>. <title level="j">Literary and Linguistic Computing</title> <biblScope unit="volume">18</biblScope> (<biblScope unit="issue">1</biblScope>): <biblScope unit="page">101–7</biblScope>. doi:<idno type="doi">10.1093/llc/18.1.101</idno>.</bibl>
-          
-<bibl xml:id="tei12"><orgName>TEI Consortium</orgName>. <date>2012</date>. <title level="m">TEI P5: Guidelines for Electronic Text Encoding and Interchange</title>. Version 2.2.0. Last updated October 25. <pubPlace>N.p.</pubPlace>: <publisher>TEI Consortium</publisher>. <ptr target="http://www.tei-c.org/Vault/P5/2.2.0/doc/tei-p5-doc/en/html/index.html"/>.</bibl>
+          <bibl xml:id="schon83"><author>Schön, Donald A.</author>
+            <date>1983</date>. <title level="m">The Reflective Practitioner: How Professionals Think
+              in Action</title>. <pubPlace>New York</pubPlace>: <publisher>Basic
+            Books</publisher>.</bibl>
+
+          <bibl xml:id="schreibman03"><author>Schreibman, Susan</author>, <author>Amit
+              Kumar</author>, and <author>Jarom McDonald</author>. <date>2003</date>. <title
+              level="a">The Versioning Machine</title>. <title level="j">Literary and Linguistic
+              Computing</title>
+            <biblScope unit="volume">18</biblScope> (<biblScope unit="issue">1</biblScope>):
+              <biblScope unit="page">101–7</biblScope>. doi:<idno type="doi"
+              >10.1093/llc/18.1.101</idno>.</bibl>
+
+          <bibl xml:id="tei12"><orgName>TEI Consortium</orgName>. <date>2012</date>. <title
+              level="m">TEI P5: Guidelines for Electronic Text Encoding and Interchange</title>.
+            Version 2.2.0. Last updated October 25. <pubPlace>N.p.</pubPlace>: <publisher>TEI
+              Consortium</publisher>. <ptr
+              target="http://www.tei-c.org/Vault/P5/2.2.0/doc/tei-p5-doc/en/html/index.html"
+            />.</bibl>
         </listBibl>
       </div>
     </back>

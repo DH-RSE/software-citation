@@ -1,274 +1,640 @@
 <?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml"
 	schematypens="http://purl.oclc.org/dsdl/schematron"?><!--$Id: jtei-cc-ra-parisse-182-source.xml 1047 2021-07-02 13:01:02Z pietro.liuzzo $-->
 <TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI">
-   <teiHeader>
-      <fileDesc>
-         <titleStmt>
-           <title type="main">TEICORPO: A Conversion Tool for Spoken Language Transcription with a Pivot File in TEI</title> <author>
-               <name>
-                 <forename>Christophe</forename>
-                 <surname>Parisse</surname>
-               </name>
-              <affiliation>INSERM, Modyco-CNRS-Nanterre University, France</affiliation>
-              <email>cparisse@parisnanterre.fr</email>
-            </author>
-           <author>
-             <name>
-               <forename>Carole</forename>
-               <surname>Etienne</surname>
-             </name>
-             <affiliation>ICAR-CNRS, Lyon, France</affiliation>
-             <email>carole.etienne@ens.lyon.fr</email>
-           </author>
-           <author>
-             <name>
-               <forename>Loïc</forename>
-               <surname>Liégeois</surname>
-             </name>
-             <affiliation>University of Paris, France</affiliation>
-             <email>loic.liegeois@univ.paris-diderot.fr</email>
-           </author>
-         </titleStmt>
-         <publicationStmt>
-            <publisher>TEI Consortium</publisher>
-            <date>02/07/2021</date>
-            <availability>
-               <licence target="https://creativecommons.org/licenses/by/4.0/">
-                  <p>For this publication a Creative Commons Attribution 4.0 International license has been granted by the author(s) who retain full copyright.</p>
-               </licence>
-            </availability>
-         </publicationStmt>
-        <seriesStmt>
-          <title level="j">Journal of the Text Encoding Initiative</title>
-          <editor role="guest">Susan Schreibman</editor>
-          <editor role="managing">Tanja Wissik</editor>
-          <editor role="managing">Joel Kalvesmaki</editor>
-          <editor role="managing">Pietro Maria Liuzzo</editor>
-          <editor role="managing">Tiago Sousa Garcia</editor>
-          <editor role="technical">Ron Van den Branden</editor>
-          <biblScope unit="issue" n="13">Selected Papers from the 2018 TEI Conference</biblScope>
-        </seriesStmt>
-         <sourceDesc>
-            <p>No source, born digital.</p>
-         </sourceDesc>
-      </fileDesc>
-      <encodingDesc>
-         <projectDesc>
-            <p>OpenEdition Journals -centre for open electronic publishing- is the platform for journals in the humanities and social sciences, open to quality periodicals looking to publish full-text articles online.</p>
-         </projectDesc>
-      </encodingDesc>
-      <profileDesc>
-         <langUsage>
-            <language ident="en">en</language>
-         </langUsage>
-         <textClass>
-           <keywords xml:lang="en">
-             <term>TEI</term>
-             <term>transcription</term>
-             <term>oral corpora</term>
-             <term>conversion</term>
-             <term>annotationBlock</term>
-            </keywords>
-         </textClass>
-      </profileDesc>
-     <revisionDesc>
-       <change who="Pietro Liuzzo" when="2021-05-07">Encoded from revised doc converted with Pandoc.</change>
-       <change who="Pietro Liuzzo" when="2021-07-02">Re-encoded from revised doc converted with Pandoc (docx completed 28.6.2021).</change>
-      </revisionDesc>
-   </teiHeader>
-   <text>
-      <front>
-        <div type="abstract" xml:id="abstract"><p>CORLI is a consortium of Huma-Num, the French national infrastructure dedicated to the technical support and promotion of digital humanities. The goal of CORLI is to promote and provide tools and information for good and efficient research practices in corpus linguistics, especially on spoken language corpora. Because of the time required to collect and transcribe spoken language resources, their number is limited and thus corpora need to be interoperable and reusable in order to improve research on themes such as phonology, prosody, interaction, syntax, and textometry. To help researchers reach this goal, CORLI has designed a pair of tools: TEICORPO to assist in the conversion and use of spoken language corpora, and TEIMETA for metadata purposes. TEICORPO is based on the principle of an underlying common format, namely TEI XML as described in its specification for spoken language use (ISO 2016). This tool enables the conversion of transcriptions created with alignment software such as CLAN, Transcriber, Praat, or ELAN as well as common file formats (CSV, XLSX, TXT, or DOCX) and the TEI format, which plays the role of a lossless pivot format. Backward conversion is possible in many cases, with limitations inherent in the destination target format. TEICORPO can run the Treetagger part-of-speech tagger and the Stanford CoreNLP tools on TEI files and can export the resulting files to textometric tools such as TXM, Le Trameur, or Iramuteq, making it suitable for spoken language corpora editing as well as for various research purposes.</p></div>
-      </front>
-      <body>
-<div  xml:id="corli">
-  <head>The CORLI Consortium and Corpus Linguistic Research</head>
-  <p>The CORLI consortium is a network of researchers and laboratories engaged in corpus linguistic research. CORLI (<ptr target="https://corli.huma-num.fr/en"/>) is one of the consortia of Huma-Num, a large French infrastructure dedicated to the digital humanities (<ptr target="https://www.huma-num.fr/"/>). CORLI aims to promote and assist research in corpus linguistics and is based on a network of researchers and engineers working in this field. The general policy of the consortium is to build on existing practices, research tools, and material from members of the consortium, and to improve them to match the needs of all the people and laboratories interested in corpus linguistics. The main activities of the consortium are helping corpus providers to produce open science and shareable data, providing continuous education for advanced students as well as senior researchers, and sharing good practices about data and tools. CORLI is now an official CLARIN K Centre (<ptr target="https://corli.huma-num.fr/en/kcentre"/>).</p>
-  <div xml:id="datasharing">
-    <head>The Importance of Data Sharing</head>
-    <p>Data sharing is an absolute necessity for research and applications in spoken language, for two main reasons. First, creating spoken language corpora is very expensive. As a result, not only are existing data very frequently reused, but it is also often necessary to mix data coming from different origins when the goal is to produce very large datasets. Second, language production involves a very wide variety of speakers and contexts. Hence, in order to create interesting sociolinguistic data, it is very often efficient to mix corpora from different sources. Moreover, the development of open science, which is a key component of research today, cannot exist without data sharing, which allows the data sources behind scientific results to be checked.</p>
-  </div>
-  <div xml:id="specificity">
-    <head>Specificity of Spoken Language Data</head>
-    <p>Spoken language corpora are different from corpora of written text. They consist of sound or video recordings that come with textual information—transcriptions and annotations. The spoken language is organized according to two dimensions, as described by Schmidt (<ref type="bibl" target="#schmidt2011">2011</ref>): the macrostructure, which refers to how transcriptions, annotations, and linking are organized (where they are in the file), and the microstructure, which refers to the details of how transcriptions and annotations are represented (how a transcription or an annotation is written down).</p>
-    <p>Because linking the linguistic information (transcription and annotation) to audio or video data is not a straightforward process and because this information is crucial for studying spoken language, specific tools are used for creating and editing spoken language data. These tools provide the user with functionalities that are necessary for creating spoken language corpora and they also save data in controlled formats that can be used for data sharing. Unfortunately, although all these tools manage the macrostructure of spoken language corpora in a very strict fashion, this is not the case for the microstructure. Certain tools provide some microstructure information, but it is usually limited and not available for all corpora or for all types of research.</p>
-    <p>There are two main reasons for these limitations. First, there is a wide variety of different microstructures that can be used, depending on the scientific goal and the research domain that call for corpus creation and use. The second is that controlling the microstructure when creating the data is extremely time-consuming, with the result that the microstructure is often restricted to the minimal requirements of the study. Moreover, the creation of user-friendly tools for controlling microstructures requires considerable programmer effort, which the creators of free tools for research into spoken language seldom have available. So the burden of controlling the quality of the microstructure most often falls on the shoulders of the corpus creator, and not on the tool used to create the corpus. Stability and uniformity in microstructure corpora is only found in repositories that follow clear and controlled instructions—for example, the TalkBank system (<ref type="bibl" target="#macwhinney2007">MacWhinney 2007</ref>, <ptr target="https://talkbank.org/"/>) and the Archiv für Gesprochenes Deutsch (<ptr target="http://agd.ids-mannheim.de"/>)—or in specific corpus projects, which have limited coverage, even if the corpora involved are very large.</p>
-  </div>
-  <div xml:id="teicorpo">
-    <head>The TEICORPO Approach</head>
-    <p>The goal of the CORLI consortium is to make it easier to deposit, share, and reuse data. With this goal in mind, CORLI has always promoted the use of open public repositories and open formats. Our policy is to advocate for the use of a common single format which can support data sharing as well as long-term preservation. We encourage its use from the starting point of each new research project so as to ensure the development of open science. However, CORLI, as a consortium of linguists who share its practices, acknowledges that the most important thing for researchers remains the tools that they know and use. We know that few people will be working directly on the raw files, but rather using the tools that they have been trained with. So it is up to the tools to allow format and data sharing.</p>
-    <p>For this reason, it was important for CORLI not only to stress the quality of a common data format, but also to make it possible to use this format with the tools that the researchers know and regularly use. These include editing tools, which make it possible to create and modify the corpus transcription, and exploration tools, which are necessary in many cases to produce scientific results. The exploration tools can be the same as the editing tools, but they can also include other types, such as textometric tools (<ref type="bibl" target="#lebart1998">Lebart, Salem, and Berry 1997</ref>; <ref type="bibl" target="#pincemin2011">Pincemin 2011</ref>, <ref type="bibl" target="#pincemin2020">Pincemin, Heiden; and Decorde 2020</ref>) and grammatical parsers.</p>
-    <p>Finally, another constraint in the work of CORLI was to create tools that were suitable for the needs of linguists. This means that the goal of the project was not to create and promote new standards, but rather to emphasize the good practices of CORLI’s members and make data sharing with other researchers easier. The goal of the TEICORPO project can thus be summarized as:</p>
-    <list>
-      <item>creating a tool for conversion between the different pieces of software used for spoken language corpora creation and editing. The tool should be as lossless as possible;</item>
-      <item>using TEI as a conversion pivot format, since it is already widely used, especially for written linguistic corpora, and is powerful enough for our purposes;</item>
-      <item>creating complementary conversion tools that make it easier to explore and use the corpora for research.</item>
-    </list>
-  </div>
-  <div xml:id="similarities">
-    <head>Similarities with and Differences from Other Approaches</head>
-    <p>Many software packages dedicated to editing spoken language transcription contain utilities that can convert many formats: for example, EXMARaLDA (<ref type="bibl" target="#schmidt2004">Schmidt 2004</ref>; see <ptr target="https://exmaralda.org"/>), Anvil (<ref type="bibl" target="#kipp2001">Kipp 2001</ref>; see <ptr target="https://www.anvil-software.org"/>), and ELAN (<ref type="bibl" target="#wittenburg2006">Wittenburg et al. 2006</ref>; see <ptr target="https://archive.mpi.nl/tla/elan"/>). However, in all cases, the conversions are limited to the features implemented in the tool itself—for example, with a limited set of metadata—and they cannot always be used to prepare data to be used by another tool.</p>
-    <p>While our work is similar to that of Schmidt (<ref type="bibl" target="#schmidt2011">2011</ref>), several differences make our approaches complementary. First, the two main common features are as follows:</p>
-    <list>
-      <item>the tool can automatically convert data coming from different linguistic tools;</item>
-      <item>TEI is used as a destination format.</item>
-    </list>
-    <p>The list of tools that are considered in the two projects is nearly the same. The only tools missing in the TEICORPO approach are EXMARaLDA and FOLKER (<ref type="bibl" target="#schmidts2010">Schmidt and Schütte 2010</ref>; see <ptr target="https://exmaralda.org/en/folker-en/"/>), but this was only because the conversion tools from and to EXMARaLDA, FOLKER, and TEI already exist. They are available as XSLT stylesheets in the open-source distribution of EXMARaLDA (<ptr target="https://github.com/Exmaralda-Org/exmaralda"/>). The other common point is the use of the TEI format, and especially the more recent ISO version of TEI for spoken language (ISO/TEI; see <ref type="bibl" target="#iso2016">ISO 2016</ref>). The TEI format produced by the EXMARaLDA and FOLKER software fit within the process chain of TEICORPO. This demonstrates the usefulness of a well-known and efficient format such as TEI.</p>
-    <p>There are, however, differences between the two projects that make them nonredundant but complementary, each project having specificities that can be useful or damaging depending on the user’s needs. One minor difference is that the TEICORPO project is not a functionality of an editing tool, but is a standalone tool for converting data between one format and another. This had certain effects on the user interface and explains some of the choices made in the development of the two tools.</p>
-    <p>There are two major differences between TEICORPO and Schmidt’s approach, which affected both the design of the tools and how they can be used. The first difference is that in developing TEICORPO, it was decided that the conversion between the original formats and TEI had to be lossless (or as lossless as possible) because we wanted to offer a means to store the research data for long-term conservation and dissemination in a standard XML format instead of in proprietary formats such as those used by CLAN (<ref type="bibl" target="#macwhinney200">MacWhinney 2000</ref>; see <ptr target="http://dali.talkbank.org/clan/"/>), ELAN, Praat (<ref type="bibl" target="#boersma2001">Boersma and van Heuven 2001</ref>; see <ptr target="http://www.fon.hum.uva.nl/praat/"/>), and Transcriber (<ref type="bibl" target="#barras2000">Barras et al. 2000</ref>; see <ptr target="http://trans.sourceforge.net/en/presentation.php"/> and <ptr target="http://perso.ens-lyon.fr/matthieu.quignard/Transcriber/"/>). These proprietary formats are in XML or Unicode formats so that they can be conserved for the long term. However, they are not all well described or constrained, at least not in the same way as TEI—which, moreover, offers a semantically relevant structure as well as an official format for long-term conservation in France. Moreover, as the durability of these four pieces of software cannot be guaranteed in the long term, it does not seem safe to keep corpora in a format available only for a given tool that may disappear or fall into disuse.</p>
-    <p>The second major difference is that the TEICORPO initiative does not target only spoken language, but all types of annotation, including media of any type. This covers all spoken languages, vocal as well as sign languages, and also gesture and any type of multimodal coding. The goal of TEICORPO was not to advocate a linguistic mode of coding spoken data as a transcription convention does, but rather to propose a research model for storing and sharing data about language and other modalities. Consequently, the focus of the work was not on how the spoken data were coded (i.e., the microstructure), nor on the standard that should be used for transcribing in orthographic format. Instead, the TEICORPO approach focused on how to integrate multiple pieces of information into the TEI semantics (the macrostructure), as this is possible with tools such as ELAN or PRAAT. The goal was to be able to convert a file produced by these tools so that it can be saved in TEI format for long-term conservation.</p>
-    <p>Data in PRAAT and ELAN formats can contain information that is different from what is usually present in an ISO/TEI description, but that nonetheless remains within the structures authorized in the ISO/TEI. For example, the information is stored as described below in <gi>spanGrp</gi>, an element available in the ISO/TEI description. This means that whenever information is organized according to the <soCalled>classical</soCalled> approach to spoken language (by <soCalled>classical</soCalled>, we mean approaches based on an orthographic transcription represented as a list, as in the script of a play), it will be available for further processing by using the export features of TEICORPO (see <ptr target="#exporting" type="crossref"/> and further below for export functionalities) but other types of information are also available. Compared to PRAAT and ELAN, the integration of tools such as CLAN or Transcriber was much more straightforward, as the organization of the files is less varied and more <soCalled>classical</soCalled>.</p>
-    <div xml:id="microstructures">
-      <head>Choice of the Microstructure Representation</head>
-      <p>Processing of the microstructure, with the exception of information already available in the tools themselves (for example silence in Transcriber), is not done during the conversion to TEI. The division into words or other elements such as morphemes or phonemes is not systematically done in any of the tools used by researchers in CORLI. When it exists, it is not included in the main transcription line but most often in dependent lines, as it represents an annotation with its own rules and guidelines. Division into words or other elements is part of the linguistic analysis rather than a simple storage operation.</p>
-      <p>TEICORPO therefore preserves as long-term storage data both the original information that was created in the original software—the full unprocessed transcription—and the other linguistically processed transcriptions and annotations. For TEICORPO, microstructure processing, such as division into words, or text standardization when necessary, belongs to the linguistic analysis of the corpora. Hence, the TEI data file can be used both for data exploration and for scientific purposes. For example, when a researcher needs to parse the data, or to explore the data with textometric tools, then it is necessary to decide which type of preprocessing is necessary. As this decision often depends on the initial project as well as on linguistic choices, it is difficult to standardize this task.</p>
-    </div>
-  </div>
-</div>
-<div xml:id="teicorpoproject">
-  <head>The TEICORPO Project</head>
-  <p>The TEICORPO project contains two different sets of tools. One set focuses on conversion between various software packages used for spoken language coding and TEI. The other set focuses on using the TEI format for linguistic analyses (textometric or grammatical analyses).</p>
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="main">TEICORPO: A Conversion Tool for Spoken Language Transcription with a
+          Pivot File in TEI</title>
+        <author>
+          <name>
+            <forename>Christophe</forename>
+            <surname>Parisse</surname>
+          </name>
+          <affiliation>INSERM, Modyco-CNRS-Nanterre University, France</affiliation>
+          <email>cparisse@parisnanterre.fr</email>
+        </author>
+        <author>
+          <name>
+            <forename>Carole</forename>
+            <surname>Etienne</surname>
+          </name>
+          <affiliation>ICAR-CNRS, Lyon, France</affiliation>
+          <email>carole.etienne@ens.lyon.fr</email>
+        </author>
+        <author>
+          <name>
+            <forename>Loïc</forename>
+            <surname>Liégeois</surname>
+          </name>
+          <affiliation>University of Paris, France</affiliation>
+          <email>loic.liegeois@univ.paris-diderot.fr</email>
+        </author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>TEI Consortium</publisher>
+        <date>02/07/2021</date>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by/4.0/">
+            <p>For this publication a Creative Commons Attribution 4.0 International license has
+              been granted by the author(s) who retain full copyright.</p>
+          </licence>
+        </availability>
+      </publicationStmt>
+      <seriesStmt>
+        <title level="j">Journal of the Text Encoding Initiative</title>
+        <editor role="guest">Susan Schreibman</editor>
+        <editor role="managing">Tanja Wissik</editor>
+        <editor role="managing">Joel Kalvesmaki</editor>
+        <editor role="managing">Pietro Maria Liuzzo</editor>
+        <editor role="managing">Tiago Sousa Garcia</editor>
+        <editor role="technical">Ron Van den Branden</editor>
+        <biblScope unit="issue" n="13">Selected Papers from the 2018 TEI Conference</biblScope>
+      </seriesStmt>
+      <sourceDesc>
+        <p>No source, born digital.</p>
+      </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+      <projectDesc>
+        <p>OpenEdition Journals -centre for open electronic publishing- is the platform for journals
+          in the humanities and social sciences, open to quality periodicals looking to publish
+          full-text articles online.</p>
+      </projectDesc>
+    </encodingDesc>
+    <profileDesc>
+      <langUsage>
+        <language ident="en">en</language>
+      </langUsage>
+      <textClass>
+        <keywords xml:lang="en">
+          <term>TEI</term>
+          <term>transcription</term>
+          <term>oral corpora</term>
+          <term>conversion</term>
+          <term>annotationBlock</term>
+        </keywords>
+      </textClass>
+    </profileDesc>
+    <revisionDesc>
+      <change who="Pietro Liuzzo" when="2021-05-07">Encoded from revised doc converted with
+        Pandoc.</change>
+      <change who="Pietro Liuzzo" when="2021-07-02">Re-encoded from revised doc converted with
+        Pandoc (docx completed 28.6.2021).</change>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <front>
+      <div type="abstract" xml:id="abstract">
+        <p>CORLI is a consortium of Huma-Num, the French national infrastructure dedicated to the
+          technical support and promotion of digital humanities. The goal of CORLI is to promote and
+          provide tools and information for good and efficient research practices in corpus
+          linguistics, especially on spoken language corpora. Because of the time required to
+          collect and transcribe spoken language resources, their number is limited and thus corpora
+          need to be interoperable and reusable in order to improve research on themes such as
+          phonology, prosody, interaction, syntax, and textometry. To help researchers reach this
+          goal, CORLI has designed a pair of tools: TEICORPO to assist in the conversion and use of
+          spoken language corpora, and TEIMETA for metadata purposes. TEICORPO is based on the
+          principle of an underlying common format, namely TEI XML as described in its specification
+          for spoken language use (ISO 2016). This tool enables the conversion of transcriptions
+          created with alignment software such as CLAN, Transcriber, Praat, or ELAN as well as
+          common file formats (CSV, XLSX, TXT, or DOCX) and the TEI format, which plays the role of
+          a lossless pivot format. Backward conversion is possible in many cases, with limitations
+          inherent in the destination target format. TEICORPO can run the Treetagger part-of-speech
+          tagger and the Stanford CoreNLP tools on TEI files and can export the resulting files to
+          textometric tools such as TXM, Le Trameur, or Iramuteq, making it suitable for spoken
+          language corpora editing as well as for various research purposes.</p>
+      </div>
+    </front>
+    <body>
+      <div xml:id="corli">
+        <head>The CORLI Consortium and Corpus Linguistic Research</head>
+        <p>The CORLI consortium is a network of researchers and laboratories engaged in corpus
+          linguistic research. CORLI (<ptr target="https://corli.huma-num.fr/en"/>) is one of the
+          consortia of Huma-Num, a large French infrastructure dedicated to the digital humanities
+            (<ptr target="https://www.huma-num.fr/"/>). CORLI aims to promote and assist research in
+          corpus linguistics and is based on a network of researchers and engineers working in this
+          field. The general policy of the consortium is to build on existing practices, research
+          tools, and material from members of the consortium, and to improve them to match the needs
+          of all the people and laboratories interested in corpus linguistics. The main activities
+          of the consortium are helping corpus providers to produce open science and shareable data,
+          providing continuous education for advanced students as well as senior researchers, and
+          sharing good practices about data and tools. CORLI is now an official CLARIN K Centre
+            (<ptr target="https://corli.huma-num.fr/en/kcentre"/>).</p>
+        <div xml:id="datasharing">
+          <head>The Importance of Data Sharing</head>
+          <p>Data sharing is an absolute necessity for research and applications in spoken language,
+            for two main reasons. First, creating spoken language corpora is very expensive. As a
+            result, not only are existing data very frequently reused, but it is also often
+            necessary to mix data coming from different origins when the goal is to produce very
+            large datasets. Second, language production involves a very wide variety of speakers and
+            contexts. Hence, in order to create interesting sociolinguistic data, it is very often
+            efficient to mix corpora from different sources. Moreover, the development of open
+            science, which is a key component of research today, cannot exist without data sharing,
+            which allows the data sources behind scientific results to be checked.</p>
+        </div>
+        <div xml:id="specificity">
+          <head>Specificity of Spoken Language Data</head>
+          <p>Spoken language corpora are different from corpora of written text. They consist of
+            sound or video recordings that come with textual information—transcriptions and
+            annotations. The spoken language is organized according to two dimensions, as described
+            by Schmidt (<ref type="bibl" target="#schmidt2011">2011</ref>): the macrostructure,
+            which refers to how transcriptions, annotations, and linking are organized (where they
+            are in the file), and the microstructure, which refers to the details of how
+            transcriptions and annotations are represented (how a transcription or an annotation is
+            written down).</p>
+          <p>Because linking the linguistic information (transcription and annotation) to audio or
+            video data is not a straightforward process and because this information is crucial for
+            studying spoken language, specific tools are used for creating and editing spoken
+            language data. These tools provide the user with functionalities that are necessary for
+            creating spoken language corpora and they also save data in controlled formats that can
+            be used for data sharing. Unfortunately, although all these tools manage the
+            macrostructure of spoken language corpora in a very strict fashion, this is not the case
+            for the microstructure. Certain tools provide some microstructure information, but it is
+            usually limited and not available for all corpora or for all types of research.</p>
+          <p>There are two main reasons for these limitations. First, there is a wide variety of
+            different microstructures that can be used, depending on the scientific goal and the
+            research domain that call for corpus creation and use. The second is that controlling
+            the microstructure when creating the data is extremely time-consuming, with the result
+            that the microstructure is often restricted to the minimal requirements of the study.
+            Moreover, the creation of user-friendly tools for controlling microstructures requires
+            considerable programmer effort, which the creators of free tools for research into
+            spoken language seldom have available. So the burden of controlling the quality of the
+            microstructure most often falls on the shoulders of the corpus creator, and not on the
+            tool used to create the corpus. Stability and uniformity in microstructure corpora is
+            only found in repositories that follow clear and controlled instructions—for example,
+            the TalkBank system (<ref type="bibl" target="#macwhinney2007">MacWhinney 2007</ref>,
+              <ptr target="https://talkbank.org/"/>) and the Archiv für Gesprochenes Deutsch (<ptr
+              target="http://agd.ids-mannheim.de"/>)—or in specific corpus projects, which have
+            limited coverage, even if the corpora involved are very large.</p>
+        </div>
+        <div xml:id="teicorpo">
+          <head>The TEICORPO Approach</head>
+          <p>The goal of the CORLI consortium is to make it easier to deposit, share, and reuse
+            data. With this goal in mind, CORLI has always promoted the use of open public
+            repositories and open formats. Our policy is to advocate for the use of a common single
+            format which can support data sharing as well as long-term preservation. We encourage
+            its use from the starting point of each new research project so as to ensure the
+            development of open science. However, CORLI, as a consortium of linguists who share its
+            practices, acknowledges that the most important thing for researchers remains the tools
+            that they know and use. We know that few people will be working directly on the raw
+            files, but rather using the tools that they have been trained with. So it is up to the
+            tools to allow format and data sharing.</p>
+          <p>For this reason, it was important for CORLI not only to stress the quality of a common
+            data format, but also to make it possible to use this format with the tools that the
+            researchers know and regularly use. These include editing tools, which make it possible
+            to create and modify the corpus transcription, and exploration tools, which are
+            necessary in many cases to produce scientific results. The exploration tools can be the
+            same as the editing tools, but they can also include other types, such as textometric
+            tools (<ref type="bibl" target="#lebart1998">Lebart, Salem, and Berry 1997</ref>; <ref
+              type="bibl" target="#pincemin2011">Pincemin 2011</ref>, <ref type="bibl"
+              target="#pincemin2020">Pincemin, Heiden; and Decorde 2020</ref>) and grammatical
+            parsers.</p>
+          <p>Finally, another constraint in the work of CORLI was to create tools that were suitable
+            for the needs of linguists. This means that the goal of the project was not to create
+            and promote new standards, but rather to emphasize the good practices of CORLI’s members
+            and make data sharing with other researchers easier. The goal of the TEICORPO project
+            can thus be summarized as:</p>
+          <list>
+            <item>creating a tool for conversion between the different pieces of software used for
+              spoken language corpora creation and editing. The tool should be as lossless as
+              possible;</item>
+            <item>using TEI as a conversion pivot format, since it is already widely used,
+              especially for written linguistic corpora, and is powerful enough for our
+              purposes;</item>
+            <item>creating complementary conversion tools that make it easier to explore and use the
+              corpora for research.</item>
+          </list>
+        </div>
+        <div xml:id="similarities">
+          <head>Similarities with and Differences from Other Approaches</head>
+          <p>Many software packages dedicated to editing spoken language transcription contain
+            utilities that can convert many formats: for example, EXMARaLDA (<ref type="bibl"
+              target="#schmidt2004">Schmidt 2004</ref>; see <ptr target="https://exmaralda.org"/>),
+            Anvil (<ref type="bibl" target="#kipp2001">Kipp 2001</ref>; see <ptr
+              target="https://www.anvil-software.org"/>), and ELAN (<ref type="bibl"
+              target="#wittenburg2006">Wittenburg et al. 2006</ref>; see <ptr
+              target="https://archive.mpi.nl/tla/elan"/>). However, in all cases, the conversions
+            are limited to the features implemented in the tool itself—for example, with a limited
+            set of metadata—and they cannot always be used to prepare data to be used by another
+            tool.</p>
+          <p>While our work is similar to that of Schmidt (<ref type="bibl" target="#schmidt2011"
+              >2011</ref>), several differences make our approaches complementary. First, the two
+            main common features are as follows:</p>
+          <list>
+            <item>the tool can automatically convert data coming from different linguistic
+              tools;</item>
+            <item>TEI is used as a destination format.</item>
+          </list>
+          <p>The list of tools that are considered in the two projects is nearly the same. The only
+            tools missing in the TEICORPO approach are EXMARaLDA and FOLKER (<ref type="bibl"
+              target="#schmidts2010">Schmidt and Schütte 2010</ref>; see <ptr
+              target="https://exmaralda.org/en/folker-en/"/>), but this was only because the
+            conversion tools from and to EXMARaLDA, FOLKER, and TEI already exist. They are
+            available as XSLT stylesheets in the open-source distribution of EXMARaLDA (<ptr
+              target="https://github.com/Exmaralda-Org/exmaralda"/>). The other common point is the
+            use of the TEI format, and especially the more recent ISO version of TEI for spoken
+            language (ISO/TEI; see <ref type="bibl" target="#iso2016">ISO 2016</ref>). The TEI
+            format produced by the EXMARaLDA and FOLKER software fit within the process chain of
+            TEICORPO. This demonstrates the usefulness of a well-known and efficient format such as
+            TEI.</p>
+          <p>There are, however, differences between the two projects that make them nonredundant
+            but complementary, each project having specificities that can be useful or damaging
+            depending on the user’s needs. One minor difference is that the TEICORPO project is not
+            a functionality of an editing tool, but is a standalone tool for converting data between
+            one format and another. This had certain effects on the user interface and explains some
+            of the choices made in the development of the two tools.</p>
+          <p>There are two major differences between TEICORPO and Schmidt’s approach, which affected
+            both the design of the tools and how they can be used. The first difference is that in
+            developing TEICORPO, it was decided that the conversion between the original formats and
+            TEI had to be lossless (or as lossless as possible) because we wanted to offer a means
+            to store the research data for long-term conservation and dissemination in a standard
+            XML format instead of in proprietary formats such as those used by CLAN (<ref
+              type="bibl" target="#macwhinney200">MacWhinney 2000</ref>; see <ptr
+              target="http://dali.talkbank.org/clan/"/>), ELAN, Praat (<ref type="bibl"
+              target="#boersma2001">Boersma and van Heuven 2001</ref>; see <ptr
+              target="http://www.fon.hum.uva.nl/praat/"/>), and Transcriber (<ref type="bibl"
+              target="#barras2000">Barras et al. 2000</ref>; see <ptr
+              target="http://trans.sourceforge.net/en/presentation.php"/> and <ptr
+              target="http://perso.ens-lyon.fr/matthieu.quignard/Transcriber/"/>). These proprietary
+            formats are in XML or Unicode formats so that they can be conserved for the long term.
+            However, they are not all well described or constrained, at least not in the same way as
+            TEI—which, moreover, offers a semantically relevant structure as well as an official
+            format for long-term conservation in France. Moreover, as the durability of these four
+            pieces of software cannot be guaranteed in the long term, it does not seem safe to keep
+            corpora in a format available only for a given tool that may disappear or fall into
+            disuse.</p>
+          <p>The second major difference is that the TEICORPO initiative does not target only spoken
+            language, but all types of annotation, including media of any type. This covers all
+            spoken languages, vocal as well as sign languages, and also gesture and any type of
+            multimodal coding. The goal of TEICORPO was not to advocate a linguistic mode of coding
+            spoken data as a transcription convention does, but rather to propose a research model
+            for storing and sharing data about language and other modalities. Consequently, the
+            focus of the work was not on how the spoken data were coded (i.e., the microstructure),
+            nor on the standard that should be used for transcribing in orthographic format.
+            Instead, the TEICORPO approach focused on how to integrate multiple pieces of
+            information into the TEI semantics (the macrostructure), as this is possible with tools
+            such as ELAN or PRAAT. The goal was to be able to convert a file produced by these tools
+            so that it can be saved in TEI format for long-term conservation.</p>
+          <p>Data in PRAAT and ELAN formats can contain information that is different from what is
+            usually present in an ISO/TEI description, but that nonetheless remains within the
+            structures authorized in the ISO/TEI. For example, the information is stored as
+            described below in <gi>spanGrp</gi>, an element available in the ISO/TEI description.
+            This means that whenever information is organized according to the
+              <soCalled>classical</soCalled> approach to spoken language (by
+              <soCalled>classical</soCalled>, we mean approaches based on an orthographic
+            transcription represented as a list, as in the script of a play), it will be available
+            for further processing by using the export features of TEICORPO (see <ptr
+              target="#exporting" type="crossref"/> and further below for export functionalities)
+            but other types of information are also available. Compared to PRAAT and ELAN, the
+            integration of tools such as CLAN or Transcriber was much more straightforward, as the
+            organization of the files is less varied and more <soCalled>classical</soCalled>.</p>
+          <div xml:id="microstructures">
+            <head>Choice of the Microstructure Representation</head>
+            <p>Processing of the microstructure, with the exception of information already available
+              in the tools themselves (for example silence in Transcriber), is not done during the
+              conversion to TEI. The division into words or other elements such as morphemes or
+              phonemes is not systematically done in any of the tools used by researchers in CORLI.
+              When it exists, it is not included in the main transcription line but most often in
+              dependent lines, as it represents an annotation with its own rules and guidelines.
+              Division into words or other elements is part of the linguistic analysis rather than a
+              simple storage operation.</p>
+            <p>TEICORPO therefore preserves as long-term storage data both the original information
+              that was created in the original software—the full unprocessed transcription—and the
+              other linguistically processed transcriptions and annotations. For TEICORPO,
+              microstructure processing, such as division into words, or text standardization when
+              necessary, belongs to the linguistic analysis of the corpora. Hence, the TEI data file
+              can be used both for data exploration and for scientific purposes. For example, when a
+              researcher needs to parse the data, or to explore the data with textometric tools,
+              then it is necessary to decide which type of preprocessing is necessary. As this
+              decision often depends on the initial project as well as on linguistic choices, it is
+              difficult to standardize this task.</p>
+          </div>
+        </div>
+      </div>
+      <div xml:id="teicorpoproject">
+        <head>The TEICORPO Project</head>
+        <p>The TEICORPO project contains two different sets of tools. One set focuses on conversion
+          between various software packages used for spoken language coding and TEI. The other set
+          focuses on using the TEI format for linguistic analyses (textometric or grammatical
+          analyses).</p>
 
-<div xml:id="alignmenttools">
-  <head>Alignment Tools</head>
-  <p>Several alignment tools are used by researchers working with spoken language corpora to align the recording, whether an audio or a video file, with its textual transcription and other specific annotations. The choice of tools is usually related to the choice of annotations, or to the common practices in a given research field, or simply to the researcher’s preferences, knowledge, and requirements.</p>
-  <p>Some common practices have been identified in our community but other uses of the same software are of course possible:</p>
-  <list>
-    <item>Transcriber is widely used in sociolinguistics;</item>
-    <item>CLAN is widely used in language acquisition and especially in the Talkbank project;</item>
-  </list>
-  <list>
-    <item>Praat is more specialized for phonetic or phonological annotations;</item>
-    <item>ELAN is recommended for annotating video and particularly multimodality (for example, components such as gazes, gestures, and movements), and is often used for rare languages to describe the organization of the segments.</item>
-  </list>
-  <p>It should be pointed out here that whereas Transcriber and CLAN files nearly always contain <soCalled>classical</soCalled> orthographic transcriptions, this is not the case for Praat and ELAN files. As our goal is to provide a generic solution for long-term conservation and use for any type of project, conversion of all types of files produced by the four tools cited above will be possible. It is up to the user to determine which part of a corpus can be used with a classical approach, which parts should not, and how they should be processed.</p>
-  <p>The list of tools reflects the uses and practices in the CORLI network, and is very similar to the list suggested by Schmidt (<ref target="#schmidt2011" type="bibl">2011</ref>) with the exception of EXMARaLDA and FOLKER. These two tools already have built-in conversion features, so adding them to the TEICORPO project would be easy at a later date.</p>
-  <p>Alignment applications deal with two main types of data presentation and organization. The presentation of the data has direct consequences for how the data are exploited, and therefore on the design of the tools that are used.</p>
-  <list>
-    <item>In list or text format (as in the script of a play), the speakers’ productions are displayed in vertical order, from the beginning to the end of the recording, in the order that they are produced, speaker by speaker, with the speaker’s name on the left followed by their production. The timeline is vertical, going from top to bottom. In the result file, the speaker’s productions appear between two time points in the chronological order of the timelines, the start and the end of the production. The list format can be extended as a hierarchical format, as is the case in TEI, for example;</item>
-    <item>In partition format (as in a musical score), each speaker has their own tier, a horizontal line representing the information pertaining to the speaker (like each instrument in a musical score). Sometimes several tiers are associated with the same speaker, for example gestures and gazes, aligned with the verbal production. The timeline is horizontal, going from left to right. The result file is not organized chronologically but is sorted by the names of the tiers (or any other order), with all the production within the same tier sorted by timeline.</item>
-  </list>
-  <p>No tool offers both types of presentation. ELAN offers some alternatives to editing or displaying data with the partition format, but none of the existing tools offer full-fledged list format editing. It is possible to represent the two structures within a similar model, as demonstrated by Bird and Liberman (<ref type="bibl" target="#bird2001">2001</ref>). However, this is not the case for the four tools listed above: each of them represents the data in a unique underlying data structure. Transcriber and CLAN are organized in list format; Praat and ELAN have a partition format.</p>
-  <p>Each presentation format has its own pros and cons. Because of the possibilities offered by the presentation formats, and because the same software, even within the same presentation models, rarely provides a solution for all the needs of all users, researchers often have to use two or more pieces of software.</p>
-  <p>The use of multiple tools is quite common. For example, Praat and Transcriber cannot be used when working on video recordings because these programs are limited to audio formats. But if researchers need to conduct spectral analysis for some purpose, they will have to use the Praat software and convert not only the transcription, but also the media. In the field of language acquisition, where the CLAN software is generally used to describe both the child productions and the adult productions, when researchers are interested in gestures, they use the ELAN software, importing the CLAN file to add gesture tiers, as ELAN is more suitable for the fine-grained analysis of visual data. Another common practice consists in first doing a rapid transcription using only orthographic annotations in Transcriber and then in a second stage annotating some more interesting excerpts in greater detail including new information. In this case researchers will import the first transcription file into other tools such as Praat or ELAN and annotate them partially. It is therefore necessary to import or export files in different formats if researchers need to use different tools for different parts of their work.</p>
-  <p>Another need concerns the pooling of corpora coming from other resources or other projects. Conversions are necessary, and can be problematic because going from one piece of software to another often leads to a loss of information, as each tool handles corpus information differently, beyond the differences between list and partition formats. Researchers need a convenient tool to convert each file from one format to another without losing information. If such a tool is not provided by the software itself, it is necessary to create one. Such a custom tool is generally developed in each laboratory, operates only on a given platform (Windows, MacOS, Linux, etc.), is often not maintained, and does not include the latest releases of each software package or the requirements of the conversion process options. For these reasons, we decided in the CORLI consortium and in collaboration with the ORTOLANG infrastructure to design a common tool that could be used by the whole linguistic community. The goal was to make open-source software with proper maintenance freely available on <ptr target="http://ct3.ortolang.fr/teicorpo/"/>.</p>
-</div>
-  <div  xml:id="conversion">
-    <head>Conversion to and from TEI</head>
-    <p>As explained above (see <ptr target="#similarities" type="crossref"/>), the conversion tools do not focus on the microstructure of the linguistic encoding, as it was not the goal of CORLI to push for a unique way to encode linguistic data. Nor did we split the transcription into words, as that is a research-dependent process and would not preserve the content of the original files. Processing the microstructure and splitting utterances into words is part of the second stage of our work (see <ptr target="#exporting" type="crossref"/>), which concerns the exploitation of the corpora. The goal of the conversion tool is to convert all the information in the metadata and all the macrostructure information into the TEI format.</p>
-    <div xml:id="basicstruct">
-      <head>Basic Structures</head>
-      <p>Converting the metadata is straightforward, as the four tools (CLAN, ELAN, Praat, and Transcriber) do not enable a large amount of metadata to be edited. Most of the metadata available concerns the content of the sequence; some user metadata is also available, especially in CLAN. The insertion of metadata follows the indications of the ISO/TEI 24624:2016 standard (<ref type="bibl" target="#iso2016">ISO 2016</ref>).</p>
-      <p>Moreover, some tools, such as Transcriber, include information about silences, pauses, and events in their XML format. This information is also processed within TEICORPO, once again following the recommendations of the ISO/TEI standard.</p>
-      <p>Conversion of the main data, the transcription and the annotations, cannot always be done solely on the basis of the description provided in the ISO/TEI guidelines. These guidelines do, however, suffice to fully describe the content of the CLAN and Transcriber software. We took advantage of the new <gi>annotationBlock</gi> element, which codes several annotation levels, a function that is commonly required in spoken-language annotations.</p>
-      <p>The <gi>annotationBlock</gi> contains two major elements: the <gi>u</gi> element, which contains the transcription in orthographic form, and the <gi>spanGrp</gi> elements, which contain tier elements that annotate the utterance described in the <gi>u</gi> element. A <gi>spanGrp</gi> element contains as many <gi>span</gi> elements as required. All <gi>span</gi> elements have the same type of content, as indicated in the parent <gi>spanGrp</gi> element. <ptr target="#example_code_1" type="crossref"/> and <ptr target="#example_code_2" type="crossref"/> provide an example of conversion from a CLAN file to illustrate how a production annotated on different levels (orthography, morphosyntax, dependencies) is represented in TEI with a first main utterance element <gi>u</gi> to which two <gi>spanGrp</gi>s are linked, one for each annotation level, in our case one <gi>spanGrp</gi> for morphosyntax and one <gi>spanGrp</gi> for dependencies (see <ptr target="#fig2" type="crossref"/>). A <gi>timeline</gi> element gives the start (<val>T1</val>) and end (<val>T2</val>) timecodes and an <gi>annotationBlock</gi> element specifies the speaker with the <att>who</att> attribute and the <att>start</att> and <att>end</att> attributes with the timecode anchors <val>#T1</val> and <val>#T2</val>. The <gi>annotationBlock</gi> element includes both the utterance element and the two annotations. No semantic constraint is imposed on the inner content of the span elements. The content of the <att>type</att> attribute in the <gi>spanGrp</gi> element represents and documents the choice of the researchers who produced the original corpus. The content generated is preserved as it was in the original file, making backward conversion possible. In <ptr target="#example_code_1" type="crossref"/>, the <val>mor</val> and <val>gra</val> attribute values represent grammatical knowledge. Using the content of these elements to produce advanced grammatical representation in more elaborate TEI and XML formats is of course possible, but would be a tailored task which is beyond the scope of the TEICORPO project.</p>
-      <figure xml:id="example_code_1">
-        <eg xml:space="preserve">*MOT: look at the tree ! 2263675_2265197
+        <div xml:id="alignmenttools">
+          <head>Alignment Tools</head>
+          <p>Several alignment tools are used by researchers working with spoken language corpora to
+            align the recording, whether an audio or a video file, with its textual transcription
+            and other specific annotations. The choice of tools is usually related to the choice of
+            annotations, or to the common practices in a given research field, or simply to the
+            researcher’s preferences, knowledge, and requirements.</p>
+          <p>Some common practices have been identified in our community but other uses of the same
+            software are of course possible:</p>
+          <list>
+            <item>Transcriber is widely used in sociolinguistics;</item>
+            <item>CLAN is widely used in language acquisition and especially in the Talkbank
+              project;</item>
+          </list>
+          <list>
+            <item>Praat is more specialized for phonetic or phonological annotations;</item>
+            <item>ELAN is recommended for annotating video and particularly multimodality (for
+              example, components such as gazes, gestures, and movements), and is often used for
+              rare languages to describe the organization of the segments.</item>
+          </list>
+          <p>It should be pointed out here that whereas Transcriber and CLAN files nearly always
+            contain <soCalled>classical</soCalled> orthographic transcriptions, this is not the case
+            for Praat and ELAN files. As our goal is to provide a generic solution for long-term
+            conservation and use for any type of project, conversion of all types of files produced
+            by the four tools cited above will be possible. It is up to the user to determine which
+            part of a corpus can be used with a classical approach, which parts should not, and how
+            they should be processed.</p>
+          <p>The list of tools reflects the uses and practices in the CORLI network, and is very
+            similar to the list suggested by Schmidt (<ref target="#schmidt2011" type="bibl"
+              >2011</ref>) with the exception of EXMARaLDA and FOLKER. These two tools already have
+            built-in conversion features, so adding them to the TEICORPO project would be easy at a
+            later date.</p>
+          <p>Alignment applications deal with two main types of data presentation and organization.
+            The presentation of the data has direct consequences for how the data are exploited, and
+            therefore on the design of the tools that are used.</p>
+          <list>
+            <item>In list or text format (as in the script of a play), the speakers’ productions are
+              displayed in vertical order, from the beginning to the end of the recording, in the
+              order that they are produced, speaker by speaker, with the speaker’s name on the left
+              followed by their production. The timeline is vertical, going from top to bottom. In
+              the result file, the speaker’s productions appear between two time points in the
+              chronological order of the timelines, the start and the end of the production. The
+              list format can be extended as a hierarchical format, as is the case in TEI, for
+              example;</item>
+            <item>In partition format (as in a musical score), each speaker has their own tier, a
+              horizontal line representing the information pertaining to the speaker (like each
+              instrument in a musical score). Sometimes several tiers are associated with the same
+              speaker, for example gestures and gazes, aligned with the verbal production. The
+              timeline is horizontal, going from left to right. The result file is not organized
+              chronologically but is sorted by the names of the tiers (or any other order), with all
+              the production within the same tier sorted by timeline.</item>
+          </list>
+          <p>No tool offers both types of presentation. ELAN offers some alternatives to editing or
+            displaying data with the partition format, but none of the existing tools offer
+            full-fledged list format editing. It is possible to represent the two structures within
+            a similar model, as demonstrated by Bird and Liberman (<ref type="bibl"
+              target="#bird2001">2001</ref>). However, this is not the case for the four tools
+            listed above: each of them represents the data in a unique underlying data structure.
+            Transcriber and CLAN are organized in list format; Praat and ELAN have a partition
+            format.</p>
+          <p>Each presentation format has its own pros and cons. Because of the possibilities
+            offered by the presentation formats, and because the same software, even within the same
+            presentation models, rarely provides a solution for all the needs of all users,
+            researchers often have to use two or more pieces of software.</p>
+          <p>The use of multiple tools is quite common. For example, Praat and Transcriber cannot be
+            used when working on video recordings because these programs are limited to audio
+            formats. But if researchers need to conduct spectral analysis for some purpose, they
+            will have to use the Praat software and convert not only the transcription, but also the
+            media. In the field of language acquisition, where the CLAN software is generally used
+            to describe both the child productions and the adult productions, when researchers are
+            interested in gestures, they use the ELAN software, importing the CLAN file to add
+            gesture tiers, as ELAN is more suitable for the fine-grained analysis of visual data.
+            Another common practice consists in first doing a rapid transcription using only
+            orthographic annotations in Transcriber and then in a second stage annotating some more
+            interesting excerpts in greater detail including new information. In this case
+            researchers will import the first transcription file into other tools such as Praat or
+            ELAN and annotate them partially. It is therefore necessary to import or export files in
+            different formats if researchers need to use different tools for different parts of
+            their work.</p>
+          <p>Another need concerns the pooling of corpora coming from other resources or other
+            projects. Conversions are necessary, and can be problematic because going from one piece
+            of software to another often leads to a loss of information, as each tool handles corpus
+            information differently, beyond the differences between list and partition formats.
+            Researchers need a convenient tool to convert each file from one format to another
+            without losing information. If such a tool is not provided by the software itself, it is
+            necessary to create one. Such a custom tool is generally developed in each laboratory,
+            operates only on a given platform (Windows, MacOS, Linux, etc.), is often not
+            maintained, and does not include the latest releases of each software package or the
+            requirements of the conversion process options. For these reasons, we decided in the
+            CORLI consortium and in collaboration with the ORTOLANG infrastructure to design a
+            common tool that could be used by the whole linguistic community. The goal was to make
+            open-source software with proper maintenance freely available on <ptr
+              target="http://ct3.ortolang.fr/teicorpo/"/>.</p>
+        </div>
+        <div xml:id="conversion">
+          <head>Conversion to and from TEI</head>
+          <p>As explained above (see <ptr target="#similarities" type="crossref"/>), the conversion
+            tools do not focus on the microstructure of the linguistic encoding, as it was not the
+            goal of CORLI to push for a unique way to encode linguistic data. Nor did we split the
+            transcription into words, as that is a research-dependent process and would not preserve
+            the content of the original files. Processing the microstructure and splitting
+            utterances into words is part of the second stage of our work (see <ptr
+              target="#exporting" type="crossref"/>), which concerns the exploitation of the
+            corpora. The goal of the conversion tool is to convert all the information in the
+            metadata and all the macrostructure information into the TEI format.</p>
+          <div xml:id="basicstruct">
+            <head>Basic Structures</head>
+            <p>Converting the metadata is straightforward, as the four tools (CLAN, ELAN, Praat, and
+              Transcriber) do not enable a large amount of metadata to be edited. Most of the
+              metadata available concerns the content of the sequence; some user metadata is also
+              available, especially in CLAN. The insertion of metadata follows the indications of
+              the ISO/TEI 24624:2016 standard (<ref type="bibl" target="#iso2016">ISO
+              2016</ref>).</p>
+            <p>Moreover, some tools, such as Transcriber, include information about silences,
+              pauses, and events in their XML format. This information is also processed within
+              TEICORPO, once again following the recommendations of the ISO/TEI standard.</p>
+            <p>Conversion of the main data, the transcription and the annotations, cannot always be
+              done solely on the basis of the description provided in the ISO/TEI guidelines. These
+              guidelines do, however, suffice to fully describe the content of the CLAN and
+              Transcriber software. We took advantage of the new <gi>annotationBlock</gi> element,
+              which codes several annotation levels, a function that is commonly required in
+              spoken-language annotations.</p>
+            <p>The <gi>annotationBlock</gi> contains two major elements: the <gi>u</gi> element,
+              which contains the transcription in orthographic form, and the <gi>spanGrp</gi>
+              elements, which contain tier elements that annotate the utterance described in the
+                <gi>u</gi> element. A <gi>spanGrp</gi> element contains as many <gi>span</gi>
+              elements as required. All <gi>span</gi> elements have the same type of content, as
+              indicated in the parent <gi>spanGrp</gi> element. <ptr target="#example_code_1"
+                type="crossref"/> and <ptr target="#example_code_2" type="crossref"/> provide an
+              example of conversion from a CLAN file to illustrate how a production annotated on
+              different levels (orthography, morphosyntax, dependencies) is represented in TEI with
+              a first main utterance element <gi>u</gi> to which two <gi>spanGrp</gi>s are linked,
+              one for each annotation level, in our case one <gi>spanGrp</gi> for morphosyntax and
+              one <gi>spanGrp</gi> for dependencies (see <ptr target="#fig2" type="crossref"/>). A
+                <gi>timeline</gi> element gives the start (<val>T1</val>) and end (<val>T2</val>)
+              timecodes and an <gi>annotationBlock</gi> element specifies the speaker with the
+                <att>who</att> attribute and the <att>start</att> and <att>end</att> attributes with
+              the timecode anchors <val>#T1</val> and <val>#T2</val>. The <gi>annotationBlock</gi>
+              element includes both the utterance element and the two annotations. No semantic
+              constraint is imposed on the inner content of the span elements. The content of the
+                <att>type</att> attribute in the <gi>spanGrp</gi> element represents and documents
+              the choice of the researchers who produced the original corpus. The content generated
+              is preserved as it was in the original file, making backward conversion possible. In
+                <ptr target="#example_code_1" type="crossref"/>, the <val>mor</val> and
+                <val>gra</val> attribute values represent grammatical knowledge. Using the content
+              of these elements to produce advanced grammatical representation in more elaborate TEI
+              and XML formats is of course possible, but would be a tailored task which is beyond
+              the scope of the TEICORPO project.</p>
+            <figure xml:id="example_code_1">
+              <eg xml:space="preserve">*MOT: look at the tree ! 2263675_2265197
 %mor: v|look prep|at det|the n|tree !
 %gra: 1|0|ROOT 2|1|JCT 3|4|DET 4|2|POBJ 5|1|PUNCT</eg>
-        <head type="legend">CLAN representation of data (first three lines)</head>
-      </figure>
-      
-      <figure xml:id="example_code_2">
-        <egXML xmlns="http://www.tei-c.org/ns/Examples">
-          <timeline unit="s">
-            <when absolute="0" xml:id="T0"/>
-            <when interval="2263.675" since="#T0" xml:id="T1086"/>
-            <when interval="2265.197" since="#T0" xml:id="T1087"/>
-          </timeline>
-          <annotationBlock end="#T1087" start="#T1086" who="MOT" xml:id="au551">
-            <u>
-              <seg>look at the tree ! </seg>
-            </u>
-            <spanGrp type="mor">
-              <span>v|look prep|at det|the n|tree ! </span>
-            </spanGrp>
-            <spanGrp type="gra">
-              <span>1|0|ROOT 2|1|JCT 3|4|DET 4|2|POBJ 5|1|PUNCT</span>
-            </spanGrp>
-          </annotationBlock>
-          </egXML>
-        <head type="legend">Representation in TEI corresponding to <ptr target="#example_code_1" type="crossref"/>.</head>
-      </figure>
-      
-    </div>
-    <div xml:id="advancedstructures">
-      <head>Advanced Structures</head>
-      <p>Although the presentation described above can represent the data of many corpora and tools, a single-level annotation structure within the <gi>spanGrp</gi> elements is insufficient to represent the complex organization that can be constructed with the ELAN and Praat tools. ELAN is a tool used by many researchers to describe data of greater complexity than the data presented in the ISO/TEI guidelines. As the goal of the TEICORPO project was to convert all types of structure used in the spoken language community, including ELAN and Praat, it was necessary to extend the description method presented in <ptr target="#basicstruct" type="crossref"/>.</p>
-      <p>In ELAN and Praat, the multitiered annotations can be organized in a structured manner. These tools take advantage of the partition presentation of the data, so that the relationship between a parent tier and a child tier can be precisely organized. There are two main types of organization: symbolic and temporal.</p>
-      <p>In symbolic division, the elements of a child tier, C<hi rend="sub">1</hi> to C<hi rend="sub">n</hi>, can be related to an element of a parent tier P. For example, a word is divided into morphemes. In <ptr target="#fig1" type="crossref"/>, the main tier has two representations, <term>BEJ_MV_NARR_11_coffee_18</term> and <term>gahwat mu:nai end //</term>. The tier of the second level contains individual words, <term>gahwat</term>, <term>mu:na</term>, and so on. On the third tier, the words are broken down into morphemes: <term>gahw</term>, <term>-t</term>, and so on. There are three other levels of organization, which follow either the organization of the morphemes or that of the main tier. In all these cases, the relationships between tiers are symbolic, and could be represented by symbolic links instead of temporal links.</p>
-      <figure xml:id="fig1">
-        <graphic url="media/image1.PNG"
-          width="620px" height="980px"/>
-        <head type="legend">ELAN annotation with symbolic structures</head>
-      </figure>
-      
-      <p>In temporal division, the association between the main tier and the dependent tiers is described by temporal information rather than by symbolic information. An element is included in the parent if the starting and end points are within the time limits of the starting and end points of the parent tier. <ptr target="#fig2" type="crossref"/> provides an example of such an organization created using Praat. In this example, the tier at the top of the representation contains phonemes that are included in the second tier, which contains syllables (for example, <term>S</term> and <term>a</term> are included in <term>Sa</term>). Then the syllables are included in turn in the word-level tier (bottom tier). In this example, as well as for the previous example, there are other tiers which will not be described here, but which show how complex the representation of the data can be.</p>
-        <figure xml:id="fig2">
-          <graphic url="media/image2.PNG" width="620px" height="980px"/>
-          <head type="legend">Praat representation of a temporal structure</head>
-        </figure>
-    </div>
-    <div xml:id="representation">
-      <head>Representation of Advanced Structures</head>
-      <p>The two types of data organization presented above—multiple levels where the relation between the parent and the child tier is either symbolic or temporal (and the two types of relation can appear in the same file at different levels)—correspond to uses in corpus linguistics that are more advanced than the usage presented in the ISO/TEI guidelines. This type of corpus can in some cases contain a large amount of data, or it can correspond to smaller corpora with very fine-grained coding. It can also encode unusual data, or new types of corpora, such as gesture and sign language studies, for instance. In these cases, the actual data coding can be far removed from that of a usual spoken language corpus (such as those described in Schmidt 2011). However, as this type of data is produced by members of the CORLI consortium, it needs to be preserved. Encoding the data in TEI using a standard tool makes the process reproducible, which is one of the goals of TEICORPO.</p>
-      <p>Although this type of data is not described in the ISO/TEI guidelines, it is in fact possible to store it in TEI format using current TEI features. TEI provides a general mechanism for storing hierarchically structured data by using the <gi>spanGrp</gi> and <gi>span</gi> mechanism. Moreover, the <gi>span</gi> and <gi>spanGrp</gi> tags have attributes that can point to other elements or to timelines. Using this coding schema, it is therefore possible to store any type of structure, symbolic and/or temporal, that can be generated with ELAN or PRAAT, as described above.</p>
-      <p>To do this, each element which is in a symbolic or temporal relation is represented by a <gi>spanGrp</gi> element of the TEI. The <gi>spanGrp</gi> element contains as many <gi>span</gi> elements as necessary to store all the elements present in the ELAN or PRAAT representation. The parent element of a <gi>spanGrp</gi> is the main <gi>annotationBlock</gi> element when the division in ELAN or PRAAT is the first division of a main element. The parent element is another <gi>span</gi> element when the division in ELAN or PRAAT is a subdivision of another element which is not a main element. This XML structure is complemented by explicit information as allowed in TEI. The <gi>span</gi> elements are linked to the element they depend on, either with a symbolic link using the <att>target</att> attribute of the <gi>span</gi> element, or with temporal links using the <att>from</att> and <att>to</att> attributes of the <gi>span</gi> element.</p>
-      <p>Two examples of how this is displayed in a TEI file are given below. The first example (see <ptr target="#fig3" type="crossref"/> and <ptr target="#example_code_3" type="crossref"/>) corresponds to the ELAN example above (see <ptr target="#advancedstructures" type="crossref"/>, 
-        <ptr target="#fig1" type="crossref"/>). The TEI encoding represents the words of the sentence from left to right (from <term>gahwat</term> to <term>endi</term> in our example). The detail of the transcription is represented recursively, with <gi>span</gi> containing <gi>spanGrp</gi>, and <gi>spanGrp</gi> containing other <gi>span</gi> elements, until all the data are represented. This can be pursued down to any depth. In <ptr target="#fig3" type="crossref"/> and <ptr target="#example_code_3" type="crossref"/>, this is the case with <term>gahw -t</term> which is divided into <term>BOR</term> and <term>-DET</term>.</p>
-      <figure xml:id="fig3">
-        <graphic url="media/image1.PNG" width="620px" height="980px"/>
-        <head type="legend">ELAN example of a symbolic division</head>
-      </figure>
-<!--      EXACTELY THE SAME AS FIG1: why repeat?-->
-      <figure xml:id="example_code_3">
-        <egXML xmlns="http://www.tei-c.org/ns/Examples">
-          <annotationBlock end="#T24" start="#T23" who="ref@SP" xml:id="ann296">
-            <u>
-              <seg>BEJ_MV_NARR_11_coffee_18</seg>
-            </u>
-            <spanGrp type="tx@SP">
-              <span target="#ann296" xml:id="ann304">
-                gahwat muːna end //
-                <spanGrp type="mot@SP">
-                  <span target="#ann304" xml:id="a69">
-                    gahwat
-                    <spanGrp type="mb@SP">
-                      <span target="#a69" xml:id="a186">
-                        gahwa
-                        <spanGrp type="ge@SP">
-                          <span target="#a186" xml:id="a318">coffee</span>
-                        </spanGrp>
-                        <spanGrp type="rx@SP">
-                          <span target="#a186" xml:id="a450">BORR</span>
-                        </spanGrp>
-                      </span>
-                      <span target="#a69" xml:id="a187">
-                        -t
-                        <spanGrp type="ge@SP">
-                          <span target="#a187" xml:id="a319">-INDF.F</span>
-                        </spanGrp>
-                        <spanGrp type="rx@SP">
-                          <span target="#a187" xml:id="a451">-DET</span>
-                        </spanGrp>
-                      </span>
-                    </spanGrp>
-                  </span>
+              <head type="legend">CLAN representation of data (first three lines)</head>
+            </figure>
+
+            <figure xml:id="example_code_2">
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <timeline unit="s">
+                  <when absolute="0" xml:id="T0"/>
+                  <when interval="2263.675" since="#T0" xml:id="T1086"/>
+                  <when interval="2265.197" since="#T0" xml:id="T1087"/>
+                </timeline>
+                <annotationBlock end="#T1087" start="#T1086" who="MOT" xml:id="au551">
+                  <u>
+                    <seg>look at the tree ! </seg>
+                  </u>
+                  <spanGrp type="mor">
+                    <span>v|look prep|at det|the n|tree ! </span>
+                  </spanGrp>
+                  <spanGrp type="gra">
+                    <span>1|0|ROOT 2|1|JCT 3|4|DET 4|2|POBJ 5|1|PUNCT</span>
+                  </spanGrp>
+                </annotationBlock>
+              </egXML>
+              <head type="legend">Representation in TEI corresponding to <ptr
+                  target="#example_code_1" type="crossref"/>.</head>
+            </figure>
+
+          </div>
+          <div xml:id="advancedstructures">
+            <head>Advanced Structures</head>
+            <p>Although the presentation described above can represent the data of many corpora and
+              tools, a single-level annotation structure within the <gi>spanGrp</gi> elements is
+              insufficient to represent the complex organization that can be constructed with the
+              ELAN and Praat tools. ELAN is a tool used by many researchers to describe data of
+              greater complexity than the data presented in the ISO/TEI guidelines. As the goal of
+              the TEICORPO project was to convert all types of structure used in the spoken language
+              community, including ELAN and Praat, it was necessary to extend the description method
+              presented in <ptr target="#basicstruct" type="crossref"/>.</p>
+            <p>In ELAN and Praat, the multitiered annotations can be organized in a structured
+              manner. These tools take advantage of the partition presentation of the data, so that
+              the relationship between a parent tier and a child tier can be precisely organized.
+              There are two main types of organization: symbolic and temporal.</p>
+            <p>In symbolic division, the elements of a child tier, C<hi rend="sub">1</hi> to C<hi
+                rend="sub">n</hi>, can be related to an element of a parent tier P. For example, a
+              word is divided into morphemes. In <ptr target="#fig1" type="crossref"/>, the main
+              tier has two representations, <term>BEJ_MV_NARR_11_coffee_18</term> and <term>gahwat
+                mu:nai end //</term>. The tier of the second level contains individual words,
+                <term>gahwat</term>, <term>mu:na</term>, and so on. On the third tier, the words are
+              broken down into morphemes: <term>gahw</term>, <term>-t</term>, and so on. There are
+              three other levels of organization, which follow either the organization of the
+              morphemes or that of the main tier. In all these cases, the relationships between
+              tiers are symbolic, and could be represented by symbolic links instead of temporal
+              links.</p>
+            <figure xml:id="fig1">
+              <graphic url="media/image1.PNG" width="620px" height="980px"/>
+              <head type="legend">ELAN annotation with symbolic structures</head>
+            </figure>
+
+            <p>In temporal division, the association between the main tier and the dependent tiers
+              is described by temporal information rather than by symbolic information. An element
+              is included in the parent if the starting and end points are within the time limits of
+              the starting and end points of the parent tier. <ptr target="#fig2" type="crossref"/>
+              provides an example of such an organization created using Praat. In this example, the
+              tier at the top of the representation contains phonemes that are included in the
+              second tier, which contains syllables (for example, <term>S</term> and <term>a</term>
+              are included in <term>Sa</term>). Then the syllables are included in turn in the
+              word-level tier (bottom tier). In this example, as well as for the previous example,
+              there are other tiers which will not be described here, but which show how complex the
+              representation of the data can be.</p>
+            <figure xml:id="fig2">
+              <graphic url="media/image2.PNG" width="620px" height="980px"/>
+              <head type="legend">Praat representation of a temporal structure</head>
+            </figure>
+          </div>
+          <div xml:id="representation">
+            <head>Representation of Advanced Structures</head>
+            <p>The two types of data organization presented above—multiple levels where the relation
+              between the parent and the child tier is either symbolic or temporal (and the two
+              types of relation can appear in the same file at different levels)—correspond to uses
+              in corpus linguistics that are more advanced than the usage presented in the ISO/TEI
+              guidelines. This type of corpus can in some cases contain a large amount of data, or
+              it can correspond to smaller corpora with very fine-grained coding. It can also encode
+              unusual data, or new types of corpora, such as gesture and sign language studies, for
+              instance. In these cases, the actual data coding can be far removed from that of a
+              usual spoken language corpus (such as those described in Schmidt 2011). However, as
+              this type of data is produced by members of the CORLI consortium, it needs to be
+              preserved. Encoding the data in TEI using a standard tool makes the process
+              reproducible, which is one of the goals of TEICORPO.</p>
+            <p>Although this type of data is not described in the ISO/TEI guidelines, it is in fact
+              possible to store it in TEI format using current TEI features. TEI provides a general
+              mechanism for storing hierarchically structured data by using the <gi>spanGrp</gi> and
+                <gi>span</gi> mechanism. Moreover, the <gi>span</gi> and <gi>spanGrp</gi> tags have
+              attributes that can point to other elements or to timelines. Using this coding schema,
+              it is therefore possible to store any type of structure, symbolic and/or temporal,
+              that can be generated with ELAN or PRAAT, as described above.</p>
+            <p>To do this, each element which is in a symbolic or temporal relation is represented
+              by a <gi>spanGrp</gi> element of the TEI. The <gi>spanGrp</gi> element contains as
+              many <gi>span</gi> elements as necessary to store all the elements present in the ELAN
+              or PRAAT representation. The parent element of a <gi>spanGrp</gi> is the main
+                <gi>annotationBlock</gi> element when the division in ELAN or PRAAT is the first
+              division of a main element. The parent element is another <gi>span</gi> element when
+              the division in ELAN or PRAAT is a subdivision of another element which is not a main
+              element. This XML structure is complemented by explicit information as allowed in TEI.
+              The <gi>span</gi> elements are linked to the element they depend on, either with a
+              symbolic link using the <att>target</att> attribute of the <gi>span</gi> element, or
+              with temporal links using the <att>from</att> and <att>to</att> attributes of the
+                <gi>span</gi> element.</p>
+            <p>Two examples of how this is displayed in a TEI file are given below. The first
+              example (see <ptr target="#fig3" type="crossref"/> and <ptr target="#example_code_3"
+                type="crossref"/>) corresponds to the ELAN example above (see <ptr
+                target="#advancedstructures" type="crossref"/>, <ptr target="#fig1" type="crossref"
+              />). The TEI encoding represents the words of the sentence from left to right (from
+                <term>gahwat</term> to <term>endi</term> in our example). The detail of the
+              transcription is represented recursively, with <gi>span</gi> containing
+                <gi>spanGrp</gi>, and <gi>spanGrp</gi> containing other <gi>span</gi> elements,
+              until all the data are represented. This can be pursued down to any depth. In <ptr
+                target="#fig3" type="crossref"/> and <ptr target="#example_code_3" type="crossref"
+              />, this is the case with <term>gahw -t</term> which is divided into <term>BOR</term>
+              and <term>-DET</term>.</p>
+            <figure xml:id="fig3">
+              <graphic url="media/image1.PNG" width="620px" height="980px"/>
+              <head type="legend">ELAN example of a symbolic division</head>
+            </figure>
+            <!--      EXACTELY THE SAME AS FIG1: why repeat?-->
+            <figure xml:id="example_code_3">
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <annotationBlock end="#T24" start="#T23" who="ref@SP" xml:id="ann296">
+                  <u>
+                    <seg>BEJ_MV_NARR_11_coffee_18</seg>
+                  </u>
+                  <spanGrp type="tx@SP">
+                    <span target="#ann296" xml:id="ann304"> gahwat muːna end // <spanGrp
+                        type="mot@SP">
+                        <span target="#ann304" xml:id="a69"> gahwat <spanGrp type="mb@SP">
+                            <span target="#a69" xml:id="a186"> gahwa <spanGrp type="ge@SP">
+                                <span target="#a186" xml:id="a318">coffee</span>
+                              </spanGrp>
+                              <spanGrp type="rx@SP">
+                                <span target="#a186" xml:id="a450">BORR</span>
+                              </spanGrp>
+                            </span>
+                            <span target="#a69" xml:id="a187"> -t <spanGrp type="ge@SP">
+                                <span target="#a187" xml:id="a319">-INDF.F</span>
+                              </spanGrp>
+                              <spanGrp type="rx@SP">
+                                <span target="#a187" xml:id="a451">-DET</span>
+                              </spanGrp>
+                            </span>
+                          </spanGrp>
+                        </span>
+                        <!-- . . . . . . . . -->
+                      </spanGrp>
+                      <!-- . . . . . . . . -->
+                    </span>
+                    <!-- . . . . . . . . -->
+                  </spanGrp>
                   <!-- . . . . . . . . -->
-                </spanGrp>
-                <!-- . . . . . . . . -->
-              </span>
-              <!-- . . . . . . . . -->
-            </spanGrp>
-            <!-- . . . . . . . . -->
-          </annotationBlock>
-          
-        </egXML>
-        <head type="legend">TEI encoding corresponding to <ptr target="#fig3" type="crossref"/>.</head>
-      </figure>
-      
-      
-      <p>The second example is structured using time references. This example (see <ptr
+                </annotationBlock>
+              </egXML>
+              <head type="legend">TEI encoding corresponding to <ptr target="#fig3" type="crossref"
+                />.</head>
+            </figure>
+
+
+            <p>The second example is structured using time references. This example (see <ptr
                 target="#fig4" type="crossref"/> and <ptr target="#example_code_4" type="crossref"
               />) corresponds to the Praat example above (see <ptr target="#advancedstructures"
                 type="crossref"/>, <ptr target="#fig2" type="crossref"/>). In this case, each part
@@ -276,428 +642,758 @@
               hierarchy which is represented by the <gi>spanGrp</gi> and <gi>span</gi> tags. Each
                 <gi>span</gi> is part of the parent <gi>spanGrp</gi> with starting and ending points
               (which correspond to the <att>from</att> and <att>to</att> attributes in the example
-              below). The use of <att>from</att> <att>to</att> versus <att>target</att> is the only
-              difference between the two organizations. In the example below, the syllable
-                <term>Sa</term> is divided into two phonemes, <term>S</term> and <term>a</term> (see
-                <att>xml:id</att> s s34, s36, and s37).</p>
-      <figure xml:id="fig4">
-        <graphic url="media/image2.PNG" width="620px" height="980px"/>
-        <head type="legend">ELAN example of a temporal division</head>
-      </figure>
-<figure xml:id="example_code_4">
-  <egXML xmlns="http://www.tei-c.org/ns/Examples">
-    <span from="#T2" to="#T4" xml:id="s4">
-      $L1
-      <spanGrp type="syllabe">
-        <span from="#T2" to="#T4" xml:id="s5">
-          e
-          <spanGrp type="prom">
-            <span xml:id="s6">W</span>
-          </spanGrp>
-          <spanGrp type="phone">
-            <span from="#T2" to="#T4" xml:id="s7">e</span>
-          </spanGrp>
-        </span>
-        <span from="#T4" to="#T6" xml:id="s10">
-          Sa
-          <spanGrp type="prom">
-            <span xml:id="s11">S</span>
-          </spanGrp>
-          <spanGrp type="phone">
-            <span from="#T4" to="#T7" xml:id="s12">S</span>
-            <span from="#T7" to="#T6" xml:id="s13">a</span>
-          </spanGrp>
-        </span>
-        <!-- . . . . . . . . -->
-      </spanGrp>
-      <!-- . . . . . . . . -->
-    </span>
-  </egXML>
-  <head type="legend">TEI encoding corresponding to <ptr target="#fig4" type="crossref"/>.</head>
-</figure>
-      <p>The <gi>spanGrp</gi> and <gi>span</gi> offer a generic representation of data coming from relatively unconstrained representations produced by partition software. The names of the tiers used in the ELAN and Praat tools are given in the content of the <att>type</att> attribute. These names are not used to provide structural information, the structure being represented only by the <gi>spanGrp</gi> and <gi>span</gi> hierarchy. However, the organization into <gi>spanGrp</gi> and <gi>span</gi> is not always sufficient to represent all the details of the tier organization of each software feature. This is the case for some of the ELAN structures, which can specify the nature of <gi>span</gi> elements further than in the TEI feature. For example, the <term>timediv</term> ELAN property specifies that only contiguous temporal division is allowed, whereas the <term>incl</term> property allows non-contiguous elements. It was therefore necessary to include the type of organization in the header of the TEI file, using the <term>note</term> structure. The <gi>note</gi> element here points to a case where dedicated tags do not currently exist in TEI, so we used the <gi>note</gi> element as the best way not to lose the information. Dedicated tags could be added to future versions of TEI.</p>
-    </div>
-  </div>
-  <div xml:id="exporting">
-    <head>Exporting to Research Tools</head>
-    <p>In the TEICORPO approach, no modification is made to the original format and conversion remains as lossless as possible. This allows for all types of corpora to be stored for long-term preservation purposes. It also allows the corpora to be used with other editing tools, some of which are suited to specific processing: for example, Praat for phonetics/phonology; Transcriber/CLAN for raw transcription; and ELAN for gesture and visual coding.</p>
-    <p>However, a large proportion of scientific research and applications done using corpora requires further processing of the data. For example, although querying or using raw language forms is possible, many research investigations and tools use words, parts of speech (POS), or other grammatical or semantic information. This requires further processing starting with the original raw corpus form. In the case of spoken language corpora, the nature of the information inserted in the transcription has to be taken into account. This corresponds to what Schmidt (2011) calls <term>micro structure</term>. This microstructure is integrated in Schmidt’s approach, in which the TEI file can contain standardized information about words, specific spoken language information, and sometimes even POS information.</p>
-    <p>This approach was not adopted in TEICORPO for several reasons. First, we had to deal with a large variety of coding approaches, which makes it difficult to conduct work similar to that done in CHILDES (<ref type="bibl" target="#macwhinney200">MacWhinney 2000</ref>; see <ptr target="https://childes.talkbank.org/"/>). Second, there was no consensus about the way tokenization should be performed, as many researchers consider tokenization as a choice with multiple possibilities, each with different consequences for the resulting data and grammatical analyses. In other words, tokenization is part of the linguistic analysis, so it should not be frozen at the level of data conservation.</p>
-    <p>For these reasons we decided, first, to make it possible to include in a corpus both the original raw language material and the modified tokenized and analyzed forms. This is easy to do in TEI, as any analyzed material can be inserted in <gi>spanGrp</gi>/ <gi>span</gi> elements without modifying the original <gi>u</gi> element information. Second, we decided to design another category of tools for processing or making it possible to process the spoken language corpus, and to use powerful tools in corpus analysis. This part of the TEICORPO library is described in the next section.</p>
-  </div>
-</div>
-<div xml:id="applications">
-  <head>Applications</head>
-  <p>Two types of applications have been designed: applications that are implemented as web services and applications that require command-line processing. The choice between web service and command-line processing was most often determined by user needs. The web service interface was developed based on user requests, and further development will be done if new needs appear in the future. The web service covers only the most frequently used and basic features, such as conversion between data formats. It also contains some specific features such as conversion from and to text, spreadsheet, and word processing formats, which were required by non-advanced users.</p>
-  <p>The command-line interface contains features required by more advanced users. It can handle conversion between basic formats and the TEI, and is more efficient than the web service to handle a large number of primary files. The command-line interface contains other features such as syntactic analysis, metadata processing, and complex export features. Implementation of the command-line parameters is less costly than the implementation of these options in a web page, so they are easier to develop first, before they have to be made available in a more sophisticated user interface.</p>
-  <div xml:id="basicimport">
-    <head>Basic Import and Export Functions</head>
-    <p>The command-line interface (see <ptr target="http://ct3.ortolang.fr/teicorpo/"/>) can perform conversions between TEI and the formats used by the following programs: CLAN, ELAN, Praat, and Transcriber. The conversions can be performed on single files or on whole directories or on a file tree. The command-line interface is suited to automatic processing in offline environments. The online interface (see <ptr target="http://ct3.ortolang.fr/teiconvert/"/>) can convert one or several files selected by the user, but not whole directories. Results appear in the user’s download folder.</p>
-    <p>In addition to the conversion to and from the alignment software, the online version of TEICORPO offers import and export in common spreadsheet formats (.xlsx and .csv) and word processing formats (.docx and .txt). Importing data is useful to create new data, and exporting is used to make reports or examples for a publication and for end users not familiar with transcription tasks or computer software (see <ptr target="#example_code_1" type="crossref"/> and <ptr target="#table1" type="crossref"/>).</p>
-    <table xml:id="table1">
-      <head>Visual representation of data from Example 1 after being processed through TEI</head>
-      <row role="label">
-        <cell><p>6</p></cell>
-        <cell><p>7.674</p></cell>
-        <cell><p>CHI</p></cell>
-        <cell><p>look</p></cell>
-        <cell><p>at</p></cell>
-        <cell><p>the</p></cell>
-        <cell><p>tree</p></cell>
-        <cell><p>.</p></cell>
-      </row>
-      <row>
-        <cell/>
-        <cell/>
-        <cell><p>mor</p></cell>
-        <cell><p>v look</p></cell>
-        <cell><p>prep at</p></cell>
-        <cell><p>det:art the</p></cell>
-        <cell><p>tree n</p></cell>
-        <cell><p>.</p></cell>
-      </row>
-      <row>
-        <cell/>
-        <cell/>
-        <cell><p>gra</p></cell>
-        <cell><p>1|0|ROOT</p></cell>
-        <cell><p>2|1|JCT</p></cell>
-        <cell><p>3|4|DET</p></cell>
-        <cell><p>4|2|POBJ</p></cell>
-        <cell><p>5|1|PUNCT</p></cell>
-      </row>
-    </table>
-    <p>In each case, some options are available to specify how to produce the:</p>
-    <list>
-      <item>timeline:
-    <list>
-      <item>at the beginning</item>
-      <item>before or after the speaker’s production</item>
-      <item>timeline precision</item>
-    </list></item>
-    <item>line number</item>
-    <item>spoken language annotations: the user can choose to export without any specific annotation, which is useful for automatic tools that only need an orthographic lexical transcription.</item></list>
-    <p>Other features are available in both types of interface (command line and web service). TEICORPO allows the user to exclude some tiers, for example adult tiers in acquisition research where the user wants to study child production only, or comment tiers which are not necessary for some studies.</p>
-  </div>
-  <div xml:id="exportspec">
-    <head>Export to Specialized Software</head>
-    <p>Another kind of export concerns textometric software. TEICONVERT makes spoken language data available for TXM (<ref type="bibl" target="#heiden2010">Heiden 2010</ref>; see <ptr target="http://textometrie.ens-lyon.fr"/>), Le Trameur (<ref type="bibl" target="#fleury2014">Fleury and Zimina 2014</ref>; see <ptr target="http://www.tal.univ-paris3.fr/trameur/"/>), and Iramuteq (see <ptr target="http://iramuteq.org/"/> and <ref type="bibl" target="#souza2018">de Souza et al. 2018</ref>), providing a dedicated TEI export for these tools. For example, for the TXM software, the export includes a text element made of utterance elements including age and speaker attributes. <ptr target="#example_code_5" type="crossref"/> presents an example for the TXM software.</p>
-    <figure xml:id="example_code_5">
-      <egXML xmlns="http://www.tei-c.org/ns/Examples">
-        <TEI file="lily-4-00-02.tei_corpo.xml">
-          <teiHeader/>
-          <text>
-            <u age="28.0" end="2875.100" start="2873.395" who="MOT">
-              <w age="28.0" loc="MOT">you</w>
-              <w age="28.0" loc="MOT">have</w>
-              <w age="28.0" loc="MOT">to</w>
-              <w age="28.0" loc="MOT">rest</w>
-              <w age="28.0" loc="MOT">now</w>
-              <w age="28.0" loc="MOT">.</w>
-            </u>
-            <u age="4.0" end="2875.970" start="2875.100" who="CHI">
-              <w age="4.0" loc="CHI">yes</w>
-              <w age="4.0" loc="CHI">.</w>
-            </u>
-            <u age="28.0" end="2877.893" start="2875.970" who="MOT">
-              <w age="28.0" loc="MOT">from</w>
-              <w age="28.0" loc="MOT">your</w>
-              <w age="28.0" loc="MOT">big</w>
-              <w age="28.0" loc="MOT">singing</w>
-              <w age="28.0" loc="MOT">extravaganza</w>
-              <w age="28.0" loc="MOT">.</w>
-            </u>
-            <!-- . . . . . . -->
-          </text>
-        </TEI>
-      </egXML>
-      <head type="legend">Example of XML for the TXM software</head>
-    </figure>
-    
-    <p>An export has been developed for Lexico and Le Trameur textometric software with a simple SGML file without timelines (see <ptr target="#example_code_6" type="crossref"/>).</p>
-    
-    <figure xml:id="example_code_6">
-      <eg>&lt;file=/corpusformat/exemple/japan/lily-4-00-02-extract.tei_corpo.xml>
-&lt;loc=MOT>you have to rest now ?
-&lt;loc=CHI>yes .
-&lt;loc=MOT>from your big singing extravaganza ?
-&lt;loc=CHI>yes that was a party .
-&lt;loc=MOT>woof
-        </eg>
-      <head type="legend">Example of export for the Lexico or Le Trameur software</head>
-    </figure>
-    
-    <p>Likewise, another export is available for the textometric tool Iramuteq without timelines (see <ptr target="#example_code_7" type="crossref"/>).</p>
-    <figure xml:id="example_code_7">
-      <eg>****
--*MOT
-you have to rest now ?
--*CHI
-yes .
--*MOT
-from your big singing extravaganza ?
--*CHI
-yes that was a party .
--*MOT
-woof .
--*MOT
-that was a party  that sure was some party .
-        </eg>
-      <head type="legend">Example of export for the IRAMUTEQ software</head>
-    </figure>
-      <p>In all these cases, TEICORPO is able to provide an export file and to remove unnecessary information from the TEI pivot format. This is useful, for example, with textometric software, which works only with orthographic tiers without a timeline or dependent information.</p>
-    
-  </div>
-  <div xml:id="using">
-    <head>Using an Automatic Grammatical Analyzer</head>
-    <p>Many researchers in linguistics wish to use automatic grammatical analyzers on corpora in order to improve the querying and analysis of a text, or to implement other types of linguistic research. A present difficulty with these grammatical analyzers is that most often they run only on raw orthographic material, excluding other information. Moreover, their results are not always in a format that can be used with traditional spoken language software such as CLAN, ELAN, Praat, Transcriber, nor of course in TEI format.</p>
-    <p>TEICORPO provides a way to solve this problem by running analyzers and putting the results from the analysis back into TEI format. Once the TEI format has been enriched with grammatical information, it is possible to use the results and convert them back to ELAN or Praat and use the grammatical information in these spoken language software packages. It is also possible to export to TXM and to use the grammatical information in the textometric software. Two grammatical analyzers have been implemented in TEICORPO: TreeTagger and CoreNLP.</p>
-    <div xml:id="treetagger">
-      <head>TreeTagger</head>
-      <p>TreeTagger<note>
-        <p>Accessed March 11, 2021, <ptr target="https://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/"/>.</p>
-      </note> (<ref type="bibl" target="#schimd1994">Schmid 1994</ref>; <ref type="bibl" target="#schmid1995">1995</ref>) is a tool for annotating text with part-of-speech and lemma information. The software is freely available for research, education, and evaluation. It is available in twenty-five languages, provides high-quality results, and can be easily improved by enriching the training set, as was done for instance by Benzitoun, Fort, and Sagot (<ref type="bibl" target="#benzitoun2012">2012</ref>) in the PERCEO project. They defined a syntactic model suitable for spoken language corpora, using the training feature of TreeTagger and an iterative process including manual corrections to improve the results of the automatic tool.</p>
-      <p>The command-line version of TEICORPO should be used to generate an annotated file with lemma and POS information based on Treetagger. TreeTagger should be installed separately. The implementation of TreeTagger in TEICORPO includes the ability to use any syntactic model. For French data, we used the PERCEO model (<ref type="bibl" target="#benzitoun2012">Benzitoun, Fort, and Sagot 2012</ref>).</p>
-      <p>The command line to be used is:
-      <code>java -cp TEICORPO.jar fr.ortolang.TEICORPO.TeiTreeTagger filenames...</code> with additional parameters:</p>
-      <table xml:id="table2">
-        <row role="label">
-          <cell><p><code>-syntaxformat</code> <gi>param</gi></p></cell>
-          <cell><p><gi>param</gi> can take the values w or ref or conll (see examples below).</p></cell>
-        </row>
-        <row>
-          <cell><p><code>-model</code> <gi>filename</gi></p></cell>
-          <cell><p><gi>filename</gi> is the full name of the TreeTagger syntactic model. In our case, we use the PERCEO model.</p></cell>
-        </row>
-        <row>
-          <cell><p><code>-program</code> <gi>filename</gi></p></cell>
-          <cell><p><gi>filename</gi> is the full location of the TreeTagger program, according to the system used (Windows, MacOS, or Linux).</p></cell>
-        </row>
-        <row>
-          <cell><p><code>-normalize</code> <gi>format</gi></p></cell>
-          <cell><p><gi>format</gi> specifies the origin of the corpus. This can be useful when cleaning up source files.</p></cell>
-        </row>
-      </table>
-      <p>The environment variable TREE_TAGGER can be used to locate the model and the program. If no <code>-program</code> option is used, the default name for the TreeTagger program is used.</p>
-      <p>The <code>-model</code> parameter is mandatory.</p>
-      <p>The resulting filename ends with <code>.tei_corpo_ttg.tei_corpo.xml</code> or a specific name provided by the user (option <code>-o</code>).</p>
-      <p>Three <code>syntaxformat</code> parameters are available:</p>
-      <list>
-        <item><code>-w</code> (word) format where the utterance element <gi>u</gi> is divided into word elements <gi>w</gi> with an <att>ana</att> attribute for POS and a <att>lemma</att> attribute (see <ptr target="#example_code_8" type="crossref"/>). This is the basic format in the TEI specification. This format can be used to produce data that include POS information which follows the standard recommendation of the TEI.
-      <figure xml:id="example_code_8">
-        <egXML xmlns="http://www.tei-c.org/ns/Examples">
-          <annotationBlock end="#T7" start="#T6" who="CHI" xml:id="au4">
-            <u>
-              <w lemma="thank" pos="VV">thank</w>
-              <w lemma="you" pos="PP">you</w>
-              <w lemma="it" pos="PP">it</w>
-              <w lemma="be" pos="VBD">was</w>
-              <w lemma="a" pos="DT">a</w>
-              <w lemma="singing" pos="NN">singing</w>
-              <w lemma="party" pos="NN">party</w>
-              <w lemma="." pos="SENT">.</w>
-            </u>
-            <spanGrp type="xpho">
-              <span>ˈθæku ɪwəzəˈsɪŋɪŋpɑrdi</span> 
-            </spanGrp>
-          </annotationBlock>
-          </egXML>
-        <head type="legend">Tagging results in <gi>w</gi> format</head>
-      </figure>
-        </item>
-      <item><code>-ref</code> format with a <gi>ref</gi> element in a <gi>spanGrp</gi>/<gi>span</gi>. It is made of
-              word elements <gi>w</gi>, so that the original utterance format is preserved (see <ptr
-                target="#example_code_9" type="crossref"/>). This format is easier to process
-              automatically than the CONLL format (see below) but contains only the word information
-              described in the standard TEI specification (as for the <gi>w</gi> format).
-      
-      <figure xml:id="example_code_9">
-        <egXML xmlns="http://www.tei-c.org/ns/Examples">
-          <annotationBlock end="#T7" start="#T6" who="CHI" xml:id="au4">
-            <u>
-              <seg>thank you , it was a singing party . </seg>
-            </u>
-            <spanGrp type="xpho">
-              <span>ˈθæku ɪwəzəˈsɪŋɪŋpɑrdi</span>
-            </spanGrp>
-            <spanGrp inst="treetagger" type="ref">
-              <span>
-                <ref>
-                  <w lemma="thank" pos="VV">thank</w>
-                  <w lemma="you" pos="PP">you</w>
-                  <w lemma="it" pos="PP">it</w>
-                  <w lemma="be" pos="VBD">was</w>
-                  <w lemma="a" pos="DT">a</w>
-                  <w lemma="singing" pos="NN">singing</w>
-                  <w lemma="party" pos="NN">party</w>
-                  <w lemma="." pos="SENT">.</w>
-                </ref>
-              </span>
-            </spanGrp>
-          </annotationBlock>
-          </egXML>
-        <head type="legend">Tagging results in <gi>ref</gi> format</head>
-      </figure>
-      </item>
-      <item><code>-conll</code><note>
-                <p>CoNLL-U Format, <ptr target="https://universaldependencies.org/format.html"/>,
-                  accessed May 5.</p>
-              </note> format with a <gi>spanGrp</gi> with a <att>type</att> attribute value of
-                <code>connl</code> describing each token as a table (see <ptr
-                target="#example_code_10" type="crossref"/>). This format takes advantage of the
-              possibilities offered by the TEI <gi>spanGrp</gi> and <gi>span</gi> elements. It is
-              very powerful as it enables the user to insert as many description levels as necessary
-              (ten levels exist in the current version of CONLL). The implementation of CoreNLP (see
-              below) takes full advantage of these possibilities.
-      <figure xml:id="example_code_10">
-        <egXML xmlns="http://www.tei-c.org/ns/Examples">
-          <annotationBlock end="#T7" start="#T6" who="CHI" xml:id="au4">
-            <u>
-              <seg>thank you , it was a singing party . </seg>
-            </u>
-            <spanGrp type="xpho">
-              <span>ˈθæku ɪwəzəˈsɪŋɪŋpɑrdi</span>
-            </spanGrp>
-            <spanGrp inst="treetagger" type="conll">
-              <span>
-                1
-                <spanGrp type="word">
-                  <span>thank</span>
-                </spanGrp>
-                <spanGrp type="pos">
-                  <span>VV</span>
-                </spanGrp>
-                <spanGrp type="lemma">
-                  <span>thank</span>
-                </spanGrp>
-              </span>
-              <span>
-                2
-                <spanGrp type="word">
-                  <span>you</span>
-                </spanGrp>
-                <spanGrp type="pos">
-                  <span>PP</span>
-                </spanGrp>
-                <spanGrp type="lemma">
-                  <span>you</span>
-                </spanGrp>
-              </span>
-              <!-- . . . . . . . . -->
-            </spanGrp>
-            <!-- . . . . . . . . -->
-          </annotationBlock>
-          </egXML>
-        <head type="legend">Tagging results in <gi>conll</gi> format</head>
-      </figure>
-      </item>
-      </list>
-    </div>
-    <div xml:id="stanford">
-      <head>Stanford CoreNLP</head>
-      <p>The Stanford Core Natural Language Processing<note>
-        <p>Accessed March 11, 2021, <ptr target="https://nlp.stanford.edu/software/"/>.</p>
-      </note> (CoreNLP) package is a suite of tools (<ref type="bibl" target="#manning2014">Manning et al. 2014</ref>) that can be used under a GNU General Public License. The suite provides several tools such as a tokenizer, a POS tagger, a parser, a named entity recognizer, temporal tagging, and coreference resolution. All the tools are available for English, but only some of them are available for all languages. All software libraries are integrated into Java JAR files, so all that is required is to download JAR files from the CoreNLP website<note>
-        <p>Accessed May 5, 2021, <ptr target="https://stanfordnlp.github.io/CoreNLP/index.html#download"/>.</p>
-      </note> to use them with TEICORPO. Using the analyzer is similar to using TreeTagger. The -model and -syntaxformat parameters can be used in a similar way to specify the grammatical model to be used and the output format. A command line example is:</p>
-      <p><code>java -cp "teicorpo.jar:directory_for_SNLP/*" fr.ortolang.teicorpo.TeiSNLP -syntaxformat svalue -model filename.tei_corpo.xml</code></p>
-      <p>The <term>directory_for_SNLP</term> is the name of the location on a computer where all the CoreNLP JAR files can be found. Note that using the CoreNLP software makes heavy demands on the computer’s memory resources and it is necessary to instruct the Java software to use a large amount of memory (for example to insert parameter -mx5g before parameter <code>-cp</code> to indicate that 5 GB of memory will be used for a full English analysis).</p>
-      <p>The <code>-model</code> parameter can take three values: english (use the full English grammar), french (use the full French grammar), or the name of a CoreNLP parameter file which specifies any type of analysis that is available in CoreNLP.</p>
-      <p>The <code>-syntaxformat</code> parameter can take four values: <val>conll</val> (a full analysis with all possible tools: ten levels are produced in this case), <val>dep</val> (a syntactic analysis using a dependency grammar), and <val>ref</val> or <val>w</val> (only POS tagging and lemma).</p>
-    </div>
-  </div>
-  <div xml:id="exportinggrammatical">
-    <head>Exporting the Grammatical Analysis</head>
-    <p>The results from the grammatical analysis can be used in transcription files such as those used by Praat and ELAN. A partition-like visual presentation of data is very handy to represent a part of speech or a CONLL result. The orthographic line will appear at the top with divisions into words, divisions into parts of speech, and other syntactic information below. As the result of the analysis can contain a large number of tiers (each speaker will have as many tiers as there are elements in the grammatical analysis: for example, word, POS, and lemma for TreeTagger; ten tiers for CoreNLP full analysis), it is helpful to limit the number of visible tiers, either using the <code>-a</code> option of TEICORPO, or limiting the display with the annotation tool.</p>
-    <p>An example is presented below in the ELAN tool (see <ptr target="#fig5" type="crossref"/>). The original utterance was <term>si c’est comme ça je m’en vais</term> (if that’s how it is, I’m leaving). It is displayed in the first line, highlighted in pink. The analysis into words (second line, consisting of numbers), lemmas (third line), parts of speech (fourth line), and orthographic words (final line) is displayed below. So, for example, word 3 has the lemma <term>être</term> (to be) and the POS VER:pres (verb in the present tense), and it is the word <term>est</term> (is).</p>
-    <figure xml:id="fig5">
-      <graphic url="media/image3.png"  width="620px" height="980px"/>
-      <head type="legend">Example of TreeTagger analysis representation in a partition software program</head>
-    </figure>
-    
-    <p>Export can be done from TEI into a format used by textometric software (see <ptr target="#example_code_11" type="crossref"/>). This is the case for TXM,<note>
-      <p>See the Textométrie website, last updated June 29, 2020, <ptr target="http://textometrie.ens-lyon.fr/?lang=en"/>.</p>
-    </note> a textometric software application. In this case, instead of using a partition representation, the information from the grammatical analysis is inserted at the word level in an XML structure. For example, in the case below, the TXM export includes Treetagger annotations in POS, adding <att>lemma</att> and <att>pos</att> attributes to the word element <gi>w</gi>.</p>
-    <figure xml:id="example_code_11">
-      <egXML xmlns="http://www.tei-c.org/ns/Examples">
-        <TEI file="lily-4-00-02.tei_corpo_ttg_conll.xml">
-          <teiHeader/>
-          <text>
-            <u age="28.0" end="2875.1000000000" start="2873.3950000000" who="MOT">
-              <w age="28.0" loc="MOT">you</w>
-              <w age="28.0" loc="MOT">have</w>
-              <w age="28.0" loc="MOT">to</w>
-              <w age="28.0" loc="MOT">rest</w>
-              <w age="28.0" loc="MOT">now</w>
-              <w age="28.0" loc="MOT">.</w>
-            </u>
-            <u age="4.0" end="2875.9700000000" start="2875.1000000000" who="CHI">
-              <w age="4.0" loc="CHI">yes</w>
-              <w age="4.0" loc="CHI">.</w>
-            </u>
-            <u age="28.0" end="2877.8930000000" start="2875.9700000000" who="MOT">
-              <w age="28.0" loc="MOT">from</w>
-              <w age="28.0" loc="MOT">your</w>
-              <w age="28.0" loc="MOT">big</w>
-              <w age="28.0" loc="MOT">singing</w>
-              <w age="28.0" loc="MOT">extravaganza</w>
-              <w age="28.0" loc="MOT">.</w>
-            </u>
-            <!-- . . . . . . . -->
-          </text>
-          <!-- . . . . . . . -->
-        </TEI>
-        </egXML>
-      <head type="legend">Example of TreeTagger analysis representation that can be imported into TXM</head>
-    </figure>
-    </div>
-  <div xml:id="comparison">
-    <head>Comparison with Other Software Suites</head>
-    <p>The additional functionalities available in the TEICORPO suite are close to those available in the Weblicht web services (<ref type="bibl" target="#hinrichs2010">Hinrichs, Hinrichs, and Zastrow 2010</ref>). To a certain extent, the two suites of tools (Weblicht and TEICORPO) have the same purpose and functionalities. They can import data from various formats, run similar processes on the data, and export the data for scientific uses. In some cases, the services could complement each other or TEICORPO could be integrated in the Weblicht services. This is the case, for example, for handling the CHILDES format, which at the time of writing is more functional in TEICORPO than in Weblicht.</p>
-    <p>A major difference between the two suites is in the way they can be used and in the type of data they target. TEICORPO is intended to be used not as an independent tool, but as a utility tool that helps researchers to go from one type of data to another. For example, the syntactic analysis is intended to be used as a first step before being used in tools such as Praat, ELAN, or TXM. Our more recent developments (see <ref type="bibl" target="#badin2021">Badin et al. 2021</ref>) made it possible to insert metadata stored in CSV files (including participant metadata) into the TEI files. This makes it possible to achieve more powerful corpus analysis using a tool such as TXM.</p>
-    <p>Our approach is somewhat similar to what is suggested in the conclusion of Schmidt, Hedeland, and Jettka (<ref type="bibl" target="#schmidt2017">2017</ref>), who describe a mechanism that makes it possible to use the power of Weblicht to process their files that are in the ISO/TEI format. A similar mechanism could be used within TEICORPO to take advantage of the tools that are implemented in Weblicht. However, Schmidt, Hedeland, and Jettka (<ref type="bibl" target="#schmidt2017">2017</ref>) suggest in their conclusion that it would be more interesting to work directly on ISO/TEI files because they contain a richer format. This is exactly what we did in TEICORPO. Our suggestion would be to use the tools created by Schmidt, Hedeland, and Jettka (<ref type="bibl" target="#schmidt2017">2017</ref>) directly with the TEICORPO files, so that their work would complement ours. Moreover, in this way, the two projects would be compatible and provide either new functionalities when the projects have clearly different goals, or data variants when the goals are closer.</p>
-  </div>
-</div>
-<div xml:id="conclusion">
-  <head>Conclusion</head>
-  <p>TEICORPO is a functional tool, created by the CORLI network and ORTOLANG, that converts files created by software specializing in editing spoken-language data into TEI format. The result is fully compatible with the most recent developments in TEI, especially those that concern spoken-language material.</p>
-  <p>The TEI files can also be converted back to the original formats or to other formats used in spoken-language editing to take advantage of their functionalities. This makes TEI a useful pivot format. Moreover, TEICORPO allows conversion to formats used by tools dedicated to corpus exploration and browsing.</p>
-  <p>TEICORPO exists as a command-line interface as well as a web service. It can thus be used by novice as well as advanced users, or by developers of linguistic software. The tool is free and open source so it can be further used and developed in other projects.</p>
-  <p>TEICORPO is intended to be part of a large set of tools using TEI for linguistic corpus research. It can be used in parallel with or as a complement to other tools such as Weblicht or the EXMARaLDA tools (see <ref type="bibl" target="#schmidt2017">Schmidt, Hedeland, and Jettka 2017</ref>). A specificity of TEICORPO is that it is more suitable for processing extended forms of TEI data (especially forms which are not inside the main <gi>u</gi> element in the TEI code). TEICORPO is also linked to TEIMETA, a flexible tool for describing spoken language corpora in a web interface generated from an ODD file (<ref type="bibl" target="#etienne">Etienne, Liégois, and Parisse, accepted</ref>). As TEI enables metadata and data to be stored in the same file, sharing this format will promote metadata sharing and will keep metadata linked to their data during the life cycle of the data.</p>
-  <p>Potential further developments could provide wider coverage of different formats such as CMDI or linked data for editing or data exploration purposes; allow TEICORPO to work with other external tools such as grammatical analyzers; or enable the visualization of multilevel annotations.</p>
-  <p/>
-</div>
-      </body>
-      <back>
-         <div type="bibliography">
-            <listBibl>
-              <bibl xml:id="badin2021"><author>Badin, Flora</author>,<author>Loïc Liégeois</author>, <author>Gabriel Thiberge</author>, and <author>Christophe Parisse</author>. Forthcoming <date>2021</date>. <title level="a">Vers un outillage informatique optimisé pour corpus langagiers oraux en vue d’une exploitation textométrique: le cas des interrogatives partielles dans ESLO.</title> <title level="j">Corpus</title> <biblScope unit="issue">22</biblScope>. doi:<idno type="DOI">10.4000/corpus.5752</idno>.</bibl>
-              <bibl xml:id="barras2000"><author>Barras, Claude</author>, <author>Edouard Geoffrois</author>, <author>Zhibiao Wu</author>, and <author>Mark Liberman</author>. <date>2000</date>. <title level="a">Transcriber: Development and Use of a Tool for Assisting Speech Corpora Production.</title> In <title level="m">Speech Annotation and Corpus Tools</title>, edited by <editor>Steven Bird</editor> and <editor>Jonathan Harrington</editor>, special issue, <title level="j">Speech Communication</title> <biblScope unit="issue">33 (1–2)</biblScope>: <biblScope unit="page">5–22</biblScope>. doi:<idno type="DOI">10.1016/S0167-6393(00)00067-4</idno>.</bibl>
-              <bibl xml:id="benzitoun2012"><author>Benzitoun, Christophe</author>, <author>Karën Fort</author>, and <author>Benoît Sagot</author>. <date>2012</date>. <title level="a">TCOF-POS: un corpus libre de français parlé annoté en morphosyntaxe.</title> In Actes de la conférence conjointe JEP-TALN-RECITAL 2012, volume 2: TALN (JEP-TALN 2012 - Journées d’Études sur la Parole et conférence annuelle du Traitement Automatique des Langues Naturelles), <biblScope unit="page">99–112</biblScope>. Authors’ version available at <ptr target="https://hal.archives-ouvertes.fr/hal-00709187"/>.</bibl>
-              <bibl xml:id="bird2001"><author>Bird, Steven</author>, and <author>Mark Liberman</author>. <date>2001</date>. <title level="a">A Formal Framework for Linguistic Annotation.</title> In <title level="m">Speech Annotation and Corpus Tools</title>, edited by <editor>Steven Bird</editor> and <editor>Jonathan Harrington</editor>, special issue, <title level="j">Speech Communication</title> <biblScope unit="issue">33 (1–2)</biblScope>: <biblScope unit="page">23–60</biblScope>. doi:<idno type="DOI">10.1016/S0167-6393(00)00068-6</idno>.</bibl>
-              <bibl xml:id="boersma2001"><author>Boersma, Paul</author>. <date>2001</date>. <title level="a">Praat, A System for Doing Phonetics by Computer</title>. <title level="j">Glot International</title> <biblScope unit="issue">5 (9/10)</biblScope>: <biblScope unit="page">341–45</biblScope>. <ptr target="https://www.fon.hum.uva.nl/paul/papers/speakUnspeakPraat_glot2001.pdf"/>.</bibl>
-              <bibl xml:id="etienne"><author>Etienne, Carole</author>, <author>Loïc Liégeois</author>, and <author>Christophe Parisse</author>. Accepted. <title level="a">TEIMETA: An Evolutive Solution to Describe Spoken Language Corpora in a Web Interface Generated from an ODD File.</title></bibl>
-              <bibl xml:id="fleury2014"><author>Fleury, Serge</author>, and <author>Maria Zimina</author>. <date>2014</date>. <title level="a">Trameur: A Framework for Annotated Text Corpora Exploration.</title> In Proceedings of COLING 2014, the 25th International Conference on Computational Linguistics: System Demonstrations, edited by <editor>Lamia Tounsi</editor> and <editor>Rafal Rak</editor>, <biblScope unit="page">57–61</biblScope>. N.p.: Dublin City University and Association for Computational Linguistics. <ptr target="https://www.aclweb.org/anthology/C14-2013"/>.</bibl>
-              <bibl xml:id="heiden2010"><author>Heiden, Serge</author>. <date>2010</date>. <title level="a">The TXM Platform: Building Open-Source Textual Analysis Software Compatible with the TEI Encoding Scheme.</title> In Proceedings of the 24th Pacific Asia Conference on Language, Information and Computation (PACLIC24), edited by <editor>Ryo Otoguro</editor>, <editor>Kiyoshi Ishikawa</editor>, <editor>Hiroshi Umemoto</editor>, <editor>Kei Yoshimoto</editor>, and <editor>Yasunari Harada</editor>, <biblScope unit="page">389–98</biblScope>. Sendai, Japan: Institute for Digital Enhancement of Cognitive Development, Waseda University. <ptr target="https://www.aclweb.org/anthology/Y10-1044/"/>.</bibl>
-              <bibl xml:id="hinrichs2010"><author>Hinrichs, Erhard</author>, <author>Marie Hinrichs</author>, and <author>Thomas Zastrow</author>. <date>2010</date>. <title level="a">WebLicht: Web-Based LRT Services for German.</title> In Proceedings of the ACL 2010 System Demonstrations, <biblScope unit="page">25–29</biblScope>. <ptr target="http://www.aclweb.org/anthology/P10-4005"/>.</bibl>
-              <bibl xml:id="iso2016">ISO (International Organization for Standardization). <date>2016</date>. Language Resource Management — Transcription of Spoken Language. ISO 24624:2016. <ptr target="http://www.iso.org/iso/catalogue_detail.htm?csnumber=37338"/>.</bibl>
-              <bibl xml:id="kipp2001"><author>Kipp, Michael</author>. <date>2001</date>. <title level="a">Anvil: A Generic Annotation Tool for Multimodal Dialogue.</title> In Proceedings of the 7th European Conference on Speech Communication and Technology (Eurospeech 2001 Scandinavia), vol. 2, edited by <editor>Paul Dalsgaard</editor>, <editor>Børge Lindberg</editor>, and <editor>Henrik Benner</editor>, <biblScope unit="page">1367–70</biblScope>. Bonn, Germany: ISCA-Secretariat. <ptr target="https://www.isca-speech.org/archive/eurospeech_2001/e01_1367.html"/>.</bibl>
-              <bibl xml:id="lebart1998"><author>Lebart, Ludovic</author>, <author>André Salem</author>, and <author>Lisette Berry</author>. <date>1998</date>. <title level="m">Exploring Textual Data. Text, Speech and Language Technology (TLTB) 4</title>. Dordrecht: Springer Science+Business Media.</bibl>
-              <bibl xml:id="macwhinney200"><author>MacWhinney, Brian</author>. <date>2000</date>. <title level="m">The CHILDES Project: Tools for Analyzing Talk</title>. Vol. 1, Transcription Format and Programs. 3rd ed. Mahwah, NJ: Lawrence Erlbaum Associates Publishers.</bibl>
-              <bibl xml:id="macwhinney2007"><author>MacWhinney, Brian</author>. <date>2007</date>. <title level="a">The TalkBank Project</title>. In <title level="m">Creating and Digitizing Language Corpora</title>. Vol. 1, Synchronic Databases, edited by<editor>Joan C. Beal</editor>, <editor>Karen P. Corrigan</editor>, and <editor>Hermann L. Moisl</editor>, <biblScope unit="page">163–80</biblScope>. Houndmills, Basingstoke, Hampshire: Palgrave-Macmillan.</bibl>
-              <bibl xml:id="manning2014"><author>Manning, Christopher D.</author>, <author>Mihai Surdeanu</author>,<author>John Bauer</author>, <author>Jenny Finkel</author>, <author>Steven J. Bethard</author>, and <author>David McClosky</author>. <date>2014</date>. <title level="a">The Stanford CoreNLP Natural Language Processing Toolkit.</title> In Proceedings of the 52nd Annual Meeting of the Association for Computational Linguistics: System Demonstrations, edited by <editor>Kalina Bontcheva</editor> and <editor>Jingbo Zhu</editor>, <biblScope unit="page">55–60</biblScope>. Stroudsburg, PA: Association for Computational Linguistics. <ptr target="https://www.aclweb.org/anthology/P14-5010/"/>; doi:<idno type="DOI">10.3115/v1/P14-5010</idno>.</bibl>
-              <bibl xml:id="pincemin2011"><author>Pincemin, Bénédicte</author>. <date>2011</date>. <title level="a">Sémantique interprétative et textométrie – Version abrégée.</title> <title level="j">Corpus</title> <biblScope unit="issue">10</biblScope>: <biblScope unit="page">259–69</biblScope>. doi:<idno type="DOI">10.4000/corpus.2121</idno>.</bibl>
-              <bibl xml:id="pincemin2020"><author>Pincemin, Bénédicte</author>, <author>Serge Heiden</author>, and <author>Matthieu Decorde</author>. <date>2020</date>. <title level="a">Textometry on Audiovisual Corpora</title>. Paper intended for the 15th International Conference on Statistical Analysis of Textual Data, JADT 2020. Toulouse, France, June 16–19, postponed. <ptr target="https://halshs.archives-ouvertes.fr/halshs-02779055"/>.</bibl>
-              <bibl xml:id="schimd1994"><author>Schmid, Helmut</author>. <date>1994</date>. <title level="a">Probabilistic Part-of-Speech Tagging Using Decision Trees</title>. In Proceedings of International Conference on New Methods in Language Processing, edited by <editor>Daniel Jones</editor>. Manchester, UK: Centre for Computational Linguistics. Author’s version available at <ptr target="https://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/tree-tagger1.pdf"/>.</bibl>
-              <bibl xml:id="schmid1995"><author>Schmid, Helmut</author>. <date>1995</date>. <title level="a">Improvements in Part-of-Speech Tagging with an Application to German</title>. In From Text to Tags: Issues in Multilingual Analysis. Proceedings of the ACL SIGDAT Workshop. Author’s version available at <ptr target="https://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/tree-tagger2.pdf"/>.</bibl>
-              <bibl xml:id="schmidt2004"><author>Schmidt, Thomas</author> <date>2004</date>. <title level="a">Transcribing and Annotating Spoken Language with EXMARaLDA</title>. In Proceedings of the LREC-Workshop on XML-based Richly Annotated Corpora. Paris: ELRA. Author’s version available at <ptr target="https://ids-pub.bsz-bw.de/frontdoor/index/index/docId/2317"/>.</bibl>
-              <bibl xml:id="schmidt2011"><author>Schmidt, Thomas</author>. <date>2011</date>. <title level="a">A TEI-based Approach to Standardising Spoken Language Transcription</title>. <title level="j">Journal of the Text Encoding Initiative</title> <biblScope unit="issue">1</biblScope>. <ptr target="https://journals.openedition.org/jtei/142"/>; doi:<idno type="DOI">10.4000/jtei.142</idno>.</bibl>
-              <bibl xml:id="schmidt2017"><author>Schmidt, Thomas</author>, <author>Hanna Hedeland</author>, and <author>Daniel Jettka</author>. <date>2017</date>. <title level="a">Conversion and Annotation Web Services for Spoken Language Data in CLARIN.</title> In Selected Papers from the CLARIN Annual Conference 2016, edited by <editor>Lars Borin</editor>, <biblScope unit="page">113–30</biblScope>. Linköping Electronic Conference Proceedings 136. Linköping, Sweden: LiU Electronic Press. <ptr target="https://ep.liu.se/ecp/article.asp?issue=136&amp;article=009&amp;volume=0"/>; <ptr target="https://ep.liu.se/ecp/136/009/ecp17136009.pdf"/>.</bibl>
-              <bibl xml:id="schmidts2010"><author>Schmidt, Thomas</author>, and <author>Wilfried Schütte</author>. <date>2010</date>. <title level="a">FOLKER: An Annotation Tool for Efficient Transcription of Natural, Multi-party Interaction.</title> In Proceedings of the Seventh Conference on International Language Resources and Evaluation (LREC’10), <biblScope unit="page">2091–96</biblScope>. N.p.: European Language Resources Association (ELRA). <ptr target="http://lrec-conf.org/proceedings/lrec2010/"/>.</bibl>
-              <bibl xml:id="souza2018"><author>Souza, Marli Aparecida Rocha de</author>, <author>Marilene Loewen Wall</author>, <author>Andrea Cristina de Morais Chaves Thuler</author>, <author>Ingrid Margareth Voth Lowen</author>, and <author>Aida Maris Peres</author>. <date>2018</date>. <title level="a">The Use of IRAMUTEQ Software for Data Analysis in Qualitative Research</title>. <title level="j">Revista da Escola de Enfermagem da USP 52</title>, <biblScope unit="issue">e03353</biblScope>. doi:<idno type="DOI">10.1590/S1980-220X2017015003353</idno>.</bibl>
-              <bibl xml:id="wittenburg2006"><author>Wittenburg, Peter</author>, <author>Hennie Brugman</author>, <author>Albert Russel</author>, <author>Alex Klassmann</author>, and <author>Han Sloetjes</author>. <date>2006</date>. <title level="a">ELAN: A Professional Framework for Multimodality Research.</title> In Proceedings of LREC 2006, Fifth International Conference on Language Resources and Evaluation, <biblScope unit="page">1556–59</biblScope>. N.p.: European Language Resources Association (ELRA). <ptr target="http://www.lrec-conf.org/proceedings/lrec2006/"/>.</bibl>
-            </listBibl>
-         </div>
-      </back>
-   </text>
+              below). The use of <att>from</att>
+              <att>to</att> versus <att>target</att> is the only difference between the two
+              organizations. In the example below, the syllable <term>Sa</term> is divided into two
+              phonemes, <term>S</term> and <term>a</term> (see <att>xml:id</att> s s34, s36, and
+              s37).</p>
+            <figure xml:id="fig4">
+              <graphic url="media/image2.PNG" width="620px" height="980px"/>
+              <head type="legend">ELAN example of a temporal division</head>
+            </figure>
+            <figure xml:id="example_code_4">
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <span from="#T2" to="#T4" xml:id="s4"> $L1 <spanGrp type="syllabe">
+                    <span from="#T2" to="#T4" xml:id="s5"> e <spanGrp type="prom">
+                        <span xml:id="s6">W</span>
+                      </spanGrp>
+                      <spanGrp type="phone">
+                        <span from="#T2" to="#T4" xml:id="s7">e</span>
+                      </spanGrp>
+                    </span>
+                    <span from="#T4" to="#T6" xml:id="s10"> Sa <spanGrp type="prom">
+                        <span xml:id="s11">S</span>
+                      </spanGrp>
+                      <spanGrp type="phone">
+                        <span from="#T4" to="#T7" xml:id="s12">S</span>
+                        <span from="#T7" to="#T6" xml:id="s13">a</span>
+                      </spanGrp>
+                    </span>
+                    <!-- . . . . . . . . -->
+                  </spanGrp>
+                  <!-- . . . . . . . . -->
+                </span>
+              </egXML>
+              <head type="legend">TEI encoding corresponding to <ptr target="#fig4" type="crossref"
+                />.</head>
+            </figure>
+            <p>The <gi>spanGrp</gi> and <gi>span</gi> offer a generic representation of data coming
+              from relatively unconstrained representations produced by partition software. The
+              names of the tiers used in the ELAN and Praat tools are given in the content of the
+                <att>type</att> attribute. These names are not used to provide structural
+              information, the structure being represented only by the <gi>spanGrp</gi> and
+                <gi>span</gi> hierarchy. However, the organization into <gi>spanGrp</gi> and
+                <gi>span</gi> is not always sufficient to represent all the details of the tier
+              organization of each software feature. This is the case for some of the ELAN
+              structures, which can specify the nature of <gi>span</gi> elements further than in the
+              TEI feature. For example, the <term>timediv</term> ELAN property specifies that only
+              contiguous temporal division is allowed, whereas the <term>incl</term> property allows
+              non-contiguous elements. It was therefore necessary to include the type of
+              organization in the header of the TEI file, using the <term>note</term> structure. The
+                <gi>note</gi> element here points to a case where dedicated tags do not currently
+              exist in TEI, so we used the <gi>note</gi> element as the best way not to lose the
+              information. Dedicated tags could be added to future versions of TEI.</p>
+          </div>
+        </div>
+        <div xml:id="exporting">
+          <head>Exporting to Research Tools</head>
+          <p>In the TEICORPO approach, no modification is made to the original format and conversion
+            remains as lossless as possible. This allows for all types of corpora to be stored for
+            long-term preservation purposes. It also allows the corpora to be used with other
+            editing tools, some of which are suited to specific processing: for example, Praat for
+            phonetics/phonology; Transcriber/CLAN for raw transcription; and ELAN for gesture and
+            visual coding.</p>
+          <p>However, a large proportion of scientific research and applications done using corpora
+            requires further processing of the data. For example, although querying or using raw
+            language forms is possible, many research investigations and tools use words, parts of
+            speech (POS), or other grammatical or semantic information. This requires further
+            processing starting with the original raw corpus form. In the case of spoken language
+            corpora, the nature of the information inserted in the transcription has to be taken
+            into account. This corresponds to what Schmidt (2011) calls <term>micro
+            structure</term>. This microstructure is integrated in Schmidt’s approach, in which the
+            TEI file can contain standardized information about words, specific spoken language
+            information, and sometimes even POS information.</p>
+          <p>This approach was not adopted in TEICORPO for several reasons. First, we had to deal
+            with a large variety of coding approaches, which makes it difficult to conduct work
+            similar to that done in CHILDES (<ref type="bibl" target="#macwhinney200">MacWhinney
+              2000</ref>; see <ptr target="https://childes.talkbank.org/"/>). Second, there was no
+            consensus about the way tokenization should be performed, as many researchers consider
+            tokenization as a choice with multiple possibilities, each with different consequences
+            for the resulting data and grammatical analyses. In other words, tokenization is part of
+            the linguistic analysis, so it should not be frozen at the level of data
+            conservation.</p>
+          <p>For these reasons we decided, first, to make it possible to include in a corpus both
+            the original raw language material and the modified tokenized and analyzed forms. This
+            is easy to do in TEI, as any analyzed material can be inserted in <gi>spanGrp</gi>/
+              <gi>span</gi> elements without modifying the original <gi>u</gi> element information.
+            Second, we decided to design another category of tools for processing or making it
+            possible to process the spoken language corpus, and to use powerful tools in corpus
+            analysis. This part of the TEICORPO library is described in the next section.</p>
+        </div>
+      </div>
+      <div xml:id="applications">
+        <head>Applications</head>
+        <p>Two types of applications have been designed: applications that are implemented as web
+          services and applications that require command-line processing. The choice between web
+          service and command-line processing was most often determined by user needs. The web
+          service interface was developed based on user requests, and further development will be
+          done if new needs appear in the future. The web service covers only the most frequently
+          used and basic features, such as conversion between data formats. It also contains some
+          specific features such as conversion from and to text, spreadsheet, and word processing
+          formats, which were required by non-advanced users.</p>
+        <p>The command-line interface contains features required by more advanced users. It can
+          handle conversion between basic formats and the TEI, and is more efficient than the web
+          service to handle a large number of primary files. The command-line interface contains
+          other features such as syntactic analysis, metadata processing, and complex export
+          features. Implementation of the command-line parameters is less costly than the
+          implementation of these options in a web page, so they are easier to develop first, before
+          they have to be made available in a more sophisticated user interface.</p>
+        <div xml:id="basicimport">
+          <head>Basic Import and Export Functions</head>
+          <p>The command-line interface (see <ptr target="http://ct3.ortolang.fr/teicorpo/"/>) can
+            perform conversions between TEI and the formats used by the following programs: CLAN,
+            ELAN, Praat, and Transcriber. The conversions can be performed on single files or on
+            whole directories or on a file tree. The command-line interface is suited to automatic
+            processing in offline environments. The online interface (see <ptr
+              target="http://ct3.ortolang.fr/teiconvert/"/>) can convert one or several files
+            selected by the user, but not whole directories. Results appear in the user’s download
+            folder.</p>
+          <p>In addition to the conversion to and from the alignment software, the online version of
+            TEICORPO offers import and export in common spreadsheet formats (.xlsx and .csv) and
+            word processing formats (.docx and .txt). Importing data is useful to create new data,
+            and exporting is used to make reports or examples for a publication and for end users
+            not familiar with transcription tasks or computer software (see <ptr
+              target="#example_code_1" type="crossref"/> and <ptr target="#table1" type="crossref"
+            />).</p>
+          <table xml:id="table1">
+            <head>Visual representation of data from Example 1 after being processed through
+              TEI</head>
+            <row role="label">
+              <cell><p>6</p></cell>
+              <cell><p>7.674</p></cell>
+              <cell><p>CHI</p></cell>
+              <cell><p>look</p></cell>
+              <cell><p>at</p></cell>
+              <cell><p>the</p></cell>
+              <cell><p>tree</p></cell>
+              <cell><p>.</p></cell>
+            </row>
+            <row>
+              <cell/>
+              <cell/>
+              <cell><p>mor</p></cell>
+              <cell><p>v look</p></cell>
+              <cell><p>prep at</p></cell>
+              <cell><p>det:art the</p></cell>
+              <cell><p>tree n</p></cell>
+              <cell><p>.</p></cell>
+            </row>
+            <row>
+              <cell/>
+              <cell/>
+              <cell><p>gra</p></cell>
+              <cell><p>1|0|ROOT</p></cell>
+              <cell><p>2|1|JCT</p></cell>
+              <cell><p>3|4|DET</p></cell>
+              <cell><p>4|2|POBJ</p></cell>
+              <cell><p>5|1|PUNCT</p></cell>
+            </row>
+          </table>
+          <p>In each case, some options are available to specify how to produce the:</p>
+          <list>
+            <item>timeline: <list>
+                <item>at the beginning</item>
+                <item>before or after the speaker’s production</item>
+                <item>timeline precision</item>
+              </list></item>
+            <item>line number</item>
+            <item>spoken language annotations: the user can choose to export without any specific
+              annotation, which is useful for automatic tools that only need an orthographic lexical
+              transcription.</item>
+          </list>
+          <p>Other features are available in both types of interface (command line and web service).
+            TEICORPO allows the user to exclude some tiers, for example adult tiers in acquisition
+            research where the user wants to study child production only, or comment tiers which are
+            not necessary for some studies.</p>
+        </div>
+        <div xml:id="exportspec">
+          <head>Export to Specialized Software</head>
+          <p>Another kind of export concerns textometric software. TEICONVERT makes spoken language
+            data available for TXM (<ref type="bibl" target="#heiden2010">Heiden 2010</ref>; see
+              <ptr target="http://textometrie.ens-lyon.fr"/>), Le Trameur (<ref type="bibl"
+              target="#fleury2014">Fleury and Zimina 2014</ref>; see <ptr
+              target="http://www.tal.univ-paris3.fr/trameur/"/>), and Iramuteq (see <ptr
+              target="http://iramuteq.org/"/> and <ref type="bibl" target="#souza2018">de Souza et
+              al. 2018</ref>), providing a dedicated TEI export for these tools. For example, for
+            the TXM software, the export includes a text element made of utterance elements
+            including age and speaker attributes. <ptr target="#example_code_5" type="crossref"/>
+            presents an example for the TXM software.</p>
+          <figure xml:id="example_code_5">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <TEI file="lily-4-00-02.tei_corpo.xml">
+                <teiHeader/>
+                <text>
+                  <u age="28.0" end="2875.100" start="2873.395" who="MOT">
+                    <w age="28.0" loc="MOT">you</w>
+                    <w age="28.0" loc="MOT">have</w>
+                    <w age="28.0" loc="MOT">to</w>
+                    <w age="28.0" loc="MOT">rest</w>
+                    <w age="28.0" loc="MOT">now</w>
+                    <w age="28.0" loc="MOT">.</w>
+                  </u>
+                  <u age="4.0" end="2875.970" start="2875.100" who="CHI">
+                    <w age="4.0" loc="CHI">yes</w>
+                    <w age="4.0" loc="CHI">.</w>
+                  </u>
+                  <u age="28.0" end="2877.893" start="2875.970" who="MOT">
+                    <w age="28.0" loc="MOT">from</w>
+                    <w age="28.0" loc="MOT">your</w>
+                    <w age="28.0" loc="MOT">big</w>
+                    <w age="28.0" loc="MOT">singing</w>
+                    <w age="28.0" loc="MOT">extravaganza</w>
+                    <w age="28.0" loc="MOT">.</w>
+                  </u>
+                  <!-- . . . . . . -->
+                </text>
+              </TEI>
+            </egXML>
+            <head type="legend">Example of XML for the TXM software</head>
+          </figure>
+
+          <p>An export has been developed for Lexico and Le Trameur textometric software with a
+            simple SGML file without timelines (see <ptr target="#example_code_6" type="crossref"
+            />).</p>
+
+          <figure xml:id="example_code_6">
+            <eg>&lt;file=/corpusformat/exemple/japan/lily-4-00-02-extract.tei_corpo.xml>
+              &lt;loc=MOT>you have to rest now ? &lt;loc=CHI>yes . &lt;loc=MOT>from your big singing
+              extravaganza ? &lt;loc=CHI>yes that was a party . &lt;loc=MOT>woof </eg>
+            <head type="legend">Example of export for the Lexico or Le Trameur software</head>
+          </figure>
+
+          <p>Likewise, another export is available for the textometric tool Iramuteq without
+            timelines (see <ptr target="#example_code_7" type="crossref"/>).</p>
+          <figure xml:id="example_code_7">
+            <eg>**** -*MOT you have to rest now ? -*CHI yes . -*MOT from your big singing
+              extravaganza ? -*CHI yes that was a party . -*MOT woof . -*MOT that was a party that
+              sure was some party . </eg>
+            <head type="legend">Example of export for the IRAMUTEQ software</head>
+          </figure>
+          <p>In all these cases, TEICORPO is able to provide an export file and to remove
+            unnecessary information from the TEI pivot format. This is useful, for example, with
+            textometric software, which works only with orthographic tiers without a timeline or
+            dependent information.</p>
+
+        </div>
+        <div xml:id="using">
+          <head>Using an Automatic Grammatical Analyzer</head>
+          <p>Many researchers in linguistics wish to use automatic grammatical analyzers on corpora
+            in order to improve the querying and analysis of a text, or to implement other types of
+            linguistic research. A present difficulty with these grammatical analyzers is that most
+            often they run only on raw orthographic material, excluding other information. Moreover,
+            their results are not always in a format that can be used with traditional spoken
+            language software such as CLAN, ELAN, Praat, Transcriber, nor of course in TEI
+            format.</p>
+          <p>TEICORPO provides a way to solve this problem by running analyzers and putting the
+            results from the analysis back into TEI format. Once the TEI format has been enriched
+            with grammatical information, it is possible to use the results and convert them back to
+            ELAN or Praat and use the grammatical information in these spoken language software
+            packages. It is also possible to export to TXM and to use the grammatical information in
+            the textometric software. Two grammatical analyzers have been implemented in TEICORPO:
+            TreeTagger and CoreNLP.</p>
+          <div xml:id="treetagger">
+            <head>TreeTagger</head>
+            <p>TreeTagger<note>
+                <p>Accessed March 11, 2021, <ptr
+                    target="https://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/"/>.</p>
+              </note> (<ref type="bibl" target="#schimd1994">Schmid 1994</ref>; <ref type="bibl"
+                target="#schmid1995">1995</ref>) is a tool for annotating text with part-of-speech
+              and lemma information. The software is freely available for research, education, and
+              evaluation. It is available in twenty-five languages, provides high-quality results,
+              and can be easily improved by enriching the training set, as was done for instance by
+              Benzitoun, Fort, and Sagot (<ref type="bibl" target="#benzitoun2012">2012</ref>) in
+              the PERCEO project. They defined a syntactic model suitable for spoken language
+              corpora, using the training feature of TreeTagger and an iterative process including
+              manual corrections to improve the results of the automatic tool.</p>
+            <p>The command-line version of TEICORPO should be used to generate an annotated file
+              with lemma and POS information based on Treetagger. TreeTagger should be installed
+              separately. The implementation of TreeTagger in TEICORPO includes the ability to use
+              any syntactic model. For French data, we used the PERCEO model (<ref type="bibl"
+                target="#benzitoun2012">Benzitoun, Fort, and Sagot 2012</ref>).</p>
+            <p>The command line to be used is: <code>java -cp TEICORPO.jar
+                fr.ortolang.TEICORPO.TeiTreeTagger filenames...</code> with additional
+              parameters:</p>
+            <table xml:id="table2">
+              <row role="label">
+                <cell><p><code>-syntaxformat</code>
+                    <gi>param</gi></p></cell>
+                <cell><p><gi>param</gi> can take the values w or ref or conll (see examples
+                    below).</p></cell>
+              </row>
+              <row>
+                <cell><p><code>-model</code>
+                    <gi>filename</gi></p></cell>
+                <cell><p><gi>filename</gi> is the full name of the TreeTagger syntactic model. In
+                    our case, we use the PERCEO model.</p></cell>
+              </row>
+              <row>
+                <cell><p><code>-program</code>
+                    <gi>filename</gi></p></cell>
+                <cell><p><gi>filename</gi> is the full location of the TreeTagger program, according
+                    to the system used (Windows, MacOS, or Linux).</p></cell>
+              </row>
+              <row>
+                <cell><p><code>-normalize</code>
+                    <gi>format</gi></p></cell>
+                <cell><p><gi>format</gi> specifies the origin of the corpus. This can be useful when
+                    cleaning up source files.</p></cell>
+              </row>
+            </table>
+            <p>The environment variable TREE_TAGGER can be used to locate the model and the program.
+              If no <code>-program</code> option is used, the default name for the TreeTagger
+              program is used.</p>
+            <p>The <code>-model</code> parameter is mandatory.</p>
+            <p>The resulting filename ends with <code>.tei_corpo_ttg.tei_corpo.xml</code> or a
+              specific name provided by the user (option <code>-o</code>).</p>
+            <p>Three <code>syntaxformat</code> parameters are available:</p>
+            <list>
+              <item><code>-w</code> (word) format where the utterance element <gi>u</gi> is divided
+                into word elements <gi>w</gi> with an <att>ana</att> attribute for POS and a
+                  <att>lemma</att> attribute (see <ptr target="#example_code_8" type="crossref"/>).
+                This is the basic format in the TEI specification. This format can be used to
+                produce data that include POS information which follows the standard recommendation
+                of the TEI. <figure xml:id="example_code_8">
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                    <annotationBlock end="#T7" start="#T6" who="CHI" xml:id="au4">
+                      <u>
+                        <w lemma="thank" pos="VV">thank</w>
+                        <w lemma="you" pos="PP">you</w>
+                        <w lemma="it" pos="PP">it</w>
+                        <w lemma="be" pos="VBD">was</w>
+                        <w lemma="a" pos="DT">a</w>
+                        <w lemma="singing" pos="NN">singing</w>
+                        <w lemma="party" pos="NN">party</w>
+                        <w lemma="." pos="SENT">.</w>
+                      </u>
+                      <spanGrp type="xpho">
+                        <span>ˈθæku ɪwəzəˈsɪŋɪŋpɑrdi</span>
+                      </spanGrp>
+                    </annotationBlock>
+                  </egXML>
+                  <head type="legend">Tagging results in <gi>w</gi> format</head>
+                </figure>
+              </item>
+              <item><code>-ref</code> format with a <gi>ref</gi> element in a
+                  <gi>spanGrp</gi>/<gi>span</gi>. It is made of word elements <gi>w</gi>, so that
+                the original utterance format is preserved (see <ptr target="#example_code_9"
+                  type="crossref"/>). This format is easier to process automatically than the CONLL
+                format (see below) but contains only the word information described in the standard
+                TEI specification (as for the <gi>w</gi> format). <figure xml:id="example_code_9">
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                    <annotationBlock end="#T7" start="#T6" who="CHI" xml:id="au4">
+                      <u>
+                        <seg>thank you , it was a singing party . </seg>
+                      </u>
+                      <spanGrp type="xpho">
+                        <span>ˈθæku ɪwəzəˈsɪŋɪŋpɑrdi</span>
+                      </spanGrp>
+                      <spanGrp inst="treetagger" type="ref">
+                        <span>
+                          <ref>
+                            <w lemma="thank" pos="VV">thank</w>
+                            <w lemma="you" pos="PP">you</w>
+                            <w lemma="it" pos="PP">it</w>
+                            <w lemma="be" pos="VBD">was</w>
+                            <w lemma="a" pos="DT">a</w>
+                            <w lemma="singing" pos="NN">singing</w>
+                            <w lemma="party" pos="NN">party</w>
+                            <w lemma="." pos="SENT">.</w>
+                          </ref>
+                        </span>
+                      </spanGrp>
+                    </annotationBlock>
+                  </egXML>
+                  <head type="legend">Tagging results in <gi>ref</gi> format</head>
+                </figure>
+              </item>
+              <item><code>-conll</code><note>
+                  <p>CoNLL-U Format, <ptr target="https://universaldependencies.org/format.html"/>,
+                    accessed May 5.</p>
+                </note> format with a <gi>spanGrp</gi> with a <att>type</att> attribute value of
+                  <code>connl</code> describing each token as a table (see <ptr
+                  target="#example_code_10" type="crossref"/>). This format takes advantage of the
+                possibilities offered by the TEI <gi>spanGrp</gi> and <gi>span</gi> elements. It is
+                very powerful as it enables the user to insert as many description levels as
+                necessary (ten levels exist in the current version of CONLL). The implementation of
+                CoreNLP (see below) takes full advantage of these possibilities. <figure
+                  xml:id="example_code_10">
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                    <annotationBlock end="#T7" start="#T6" who="CHI" xml:id="au4">
+                      <u>
+                        <seg>thank you , it was a singing party . </seg>
+                      </u>
+                      <spanGrp type="xpho">
+                        <span>ˈθæku ɪwəzəˈsɪŋɪŋpɑrdi</span>
+                      </spanGrp>
+                      <spanGrp inst="treetagger" type="conll">
+                        <span> 1 <spanGrp type="word">
+                            <span>thank</span>
+                          </spanGrp>
+                          <spanGrp type="pos">
+                            <span>VV</span>
+                          </spanGrp>
+                          <spanGrp type="lemma">
+                            <span>thank</span>
+                          </spanGrp>
+                        </span>
+                        <span> 2 <spanGrp type="word">
+                            <span>you</span>
+                          </spanGrp>
+                          <spanGrp type="pos">
+                            <span>PP</span>
+                          </spanGrp>
+                          <spanGrp type="lemma">
+                            <span>you</span>
+                          </spanGrp>
+                        </span>
+                        <!-- . . . . . . . . -->
+                      </spanGrp>
+                      <!-- . . . . . . . . -->
+                    </annotationBlock>
+                  </egXML>
+                  <head type="legend">Tagging results in <gi>conll</gi> format</head>
+                </figure>
+              </item>
+            </list>
+          </div>
+          <div xml:id="stanford">
+            <head>Stanford CoreNLP</head>
+            <p>The Stanford Core Natural Language Processing<note>
+                <p>Accessed March 11, 2021, <ptr target="https://nlp.stanford.edu/software/"/>.</p>
+              </note> (CoreNLP) package is a suite of tools (<ref type="bibl" target="#manning2014"
+                >Manning et al. 2014</ref>) that can be used under a GNU General Public License. The
+              suite provides several tools such as a tokenizer, a POS tagger, a parser, a named
+              entity recognizer, temporal tagging, and coreference resolution. All the tools are
+              available for English, but only some of them are available for all languages. All
+              software libraries are integrated into Java JAR files, so all that is required is to
+              download JAR files from the CoreNLP website<note>
+                <p>Accessed May 5, 2021, <ptr
+                    target="https://stanfordnlp.github.io/CoreNLP/index.html#download"/>.</p>
+              </note> to use them with TEICORPO. Using the analyzer is similar to using TreeTagger.
+              The -model and -syntaxformat parameters can be used in a similar way to specify the
+              grammatical model to be used and the output format. A command line example is:</p>
+            <p><code>java -cp "teicorpo.jar:directory_for_SNLP/*" fr.ortolang.teicorpo.TeiSNLP
+                -syntaxformat svalue -model filename.tei_corpo.xml</code></p>
+            <p>The <term>directory_for_SNLP</term> is the name of the location on a computer where
+              all the CoreNLP JAR files can be found. Note that using the CoreNLP software makes
+              heavy demands on the computer’s memory resources and it is necessary to instruct the
+              Java software to use a large amount of memory (for example to insert parameter -mx5g
+              before parameter <code>-cp</code> to indicate that 5 GB of memory will be used for a
+              full English analysis).</p>
+            <p>The <code>-model</code> parameter can take three values: english (use the full
+              English grammar), french (use the full French grammar), or the name of a CoreNLP
+              parameter file which specifies any type of analysis that is available in CoreNLP.</p>
+            <p>The <code>-syntaxformat</code> parameter can take four values: <val>conll</val> (a
+              full analysis with all possible tools: ten levels are produced in this case),
+                <val>dep</val> (a syntactic analysis using a dependency grammar), and <val>ref</val>
+              or <val>w</val> (only POS tagging and lemma).</p>
+          </div>
+        </div>
+        <div xml:id="exportinggrammatical">
+          <head>Exporting the Grammatical Analysis</head>
+          <p>The results from the grammatical analysis can be used in transcription files such as
+            those used by Praat and ELAN. A partition-like visual presentation of data is very handy
+            to represent a part of speech or a CONLL result. The orthographic line will appear at
+            the top with divisions into words, divisions into parts of speech, and other syntactic
+            information below. As the result of the analysis can contain a large number of tiers
+            (each speaker will have as many tiers as there are elements in the grammatical analysis:
+            for example, word, POS, and lemma for TreeTagger; ten tiers for CoreNLP full analysis),
+            it is helpful to limit the number of visible tiers, either using the <code>-a</code>
+            option of TEICORPO, or limiting the display with the annotation tool.</p>
+          <p>An example is presented below in the ELAN tool (see <ptr target="#fig5" type="crossref"
+            />). The original utterance was <term>si c’est comme ça je m’en vais</term> (if that’s
+            how it is, I’m leaving). It is displayed in the first line, highlighted in pink. The
+            analysis into words (second line, consisting of numbers), lemmas (third line), parts of
+            speech (fourth line), and orthographic words (final line) is displayed below. So, for
+            example, word 3 has the lemma <term>être</term> (to be) and the POS VER:pres (verb in
+            the present tense), and it is the word <term>est</term> (is).</p>
+          <figure xml:id="fig5">
+            <graphic url="media/image3.png" width="620px" height="980px"/>
+            <head type="legend">Example of TreeTagger analysis representation in a partition
+              software program</head>
+          </figure>
+
+          <p>Export can be done from TEI into a format used by textometric software (see <ptr
+              target="#example_code_11" type="crossref"/>). This is the case for TXM,<note>
+              <p>See the Textométrie website, last updated June 29, 2020, <ptr
+                  target="http://textometrie.ens-lyon.fr/?lang=en"/>.</p>
+            </note> a textometric software application. In this case, instead of using a partition
+            representation, the information from the grammatical analysis is inserted at the word
+            level in an XML structure. For example, in the case below, the TXM export includes
+            Treetagger annotations in POS, adding <att>lemma</att> and <att>pos</att> attributes to
+            the word element <gi>w</gi>.</p>
+          <figure xml:id="example_code_11">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <TEI file="lily-4-00-02.tei_corpo_ttg_conll.xml">
+                <teiHeader/>
+                <text>
+                  <u age="28.0" end="2875.1000000000" start="2873.3950000000" who="MOT">
+                    <w age="28.0" loc="MOT">you</w>
+                    <w age="28.0" loc="MOT">have</w>
+                    <w age="28.0" loc="MOT">to</w>
+                    <w age="28.0" loc="MOT">rest</w>
+                    <w age="28.0" loc="MOT">now</w>
+                    <w age="28.0" loc="MOT">.</w>
+                  </u>
+                  <u age="4.0" end="2875.9700000000" start="2875.1000000000" who="CHI">
+                    <w age="4.0" loc="CHI">yes</w>
+                    <w age="4.0" loc="CHI">.</w>
+                  </u>
+                  <u age="28.0" end="2877.8930000000" start="2875.9700000000" who="MOT">
+                    <w age="28.0" loc="MOT">from</w>
+                    <w age="28.0" loc="MOT">your</w>
+                    <w age="28.0" loc="MOT">big</w>
+                    <w age="28.0" loc="MOT">singing</w>
+                    <w age="28.0" loc="MOT">extravaganza</w>
+                    <w age="28.0" loc="MOT">.</w>
+                  </u>
+                  <!-- . . . . . . . -->
+                </text>
+                <!-- . . . . . . . -->
+              </TEI>
+            </egXML>
+            <head type="legend">Example of TreeTagger analysis representation that can be imported
+              into TXM</head>
+          </figure>
+        </div>
+        <div xml:id="comparison">
+          <head>Comparison with Other Software Suites</head>
+          <p>The additional functionalities available in the TEICORPO suite are close to those
+            available in the Weblicht web services (<ref type="bibl" target="#hinrichs2010"
+              >Hinrichs, Hinrichs, and Zastrow 2010</ref>). To a certain extent, the two suites of
+            tools (Weblicht and TEICORPO) have the same purpose and functionalities. They can import
+            data from various formats, run similar processes on the data, and export the data for
+            scientific uses. In some cases, the services could complement each other or TEICORPO
+            could be integrated in the Weblicht services. This is the case, for example, for
+            handling the CHILDES format, which at the time of writing is more functional in TEICORPO
+            than in Weblicht.</p>
+          <p>A major difference between the two suites is in the way they can be used and in the
+            type of data they target. TEICORPO is intended to be used not as an independent tool,
+            but as a utility tool that helps researchers to go from one type of data to another. For
+            example, the syntactic analysis is intended to be used as a first step before being used
+            in tools such as Praat, ELAN, or TXM. Our more recent developments (see <ref type="bibl"
+              target="#badin2021">Badin et al. 2021</ref>) made it possible to insert metadata
+            stored in CSV files (including participant metadata) into the TEI files. This makes it
+            possible to achieve more powerful corpus analysis using a tool such as TXM.</p>
+          <p>Our approach is somewhat similar to what is suggested in the conclusion of Schmidt,
+            Hedeland, and Jettka (<ref type="bibl" target="#schmidt2017">2017</ref>), who describe a
+            mechanism that makes it possible to use the power of Weblicht to process their files
+            that are in the ISO/TEI format. A similar mechanism could be used within TEICORPO to
+            take advantage of the tools that are implemented in Weblicht. However, Schmidt,
+            Hedeland, and Jettka (<ref type="bibl" target="#schmidt2017">2017</ref>) suggest in
+            their conclusion that it would be more interesting to work directly on ISO/TEI files
+            because they contain a richer format. This is exactly what we did in TEICORPO. Our
+            suggestion would be to use the tools created by Schmidt, Hedeland, and Jettka (<ref
+              type="bibl" target="#schmidt2017">2017</ref>) directly with the TEICORPO files, so
+            that their work would complement ours. Moreover, in this way, the two projects would be
+            compatible and provide either new functionalities when the projects have clearly
+            different goals, or data variants when the goals are closer.</p>
+        </div>
+      </div>
+      <div xml:id="conclusion">
+        <head>Conclusion</head>
+        <p>TEICORPO is a functional tool, created by the CORLI network and ORTOLANG, that converts
+          files created by software specializing in editing spoken-language data into TEI format.
+          The result is fully compatible with the most recent developments in TEI, especially those
+          that concern spoken-language material.</p>
+        <p>The TEI files can also be converted back to the original formats or to other formats used
+          in spoken-language editing to take advantage of their functionalities. This makes TEI a
+          useful pivot format. Moreover, TEICORPO allows conversion to formats used by tools
+          dedicated to corpus exploration and browsing.</p>
+        <p>TEICORPO exists as a command-line interface as well as a web service. It can thus be used
+          by novice as well as advanced users, or by developers of linguistic software. The tool is
+          free and open source so it can be further used and developed in other projects.</p>
+        <p>TEICORPO is intended to be part of a large set of tools using TEI for linguistic corpus
+          research. It can be used in parallel with or as a complement to other tools such as
+          Weblicht or the EXMARaLDA tools (see <ref type="bibl" target="#schmidt2017">Schmidt,
+            Hedeland, and Jettka 2017</ref>). A specificity of TEICORPO is that it is more suitable
+          for processing extended forms of TEI data (especially forms which are not inside the main
+            <gi>u</gi> element in the TEI code). TEICORPO is also linked to TEIMETA, a flexible tool
+          for describing spoken language corpora in a web interface generated from an ODD file (<ref
+            type="bibl" target="#etienne">Etienne, Liégois, and Parisse, accepted</ref>). As TEI
+          enables metadata and data to be stored in the same file, sharing this format will promote
+          metadata sharing and will keep metadata linked to their data during the life cycle of the
+          data.</p>
+        <p>Potential further developments could provide wider coverage of different formats such as
+          CMDI or linked data for editing or data exploration purposes; allow TEICORPO to work with
+          other external tools such as grammatical analyzers; or enable the visualization of
+          multilevel annotations.</p>
+        <p/>
+      </div>
+    </body>
+    <back>
+      <div type="bibliography">
+        <listBibl>
+          <bibl xml:id="badin2021"><author>Badin, Flora</author>,<author>Loïc Liégeois</author>,
+              <author>Gabriel Thiberge</author>, and <author>Christophe Parisse</author>.
+            Forthcoming <date>2021</date>. <title level="a">Vers un outillage informatique optimisé
+              pour corpus langagiers oraux en vue d’une exploitation textométrique: le cas des
+              interrogatives partielles dans ESLO.</title>
+            <title level="j">Corpus</title>
+            <biblScope unit="issue">22</biblScope>. doi:<idno type="DOI"
+            >10.4000/corpus.5752</idno>.</bibl>
+          <bibl xml:id="barras2000"><author>Barras, Claude</author>, <author>Edouard
+              Geoffrois</author>, <author>Zhibiao Wu</author>, and <author>Mark Liberman</author>.
+              <date>2000</date>. <title level="a">Transcriber: Development and Use of a Tool for
+              Assisting Speech Corpora Production.</title> In <title level="m">Speech Annotation and
+              Corpus Tools</title>, edited by <editor>Steven Bird</editor> and <editor>Jonathan
+              Harrington</editor>, special issue, <title level="j">Speech Communication</title>
+            <biblScope unit="issue">33 (1–2)</biblScope>: <biblScope unit="page">5–22</biblScope>.
+              doi:<idno type="DOI">10.1016/S0167-6393(00)00067-4</idno>.</bibl>
+          <bibl xml:id="benzitoun2012"><author>Benzitoun, Christophe</author>, <author>Karën
+              Fort</author>, and <author>Benoît Sagot</author>. <date>2012</date>. <title level="a"
+              >TCOF-POS: un corpus libre de français parlé annoté en morphosyntaxe.</title> In Actes
+            de la conférence conjointe JEP-TALN-RECITAL 2012, volume 2: TALN (JEP-TALN 2012 -
+            Journées d’Études sur la Parole et conférence annuelle du Traitement Automatique des
+            Langues Naturelles), <biblScope unit="page">99–112</biblScope>. Authors’ version
+            available at <ptr target="https://hal.archives-ouvertes.fr/hal-00709187"/>.</bibl>
+          <bibl xml:id="bird2001"><author>Bird, Steven</author>, and <author>Mark Liberman</author>.
+              <date>2001</date>. <title level="a">A Formal Framework for Linguistic
+              Annotation.</title> In <title level="m">Speech Annotation and Corpus Tools</title>,
+            edited by <editor>Steven Bird</editor> and <editor>Jonathan Harrington</editor>, special
+            issue, <title level="j">Speech Communication</title>
+            <biblScope unit="issue">33 (1–2)</biblScope>: <biblScope unit="page">23–60</biblScope>.
+              doi:<idno type="DOI">10.1016/S0167-6393(00)00068-6</idno>.</bibl>
+          <bibl xml:id="boersma2001"><author>Boersma, Paul</author>. <date>2001</date>. <title
+              level="a">Praat, A System for Doing Phonetics by Computer</title>. <title level="j"
+              >Glot International</title>
+            <biblScope unit="issue">5 (9/10)</biblScope>: <biblScope unit="page">341–45</biblScope>.
+              <ptr target="https://www.fon.hum.uva.nl/paul/papers/speakUnspeakPraat_glot2001.pdf"
+            />.</bibl>
+          <bibl xml:id="etienne"><author>Etienne, Carole</author>, <author>Loïc Liégeois</author>,
+            and <author>Christophe Parisse</author>. Accepted. <title level="a">TEIMETA: An
+              Evolutive Solution to Describe Spoken Language Corpora in a Web Interface Generated
+              from an ODD File.</title></bibl>
+          <bibl xml:id="fleury2014"><author>Fleury, Serge</author>, and <author>Maria
+              Zimina</author>. <date>2014</date>. <title level="a">Trameur: A Framework for
+              Annotated Text Corpora Exploration.</title> In Proceedings of COLING 2014, the 25th
+            International Conference on Computational Linguistics: System Demonstrations, edited by
+              <editor>Lamia Tounsi</editor> and <editor>Rafal Rak</editor>, <biblScope unit="page"
+              >57–61</biblScope>. N.p.: Dublin City University and Association for Computational
+            Linguistics. <ptr target="https://www.aclweb.org/anthology/C14-2013"/>.</bibl>
+          <bibl xml:id="heiden2010"><author>Heiden, Serge</author>. <date>2010</date>. <title
+              level="a">The TXM Platform: Building Open-Source Textual Analysis Software Compatible
+              with the TEI Encoding Scheme.</title> In Proceedings of the 24th Pacific Asia
+            Conference on Language, Information and Computation (PACLIC24), edited by <editor>Ryo
+              Otoguro</editor>, <editor>Kiyoshi Ishikawa</editor>, <editor>Hiroshi Umemoto</editor>,
+              <editor>Kei Yoshimoto</editor>, and <editor>Yasunari Harada</editor>, <biblScope
+              unit="page">389–98</biblScope>. Sendai, Japan: Institute for Digital Enhancement of
+            Cognitive Development, Waseda University. <ptr
+              target="https://www.aclweb.org/anthology/Y10-1044/"/>.</bibl>
+          <bibl xml:id="hinrichs2010"><author>Hinrichs, Erhard</author>, <author>Marie
+              Hinrichs</author>, and <author>Thomas Zastrow</author>. <date>2010</date>. <title
+              level="a">WebLicht: Web-Based LRT Services for German.</title> In Proceedings of the
+            ACL 2010 System Demonstrations, <biblScope unit="page">25–29</biblScope>. <ptr
+              target="http://www.aclweb.org/anthology/P10-4005"/>.</bibl>
+          <bibl xml:id="iso2016">ISO (International Organization for Standardization).
+              <date>2016</date>. Language Resource Management — Transcription of Spoken Language.
+            ISO 24624:2016. <ptr target="http://www.iso.org/iso/catalogue_detail.htm?csnumber=37338"
+            />.</bibl>
+          <bibl xml:id="kipp2001"><author>Kipp, Michael</author>. <date>2001</date>. <title
+              level="a">Anvil: A Generic Annotation Tool for Multimodal Dialogue.</title> In
+            Proceedings of the 7th European Conference on Speech Communication and Technology
+            (Eurospeech 2001 Scandinavia), vol. 2, edited by <editor>Paul Dalsgaard</editor>,
+              <editor>Børge Lindberg</editor>, and <editor>Henrik Benner</editor>, <biblScope
+              unit="page">1367–70</biblScope>. Bonn, Germany: ISCA-Secretariat. <ptr
+              target="https://www.isca-speech.org/archive/eurospeech_2001/e01_1367.html"/>.</bibl>
+          <bibl xml:id="lebart1998"><author>Lebart, Ludovic</author>, <author>André Salem</author>,
+            and <author>Lisette Berry</author>. <date>1998</date>. <title level="m">Exploring
+              Textual Data. Text, Speech and Language Technology (TLTB) 4</title>. Dordrecht:
+            Springer Science+Business Media.</bibl>
+          <bibl xml:id="macwhinney200"><author>MacWhinney, Brian</author>. <date>2000</date>. <title
+              level="m">The CHILDES Project: Tools for Analyzing Talk</title>. Vol. 1, Transcription
+            Format and Programs. 3rd ed. Mahwah, NJ: Lawrence Erlbaum Associates Publishers.</bibl>
+          <bibl xml:id="macwhinney2007"><author>MacWhinney, Brian</author>. <date>2007</date>.
+              <title level="a">The TalkBank Project</title>. In <title level="m">Creating and
+              Digitizing Language Corpora</title>. Vol. 1, Synchronic Databases, edited
+              by<editor>Joan C. Beal</editor>, <editor>Karen P. Corrigan</editor>, and
+              <editor>Hermann L. Moisl</editor>, <biblScope unit="page">163–80</biblScope>.
+            Houndmills, Basingstoke, Hampshire: Palgrave-Macmillan.</bibl>
+          <bibl xml:id="manning2014"><author>Manning, Christopher D.</author>, <author>Mihai
+              Surdeanu</author>,<author>John Bauer</author>, <author>Jenny Finkel</author>,
+              <author>Steven J. Bethard</author>, and <author>David McClosky</author>.
+              <date>2014</date>. <title level="a">The Stanford CoreNLP Natural Language Processing
+              Toolkit.</title> In Proceedings of the 52nd Annual Meeting of the Association for
+            Computational Linguistics: System Demonstrations, edited by <editor>Kalina
+              Bontcheva</editor> and <editor>Jingbo Zhu</editor>, <biblScope unit="page"
+              >55–60</biblScope>. Stroudsburg, PA: Association for Computational Linguistics. <ptr
+              target="https://www.aclweb.org/anthology/P14-5010/"/>; doi:<idno type="DOI"
+              >10.3115/v1/P14-5010</idno>.</bibl>
+          <bibl xml:id="pincemin2011"><author>Pincemin, Bénédicte</author>. <date>2011</date>.
+              <title level="a">Sémantique interprétative et textométrie – Version abrégée.</title>
+            <title level="j">Corpus</title>
+            <biblScope unit="issue">10</biblScope>: <biblScope unit="page">259–69</biblScope>.
+              doi:<idno type="DOI">10.4000/corpus.2121</idno>.</bibl>
+          <bibl xml:id="pincemin2020"><author>Pincemin, Bénédicte</author>, <author>Serge
+              Heiden</author>, and <author>Matthieu Decorde</author>. <date>2020</date>. <title
+              level="a">Textometry on Audiovisual Corpora</title>. Paper intended for the 15th
+            International Conference on Statistical Analysis of Textual Data, JADT 2020. Toulouse,
+            France, June 16–19, postponed. <ptr
+              target="https://halshs.archives-ouvertes.fr/halshs-02779055"/>.</bibl>
+          <bibl xml:id="schimd1994"><author>Schmid, Helmut</author>. <date>1994</date>. <title
+              level="a">Probabilistic Part-of-Speech Tagging Using Decision Trees</title>. In
+            Proceedings of International Conference on New Methods in Language Processing, edited by
+              <editor>Daniel Jones</editor>. Manchester, UK: Centre for Computational Linguistics.
+            Author’s version available at <ptr
+              target="https://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/tree-tagger1.pdf"
+            />.</bibl>
+          <bibl xml:id="schmid1995"><author>Schmid, Helmut</author>. <date>1995</date>. <title
+              level="a">Improvements in Part-of-Speech Tagging with an Application to
+            German</title>. In From Text to Tags: Issues in Multilingual Analysis. Proceedings of
+            the ACL SIGDAT Workshop. Author’s version available at <ptr
+              target="https://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/tree-tagger2.pdf"
+            />.</bibl>
+          <bibl xml:id="schmidt2004"><author>Schmidt, Thomas</author>
+            <date>2004</date>. <title level="a">Transcribing and Annotating Spoken Language with
+              EXMARaLDA</title>. In Proceedings of the LREC-Workshop on XML-based Richly Annotated
+            Corpora. Paris: ELRA. Author’s version available at <ptr
+              target="https://ids-pub.bsz-bw.de/frontdoor/index/index/docId/2317"/>.</bibl>
+          <bibl xml:id="schmidt2011"><author>Schmidt, Thomas</author>. <date>2011</date>. <title
+              level="a">A TEI-based Approach to Standardising Spoken Language Transcription</title>.
+              <title level="j">Journal of the Text Encoding Initiative</title>
+            <biblScope unit="issue">1</biblScope>. <ptr
+              target="https://journals.openedition.org/jtei/142"/>; doi:<idno type="DOI"
+              >10.4000/jtei.142</idno>.</bibl>
+          <bibl xml:id="schmidt2017"><author>Schmidt, Thomas</author>, <author>Hanna
+              Hedeland</author>, and <author>Daniel Jettka</author>. <date>2017</date>. <title
+              level="a">Conversion and Annotation Web Services for Spoken Language Data in
+              CLARIN.</title> In Selected Papers from the CLARIN Annual Conference 2016, edited by
+              <editor>Lars Borin</editor>, <biblScope unit="page">113–30</biblScope>. Linköping
+            Electronic Conference Proceedings 136. Linköping, Sweden: LiU Electronic Press. <ptr
+              target="https://ep.liu.se/ecp/article.asp?issue=136&amp;article=009&amp;volume=0"/>;
+              <ptr target="https://ep.liu.se/ecp/136/009/ecp17136009.pdf"/>.</bibl>
+          <bibl xml:id="schmidts2010"><author>Schmidt, Thomas</author>, and <author>Wilfried
+              Schütte</author>. <date>2010</date>. <title level="a">FOLKER: An Annotation Tool for
+              Efficient Transcription of Natural, Multi-party Interaction.</title> In Proceedings of
+            the Seventh Conference on International Language Resources and Evaluation (LREC’10),
+              <biblScope unit="page">2091–96</biblScope>. N.p.: European Language Resources
+            Association (ELRA). <ptr target="http://lrec-conf.org/proceedings/lrec2010/"/>.</bibl>
+          <bibl xml:id="souza2018"><author>Souza, Marli Aparecida Rocha de</author>,
+              <author>Marilene Loewen Wall</author>, <author>Andrea Cristina de Morais Chaves
+              Thuler</author>, <author>Ingrid Margareth Voth Lowen</author>, and <author>Aida Maris
+              Peres</author>. <date>2018</date>. <title level="a">The Use of IRAMUTEQ Software for
+              Data Analysis in Qualitative Research</title>. <title level="j">Revista da Escola de
+              Enfermagem da USP 52</title>, <biblScope unit="issue">e03353</biblScope>. doi:<idno
+              type="DOI">10.1590/S1980-220X2017015003353</idno>.</bibl>
+          <bibl xml:id="wittenburg2006"><author>Wittenburg, Peter</author>, <author>Hennie
+              Brugman</author>, <author>Albert Russel</author>, <author>Alex Klassmann</author>, and
+              <author>Han Sloetjes</author>. <date>2006</date>. <title level="a">ELAN: A
+              Professional Framework for Multimodality Research.</title> In Proceedings of LREC
+            2006, Fifth International Conference on Language Resources and Evaluation, <biblScope
+              unit="page">1556–59</biblScope>. N.p.: European Language Resources Association (ELRA).
+              <ptr target="http://www.lrec-conf.org/proceedings/lrec2006/"/>.</bibl>
+        </listBibl>
+      </div>
+    </back>
+  </text>
 </TEI>

@@ -5,14 +5,24 @@
       <titleStmt>
         <title type="main">Manus OnLine and the Text Encoding Initiative Schema</title>
         <author>
-          <name><forename>Giliola</forename> <surname>Barbero</surname></name>
-          <affiliation>Giliola Barbero, Ph.D. in Italian literature (humanistic philology), has been a <roleName>lecturer in Library Sciences and IT for cultural heritage</roleName> at the <orgName>Università Cattolica</orgName>, Milan, since 2001, and is the technical coordinator of Manus OnLine.</affiliation>
+          <name><forename>Giliola</forename>
+            <surname>Barbero</surname></name>
+          <affiliation>Giliola Barbero, Ph.D. in Italian literature (humanistic philology), has been
+            a <roleName>lecturer in Library Sciences and IT for cultural heritage</roleName> at the
+              <orgName>Università Cattolica</orgName>, Milan, since 2001, and is the technical
+            coordinator of Manus OnLine.</affiliation>
           <email>giliola.barbero@unicatt.it</email>
         </author>
         <author>
-          <name><forename>Francesca</forename> <surname>Trasselli</surname></name>
-          <affiliation>Francesca Trasselli is <roleName>head of the Activity Area for Manuscript Bibliography, Research and Census</roleName> of the <orgName>Central Institute of Cataloguing</orgName> and a specialist in an archival approach to manuscripts. She is the author of <title level="m">Manoscritti della Biblioteca Sessoriana di Roma: segnature, inventari, cataloghi</title> (Casamari: Edizione Casamari, 2011).</affiliation>
-          <email></email>
+          <name><forename>Francesca</forename>
+            <surname>Trasselli</surname></name>
+          <affiliation>Francesca Trasselli is <roleName>head of the Activity Area for Manuscript
+              Bibliography, Research and Census</roleName> of the <orgName>Central Institute of
+              Cataloguing</orgName> and a specialist in an archival approach to manuscripts. She is
+            the author of <title level="m">Manoscritti della Biblioteca Sessoriana di Roma:
+              segnature, inventari, cataloghi</title> (Casamari: Edizione Casamari,
+            2011).</affiliation>
+          <email/>
         </author>
       </titleStmt>
       <publicationStmt>
@@ -20,8 +30,9 @@
         <date>29/12/2014</date>
         <availability>
           <licence target="https://creativecommons.org/licenses/by/4.0/">
-            <p>For this publication a Creative Commons Attribution 4.0 International license has been granted by the author(s) who retain full copyright.</p>
-          </licence> 
+            <p>For this publication a Creative Commons Attribution 4.0 International license has
+              been granted by the author(s) who retain full copyright.</p>
+          </licence>
         </availability>
       </publicationStmt>
       <seriesStmt>
@@ -31,7 +42,7 @@
         <editor role="chief">John Walsh</editor>
         <editor role="managing">Martin Holmes</editor>
         <editor role="technical">Ron Van den Branden</editor>
-        <biblScope unit="issue" n="8">Selected Papers from the 2013 TEI Conference</biblScope>        
+        <biblScope unit="issue" n="8">Selected Papers from the 2013 TEI Conference</biblScope>
       </seriesStmt>
       <sourceDesc>
         <p>No source, born digital.</p>
@@ -43,8 +54,7 @@
           humanities and social sciences, open to quality periodicals looking to publish full-text
           articles online.</p>
       </projectDesc>
-      <tagsDecl>
-      </tagsDecl>
+      <tagsDecl> </tagsDecl>
     </encodingDesc>
     <profileDesc>
       <langUsage>
@@ -64,112 +74,288 @@
   </teiHeader>
   <text>
     <front>
-      <div type="abstract" xml:id="abstract"><p>The Italian Central Institute of Cataloguing (ICCU) has developed a web application to export manuscript descriptions from Manus OnLine (MOL), the Italian national catalogue of manuscripts, into TEI XML documents. As of June 2013, single descriptions can be downloaded from the MOL Online Public Access Catalogue (OPAC) as TEI XML documents by any user. The aim of the first tool is to supply manuscript descriptions to the institutions which produced them using MOL, because libraries and research organizations need to use their own data, outside the MOL project. The aim of the second service – exporting manuscript catalogues of entire collections as TEI XML files - is to promote exchange of data with other national and international projects. For these purposes, the ICCU needs a rich schema, not only a partial set of metadata, in order to be able to export complete structured manuscript descriptions. As bibliographical standards (MARC, Unimarc) cannot represent the entire structure of MOL descriptions adequately, ICCU adopted the TEI schema as an interchange standard. This paper describes solutions adopted by ICCU in encoding MOL contents within the TEI <gi>msDesc</gi> element and problems they encountered in performing this work. The encoding of information about material (<gi>material</gi>), number of folios and physical dimensions of manuscripts (<gi>extent</gi>) are discussed as well as a list of data pertaining to original letter cataloguing.</p></div>
+      <div type="abstract" xml:id="abstract">
+        <p>The Italian Central Institute of Cataloguing (ICCU) has developed a web application to
+          export manuscript descriptions from Manus OnLine (MOL), the Italian national catalogue of
+          manuscripts, into TEI XML documents. As of June 2013, single descriptions can be
+          downloaded from the MOL Online Public Access Catalogue (OPAC) as TEI XML documents by any
+          user. The aim of the first tool is to supply manuscript descriptions to the institutions
+          which produced them using MOL, because libraries and research organizations need to use
+          their own data, outside the MOL project. The aim of the second service – exporting
+          manuscript catalogues of entire collections as TEI XML files - is to promote exchange of
+          data with other national and international projects. For these purposes, the ICCU needs a
+          rich schema, not only a partial set of metadata, in order to be able to export complete
+          structured manuscript descriptions. As bibliographical standards (MARC, Unimarc) cannot
+          represent the entire structure of MOL descriptions adequately, ICCU adopted the TEI schema
+          as an interchange standard. This paper describes solutions adopted by ICCU in encoding MOL
+          contents within the TEI <gi>msDesc</gi> element and problems they encountered in
+          performing this work. The encoding of information about material (<gi>material</gi>),
+          number of folios and physical dimensions of manuscripts (<gi>extent</gi>) are discussed as
+          well as a list of data pertaining to original letter cataloguing.</p>
+      </div>
     </front>
     <body>
       <div xml:id="mol">
         <head>Manus OnLine and ICCU Activity</head>
-        <p>The Activity Area for Manuscript Bibliography, Research and Census (Area di attività per la bibliografia, la documentazione e il censimento dei manoscritti) is a branch of the <ref target="http://www.iccu.sbn.it/opencms/opencms/it/">Central Institute of Cataloguing (ICCU)</ref> belonging to the Italian Ministry of Heritage and Culture.<note><p>ICCU’s full name is <soCalled>Istituto centrale per il catalogo unico delle biblioteche italiane e per le informazioni bibliografiche</soCalled>, <ptr target="http://www.iccu.sbn.it/opencms/opencms/it/"/>.</p></note> The goal of this office is to take the census and to catalogue manuscripts held by Italian institutions: medieval manuscripts, early modern and modern manuscripts, literary and private papers of the nineteenth and twentieth centuries, and original handwritten letters.</p>
-        <p>The main achievements of this office are:
-          <list rend="bulleted">
-            <item><p><ref target="http://manus.iccu.sbn.it/">Manus OnLine</ref>, the Italian national catalogue of manuscripts,<note><p>MOL, <ptr target="http://manus.iccu.sbn.it/"/></p></note> and</p></item>
-            <item><p><ref target="http://bibman.iccu.sbn.it/">BibMan</ref>, the national bibliography of manuscripts.<note><p>BibMan, <ptr target="http://bibman.iccu.sbn.it/"/>.</p></note></p></item>
+        <p>The Activity Area for Manuscript Bibliography, Research and Census (Area di attività per
+          la bibliografia, la documentazione e il censimento dei manoscritti) is a branch of the
+            <ref target="http://www.iccu.sbn.it/opencms/opencms/it/">Central Institute of
+            Cataloguing (ICCU)</ref> belonging to the Italian Ministry of Heritage and
+              Culture.<note><p>ICCU’s full name is <soCalled>Istituto centrale per il catalogo unico
+                delle biblioteche italiane e per le informazioni bibliografiche</soCalled>, <ptr
+                target="http://www.iccu.sbn.it/opencms/opencms/it/"/>.</p></note> The goal of this
+          office is to take the census and to catalogue manuscripts held by Italian institutions:
+          medieval manuscripts, early modern and modern manuscripts, literary and private papers of
+          the nineteenth and twentieth centuries, and original handwritten letters.</p>
+        <p>The main achievements of this office are: <list rend="bulleted">
+            <item><p><ref target="http://manus.iccu.sbn.it/">Manus OnLine</ref>, the Italian
+                national catalogue of manuscripts,<note><p>MOL, <ptr
+                      target="http://manus.iccu.sbn.it/"/></p></note> and</p></item>
+            <item><p><ref target="http://bibman.iccu.sbn.it/">BibMan</ref>, the national
+                bibliography of manuscripts.<note><p>BibMan, <ptr
+                      target="http://bibman.iccu.sbn.it/"/>.</p></note></p></item>
           </list>
-        </p> 
-        <p>Manus OnLine (MOL) is a project managing a relational database accessible through a web-based application. In 2007, this was the first national web-based application devoted to manuscript cataloguing. Italian librarians and researchers can produce manuscript descriptions and publish digital images through MOL using personal computers connected through the Internet to the ICCU main server. Within MOL, manuscript descriptions can be linked to images stored in any digital repository. Moreover, cataloguers share the same authority list of names (<ref type="bibl" target="#maruccio10">Marcuccio 2010</ref>; <ref type="bibl" target="#bagnato09">Bagnato, Barbero, and Menna 2009</ref>).</p>
-        <p>Since all the manuscript descriptions are stored directly in the same central repository, as soon as a description is marked as <soCalled>published</soCalled> by the cataloguer, it becomes immediately accessible and searchable through the OPAC.</p> 
-        <p>At the time of writing (January 2014), MOL contains about 141,000 manuscript descriptions from 270 different libraries and 470 cataloguers are involved in the project. The catalogue will be continuously updated and extended. As the Italian manuscript collections preserve the majority of European manuscripts, MOL contains material of outstanding research importance for all periods and disciplines. Greek manuscripts are catalogued as well, for example those belonging to the Biblioteca Trivulziana of Milan, the Biblioteca Riccardiana in Florence, the Biblioteca Angelica, and the Biblioteca Nazionale Centrale (National Central Library) in Rome. Having been created and developed by the Ministry of Heritage and Culture, MOL is free: cataloguers need only a username and a password to begin their work.</p>
+        </p>
+        <p>Manus OnLine (MOL) is a project managing a relational database accessible through a
+          web-based application. In 2007, this was the first national web-based application devoted
+          to manuscript cataloguing. Italian librarians and researchers can produce manuscript
+          descriptions and publish digital images through MOL using personal computers connected
+          through the Internet to the ICCU main server. Within MOL, manuscript descriptions can be
+          linked to images stored in any digital repository. Moreover, cataloguers share the same
+          authority list of names (<ref type="bibl" target="#maruccio10">Marcuccio 2010</ref>; <ref
+            type="bibl" target="#bagnato09">Bagnato, Barbero, and Menna 2009</ref>).</p>
+        <p>Since all the manuscript descriptions are stored directly in the same central repository,
+          as soon as a description is marked as <soCalled>published</soCalled> by the cataloguer, it
+          becomes immediately accessible and searchable through the OPAC.</p>
+        <p>At the time of writing (January 2014), MOL contains about 141,000 manuscript descriptions
+          from 270 different libraries and 470 cataloguers are involved in the project. The
+          catalogue will be continuously updated and extended. As the Italian manuscript collections
+          preserve the majority of European manuscripts, MOL contains material of outstanding
+          research importance for all periods and disciplines. Greek manuscripts are catalogued as
+          well, for example those belonging to the Biblioteca Trivulziana of Milan, the Biblioteca
+          Riccardiana in Florence, the Biblioteca Angelica, and the Biblioteca Nazionale Centrale
+          (National Central Library) in Rome. Having been created and developed by the Ministry of
+          Heritage and Culture, MOL is free: cataloguers need only a username and a password to
+          begin their work.</p>
       </div>
       <div xml:id="mol-tei">
         <head>MOL and the TEI Schema: the Same Logical Model</head>
-        <p>MOL and the TEI schema share a logical model which is typical of European scientific manuscript cataloguing practices (<ref type="bibl" target="#petrucci01">Petrucci 2001</ref>; <ref type="bibl" target="#rehbein09">Rehbein, Sahle, and Schassan 2009</ref>; <ref type="bibl" target="#fischer10">Fischer, Fritze, and Vogeler 2010</ref>). Data considered in paleographical and codicological environments, and as a consequence in manuscript cataloguing, are
-          <list rend="bulleted">
+        <p>MOL and the TEI schema share a logical model which is typical of European scientific
+          manuscript cataloguing practices (<ref type="bibl" target="#petrucci01">Petrucci
+            2001</ref>; <ref type="bibl" target="#rehbein09">Rehbein, Sahle, and Schassan
+          2009</ref>; <ref type="bibl" target="#fischer10">Fischer, Fritze, and Vogeler 2010</ref>).
+          Data considered in paleographical and codicological environments, and as a consequence in
+          manuscript cataloguing, are <list rend="bulleted">
             <item>the manuscript identifier;</item>
             <item>the physical description;</item>
             <item>history;</item>
             <item>the contents (texts);</item>
             <item>the bibliography; and</item>
-            <item>names of people and corporations who have any responsibility for the manuscript curation and for texts, and names of places where manuscripts were written.</item>
+            <item>names of people and corporations who have any responsibility for the manuscript
+              curation and for texts, and names of places where manuscripts were written.</item>
           </list>
         </p>
-        <p>In European manuscript cataloguing practice, the manuscript identifier—composed of the name of the place and library where the manuscript is preserved and by an official shelfmark—is necessary to define every single manuscript. This identifier is linked to a single physical description when the manuscript consists of one unit, or to multiple physical descriptions when the manuscript is composite. Each area devoted to the physical description is linked to one or more texts, because several texts can be copied in the same manuscript or part of a manuscript. Names can be linked both to the physical description (to represent, e.g., owners or copyists) and to texts (to represent, e.g., authors or translators). This traditional conceptual data model inspired the organization of data storage in the MOL database in which the identifier and the physical descriptions are considered as two separate entities while texts and names are considered different types of entities. The relationship between the identifier and the physical descriptions in MOL is one-to-n (one-to-many); the relationship between physical descriptions and texts is also one-to-n. The relationship between names (which populate the MOL authority file) and physical descriptions and between names and texts is n-to-n.</p>
-        <p>The TEI schema has the same logical structure as MOL. In fact, following the TEI P5 Guidelines (<ref type="bibl" target="#tei13">TEI Consortium 2013</ref>: <ref target="http://www.tei-c.org/Vault/P5/2.5.0/doc/tei-p5-doc/en/html/MS.html#msdesc">10.2 The Manuscript Description Element</ref>), within an element <gi>msDesc</gi>
+        <p>In European manuscript cataloguing practice, the manuscript identifier—composed of the
+          name of the place and library where the manuscript is preserved and by an official
+          shelfmark—is necessary to define every single manuscript. This identifier is linked to a
+          single physical description when the manuscript consists of one unit, or to multiple
+          physical descriptions when the manuscript is composite. Each area devoted to the physical
+          description is linked to one or more texts, because several texts can be copied in the
+          same manuscript or part of a manuscript. Names can be linked both to the physical
+          description (to represent, e.g., owners or copyists) and to texts (to represent, e.g.,
+          authors or translators). This traditional conceptual data model inspired the organization
+          of data storage in the MOL database in which the identifier and the physical descriptions
+          are considered as two separate entities while texts and names are considered different
+          types of entities. The relationship between the identifier and the physical descriptions
+          in MOL is one-to-n (one-to-many); the relationship between physical descriptions and texts
+          is also one-to-n. The relationship between names (which populate the MOL authority file)
+          and physical descriptions and between names and texts is n-to-n.</p>
+        <p>The TEI schema has the same logical structure as MOL. In fact, following the TEI P5
+          Guidelines (<ref type="bibl" target="#tei13">TEI Consortium 2013</ref>: <ref
+            target="http://www.tei-c.org/Vault/P5/2.5.0/doc/tei-p5-doc/en/html/MS.html#msdesc">10.2
+            The Manuscript Description Element</ref>), within an element <gi>msDesc</gi>
           <list rend="bulleted">
-            <item>the manuscript identifier is marked with <gi>msIdentifier</gi>, which is mandatory in any description;</item>
+            <item>the manuscript identifier is marked with <gi>msIdentifier</gi>, which is mandatory
+              in any description;</item>
             <item>the physical description is marked with <gi>physDesc</gi>—optional;</item>
             <item>history is marked with <gi>history</gi>—optional;</item>
             <item>the contents (texts) are marked with <gi>msContents</gi>—optional;</item>
-            <item>the bibliography is marked with <gi>msBibl</gi> within <gi>additional</gi>—optional; and</item>
+            <item>the bibliography is marked with <gi>msBibl</gi> within
+              <gi>additional</gi>—optional; and</item>
             <item>names can be inserted at different levels within several other elements.</item>
           </list>
         </p>
-        <p>Moreover, at deep levels the TEI schema contains an almost complete set of tags devoted to manuscript description and cataloguing (<ref type="bibl" target="#barbero00">Barbero and Smaldone 2000</ref>; <ref type="bibl" target="#burnard01">Burnard 2001</ref>; <ref type="bibl" target="#milanese07">Milanese 2007</ref>). This is why on several occasions and with different aims the ICCU adopted the TEI schema to exchange data between different electronic repositories.</p>
-        <p>In the past, between 2004 and 2007, when Manus was still a standalone application, the ICCU was able to export TEI XML files from local Manus databases, which were not accessible through the web, and import them into the online public catalogue (<ref type="bibl" target="#barbero04">Barbero 2004</ref>). In 2003, Manus was adopted by the European project <ref target="http://palin.iccu.sbn.it/">Rinascimento Virtuale</ref>,<note><p><ptr target="http://palin.iccu.sbn.it/"/></p></note> devoted to the digital publication of Greek palimpsests; on that occasion, the TEI schema was adopted to share manuscript descriptions of palimpsests among all the European partners (<ref type="bibl" target="#magrini05">Magrini, Pasini, and Arduini 2005</ref>). Later, starting in 2007, the ICCU planned and performed  harvesting between the <ref target="http://www.cerl.org/resources/cerl_portal">CERL Portal</ref>, a meta search interface developed by the Consortium of European Research Libraries, and MOL: the ICCU exposes MOL contents on the web, providing OAI-PMH records with light TEI metadata inside, and CERL harvests them.<note><p><ptr target="http://www.cerl.org/resources/cerl_portal"/></p></note></p>
-        <p>At present, the TEI schema is used in MOL with another very important aim. The ICCU wants to supply data to the institutions which produced them. In fact libraries and research organizations also need to use their own data outside MOL. For example, they need complete data to manage their own online public access catalogues (OPACs) or to populate their local digital libraries.<note><p><ptr target="http://www.manoscrittilombardia.it/"/> is an example of an OPAC edited by Regione Lombardia, whose contents derive from MOL.</p></note> Since institutions produce data on their own, they have the right to access all the data they produce; that is why the ICCU needs a suitably rich schema, not only a partial set of metadata. Bibliographical standards are not adequate for structuring manuscript descriptions in their entirety, because they have a quite different logical structure (<ref type="bibl" target="#daines12">Daines and Nimer 2012</ref>; <ref type="bibl" target="#barbero13">Barbero 2013</ref>).</p>
-        <p>In 2012, an export application was developed to export catalogues of manuscript collections from MOL as TEI XML files; moreover, users can download each description from the OPAC in TEI format:
-        <figure xml:id="figure1">
-          <graphic url="img/image1.jpg" width="550px" height="371px"/>
-          <head type="legend">The OPAC of Manus OnLine with the download button</head>
-        </figure>
+        <p>Moreover, at deep levels the TEI schema contains an almost complete set of tags devoted
+          to manuscript description and cataloguing (<ref type="bibl" target="#barbero00">Barbero
+            and Smaldone 2000</ref>; <ref type="bibl" target="#burnard01">Burnard 2001</ref>; <ref
+            type="bibl" target="#milanese07">Milanese 2007</ref>). This is why on several occasions
+          and with different aims the ICCU adopted the TEI schema to exchange data between different
+          electronic repositories.</p>
+        <p>In the past, between 2004 and 2007, when Manus was still a standalone application, the
+          ICCU was able to export TEI XML files from local Manus databases, which were not
+          accessible through the web, and import them into the online public catalogue (<ref
+            type="bibl" target="#barbero04">Barbero 2004</ref>). In 2003, Manus was adopted by the
+          European project <ref target="http://palin.iccu.sbn.it/">Rinascimento
+                Virtuale</ref>,<note><p><ptr target="http://palin.iccu.sbn.it/"/></p></note> devoted
+          to the digital publication of Greek palimpsests; on that occasion, the TEI schema was
+          adopted to share manuscript descriptions of palimpsests among all the European partners
+            (<ref type="bibl" target="#magrini05">Magrini, Pasini, and Arduini 2005</ref>). Later,
+          starting in 2007, the ICCU planned and performed harvesting between the <ref
+            target="http://www.cerl.org/resources/cerl_portal">CERL Portal</ref>, a meta search
+          interface developed by the Consortium of European Research Libraries, and MOL: the ICCU
+          exposes MOL contents on the web, providing OAI-PMH records with light TEI metadata inside,
+          and CERL harvests them.<note><p><ptr target="http://www.cerl.org/resources/cerl_portal"
+              /></p></note></p>
+        <p>At present, the TEI schema is used in MOL with another very important aim. The ICCU wants
+          to supply data to the institutions which produced them. In fact libraries and research
+          organizations also need to use their own data outside MOL. For example, they need complete
+          data to manage their own online public access catalogues (OPACs) or to populate their
+          local digital libraries.<note><p><ptr target="http://www.manoscrittilombardia.it/"/> is an
+              example of an OPAC edited by Regione Lombardia, whose contents derive from
+            MOL.</p></note> Since institutions produce data on their own, they have the right to
+          access all the data they produce; that is why the ICCU needs a suitably rich schema, not
+          only a partial set of metadata. Bibliographical standards are not adequate for structuring
+          manuscript descriptions in their entirety, because they have a quite different logical
+          structure (<ref type="bibl" target="#daines12">Daines and Nimer 2012</ref>; <ref
+            type="bibl" target="#barbero13">Barbero 2013</ref>).</p>
+        <p>In 2012, an export application was developed to export catalogues of manuscript
+          collections from MOL as TEI XML files; moreover, users can download each description from
+          the OPAC in TEI format: <figure xml:id="figure1">
+            <graphic url="img/image1.jpg" width="550px" height="371px"/>
+            <head type="legend">The OPAC of Manus OnLine with the download button</head>
+          </figure>
         </p>
       </div>
       <div xml:id="tei-export">
         <head>TEI XML Documents Exported from MOL</head>
-        <p>The aim of this paper is to discuss how the ICCU exports the contents of MOL fields into TEI elements to create valid XML files. An example of a TEI XML file exported from MOL is shown in <ptr type="crossref" target="#appendix1"/>, while a complete list of MOL fields and the corresponding TEI elements follows in <ptr type="crossref" target="#appendix2"/>.</p>
-        <p>According to TEI P5 Guidelines (<ref type="bibl" target="#tei13">TEI Consortium 2013</ref>: <ref target="http://www.tei-c.org/Vault/P5/2.5.0/doc/tei-p5-doc/en/html/HD.html">2. The TEI Header</ref>), at the beginning of each XML file, a <gi>teiHeader</gi> is automatically produced, where a title (<foreign xml:lang="it">Catalogo di manoscritti</foreign>), the name of the publisher (ICCU), the date of the creation of the XML file, and the name of the person or institution or project which is considered responsible for the intellectual content of the file are inserted. In the <gi>body</gi> of the TEI XML document, a <gi>listBibl</gi> element is nested, in which each manuscript description is encoded within an <gi>msDesc</gi> element. For each <gi>msDesc</gi> an <att>xml:id</att> attribute is create, whose value corresponds to the CNMD,<note><p>Censimento Nazionale dei Manoscritti—Descrizione.</p></note> the unique code number identifying each description published by the Italian National Census of Manuscripts.</p>
-        <p>The first-child-level elements of <gi>msDesc</gi> defined by the TEI schema, <gi>msIdentifier</gi>, <gi>msContents</gi>, <gi>physDesc</gi>, <gi>history</gi>, and <gi>additional</gi>, appear whenever the MOL database contains the corresponding information. If a manuscript is defined as composite and its parts are described separately in MOL, then the TEI XML document contains as many <gi>msPart</gi> elements as there are codicological sections.</p>
-        <p>Within these elements, many other TEI elements are used to create a deeply structured XML manuscript description. In several cases, during the design of the export application, it was clear which TEI elements had to be used in encoding MOL original information. For example, there is no doubt that the name of the library holding a manuscript must be encoded through a <gi>repository</gi> element within <gi>msIdentifier</gi>; the field containing the history of the manuscript, which can be very long in MOL, can be encoded in a <gi>summary</gi> element within the element <gi>history</gi>; the author’s name is inserted in the <gi>author</gi> tag within an <gi>msItem</gi>.</p>
-        <p>Several specific highly formalized data have also been encoded as TEI attribute values. For example, the international code identifying libraries, composed of two letters representing a city and four numbers, is encoded as the value of the canonical <att>key</att> attribute within <gi>institution</gi>, because this code can associate each library with the records of the national database <ref target="http://anagrafe.iccu.sbn.it/opencms/opencms/">Anagrafe delle biblioteche italiane</ref>:<note><p><ptr target="http://anagrafe.iccu.sbn.it/opencms/opencms/"/></p></note>
+        <p>The aim of this paper is to discuss how the ICCU exports the contents of MOL fields into
+          TEI elements to create valid XML files. An example of a TEI XML file exported from MOL is
+          shown in <ptr type="crossref" target="#appendix1"/>, while a complete list of MOL fields
+          and the corresponding TEI elements follows in <ptr type="crossref" target="#appendix2"
+          />.</p>
+        <p>According to TEI P5 Guidelines (<ref type="bibl" target="#tei13">TEI Consortium
+            2013</ref>: <ref
+            target="http://www.tei-c.org/Vault/P5/2.5.0/doc/tei-p5-doc/en/html/HD.html">2. The TEI
+            Header</ref>), at the beginning of each XML file, a <gi>teiHeader</gi> is automatically
+          produced, where a title (<foreign xml:lang="it">Catalogo di manoscritti</foreign>), the
+          name of the publisher (ICCU), the date of the creation of the XML file, and the name of
+          the person or institution or project which is considered responsible for the intellectual
+          content of the file are inserted. In the <gi>body</gi> of the TEI XML document, a
+            <gi>listBibl</gi> element is nested, in which each manuscript description is encoded
+          within an <gi>msDesc</gi> element. For each <gi>msDesc</gi> an <att>xml:id</att> attribute
+          is create, whose value corresponds to the CNMD,<note><p>Censimento Nazionale dei
+              Manoscritti—Descrizione.</p></note> the unique code number identifying each
+          description published by the Italian National Census of Manuscripts.</p>
+        <p>The first-child-level elements of <gi>msDesc</gi> defined by the TEI schema,
+            <gi>msIdentifier</gi>, <gi>msContents</gi>, <gi>physDesc</gi>, <gi>history</gi>, and
+            <gi>additional</gi>, appear whenever the MOL database contains the corresponding
+          information. If a manuscript is defined as composite and its parts are described
+          separately in MOL, then the TEI XML document contains as many <gi>msPart</gi> elements as
+          there are codicological sections.</p>
+        <p>Within these elements, many other TEI elements are used to create a deeply structured XML
+          manuscript description. In several cases, during the design of the export application, it
+          was clear which TEI elements had to be used in encoding MOL original information. For
+          example, there is no doubt that the name of the library holding a manuscript must be
+          encoded through a <gi>repository</gi> element within <gi>msIdentifier</gi>; the field
+          containing the history of the manuscript, which can be very long in MOL, can be encoded in
+          a <gi>summary</gi> element within the element <gi>history</gi>; the author’s name is
+          inserted in the <gi>author</gi> tag within an <gi>msItem</gi>.</p>
+        <p>Several specific highly formalized data have also been encoded as TEI attribute values.
+          For example, the international code identifying libraries, composed of two letters
+          representing a city and four numbers, is encoded as the value of the canonical
+            <att>key</att> attribute within <gi>institution</gi>, because this code can associate
+          each library with the records of the national database <ref
+            target="http://anagrafe.iccu.sbn.it/opencms/opencms/">Anagrafe delle biblioteche
+            italiane</ref>:<note><p><ptr target="http://anagrafe.iccu.sbn.it/opencms/opencms/"
+            /></p></note>
           <egXML xmlns="http://www.tei-c.org/ns/Examples">
-            <institution key="LO0020">Biblioteca comunale Laudense</institution>  
+            <institution key="LO0020">Biblioteca comunale Laudense</institution>
           </egXML>
         </p>
-        <p>The code identifying a single record inside the MOL authority file of names (composed of <mentioned>CNMN</mentioned> and a number) is encoded as the value of the <att>key</att> attribute within <gi>name</gi>:
-          <egXML xmlns="http://www.tei-c.org/ns/Examples">
+        <p>The code identifying a single record inside the MOL authority file of names (composed of
+            <mentioned>CNMN</mentioned> and a number) is encoded as the value of the <att>key</att>
+          attribute within <gi>name</gi>: <egXML xmlns="http://www.tei-c.org/ns/Examples">
             <name key="CNMN0000014152">Alighieri, Dante</name>
           </egXML>
         </p>
-        <p>The global <att>n</att> attribute has been used in <gi>msPart</gi> and <gi>msItem</gi> to encode the numbers of the codicological units and of the texts. These are numbers which are automatically recorded in MOL to order codicological parts and texts in the same sequence as they appear within the original codex:
-          <egXML xmlns="http://www.tei-c.org/ns/Examples">
-            <msItem n="01">
-              ...
-              <title type="elaborato">Divina Commedia. Inferno</title>
-              ...
-            </msItem>
-          
-            <msItem n="02">
-              ...
-              <title type="elaborato">Divina Commedia. Purgatorio</title>
-              ...
-            </msItem>
-            
-            <msItem n="03">
-              ...
-              <title type="elaborato">Divina Commedia. Paradiso</title>
-              ...
+        <p>The global <att>n</att> attribute has been used in <gi>msPart</gi> and <gi>msItem</gi> to
+          encode the numbers of the codicological units and of the texts. These are numbers which
+          are automatically recorded in MOL to order codicological parts and texts in the same
+          sequence as they appear within the original codex: <egXML
+            xmlns="http://www.tei-c.org/ns/Examples">
+            <msItem n="01"> ... <title type="elaborato">Divina Commedia. Inferno</title> ... </msItem>
+            <msItem n="02"> ... <title type="elaborato">Divina Commedia. Purgatorio</title> ... </msItem>
+            <msItem n="03"> ... <title type="elaborato">Divina Commedia. Paradiso</title> ...
             </msItem>
           </egXML>
         </p>
-        <p>The <att>type</att> attribute has been used on <gi>title</gi>, and four values have been defined to express whether the title is <soCalled>attested</soCalled> in the manuscript by the copyist, <soCalled>added</soCalled> by a hand different from the main copyist’s hand, <soCalled>elaborated</soCalled> by the cataloguer, or <soCalled>identified</soCalled> as a published work:
-          <egXML xmlns="http://www.tei-c.org/ns/Examples">
+        <p>The <att>type</att> attribute has been used on <gi>title</gi>, and four values have been
+          defined to express whether the title is <soCalled>attested</soCalled> in the manuscript by
+          the copyist, <soCalled>added</soCalled> by a hand different from the main copyist’s hand,
+            <soCalled>elaborated</soCalled> by the cataloguer, or <soCalled>identified</soCalled> as
+          a published work: <egXML xmlns="http://www.tei-c.org/ns/Examples">
             <title type="elaborato">Divina Commedia. Paradiso</title>
-            <title type="presente"> Seguita la terça Comedia di Dante chiamata Paradiso et capitolo primo</title>
-            ...
+            <title type="presente"> Seguita la terça Comedia di Dante chiamata Paradiso et capitolo
+              primo</title> ... </egXML>
+        </p>
+        <p>The <att>type</att> attribute is also used on <gi>incipit</gi> and <gi>explicit</gi> to
+          distinguish which part of the text begins or ends with those words: the dedication letter,
+          the preface, the first poem of an anthology, the main text, and any other significant part
+          of the text. The ICCU also uses the <att>defective</att> attribute on the elements
+            <gi>incipit</gi> and <gi>explicit</gi> to specify whether incipit or explicit belongs to
+          an acephal text or if the text is lacking its end: <egXML
+            xmlns="http://www.tei-c.org/ns/Examples">
+            <incipit type="prefazione" defective="false"> Apuleius Plato ad cives suos Ex pluribus
+              paucas vires herbarum</incipit>
+            <incipit type="primoTesto" defective="false"> Herba nomine plantago a Graecis
+              dicitur</incipit>
           </egXML>
         </p>
-        <p>The <att>type</att> attribute is also used on <gi>incipit</gi> and <gi>explicit</gi> to distinguish which part of the text begins or ends with those words: the dedication letter, the preface, the first poem of an anthology, the main text, and any other significant part of the text. The ICCU also uses the <att>defective</att> attribute on the elements <gi>incipit</gi> and <gi>explicit</gi> to specify whether incipit or explicit belongs to an acephal text or if the text is lacking its end:
-          <egXML xmlns="http://www.tei-c.org/ns/Examples">
-            <incipit type="prefazione" defective="false"> Apuleius Plato ad cives suos Ex pluribus paucas vires herbarum</incipit>
-            <incipit type="primoTesto" defective="false"> Herba nomine plantago a Graecis dicitur</incipit>
-          </egXML>
-        </p>
-        <p>In some other cases, the XML encoding of information stored in MOL needs to be discussed, because different solutions can be adopted in the export process to create valid TEI documents. Astonishingly, this is the case in the encoding of three types of codicological data which are very common in manuscript descriptions:  material, number of folios, and dimensions of the manuscripts.</p>
-        <p>In fact there is no consensus on the values of the <att>material</att> attribute that can be used in the element <gi>supportDesc</gi>. Even if papyrus, parchment, and paper can absolutely be considered the most common materials, together with mixed material manuscript, different solutions have been chosen to express these data through the <att>material</att> attribute. The TEI P5 Guidelines (<ref target="http://www.tei-c.org/Vault/P5/2.5.0/doc/tei-p5-doc/en/html/REF-ELEMENTS.html">Appendix C</ref>) suggests <val>paper</val>, <val>parch</val>, and <val>mixed</val> as values of this attribute, but ultimately the ICCU decided to follow the important European cataloguing projects <title level="m"><ref target="http://www.manuscriptorium.com/">Manuscriptorium</ref></title><note><p><ptr target="http://www.manuscriptorium.com/"/></p></note> and <title level="m"><ref target="http://www.e-codices.unifr.ch/">e-Codices</ref></title><note><p><ptr target="http://www.e-codices.unifr.ch/"/></p></note> in using <val>chart</val> (paper), <val>perg</val>, (parchment) and <val>mixed</val>.</p>
-        <p>In describing the number of folios, cataloguers usually need to encode the quantity of guard leaves bound at the beginning of the volume, of folios which constitute the volume proper, and of guard leaves at the end of the volume. These are three simple numbers, but TEI P5 Guidelines (<ref target="http://www.tei-c.org/Vault/P5/2.5.0/doc/tei-p5-doc/en/html/MS.html#msph1ext">10.7.1.2 Extent</ref>) proposes different solutions and different projects have adopted different encoding methods which, of course, will not help them in sharing data.</p>
-        <p>The project <title level="m">Manuscriptorium</title>, which describes itself as a <q>European digital library of written cultural heritage</q>, uses arabic numerals directly within the <gi>extent</gi> element; if the codex has guard leaves, their number is distinguished through a <mentioned>+</mentioned> (plus sign): <code>&lt;extent>2+30+2&lt;/extent></code>. As all three numerals (separated by plus signs) are expressed only if a manuscript has guard-leaves at both the beginning and the end, and sometimes manuscripts have guard-leaves only at the beginning or only at the end, an automatic procedure cannot distinguish the semantic value of numerals expressed.</p>
-        <p><title level="m">e-Codices</title>, the virtual manuscript library of Switzerland, encodes the quantity of folios through non-structured information within a <gi>measure</gi> element contained in the element <gi>extent</gi>; at the same time a structured version of the same information is given as value of the <att>n</att> attribute: <code><![CDATA[<extent><measure type="leavesCount" n="114 + 3">114 Bll. + 2 Vor- und 1 Nachsatzbl.</measure></extent>]]></code>. As <att>n</att> is a global attribute which should number the element, not express any number contained within the element, probably this solution is not to be recommended.</p>
-        <p>As the ICCU needs to preserve the structure of the MOL data model as far as possible, and also the semantic distinction among initial and final guard leaves, in the export process the following solution has been adopted:
-          <egXML xmlns="http://www.tei-c.org/ns/Examples">
+        <p>In some other cases, the XML encoding of information stored in MOL needs to be discussed,
+          because different solutions can be adopted in the export process to create valid TEI
+          documents. Astonishingly, this is the case in the encoding of three types of codicological
+          data which are very common in manuscript descriptions: material, number of folios, and
+          dimensions of the manuscripts.</p>
+        <p>In fact there is no consensus on the values of the <att>material</att> attribute that can
+          be used in the element <gi>supportDesc</gi>. Even if papyrus, parchment, and paper can
+          absolutely be considered the most common materials, together with mixed material
+          manuscript, different solutions have been chosen to express these data through the
+            <att>material</att> attribute. The TEI P5 Guidelines (<ref
+            target="http://www.tei-c.org/Vault/P5/2.5.0/doc/tei-p5-doc/en/html/REF-ELEMENTS.html"
+            >Appendix C</ref>) suggests <val>paper</val>, <val>parch</val>, and <val>mixed</val> as
+          values of this attribute, but ultimately the ICCU decided to follow the important European
+          cataloguing projects <title level="m"><ref target="http://www.manuscriptorium.com/"
+              >Manuscriptorium</ref></title><note><p><ptr target="http://www.manuscriptorium.com/"
+              /></p></note> and <title level="m"><ref target="http://www.e-codices.unifr.ch/"
+              >e-Codices</ref></title><note><p><ptr target="http://www.e-codices.unifr.ch/"
+            /></p></note> in using <val>chart</val> (paper), <val>perg</val>, (parchment) and
+            <val>mixed</val>.</p>
+        <p>In describing the number of folios, cataloguers usually need to encode the quantity of
+          guard leaves bound at the beginning of the volume, of folios which constitute the volume
+          proper, and of guard leaves at the end of the volume. These are three simple numbers, but
+          TEI P5 Guidelines (<ref
+            target="http://www.tei-c.org/Vault/P5/2.5.0/doc/tei-p5-doc/en/html/MS.html#msph1ext"
+            >10.7.1.2 Extent</ref>) proposes different solutions and different projects have adopted
+          different encoding methods which, of course, will not help them in sharing data.</p>
+        <p>The project <title level="m">Manuscriptorium</title>, which describes itself as a
+            <q>European digital library of written cultural heritage</q>, uses arabic numerals
+          directly within the <gi>extent</gi> element; if the codex has guard leaves, their number
+          is distinguished through a <mentioned>+</mentioned> (plus sign):
+            <code>&lt;extent>2+30+2&lt;/extent></code>. As all three numerals (separated by plus
+          signs) are expressed only if a manuscript has guard-leaves at both the beginning and the
+          end, and sometimes manuscripts have guard-leaves only at the beginning or only at the end,
+          an automatic procedure cannot distinguish the semantic value of numerals expressed.</p>
+        <p><title level="m">e-Codices</title>, the virtual manuscript library of Switzerland,
+          encodes the quantity of folios through non-structured information within a
+            <gi>measure</gi> element contained in the element <gi>extent</gi>; at the same time a
+          structured version of the same information is given as value of the <att>n</att>
+          attribute:
+            <code><![CDATA[<extent><measure type="leavesCount" n="114 + 3">114 Bll. + 2 Vor- und 1 Nachsatzbl.</measure></extent>]]></code>.
+          As <att>n</att> is a global attribute which should number the element, not express any
+          number contained within the element, probably this solution is not to be recommended.</p>
+        <p>As the ICCU needs to preserve the structure of the MOL data model as far as possible, and
+          also the semantic distinction among initial and final guard leaves, in the export process
+          the following solution has been adopted: <egXML xmlns="http://www.tei-c.org/ns/Examples">
             <extent>
               <measure type="Guardieiniziali" unit="carte">2</measure>
               <measure type="Corpo" unit="carte">30</measure>
@@ -177,43 +363,99 @@
             </extent>
           </egXML>
         </p>
-        <p>As with material and number of folios, the size of leaves can also be marked with different elements following the TEI P5 Guidelines (<ref target="http://www.tei-c.org/Vault/P5/2.5.0/doc/tei-p5-doc/en/html/MS.html#msph1ext">10.7.1.2 Extent</ref>): with the elements <gi>dimensions</gi>, <gi>height</gi>, and <gi>width</gi>, or with the element <gi>measure</gi>. Manuscriptorium adopts the first solution:
-          <egXML xmlns="http://www.tei-c.org/ns/Examples">
-            <extent>
-              ...
-              <dimensions>
+        <p>As with material and number of folios, the size of leaves can also be marked with
+          different elements following the TEI P5 Guidelines (<ref
+            target="http://www.tei-c.org/Vault/P5/2.5.0/doc/tei-p5-doc/en/html/MS.html#msph1ext"
+            >10.7.1.2 Extent</ref>): with the elements <gi>dimensions</gi>, <gi>height</gi>, and
+            <gi>width</gi>, or with the element <gi>measure</gi>. Manuscriptorium adopts the first
+          solution: <egXML xmlns="http://www.tei-c.org/ns/Examples">
+            <extent> ... <dimensions>
                 <height>21 cm</height><width>15 cm</width>
               </dimensions>
             </extent>
-          </egXML>
-          while e-Codices uses an empty <gi>measure</gi> element and, again, an <att>n</att> attribute: <code><![CDATA[<measure type="pageDimensions" n="24.0 x 17.5 cm / 23.3 x 16.5 cm / 24 x 18 cm"/>]]></code>. As in MOL, several measurements can be recorded and each of them must be related to a folio number from which size was assessed; in the export application the following solution has been adopted:
-          <egXML xmlns="http://www.tei-c.org/ns/Examples">
+          </egXML> while e-Codices uses an empty <gi>measure</gi> element and, again, an
+            <att>n</att> attribute:
+            <code><![CDATA[<measure type="pageDimensions" n="24.0 x 17.5 cm / 23.3 x 16.5 cm / 24 x 18 cm"/>]]></code>.
+          As in MOL, several measurements can be recorded and each of them must be related to a
+          folio number from which size was assessed; in the export application the following
+          solution has been adopted: <egXML xmlns="http://www.tei-c.org/ns/Examples">
             <extent>
-              <measure n="1" type="height" unit="mm">234</measure> x 
-              <measure n="2" type="width" unit="mm">123</measure>
+              <measure n="1" type="height" unit="mm">234</measure> x <measure n="2" type="width"
+                unit="mm">123</measure>
               <locus>c. 1</locus>
             </extent>
           </egXML>
         </p>
-        <p>Other problems to be discussed are due to MOL contents and data structure. First, each cataloguing area, for example those devoted to material, date, number of folios, and many others, contains a generic field called <soCalled>Note</soCalled>, where cataloguers can register annotations in prose about that area. The ICCU decided not to encode all the MOL <soCalled>Note</soCalled> fields in XML with the same <gi>note</gi> element, without introducing any distinction, and tried to distinguish the original MOL field represented in each <gi>note</gi> element. For this reason each <gi>note</gi> uses the <att>n</att> attribute to number the element and the <att>type</att> attribute to encode the subject of the original <soCalled>Note</soCalled> field. For example, annotations about the first area of MOL, devoted to the identification of the manuscript, are marked as <tag>note n="1" type="sez01"</tag>, while annotations about the second area, devoted to the form of the manuscript, are marked as <tag>note n="2" type="sez02"</tag>.</p>
-        <p>The <gi>note</gi> element with <att>n</att> and <att>type</att> attributes is also used to encode those contents which have an appropriate field in MOL but do not have an appropriate tag in the TEI schema. For example, in MOL there is a specific area devoted to the description of palimpsest folios, which is not considered in the TEI P5 Guidelines; in the TEI XML document, this information is encoded through a <gi>note</gi> element with <val>palimpsest</val> as the value of <att>type</att>: <tag>note n="3" type="palinsesto"</tag>. A similar solution has been adopted by the ICCU to encode data about many other subjects: description of missing folios (<tag>note n="9" type="mancanze"</tag>), fragments of manuscripts (<tag>note n="10" type="frammenti"</tag>), folios derived from printed books (<tag>note n="11" type="partistampa"</tag>), pricking (<tag>note n="14" type="foratura"</tag>), ruling (<tag>note n="15" type="rigatura"</tag>),<note><p>According to the TEI schema, pricking and ruling can be encoded in  <gi>layout</gi> together with other information. As the MOL project needs to encode pricking, ruling, lines, columns, and justification separately, specific notes were inserted in <gi>layoutDesc</gi> and <gi>p</gi>.</p></note> ruled frame (<tag>note n="16" type="specchiorigato"</tag>), lines (<tag>note n="17" type="righe"</tag>), columns (<tag>note n="18" type="disposizionetesto"</tag>),<note><p>According to the TEI schema, lines and columns can be described through numbers (<ident>data.count</ident>) using the attributes <att>columns</att>, <att>ruledLines</att>, and <att>writtenLines</att> of <gi>layout</gi>; the MOL project cannot use such markup because these data can also be represented in MOL through prose, not only through numbers.</p></note> and ink (<tag>note n="20" type="inchiostro"</tag>). However, even if these data can be encoded in a TEI XML document by creating specific combinations of a generic <gi>note</gi> element with specific attribute values, at least for the data that are commonly recorded in manuscript cataloguing practice (for example pricking, ruling, and ink), the ICCU would recommend the introduction in the TEI schema of new specific elements.</p>
-        <p>Other codicological data pertaining to manuscript decoration, music notation, and binding, which are analytically recorded in several MOL fields and are expressed through a specialized lexicon, are exported in TEI XML files within a generic <gi>term</gi> element. As with our use of the <gi>note</gi> element, this encoding also uses <att>n</att> and <att>type</att> attributes to mark data derived from different MOL fields and to express in this way the specific semantic area of each <gi>term</gi>. For example, a cataloguer can point out the presence of neumes in a manuscript by putting a flag (<mentioned>yes</mentioned> in the database) in the MOL field <soCalled>Neumatic notation</soCalled>; such information is exported in the TEI XML document as <code><![CDATA[<term n="4" type="notazione">neumatica</term>]]></code>. The presence of clasps can be recorded by putting a flag in the MOL field <soCalled>Clasps</soCalled>, which causes an element <code><![CDATA[<term n="14">fermagli</term>]]></code> to be created in the TEI XML document.</p>
+        <p>Other problems to be discussed are due to MOL contents and data structure. First, each
+          cataloguing area, for example those devoted to material, date, number of folios, and many
+          others, contains a generic field called <soCalled>Note</soCalled>, where cataloguers can
+          register annotations in prose about that area. The ICCU decided not to encode all the MOL
+            <soCalled>Note</soCalled> fields in XML with the same <gi>note</gi> element, without
+          introducing any distinction, and tried to distinguish the original MOL field represented
+          in each <gi>note</gi> element. For this reason each <gi>note</gi> uses the <att>n</att>
+          attribute to number the element and the <att>type</att> attribute to encode the subject of
+          the original <soCalled>Note</soCalled> field. For example, annotations about the first
+          area of MOL, devoted to the identification of the manuscript, are marked as <tag>note
+            n="1" type="sez01"</tag>, while annotations about the second area, devoted to the form
+          of the manuscript, are marked as <tag>note n="2" type="sez02"</tag>.</p>
+        <p>The <gi>note</gi> element with <att>n</att> and <att>type</att> attributes is also used
+          to encode those contents which have an appropriate field in MOL but do not have an
+          appropriate tag in the TEI schema. For example, in MOL there is a specific area devoted to
+          the description of palimpsest folios, which is not considered in the TEI P5 Guidelines; in
+          the TEI XML document, this information is encoded through a <gi>note</gi> element with
+            <val>palimpsest</val> as the value of <att>type</att>: <tag>note n="3"
+            type="palinsesto"</tag>. A similar solution has been adopted by the ICCU to encode data
+          about many other subjects: description of missing folios (<tag>note n="9"
+            type="mancanze"</tag>), fragments of manuscripts (<tag>note n="10"
+            type="frammenti"</tag>), folios derived from printed books (<tag>note n="11"
+            type="partistampa"</tag>), pricking (<tag>note n="14" type="foratura"</tag>), ruling
+            (<tag>note n="15" type="rigatura"</tag>),<note><p>According to the TEI schema, pricking
+              and ruling can be encoded in <gi>layout</gi> together with other information. As the
+              MOL project needs to encode pricking, ruling, lines, columns, and justification
+              separately, specific notes were inserted in <gi>layoutDesc</gi> and
+            <gi>p</gi>.</p></note> ruled frame (<tag>note n="16" type="specchiorigato"</tag>), lines
+            (<tag>note n="17" type="righe"</tag>), columns (<tag>note n="18"
+            type="disposizionetesto"</tag>),<note><p>According to the TEI schema, lines and columns
+              can be described through numbers (<ident>data.count</ident>) using the attributes
+                <att>columns</att>, <att>ruledLines</att>, and <att>writtenLines</att> of
+                <gi>layout</gi>; the MOL project cannot use such markup because these data can also
+              be represented in MOL through prose, not only through numbers.</p></note> and ink
+            (<tag>note n="20" type="inchiostro"</tag>). However, even if these data can be encoded
+          in a TEI XML document by creating specific combinations of a generic <gi>note</gi> element
+          with specific attribute values, at least for the data that are commonly recorded in
+          manuscript cataloguing practice (for example pricking, ruling, and ink), the ICCU would
+          recommend the introduction in the TEI schema of new specific elements.</p>
+        <p>Other codicological data pertaining to manuscript decoration, music notation, and
+          binding, which are analytically recorded in several MOL fields and are expressed through a
+          specialized lexicon, are exported in TEI XML files within a generic <gi>term</gi> element.
+          As with our use of the <gi>note</gi> element, this encoding also uses <att>n</att> and
+            <att>type</att> attributes to mark data derived from different MOL fields and to express
+          in this way the specific semantic area of each <gi>term</gi>. For example, a cataloguer
+          can point out the presence of neumes in a manuscript by putting a flag
+            (<mentioned>yes</mentioned> in the database) in the MOL field <soCalled>Neumatic
+            notation</soCalled>; such information is exported in the TEI XML document as
+            <code><![CDATA[<term n="4" type="notazione">neumatica</term>]]></code>. The presence of
+          clasps can be recorded by putting a flag in the MOL field <soCalled>Clasps</soCalled>,
+          which causes an element <code><![CDATA[<term n="14">fermagli</term>]]></code> to be
+          created in the TEI XML document.</p>
       </div>
       <div xml:id="letters">
         <head>Letters</head>
-        <p>The Italian standard for manuscripts adopted by MOL also includes original letters. The information about original letters in MOL consists of the following fields related to the physical description: 
-          <list rend="bulleted">
+        <p>The Italian standard for manuscripts adopted by MOL also includes original letters. The
+          information about original letters in MOL consists of the following fields related to the
+          physical description: <list rend="bulleted">
             <item>type of letter (letter, postcard, picture postcard, business card…),</item>
-            <item>presence of  envelope,</item>
+            <item>presence of envelope,</item>
             <item>presence of typescript part,</item>
             <item>presence of a printed letterhead,</item>
             <item>presence of original signature,</item>
             <item>presence of manuscript notes.</item>
           </list>
         </p>
-        <p>Such data should be encoded in a <gi>physDesc</gi>, but at present, there are no TEI elements which could be used for this purpose.</p>
-        <p>The information about the text of original letters recorded in MOL consists of 
-          <list rend="bulleted">
+        <p>Such data should be encoded in a <gi>physDesc</gi>, but at present, there are no TEI
+          elements which could be used for this purpose.</p>
+        <p>The information about the text of original letters recorded in MOL consists of <list
+            rend="bulleted">
             <item>folios,</item>
             <item>name of sender,</item>
             <item>name of addressee,</item>
@@ -221,16 +463,32 @@
             <item>place,</item>
             <item>date,</item>
             <item>summary.</item>
-          </list> 
+          </list>
         </p>
-        <p>Such data should be encoded through an <gi>msItem</gi> within <gi>msContents</gi>. The number of folios can be marked with <gi>locus</gi>; the sender can be encoded as an <gi>author</gi> and the addressee as a name with a specific <gi>respStmt</gi>; but at present the ICCU does not know which elements could be used for other fields. Close collaboration among different projects and the TEI Consortium would be essential in order to develop an encoding system for original letters compatible with TEI <gi>msDesc</gi> encoding; for example a new set of tags to be used in the header of correspondence editions could be studied in collaboration by the <ref target="http://www.tei-c.org/Activities/SIG/Manuscript/index.xml">TEI Manuscripts SIG</ref><note><p><ptr target="http://www.tei-c.org/Activities/SIG/Manuscript/index.xml"/></p></note> and the <ref target="http://www.tei-c.org/Activities/SIG/Correspondence/">TEI Correspondence SIG</ref>.<note><p><ptr target="http://www.tei-c.org/Activities/SIG/Correspondence/"/></p></note></p>
-        <p>Discussing the solutions found by the ICCU with the TEI Consortium could help not only to verify the encoding developed by the ICCU, but also to spread the use of this standard to meet the needs of European manuscript cataloguing.</p>
+        <p>Such data should be encoded through an <gi>msItem</gi> within <gi>msContents</gi>. The
+          number of folios can be marked with <gi>locus</gi>; the sender can be encoded as an
+            <gi>author</gi> and the addressee as a name with a specific <gi>respStmt</gi>; but at
+          present the ICCU does not know which elements could be used for other fields. Close
+          collaboration among different projects and the TEI Consortium would be essential in order
+          to develop an encoding system for original letters compatible with TEI <gi>msDesc</gi>
+          encoding; for example a new set of tags to be used in the header of correspondence
+          editions could be studied in collaboration by the <ref
+            target="http://www.tei-c.org/Activities/SIG/Manuscript/index.xml">TEI Manuscripts
+            SIG</ref><note><p><ptr target="http://www.tei-c.org/Activities/SIG/Manuscript/index.xml"
+              /></p></note> and the <ref
+            target="http://www.tei-c.org/Activities/SIG/Correspondence/">TEI Correspondence
+            SIG</ref>.<note><p><ptr target="http://www.tei-c.org/Activities/SIG/Correspondence/"
+              /></p></note></p>
+        <p>Discussing the solutions found by the ICCU with the TEI Consortium could help not only to
+          verify the encoding developed by the ICCU, but also to spread the use of this standard to
+          meet the needs of European manuscript cataloguing.</p>
       </div>
     </body>
     <back>
       <div type="appendix" xml:id="appendix1">
         <head>A TEI XML File Exported from Manus OnLine</head>
-        <p><ref target="http://jtei.revues.org/1068?file=1">Milano_Archivio_storico_civico_e_Biblioteca_Trivulziana_Trivulziano_Triv_80.xml</ref></p>
+        <p><ref target="http://jtei.revues.org/1068?file=1"
+            >Milano_Archivio_storico_civico_e_Biblioteca_Trivulziana_Trivulziano_Triv_80.xml</ref></p>
       </div>
       <div type="appendix" xml:id="appendix2">
         <head>Manus Online / <gi>msDesc</gi> mapping</head>
@@ -238,19 +496,74 @@
       </div>
       <div type="bibliography">
         <listBibl>
-          <bibl xml:id="bagnato09"><author>Bagnato, Gian Paolo</author>, <author>Giliola Barbero</author>, and <author>Massimo Menna</author>. <date>2009</date>. <title level="a">ManusOnLine: un’applicazione web per il patrimonio manoscritto</title>. In <title level="m">Convegno AICA 2009</title>. <ptr target="http://manus.iccu.sbn.it/AICA2009_Menna.pdf"/>.</bibl>
-          <bibl xml:id="barbero00"><author>Barbero, Giliola</author>, and <author>Stefania Smaldone</author>. <date>2000</date>. <title level="a">Il linguaggio SGML/XML e la descrizione di manoscritti</title>. <title level="j">Bollettino AIB</title> <biblScope unit="volume">40</biblScope>(<biblScope unit="issue">2</biblScope>) (<date>June</date>): <biblScope unit="page">159–79</biblScope>.</bibl>
-          <bibl xml:id="barbero04"><author>Barbero, Giliola</author>. <date>2004</date>. <title level="a">Archivi elettronici dei manoscritti delle biblioteche d’Italia</title>. <title level="j">Biblioteche Oggi</title> <biblScope unit="volume">22</biblScope>(<biblScope unit="issue">2</biblScope>) (<date>March</date>): <biblScope unit="page">90–91</biblScope>. Accessed January 1 2014. <ptr target="http://www.bibliotecheoggi.it/2004/20040209001.pdf"/>.</bibl>          
-          <bibl xml:id="barbero13"><author>Barbero, Giliola</author>. <date>2013</date>. <title level="a">Manoscritti e standard</title>. <title level="j">DigItalia</title> <biblScope unit="volume">8</biblScope>(<biblScope unit="issue">2</biblScope>): <biblScope unit="page">43–65</biblScope>. <ptr target="http://digitalia.sbn.it/article/view/824"/>.</bibl>
-          <bibl xml:id="burnard01"><editor>Burnard, Lou</editor>, ed. <date>2001</date>. <title level="u">Reference Manual for the MASTER Document Type Definition</title>. Discussion Draft. Revised Jan. 6, 2001. <ptr target="http://www.tei-c.org/About/Archive_new/Master/Reference/oldindex.html"/>.</bibl>
-          <bibl xml:id="daines12"><author>Daines, J. Gordon</author>, and <author>Cory L. Nimer</author>. <date>2012</date>. <title level="a">U. S. Descriptive Standards for Archives, Historical Manuscripts, and Rare Books</title>. In <title level="m">IFLA World Library and Information Congress. 78th IFLA General Conference and Assembly, 11–17 August 2012, Helsinki, Finland</title>. Accessed January 1 2014. <ptr target="http://conference.ifla.org/past/2012/212-danies-en.pdf"/>.</bibl>
-          <bibl xml:id="fischer10"><editor>Franz Fischer</editor>, <editor>Christiane Fritze</editor>, and <editor>Georg Vogeler</editor>, eds. <date>2010</date>. <title level="m">Kodikologie und Paläographie im digitalen Zeitalter 2 (Codicology and Palaeography in the Digital Age 2)</title>. <pubPlace>Norderstedt</pubPlace>: <publisher>Books on Demand</publisher>.</bibl>
-          <bibl xml:id="magrini05"><author>Magrini, Sabina</author>, <author>Cesare Pasini</author>, and <author>Franca Arduini</author>. <date>2005</date>. <title level="a">L’Italia e Rinascimento virtuale</title>. <title level="j">Biblioteche Oggi</title> <biblScope unit="volume">23</biblScope>(<biblScope unit="issue">4</biblScope>) (<date>May</date>): <biblScope unit="page">23–33</biblScope>. <ptr target="http://www.bibliotecheoggi.it/2005/20050402301.pdf"/>.</bibl>
-          <bibl xml:id="maruccio10"><author>Marcuccio, Roberto</author>. <date>2010</date>. <title level="a">Catalogare e fare ricerca con Manus Online</title>. <title level="j">Biblioteche Oggi</title> (<date>July–August</date>): <biblScope unit="page">33–49</biblScope>. <ptr target="http://manus.iccu.sbn.it/BibliotecheOggi_Marcuccio2010.pdf"/>.</bibl>          
-          <bibl xml:id="milanese07"><author>Milanese, Guido</author>. <date>2007</date>. <title level="a">XML e lo studio dei manoscritti. Linee di orientamento e un esempio di applicazione.</title> In <title level="m">From Manuscript to Digital Text:Problems of Interpretation and Markup. Proceedings of the Colloquium (Bologna, June 12, 2003)</title>, edited by <editor>Francesco Citti</editor> and <editor>Tommaso Del Vecchio</editor>, <biblScope unit="page">71–91</biblScope>. <pubPlace>Rome</pubPlace>: <publisher>Herder</publisher>.</bibl>
-          <bibl xml:id="petrucci01"><author>Petrucci, Armando</author>. <date>2001</date>. <title level="m">La descrizione del manoscritto: Storia, problemi, modelli</title>. <pubPlace>Rome</pubPlace>: <publisher>Carocci</publisher>.</bibl>
-          <bibl xml:id="rehbein09"><editor>Rehbein, Malte</editor>, <editor>Patrick Sahle</editor>, and <editor>Torsten Schassan</editor>, eds. <date>2009</date>. <title level="m">Kodikologie und Paläographie im digitalen Zeitalter (Codicology and Palaeography in the Digital Age)</title>. <pubPlace>Norderstedt</pubPlace>: <publisher>Books on Demand</publisher>.</bibl>
-          <bibl xml:id="tei13"><orgName>TEI Consortium</orgName>. <date>2013</date>. <title level="m">TEI P5: Guidelines for Electronic Text Encoding and Interchange</title>. <edition>Version 2.5.0</edition>. Last updated July 26. <pubPlace>N.p.</pubPlace>: <publisher>TEI Consortium</publisher>. <ptr target="http://www.tei-c.org/Vault/P5/2.5.0/doc/tei-p5-doc/en/html/"/>.</bibl>          
+          <bibl xml:id="bagnato09"><author>Bagnato, Gian Paolo</author>, <author>Giliola
+              Barbero</author>, and <author>Massimo Menna</author>. <date>2009</date>. <title
+              level="a">ManusOnLine: un’applicazione web per il patrimonio manoscritto</title>. In
+              <title level="m">Convegno AICA 2009</title>. <ptr
+              target="http://manus.iccu.sbn.it/AICA2009_Menna.pdf"/>.</bibl>
+          <bibl xml:id="barbero00"><author>Barbero, Giliola</author>, and <author>Stefania
+              Smaldone</author>. <date>2000</date>. <title level="a">Il linguaggio SGML/XML e la
+              descrizione di manoscritti</title>. <title level="j">Bollettino AIB</title>
+            <biblScope unit="volume">40</biblScope>(<biblScope unit="issue">2</biblScope>)
+              (<date>June</date>): <biblScope unit="page">159–79</biblScope>.</bibl>
+          <bibl xml:id="barbero04"><author>Barbero, Giliola</author>. <date>2004</date>. <title
+              level="a">Archivi elettronici dei manoscritti delle biblioteche d’Italia</title>.
+              <title level="j">Biblioteche Oggi</title>
+            <biblScope unit="volume">22</biblScope>(<biblScope unit="issue">2</biblScope>)
+              (<date>March</date>): <biblScope unit="page">90–91</biblScope>. Accessed January 1
+            2014. <ptr target="http://www.bibliotecheoggi.it/2004/20040209001.pdf"/>.</bibl>
+          <bibl xml:id="barbero13"><author>Barbero, Giliola</author>. <date>2013</date>. <title
+              level="a">Manoscritti e standard</title>. <title level="j">DigItalia</title>
+            <biblScope unit="volume">8</biblScope>(<biblScope unit="issue">2</biblScope>):
+              <biblScope unit="page">43–65</biblScope>. <ptr
+              target="http://digitalia.sbn.it/article/view/824"/>.</bibl>
+          <bibl xml:id="burnard01"><editor>Burnard, Lou</editor>, ed. <date>2001</date>. <title
+              level="u">Reference Manual for the MASTER Document Type Definition</title>. Discussion
+            Draft. Revised Jan. 6, 2001. <ptr
+              target="http://www.tei-c.org/About/Archive_new/Master/Reference/oldindex.html"
+            />.</bibl>
+          <bibl xml:id="daines12"><author>Daines, J. Gordon</author>, and <author>Cory L.
+              Nimer</author>. <date>2012</date>. <title level="a">U. S. Descriptive Standards for
+              Archives, Historical Manuscripts, and Rare Books</title>. In <title level="m">IFLA
+              World Library and Information Congress. 78th IFLA General Conference and Assembly,
+              11–17 August 2012, Helsinki, Finland</title>. Accessed January 1 2014. <ptr
+              target="http://conference.ifla.org/past/2012/212-danies-en.pdf"/>.</bibl>
+          <bibl xml:id="fischer10"><editor>Franz Fischer</editor>, <editor>Christiane
+              Fritze</editor>, and <editor>Georg Vogeler</editor>, eds. <date>2010</date>. <title
+              level="m">Kodikologie und Paläographie im digitalen Zeitalter 2 (Codicology and
+              Palaeography in the Digital Age 2)</title>. <pubPlace>Norderstedt</pubPlace>:
+              <publisher>Books on Demand</publisher>.</bibl>
+          <bibl xml:id="magrini05"><author>Magrini, Sabina</author>, <author>Cesare Pasini</author>,
+            and <author>Franca Arduini</author>. <date>2005</date>. <title level="a">L’Italia e
+              Rinascimento virtuale</title>. <title level="j">Biblioteche Oggi</title>
+            <biblScope unit="volume">23</biblScope>(<biblScope unit="issue">4</biblScope>)
+              (<date>May</date>): <biblScope unit="page">23–33</biblScope>. <ptr
+              target="http://www.bibliotecheoggi.it/2005/20050402301.pdf"/>.</bibl>
+          <bibl xml:id="maruccio10"><author>Marcuccio, Roberto</author>. <date>2010</date>. <title
+              level="a">Catalogare e fare ricerca con Manus Online</title>. <title level="j"
+              >Biblioteche Oggi</title> (<date>July–August</date>): <biblScope unit="page"
+              >33–49</biblScope>. <ptr
+              target="http://manus.iccu.sbn.it/BibliotecheOggi_Marcuccio2010.pdf"/>.</bibl>
+          <bibl xml:id="milanese07"><author>Milanese, Guido</author>. <date>2007</date>. <title
+              level="a">XML e lo studio dei manoscritti. Linee di orientamento e un esempio di
+              applicazione.</title> In <title level="m">From Manuscript to Digital Text:Problems of
+              Interpretation and Markup. Proceedings of the Colloquium (Bologna, June 12,
+              2003)</title>, edited by <editor>Francesco Citti</editor> and <editor>Tommaso Del
+              Vecchio</editor>, <biblScope unit="page">71–91</biblScope>. <pubPlace>Rome</pubPlace>:
+              <publisher>Herder</publisher>.</bibl>
+          <bibl xml:id="petrucci01"><author>Petrucci, Armando</author>. <date>2001</date>. <title
+              level="m">La descrizione del manoscritto: Storia, problemi, modelli</title>.
+              <pubPlace>Rome</pubPlace>: <publisher>Carocci</publisher>.</bibl>
+          <bibl xml:id="rehbein09"><editor>Rehbein, Malte</editor>, <editor>Patrick Sahle</editor>,
+            and <editor>Torsten Schassan</editor>, eds. <date>2009</date>. <title level="m"
+              >Kodikologie und Paläographie im digitalen Zeitalter (Codicology and Palaeography in
+              the Digital Age)</title>. <pubPlace>Norderstedt</pubPlace>: <publisher>Books on
+              Demand</publisher>.</bibl>
+          <bibl xml:id="tei13"><orgName>TEI Consortium</orgName>. <date>2013</date>. <title
+              level="m">TEI P5: Guidelines for Electronic Text Encoding and Interchange</title>.
+              <edition>Version 2.5.0</edition>. Last updated July 26. <pubPlace>N.p.</pubPlace>:
+              <publisher>TEI Consortium</publisher>. <ptr
+              target="http://www.tei-c.org/Vault/P5/2.5.0/doc/tei-p5-doc/en/html/"/>.</bibl>
         </listBibl>
       </div>
     </back>

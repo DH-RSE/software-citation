@@ -5,10 +5,18 @@
    <teiHeader>
       <fileDesc>
          <titleStmt>
-            <title type="main">Handwritten Text Recognition Best Practice in the Beta maṣāḥǝft workflow</title>
-   <author>
-      <name><forename>Hizkiel</forename> <surname>Mitiku Alemayehu</surname></name>
-                  <affiliation>Hizkiel Mitiku Alemayehu graduated in Information Systems at Addis Ababa University and in Digital Humanities and Digital Knowledge at University of Bologna. His main interests concern programming and natural language processing. Hizkiel did his traineeship at the Hiob Ludolf Centre for Ethiopian and Eritrean Studies, Universität Hamburg. He dealt with Ethiopic HTR using Transkribus. Currently, he is a <roleName>Research Assistant</roleName> at the <orgName>University of Paderborn</orgName>.</affiliation>
+            <title type="main">Handwritten Text Recognition Best Practice in the Beta maṣāḥǝft
+               workflow</title>
+            <author>
+               <name><forename>Hizkiel</forename>
+                  <surname>Mitiku Alemayehu</surname></name>
+               <affiliation>Hizkiel Mitiku Alemayehu graduated in Information Systems at Addis Ababa
+                  University and in Digital Humanities and Digital Knowledge at University of
+                  Bologna. His main interests concern programming and natural language processing.
+                  Hizkiel did his traineeship at the Hiob Ludolf Centre for Ethiopian and Eritrean
+                  Studies, Universität Hamburg. He dealt with Ethiopic HTR using Transkribus.
+                  Currently, he is a <roleName>Research Assistant</roleName> at the
+                     <orgName>University of Paderborn</orgName>.</affiliation>
                <email>hizkiel.alemayehu@uni-paderborn.de</email>
             </author>
          </titleStmt>
@@ -17,7 +25,8 @@
             <date>02/02/2022</date>
             <availability>
                <licence target="https://creativecommons.org/licenses/by/4.0/">
-                  <p>For this publication a Creative Commons Attribution 4.0 International license has been granted by the author(s) who retain full copyright.</p>
+                  <p>For this publication a Creative Commons Attribution 4.0 International license
+                     has been granted by the author(s) who retain full copyright.</p>
                </licence>
             </availability>
          </publicationStmt>
@@ -58,129 +67,553 @@
    <text>
       <front>
          <div type="abstract" xml:id="abstract">
-            <p>This contribution describes the workflow used to transcribe Manuscripts from the Ethiopian and Eritrean Tradition. The goal of the workflow is to obtain a TEI file with an initial text transcription that profits from a wealth of machine-generated information collected through community-based contributions. The author sets the framework of interest of this effort to discuss available state-of-the-art options and the actual workflow implemented. It is argued that a workflow that prefers expert post-processing in the TEI instead of refinement of the preprocessing techniques is preferable for this specific use case. The publication of large quantities of text although, not 100% correct, when done in a collaboratively edited and open environment, can still be used and provide a user with information reusable for research.</p>
+            <p>This contribution describes the workflow used to transcribe Manuscripts from the
+               Ethiopian and Eritrean Tradition. The goal of the workflow is to obtain a TEI file
+               with an initial text transcription that profits from a wealth of machine-generated
+               information collected through community-based contributions. The author sets the
+               framework of interest of this effort to discuss available state-of-the-art options
+               and the actual workflow implemented. It is argued that a workflow that prefers expert
+               post-processing in the TEI instead of refinement of the preprocessing techniques is
+               preferable for this specific use case. The publication of large quantities of text
+               although, not 100% correct, when done in a collaboratively edited and open
+               environment, can still be used and provide a user with information reusable for
+               research.</p>
          </div>
          <div type="acknowledgements">
-            <p>This article was produced thanks to the support of the project <title level="u">Beta maṣāḥǝft: Manuscripts of Ethiopia and Eritrea (Schriftkultur des christlichen Äthiopiens und Eritreas: eine multimediale Forschungsumgebung)</title>, a long-term project funded within the framework of the Academiesʼ Programme (coordinated by the Union of the German Academies of Sciences and Humanities) under the survey of the Akademie der Wissenschaften in Hamburg. The project is hosted by the Hiob Ludolf Centre for Ethiopian Studies at the Universität Hamburg and is lead by Alessandro Bausi.</p>
+            <p>This article was produced thanks to the support of the project <title level="u">Beta
+                  maṣāḥǝft: Manuscripts of Ethiopia and Eritrea (Schriftkultur des christlichen
+                  Äthiopiens und Eritreas: eine multimediale Forschungsumgebung)</title>, a
+               long-term project funded within the framework of the Academiesʼ Programme
+               (coordinated by the Union of the German Academies of Sciences and Humanities) under
+               the survey of the Akademie der Wissenschaften in Hamburg. The project is hosted by
+               the Hiob Ludolf Centre for Ethiopian Studies at the Universität Hamburg and is lead
+               by Alessandro Bausi.</p>
          </div>
       </front>
       <body>
          <div xml:id="intro">
             <head>Introduction</head>
-            <p>The basis of any philological work, and to some extent also codicological work, is the transcription of the contents of the sources. In most cases for Ethiopian Studies these primary sources are manuscripts in the form of the codex. For each material witness of a given product of human intellect in writing, we can produce a TEI encoded transcription in the same way in which we can encode in TEI an edition of that text which is based upon those witnesses. If we start from the edition, we can virtually reconstruct the witnesses taken into consideration starting from a TEI encoded apparatus<note>See the EVT2 tool for the visualization of the critical edition at, accessed February 2, 2022, <ptr target="http://evt.labcd.unipi.it/"/>.</note>If we do not yet have an edition and are working out all the steps towards a digital edition with TEI, then we will start from the transcriptions of the manuscripts, which we will eventually collate with dedicated software,<note>Computer supported collation is a whole field of research, see many contributions in the volume edited by Andrews and Macé (<ref type="bibl" target="#mace">2014</ref>).</note> then analyze in order to have the ground knowledge to encode a critical edition. Transcriptions of the witnesses require specific knowledge and expertise and are often a long and time-consuming task.</p>
-            <p>The transcription stage is not an avoidable part of the work required to get sufficient acquaintance with a text to be able to carry out the editorial and philological work, so it is not in order to replace this step in the research process that technology comes into play, but only in the time-consuming aspects of it. Sometimes available witnesses abound and the textual tradition to be taken into consideration is simply too vast to assume a human can guarantee precision and consistency. The latter are areas where current technologies can help.</p>
-            <p>In this contribution I will describe how we are integrating transcription technologies in the <ref target="https://betamasaheft.eu/">Beta maṣāḥǝft research environment for the manuscripts from Ethiopia and Eritrea</ref>.<note>Accessed February 2, 2022, <ptr target="https://betamasaheft.eu/"/>. See <ref type="bibl" target="#liuzzo2019">Liuzzo 2019</ref>. The project Beta maṣāḥǝft: Manuscripts of Ethiopia and Eritrea (Schriftkultur des christlichen Äthiopiens und Eritreas: eine multimediale Forschungsumgebung) is a long-term project funded within the framework of the Academiesʼ Programme (coordinated by the Union of the German Academies of Sciences and Humanities) under survey of the Akademie der Wissenschaften in Hamburg. The project is hosted by the Hiob Ludolf Centre for Ethiopian Studies at the Universität Hamburg and is led by Prof. Alessandro Bausi.</note> In order to obtain a TEI file with an initial text transcription from manuscripts, to be published alongside the catalogue description of the manuscript itself, we have investigated a series of options, among which we have chosen to use the <ref target="https://transkribus.eu/Transkribus/">Transkribus</ref> sofware by READ Coop.<note>Accessed February 2, 2022, <ptr target="https://transkribus.eu/Transkribus/"/>.</note></p>
-            <p>The transcription matches and complements the cataloguing efforts of the project, which encodes in the <gi>teiHeader</gi> the description of the manuscript. Within <gi>msDesc</gi> the project is providing both new catalogue descriptions created directly in TEI, refined reworking of existing catalogue descriptions in historical catalogues, and TEI versions of catalogue descriptions originally done digitally but not in TEI.<note>On this process see <ref type="bibl" target="#reule2018">Reule 2018</ref>.</note> This involves a lot of restructuring of the source information, where, traditionally, a lot of text is copied in the catalogue descriptions, for example, to facilitate identification of intellectual contents which are not otherwise identified in the witness, e.g., by a clear title. TEI has all the tagging baggage to connect the actual text transcription with the description of features of the object described in <gi>msDesc</gi>, but, thinking of the work for an historical catalogue that involves copying from the former cataloguer transcription. Having a new transcription, based on autopsy or at least on the images of the manuscript would be preferable and technology as Transkribus allows one to obtain this transcription in an almost entirely automated way. Additionally, most of the internal referencing within a manuscript is done with the indication of the ranges of folios, and in TEI with <gi>locus</gi>. While normally a transcription either in an historical catalogue, or done by a researcher by hand, seldom records more than the folio ranges, automated techniques can identify text areas, like columns, for example, and each line, and have the necessary information to encode the <gi>pb</gi>, <gi>cb</gi> and <gi>lb</gi> which would be needed to encode the structure of the manuscript and would be a tedious task, when manually done. Having the structured text completed by the information about the layout, linked to the images, already in the source and linking to it with the <gi>locus</gi> elements allows to effectively point to an exact section of the transcribed text. The syntax of the textual content of the attributes <att>from</att>, <att>to</att> and <att>target</att> is defined by the project’s Guidelines and so is the use of the above elements, which make the references machine operable. <note>This is the case for Beta maṣāḥǝft, which implements this experimentally, via the <ref target="https://distributed-text-services.github.io/">Distributed Text Services</ref> API Specifications. See <ref type="bibl" target="#bmgl">Beta maṣāḥǝft Guidelines</ref>, accessed February 2, 2022, <ptr target="https://betamasaheft.eu/Guidelines/?id=references"/>.</note>
+            <p>The basis of any philological work, and to some extent also codicological work, is
+               the transcription of the contents of the sources. In most cases for Ethiopian Studies
+               these primary sources are manuscripts in the form of the codex. For each material
+               witness of a given product of human intellect in writing, we can produce a TEI
+               encoded transcription in the same way in which we can encode in TEI an edition of
+               that text which is based upon those witnesses. If we start from the edition, we can
+               virtually reconstruct the witnesses taken into consideration starting from a TEI
+               encoded apparatus<note>See the EVT2 tool for the visualization of the critical
+                  edition at, accessed February 2, 2022, <ptr target="http://evt.labcd.unipi.it/"
+                  />.</note>If we do not yet have an edition and are working out all the steps
+               towards a digital edition with TEI, then we will start from the transcriptions of the
+               manuscripts, which we will eventually collate with dedicated software,<note>Computer
+                  supported collation is a whole field of research, see many contributions in the
+                  volume edited by Andrews and Macé (<ref type="bibl" target="#mace"
+                  >2014</ref>).</note> then analyze in order to have the ground knowledge to encode
+               a critical edition. Transcriptions of the witnesses require specific knowledge and
+               expertise and are often a long and time-consuming task.</p>
+            <p>The transcription stage is not an avoidable part of the work required to get
+               sufficient acquaintance with a text to be able to carry out the editorial and
+               philological work, so it is not in order to replace this step in the research process
+               that technology comes into play, but only in the time-consuming aspects of it.
+               Sometimes available witnesses abound and the textual tradition to be taken into
+               consideration is simply too vast to assume a human can guarantee precision and
+               consistency. The latter are areas where current technologies can help.</p>
+            <p>In this contribution I will describe how we are integrating transcription
+               technologies in the <ref target="https://betamasaheft.eu/">Beta maṣāḥǝft research
+                  environment for the manuscripts from Ethiopia and Eritrea</ref>.<note>Accessed
+                  February 2, 2022, <ptr target="https://betamasaheft.eu/"/>. See <ref type="bibl"
+                     target="#liuzzo2019">Liuzzo 2019</ref>. The project Beta maṣāḥǝft: Manuscripts
+                  of Ethiopia and Eritrea (Schriftkultur des christlichen Äthiopiens und Eritreas:
+                  eine multimediale Forschungsumgebung) is a long-term project funded within the
+                  framework of the Academiesʼ Programme (coordinated by the Union of the German
+                  Academies of Sciences and Humanities) under survey of the Akademie der
+                  Wissenschaften in Hamburg. The project is hosted by the Hiob Ludolf Centre for
+                  Ethiopian Studies at the Universität Hamburg and is led by Prof. Alessandro
+                  Bausi.</note> In order to obtain a TEI file with an initial text transcription
+               from manuscripts, to be published alongside the catalogue description of the
+               manuscript itself, we have investigated a series of options, among which we have
+               chosen to use the <ref target="https://transkribus.eu/Transkribus/">Transkribus</ref>
+               sofware by READ Coop.<note>Accessed February 2, 2022, <ptr
+                     target="https://transkribus.eu/Transkribus/"/>.</note></p>
+            <p>The transcription matches and complements the cataloguing efforts of the project,
+               which encodes in the <gi>teiHeader</gi> the description of the manuscript. Within
+                  <gi>msDesc</gi> the project is providing both new catalogue descriptions created
+               directly in TEI, refined reworking of existing catalogue descriptions in historical
+               catalogues, and TEI versions of catalogue descriptions originally done digitally but
+               not in TEI.<note>On this process see <ref type="bibl" target="#reule2018">Reule
+                     2018</ref>.</note> This involves a lot of restructuring of the source
+               information, where, traditionally, a lot of text is copied in the catalogue
+               descriptions, for example, to facilitate identification of intellectual contents
+               which are not otherwise identified in the witness, e.g., by a clear title. TEI has
+               all the tagging baggage to connect the actual text transcription with the description
+               of features of the object described in <gi>msDesc</gi>, but, thinking of the work for
+               an historical catalogue that involves copying from the former cataloguer
+               transcription. Having a new transcription, based on autopsy or at least on the images
+               of the manuscript would be preferable and technology as Transkribus allows one to
+               obtain this transcription in an almost entirely automated way. Additionally, most of
+               the internal referencing within a manuscript is done with the indication of the
+               ranges of folios, and in TEI with <gi>locus</gi>. While normally a transcription
+               either in an historical catalogue, or done by a researcher by hand, seldom records
+               more than the folio ranges, automated techniques can identify text areas, like
+               columns, for example, and each line, and have the necessary information to encode the
+                  <gi>pb</gi>, <gi>cb</gi> and <gi>lb</gi> which would be needed to encode the
+               structure of the manuscript and would be a tedious task, when manually done. Having
+               the structured text completed by the information about the layout, linked to the
+               images, already in the source and linking to it with the <gi>locus</gi> elements
+               allows to effectively point to an exact section of the transcribed text. The syntax
+               of the textual content of the attributes <att>from</att>, <att>to</att> and
+                  <att>target</att> is defined by the project’s Guidelines and so is the use of the
+               above elements, which make the references machine operable. <note>This is the case
+                  for Beta maṣāḥǝft, which implements this experimentally, via the <ref
+                     target="https://distributed-text-services.github.io/">Distributed Text
+                     Services</ref> API Specifications. See <ref type="bibl" target="#bmgl">Beta
+                     maṣāḥǝft Guidelines</ref>, accessed February 2, 2022, <ptr
+                     target="https://betamasaheft.eu/Guidelines/?id=references"/>.</note>
             </p>
-            <p>The output of any automated process will never be perfect. However, we have experienced, and learned, as it can be seen in the following section, that one can get very close to a perfect result, in facts. Researchers can benefit from the wealth of information which is generated by the software even if it is not entirely perfect, and a quicker and less perfect output is preferable in the current state of research and workflows development compared to a high expenditure of time in preprocessing to reach perfection in the automated process, where editions are badly needed but very time consuming. Besides the above-mentioned benefits, the fact that this is not a replaceable step in the research process, but one that needs to be improved, remains of the utmost importance. The editor of a text will always want to check its transcriptions with care and we assume no editor should ever trust a machine-run transcription, even if it claims to be absolutely perfect. This step, which, from a programmer’s point of view, is post-processing of software output, is from the editor’s point of view, a vital step that cannot be delegated to a machine in its entirety and provides a way to isolate and make mechanically reproducible a distinguishing task of the work. The editor will want and need to do this post-processing, in any case so, the difference is only in how quickly the editor can get going with it. Moreover, when the imperfect-but-usable transcription is made available in a way that makes it editable in a controlled but open way, like in the Beta maṣāḥǝft research environment, it becomes a further place of collaboration by different types of users who can, for example, fix errors and imperfections, add semantic markup, etc.</p>
-            <p>Once a partially perfect transcription of a source is published, it also becomes useful, indexed, and searchable, for the process of encoding new items descriptions, by providing ways to match text, which is still much less available than the description of it and its support in this context. Especially for the Christian Oriental tradition, this is a vital support for text identification.</p>
-            <p>The following steps have been taken to carry out an investigation of the possibilities for the automated production of text transcriptions based on images of manuscripts, before we opted for Transkribus and its integration in the workflow to make texts available in the Beta maṣāḥǝft research environment.</p>
+            <p>The output of any automated process will never be perfect. However, we have
+               experienced, and learned, as it can be seen in the following section, that one can
+               get very close to a perfect result, in facts. Researchers can benefit from the wealth
+               of information which is generated by the software even if it is not entirely perfect,
+               and a quicker and less perfect output is preferable in the current state of research
+               and workflows development compared to a high expenditure of time in preprocessing to
+               reach perfection in the automated process, where editions are badly needed but very
+               time consuming. Besides the above-mentioned benefits, the fact that this is not a
+               replaceable step in the research process, but one that needs to be improved, remains
+               of the utmost importance. The editor of a text will always want to check its
+               transcriptions with care and we assume no editor should ever trust a machine-run
+               transcription, even if it claims to be absolutely perfect. This step, which, from a
+               programmer’s point of view, is post-processing of software output, is from the
+               editor’s point of view, a vital step that cannot be delegated to a machine in its
+               entirety and provides a way to isolate and make mechanically reproducible a
+               distinguishing task of the work. The editor will want and need to do this
+               post-processing, in any case so, the difference is only in how quickly the editor can
+               get going with it. Moreover, when the imperfect-but-usable transcription is made
+               available in a way that makes it editable in a controlled but open way, like in the
+               Beta maṣāḥǝft research environment, it becomes a further place of collaboration by
+               different types of users who can, for example, fix errors and imperfections, add
+               semantic markup, etc.</p>
+            <p>Once a partially perfect transcription of a source is published, it also becomes
+               useful, indexed, and searchable, for the process of encoding new items descriptions,
+               by providing ways to match text, which is still much less available than the
+               description of it and its support in this context. Especially for the Christian
+               Oriental tradition, this is a vital support for text identification.</p>
+            <p>The following steps have been taken to carry out an investigation of the
+               possibilities for the automated production of text transcriptions based on images of
+               manuscripts, before we opted for Transkribus and its integration in the workflow to
+               make texts available in the Beta maṣāḥǝft research environment.</p>
          </div>
          <div xml:id="SoA">
             <head>Related works</head>
             <div xml:id="RT">
                <head>Research on Text Recognition</head>
-               <p>A few studies have been conducted about handwriting character recognition for Ethiopic, the more comprehensive work being the one done by <ref type="bibl" target="#YaregalBigun2008">Assabie and Bigun 2008</ref>. In their work the researchers present writer-independent Amharic word recognition for offline handwritten text. The recognition phase does not require the segmentation of characters but only requires text line detection and extraction of structural features in each text line.</p>
-               <p>More recent work done by Fitehalew Ashagrie Demile built an Ethiopic character recognition system
-                  using <soCalled>deep convolutional neural network</soCalled> (<ref type="bibl" target="#SekerogluAshagrie2019">Sekeroglu and Ashagrie 2019</ref>). They obtained an accuracy of 99.39% with a model loss of 0.044 which demonstrates its efficiency. Another Research performed by <ref type="bibl" target="#GondereEtAl2019">Gondere et al. 2019</ref> designs for the first time a model for Amharic hand-written character recognition using a convolutional neural network. The dataset was organized from collected sample handwritten documents and data augmentation was applied for machine learning. The model was further enhanced using multi-task learning from the relationships of the characters.</p>
-            <p>These models are designed for Amharic, not for Classical Ethiopic, but could theoretically be reused, given the Fidal syllabary is the same for both languages. However, they are not available for this purpose or are too complex to replicate to any degree, thus becoming for our practical purposes unusable. We have thus investigated other options.</p>
-             </div>
+               <p>A few studies have been conducted about handwriting character recognition for
+                  Ethiopic, the more comprehensive work being the one done by <ref type="bibl"
+                     target="#YaregalBigun2008">Assabie and Bigun 2008</ref>. In their work the
+                  researchers present writer-independent Amharic word recognition for offline
+                  handwritten text. The recognition phase does not require the segmentation of
+                  characters but only requires text line detection and extraction of structural
+                  features in each text line.</p>
+               <p>More recent work done by Fitehalew Ashagrie Demile built an Ethiopic character
+                  recognition system using <soCalled>deep convolutional neural network</soCalled>
+                     (<ref type="bibl" target="#SekerogluAshagrie2019">Sekeroglu and Ashagrie
+                     2019</ref>). They obtained an accuracy of 99.39% with a model loss of 0.044
+                  which demonstrates its efficiency. Another Research performed by <ref type="bibl"
+                     target="#GondereEtAl2019">Gondere et al. 2019</ref> designs for the first time
+                  a model for Amharic hand-written character recognition using a convolutional
+                  neural network. The dataset was organized from collected sample handwritten
+                  documents and data augmentation was applied for machine learning. The model was
+                  further enhanced using multi-task learning from the relationships of the
+                  characters.</p>
+               <p>These models are designed for Amharic, not for Classical Ethiopic, but could
+                  theoretically be reused, given the Fidal syllabary is the same for both languages.
+                  However, they are not available for this purpose or are too complex to replicate
+                  to any degree, thus becoming for our practical purposes unusable. We have thus
+                  investigated other options.</p>
+            </div>
             <div xml:id="tools">
-            <head>HTR Tools and Computer Vision Libraries</head>
-            <div xml:id="opencv">
-               <head>OpenCV</head>
-               <p>OpenCV is an open source computer vision and machine learning software library. It is primarily used to detect an object. Specific to OCR technologies, OpenCV helps to perform image segmentation. The output of the image segmentation is an input for the model training stage.</p>
-              <p>Saritha et al. (<ref type="bibl" target="#saritha">2020</ref>) used OpenCV for preprocessing and segmenting an image. An image is read and then stored in multiple copies for performing different operations. They use the library to read images, detect the letters, crop and resize.</p>
-               <p>Then they train a Convolutional Neural Network (CNN) model<note><p>This means that, after preprocessing, the researchers train a model that takes a pixel matrix of an image to extract image features (such as edges, lines, corners and abstract features). Then reduce the features to the spatial volume.  Finally, the images (in our case letters) will be labelled and classified accordingly.</p></note> using the preprocessed
-                     and segmented image. This model gives them the training accuracy of 91.84% and
-                     the test accuracy of 96.26%.</p>
-              <p>It is a known fact that in relation to image quality most historical documents suffer some common problems which makes the recognition process difficult. Therefore, in order to eliminate undesired noise in an image and prepare the image for the next stage, preprocessing is crucial. For this stage, one can use OpenCV for cleaning a given image. Thus the application of OpenCV for HTR technologies is limited to preprocessing stage.</p>
+               <head>HTR Tools and Computer Vision Libraries</head>
+               <div xml:id="opencv">
+                  <head>OpenCV</head>
+                  <p>OpenCV is an open source computer vision and machine learning software library.
+                     It is primarily used to detect an object. Specific to OCR technologies, OpenCV
+                     helps to perform image segmentation. The output of the image segmentation is an
+                     input for the model training stage.</p>
+                  <p>Saritha et al. (<ref type="bibl" target="#saritha">2020</ref>) used OpenCV for
+                     preprocessing and segmenting an image. An image is read and then stored in
+                     multiple copies for performing different operations. They use the library to
+                     read images, detect the letters, crop and resize.</p>
+                  <p>Then they train a Convolutional Neural Network (CNN) model<note><p>This means
+                           that, after preprocessing, the researchers train a model that takes a
+                           pixel matrix of an image to extract image features (such as edges, lines,
+                           corners and abstract features). Then reduce the features to the spatial
+                           volume. Finally, the images (in our case letters) will be labelled and
+                           classified accordingly.</p></note> using the preprocessed and segmented
+                     image. This model gives them the training accuracy of 91.84% and the test
+                     accuracy of 96.26%.</p>
+                  <p>It is a known fact that in relation to image quality most historical documents
+                     suffer some common problems which makes the recognition process difficult.
+                     Therefore, in order to eliminate undesired noise in an image and prepare the
+                     image for the next stage, preprocessing is crucial. For this stage, one can use
+                     OpenCV for cleaning a given image. Thus the application of OpenCV for HTR
+                     technologies is limited to preprocessing stage.</p>
+               </div>
+               <div xml:id="googleaivision">
+                  <head>Google AI Vision</head>
+                  <p>Cloud Vision API’s text recognition feature is able to detect a wide variety of
+                     languages and can detect multiple languages within a single image. It includes
+                     training data for Amharic language, which however it is not complete.</p>
+                  <p>Google technology, has been recently revised for Syriac by Ephrem A. Ishac, in
+                     two blog posts (<ref type="bibl" target="#ephrem1">2020a</ref>, <ref
+                        type="bibl" target="#ephrem2">2020b</ref>) with encouraging results. Our
+                     tests for Ethiopic have not yield similarly encouraging results, especially
+                     when it comes to large quantities of images. Although these solutions are good
+                     for small tasks they do not seem to be scalable enough or to be able to become
+                     part of a stable workflow for a large collaborative project.</p>
+               </div>
+               <div xml:id="tesseract">
+                  <head>Tesseract</head>
+                  <p>Tesseract was initially released as open source in 2005 and is still under
+                     development. The newest version 4 of Tesseract adds support for deep network
+                     architectures (<ref type="bibl" target="#calamari">Wick et al. 2020</ref>).</p>
+                  <p>This OCR engine has Unicode (UTF-8) support and can recognize more than 100
+                     languages out of the box. Tesseract supports various output formats: plain
+                     text, OCR (HTML), PDF, invisible-text-only PDF, TSV. The master branch also has
+                     experimental support for ALTO (XML) output.</p>
+                  <p>Other OCR-based tasks have been carried out for Classical Ethiopic, and
+                     satisfactory results have been informally reported, but the investigation run
+                     in this context lead to a non-reproducible workflow, which would require many
+                     additional steps to get to our desired output. OCR systems remain good
+                     individual support especially for printed books and for sources in more than
+                     one script.</p>
+               </div>
+               <div xml:id="transkri">
+                  <head>Transkribus</head>
+                  <p>This software is freely accessible and has a subscription model based on
+                     credits. The platform was created within the framework of the EU projects
+                     tranScriptorium and READ (Recognition and Enrichment of Archival Documents -
+                     2016–2019). It was developed by the University of Innsbruck and the
+                     Digitization and Electronic Archiving Group. Since July 1, 2019, the platform
+                     has been operated and further developed by the European cooperative READ-COOP
+                        (<ref type="bibl" target="#transkribus">Guenther et al. 2019</ref>). Tools
+                     from various research groups from all over Europe are integrated into the
+                     platform. The Pattern Recognition and Human Language Technology (PRHLT) group
+                     of the Universitat Politècnica de València and the CITlab group of the
+                     University of Rostock should be mentioned in particular.</p>
+                  <p>Transkribus comes as an <soCalled>expert tool</soCalled> in its downloadable
+                     version and its online version,<note>Accessed February 2, 2022, <ptr
+                           target="https://transkribus.eu/lite/"/>.</note> and it allows to upload
+                     images privately and perform the transcription task without neural networks
+                     knowledge, but just following concise and easily retrievable documentation.</p>
+                  <p>The expert tool offers in one place both the layout recognition, HTR model
+                     training and the application of the HTR model of choice, thus constituting a
+                     real one-stop-shop for the task of transcription of images. On top of these
+                     specialized tools, the export functionality includes a TEI export which
+                     produces not only the necessary text structuring elements, but also the
+                        <gi>facsimile</gi> elements identified and anchored to them. Not only, then,
+                     the text is transcribed, it is also correctly structured and aligned to the
+                     exact portions of the images on which the transcription is based. This is an
+                     additional benefit that the researcher obtains, and which can be leveraged by
+                     any other application reusing that TEI, to retrieve for a given portion of text
+                     referred to in <gi>locus</gi> not only the corresponding correct piece of text
+                     transcription but also the correct images or portions of image on which the
+                     transcription is based. This is not entirely unproblematic of course, as we
+                     shall note in the following section.</p>
+               </div>
             </div>
-            <div xml:id="googleaivision">
-               <head>Google AI Vision</head>
-               <p>Cloud Vision API’s text recognition feature is able to detect a wide variety of languages and can detect multiple languages within a single image. It includes training data for Amharic language, which however it is not complete.</p>
-               <p>Google technology, has been recently revised for Syriac by Ephrem A. Ishac, in two blog posts (<ref type="bibl" target="#ephrem1">2020a</ref>, <ref type="bibl" target="#ephrem2">2020b</ref>) with encouraging results. Our tests for Ethiopic have not yield similarly encouraging results, especially when it comes to large quantities of images. Although these solutions are good for small tasks they do not seem to be scalable enough or to be able to become part of a stable workflow for a large collaborative project.</p>
-            </div>
-            <div xml:id="tesseract">
-               <head>Tesseract</head>
-               <p>Tesseract was initially released as open source in 2005 and is still under development. The newest version 4 of Tesseract adds support for deep network architectures (<ref type="bibl" target="#calamari">Wick et al. 2020</ref>).</p>
-               <p>This OCR engine has Unicode (UTF-8) support and can recognize more than 100 languages out of the box. Tesseract supports various output formats: plain text, OCR (HTML), PDF, invisible-text-only PDF, TSV. The master branch also has experimental support for ALTO (XML) output.</p>
-               <p>Other OCR-based tasks have been carried out for Classical Ethiopic, and satisfactory results have been informally reported, but the  investigation run in this context lead to a non-reproducible workflow, which would require many additional steps to get to our desired output. OCR systems remain good individual support especially for printed books and for sources in more than one script.</p>
-            </div>
-            <div xml:id="transkri">
-               <head>Transkribus</head>
-               <p>This software is freely accessible and has a subscription model based on credits. The platform was created within the framework of the EU projects tranScriptorium and READ (Recognition and Enrichment of Archival Documents - 2016–2019). It was developed by the University of Innsbruck and the Digitization and Electronic Archiving Group. Since July 1, 2019, the platform has been operated and further developed by the European cooperative READ-COOP (<ref type="bibl" target="#transkribus">Guenther et al. 2019</ref>). Tools from various research groups from all over Europe are integrated into the platform. The Pattern Recognition and Human Language Technology (PRHLT) group of the Universitat Politècnica de València and the CITlab group of the University of Rostock should be mentioned in particular.</p>
-               <p>Transkribus comes as an <soCalled>expert tool</soCalled> in its downloadable version and its online version,<note>Accessed February 2, 2022, <ptr target="https://transkribus.eu/lite/"/>.</note> and it allows to upload images privately and perform the transcription task without neural networks knowledge, but just following concise and easily retrievable documentation.</p>
-               <p>The expert tool offers in one place both the layout recognition, HTR model training and the application of the HTR model of choice, thus constituting a real one-stop-shop for the task of transcription of images. On top of these specialized tools, the export functionality includes a TEI export which produces not only the necessary text structuring elements, but also the <gi>facsimile</gi> elements identified and anchored to them. Not only, then, the text is transcribed, it is also correctly structured and aligned to the exact portions of the images on which the transcription is based. This is an additional benefit that the researcher obtains, and which can be leveraged by any other application reusing that TEI, to retrieve for a given portion of text referred to in <gi>locus</gi> not only the corresponding correct piece of text transcription but also the correct images or portions of image on which the transcription is based. This is not entirely unproblematic of course, as we shall note in the following section.</p>
-            </div>
-         </div>
          </div>
          <div xml:id="experiment">
             <head>Experiment</head>
-            <p>For testing any of the above tools involving the training of a model, shortage of initial training data was the main roadblock. Most of the techniques and tools mentioned use deep learning for training models. This means that they require correct training data. However, there is no organized and freely available dataset for Ethiopic handwriting character recognition.</p>
-            <p>Thus, the first stage for developing a model was gathering the data and preparing an initial dataset. Also for this aspect, Transkribus proved superior to all other options offering support also for this step. Colleagues which we called to contribute could be added to a collection, share their images without publishing them and add their transcriptions in the tool with a very mild learning curve.</p>
-            <p>Within Transkribus we have trained a model called <title level="u">Manuscripts from Ethiopia and Eritrea in Classical Ethiopic (Gǝʿǝz)</title>.<note>See, accessed February 2, 2022, <ptr target="https://readcoop.eu/model/ethiopic-classical-ethiopic-scripts-from-ethiopia-and-eritrea/"/>.</note> Checked transcriptions for the training set have been kindly provided by</p>
+            <p>For testing any of the above tools involving the training of a model, shortage of
+               initial training data was the main roadblock. Most of the techniques and tools
+               mentioned use deep learning for training models. This means that they require correct
+               training data. However, there is no organized and freely available dataset for
+               Ethiopic handwriting character recognition.</p>
+            <p>Thus, the first stage for developing a model was gathering the data and preparing an
+               initial dataset. Also for this aspect, Transkribus proved superior to all other
+               options offering support also for this step. Colleagues which we called to contribute
+               could be added to a collection, share their images without publishing them and add
+               their transcriptions in the tool with a very mild learning curve.</p>
+            <p>Within Transkribus we have trained a model called <title level="u">Manuscripts from
+                  Ethiopia and Eritrea in Classical Ethiopic (Gǝʿǝz)</title>.<note>See, accessed
+                  February 2, 2022, <ptr
+                     target="https://readcoop.eu/model/ethiopic-classical-ethiopic-scripts-from-ethiopia-and-eritrea/"
+                  />.</note> Checked transcriptions for the training set have been kindly provided
+               by</p>
             <list>
-               <item>Alessandro Bausi for <ref target="https://betamasaheft.eu/ESum039">Bǝḥerāwi Kǝllǝlāwi Mangǝśti Tǝgrāy, ʿUrā Qirqos, UM-039</ref>,<note>See Alessandro Bausi, Denis Nosnitsin, Pietro Maria Liuzzo, and Eugenia Sokolinski, <title level="a">Bǝḥerāwi Kǝllǝlāwi Mangǝśti Tǝgrāy, ʿUrā Qirqos, UM-039</title>, in <title level="j">Die Schriftkultur des christlichen Äthiopiens und Eritreas: Eine multimediale Forschungsumgebung / Beta maṣāḥǝft</title>, edited by Alessandro Bausi, accessed Februry 2, 2022, <ptr target="https://betamasaheft.eu/ESum039"/>.</note> ff. 16vb-29va;</item>
-               <item>Antonella Brita for Tǝgrāy, Dagwʿa Tamben, Dur Ambā Śǝllāsse, MS 002, ff. 101va-110ra;</item>
-               <item>Dorothea Reule for <ref target="https://betamasaheft.eu/ESqdq004">Gāntā ʾAfašum, Qandāʿro Qǝddus Qirqos, QDQ-004</ref>,<note>See Susanne Hummel, Denis Nosnitsin, Dorothea Reule, Massimo Villa, Pietro Maria Liuzzo, and Hizkiel Mitiku<title level="a">Gāntā ʾAfašum, Qandāʿro Qǝddus Qirqos, QDQ-004</title>, in <title level="j">Die Schriftkultur des christlichen Äthiopiens und Eritreas: Eine multimediale Forschungsumgebung / Beta maṣāḥǝft</title>, edited by Alessandro Bausi, accessed February 2, 2022, <ptr target="https://betamasaheft.eu/ESqdq004"/>.</note> ff. 97ra-101vb, 104ra-109rb;</item>
-               <item>Nafisa Valieva for <ref target="https://betamasaheft.eu/BLorient718">London, British Library, BL Oriental 718</ref>,<note>See Nafisa Valieva, Dorothea Reule, Eugenia Sokolinski, and Pietro Maria Liuzzo <title level="a">London, British Library, BL Oriental 718</title>, in <title level="j">Die Schriftkultur des christlichen Äthiopiens und Eritreas: Eine multimediale Forschungsumgebung / Beta maṣāḥǝft</title>, edited by Alessandro Bausi, accessed February 2, 2022, <ptr target="https://betamasaheft.eu/BLorient718"/>.</note> ff. 1ra-7vb, images British Library;</item>
-               <item>Several parts of manuscripts transcribed by Jeremy Brown and pertaining to the <ref target="https://betamasaheft.eu/LIT3615Miracle">Miracle of the Cannibal of Qemer (CAe 3615)</ref>;<note>Especially generous in sharing images and related transcriptions were, Steve Delamarter and Ralph Lee for the Ethiopic Manuscript Imaging Project and Wendy Belcher of the Princeton Ethiopic Miracles of Mary project.</note></item>
-               <item>Other important but more limited contributions.<note>Other transcriptions with relative images where contributed by Antonella Brita, Alessandro Bausi, Dorothea Reule, and Denis Nosnitsin.</note></item>
+               <item>Alessandro Bausi for <ref target="https://betamasaheft.eu/ESum039">Bǝḥerāwi
+                     Kǝllǝlāwi Mangǝśti Tǝgrāy, ʿUrā Qirqos, UM-039</ref>,<note>See Alessandro
+                     Bausi, Denis Nosnitsin, Pietro Maria Liuzzo, and Eugenia Sokolinski, <title
+                        level="a">Bǝḥerāwi Kǝllǝlāwi Mangǝśti Tǝgrāy, ʿUrā Qirqos, UM-039</title>,
+                     in <title level="j">Die Schriftkultur des christlichen Äthiopiens und Eritreas:
+                        Eine multimediale Forschungsumgebung / Beta maṣāḥǝft</title>, edited by
+                     Alessandro Bausi, accessed Februry 2, 2022, <ptr
+                        target="https://betamasaheft.eu/ESum039"/>.</note> ff. 16vb-29va;</item>
+               <item>Antonella Brita for Tǝgrāy, Dagwʿa Tamben, Dur Ambā Śǝllāsse, MS 002, ff.
+                  101va-110ra;</item>
+               <item>Dorothea Reule for <ref target="https://betamasaheft.eu/ESqdq004">Gāntā
+                     ʾAfašum, Qandāʿro Qǝddus Qirqos, QDQ-004</ref>,<note>See Susanne Hummel, Denis
+                     Nosnitsin, Dorothea Reule, Massimo Villa, Pietro Maria Liuzzo, and Hizkiel
+                        Mitiku<title level="a">Gāntā ʾAfašum, Qandāʿro Qǝddus Qirqos,
+                        QDQ-004</title>, in <title level="j">Die Schriftkultur des christlichen
+                        Äthiopiens und Eritreas: Eine multimediale Forschungsumgebung / Beta
+                        maṣāḥǝft</title>, edited by Alessandro Bausi, accessed February 2, 2022,
+                        <ptr target="https://betamasaheft.eu/ESqdq004"/>.</note> ff. 97ra-101vb,
+                  104ra-109rb;</item>
+               <item>Nafisa Valieva for <ref target="https://betamasaheft.eu/BLorient718">London,
+                     British Library, BL Oriental 718</ref>,<note>See Nafisa Valieva, Dorothea
+                     Reule, Eugenia Sokolinski, and Pietro Maria Liuzzo <title level="a">London,
+                        British Library, BL Oriental 718</title>, in <title level="j">Die
+                        Schriftkultur des christlichen Äthiopiens und Eritreas: Eine multimediale
+                        Forschungsumgebung / Beta maṣāḥǝft</title>, edited by Alessandro Bausi,
+                     accessed February 2, 2022, <ptr target="https://betamasaheft.eu/BLorient718"
+                     />.</note> ff. 1ra-7vb, images British Library;</item>
+               <item>Several parts of manuscripts transcribed by Jeremy Brown and pertaining to the
+                     <ref target="https://betamasaheft.eu/LIT3615Miracle">Miracle of the Cannibal of
+                     Qemer (CAe 3615)</ref>;<note>Especially generous in sharing images and related
+                     transcriptions were, Steve Delamarter and Ralph Lee for the Ethiopic Manuscript
+                     Imaging Project and Wendy Belcher of the Princeton Ethiopic Miracles of Mary
+                     project.</note></item>
+               <item>Other important but more limited contributions.<note>Other transcriptions with
+                     relative images where contributed by Antonella Brita, Alessandro Bausi,
+                     Dorothea Reule, and Denis Nosnitsin.</note></item>
             </list>
-            <p>Because the style of manuscripts writing is changing over time, we have opted for training a generic model, and thus fed to the training a mixture of different manuscripts and styles.<note>See <ref type="bibl" target="#SiegbertUhlig1990">Uhlig 1990</ref> for the palaeography of Ethiopic manuscripts.</note> The machine learning is sensitive to the quality of the images, and we have paid some attention to the diversity of types of images, avoiding however to feed very good images to the system, knowing that is often not what users will have. A machine learning algorithm that is trained using the data set of a specific period will not be able to work for other manuscripts, but this mixed one, maybe a good basis for more specific models to be trained and made available in the future. Ethiopic manuscripts are still produced today and the writing style is evolving, especially in conjunction with phenomena such as the production of manuscripts on parchment based on printed editions. A machine learning algorithm cannot take palaeography of manuscripts into consideration, but from a core model, a user could transcribe a small portion of its manuscript, train a specific model based on the generic one and perform the rest of the transcription with higher precision and correctness, specific to the image set.</p>
+            <p>Because the style of manuscripts writing is changing over time, we have opted for
+               training a generic model, and thus fed to the training a mixture of different
+               manuscripts and styles.<note>See <ref type="bibl" target="#SiegbertUhlig1990">Uhlig
+                     1990</ref> for the palaeography of Ethiopic manuscripts.</note> The machine
+               learning is sensitive to the quality of the images, and we have paid some attention
+               to the diversity of types of images, avoiding however to feed very good images to the
+               system, knowing that is often not what users will have. A machine learning algorithm
+               that is trained using the data set of a specific period will not be able to work for
+               other manuscripts, but this mixed one, maybe a good basis for more specific models to
+               be trained and made available in the future. Ethiopic manuscripts are still produced
+               today and the writing style is evolving, especially in conjunction with phenomena
+               such as the production of manuscripts on parchment based on printed editions. A
+               machine learning algorithm cannot take palaeography of manuscripts into
+               consideration, but from a core model, a user could transcribe a small portion of its
+               manuscript, train a specific model based on the generic one and perform the rest of
+               the transcription with higher precision and correctness, specific to the image
+               set.</p>
          </div>
          <div xml:id="training">
             <head>Training a model in Transkribus</head>
-            <p>Gathering data to train an HTR model in Transkribus was not easy. Researchers were directly asked to contribute images of which they had already done the correct transcription. Sets of images with the relative transcription was thus obtained thanks to the generosity of contributors listed above.</p>
-            <p>As stated earlier, we have trained a generic model using various styles and manuscripts. The simple fact of having the images and the transcriptions was not enough of course. These needed to be cleaned up at least for what concerns the file naming before being uploaded to the expert tool. After that, the layout analysis was carried out and hand-fixed. This process took some weeks since the diversity of the datasets brought with it also a series of issues in this step, like, for example, the recognition of the folding in the center of an image of an opening as one text area, or the lack of recognition of rubricated text.</p>
-            <p>Once the alignment was fixed and satisfactory we entered the transcriptions. These often came as running text in a word file and had to be copy-pasted to each line box in the expert tool with a tedious process which however led also to the discovery of several errors in the hand-made and <soCalled>correct</soCalled> transcription for the validation set, thus bringing a further benefit to the contributors, while demonstrating an area of the workflow where the precision of the computer-assisted transcription could be already visible.</p>
-            <p>The model was initially trained with a smaller dataset of about 15k words, with the intent to use it as a base to produce transcriptions which the colleagues would have checked. Two tests of this kind have however shown us that it took us less time to enter more of the available transcription by hand as discussed above, than to wait for the available time of the colleagues to fix the work of the machine, since we intended to train the model again. After three months with a full-time dedicated person, we had more than 50k words in the Transkribus expert tool, and we could train a model which could be made public, since this is the unofficial threshold to make a model available to everyone.</p>
-            <p>The features of the final model can be seen in <ptr target="#fig_1" type="crossref"/>.</p>
-               <figure xml:id="fig_1">
-                  <graphic url="media/image1.png" height="150px" width="250px"/>
-                  <head type="legend">The features of the final model</head>
-               </figure>
-            <p>As can be seen from the table the Character Error Rate (CER) is below 6%, with both the train and the test set. It means that it can be expected on average that using this model less than one in 25 letters will be recognized incorrectly.</p>
-            <p>Most of the errors that occur during automatic transcription are related to diacritic signs and rubricated texts and are thus also easily identifiable.</p>
-            <p>We still plan to train the model again as more correct transcriptions become available, hopefully as corrections of the transcriptions produced with this model. Once the model is publicly available eventually anyone will be able to do so.</p>
-          </div>
+            <p>Gathering data to train an HTR model in Transkribus was not easy. Researchers were
+               directly asked to contribute images of which they had already done the correct
+               transcription. Sets of images with the relative transcription was thus obtained
+               thanks to the generosity of contributors listed above.</p>
+            <p>As stated earlier, we have trained a generic model using various styles and
+               manuscripts. The simple fact of having the images and the transcriptions was not
+               enough of course. These needed to be cleaned up at least for what concerns the file
+               naming before being uploaded to the expert tool. After that, the layout analysis was
+               carried out and hand-fixed. This process took some weeks since the diversity of the
+               datasets brought with it also a series of issues in this step, like, for example, the
+               recognition of the folding in the center of an image of an opening as one text area,
+               or the lack of recognition of rubricated text.</p>
+            <p>Once the alignment was fixed and satisfactory we entered the transcriptions. These
+               often came as running text in a word file and had to be copy-pasted to each line box
+               in the expert tool with a tedious process which however led also to the discovery of
+               several errors in the hand-made and <soCalled>correct</soCalled> transcription for
+               the validation set, thus bringing a further benefit to the contributors, while
+               demonstrating an area of the workflow where the precision of the computer-assisted
+               transcription could be already visible.</p>
+            <p>The model was initially trained with a smaller dataset of about 15k words, with the
+               intent to use it as a base to produce transcriptions which the colleagues would have
+               checked. Two tests of this kind have however shown us that it took us less time to
+               enter more of the available transcription by hand as discussed above, than to wait
+               for the available time of the colleagues to fix the work of the machine, since we
+               intended to train the model again. After three months with a full-time dedicated
+               person, we had more than 50k words in the Transkribus expert tool, and we could train
+               a model which could be made public, since this is the unofficial threshold to make a
+               model available to everyone.</p>
+            <p>The features of the final model can be seen in <ptr target="#fig_1" type="crossref"
+               />.</p>
+            <figure xml:id="fig_1">
+               <graphic url="media/image1.png" height="150px" width="250px"/>
+               <head type="legend">The features of the final model</head>
+            </figure>
+            <p>As can be seen from the table the Character Error Rate (CER) is below 6%, with both
+               the train and the test set. It means that it can be expected on average that using
+               this model less than one in 25 letters will be recognized incorrectly.</p>
+            <p>Most of the errors that occur during automatic transcription are related to diacritic
+               signs and rubricated texts and are thus also easily identifiable.</p>
+            <p>We still plan to train the model again as more correct transcriptions become
+               available, hopefully as corrections of the transcriptions produced with this model.
+               Once the model is publicly available eventually anyone will be able to do so.</p>
+         </div>
          <div xml:id="transcription">
             <head>Adding transcriptions to Beta maṣāḥǝft from Transkribus</head>
-               <p>Even if a user already worked through each page of a manuscript to produce a transcription, doing it again with Transkribus and checking it has many advantages, chiefly the alignment of the text regions and lines on the base image to the transcription.<note>Guidelines are provided for this steps to the users in the<ref type="bibl" target="#bmgl">project Guidelines</ref>, accessed February 2, 2022,
-                     <ptr target="https://betamasaheft.eu/Guidelines/?id=transcription-transkribus"/>.</note></p>
-               <p>With the transcribed images, either by hand with the help of the tool, or using the HTR model, the export functionalities of the Transkribus tool, allow to download a TEI encoded version of this transcription where we encourage users to use Line Breaks (<gi>lb</gi>) instead of <gi>l</gi> and preserve the coordinates of the boxes.</p>
-               <p>This TEI file contains all the aligned transcription, links between the regions of the image, and the text. It has however to follow the structure of the set of images. If you transcribed images, for example, of openings, logically you will have a page break for each image, not for each page-break in the manuscript. This TEI is thus not ready to be copy pasted into the TEI file for a Manuscript in the Beta maṣāḥǝft Research environment where instead  the structure of the manuscript expects <gi>pb</gi> and <gi>cb</gi> elements to mark the page and column breaks of the manuscript and not of the image set. Most of this can be fixed by preparing the image set accurately, but we assume in most real-life use cases this will not be the case.</p>
-            <p>We have then prepared a bespoke XSLT transformation which can be used to transform the rich TEI from Transkribus, called <ref target="https://github.com/BetaMasaheft/Documentation/blob/master/utility/transkribus2bm.xsl">transkribus2Beta maṣāḥǝft.xsl</ref>. This transformation, given a few parameters, restructures the TEI to fit the project requirements. The needed parameters are: the total number of foliated leaves, the number of protection leaves at the beginning if this is part of your image set, and the type of images (if single-side or openings). The assumption is that your set of images will be tidy in this respect, that is to say, internally coherent and not made of some openings and some single leaves.</p>
-               <p>The result of this transformation is not yet ready to be pasted into the correct TEI Manuscript record, because, at least in our experiments, it is more often the case that people require parts of a manuscript, then not the entire transcription. Some hand fixing will still be necessary, for example for the enumeration, of the structure of text regions that contain additions or other types of contents, like legends of decorations, or extras.</p>
-               <p>The output of the transformation can be added to the TEI file for a manuscript, eventually as one of many possible transcriptions, and we encourage contributors to document the origin and processing of the transcription within the file, as well as to further encode those features of the text which are related to its transcription (erasures, interlinear additions, rubrication, etc.).</p>
-            </div>
+            <p>Even if a user already worked through each page of a manuscript to produce a
+               transcription, doing it again with Transkribus and checking it has many advantages,
+               chiefly the alignment of the text regions and lines on the base image to the
+                  transcription.<note>Guidelines are provided for this steps to the users in the<ref
+                     type="bibl" target="#bmgl">project Guidelines</ref>, accessed February 2, 2022,
+                     <ptr target="https://betamasaheft.eu/Guidelines/?id=transcription-transkribus"
+                  />.</note></p>
+            <p>With the transcribed images, either by hand with the help of the tool, or using the
+               HTR model, the export functionalities of the Transkribus tool, allow to download a
+               TEI encoded version of this transcription where we encourage users to use Line Breaks
+                  (<gi>lb</gi>) instead of <gi>l</gi> and preserve the coordinates of the boxes.</p>
+            <p>This TEI file contains all the aligned transcription, links between the regions of
+               the image, and the text. It has however to follow the structure of the set of images.
+               If you transcribed images, for example, of openings, logically you will have a page
+               break for each image, not for each page-break in the manuscript. This TEI is thus not
+               ready to be copy pasted into the TEI file for a Manuscript in the Beta maṣāḥǝft
+               Research environment where instead the structure of the manuscript expects
+                  <gi>pb</gi> and <gi>cb</gi> elements to mark the page and column breaks of the
+               manuscript and not of the image set. Most of this can be fixed by preparing the image
+               set accurately, but we assume in most real-life use cases this will not be the
+               case.</p>
+            <p>We have then prepared a bespoke XSLT transformation which can be used to transform
+               the rich TEI from Transkribus, called <ref
+                  target="https://github.com/BetaMasaheft/Documentation/blob/master/utility/transkribus2bm.xsl"
+                  >transkribus2Beta maṣāḥǝft.xsl</ref>. This transformation, given a few parameters,
+               restructures the TEI to fit the project requirements. The needed parameters are: the
+               total number of foliated leaves, the number of protection leaves at the beginning if
+               this is part of your image set, and the type of images (if single-side or openings).
+               The assumption is that your set of images will be tidy in this respect, that is to
+               say, internally coherent and not made of some openings and some single leaves.</p>
+            <p>The result of this transformation is not yet ready to be pasted into the correct TEI
+               Manuscript record, because, at least in our experiments, it is more often the case
+               that people require parts of a manuscript, then not the entire transcription. Some
+               hand fixing will still be necessary, for example for the enumeration, of the
+               structure of text regions that contain additions or other types of contents, like
+               legends of decorations, or extras.</p>
+            <p>The output of the transformation can be added to the TEI file for a manuscript,
+               eventually as one of many possible transcriptions, and we encourage contributors to
+               document the origin and processing of the transcription within the file, as well as
+               to further encode those features of the text which are related to its transcription
+               (erasures, interlinear additions, rubrication, etc.).</p>
+         </div>
          <div xml:id="conclusions">
             <head>Conclusions</head>
-            <p>Working with Transkribus for the Beta maṣāḥǝft project gives the community of users a way to support the process of transcribing to the text on source manuscripts without typing it down. This is not intended to substitute the work of the editor of a text, but to support it, producing a transcription that still needs a lot of care for its content and encoding, but also comes with a lot of added value, like the precise alignment of the text to the image set and its encoding in the TEI. Files thus obtained are huge and not as easy to maintain in a database or edit directly. However, even if the text of the transcription is still unchecked and thus subject to at least the percentage of the error the model provides, several benefits become immediately available to the users, both encoders and users of the web application hosting the texts. Encoders can point to a part of the transcription using <gi>locus</gi> and avoid keying in the text from the transcription of a cataloguer in the <gi>teiHeader</gi>. Similarly, a user of the application can identify an unknown text using the functionality of the search index, which is capable of performing fuzzy searches which will return results also where a query term is partially different from the matching result, e.g., in case this contains an error originated from the automated transcription process.</p>
-            <p>With this process started, the model publicly available, and thousands of images of manuscripts, we work for more transcriptions, more text distributed as TEI on the web, and more collaboration to improve each of these aspects.</p>
+            <p>Working with Transkribus for the Beta maṣāḥǝft project gives the community of users a
+               way to support the process of transcribing to the text on source manuscripts without
+               typing it down. This is not intended to substitute the work of the editor of a text,
+               but to support it, producing a transcription that still needs a lot of care for its
+               content and encoding, but also comes with a lot of added value, like the precise
+               alignment of the text to the image set and its encoding in the TEI. Files thus
+               obtained are huge and not as easy to maintain in a database or edit directly.
+               However, even if the text of the transcription is still unchecked and thus subject to
+               at least the percentage of the error the model provides, several benefits become
+               immediately available to the users, both encoders and users of the web application
+               hosting the texts. Encoders can point to a part of the transcription using
+                  <gi>locus</gi> and avoid keying in the text from the transcription of a cataloguer
+               in the <gi>teiHeader</gi>. Similarly, a user of the application can identify an
+               unknown text using the functionality of the search index, which is capable of
+               performing fuzzy searches which will return results also where a query term is
+               partially different from the matching result, e.g., in case this contains an error
+               originated from the automated transcription process.</p>
+            <p>With this process started, the model publicly available, and thousands of images of
+               manuscripts, we work for more transcriptions, more text distributed as TEI on the
+               web, and more collaboration to improve each of these aspects.</p>
          </div>
       </body>
       <back>
          <div type="bibliography">
             <listBibl>
                <bibl xml:id="bmgl">
-                  <author>Liuzzo, Pietro Maria</author>, <author>Dorothea Reule</author>, <author>Eugenia Sokolinski</author>, <author>Solomon Gebreyes</author>, <author>Daria Elagina</author>, <author>Denis Nosnitsin</author>, <author>Eliana Dal Sasso</author>, and <author>Jacopo Gnisci</author>. <date>2018–</date>. <title level="m">Beta Maṣāḥǝft Guidelines.</title> <ptr target="https://betamasaheft.eu/Guidelines/"/>.
-               </bibl>
-               <bibl xml:id="calamari"> <author>Wick, Christoph</author>, <author>Christian Reul</author>, and <author>Frank Puppe</author>. <date>2020</date>. <title level="a">Calamari − A High-Performance Tensorflow-based Deep Learning Package for Optical Character Recognition.</title> <title level="j">Digital Humanities Quarterly</title>, <biblScope unit="volume">14</biblScope> (<biblScope unit="issue">2</biblScope>), <ptr target="http://digitalhumanities.org/dhq/vol/14/2/000451/000451.html"/>.</bibl>
-               <bibl xml:id="liuzzo2019"><author>Liuzzo, Pietro Maria</author>. <date>2019</date>. <title level="m">Digital Approaches to Ethiopian and Eritrean Studies</title>. Supplement to Aethiopica 8. <pubPlace>Wiesbaden</pubPlace>: <publisher>Harrassowitz Verlag</publisher>. <ptr target="https://doi.org/10.2307/j.ctvrnfr3q"/>.</bibl>
-               <bibl xml:id="YaregalBigun2008"><author>Assabie, Yaregal</author> and <author>Josef Bigun</author>. <date>2008</date>. <title level="a">Online Handwriting Recognition of Ethiopic Script</title>.<ptr target="http://www.iapr-tc11.org/archive/icfhr2008/Proceedings/papers/cr1044.pdf"/>.</bibl>
-               <bibl xml:id="SiegbertUhlig1990"><author>Uhlig, Siegbert</author>. <date>1990</date>. <title level="m">Introduction to Ethiopian Paleography</title>. <series>Äthiopistische Forschungen</series> <biblScope unit="volume">28</biblScope>, <pubPlace>Stuttgart</pubPlace>: <publisher>Franz Steiner</publisher>.</bibl>
-               <bibl xml:id="SekerogluAshagrie2019"><author>Demilew, Fitehalew Ashagrie</author> and <author>Boran Sekeroglu</author>. <date>2019</date>. <title level="a">Ancient Geez script recognition using deep learning</title>. <title level="j">SN Applied Sciences</title>, <biblScope unit="volume">1</biblScope> (<biblScope unit="issue">11</biblScope>), <biblScope unit="page">1315</biblScope>. doi:<idno type="DOI">10.1007/s42452-019-1340-4</idno>.</bibl>
-               <bibl xml:id="GondereEtAl2019"><author>Gondere, Mesay Samuel</author>, <author>Lars Schmidt-Thieme</author>, <author>Abiot Sinamo Boltena</author>, and <author>Hadi Samer Jomaa</author>. <date>2019</date>. <title level="a">Handwritten Amharic Character Recognition Using a Convolutional Neural Network</title>. <ptr target="http://arxiv.org/abs/1909.12943"/>.</bibl>
+                  <author>Liuzzo, Pietro Maria</author>, <author>Dorothea Reule</author>,
+                     <author>Eugenia Sokolinski</author>, <author>Solomon Gebreyes</author>,
+                     <author>Daria Elagina</author>, <author>Denis Nosnitsin</author>,
+                     <author>Eliana Dal Sasso</author>, and <author>Jacopo Gnisci</author>.
+                     <date>2018–</date>. <title level="m">Beta Maṣāḥǝft Guidelines.</title>
+                  <ptr target="https://betamasaheft.eu/Guidelines/"/>. </bibl>
+               <bibl xml:id="calamari">
+                  <author>Wick, Christoph</author>, <author>Christian Reul</author>, and
+                     <author>Frank Puppe</author>. <date>2020</date>. <title level="a">Calamari − A
+                     High-Performance Tensorflow-based Deep Learning Package for Optical Character
+                     Recognition.</title>
+                  <title level="j">Digital Humanities Quarterly</title>, <biblScope unit="volume"
+                     >14</biblScope> (<biblScope unit="issue">2</biblScope>), <ptr
+                     target="http://digitalhumanities.org/dhq/vol/14/2/000451/000451.html"/>.</bibl>
+               <bibl xml:id="liuzzo2019"><author>Liuzzo, Pietro Maria</author>. <date>2019</date>.
+                     <title level="m">Digital Approaches to Ethiopian and Eritrean Studies</title>.
+                  Supplement to Aethiopica 8. <pubPlace>Wiesbaden</pubPlace>:
+                     <publisher>Harrassowitz Verlag</publisher>. <ptr
+                     target="https://doi.org/10.2307/j.ctvrnfr3q"/>.</bibl>
+               <bibl xml:id="YaregalBigun2008"><author>Assabie, Yaregal</author> and <author>Josef
+                     Bigun</author>. <date>2008</date>. <title level="a">Online Handwriting
+                     Recognition of Ethiopic Script</title>.<ptr
+                     target="http://www.iapr-tc11.org/archive/icfhr2008/Proceedings/papers/cr1044.pdf"
+                  />.</bibl>
+               <bibl xml:id="SiegbertUhlig1990"><author>Uhlig, Siegbert</author>. <date>1990</date>.
+                     <title level="m">Introduction to Ethiopian Paleography</title>.
+                     <series>Äthiopistische Forschungen</series>
+                  <biblScope unit="volume">28</biblScope>, <pubPlace>Stuttgart</pubPlace>:
+                     <publisher>Franz Steiner</publisher>.</bibl>
+               <bibl xml:id="SekerogluAshagrie2019"><author>Demilew, Fitehalew Ashagrie</author> and
+                     <author>Boran Sekeroglu</author>. <date>2019</date>. <title level="a">Ancient
+                     Geez script recognition using deep learning</title>. <title level="j">SN
+                     Applied Sciences</title>, <biblScope unit="volume">1</biblScope> (<biblScope
+                     unit="issue">11</biblScope>), <biblScope unit="page">1315</biblScope>.
+                     doi:<idno type="DOI">10.1007/s42452-019-1340-4</idno>.</bibl>
+               <bibl xml:id="GondereEtAl2019"><author>Gondere, Mesay Samuel</author>, <author>Lars
+                     Schmidt-Thieme</author>, <author>Abiot Sinamo Boltena</author>, and
+                     <author>Hadi Samer Jomaa</author>. <date>2019</date>. <title level="a"
+                     >Handwritten Amharic Character Recognition Using a Convolutional Neural
+                     Network</title>. <ptr target="http://arxiv.org/abs/1909.12943"/>.</bibl>
                <!-- [RvdB] et. al.?-->
                <bibl xml:id="transkribus">
-                  <author>Muehlberger, Guenter</author>, <author>Louise Seaward</author>, <author>Melissa Terras</author>, <author>Sofia Ares Oliveira</author>, <author>Vicente Bosch</author>, <author>Maximilian Bryan</author>, <author>Sebastian Colutto</author>, <author>Hervé Déjean</author>, <author>Markus Diem</author>, <author>Stefan Fiel</author>, <author>Basilis Gatos</author>, <author>Albert Greinoecker</author>, <author>Tobias Grüning</author>, <author>Guenter Hackl</author>, <author>Vili Haukkovaara</author>, <author>Gerhard Heyer</author>, <author>Lauri Hirvonen</author>, <author>Tobias Hodel</author>, <author>Matti Jokinen</author>, <author>Philip Kahle</author>, <author>Mario Kallio</author>, <author>Frederic Kaplan</author>, <author>Florian Kleber</author>, <author>Roger Labahn</author>, <author>Eva Maria Lang</author>, <author>Sören Laube</author>, <author>Gundram Leifert</author>, <author>Georgios Louloudis</author>, <author>Rory McNicholl</author>, <author>Jean-Luc Meunier</author>, <author>Johannes Michael</author>, <author>Elena Mühlbauer</author>, <author>Nathanael Philipp</author>, <author>Ioannis Pratikakis</author>, <author>Joan Puigcerver Pérez</author>, <author>Hannelore Putz</author>, <author>George Retsinas</author>, <author>Verónica Romero</author>, <author>Robert Sablatnig</author>, <author>Joan Andreu Sánchez</author>, <author>Philip Schofield</author>, <author>Giorgos Sfikas</author>, <author>Christian Sieber</author>, <author>Nikolaos Stamatopoulos</author>, <author>Tobias Strauß</author>, <author>Tamara Terbul</author>, <author>Alejandro Héctor Toselli</author>, <author>Berthold Ulreich</author>, <author>Mauricio Villegas</author>, <author>Enrique Vidal</author>, <author>Johanna Walcher</author>, <author>Max Weidemann</author>, <author>Herbert Wurster</author>, and <author>Konstantinos Zagoris</author>. <date>2019</date>. <title level="a">Transforming scholarship in the archives through handwritten text recognition: Transkribus as a case study</title>. <title level="j">Journal of Documentation</title>, <biblScope unit="volume">75</biblScope> (<biblScope unit="issue">5</biblScope>) <biblScope unit="page">954–976</biblScope>. <idno type="DOI">10.1108/JD-07-2018-0114</idno>.</bibl>
-               <bibl xml:id="mace"><editor>Andrews, Tara L.</editor>, <editor>Caroline Macé</editor> (eds.). <date>2014</date>. <title level="m">Analysis of Ancient and Medieval Texts and Manuscripts: Digital Approaches</title>. <series>Lectio Studies in the Transmission of Texts and Ideas</series> <biblScope unit="volume">1</biblScope>. <pubPlace>Turnhout</pubPlace>: <publisher>Brepols</publisher>.</bibl>
-               <bibl xml:id="reule2018"><author>Reule, Dorothea</author>. <date>2018</date>. <title level="a"><title level="m">Beta maṣāḥǝft</title>: Manuscripts of Ethiopia and Eritrea</title>. <title level="m">COMSt Bulletin</title> <!-- <title type="conferenceName">&lt;hi rend="italics"&gt;workshop&lt;/hi&gt; Linking Manuscripts from the Coptic, Ethiopian, and Syriac Domain: Present and Future Synergy Strategies, &lt;hi rend="italics"&gt;Hamburg&lt;/hi&gt;, &lt;hi rend="italics"&gt;23 and 24 February 2018&lt;/hi&gt;</title>--> <editor>Bausi, Alessandro</editor>, <editor>Paola Buzi</editor>, <editor>Pietro Maria Liuzzo</editor>, <editor>Eugenia Sokolinski</editor> (eds). <biblScope unit="volume">4/1</biblScope> <biblScope unit="page">13–27</biblScope>.</bibl>
-               <bibl xml:id="saritha"><author>Saritha, S Jessica</author>, <author>K R G Deepak Teja</author>, <author>G Hemanth Kumar</author>, and <author>S Jeelani Sharief</author>. <date>2020</date>. <title level="m">Handwritten Text Detection using OpenCV and CNN</title>. <title level="j">International Journal of Engineering Research &amp; Technology (IJERT)</title>.</bibl>
-               <bibl xml:id="ephrem1"><author>Ishac, Ephrem A.</author>. <date>May 2020</date>. <title level="m">Brief Notes on OCR and the Automated Transcription of Syriac Books</title>. <ptr target="https://digitalorientalist.com/2020/05/17/brief-notes-on-ocr-and-the-automated-transcription-of-syriac-books/"/>.</bibl>
-              <bibl xml:id="ephrem2"><author>Ishac, Ephrem A.</author>. <date>October 2020</date>. <title level="m">Google Lens for Syriac: Something Groundbreaking?</title> <ptr target="https://digitalorientalist.com/2020/10/06/google-lens-for-syriac-something-miraculous/"/>.</bibl>
+                  <author>Muehlberger, Guenter</author>, <author>Louise Seaward</author>,
+                     <author>Melissa Terras</author>, <author>Sofia Ares Oliveira</author>,
+                     <author>Vicente Bosch</author>, <author>Maximilian Bryan</author>,
+                     <author>Sebastian Colutto</author>, <author>Hervé Déjean</author>,
+                     <author>Markus Diem</author>, <author>Stefan Fiel</author>, <author>Basilis
+                     Gatos</author>, <author>Albert Greinoecker</author>, <author>Tobias
+                     Grüning</author>, <author>Guenter Hackl</author>, <author>Vili
+                     Haukkovaara</author>, <author>Gerhard Heyer</author>, <author>Lauri
+                     Hirvonen</author>, <author>Tobias Hodel</author>, <author>Matti
+                     Jokinen</author>, <author>Philip Kahle</author>, <author>Mario Kallio</author>,
+                     <author>Frederic Kaplan</author>, <author>Florian Kleber</author>,
+                     <author>Roger Labahn</author>, <author>Eva Maria Lang</author>, <author>Sören
+                     Laube</author>, <author>Gundram Leifert</author>, <author>Georgios
+                     Louloudis</author>, <author>Rory McNicholl</author>, <author>Jean-Luc
+                     Meunier</author>, <author>Johannes Michael</author>, <author>Elena
+                     Mühlbauer</author>, <author>Nathanael Philipp</author>, <author>Ioannis
+                     Pratikakis</author>, <author>Joan Puigcerver Pérez</author>, <author>Hannelore
+                     Putz</author>, <author>George Retsinas</author>, <author>Verónica
+                     Romero</author>, <author>Robert Sablatnig</author>, <author>Joan Andreu
+                     Sánchez</author>, <author>Philip Schofield</author>, <author>Giorgos
+                     Sfikas</author>, <author>Christian Sieber</author>, <author>Nikolaos
+                     Stamatopoulos</author>, <author>Tobias Strauß</author>, <author>Tamara
+                     Terbul</author>, <author>Alejandro Héctor Toselli</author>, <author>Berthold
+                     Ulreich</author>, <author>Mauricio Villegas</author>, <author>Enrique
+                     Vidal</author>, <author>Johanna Walcher</author>, <author>Max
+                     Weidemann</author>, <author>Herbert Wurster</author>, and <author>Konstantinos
+                     Zagoris</author>. <date>2019</date>. <title level="a">Transforming scholarship
+                     in the archives through handwritten text recognition: Transkribus as a case
+                     study</title>. <title level="j">Journal of Documentation</title>, <biblScope
+                     unit="volume">75</biblScope> (<biblScope unit="issue">5</biblScope>) <biblScope
+                     unit="page">954–976</biblScope>. <idno type="DOI"
+                     >10.1108/JD-07-2018-0114</idno>.</bibl>
+               <bibl xml:id="mace"><editor>Andrews, Tara L.</editor>, <editor>Caroline Macé</editor>
+                  (eds.). <date>2014</date>. <title level="m">Analysis of Ancient and Medieval Texts
+                     and Manuscripts: Digital Approaches</title>. <series>Lectio Studies in the
+                     Transmission of Texts and Ideas</series>
+                  <biblScope unit="volume">1</biblScope>. <pubPlace>Turnhout</pubPlace>:
+                     <publisher>Brepols</publisher>.</bibl>
+               <bibl xml:id="reule2018"><author>Reule, Dorothea</author>. <date>2018</date>. <title
+                     level="a"><title level="m">Beta maṣāḥǝft</title>: Manuscripts of Ethiopia and
+                     Eritrea</title>. <title level="m">COMSt Bulletin</title>
+                  <!-- <title type="conferenceName">&lt;hi rend="italics"&gt;workshop&lt;/hi&gt; Linking Manuscripts from the Coptic, Ethiopian, and Syriac Domain: Present and Future Synergy Strategies, &lt;hi rend="italics"&gt;Hamburg&lt;/hi&gt;, &lt;hi rend="italics"&gt;23 and 24 February 2018&lt;/hi&gt;</title>-->
+                  <editor>Bausi, Alessandro</editor>, <editor>Paola Buzi</editor>, <editor>Pietro
+                     Maria Liuzzo</editor>, <editor>Eugenia Sokolinski</editor> (eds). <biblScope
+                     unit="volume">4/1</biblScope>
+                  <biblScope unit="page">13–27</biblScope>.</bibl>
+               <bibl xml:id="saritha"><author>Saritha, S Jessica</author>, <author>K R G Deepak
+                     Teja</author>, <author>G Hemanth Kumar</author>, and <author>S Jeelani
+                     Sharief</author>. <date>2020</date>. <title level="m">Handwritten Text
+                     Detection using OpenCV and CNN</title>. <title level="j">International Journal
+                     of Engineering Research &amp; Technology (IJERT)</title>.</bibl>
+               <bibl xml:id="ephrem1"><author>Ishac, Ephrem A.</author>. <date>May 2020</date>.
+                     <title level="m">Brief Notes on OCR and the Automated Transcription of Syriac
+                     Books</title>. <ptr
+                     target="https://digitalorientalist.com/2020/05/17/brief-notes-on-ocr-and-the-automated-transcription-of-syriac-books/"
+                  />.</bibl>
+               <bibl xml:id="ephrem2"><author>Ishac, Ephrem A.</author>. <date>October 2020</date>.
+                     <title level="m">Google Lens for Syriac: Something Groundbreaking?</title>
+                  <ptr
+                     target="https://digitalorientalist.com/2020/10/06/google-lens-for-syriac-something-miraculous/"
+                  />.</bibl>
             </listBibl>
          </div>
       </back>

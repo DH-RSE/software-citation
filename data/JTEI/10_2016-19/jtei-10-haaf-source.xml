@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml"
-	schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI">
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI">
   <teiHeader>
     <fileDesc>
       <titleStmt>
@@ -10,7 +11,13 @@
             <forename>Susanne</forename>
             <surname>Haaf</surname>
           </name>
-          <affiliation>Susanne Haaf studied German philology and computational linguistics (M.A.) at the universities of Heidelberg and Zürich. From 2007 to 2010 she worked as a <roleName>research assistant</roleName> for the edition project Martin Bucers Deutsche Schriften at the <orgName>Heidelberg Academy of Sciences and Humanities</orgName>. Since 2010 she has been working as a <roleName>research assistant</roleName> at the <orgName>Berlin-Brandenburg Academy of Sciences and Humanities</orgName> for the projects Deutsches Textarchiv (DTA) and CLARIN-D.</affiliation>
+          <affiliation>Susanne Haaf studied German philology and computational linguistics (M.A.) at
+            the universities of Heidelberg and Zürich. From 2007 to 2010 she worked as a
+              <roleName>research assistant</roleName> for the edition project Martin Bucers Deutsche
+            Schriften at the <orgName>Heidelberg Academy of Sciences and Humanities</orgName>. Since
+            2010 she has been working as a <roleName>research assistant</roleName> at the
+              <orgName>Berlin-Brandenburg Academy of Sciences and Humanities</orgName> for the
+            projects Deutsches Textarchiv (DTA) and CLARIN-D.</affiliation>
           <email>haaf@bbaw.de</email>
         </author>
         <author>
@@ -18,7 +25,13 @@
             <forename>Christian</forename>
             <surname>Thomas</surname>
           </name>
-          <affiliation>Christian Thomas has studied German literature and philosophy at the Humboldt-Universität zu Berlin. Since 2010 he has been working as a <roleName>research assistant</roleName> at the <orgName>Berlin-Brandenburg Academy of Sciences and Humanities</orgName> for the projects Deutsches Textarchiv (DTA) and CLARIN-D. Additionally, from 2014 until 2016 he has been working as a <roleName>research assistant</roleName> in the project Hidden Kosmos at Berlin’s <orgName>Humboldt-University</orgName>.</affiliation>
+          <affiliation>Christian Thomas has studied German literature and philosophy at the
+            Humboldt-Universität zu Berlin. Since 2010 he has been working as a <roleName>research
+              assistant</roleName> at the <orgName>Berlin-Brandenburg Academy of Sciences and
+              Humanities</orgName> for the projects Deutsches Textarchiv (DTA) and CLARIN-D.
+            Additionally, from 2014 until 2016 he has been working as a <roleName>research
+              assistant</roleName> in the project Hidden Kosmos at Berlin’s
+              <orgName>Humboldt-University</orgName>.</affiliation>
           <email>thomas@bbaw.de</email>
         </author>
       </titleStmt>
@@ -73,251 +86,745 @@
       </textClass>
     </profileDesc>
     <revisionDesc>
-      <change when="2018-01-12" who="#RvdB">technical editor applied changes per author request from email dated <date>2017-09-26</date></change>
+      <change when="2018-01-12" who="#RvdB">technical editor applied changes per author request from
+        email dated <date>2017-09-26</date></change>
     </revisionDesc>
   </teiHeader>
   <text>
     <front>
       <div type="abstract" xml:id="abstract">
-        <p>This paper presents work in progress on the DTA <soCalled>Base Format</soCalled> for Manuscripts (DTABf-M), an extension to the DTA <soCalled>Base Format</soCalled> (DTABf) for the TEI-conformant annotation of manuscripts. The DTABf is a TEI-subset for the consistent, yet unambiguous, annotation of large amounts of historical text. During our work on the DTA corpora, the DTABf has continuously been subject to further adaptations to specific annotation needs. The latest addition, the DTABf-M, contains elements, attributes, and values necessary for the annotation of (historical) handwritten documents. The goal is to provide a TEI format for diverse manuscripts in large text corpora.</p>
-        <p>While the DTABf covers a wide range of phenomena found not only in printed texts but also in manuscripts, there are certain manuscript-specific features which have to be additionally represented by the DTABf-M. There are several prerequisites for DTABf-M to be suitable for the DTA and its workflows and processes: First, it should be based on the original DTABf tagset, and only extend it if unavoidable. Second, like the DTABf, the DTABf-M should be created in a bottom-up approach, that is, based on actual phenomena found in handwritten texts which are transcribed and encoded using the DTABf. Third, the format should complement the DTABf, not replace it. Hence, it is necessary to find a modular way of integrating the DTABf-M into the DTABf. This paper describes how we deal with these issues in the process of developing the DTABf-M.</p>
+        <p>This paper presents work in progress on the DTA <soCalled>Base Format</soCalled> for
+          Manuscripts (DTABf-M), an extension to the DTA <soCalled>Base Format</soCalled> (DTABf)
+          for the TEI-conformant annotation of manuscripts. The DTABf is a TEI-subset for the
+          consistent, yet unambiguous, annotation of large amounts of historical text. During our
+          work on the DTA corpora, the DTABf has continuously been subject to further adaptations to
+          specific annotation needs. The latest addition, the DTABf-M, contains elements,
+          attributes, and values necessary for the annotation of (historical) handwritten documents.
+          The goal is to provide a TEI format for diverse manuscripts in large text corpora.</p>
+        <p>While the DTABf covers a wide range of phenomena found not only in printed texts but also
+          in manuscripts, there are certain manuscript-specific features which have to be
+          additionally represented by the DTABf-M. There are several prerequisites for DTABf-M to be
+          suitable for the DTA and its workflows and processes: First, it should be based on the
+          original DTABf tagset, and only extend it if unavoidable. Second, like the DTABf, the
+          DTABf-M should be created in a bottom-up approach, that is, based on actual phenomena
+          found in handwritten texts which are transcribed and encoded using the DTABf. Third, the
+          format should complement the DTABf, not replace it. Hence, it is necessary to find a
+          modular way of integrating the DTABf-M into the DTABf. This paper describes how we deal
+          with these issues in the process of developing the DTABf-M.</p>
       </div>
       <div type="corrections">
-        <p>This paper was revised on <date>2018-01-12</date> to correct an error in <ptr type="crossref" target="#figure2"/>. The previous version is archived at <ptr target="https://journals.openedition.org/jtei/1734"/>.</p>
+        <p>This paper was revised on <date>2018-01-12</date> to correct an error in <ptr
+            type="crossref" target="#figure2"/>. The previous version is archived at <ptr
+            target="https://journals.openedition.org/jtei/1734"/>.</p>
       </div>
     </front>
     <body>
       <div xml:id="introduction">
         <head>Introduction</head>
-        <p>Since its beginning in 2007, the <title level="m"><ref target="http://www.deutschestextarchiv.de/">Deutsches Textarchiv</ref></title> project (DTA)<note><bibl><title level="m">Deutsches Textarchiv: Grundlage für ein Referenzkorpus der neuhochdeutschen Sprache</title>, <publisher>Berlin-Brandenburg Academy of Sciences and Humanities</publisher>, accessed January 28, 2017, <ptr target="http://www.deutschestextarchiv.de/"/>.</bibl></note> has been creating a corpus of historical German printed works dating from the seventeenth to the nineteenth century. The underlying bibliography comprises works of various text types and domains in order to allow for comprehensive insights into the whole range of written material available in the German language at different points in time. The corpus allows for research on the development of the New High German language as well as research from various other disciplines, such as historical or literary studies.</p>
-        <p>An important goal in this context was to ensure interoperability of all corpus data, which requires homogeneous TEI annotation of the whole corpus. For this purpose, the DTA <soCalled><ref target="http://www.deutschestextarchiv.de/doku/basisformat">Base Format</ref></soCalled> (DTABf) was developed, a TEI format for the unambiguous, homogeneous annotation of corpus data (<ref target="#geyken12" type="bibl">Geyken et al. 2012</ref>; <ref target="#haaf1415" type="bibl">Haaf, Geyken, and Wiegand 2014–15</ref>).<note>See <bibl><title level="m">DTA-Basisformat: TEI-Format für die Auszeichnung historischer Texte</title>, <publisher>Berlin-Brandenburg Academy of Sciences and Humanities</publisher>, accessed January 28, 2017, <ptr target="http://www.deutschestextarchiv.de/doku/basisformat"/></bibl>.</note> It was continuously adapted to tagging requirements of the DTA core corpus texts as well as of external texts curated from other projects (<ref target="#thomas15b" type="bibl">Thomas and Wiegand 2015</ref>), and successfully applied to more than 2,800 historical works contained in the DTA. Moreover, the DTABf has attracted interest beyond the borders of the DTA project (e.g., from the projects <title level="m"><ref target="http://juedische-geschichte-online.net/projekt/edition/">Hamburger Schlüsseldokumente zur deutsch-jüdischen Geschichte</ref></title><note><bibl><title level="m">Hamburger Schlüsseldokumente zur deutsch-jüdischen Geschichte: Eine Online-Quellenedition</title>, <publisher>Institut für die Geschichte der deutschen Juden</publisher>, accessed January 28, 2017, <ptr target="http://juedische-geschichte-online.net/projekt/edition/"/>.</bibl></note> and <title level="m"><ref target="http://www.epoetics.de/">ePoetics</ref></title><note rend="inside.parenthesis">See <bibl><title level="m">ePoetics: Korpuserschließung und Visualisierung deutschsprachiger Poetiken (1770–1960) für den <soCalled>Algorithmic criticism</soCalled></title>, <publisher>Technische Universität Darmstadt</publisher>, accessed January 28, 2017, <ptr target="http://www.epoetics.de/"/>.</bibl></note>). It is now, among other formats, recommended by the CLARIN infrastructure project for the annotation of historical printed sources (<ref target="#clarin12" type="bibl">CLARIN-D AP 5 2012, II.6</ref>), as well as by the German Research Foundation for basic TEI encoding of linguistic corpora (<ref target="#dfg15a" type="bibl">DFG 2015a</ref>) and as an archival format for edition projects in literary studies (<ref target="#dfg15b" type="bibl">DFG 2015b</ref>).</p>
-        <p>While until recently the DTA corpus and hence the DTABf have been focused on printed works, there is an increasing interest in the integration of manuscripts into the DTA corpus, as well, for example by scholars who are providing transcriptions and are interested in re-using the DTA infrastructure in terms of linguistic analysis or collaborative work, or, more generally, for publishing and sharing their project output with the scholarly community. Specifications and cautious extensions of the DTABf tagset for certain text types have been provided before, based on, for instance, findings by cooperating projects and within subcorpora integrated into the DTA platform (e.g., for historical newspapers and funeral sermons: see <ref target="#haaf14" type="bibl">Haaf and Schulz 2014</ref>). The category <soCalled>manuscripts</soCalled>, however, represents an extensive and diverse quantity of texts and text types, containing a significant amount of new and sometimes complex structural and textual phenomena.</p>
-        <p>Thus, efforts were made to create a pure TEI subset for the unambiguous annotation of manuscripts, based on the <ref target="http://www.deutschestextarchiv.de/doku/basisformat/manuskript.html">DTABf</ref>.<note>See <bibl><title level="m">DTA-Basisformat für Manuskripte</title>, <publisher>Berlin-Brandenburg Academy of Sciences and Humanities</publisher>, accessed January 28, 2017, <ptr target="http://www.deutschestextarchiv.de/doku/basisformat/manuskript.html"/>.</bibl></note> This paper describes the development of this DTABf for Manuscripts, or DTABf-M, its current data basis, its present components, and the efforts towards the reorganization of the DTABf system as a whole in order to include the DTABf-M and previous extensions to the DTABf, but also to prevent the existing DTABf for printed texts from losing its central values of restrictedness and clarity through overly extensive growth.</p>
+        <p>Since its beginning in 2007, the <title level="m"><ref
+              target="http://www.deutschestextarchiv.de/">Deutsches Textarchiv</ref></title> project
+                (DTA)<note><bibl><title level="m">Deutsches Textarchiv: Grundlage für ein
+                Referenzkorpus der neuhochdeutschen Sprache</title>, <publisher>Berlin-Brandenburg
+                Academy of Sciences and Humanities</publisher>, accessed January 28, 2017, <ptr
+                target="http://www.deutschestextarchiv.de/"/>.</bibl></note> has been creating a
+          corpus of historical German printed works dating from the seventeenth to the nineteenth
+          century. The underlying bibliography comprises works of various text types and domains in
+          order to allow for comprehensive insights into the whole range of written material
+          available in the German language at different points in time. The corpus allows for
+          research on the development of the New High German language as well as research from
+          various other disciplines, such as historical or literary studies.</p>
+        <p>An important goal in this context was to ensure interoperability of all corpus data,
+          which requires homogeneous TEI annotation of the whole corpus. For this purpose, the DTA
+              <soCalled><ref target="http://www.deutschestextarchiv.de/doku/basisformat">Base
+              Format</ref></soCalled> (DTABf) was developed, a TEI format for the unambiguous,
+          homogeneous annotation of corpus data (<ref target="#geyken12" type="bibl">Geyken et al.
+            2012</ref>; <ref target="#haaf1415" type="bibl">Haaf, Geyken, and Wiegand
+            2014–15</ref>).<note>See <bibl><title level="m">DTA-Basisformat: TEI-Format für die
+                Auszeichnung historischer Texte</title>, <publisher>Berlin-Brandenburg Academy of
+                Sciences and Humanities</publisher>, accessed January 28, 2017, <ptr
+                target="http://www.deutschestextarchiv.de/doku/basisformat"/></bibl>.</note> It was
+          continuously adapted to tagging requirements of the DTA core corpus texts as well as of
+          external texts curated from other projects (<ref target="#thomas15b" type="bibl">Thomas
+            and Wiegand 2015</ref>), and successfully applied to more than 2,800 historical works
+          contained in the DTA. Moreover, the DTABf has attracted interest beyond the borders of the
+          DTA project (e.g., from the projects <title level="m"><ref
+              target="http://juedische-geschichte-online.net/projekt/edition/">Hamburger
+              Schlüsseldokumente zur deutsch-jüdischen Geschichte</ref></title><note><bibl><title
+                level="m">Hamburger Schlüsseldokumente zur deutsch-jüdischen Geschichte: Eine
+                Online-Quellenedition</title>, <publisher>Institut für die Geschichte der deutschen
+                Juden</publisher>, accessed January 28, 2017, <ptr
+                target="http://juedische-geschichte-online.net/projekt/edition/"/>.</bibl></note>
+          and <title level="m"><ref target="http://www.epoetics.de/">ePoetics</ref></title><note
+            rend="inside.parenthesis">See <bibl><title level="m">ePoetics: Korpuserschließung und
+                Visualisierung deutschsprachiger Poetiken (1770–1960) für den <soCalled>Algorithmic
+                  criticism</soCalled></title>, <publisher>Technische Universität
+                Darmstadt</publisher>, accessed January 28, 2017, <ptr
+                target="http://www.epoetics.de/"/>.</bibl></note>). It is now, among other formats,
+          recommended by the CLARIN infrastructure project for the annotation of historical printed
+          sources (<ref target="#clarin12" type="bibl">CLARIN-D AP 5 2012, II.6</ref>), as well as
+          by the German Research Foundation for basic TEI encoding of linguistic corpora (<ref
+            target="#dfg15a" type="bibl">DFG 2015a</ref>) and as an archival format for edition
+          projects in literary studies (<ref target="#dfg15b" type="bibl">DFG 2015b</ref>).</p>
+        <p>While until recently the DTA corpus and hence the DTABf have been focused on printed
+          works, there is an increasing interest in the integration of manuscripts into the DTA
+          corpus, as well, for example by scholars who are providing transcriptions and are
+          interested in re-using the DTA infrastructure in terms of linguistic analysis or
+          collaborative work, or, more generally, for publishing and sharing their project output
+          with the scholarly community. Specifications and cautious extensions of the DTABf tagset
+          for certain text types have been provided before, based on, for instance, findings by
+          cooperating projects and within subcorpora integrated into the DTA platform (e.g., for
+          historical newspapers and funeral sermons: see <ref target="#haaf14" type="bibl">Haaf and
+            Schulz 2014</ref>). The category <soCalled>manuscripts</soCalled>, however, represents
+          an extensive and diverse quantity of texts and text types, containing a significant amount
+          of new and sometimes complex structural and textual phenomena.</p>
+        <p>Thus, efforts were made to create a pure TEI subset for the unambiguous annotation of
+          manuscripts, based on the <ref
+            target="http://www.deutschestextarchiv.de/doku/basisformat/manuskript.html"
+            >DTABf</ref>.<note>See <bibl><title level="m">DTA-Basisformat für Manuskripte</title>,
+                <publisher>Berlin-Brandenburg Academy of Sciences and Humanities</publisher>,
+              accessed January 28, 2017, <ptr
+                target="http://www.deutschestextarchiv.de/doku/basisformat/manuskript.html"
+              />.</bibl></note> This paper describes the development of this DTABf for Manuscripts,
+          or DTABf-M, its current data basis, its present components, and the efforts towards the
+          reorganization of the DTABf system as a whole in order to include the DTABf-M and previous
+          extensions to the DTABf, but also to prevent the existing DTABf for printed texts from
+          losing its central values of restrictedness and clarity through overly extensive
+          growth.</p>
       </div>
       <div xml:id="problem">
         <head>Problem Statement</head>
-        <p>Until recently, the textual basis of the DTA corpora has almost exclusively consisted of printed texts of the historical New High German period (~1600 to ~1900). Nevertheless, now that a solid corpus basis has been created it is desirable to extend the DTA workflow to manuscripts as well, mainly for two reasons:</p>
-        <p>First, a growing number of scholars dealing with historical German texts (e.g., digital scholarly editions) and focusing on the digitization of manuscripts (letters, diaries, etc.) would like to use the restrictive DTA guidelines as a starting point for their annotation, and to use the DTA platform, which requires DTABf conformity, as a publication and working environment for their projects. Thus, adapting the DTABf for manuscript-specific use and thereby enabling access to the DTA infrastructure (including <ref target="http://www.deutschestextarchiv.de/doku/software#cab">linguistic analysis</ref><note>See <bibl><title level="a">Software im Deutschen Textarchiv, 8: Linguistische Analyse historischer Texte</title> (Linguistic Analysis for Historical Texts) (CAB), accessed January 28, 2017, <ptr target="http://www.deutschestextarchiv.de/doku/software#cab"/></bibl>.</note> as well as <ref target="http://www.deutschestextarchiv.de/dtaq/about">collaborative text correction and annotation</ref><note rend="inside.parenthesis">See <bibl><title level="a">DTAQ: Kollaborative Qualitätssicherung im Deutschen Textarchiv</title> (Collaborative Quality Assurance within the DTA), accessed January 28, 2017, <ptr target="http://www.deutschestextarchiv.de/dtaq/about"/></bibl>. On the process of quality assurance in the DTA, see, for example, <ref target="#haaf13" type="bibl">Haaf, Wiegand, and Geyken 2013</ref>.</note>) is a matter of supporting scholarly projects in their usage of the DTA infrastructure, which is part of the DTA’s mission. Second, while the DTA corpus is fairly diverse with regard to (printed) text types and disciplines, the absence of manuscripts causes certain <soCalled>core text types</soCalled><note>See <ref target="#gansel11" type="bibl">Gansel 2011, 53</ref>, for a reflection on the term <soCalled>Kerntextsorte</soCalled> (i.e., core text type).</note> of writing to be underrepresented within the corpus (e.g., private letters, diaries, <term>alba amicorum</term>). This is due to the fact that some text types were rarely or never distributed in print. Therefore—in addition to the benefit of extending the corpus base—it is in the DTA’s own interest to include (historical) manuscripts in the corpus.</p>
-        <p>While the DTABf covers a wide range of phenomena in printed texts, there are manuscript-specific features which are not covered by this format. Thus, in order to include manuscripts in the DTA, it is necessary to create a TEI format which provides solutions for manuscript-specific phenomena. To be suitable for the DTA, its workflows, and its processes, this format needs to address three prerequisites: <list rend="inline simple"><item>First, it should be based on the original DTABf tagset, mainly reusing it and only extending it if unavoidable (see <ptr type="crossref" target="#annotatingManuscripts"/>).</item> <item>Second, like the DTABf, it should be created in a data-driven way, that is, based on actual phenomena found in handwritten texts which are transcribed and encoded using the DTABf (see <ptr type="crossref" target="#databasis #annotation"/>).</item> <item>Third, the format should complement the DTABf, not replace it. Hence, it is necessary to find a modular way of integrating the DTABf-M into the DTABf (see <ptr target="#inclusion" type="crossref"/>)</item></list>.<note>These premises lead to the method of cautious extensions to the existing DTABf rather than the adoption of a new format within the DTA. Of course, there are other TEI formats for manuscript tagging, varying with regard to their scope, premises, and character of specifications and documentation. These include (to only name a few) the guidelines of the project <title level="m">Briefe und Texte aus dem intellektuellen Berlin um 1800</title> (<title level="m">Letters and Texts: Intellectual Berlin around 1800</title>; <title level="a">Edition-specific TEI Encoding Guidelines</title>, accessed February 12, 2016, <ptr target="http://www.berliner-intellektuelle.eu/encoding-guidelines.pdf"/>), of the Shelley-Godwin Archive (<title level="a">Encoding the S-GA</title>, accessed January 28, 2017, <ptr target="http://shelleygodwinarchive.org/about/#encodingthesga"/>), and of the digital edition <title level="m">Theodor Fontane: Notizbücher</title> (<title level="m">Theodor Fontane’s Notebooks</title>; accessed January 28, 2017, <ptr target="https://fontane-nb.dariah.eu/doku.html?id=gesamtdokumentation"/>).</note></p>
+        <p>Until recently, the textual basis of the DTA corpora has almost exclusively consisted of
+          printed texts of the historical New High German period (~1600 to ~1900). Nevertheless, now
+          that a solid corpus basis has been created it is desirable to extend the DTA workflow to
+          manuscripts as well, mainly for two reasons:</p>
+        <p>First, a growing number of scholars dealing with historical German texts (e.g., digital
+          scholarly editions) and focusing on the digitization of manuscripts (letters, diaries,
+          etc.) would like to use the restrictive DTA guidelines as a starting point for their
+          annotation, and to use the DTA platform, which requires DTABf conformity, as a publication
+          and working environment for their projects. Thus, adapting the DTABf for
+          manuscript-specific use and thereby enabling access to the DTA infrastructure (including
+            <ref target="http://www.deutschestextarchiv.de/doku/software#cab">linguistic
+            analysis</ref><note>See <bibl><title level="a">Software im Deutschen Textarchiv, 8:
+                Linguistische Analyse historischer Texte</title> (Linguistic Analysis for Historical
+              Texts) (CAB), accessed January 28, 2017, <ptr
+                target="http://www.deutschestextarchiv.de/doku/software#cab"/></bibl>.</note> as
+          well as <ref target="http://www.deutschestextarchiv.de/dtaq/about">collaborative text
+            correction and annotation</ref><note rend="inside.parenthesis">See <bibl><title
+                level="a">DTAQ: Kollaborative Qualitätssicherung im Deutschen Textarchiv</title>
+              (Collaborative Quality Assurance within the DTA), accessed January 28, 2017, <ptr
+                target="http://www.deutschestextarchiv.de/dtaq/about"/></bibl>. On the process of
+            quality assurance in the DTA, see, for example, <ref target="#haaf13" type="bibl">Haaf,
+              Wiegand, and Geyken 2013</ref>.</note>) is a matter of supporting scholarly projects
+          in their usage of the DTA infrastructure, which is part of the DTA’s mission. Second,
+          while the DTA corpus is fairly diverse with regard to (printed) text types and
+          disciplines, the absence of manuscripts causes certain <soCalled>core text
+            types</soCalled><note>See <ref target="#gansel11" type="bibl">Gansel 2011, 53</ref>, for
+            a reflection on the term <soCalled>Kerntextsorte</soCalled> (i.e., core text
+            type).</note> of writing to be underrepresented within the corpus (e.g., private
+          letters, diaries, <term>alba amicorum</term>). This is due to the fact that some text
+          types were rarely or never distributed in print. Therefore—in addition to the benefit of
+          extending the corpus base—it is in the DTA’s own interest to include (historical)
+          manuscripts in the corpus.</p>
+        <p>While the DTABf covers a wide range of phenomena in printed texts, there are
+          manuscript-specific features which are not covered by this format. Thus, in order to
+          include manuscripts in the DTA, it is necessary to create a TEI format which provides
+          solutions for manuscript-specific phenomena. To be suitable for the DTA, its workflows,
+          and its processes, this format needs to address three prerequisites: <list
+            rend="inline simple">
+            <item>First, it should be based on the original DTABf tagset, mainly reusing it and only
+              extending it if unavoidable (see <ptr type="crossref" target="#annotatingManuscripts"
+              />).</item>
+            <item>Second, like the DTABf, it should be created in a data-driven way, that is, based
+              on actual phenomena found in handwritten texts which are transcribed and encoded using
+              the DTABf (see <ptr type="crossref" target="#databasis #annotation"/>).</item>
+            <item>Third, the format should complement the DTABf, not replace it. Hence, it is
+              necessary to find a modular way of integrating the DTABf-M into the DTABf (see <ptr
+                target="#inclusion" type="crossref"/>)</item>
+          </list>.<note>These premises lead to the method of cautious extensions to the existing
+            DTABf rather than the adoption of a new format within the DTA. Of course, there are
+            other TEI formats for manuscript tagging, varying with regard to their scope, premises,
+            and character of specifications and documentation. These include (to only name a few)
+            the guidelines of the project <title level="m">Briefe und Texte aus dem intellektuellen
+              Berlin um 1800</title> (<title level="m">Letters and Texts: Intellectual Berlin around
+              1800</title>; <title level="a">Edition-specific TEI Encoding Guidelines</title>,
+            accessed February 12, 2016, <ptr
+              target="http://www.berliner-intellektuelle.eu/encoding-guidelines.pdf"/>), of the
+            Shelley-Godwin Archive (<title level="a">Encoding the S-GA</title>, accessed January 28,
+            2017, <ptr target="http://shelleygodwinarchive.org/about/#encodingthesga"/>), and of the
+            digital edition <title level="m">Theodor Fontane: Notizbücher</title> (<title level="m"
+              >Theodor Fontane’s Notebooks</title>; accessed January 28, 2017, <ptr
+              target="https://fontane-nb.dariah.eu/doku.html?id=gesamtdokumentation"/>).</note></p>
       </div>
       <div xml:id="databasis">
         <head>Data Basis</head>
-        <p>The DTABf for Manuscripts (DTABf-M) has been developed primarily in cooperation with the project <title level="m"><ref target="https://www.culture.hu-berlin.de/de/forschung/projekte/hidden-kosmos/">Hidden Kosmos</ref></title>, hosted by the Humboldt-Universität zu Berlin.<note><title level="m">Hidden Kosmos—Reconstructing Alexander von Humboldt’s <soCalled>Kosmos-Lectures</soCalled>,</title> accessed January 28, 2017, <ptr target="https://www.culture.hu-berlin.de/de/forschung/projekte/hidden-kosmos/"/>. For further information on the project’s aims and methods, and on the cooperation between DTA and Hidden Kosmos, see, for example, <ref target="#thomas15" type="bibl">Thomas 2015</ref> and <ref target="#thomas16" type="bibl">Thomas, Fiechter, and Hug 2016</ref>.</note> Hidden Kosmos publishes handwritten lecture notes by attendees of Alexander von Humboldt’s world-famous <soCalled>Kosmos-Lectures</soCalled> in 1827/28. Since June 2014, nine complete volumes with a total of more than 3,500 manuscript pages have been manually transcribed, annotated in TEI XML, and published via the DTA infrastructure. Most of these manuscripts were keyed manually by a vendor and published at an early stage in the web-based quality assurance platform DTAQ. There, the transcription as well as the annotation of each document was checked and corrected, if necessary; DTAQ also provided the means to add additional markup, such as the tagging of person names (<gi>persName</gi>), directly at page level. After the process of quality control has been completed, the manuscripts were released on the DTA website.<note>For the ongoing publication of the Hidden Kosmos subcorpus, see the DTA search page, AvHKV subcorpus, accessed July 13, 2017, <ptr target="http://www.deutschestextarchiv.de/search/metadata?corpus=avhkv"/>.</note> While the <title level="m">Hidden Kosmos</title> project is now complete, development of the DTABf-M continues through work on other manuscripts.</p>
-        <p>The DTABf-M is being used and further enriched for <title level="m"><ref target="http://www.bbaw.de/en/research/avh-r">Travelling Humboldt—Science on the Move</ref></title>,<note>German Title: <title level="m">Alexander von Humboldt auf Reisen—Wissenschaft aus der Bewegung</title>; project homepage, accessed January 28, 2017, <ptr target="http://www.bbaw.de/en/research/avh-r"/>.</note> a long-term project at the Berlin-Brandenburg Academy of Sciences and the Humanities. The project aims to provide a digital critical edition of handwritten documents by Alexander von Humboldt connected to his American and Siberian journeys, including his travel journals, which display a very complex order of text segments on each page and were composed and altered in several writing stages.</p>
-        <p>Though these two data sources are homogeneous with regard to time of creation (early nineteenth century), they already included various manuscript-specific phenomena, both frequent (e.g., additions and deletions to the text basis) and rare (e.g., inline notes), that the DTABf-M tagset could be based upon.</p>
-        <p>A third addition to the DTA manuscript corpus is provided by the project <title level="m"><ref target="http://www.histinst.uni-jena.de/Bereiche/Geschlechtergeschichte/Projekte/Digitale+Edition+der+Briefe+Erdmuthe+Benignas+von+Reuß_Ebersdorf+.html">Digitale Edition der Briefe Erdmuthe Benignas von Reuß-Ebersdorf</ref></title>,<note><title level="m">Digitale Edition der Briefe Erdmuthe Benignas von Reuß-Ebersdorf (Digital Edition of Erdmuthe Benigna of Reuß-Ebersdorf’s letters)</title>, project at the Department of History at Friedrich-Schiller-University Jena, accessed January 28, 2017, <ptr target="http://www.histinst.uni-jena.de/Bereiche/Geschlechtergeschichte/Projekte/Digitale+Edition+der+Briefe+Erdmuthe+Benignas+von+Reuß_Ebersdorf+.html"/>.</note> where a corpus of letters and other handwritten documents of this pietistic regent from the early eighteenth century is being prepared for a digital scholarly edition.</p>
-        <p>Plans to further develop DTABf-M will rely on additional historical sources in the course of their inclusion in the corpus.</p>
+        <p>The DTABf for Manuscripts (DTABf-M) has been developed primarily in cooperation with the
+          project <title level="m"><ref
+              target="https://www.culture.hu-berlin.de/de/forschung/projekte/hidden-kosmos/">Hidden
+              Kosmos</ref></title>, hosted by the Humboldt-Universität zu Berlin.<note><title
+              level="m">Hidden Kosmos—Reconstructing Alexander von Humboldt’s
+                <soCalled>Kosmos-Lectures</soCalled>,</title> accessed January 28, 2017, <ptr
+              target="https://www.culture.hu-berlin.de/de/forschung/projekte/hidden-kosmos/"/>. For
+            further information on the project’s aims and methods, and on the cooperation between
+            DTA and Hidden Kosmos, see, for example, <ref target="#thomas15" type="bibl">Thomas
+              2015</ref> and <ref target="#thomas16" type="bibl">Thomas, Fiechter, and Hug
+              2016</ref>.</note> Hidden Kosmos publishes handwritten lecture notes by attendees of
+          Alexander von Humboldt’s world-famous <soCalled>Kosmos-Lectures</soCalled> in 1827/28.
+          Since June 2014, nine complete volumes with a total of more than 3,500 manuscript pages
+          have been manually transcribed, annotated in TEI XML, and published via the DTA
+          infrastructure. Most of these manuscripts were keyed manually by a vendor and published at
+          an early stage in the web-based quality assurance platform DTAQ. There, the transcription
+          as well as the annotation of each document was checked and corrected, if necessary; DTAQ
+          also provided the means to add additional markup, such as the tagging of person names
+            (<gi>persName</gi>), directly at page level. After the process of quality control has
+          been completed, the manuscripts were released on the DTA website.<note>For the ongoing
+            publication of the Hidden Kosmos subcorpus, see the DTA search page, AvHKV subcorpus,
+            accessed July 13, 2017, <ptr
+              target="http://www.deutschestextarchiv.de/search/metadata?corpus=avhkv"/>.</note>
+          While the <title level="m">Hidden Kosmos</title> project is now complete, development of
+          the DTABf-M continues through work on other manuscripts.</p>
+        <p>The DTABf-M is being used and further enriched for <title level="m"><ref
+              target="http://www.bbaw.de/en/research/avh-r">Travelling Humboldt—Science on the
+              Move</ref></title>,<note>German Title: <title level="m">Alexander von Humboldt auf
+              Reisen—Wissenschaft aus der Bewegung</title>; project homepage, accessed January 28,
+            2017, <ptr target="http://www.bbaw.de/en/research/avh-r"/>.</note> a long-term project
+          at the Berlin-Brandenburg Academy of Sciences and the Humanities. The project aims to
+          provide a digital critical edition of handwritten documents by Alexander von Humboldt
+          connected to his American and Siberian journeys, including his travel journals, which
+          display a very complex order of text segments on each page and were composed and altered
+          in several writing stages.</p>
+        <p>Though these two data sources are homogeneous with regard to time of creation (early
+          nineteenth century), they already included various manuscript-specific phenomena, both
+          frequent (e.g., additions and deletions to the text basis) and rare (e.g., inline notes),
+          that the DTABf-M tagset could be based upon.</p>
+        <p>A third addition to the DTA manuscript corpus is provided by the project <title level="m"
+              ><ref
+              target="http://www.histinst.uni-jena.de/Bereiche/Geschlechtergeschichte/Projekte/Digitale+Edition+der+Briefe+Erdmuthe+Benignas+von+Reuß_Ebersdorf+.html"
+              >Digitale Edition der Briefe Erdmuthe Benignas von
+              Reuß-Ebersdorf</ref></title>,<note><title level="m">Digitale Edition der Briefe
+              Erdmuthe Benignas von Reuß-Ebersdorf (Digital Edition of Erdmuthe Benigna of
+              Reuß-Ebersdorf’s letters)</title>, project at the Department of History at
+            Friedrich-Schiller-University Jena, accessed January 28, 2017, <ptr
+              target="http://www.histinst.uni-jena.de/Bereiche/Geschlechtergeschichte/Projekte/Digitale+Edition+der+Briefe+Erdmuthe+Benignas+von+Reuß_Ebersdorf+.html"
+            />.</note> where a corpus of letters and other handwritten documents of this pietistic
+          regent from the early eighteenth century is being prepared for a digital scholarly
+          edition.</p>
+        <p>Plans to further develop DTABf-M will rely on additional historical sources in the course
+          of their inclusion in the corpus.</p>
       </div>
       <div xml:id="towardDTABfM">
         <head>Steps toward the DTABf for Manuscripts (DTABf-M)</head>
         <div xml:id="annotatingManuscripts">
           <head>From Annotating Printed Texts to Annotating Manuscripts</head>
-          <p>Our approach is to base the DTABf for manuscripts on the established DTABf for printed texts, reusing the existing tagset wherever possible and only making changes (enhancements or reductions) when new tags are needed to represent phenomena exclusively found in manuscripts or printed texts, respectively. This is rather straightforward, since, as exemplified by <ptr type="crossref" target="#figure1 #figure2 #figure3 #figure4"/>, a large number of textual phenomena can be found in both handwritten and printed texts. <ptr target="#figure1" type="crossref"/> illustrates a printed page containing some common text structures together with the DTABf elements that apply in those cases. Phenomena on this page include marginal notes, figures, poems, and paragraphs. <ptr type="crossref" target="#figure2 #figure3 #figure4"/> show examples of manuscript pages containing similar text structures, showing that the same DTABf elements can be applied there. In fact, much of the DTABf tagset for printed texts can similarly be applied to manuscripts.</p>
-          <figure xml:id="figure1" n="1.1"><!-- [CT/SH] @RvdB: Either it should be "Fig.s 1–4: Examples of textual structures in printed texts and annotation conventions within the DTABf.", i.e. Examples = plural, or each of the Fig.s should have the legend text "Example of textual structures in printed texts and annotation conventions within the DTABf.", i.e. "Example" in singular. -->
+          <p>Our approach is to base the DTABf for manuscripts on the established DTABf for printed
+            texts, reusing the existing tagset wherever possible and only making changes
+            (enhancements or reductions) when new tags are needed to represent phenomena exclusively
+            found in manuscripts or printed texts, respectively. This is rather straightforward,
+            since, as exemplified by <ptr type="crossref"
+              target="#figure1 #figure2 #figure3 #figure4"/>, a large number of textual phenomena
+            can be found in both handwritten and printed texts. <ptr target="#figure1"
+              type="crossref"/> illustrates a printed page containing some common text structures
+            together with the DTABf elements that apply in those cases. Phenomena on this page
+            include marginal notes, figures, poems, and paragraphs. <ptr type="crossref"
+              target="#figure2 #figure3 #figure4"/> show examples of manuscript pages containing
+            similar text structures, showing that the same DTABf elements can be applied there. In
+            fact, much of the DTABf tagset for printed texts can similarly be applied to
+            manuscripts.</p>
+          <figure xml:id="figure1" n="1.1">
+            <!-- [CT/SH] @RvdB: Either it should be "Fig.s 1–4: Examples of textual structures in printed texts and annotation conventions within the DTABf.", i.e. Examples = plural, or each of the Fig.s should have the legend text "Example of textual structures in printed texts and annotation conventions within the DTABf.", i.e. "Example" in singular. -->
             <graphic url="images/image1.png" height="1083px" width="1455px"/>
-            <head type="legend">Example of textual structures in printed texts and annotation conventions within the DTABf.</head>
-            <head type="license">(<ref target="#andrea1616" type="bibl">Andreä 1616</ref>, <ptr target="http://www.deutschestextarchiv.de/valentin_hochzeit_1616/9"/>).</head>
+            <head type="legend">Example of textual structures in printed texts and annotation
+              conventions within the DTABf.</head>
+            <head type="license">(<ref target="#andrea1616" type="bibl">Andreä 1616</ref>, <ptr
+                target="http://www.deutschestextarchiv.de/valentin_hochzeit_1616/9"/>).</head>
           </figure>
           <figure xml:id="figure2" n="1.2">
             <graphic url="images/image2.png" height="558px" width="1575px"/>
-            <head type="legend">Example of textual structures in manuscripts and possible ways to annotate them with DTABf tags.</head>
-            <head type="license">(<ref type="bibl" target="#hufeland1829">Hufeland [ca. 1829]</ref>, <ptr target="http://www.deutschestextarchiv.de/hufeland_privatbesitz_1829/149"/>).</head>
+            <head type="legend">Example of textual structures in manuscripts and possible ways to
+              annotate them with DTABf tags.</head>
+            <head type="license">(<ref type="bibl" target="#hufeland1829">Hufeland [ca. 1829]</ref>,
+                <ptr target="http://www.deutschestextarchiv.de/hufeland_privatbesitz_1829/149"
+              />).</head>
           </figure>
           <figure xml:id="figure3" n="1.3">
             <graphic url="images/image3.png" height="131px" width="624px"/>
-            <head type="legend">Example of textual structures in manuscripts and possible ways to annotate them with DTABf tags.</head>
-            <head type="license">(<ref type="bibl" target="#hufeland1829">Hufeland [ca. 1829]</ref>, <ptr target="http://www.deutschestextarchiv.de/hufeland_privatbesitz_1829/88"/>).</head>
+            <head type="legend">Example of textual structures in manuscripts and possible ways to
+              annotate them with DTABf tags.</head>
+            <head type="license">(<ref type="bibl" target="#hufeland1829">Hufeland [ca. 1829]</ref>,
+                <ptr target="http://www.deutschestextarchiv.de/hufeland_privatbesitz_1829/88"
+              />).</head>
           </figure>
           <figure xml:id="figure4" n="1.4">
             <graphic url="images/image4.png" height="175px" width="676px"/>
-            <head type="legend">Example of textual structures in manuscripts and possible ways to annotate them with DTABf tags.</head>
-            <head type="license">(<ref type="bibl" target="#hufeland1829">Hufeland [ca. 1829]</ref>, <ptr target="http://www.deutschestextarchiv.de/hufeland_privatbesitz_1829/139"/>).</head>
-          </figure>          
-          <p>As illustrated by <ptr type="crossref" target="#figure1 #figure2 #figure3 #figure4"/>, there are many structural similarities between handwritten and printed texts with regard to document structure, the arrangement of the text, and the meaning of layout specifics. Furthermore, inline phenomena may also display similarities. For instance, even certain types of emphasis are at least comparable, if not identical, between printed texts and manuscripts.</p>
-          <p>One example of change in the style of handwriting is illustrated in <ptr target="#figure5" type="crossref"/>. The style changed from old German script (Kurrent) for the general text body to Latin script for distinct terms like proper names or foreign language material. We consider this to be analogous to the change of font from Blackletter (Fraktur) to Antiqua types in print. The DTABf solution for changes from Fraktur to Antiqua typeface is to use the <gi>hi</gi> element with <att>rendition</att>=<val>#aq</val>. This tagging can thus be used similarly for changes from Kurrent to Latin script in manuscripts (<ptr type="crossref" target="#figure5"/>).<note>Note that the snippets provided below the figures within the following examples illustrate the DTABf-M-conformant transcription and annotation of the text passage under consideration. The URL provided in each example leads to the page of the document from which the example was taken. The tagging is simplified in some instances by leaving out annotations that are not central to the purpose of this paper. As described in the introduction, some manuscripts are still being processed for quality assurance, and therefore only available in DTAQ, where registration and password are required to access the documents.</note></p>
+            <head type="legend">Example of textual structures in manuscripts and possible ways to
+              annotate them with DTABf tags.</head>
+            <head type="license">(<ref type="bibl" target="#hufeland1829">Hufeland [ca. 1829]</ref>,
+                <ptr target="http://www.deutschestextarchiv.de/hufeland_privatbesitz_1829/139"
+              />).</head>
+          </figure>
+          <p>As illustrated by <ptr type="crossref" target="#figure1 #figure2 #figure3 #figure4"/>,
+            there are many structural similarities between handwritten and printed texts with regard
+            to document structure, the arrangement of the text, and the meaning of layout specifics.
+            Furthermore, inline phenomena may also display similarities. For instance, even certain
+            types of emphasis are at least comparable, if not identical, between printed texts and
+            manuscripts.</p>
+          <p>One example of change in the style of handwriting is illustrated in <ptr
+              target="#figure5" type="crossref"/>. The style changed from old German script
+            (Kurrent) for the general text body to Latin script for distinct terms like proper names
+            or foreign language material. We consider this to be analogous to the change of font
+            from Blackletter (Fraktur) to Antiqua types in print. The DTABf solution for changes
+            from Fraktur to Antiqua typeface is to use the <gi>hi</gi> element with
+              <att>rendition</att>=<val>#aq</val>. This tagging can thus be used similarly for
+            changes from Kurrent to Latin script in manuscripts (<ptr type="crossref"
+              target="#figure5"/>).<note>Note that the snippets provided below the figures within
+              the following examples illustrate the DTABf-M-conformant transcription and annotation
+              of the text passage under consideration. The URL provided in each example leads to the
+              page of the document from which the example was taken. The tagging is simplified in
+              some instances by leaving out annotations that are not central to the purpose of this
+              paper. As described in the introduction, some manuscripts are still being processed
+              for quality assurance, and therefore only available in DTAQ, where registration and
+              password are required to access the documents.</note></p>
           <figure xml:id="figure5" n="1.5">
             <graphic url="images/image5.png" width="624px" height="40px"/>
-            <head type="legend">The proper names <q>Herschel</q>, <q>Bonpland</q>, and <q>Jupiter</q> are distinguished by the use of Latin script from the remainder of the text written in Kurrent.</head>
-            <head type="license">(<ref type="bibl" target="#anonym1827a">Anonymous [1827/28a]</ref>, <ptr target="http://www.deutschestextarchiv.de/nn_msgermqu2345_1827/58"/>).</head>
+            <head type="legend">The proper names <q>Herschel</q>, <q>Bonpland</q>, and
+                <q>Jupiter</q> are distinguished by the use of Latin script from the remainder of
+              the text written in Kurrent.</head>
+            <head type="license">(<ref type="bibl" target="#anonym1827a">Anonymous [1827/28a]</ref>,
+                <ptr target="http://www.deutschestextarchiv.de/nn_msgermqu2345_1827/58"/>).</head>
           </figure>
-          <egXML xmlns="http://www.tei-c.org/ns/Examples">
-            […] haben <hi rendition="#aq">Herschel</hi> und <hi rendition="#aq">Bonpland</hi> den <hi rendition="#aq">Jupiter</hi> noch 18<lb/>[…]
-          </egXML>
-          <p>Another example for similar inline phenomena in manuscripts and printed texts is the underlining of important phrases or keywords, represented in the DTABf as <tag>hi rendition="#u"</tag> for printed texts and manuscripts alike. Furthermore, though this feature is far more frequent in prints, manuscripts may also contain catchwords or signature marks at the bottom of the page, which we tag as <gi>fw</gi> with <att>type</att>=<val>catch</val> or <att>type</att>=<val>sig</val>, respectively.</p>
+          <egXML xmlns="http://www.tei-c.org/ns/Examples"> […] haben <hi rendition="#aq"
+              >Herschel</hi> und <hi rendition="#aq">Bonpland</hi> den <hi rendition="#aq"
+              >Jupiter</hi> noch 18<lb/>[…] </egXML>
+          <p>Another example for similar inline phenomena in manuscripts and printed texts is the
+            underlining of important phrases or keywords, represented in the DTABf as <tag>hi
+              rendition="#u"</tag> for printed texts and manuscripts alike. Furthermore, though this
+            feature is far more frequent in prints, manuscripts may also contain catchwords or
+            signature marks at the bottom of the page, which we tag as <gi>fw</gi> with
+              <att>type</att>=<val>catch</val> or <att>type</att>=<val>sig</val>, respectively.</p>
           <figure xml:id="figure6" n="1.6">
             <graphic url="images/image6.png" width="624px" height="119px"/>
-            <head type="legend">The last two lines of running text, followed by a signature mark and a catchword at the bottom of the page.</head>
-            <head type="license">(<ref target="#anonym1827b" type="bibl">Anonymous [1827/28b]</ref>, <ptr target="http://www.deutschestextarchiv.de/nn_n0171w1_1828/41"/>).</head>
+            <head type="legend">The last two lines of running text, followed by a signature mark and
+              a catchword at the bottom of the page.</head>
+            <head type="license">(<ref target="#anonym1827b" type="bibl">Anonymous [1827/28b]</ref>,
+                <ptr target="http://www.deutschestextarchiv.de/nn_n0171w1_1828/41"/>).</head>
           </figure>
           <egXML xmlns="http://www.tei-c.org/ns/Examples">
             <p>[…] des vergleichen.</p><lb/>
             <p>Dieſe große Entdeckung trifft merkwürdiger<lb/>
-              <fw type="sig" place="bottom">Phyſiſche Erdbeſchreibung <hi rendition="#aq">e</hi>.</fw> <fw type="catch" place="bottom"><hi rendition="#u">Weiſe</hi></fw><lb/>[…]</p>
+              <fw type="sig" place="bottom">Phyſiſche Erdbeſchreibung <hi rendition="#aq"
+                >e</hi>.</fw>
+              <fw type="catch" place="bottom"><hi rendition="#u">Weiſe</hi></fw><lb/>[…]</p>
           </egXML>
         </div>
         <div xml:id="annotation">
           <head>DTABf-M: Manuscript-specific Text Annotation</head>
-          <p>Despite the abovementioned similarities, there are certain features that are specific to manuscripts and which require additional tagging solutions within the DTABf-M. In this section, we will give some examples of features which occur in our manuscript corpus and introduce their structural representation within the DTABf-M. Subsequently, we will give an overview of those manuscript-specific TEI elements which we have identified so far as necessary to be included in a DTABf extension for manuscripts (DTABf-M). Compared to the DTA corpus of printed texts with its more than 3,000 works,<note>Approx. 670,000 pages as of December 2016.</note> the data basis for the DTABf-M is quite small (129 works).<note>Approx. 4,500 pages as of December 2016.</note> Thus, the number of manuscript-specific elements, attributes, and values illustrated in the examples is not exhaustive and will not fit any given manuscript precisely. However, in comparing the texts of the manuscript corpus it is possible to differentiate common from less common features. Thus, though the DTABf-M tagset might still have to be augmented in the future, the proposed tagging solutions do cover phenomena common in handwritten sources and therefore should be applicable to other manuscripts and for the integration of further handwritten sources into the DTA corpora.</p>
-          <p>The DTABf had to be extended especially with respect to traces of the writing process, such as <foreign xml:lang="la">ad hoc</foreign> corrections by substitution, deletion, or addition of characters, words, or passages, and change of hands or writing devices. These phenomena can be observed in many manuscripts. Manuscript-specific extensions to the DTABf were applied following the principles of simplicity, consistency, and avoidance of ambiguousness, as established for the DTABf. To achieve the latter, DTABf-M specifications were created not only on element and attribute level, but also with regard to attribute values that utilize specified vocabularies for phenomena in manuscripts (e.g., for typical methods of deletion or addition).</p>
+          <p>Despite the abovementioned similarities, there are certain features that are specific
+            to manuscripts and which require additional tagging solutions within the DTABf-M. In
+            this section, we will give some examples of features which occur in our manuscript
+            corpus and introduce their structural representation within the DTABf-M. Subsequently,
+            we will give an overview of those manuscript-specific TEI elements which we have
+            identified so far as necessary to be included in a DTABf extension for manuscripts
+            (DTABf-M). Compared to the DTA corpus of printed texts with its more than 3,000
+              works,<note>Approx. 670,000 pages as of December 2016.</note> the data basis for the
+            DTABf-M is quite small (129 works).<note>Approx. 4,500 pages as of December 2016.</note>
+            Thus, the number of manuscript-specific elements, attributes, and values illustrated in
+            the examples is not exhaustive and will not fit any given manuscript precisely. However,
+            in comparing the texts of the manuscript corpus it is possible to differentiate common
+            from less common features. Thus, though the DTABf-M tagset might still have to be
+            augmented in the future, the proposed tagging solutions do cover phenomena common in
+            handwritten sources and therefore should be applicable to other manuscripts and for the
+            integration of further handwritten sources into the DTA corpora.</p>
+          <p>The DTABf had to be extended especially with respect to traces of the writing process,
+            such as <foreign xml:lang="la">ad hoc</foreign> corrections by substitution, deletion,
+            or addition of characters, words, or passages, and change of hands or writing devices.
+            These phenomena can be observed in many manuscripts. Manuscript-specific extensions to
+            the DTABf were applied following the principles of simplicity, consistency, and
+            avoidance of ambiguousness, as established for the DTABf. To achieve the latter, DTABf-M
+            specifications were created not only on element and attribute level, but also with
+            regard to attribute values that utilize specified vocabularies for phenomena in
+            manuscripts (e.g., for typical methods of deletion or addition).</p>
           <div xml:id="deladd">
             <head>Deletions and Additions</head>
-            <p>Common features of manuscripts are corrections to the original text, carried out by adding or deleting textual material. Unlike in printed texts, where manual corrections are usually made on a text which has previously been finalized for the printed publication, corrections in manuscripts are part of the text creation and amelioration process. The TEI elements relevant to these phenomena are <title level="a">Core Elements for Transcriptional Work</title> within the TEI Guidelines section on <title level="a">Representation of Primary Sources</title> (<ref type="bibl" target="#tei16">TEI Consortium 2016, 11; 11.3.1.1</ref>). They include <gi>add</gi> (for additions) and <gi>del</gi> (for deletions), which can be grouped within <gi>subst</gi> to represent the substitution of a correct character or phrase for an erroneous one (<ref target="#tei16" type="bibl">TEI Consortium 2016, 11.3.1.4</ref>). Thus, while it was possible to leave these elements unconsidered for the DTABf for printed material, they became an immensely important part of the DTABf-M.</p>
-            <p>Superfluous textual material in manuscripts may be deleted without substitute. Similarly, characters, words, or phrases missing in a written text may be added with no need to erase text. Thus, the elements <gi>add</gi> and <gi>del</gi> may be used separately without the element <gi>subst</gi>, for instance, where an erroneous character, word, or passage was crossed out (as illustrated in <ptr type="crossref" target="#figure7 #figure8"/>) or erased (<ptr type="crossref" target="#figure9"/>), or where missing text was added (<ptr type="crossref" target="#figure10 #figure11"/>).</p>
+            <p>Common features of manuscripts are corrections to the original text, carried out by
+              adding or deleting textual material. Unlike in printed texts, where manual corrections
+              are usually made on a text which has previously been finalized for the printed
+              publication, corrections in manuscripts are part of the text creation and amelioration
+              process. The TEI elements relevant to these phenomena are <title level="a">Core
+                Elements for Transcriptional Work</title> within the TEI Guidelines section on
+                <title level="a">Representation of Primary Sources</title> (<ref type="bibl"
+                target="#tei16">TEI Consortium 2016, 11; 11.3.1.1</ref>). They include <gi>add</gi>
+              (for additions) and <gi>del</gi> (for deletions), which can be grouped within
+                <gi>subst</gi> to represent the substitution of a correct character or phrase for an
+              erroneous one (<ref target="#tei16" type="bibl">TEI Consortium 2016, 11.3.1.4</ref>).
+              Thus, while it was possible to leave these elements unconsidered for the DTABf for
+              printed material, they became an immensely important part of the DTABf-M.</p>
+            <p>Superfluous textual material in manuscripts may be deleted without substitute.
+              Similarly, characters, words, or phrases missing in a written text may be added with
+              no need to erase text. Thus, the elements <gi>add</gi> and <gi>del</gi> may be used
+              separately without the element <gi>subst</gi>, for instance, where an erroneous
+              character, word, or passage was crossed out (as illustrated in <ptr type="crossref"
+                target="#figure7 #figure8"/>) or erased (<ptr type="crossref" target="#figure9"/>),
+              or where missing text was added (<ptr type="crossref" target="#figure10 #figure11"
+              />).</p>
             <figure xml:id="figure7" n="2.1">
               <graphic url="images/image7.png" width="524px" height="69px"/>
-              <head type="legend">The name <q>Parry</q>,<note>Referring to the English naval officer and Arctic explorer William Edward Parry (1790–1855); for an authority file reference, see <ptr target="http://d-nb.info/gnd/116048166"/> (accessed January 30, 2017). Parry is one of the persons most frequently mentioned in the course of Humboldt’s Kosmos-Lectures: see the overview on personal names retrieved from the attendee’s lecture notes of the two courses at the Berlin University and the Sing-Akademie building, accessed January 30, 2017, <ptr target="http://deutschestextarchiv.de/kosmos/person"/>.</note> initially misspelled as <q>Parray</q>, was corrected by crossing out the extra <q>a</q>.</head>
-              <head type="license">(<ref type="bibl" target="#anonym1827b">Anonymous [1827/28b]</ref> <ptr target="http://www.deutschestextarchiv.de/nn_n0171w1_1828/291"/>).</head>
+              <head type="legend">The name <q>Parry</q>,<note>Referring to the English naval officer
+                  and Arctic explorer William Edward Parry (1790–1855); for an authority file
+                  reference, see <ptr target="http://d-nb.info/gnd/116048166"/> (accessed January
+                  30, 2017). Parry is one of the persons most frequently mentioned in the course of
+                  Humboldt’s Kosmos-Lectures: see the overview on personal names retrieved from the
+                  attendee’s lecture notes of the two courses at the Berlin University and the
+                  Sing-Akademie building, accessed January 30, 2017, <ptr
+                    target="http://deutschestextarchiv.de/kosmos/person"/>.</note> initially
+                misspelled as <q>Parray</q>, was corrected by crossing out the extra
+                <q>a</q>.</head>
+              <head type="license">(<ref type="bibl" target="#anonym1827b">Anonymous
+                  [1827/28b]</ref>
+                <ptr target="http://www.deutschestextarchiv.de/nn_n0171w1_1828/291"/>).</head>
             </figure>
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
-              <p><hi rendition="#aq">Parr<del rendition="#s">a</del>y</hi> hat an der Spitze der Maſten […].</p>
+              <p><hi rendition="#aq">Parr<del rendition="#s">a</del>y</hi> hat an der Spitze der
+                Maſten […].</p>
             </egXML>
             <figure xml:id="figure8" n="2.2">
               <graphic url="images/image8.png" height="61px" width="624px"/>
-              <head type="legend">The (apparently) superfluous word <q>einander</q> (<q>each other</q>) was crossed out.<note>Translation: <q>[…] that were brought near to each other with big winches […]</q>.</note></head>
-              <head type="license">(<ref type="bibl" target="#parthey1827">Parthey [1827/28]</ref>, <ptr target="http://www.deutschestextarchiv.de/parthey_msgermqu1711_1828/131"/>).</head>
+              <head type="legend">The (apparently) superfluous word <q>einander</q> (<q>each
+                  other</q>) was crossed out.<note>Translation: <q>[…] that were brought near to
+                    each other with big winches […]</q>.</note></head>
+              <head type="license">(<ref type="bibl" target="#parthey1827">Parthey [1827/28]</ref>,
+                  <ptr target="http://www.deutschestextarchiv.de/parthey_msgermqu1711_1828/131"
+                />).</head>
             </figure>
-            <egXML xmlns="http://www.tei-c.org/ns/Examples">
-              […] die man mit grossen Winden <del rendition="#s">einander</del> näherte […] 
-            </egXML>
-            <p>Besides crossing out misspellings or mistakenly-notated characters or words, it is also a common method within manuscripts to erase characters or passages by rubbing or scraping them out (<ptr type="crossref" target="#figure9"/>).</p>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples"> […] die man mit grossen Winden <del
+                rendition="#s">einander</del> näherte […] </egXML>
+            <p>Besides crossing out misspellings or mistakenly-notated characters or words, it is
+              also a common method within manuscripts to erase characters or passages by rubbing or
+              scraping them out (<ptr type="crossref" target="#figure9"/>).</p>
             <figure xml:id="figure9" n="2.3">
               <graphic url="images/image9.png" width="624px" height="52px"/>
-              <head type="legend">The term initially spelled <q>Esquimeaux</q> was altered to the more common spelling <q>Esquimaux</q> by erasing the superfluous <q>e</q> (which has become almost invisible in the manuscript).<note>Translation: <q>[…] living Eskimos [i.e., Inuit] from Eastern Greenland […]</q>.</note></head>
-              <head type="license">(<ref type="bibl" target="#anonym1828">Anonymous [1828]</ref>, <ptr target="http://www.deutschestextarchiv.de/nn_msgermqu2124_1827/62"/>).</head>              
+              <head type="legend">The term initially spelled <q>Esquimeaux</q> was altered to the
+                more common spelling <q>Esquimaux</q> by erasing the superfluous <q>e</q> (which has
+                become almost invisible in the manuscript).<note>Translation: <q>[…] living Eskimos
+                    [i.e., Inuit] from Eastern Greenland […]</q>.</note></head>
+              <head type="license">(<ref type="bibl" target="#anonym1828">Anonymous [1828]</ref>,
+                  <ptr target="http://www.deutschestextarchiv.de/nn_msgermqu2124_1827/62"/>).</head>
             </figure>
-            <egXML xmlns="http://www.tei-c.org/ns/Examples">
-              […] lebendige <hi rendition="#aq">Esquim<del rendition="#erased">e</del>aux</hi> aus Ostgrönland […]
-            </egXML>
-            <p>Additions of characters or words can be realized within, above, or under the line (<ptr target="#figure10 #figure11" type="crossref"/>), or in the right or left margin of a page.</p>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples"> […] lebendige <hi rendition="#aq"
+                  >Esquim<del rendition="#erased">e</del>aux</hi> aus Ostgrönland […] </egXML>
+            <p>Additions of characters or words can be realized within, above, or under the line
+                (<ptr target="#figure10 #figure11" type="crossref"/>), or in the right or left
+              margin of a page.</p>
             <figure xml:id="figure10" n="2.4">
               <graphic url="images/image10.png" width="624px" height="95px"/>
-              <head type="legend">The word initially written, <q>Beruhigung</q>, was altered by adding the syllable <q>un</q>, changing its meaning to the direct opposite <q>Be<emph>un</emph>ruhigung</q> (from <q>reassurance</q> to <q>disturbance</q>).</head>
-              <head type="license">(<ref type="bibl" target="#anonym1827c">Anonymous [1827/28c]</ref>, <ptr target="http://www.deutschestextarchiv.de/nn_oktavgfeo79_1828/220"/>).</head>
+              <head type="legend">The word initially written, <q>Beruhigung</q>, was altered by
+                adding the syllable <q>un</q>, changing its meaning to the direct opposite
+                    <q>Be<emph>un</emph>ruhigung</q> (from <q>reassurance</q> to
+                <q>disturbance</q>).</head>
+              <head type="license">(<ref type="bibl" target="#anonym1827c">Anonymous
+                  [1827/28c]</ref>, <ptr
+                  target="http://www.deutschestextarchiv.de/nn_oktavgfeo79_1828/220"/>).</head>
             </figure>
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <p>Was die Be<metamark/><add place="superlinear">un</add>ruhigung anbetrifft, […].</p>
             </egXML>
             <figure xml:id="figure11" n="2.5">
               <graphic url="images/image11.png" width="624px" height="87px"/>
-              <head type="legend">The words <q>von Paris</q> (<q>of Paris</q>) are added below the line, to mark clearly that the <q>mittl[ere] T[emperatur]</q> (<q>average temperature</q>) of this specific place is meant.</head>
-              <head type="license">(<ref type="bibl" target="#parthey1827">Parthey [1827/28]</ref>, <ptr target="http://www.deutschestextarchiv.de/parthey_msgermqu1711_1828/619"/>).</head>
+              <head type="legend">The words <q>von Paris</q> (<q>of Paris</q>) are added below the
+                line, to mark clearly that the <q>mittl[ere] T[emperatur]</q> (<q>average
+                  temperature</q>) of this specific place is meant.</head>
+              <head type="license">(<ref type="bibl" target="#parthey1827">Parthey [1827/28]</ref>,
+                  <ptr target="http://www.deutschestextarchiv.de/parthey_msgermqu1711_1828/619"
+                />).</head>
             </figure>
-            <egXML xmlns="http://www.tei-c.org/ns/Examples">
-              […] wird die mittl. T. <metamark/><add place="sublinear">von Paris </add> durch den Monat Mai dargestelt.
-            </egXML>
-            <p>The place where added text is meant to be inserted is often marked with some sign or arrow (see <ptr type="crossref" target="#figure10 #figure11 #figure16"/>). To enable the encoding of such signs in the manuscript text we additionally included the TEI element <gi>metamark</gi> in the DTABf-M tagset; the abovementioned figures provide transcriptions illustrating the usage of the <gi>metamark</gi> element.</p>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples"> […] wird die mittl. T. <metamark/><add
+                place="sublinear">von Paris </add> durch den Monat Mai dargestelt. </egXML>
+            <p>The place where added text is meant to be inserted is often marked with some sign or
+              arrow (see <ptr type="crossref" target="#figure10 #figure11 #figure16"/>). To enable
+              the encoding of such signs in the manuscript text we additionally included the TEI
+              element <gi>metamark</gi> in the DTABf-M tagset; the abovementioned figures provide
+              transcriptions illustrating the usage of the <gi>metamark</gi> element.</p>
           </div>
           <div xml:id="substitutions">
             <head>Substitutions</head>
-            <p>Deletions and additions may also be parts of a substitution process, where erroneous text was deleted in favor of a correct version which was added to the original text. In such cases, <gi>add</gi> and <gi>del</gi> are grouped inside a <gi>subst</gi> element according to the TEI P5 Guidelines, as shown in <ptr type="crossref" target="#figure12 #figure13 #figure14 #figure15"/> (<ref target="#tei16" type="bibl">TEI Consortium 2016, 11.3.1.5</ref>). Moreover, the following two examples illustrate the necessity of adding a value <att>rendition</att>=<val>#ow</val> (for <soCalled>overwritten</soCalled>) to the DTABf-M which can be used in this context within <gi>del</gi>.</p>
+            <p>Deletions and additions may also be parts of a substitution process, where erroneous
+              text was deleted in favor of a correct version which was added to the original text.
+              In such cases, <gi>add</gi> and <gi>del</gi> are grouped inside a <gi>subst</gi>
+              element according to the TEI P5 Guidelines, as shown in <ptr type="crossref"
+                target="#figure12 #figure13 #figure14 #figure15"/> (<ref target="#tei16" type="bibl"
+                >TEI Consortium 2016, 11.3.1.5</ref>). Moreover, the following two examples
+              illustrate the necessity of adding a value <att>rendition</att>=<val>#ow</val> (for
+                <soCalled>overwritten</soCalled>) to the DTABf-M which can be used in this context
+              within <gi>del</gi>.</p>
             <figure xml:id="figure12" n="3.1">
               <graphic url="images/image12.png" width="624px" height="47px"/>
-              <head type="legend">Substitution of the characters <q>d</q> and <q>t</q> by overwriting the former with the latter.<note>Translation: <q>[…] no difference between human mummies […]</q>. Either the writer initially set out to write <q>und</q> (<q>and</q>) instead of <q>unter</q> (<q>under</q>), then corrected his mistake immediately by substituting a <q>t</q> for the <q>d</q> and continuing to complete the word as <q>unter</q>, or he initially misspelled the German word <q>unter</q> as <q>under</q>, and fixed his mistake after the word was written.</note></head>
-              <head type="license">(<ref type="bibl" target="#hufeland1829">Hufeland [ca. 1829]</ref>, <ptr target="http://www.deutschestextarchiv.de/hufeland_privatbesitz_1829/28"/>).</head>
+              <head type="legend">Substitution of the characters <q>d</q> and <q>t</q> by
+                overwriting the former with the latter.<note>Translation: <q>[…] no difference
+                    between human mummies […]</q>. Either the writer initially set out to write
+                    <q>und</q> (<q>and</q>) instead of <q>unter</q> (<q>under</q>), then corrected
+                  his mistake immediately by substituting a <q>t</q> for the <q>d</q> and continuing
+                  to complete the word as <q>unter</q>, or he initially misspelled the German word
+                    <q>unter</q> as <q>under</q>, and fixed his mistake after the word was
+                  written.</note></head>
+              <head type="license">(<ref type="bibl" target="#hufeland1829">Hufeland [ca.
+                  1829]</ref>, <ptr
+                  target="http://www.deutschestextarchiv.de/hufeland_privatbesitz_1829/28"
+                />).</head>
             </figure>
-            <egXML xmlns="http://www.tei-c.org/ns/Examples">
-              […] keinen Unterschied un<subst><del rendition="#ow">d</del><add place="across">t</add></subst>er menschlichen Mumien […]
-            </egXML>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples"> […] keinen Unterschied un<subst><del
+                  rendition="#ow">d</del><add place="across">t</add></subst>er menschlichen Mumien
+              […] </egXML>
             <figure xml:id="figure13" n="3.2">
               <graphic url="images/image13.png" width="624px" height="58px"/>
-              <head type="legend"><q>vor den</q> (which in the historical New High German language in this case means <q>for the</q>, indicating a singular form) was overwritten with <q>für die</q> (<q>for the</q>, here indicating plural form).</head>
-              <head type="license">(<ref type="bibl" target="#reuss1717">Reuß-Ebersdorf 1717</ref>, <ptr target="http://www.deutschestextarchiv.de/reuss_paragiatsherrschaftabiv15_1717/4"/>).</head>
+              <head type="legend"><q>vor den</q> (which in the historical New High German language
+                in this case means <q>for the</q>, indicating a singular form) was overwritten with
+                  <q>für die</q> (<q>for the</q>, here indicating plural form).</head>
+              <head type="license">(<ref type="bibl" target="#reuss1717">Reuß-Ebersdorf 1717</ref>,
+                  <ptr
+                  target="http://www.deutschestextarchiv.de/reuss_paragiatsherrschaftabiv15_1717/4"
+                />).</head>
             </figure>
-            <egXML xmlns="http://www.tei-c.org/ns/Examples">
-              […] iahr <subst><del rendition="#ow">vor den</del><add place="across">für die</add></subst> ockßen die <choice><orig>wißen</orig><reg>wiesen</reg></choice> ab<lb/>[…]
-            </egXML>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples"> […] iahr <subst><del rendition="#ow"
+                  >vor den</del><add place="across">für die</add></subst> ockßen die
+                  <choice><orig>wißen</orig><reg>wiesen</reg></choice> ab<lb/>[…] </egXML>
             <figure xml:id="figure14" n="3.3">
               <graphic url="images/image14.png" width="626px" height="55px"/>
-              <head type="legend">Here, the superlative <q>entferntesten</q> (<q>most distant</q>) is taken back by scratching out the last four letters and replacing them with <q>en</q>, changing the word to <q>entfernten</q> (<q>distant</q>), obviously because the comparative form was already indicated by the pronoun <q>meisten</q> (<q>the most</q>) and the additional use of the superlative would have been grammatically wrong.</head>
-              <head type="license">(<ref type="bibl" target="#anonym1827a">Anonymous [1827/28]</ref>, <ptr target="http://www.deutschestextarchiv.de/nn_msgermqu2345_1827/83"/>).</head>
+              <head type="legend">Here, the superlative <q>entferntesten</q> (<q>most distant</q>)
+                is taken back by scratching out the last four letters and replacing them with
+                  <q>en</q>, changing the word to <q>entfernten</q> (<q>distant</q>), obviously
+                because the comparative form was already indicated by the pronoun <q>meisten</q>
+                  (<q>the most</q>) and the additional use of the superlative would have been
+                grammatically wrong.</head>
+              <head type="license">(<ref type="bibl" target="#anonym1827a">Anonymous
+                [1827/28]</ref>, <ptr
+                  target="http://www.deutschestextarchiv.de/nn_msgermqu2345_1827/83"/>).</head>
             </figure>
-            <egXML xmlns="http://www.tei-c.org/ns/Examples">
-              […] die am meisten entfernte<subst><del rendition="#erased">sten</del><add place="across">n</add></subst> […]
-            </egXML>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples"> […] die am meisten entfernte<subst><del
+                  rendition="#erased">sten</del><add place="across">n</add></subst> […] </egXML>
             <figure xml:id="figure15" n="3.4">
               <graphic url="images/image15.png" width="624px" height="67px"/>
-              <head type="legend">The word <q>kleiner</q> (<q>smaller</q>), emphasized by an underline, is struck out and replaced by its direct opposite, <q>(hin) grösser</q> (<q>greater</q>), notated above the line.<note>Translation: <q>[…] that the grades [of longitude/latitude] become {<emph rendition="#strikethrough">smaller</emph>greater} northwards: […]</q>.</note></head>
-              <head type="license">(<ref target="#parthey1827" type="bibl">Parthey [1827/28]</ref>, <ptr target="http://www.deutschestextarchiv.de/parthey_msgermqu1711_1828/293"/>).</head>
+              <head type="legend">The word <q>kleiner</q> (<q>smaller</q>), emphasized by an
+                underline, is struck out and replaced by its direct opposite, <q>(hin) grösser</q>
+                  (<q>greater</q>), notated above the line.<note>Translation: <q>[…] that the grades
+                    [of longitude/latitude] become {<emph rendition="#strikethrough"
+                    >smaller</emph>greater} northwards: […]</q>.</note></head>
+              <head type="license">(<ref target="#parthey1827" type="bibl">Parthey [1827/28]</ref>,
+                  <ptr target="http://www.deutschestextarchiv.de/parthey_msgermqu1711_1828/293"
+                />).</head>
             </figure>
-            <egXML xmlns="http://www.tei-c.org/ns/Examples">
-              […] dass die Grade gegen Norden <subst><del rendition="#s"><hi rendition="#u">kleiner</hi></del><add place="superlinear">hin grösser</add></subst> werden: […]
-            </egXML>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples"> […] dass die Grade gegen Norden
+                  <subst><del rendition="#s"><hi rendition="#u">kleiner</hi></del><add
+                  place="superlinear">hin grösser</add></subst> werden: […] </egXML>
           </div>
           <div xml:id="hands">
             <head>Different Hands or Writing Devices</head>
-            <p>Another manuscript-specific phenomenon is the change of hands and/or writing. To distinguish the change of <term>hands</term> (i.e., different scribes) in the course of a writing process from the change of <term>writing devices</term> (i.e., the same scribe using, e.g., a pencil instead of their regular ink for certain alterations of the text), we use the <gi>handNote</gi> element in the TEI Header.<note><ref target="#tei16" type="bibl">TEI Consortium 2016</ref>, <ptr target="http://www.tei-c.org/Vault/P5/3.0.0/doc/tei-p5-doc/en/html/ref-handNote.html"/>.</note> There, an <att>xml:id</att> is assigned to the respective scribe, scribal act,<note>That is, different <gi>handNote</gi> elements can represent the same scribe using different writing devices.</note> or writing device (in case the scribe cannot be identified). This <att>xml:id</att> is then used as a referencing value of <att>hand</att> in the transcription.</p>
+            <p>Another manuscript-specific phenomenon is the change of hands and/or writing. To
+              distinguish the change of <term>hands</term> (i.e., different scribes) in the course
+              of a writing process from the change of <term>writing devices</term> (i.e., the same
+              scribe using, e.g., a pencil instead of their regular ink for certain alterations of
+              the text), we use the <gi>handNote</gi> element in the TEI Header.<note><ref
+                  target="#tei16" type="bibl">TEI Consortium 2016</ref>, <ptr
+                  target="http://www.tei-c.org/Vault/P5/3.0.0/doc/tei-p5-doc/en/html/ref-handNote.html"
+                />.</note> There, an <att>xml:id</att> is assigned to the respective scribe, scribal
+                act,<note>That is, different <gi>handNote</gi> elements can represent the same
+                scribe using different writing devices.</note> or writing device (in case the scribe
+              cannot be identified). This <att>xml:id</att> is then used as a referencing value of
+                <att>hand</att> in the transcription.</p>
             <figure xml:id="figure16" n="4.1">
               <graphic url="images/image16.png" width="624px" height="103px"/>
-              <head type="legend">In the second line to be seen in the image scan, the word <q>ein</q> (<q>a</q>) and the words <q>der Lichtstärke</q> (<q>of the light’s intensity</q>) have been inserted. Whereas the first addition was written using the same ink and by the same hand as the remainder of the passage, the second addition was clearly written with a different, darker ink, but still by the same hand, i.e., by the same scribe, in this case Gustav Parthey (therefore labelled as <att>hand</att>=<val>#Parthey_darkInk</val>).<note>Translation: <q>[…] show a bright center surrounded by an illuminated shell: in this illuminated shell an increasing and decreasing of the light’s intensity can be observed, an ebb […]</q>.</note></head>
-              <head type="license">(<ref type="bibl" target="#parthey1827">Parthey [1827/28]</ref>, <ptr target="http://www.deutschestextarchiv.de/parthey_msgermqu1711_1828/7"/>).</head>
+              <head type="legend">In the second line to be seen in the image scan, the word
+                  <q>ein</q> (<q>a</q>) and the words <q>der Lichtstärke</q> (<q>of the light’s
+                  intensity</q>) have been inserted. Whereas the first addition was written using
+                the same ink and by the same hand as the remainder of the passage, the second
+                addition was clearly written with a different, darker ink, but still by the same
+                hand, i.e., by the same scribe, in this case Gustav Parthey (therefore labelled as
+                  <att>hand</att>=<val>#Parthey_darkInk</val>).<note>Translation: <q>[…] show a
+                    bright center surrounded by an illuminated shell: in this illuminated shell an
+                    increasing and decreasing of the light’s intensity can be observed, an ebb
+                    […]</q>.</note></head>
+              <head type="license">(<ref type="bibl" target="#parthey1827">Parthey [1827/28]</ref>,
+                  <ptr target="http://www.deutschestextarchiv.de/parthey_msgermqu1711_1828/7"
+                />).</head>
             </figure>
-            <egXML xmlns="http://www.tei-c.org/ns/Examples">
-              […] hellen Kern mit einer Lichthülle umgeben zeigen: in dieser<lb/>
-              Lichthülle nimt man <metamark/><add place="superlinear">ein </add> Ab- und Zunehmen <metamark/><add place="superlinear" hand="#Parthey_darkInk">der Lichtstärke </add>wahr, eine Ebbe<lb/>[…]
-            </egXML>
-            <p>The encoding of these phenomena may help differentiate whether certain alterations are <foreign xml:lang="la">ad hoc</foreign> corrections, carried out during the writing process, or later interventions performed when proofreading or commenting on the finished text or the completed draft.</p>
-            <p>Furthermore, we found in our manuscript corpus various occurrences for the phenomenon that words or phrases from one scribe were underlined by another, using a different writing device, as shown in <ptr target="#figure17" type="crossref"/>. Here, the person responsible for the underlining could not be identified. Therefore, the hand has the identifier <val>#pencil</val>, referring to both the scribe and the writing device.<note>This consistent usage of <att>hand</att> within <gi>hi</gi> and <gi>note</gi> and several other elements was made possible only recently (March 29, 2016) with the TEI P5 release 3.0.0: see <bibl><orgName>TEI Consortium</orgName> <date>2016</date>, <title level="a">TEI P5 version 3.0.0 release notes</title>, <ptr target="http://www.tei-c.org/Vault/P5/3.0.0/doc/tei-p5-doc/readme-3.0.0.html"/></bibl>.</note>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples"> […] hellen Kern mit einer Lichthülle
+              umgeben zeigen: in dieser<lb/> Lichthülle nimt man <metamark/><add place="superlinear"
+                >ein </add> Ab- und Zunehmen <metamark/><add place="superlinear"
+                hand="#Parthey_darkInk">der Lichtstärke </add>wahr, eine Ebbe<lb/>[…] </egXML>
+            <p>The encoding of these phenomena may help differentiate whether certain alterations
+              are <foreign xml:lang="la">ad hoc</foreign> corrections, carried out during the
+              writing process, or later interventions performed when proofreading or commenting on
+              the finished text or the completed draft.</p>
+            <p>Furthermore, we found in our manuscript corpus various occurrences for the phenomenon
+              that words or phrases from one scribe were underlined by another, using a different
+              writing device, as shown in <ptr target="#figure17" type="crossref"/>. Here, the
+              person responsible for the underlining could not be identified. Therefore, the hand
+              has the identifier <val>#pencil</val>, referring to both the scribe and the writing
+                device.<note>This consistent usage of <att>hand</att> within <gi>hi</gi> and
+                  <gi>note</gi> and several other elements was made possible only recently (March
+                29, 2016) with the TEI P5 release 3.0.0: see <bibl><orgName>TEI Consortium</orgName>
+                  <date>2016</date>, <title level="a">TEI P5 version 3.0.0 release notes</title>,
+                    <ptr
+                    target="http://www.tei-c.org/Vault/P5/3.0.0/doc/tei-p5-doc/readme-3.0.0.html"
+                  /></bibl>.</note>
             </p>
             <figure xml:id="figure17" n="4.2">
               <graphic url="images/image17.png" width="624px" height="92px"/>
-              <head type="legend">The main body of the text was written with dark ink and two terms were underlined (here, presumably to mark them as questionable) by a different scribe using a pencil.<note>Translation: <q>By the time Encke’s Comet reappeared in Paramala [i.e., Paramatta, then a settlement of its own, today a suburb of Sydney], Mister Dummler [probably referring to James Dunlop (1793–1848; see the authority record, accessed January 30, 2017, <ptr target="http://d-nb.info/gnd/102456828"/>)] claims to have observed a rotation of the comet tail of […]</q>.</note></head>
-              <head type="license">(<ref target="#anonym1827b" type="bibl">Anonymous [1827/28b]</ref>, <ptr target="http://www.deutschestextarchiv.de/nn_n0171w1_1828/216"/>).</head>
+              <head type="legend">The main body of the text was written with dark ink and two terms
+                were underlined (here, presumably to mark them as questionable) by a different
+                scribe using a pencil.<note>Translation: <q>By the time Encke’s Comet reappeared in
+                    Paramala [i.e., Paramatta, then a settlement of its own, today a suburb of
+                    Sydney], Mister Dummler [probably referring to James Dunlop (1793–1848; see the
+                    authority record, accessed January 30, 2017, <ptr
+                      target="http://d-nb.info/gnd/102456828"/>)] claims to have observed a rotation
+                    of the comet tail of […]</q>.</note></head>
+              <head type="license">(<ref target="#anonym1827b" type="bibl">Anonymous
+                  [1827/28b]</ref>, <ptr
+                  target="http://www.deutschestextarchiv.de/nn_n0171w1_1828/216"/>).</head>
             </figure>
-            <egXML xmlns="http://www.tei-c.org/ns/Examples">
-              Als der <hi rendition="#aq">Enke</hi>ſche Comet in <hi rendition="#u" hand="#pencil">Paramala</hi> wieder er-<lb/>
-              ſchien will <choice><abbr>H&#xFFFC;</abbr><expan>Herr</expan></choice> <hi rendition="#aq"><hi rendition="#u" hand="#pencil">Dummler</hi></hi> eine Rotation des Schweifes von<lb/>[…]
-            </egXML>
-            <p>In the following example (<ptr target="#figure18" type="crossref"/>) it is obvious from the content of the note that this passage was added only in 1850, that is, much later than the original text was written (in 1829).<note>See the title page of the document from which the example was taken, Hufeland [ca. 1829], <ptr target="http://www.deutschestextarchiv.de/hufeland_privatbesitz_1829/7"/>: <q>geschrieben im Sommer 1829 durch Otto Hufeland</q> (<q>written in the summer of 1829 by Otto Hufeland</q>). Otto Hufeland, presumably born in 1806, was a son of Gottlieb Hufeland (1760–1817; see the authority record, accessed January 30, 2017, at <ptr target="http://d-nb.info/gnd/117053961"/>), a relative of the well-known German physician Christoph Wilhelm Hufeland (1762–1836; see the authority record, accessed January 30, 2017, <ptr target="http://d-nb.info/gnd/118554514"/>). His manuscript documenting the Kosmos-Lectures at the Sing-Akademie was written in the year after their closure in 1828 and contains several later additions. It is not an original account of the lectures, but a copy of another volume of lecture notes (cf. <ref target="#anonym1828" type="bibl">Anonymous [1828]</ref>, <ptr target="http://www.deutschestextarchiv.de/nn_msgermqu2124_1827"/>).</note> Like the previous example, this one also contains a change of the writing device, from ink to pencil. The addition in this case was, corresponding to its function, tagged as a <gi>note</gi>.</p>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples"> Als der <hi rendition="#aq"
+              >Enke</hi>ſche Comet in <hi rendition="#u" hand="#pencil">Paramala</hi> wieder
+              er-<lb/> ſchien will <choice><abbr>H&#xFFFC;</abbr><expan>Herr</expan></choice>
+              <hi rendition="#aq"><hi rendition="#u" hand="#pencil">Dummler</hi></hi> eine Rotation
+              des Schweifes von<lb/>[…] </egXML>
+            <p>In the following example (<ptr target="#figure18" type="crossref"/>) it is obvious
+              from the content of the note that this passage was added only in 1850, that is, much
+              later than the original text was written (in 1829).<note>See the title page of the
+                document from which the example was taken, Hufeland [ca. 1829], <ptr
+                  target="http://www.deutschestextarchiv.de/hufeland_privatbesitz_1829/7"/>:
+                  <q>geschrieben im Sommer 1829 durch Otto Hufeland</q> (<q>written in the summer of
+                  1829 by Otto Hufeland</q>). Otto Hufeland, presumably born in 1806, was a son of
+                Gottlieb Hufeland (1760–1817; see the authority record, accessed January 30, 2017,
+                at <ptr target="http://d-nb.info/gnd/117053961"/>), a relative of the well-known
+                German physician Christoph Wilhelm Hufeland (1762–1836; see the authority record,
+                accessed January 30, 2017, <ptr target="http://d-nb.info/gnd/118554514"/>). His
+                manuscript documenting the Kosmos-Lectures at the Sing-Akademie was written in the
+                year after their closure in 1828 and contains several later additions. It is not an
+                original account of the lectures, but a copy of another volume of lecture notes (cf.
+                  <ref target="#anonym1828" type="bibl">Anonymous [1828]</ref>, <ptr
+                  target="http://www.deutschestextarchiv.de/nn_msgermqu2124_1827"/>).</note> Like
+              the previous example, this one also contains a change of the writing device, from ink
+              to pencil. The addition in this case was, corresponding to its function, tagged as a
+                <gi>note</gi>.</p>
             <figure xml:id="figure18" n="4.3">
               <graphic url="images/image18.png" width="624px" height="123px"/>
-              <head type="legend">The additional information that between the time of Humboldt’s lectures (1827/28) and 1850, eleven more planets had been discovered, was inserted by the same scribe directly into the line, using a pencil (<att>hand</att>=<val>#Hufeland_pencil</val>).</head>  
-              <head type="license">(<ref target="#hufeland1829" type="bibl">Hufeland [ca. 1829]</ref>, <ptr target="http://www.deutschestextarchiv.de/hufeland_privatbesitz_1829/19"/>).</head>
+              <head type="legend">The additional information that between the time of Humboldt’s
+                lectures (1827/28) and 1850, eleven more planets had been discovered, was inserted
+                by the same scribe directly into the line, using a pencil
+                  (<att>hand</att>=<val>#Hufeland_pencil</val>).</head>
+              <head type="license">(<ref target="#hufeland1829" type="bibl">Hufeland [ca.
+                  1829]</ref>, <ptr
+                  target="http://www.deutschestextarchiv.de/hufeland_privatbesitz_1829/19"
+                />).</head>
             </figure>
-            <egXML xmlns="http://www.tei-c.org/ns/Examples">
-              […] Namen <hi rendition="#aq #u">Vesta</hi> erhielt. <note place="mInline" hand="#Hufeland_pencil">(Seitdem, bis 1850, noch 11 Planeten entdeckt)</note><lb/>[…]
-            </egXML>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples"> […] Namen <hi rendition="#aq #u"
+                >Vesta</hi> erhielt. <note place="mInline" hand="#Hufeland_pencil">(Seitdem, bis
+                1850, noch 11 Planeten entdeckt)</note><lb/>[…] </egXML>
           </div>
           <div xml:id="notes">
             <head>Different Types of Notes</head>
-            <p>Manuscripts—just like printed materials—may contain different types of notes, providing comments on the text or further information about it. While notes at the bottom of a page (footnotes) or at the end of a chapter or the text body (endnotes) are more typical for printed text types than for manuscripts, marginal notes at the right or left margin of a page may occur in both manuscripts and printed texts (<ptr target="#figure19" type="crossref"/>).</p>
-            <p>In addition, notes in manuscripts may occur at several places other than the ones common for printed texts. They may, for example, be inserted inline or at the top or bottom of the text area of a page (<ptr type="crossref" target="#figure19 #figure20 #figure21"/>). We therefore introduced the additional <att>place</att> values <val>mInline</val> | <val>mTop</val> | <val>mBottom</val> to the <gi>note</gi> element.<note xml:id="note29">Note that the method of commencing a value with a letter (combination) indicating the types of text where that value may be used has already been pursued in the context of DTABf extensions for other text types, e.g., funeral sermons (<val>fs...</val>) and journals/newspapers (<val>j...</val>) (see <ref type="bibl" target="#geyken12">Geyken, Haaf, and Wiegand 2012, 390</ref>; <ref type="bibl" target="#haaf14">Haaf and Schulz 2014, 53</ref>). We use <val>m...</val> in this case to ensure that the <att>place</att> values used for manuscripts are not confused with the DTABf-conformant <att>place</att> values for notes in printed texts.</note> The usage of <att>place</att>=<val>mInline</val> within <gi>note</gi> was already illustrated in <ptr target="#figure18" type="crossref"/>, while <ptr target="#figure20 #figure21" type="crossref"/> provide examples for the usage of <att>place</att>=<val>mBottom</val> and <att>place</att>=<val>mTop</val> within <gi>note</gi>.</p>
+            <p>Manuscripts—just like printed materials—may contain different types of notes,
+              providing comments on the text or further information about it. While notes at the
+              bottom of a page (footnotes) or at the end of a chapter or the text body (endnotes)
+              are more typical for printed text types than for manuscripts, marginal notes at the
+              right or left margin of a page may occur in both manuscripts and printed texts (<ptr
+                target="#figure19" type="crossref"/>).</p>
+            <p>In addition, notes in manuscripts may occur at several places other than the ones
+              common for printed texts. They may, for example, be inserted inline or at the top or
+              bottom of the text area of a page (<ptr type="crossref"
+                target="#figure19 #figure20 #figure21"/>). We therefore introduced the additional
+                <att>place</att> values <val>mInline</val> | <val>mTop</val> | <val>mBottom</val> to
+              the <gi>note</gi> element.<note xml:id="note29">Note that the method of commencing a
+                value with a letter (combination) indicating the types of text where that value may
+                be used has already been pursued in the context of DTABf extensions for other text
+                types, e.g., funeral sermons (<val>fs...</val>) and journals/newspapers
+                  (<val>j...</val>) (see <ref type="bibl" target="#geyken12">Geyken, Haaf, and
+                  Wiegand 2012, 390</ref>; <ref type="bibl" target="#haaf14">Haaf and Schulz 2014,
+                  53</ref>). We use <val>m...</val> in this case to ensure that the <att>place</att>
+                values used for manuscripts are not confused with the DTABf-conformant
+                  <att>place</att> values for notes in printed texts.</note> The usage of
+                <att>place</att>=<val>mInline</val> within <gi>note</gi> was already illustrated in
+                <ptr target="#figure18" type="crossref"/>, while <ptr target="#figure20 #figure21"
+                type="crossref"/> provide examples for the usage of
+                <att>place</att>=<val>mBottom</val> and <att>place</att>=<val>mTop</val> within
+                <gi>note</gi>.</p>
             <figure xml:id="figure19" n="5.1">
               <graphic url="images/image19.png" height="309px" width="624px"/>
-              <head type="legend">A note has been added at the left-hand side of the manuscript stating that the document in question has been prepared according to the addressee’s command.</head>
-              <head type="license">(<ref type="bibl" target="#reuss1717">Reuß-Ebersdorf 1717</ref>, <ptr target="http://www.deutschestextarchiv.de/reuss_paragiatsherrschaftabiv15_1717/4"/>).</head>
+              <head type="legend">A note has been added at the left-hand side of the manuscript
+                stating that the document in question has been prepared according to the addressee’s
+                command.</head>
+              <head type="license">(<ref type="bibl" target="#reuss1717">Reuß-Ebersdorf 1717</ref>,
+                  <ptr
+                  target="http://www.deutschestextarchiv.de/reuss_paragiatsherrschaftabiv15_1717/4"
+                />).</head>
             </figure>
-            <egXML xmlns="http://www.tei-c.org/ns/Examples">
-              […] schreiben ist <note rendition="#v" place="left" n="ˣ">nach Erldt. <choice><orig>be fehl</orig><reg>befehl</reg></choice><lb/></note>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples"> […] schreiben ist <note rendition="#v"
+                place="left" n="ˣ">nach Erldt. <choice><orig>be
+                  fehl</orig><reg>befehl</reg></choice><lb/></note>
             </egXML>
             <figure xml:id="figure20" n="5.2">
               <graphic url="images/image20.png" width="624px" height="99px"/>
-              <head type="legend">This note, stating that <mentioned>isotherm</mentioned>, <mentioned>isothere</mentioned>, and <mentioned>isocheim</mentioned> must be well differentiated from one another, is recorded at the very bottom of the page. However, it is not referring to a certain point in the text as a footnote would, but is rather a general comment on the topic of the page. Therefore, we use <att>place</att>=<val>mBottom</val>.</head>
-              <head type="license">(<ref type="bibl" target="#anonym1827a">Anonymous [1827/28a]</ref>, <ptr target="http://www.deutschestextarchiv.de/nn_msgermqu2345_1827/281"/>).</head>              
+              <head type="legend">This note, stating that <mentioned>isotherm</mentioned>,
+                  <mentioned>isothere</mentioned>, and <mentioned>isocheim</mentioned> must be well
+                differentiated from one another, is recorded at the very bottom of the page.
+                However, it is not referring to a certain point in the text as a footnote would, but
+                is rather a general comment on the topic of the page. Therefore, we use
+                  <att>place</att>=<val>mBottom</val>.</head>
+              <head type="license">(<ref type="bibl" target="#anonym1827a">Anonymous
+                  [1827/28a]</ref>, <ptr
+                  target="http://www.deutschestextarchiv.de/nn_msgermqu2345_1827/281"/>).</head>
             </figure>
-            <egXML xmlns="http://www.tei-c.org/ns/Examples">
-              […]<note place="mBottom">(Isotherme, Isothere (von gleicher Sonnenwärme wie <hi rendition="#aq">Moskau</hi><lb/>u. der Ausfluß der <hi rendition="#aq">Loire</hi>) = isochaimone Linien sind wohl zu unter-<lb/>scheiden.)</note><lb/>[…]
-            </egXML>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples"> […]<note place="mBottom">(Isotherme,
+                Isothere (von gleicher Sonnenwärme wie <hi rendition="#aq">Moskau</hi><lb/>u. der
+                Ausfluß der <hi rendition="#aq">Loire</hi>) = isochaimone Linien sind wohl zu
+                unter-<lb/>scheiden.)</note><lb/>[…] </egXML>
             <figure xml:id="figure21" n="5.3">
               <graphic url="images/image21.png" width="624px" height="61px"/>
-              <head type="legend">On the very first page of his text, this scribe made a note in the top right corner, stating that the table of contents for this document is to be found on page 155.</head>
-              <head type="license">(<ref type="bibl" target="#hufeland1829">Hufeland [ca. 1829]</ref>, <ptr target="http://www.deutschestextarchiv.de/hufeland_privatbesitz_1829/9"/>).</head>
+              <head type="legend">On the very first page of his text, this scribe made a note in the
+                top right corner, stating that the table of contents for this document is to be
+                found on page 155.</head>
+              <head type="license">(<ref type="bibl" target="#hufeland1829">Hufeland [ca.
+                  1829]</ref>, <ptr
+                  target="http://www.deutschestextarchiv.de/hufeland_privatbesitz_1829/9"/>).</head>
             </figure>
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
-              <note place="mTop"><hi rendition="#right">Die Übersicht des Inhaltes siehe <ref target="#f0159"><hi rendition="#aq">pag</hi>: 155</ref>. <choice><orig><gap reason="illegible"/></orig><reg>pp.</reg></choice>
-              </hi><lb/></note><lb/>
+              <note place="mTop"><hi rendition="#right">Die Übersicht des Inhaltes siehe <ref
+                    target="#f0159"><hi rendition="#aq">pag</hi>: 155</ref>. <choice><orig><gap
+                        reason="illegible"/></orig><reg>pp.</reg></choice>
+                </hi><lb/></note><lb/>
             </egXML>
           </div>
         </div>
         <div xml:id="metadata">
           <head>DTABf-M Metadata Annotation</head>
-          <p>As for metadata, the DTABf already makes quite extensive use of the TEI Guidelines. Thus, most of the metadata information necessary for manuscripts in text corpora was already covered by the existing DTABf metadata tagset. There was only one significant change to make: instead of <gi>typeDesc</gi> we added the <gi>handDesc</gi> element with its child <gi>handNote</gi>.<note>Beyond that, there is only one further small adaptation of the metadata concerning the value list of <att>type</att> within <gi>bibl</gi>: it is extended by the document type <val>MAN</val> (i.e., manuscript). For documentation on the specifics of DTABf-M metadata annotation, see the DTABf documentation section on manuscript metadata, accessed July 12, 2017, <ptr target="http://www.deutschestextarchiv.de/doku/basisformat/msMetadata.html"/>.</note> The <att>xml:id </att>in <gi>handNote</gi> identifies the hand or scribal act described and can be referred to from the <att>hand</att> attribute within the document. The writing device of each hand or scribal act is specified within a <att>medium</att> attribute.</p>
+          <p>As for metadata, the DTABf already makes quite extensive use of the TEI Guidelines.
+            Thus, most of the metadata information necessary for manuscripts in text corpora was
+            already covered by the existing DTABf metadata tagset. There was only one significant
+            change to make: instead of <gi>typeDesc</gi> we added the <gi>handDesc</gi> element with
+            its child <gi>handNote</gi>.<note>Beyond that, there is only one further small
+              adaptation of the metadata concerning the value list of <att>type</att> within
+                <gi>bibl</gi>: it is extended by the document type <val>MAN</val> (i.e.,
+              manuscript). For documentation on the specifics of DTABf-M metadata annotation, see
+              the DTABf documentation section on manuscript metadata, accessed July 12, 2017, <ptr
+                target="http://www.deutschestextarchiv.de/doku/basisformat/msMetadata.html"
+              />.</note> The <att>xml:id </att>in <gi>handNote</gi> identifies the hand or scribal
+            act described and can be referred to from the <att>hand</att> attribute within the
+            document. The writing device of each hand or scribal act is specified within a
+              <att>medium</att> attribute.</p>
         </div>
         <div xml:id="extension">
           <head>Overview: DTABf Extension for Manuscripts</head>
-          <p>In <ptr type="crossref" target="#annotation"/> we presented some examples of typical structural and textual phenomena in manuscripts. <ptr type="crossref" target="#table1"/> provides an overview of the elements, attributes, and values which were introduced to the DTABf for manuscript encoding and of how they are related to already existing DTABf tags.</p>
-          <p>The proposed format, DTABf-M, is still a work in progress and will be subject to continuous development based on further manuscripts added to the DTA corpus. Development will occur in a manner similar to the approach used with the DTABf for printed texts: extensions will be performed cautiously, in a restrictive and minimalistic manner, and based on actual phenomena observed in the historical text sources (<ref type="bibl" target="#haaf1415">Haaf, Geyken, and Wiegand 2014–15, §60–61</ref>).</p>
+          <p>In <ptr type="crossref" target="#annotation"/> we presented some examples of typical
+            structural and textual phenomena in manuscripts. <ptr type="crossref" target="#table1"/>
+            provides an overview of the elements, attributes, and values which were introduced to
+            the DTABf for manuscript encoding and of how they are related to already existing DTABf
+            tags.</p>
+          <p>The proposed format, DTABf-M, is still a work in progress and will be subject to
+            continuous development based on further manuscripts added to the DTA corpus. Development
+            will occur in a manner similar to the approach used with the DTABf for printed texts:
+            extensions will be performed cautiously, in a restrictive and minimalistic manner, and
+            based on actual phenomena observed in the historical text sources (<ref type="bibl"
+              target="#haaf1415">Haaf, Geyken, and Wiegand 2014–15, §60–61</ref>).</p>
           <table xml:id="table1">
-            <head>Manuscript-specific additions to the DTABf; * = new; <hi rendition="#super">+</hi> = new in this context.</head>
+            <head>Manuscript-specific additions to the DTABf; * = new; <hi rendition="#super">+</hi>
+              = new in this context.</head>
             <row role="label">
               <cell>Elements</cell>
               <cell>Attributes</cell>
@@ -329,14 +836,16 @@
             <row>
               <cell rows="2">*<gi>add</gi></cell>
               <cell><hi rendition="#super">+</hi><att>place</att></cell>
-              <cell>*<val>superlinear</val> | *<val>intralinear</val> | *<val>across</val> | *<val>sublinear</val> | <val>left</val> | <val>right</val></cell>
+              <cell>*<val>superlinear</val> | *<val>intralinear</val> | *<val>across</val> |
+                  *<val>sublinear</val> | <val>left</val> | <val>right</val></cell>
             </row>
             <row>
               <cell>*<att>hand</att></cell>
               <cell>e.g., <val>#JaneDoe</val>, <val>#JohnDoe</val></cell>
             </row>
             <row>
-              <cell><gi>corr</gi> | <gi>expan</gi> | <gi>reg</gi> | <gi>supplied</gi> | <gi>unclear</gi></cell>
+              <cell><gi>corr</gi> | <gi>expan</gi> | <gi>reg</gi> | <gi>supplied</gi> |
+                  <gi>unclear</gi></cell>
               <cell>*<att>resp</att></cell>
               <cell> </cell>
             </row>
@@ -440,15 +949,80 @@
         <head>Inclusion of the DTABf-M in the DTABf System</head>
         <div xml:id="modularization">
           <head>Consideration of Modularization Possibilities</head>
-          <p>So far, when dealing with text type–specific extensions to the DTABf (cf. <ref type="bibl" target="#haaf14">Haaf and Schulz 2014</ref>), the adaptations have been applied directly to the DTABf schema. Until now, this approach has proved feasible since the number of necessary additions to the DTABf subset remained small. Additions that were necessary occurred mainly at value or attribute level and in most cases did not run the risk of generating ambiguities in the format or evoking uncertainties concerning proper application. The practice of extensive documentation, of distinguishing four different annotation levels (required, recommended, optional, proscribed), and of introducing additional validation via Schematron constraints as well as of marking new values as affiliated to certain text types<note>E.g., by commencing the values with identifiers for certain text types; see <ptr type="crossref" target="#note29"/> for details.</note> (cf. <ref type="bibl" target="#haaf1415">Haaf, Geyken, and Wiegand 2014–15</ref>), was sufficient to incorporate these respective extensions into the DTABf without loss of homogeneity and consistency.</p>
-          <p>For manuscripts, however, as shown above, rather extensive additions to the DTABf became necessary (see <ptr type="crossref" target="#table1"/>), increasing the risk of ambiguities and uncertainties in applying the format. We want to prevent some of these insecurities by providing detailed <ref target="http://www.deutschestextarchiv.de/doku/basisformat/manuskript.html">documentation</ref> for DTABf-M–conformant tagging based on the DTABf documentation.<note>See <title level="a">DTA-Basisformat—Auszeichnung von Manuskripten</title> (<q>DTA Base Format—Annotation of Manuscripts</q>), accessed July 13, 2017, <ptr target="http://www.deutschestextarchiv.de/doku/basisformat/manuskript.html"/>.</note> However, an additional technical solution on the schema level has proved desirable as well.</p>
-          <p>The maintenance of two separate TEI customizations (one for DTABf, the other for DTABf-M) was to be avoided for reasons of efficiency as well as to prevent workflow errors. In fact, we only recently gave up the maintenance of separate customizations and schemas for said reasons and introduced Schematron constraints to the format instead (see <ref type="bibl" target="#haaf1415">Haaf, Geyken, and Wiegand 2014–15, §25</ref>). So, for manuscripts, one possible method would have been the introduction of new <ref target="http://www.deutschestextarchiv.de/basisformat.sch">Schematron constraints</ref> to our existing set of rules.<note>For the DTABf Schematron rule set, see <title level="a">Schematron Extension of the DTA <soCalled>Base Format</soCalled></title>, accessed July 13, 2017, <ptr target="http://www.deutschestextarchiv.de/basisformat.sch"/>.</note> However, Schematron validation is relatively slow and each new rule increases validation runtime. Given the significant number of differences between manuscripts and prints, the set of rules would have grown substantially, this way increasing the effect of slow validation.</p>
-          <p>Hence, we wanted to generate different RNG schemas for quick validation, but without having to create different separate TEI customizations. Fortunately, the TEI infrastructure already offers a technique for this case: the method of chaining ODDs (<ref target="#rahtz14" type="bibl">Rahtz and Burnard 2014, 16–17</ref>), where one creates ODDs which are based on one another, but which can then be transformed into different independent schemas.</p>
+          <p>So far, when dealing with text type–specific extensions to the DTABf (cf. <ref
+              type="bibl" target="#haaf14">Haaf and Schulz 2014</ref>), the adaptations have been
+            applied directly to the DTABf schema. Until now, this approach has proved feasible since
+            the number of necessary additions to the DTABf subset remained small. Additions that
+            were necessary occurred mainly at value or attribute level and in most cases did not run
+            the risk of generating ambiguities in the format or evoking uncertainties concerning
+            proper application. The practice of extensive documentation, of distinguishing four
+            different annotation levels (required, recommended, optional, proscribed), and of
+            introducing additional validation via Schematron constraints as well as of marking new
+            values as affiliated to certain text types<note>E.g., by commencing the values with
+              identifiers for certain text types; see <ptr type="crossref" target="#note29"/> for
+              details.</note> (cf. <ref type="bibl" target="#haaf1415">Haaf, Geyken, and Wiegand
+              2014–15</ref>), was sufficient to incorporate these respective extensions into the
+            DTABf without loss of homogeneity and consistency.</p>
+          <p>For manuscripts, however, as shown above, rather extensive additions to the DTABf
+            became necessary (see <ptr type="crossref" target="#table1"/>), increasing the risk of
+            ambiguities and uncertainties in applying the format. We want to prevent some of these
+            insecurities by providing detailed <ref
+              target="http://www.deutschestextarchiv.de/doku/basisformat/manuskript.html"
+              >documentation</ref> for DTABf-M–conformant tagging based on the DTABf
+              documentation.<note>See <title level="a">DTA-Basisformat—Auszeichnung von
+                Manuskripten</title> (<q>DTA Base Format—Annotation of Manuscripts</q>), accessed
+              July 13, 2017, <ptr
+                target="http://www.deutschestextarchiv.de/doku/basisformat/manuskript.html"
+              />.</note> However, an additional technical solution on the schema level has proved
+            desirable as well.</p>
+          <p>The maintenance of two separate TEI customizations (one for DTABf, the other for
+            DTABf-M) was to be avoided for reasons of efficiency as well as to prevent workflow
+            errors. In fact, we only recently gave up the maintenance of separate customizations and
+            schemas for said reasons and introduced Schematron constraints to the format instead
+            (see <ref type="bibl" target="#haaf1415">Haaf, Geyken, and Wiegand 2014–15, §25</ref>).
+            So, for manuscripts, one possible method would have been the introduction of new <ref
+              target="http://www.deutschestextarchiv.de/basisformat.sch">Schematron
+              constraints</ref> to our existing set of rules.<note>For the DTABf Schematron rule
+              set, see <title level="a">Schematron Extension of the DTA <soCalled>Base
+                  Format</soCalled></title>, accessed July 13, 2017, <ptr
+                target="http://www.deutschestextarchiv.de/basisformat.sch"/>.</note> However,
+            Schematron validation is relatively slow and each new rule increases validation runtime.
+            Given the significant number of differences between manuscripts and prints, the set of
+            rules would have grown substantially, this way increasing the effect of slow
+            validation.</p>
+          <p>Hence, we wanted to generate different RNG schemas for quick validation, but without
+            having to create different separate TEI customizations. Fortunately, the TEI
+            infrastructure already offers a technique for this case: the method of chaining ODDs
+              (<ref target="#rahtz14" type="bibl">Rahtz and Burnard 2014, 16–17</ref>), where one
+            creates ODDs which are based on one another, but which can then be transformed into
+            different independent schemas.</p>
         </div>
         <div xml:id="chainedODDs">
-          <head>Modular DTABf System of Chained ODDs<note>Thanks to James Cummings (Academic IT Services, University of Oxford) for very helpful advice concerning this method.</note></head>
-          <p>The concept of chaining ODDs is the creation of a large, comprehensive ODD (here: <ident>ODD-L</ident>) that considers all possible annotations within the whole DTABf system as a derivative of the <ident>TEI_all</ident> ODD and is compiled with regard to <ident>TEI_all</ident>. After the larger ODD is in place, additional smaller ODDs are created (here: <ident>ODD-S1</ident>, <ident>ODD-S2</ident>, ... <ident>ODD-Sn</ident>) that determine reductions to <ident>ODD-L</ident> and thus represent subsets of the ODD-L tagset. Schemas can then be created by transformation of an <ident>ODD-S</ident> which is based on a compiled version of a comprehensive source <ident>ODD-L</ident> (expressed as a URI within the <att>source</att> attribute of <gi>schemaSpec</gi>).<note>See <ref type="bibl" target="#rahtz14">Rahtz and Burnard 2014, 16–17</ref>, and <ptr target="http://www.tei-c.org/Vault/P5/3.0.0/doc/tei-p5-doc/en/html/TD.html#TDbuild"/> for more information on the implementation of this system.</note> This way, we avoid creating similar parallel customizations that have to be maintained separately. Instead, each feature needed in the DTABf system is described only once, in one specific place, and then reused in the other relevant contexts.</p>
-          <p>More concretely, we created a comprehensive DTABf ODD containing the entire DTABf tagset (<ident>DTABf-All</ident>) and representing a true subset of the TEI_all tagset. Two small ODDs, dependent on <ident>DTABf-All</ident>, specify the encoding of prints or manuscripts: first, the (established) DTABf for printed texts (<ident>DTABf</ident>), and second, the (new) DTABf for manuscripts (<ident>DTABf-M</ident>). <ptr type="crossref" target="#figure22"/> illustrates the system.</p>
+          <head>Modular DTABf System of Chained ODDs<note>Thanks to James Cummings (Academic IT
+              Services, University of Oxford) for very helpful advice concerning this
+            method.</note></head>
+          <p>The concept of chaining ODDs is the creation of a large, comprehensive ODD (here:
+              <ident>ODD-L</ident>) that considers all possible annotations within the whole DTABf
+            system as a derivative of the <ident>TEI_all</ident> ODD and is compiled with regard to
+              <ident>TEI_all</ident>. After the larger ODD is in place, additional smaller ODDs are
+            created (here: <ident>ODD-S1</ident>, <ident>ODD-S2</ident>, ... <ident>ODD-Sn</ident>)
+            that determine reductions to <ident>ODD-L</ident> and thus represent subsets of the
+            ODD-L tagset. Schemas can then be created by transformation of an <ident>ODD-S</ident>
+            which is based on a compiled version of a comprehensive source <ident>ODD-L</ident>
+            (expressed as a URI within the <att>source</att> attribute of
+              <gi>schemaSpec</gi>).<note>See <ref type="bibl" target="#rahtz14">Rahtz and Burnard
+                2014, 16–17</ref>, and <ptr
+                target="http://www.tei-c.org/Vault/P5/3.0.0/doc/tei-p5-doc/en/html/TD.html#TDbuild"
+              /> for more information on the implementation of this system.</note> This way, we
+            avoid creating similar parallel customizations that have to be maintained separately.
+            Instead, each feature needed in the DTABf system is described only once, in one specific
+            place, and then reused in the other relevant contexts.</p>
+          <p>More concretely, we created a comprehensive DTABf ODD containing the entire DTABf
+            tagset (<ident>DTABf-All</ident>) and representing a true subset of the TEI_all tagset.
+            Two small ODDs, dependent on <ident>DTABf-All</ident>, specify the encoding of prints or
+            manuscripts: first, the (established) DTABf for printed texts (<ident>DTABf</ident>),
+            and second, the (new) DTABf for manuscripts (<ident>DTABf-M</ident>). <ptr
+              type="crossref" target="#figure22"/> illustrates the system.</p>
           <figure xml:id="figure22" n="6">
             <graphic url="images/image22.png" height="923px" width="1396px"/>
             <head type="legend">Chaining ODDs for the harmonization of DTABf and DTABf-M.</head>
@@ -456,18 +1030,25 @@
         </div>
         <div xml:id="examples">
           <head>Examples</head>
-          <p>The following section presents some examples for the chaining method at different layers of the DTABf ODDs.</p>
+          <p>The following section presents some examples for the chaining method at different
+            layers of the DTABf ODDs.</p>
           <div xml:id="egElements">
             <head>Inclusion and Exclusion of Elements</head>
-            <p>The <ident>DTABf-All</ident> ODD includes the elements <gi>subst</gi> (module <ident>transcr</ident>), <gi>add</gi> (module <ident>core</ident>), and <gi>del</gi> (module <ident>core</ident>) for the tagging of revisions and corrections in the handwritten text.</p>
+            <p>The <ident>DTABf-All</ident> ODD includes the elements <gi>subst</gi> (module
+                <ident>transcr</ident>), <gi>add</gi> (module <ident>core</ident>), and <gi>del</gi>
+              (module <ident>core</ident>) for the tagging of revisions and corrections in the
+              handwritten text.</p>
             <figure xml:id="example1">
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <moduleRef key="transcr" include="fw metamark subst ..."/>
                 <moduleRef key="core" include="add del list p sp ..."/>
               </egXML>
-              <head type="legend">ODD for DTABf-All:<note>Note that for reasons of clarity in these examples the <gi>moduleRef</gi>s only contain a small extract of the element set included by the <gi>moduleRef</gi>s within the original DTABf ODDs.</note></head>
+              <head type="legend">ODD for DTABf-All:<note>Note that for reasons of clarity in these
+                  examples the <gi>moduleRef</gi>s only contain a small extract of the element set
+                  included by the <gi>moduleRef</gi>s within the original DTABf ODDs.</note></head>
             </figure>
-            <p>These elements are not part of the DTABf for printed texts, so the <ident>DTABf</ident> ODD excludes these elements.</p>
+            <p>These elements are not part of the DTABf for printed texts, so the
+                <ident>DTABf</ident> ODD excludes these elements.</p>
             <figure xml:id="example2">
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <moduleRef key="transcr" except="metamark subst"/>
@@ -475,7 +1056,10 @@
               </egXML>
               <head type="legend">ODD for DTABf:</head>
             </figure>
-            <p>The <ident>DTABf-M</ident> ODD, however, includes these elements by referencing the entire modules from the <ident>DTABf-All</ident> ODD. All elements of all the modules included in <ident>DTABf-All</ident> will automatically be included here as well, unless explicitly excluded.</p>
+            <p>The <ident>DTABf-M</ident> ODD, however, includes these elements by referencing the
+              entire modules from the <ident>DTABf-All</ident> ODD. All elements of all the modules
+              included in <ident>DTABf-All</ident> will automatically be included here as well,
+              unless explicitly excluded.</p>
             <figure xml:id="example3">
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <moduleRef key="transcr"/>
@@ -486,7 +1070,15 @@
           </div>
           <div xml:id="egClasses">
             <head>Inclusion and Exclusion of Classes</head>
-            <p>For DTABf-M, we make use of the new TEI class <ident>att.written</ident>, providing us with the attribute <att>hand</att> to encode a change of hands within the source text. For printed materials we do not need this attribute.<note>According to the DTA guidelines, corrections and notes inserted into printed texts manually are not considered for transcription, which means that there is no necessity for <att>hand</att> in printed texts of the DTA corpora.</note> Hence, the class <ident>att.written</ident> is included in the <ident>DTABf-All</ident> ODD by inclusion of the class <ident>att.transcriptional</ident>, of which <ident>att.written</ident> is a sub-class.</p>
+            <p>For DTABf-M, we make use of the new TEI class <ident>att.written</ident>, providing
+              us with the attribute <att>hand</att> to encode a change of hands within the source
+              text. For printed materials we do not need this attribute.<note>According to the DTA
+                guidelines, corrections and notes inserted into printed texts manually are not
+                considered for transcription, which means that there is no necessity for
+                  <att>hand</att> in printed texts of the DTA corpora.</note> Hence, the class
+                <ident>att.written</ident> is included in the <ident>DTABf-All</ident> ODD by
+              inclusion of the class <ident>att.transcriptional</ident>, of which
+                <ident>att.written</ident> is a sub-class.</p>
             <figure xml:id="example4">
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <classSpec ident="att.transcriptional" mode="change" type="atts">
@@ -497,9 +1089,14 @@
                   </attList>
                 </classSpec>
               </egXML>
-              <head type="legend">ODD for DTABf-All:<note>Note that, due to class inheritance, <ident>att.written</ident> is included in the schema by including <ident>att.transcriptional</ident> and by <emph>not excluding it</emph> explicitly.</note></head>
+              <head type="legend">ODD for DTABf-All:<note>Note that, due to class inheritance,
+                    <ident>att.written</ident> is included in the schema by including
+                    <ident>att.transcriptional</ident> and by <emph>not excluding it</emph>
+                  explicitly.</note></head>
             </figure>
-            <p>The class <ident>att.written</ident> is also tacitly included in the <ident>DTABf-M</ident> ODD by inheritance from the <ident>DTABf-All</ident> ODD, whereas the <ident>DTABf</ident> ODD explicitly excludes this class.</p>
+            <p>The class <ident>att.written</ident> is also tacitly included in the
+                <ident>DTABf-M</ident> ODD by inheritance from the <ident>DTABf-All</ident> ODD,
+              whereas the <ident>DTABf</ident> ODD explicitly excludes this class.</p>
             <figure xml:id="example5">
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <classSpec ident="att.written" module="tei" type="atts" mode="delete"/>
@@ -509,7 +1106,11 @@
           </div>
           <div xml:id="egClassChanges">
             <head>Changes within Classes</head>
-            <p>For the <att>rendition</att> attribute of class <ident>att.global.rendition</ident>, a fixed list of possible values is determined within the DTABf. For manuscripts, we had to add two values to this list: <val>#mPrint</val> for printed material in manuscript text (e.g., boilerplate material) and <val>#mRetrace</val> for retracing of characters in order to highlight them.</p>
+            <p>For the <att>rendition</att> attribute of class <ident>att.global.rendition</ident>,
+              a fixed list of possible values is determined within the DTABf. For manuscripts, we
+              had to add two values to this list: <val>#mPrint</val> for printed material in
+              manuscript text (e.g., boilerplate material) and <val>#mRetrace</val> for retracing of
+              characters in order to highlight them.</p>
             <p><ident>DTABf-All</ident> contains all possible values of <att>rendition</att>.</p>
             <figure xml:id="example6">
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
@@ -519,19 +1120,18 @@
                       <valList type="closed" mode="replace">
                         <valItem ident="#c"/>
                         <valItem ident="#b"/>
-                        <valItem ident="#i"/> 
-                        [...]
-                        <valItem ident="#mPrint"/>
+                        <valItem ident="#i"/> [...] <valItem ident="#mPrint"/>
                         <valItem ident="#mRetrace"/>
                       </valList>
-                    </attDef>
-                    [...]
-                  </attList>
+                    </attDef> [...] </attList>
                 </classSpec>
               </egXML>
-              <head type="legend">ODD for DTABf-All:<note>The values <val>#c</val>, <val>#b</val>, and <val>#i</val> represent centered text, bold typeface, and italics, respectively.</note></head>
+              <head type="legend">ODD for DTABf-All:<note>The values <val>#c</val>, <val>#b</val>,
+                  and <val>#i</val> represent centered text, bold typeface, and italics,
+                  respectively.</note></head>
             </figure>
-            <p><ident>DTABf-M</ident> does not change that list. <ident>DTABf</ident>, however, deletes the named values from the list.</p>
+            <p><ident>DTABf-M</ident> does not change that list. <ident>DTABf</ident>, however,
+              deletes the named values from the list.</p>
             <figure xml:id="example7">
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <classSpec ident="att.global.rendition" module="tei" type="atts" mode="change">
@@ -550,8 +1150,23 @@
           </div>
           <div xml:id="egElementChanges">
             <head>Changes of Element Features</head>
-            <p>In manuscripts the title of a chapter or section is sometimes written on the right or left margin of a page. Those instances cannot be considered marginal notes, but represent a type of heading. Therefore, we introduced <att>type</att>=<val>rightMargin</val> | <val>leftMargin</val> in <gi>head</gi>. Since this is a phenomenon we haven’t (yet) encountered in printed texts, the <att>type</att> attribute in <gi>head</gi> is only needed for manuscript annotation.<note>With regard to the overall consistency, the usage of <att>place</att> instead of <att>type</att> might seem more appropriate for the current scenario. However, we decided to use <att>type</att> in order to remain compliant with the TEI Guidelines, which do not provide <att>place</att> for <gi>head</gi>: see <ref target="#tei16" type="bibl">TEI Consortium 2016</ref>, <ptr target="http://www.tei-c.org/Vault/P5/3.0.0/doc/tei-p5-doc/en/html/ref-head.html"/>.</note></p>
-            <p>To address this phenomenon, the element <gi>head</gi> is provided with the necessary attribute-value-pairs within its element specification in <ident>DTABf-All</ident>:</p>
+            <p>In manuscripts the title of a chapter or section is sometimes written on the right or
+              left margin of a page. Those instances cannot be considered marginal notes, but
+              represent a type of heading. Therefore, we introduced
+                <att>type</att>=<val>rightMargin</val> | <val>leftMargin</val> in <gi>head</gi>.
+              Since this is a phenomenon we haven’t (yet) encountered in printed texts, the
+                <att>type</att> attribute in <gi>head</gi> is only needed for manuscript
+                annotation.<note>With regard to the overall consistency, the usage of
+                  <att>place</att> instead of <att>type</att> might seem more appropriate for the
+                current scenario. However, we decided to use <att>type</att> in order to remain
+                compliant with the TEI Guidelines, which do not provide <att>place</att> for
+                  <gi>head</gi>: see <ref target="#tei16" type="bibl">TEI Consortium 2016</ref>,
+                  <ptr
+                  target="http://www.tei-c.org/Vault/P5/3.0.0/doc/tei-p5-doc/en/html/ref-head.html"
+                />.</note></p>
+            <p>To address this phenomenon, the element <gi>head</gi> is provided with the necessary
+              attribute-value-pairs within its element specification in
+              <ident>DTABf-All</ident>:</p>
             <figure xml:id="example8">
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <elementSpec ident="head" module="core" mode="change">
@@ -561,14 +1176,14 @@
                         <valItem ident="rightMargin"/>
                         <valItem ident="leftMargin"/>
                       </valList>
-                    </attDef>
-                    [...]
-                  </attList>
+                    </attDef> [...] </attList>
                 </elementSpec>
               </egXML>
               <head type="legend">ODD for DTABf-All:</head>
             </figure>
-            <p>Again, within the <ident>DTABf-M</ident> ODD things are left as they are. In the <ident>DTABf</ident> ODD, however, <att>type</att> is deleted from <gi>head</gi>:</p>
+            <p>Again, within the <ident>DTABf-M</ident> ODD things are left as they are. In the
+                <ident>DTABf</ident> ODD, however, <att>type</att> is deleted from
+              <gi>head</gi>:</p>
             <figure xml:id="example9">
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <elementSpec ident="head" module="core" mode="change">
@@ -579,45 +1194,172 @@
               </egXML>
               <head type="legend">ODD for DTABf:</head>
             </figure>
-            <p>These examples illustrate several ways in which ODD chaining is used within the DTABf system. While the <ident>DTABf-All</ident> ODD is quite extensive, the ODDs for DTABf and DTABf-M could be kept quite narrow and relatively simple. Redundancies are generally avoided with this method. Thus, maintenance of the ODDs is easily manageable.</p>
+            <p>These examples illustrate several ways in which ODD chaining is used within the DTABf
+              system. While the <ident>DTABf-All</ident> ODD is quite extensive, the ODDs for DTABf
+              and DTABf-M could be kept quite narrow and relatively simple. Redundancies are
+              generally avoided with this method. Thus, maintenance of the ODDs is easily
+              manageable.</p>
           </div>
         </div>
       </div>
       <div xml:id="conclusion">
         <head>Conclusion and Further Prospects</head>
-        <p>The DTA project is an example of the application of the TEI Guidelines to large-scale corpora. Our primary goal is to be as inclusive as possible, allowing for other projects to benefit from our resources (i.e., our comprehensive guidelines and documentation as well as the technical infrastructure that includes Schemas, ODDs, and XSLT scripts) and contribute to our corpora. We also want to ensure interoperability of all data within the DTA corpora. The underlying TEI format has to be continuously maintained and adapted to new necessities with these two premises in mind.</p>
-        <p>In this paper, we presented the workflow implemented at the DTA for the adaptation of the DTABf for manuscripts. The challenge here was twofold: On the one hand, we wanted to identify frequent structural phenomena one might want to annotate within manuscripts, apply DTABf tagging as far as possible, and provide new markup solutions where the DTABf was too limited. On the other hand, in case adaptations are needed, we have tried to keep the format as unambiguous, robust, and user-friendly as possible in order to ensure truly interoperable texts. An important issue is how to include this new format in the existing DTABf system. To address this, the approach of chaining ODDs has proved practicable and appropriate.</p>
-        <p>Interoperability issues are of great interest not only to the DTA but also to large infrastructure projects such as <ref target="http://clarin.eu/">CLARIN</ref>,<note>CLARIN: project Common Language Resources and Technology Infrastructure, <ptr target="http://clarin.eu/"/>; German partner CLARIN-D, <ptr target="http://www.clarin-d.de/"/>.</note> where corpora are being combined, exchanged, and made available in new contexts. The DTABf and its extensions are meant to address these issues.</p>
+        <p>The DTA project is an example of the application of the TEI Guidelines to large-scale
+          corpora. Our primary goal is to be as inclusive as possible, allowing for other projects
+          to benefit from our resources (i.e., our comprehensive guidelines and documentation as
+          well as the technical infrastructure that includes Schemas, ODDs, and XSLT scripts) and
+          contribute to our corpora. We also want to ensure interoperability of all data within the
+          DTA corpora. The underlying TEI format has to be continuously maintained and adapted to
+          new necessities with these two premises in mind.</p>
+        <p>In this paper, we presented the workflow implemented at the DTA for the adaptation of the
+          DTABf for manuscripts. The challenge here was twofold: On the one hand, we wanted to
+          identify frequent structural phenomena one might want to annotate within manuscripts,
+          apply DTABf tagging as far as possible, and provide new markup solutions where the DTABf
+          was too limited. On the other hand, in case adaptations are needed, we have tried to keep
+          the format as unambiguous, robust, and user-friendly as possible in order to ensure truly
+          interoperable texts. An important issue is how to include this new format in the existing
+          DTABf system. To address this, the approach of chaining ODDs has proved practicable and
+          appropriate.</p>
+        <p>Interoperability issues are of great interest not only to the DTA but also to large
+          infrastructure projects such as <ref target="http://clarin.eu/">CLARIN</ref>,<note>CLARIN:
+            project Common Language Resources and Technology Infrastructure, <ptr
+              target="http://clarin.eu/"/>; German partner CLARIN-D, <ptr
+              target="http://www.clarin-d.de/"/>.</note> where corpora are being combined,
+          exchanged, and made available in new contexts. The DTABf and its extensions are meant to
+          address these issues.</p>
       </div>
     </body>
     <back>
       <div type="bibliography">
         <listBibl>
           <head>Literature</head>
-          <bibl xml:id="clarin12"><orgName>CLARIN-D AP 5</orgName>. <date>2012</date>. <title level="u">CLARIN-D User Guide</title>. <edition>Version 1.0.1</edition>. <ptr target="http://www.clarin-d.de/de/hilfe/benutzerhandbuch"/>.</bibl>
-          <bibl xml:id="dfg15a"><orgName>Deutsche Forschungsgemeinschaft (DFG)</orgName>. <date>2015</date>. <title level="u">Handreichung: Empfehlungen zu datentechnischen Standards und Tools bei der Erhebung von Sprachkorpora.</title> <ptr target="http://www.dfg.de/download/pdf/foerderung/grundlagen_dfg_foerderung/informationen_fachwissenschaften/geisteswissenschaften/standards_sprachkorpora.pdf"/>.</bibl>
-          <bibl xml:id="dfg15b"><orgName>Deutsche Forschungsgemeinschaft (DFG)</orgName>. <date>2015</date>. <title level="u">Förderkriterien für wissenschaftliche Editionen in der Literaturwissenschaft.</title> <ptr target="http://www.dfg.de/download/pdf/foerderung/antragstellung/forschungsdaten/foerderkriterien_editionen_literaturwissenschaft.pdf"/>.</bibl>
-          <bibl xml:id="gansel11"><author>Gansel, Christina</author>. <date>2011</date>. <title level="m">Textsortenlinguistik</title>. <pubPlace>Göttingen</pubPlace>: <publisher>Vandenhoeck &amp; Ruprecht</publisher>.</bibl>
-          <bibl xml:id="geyken12"><author>Geyken, Alexander</author>, <author>Susanne Haaf</author>, and <author>Frank Wiegand</author>. <date>2012</date>. <title level="a">The DTA <soCalled>base format</soCalled>: A TEI-Subset for the Compilation of Interoperable Corpora.</title> In <title level="m">Proceedings of the 11th Conference on Natural Language Processing (KONVENS)</title>, edited by <editor>Jeremy Jancsary</editor>, <biblScope>383–91</biblScope>. <pubPlace>Vienna</pubPlace>: <publisher>Österreichische Gesellschaft für Artificial Intelligence</publisher>. <ptr target="http://www.oegai.at/konvens2012/proceedings/57_geyken12w/57_geyken12w.pdf"/>.</bibl>
-          <bibl xml:id="haaf1415"><author>Haaf, Susanne</author>, <author>Alexander Geyken</author>, and <author>Frank Wiegand</author>. <date>2014–15</date>. <title level="a">The DTA <soCalled>Base Format</soCalled>: A TEI Subset for the Compilation of a Large Reference Corpus of Printed Text from Multiple Sources.</title> <title level="j">Journal of the Text Encoding Initiative</title> <biblScope unit="issue">8</biblScope>. <ptr target="http://jtei.revues.org/1114"/>. doi:<idno type="doi">10.4000/jtei.1114</idno>.</bibl>
-          <bibl xml:id="haaf13"><author>Haaf, Susanne</author>, <author>Frank Wiegand</author>, and <author>Alexander Geyken</author>. <date>2013</date>. <title level="a">Measuring the Correctness of Double-Keying: Error Classification and Quality Control in a Large Corpus of TEI-Annotated Historical Text.</title> <title level="j">Journal of the Text Encoding Initiative</title> <biblScope unit="issue">4</biblScope>. <ptr target="http://jtei.revues.org/739"/>. doi:<idno type="doi">10.4000/jtei.739</idno>.</bibl>
-          <bibl xml:id="haaf14"><author>Haaf, Susanne</author>, and <author>Matthias Schulz</author>. <date>2014</date>. <title level="a">Historical Newspapers &amp; Journals for the DTA.</title> In <title level="m">Proceedings of the LRT4HDA Workshop, Held at the 9th LREC Conference</title>, edited by <editor>Kristín Bjarnadóttir</editor>, <editor>Mathew Driscoll</editor>, <editor>Steven Krauwer</editor>, <editor>Stelios Piperidis</editor>, <editor>Cristina Vertan</editor>, and <editor>Martin Wynne</editor>, <biblScope unit="page">50–54</biblScope>. <pubPlace>N.p.</pubPlace>: <publisher>European Language Resources Association</publisher>. <ptr target="http://www.lrec-conf.org/proceedings/lrec2014/workshops/LREC2014Workshop-LRT4HDA%20Proceedings.pdf#page=57"/>.</bibl>
-          <bibl xml:id="rahtz14"><author>Rahtz, Sebastian</author>, and <author>Lou Burnard</author>. <date>2014</date>. <title level="u">Advanced Topics in ODD.</title> In <title level="m">ODD: One Document Does it All</title>. Workshop at the Text Encoding Initiative Conference and Members Meeting, Oct 22–24 Evanston, IL. <ptr target="http://tei.it.ox.ac.uk/Talks/2014-10-odds/talk-05-advanced.xml"/>.</bibl>
-          <bibl xml:id="thomas15"><author>Thomas, Christian</author>. <date>2015</date>. <title level="u">Hidden Kosmos—Humboldts <q>Kosmos-Vorträge</q> als Probe der Digital Humanities.</title> Presentation at the DHd Annual Conference <title level="u">Von Daten zu Erkenntnissen: Digitale Geisteswissenschaften als Mittler zwischen Information und Interpretation</title>, February 23–27, Graz, Austria. <ptr target="https://www.culture.hu-berlin.de/de/forschung/projekte/hidden-kosmos/media/c-thomas-dhd-graz-paper-hidden-kosmos-20150126.pdf"/>.</bibl>
-          <bibl xml:id="thomas16"><author>Thomas, Christian</author>, <author>Benjamin Fiechter</author>, and <author>Marius Hug</author>. <date>2016</date>. <title level="a">Methoden und Ziele der Erschließung handschriftlicher Quellen zu Alexander von Humboldts Kosmos-Vorträgen: Das Projekt Hidden Kosmos der Humboldt-Universität zu Berlin.</title> In <title level="m">Horizonte der Humboldt-Forschung: Natur, Kultur, Schreiben</title>, edited by <editor>Ottmar Ette</editor> and <editor>Julian Drews</editor>, <biblScope unit="page">287–318</biblScope>. <pubPlace>Hildesheim</pubPlace>: <publisher>Georg Olms</publisher>.</bibl>
-          <bibl xml:id="thomas15b"><author>Thomas, Christian</author>, and <author>Frank Wiegand</author>. <date>2015</date>. <title level="a">Making Great Work Even Better: Appraisal and Digital Curation of Widely Dispersed Electronic Textual Resources (c. 15th–19th centuries) in CLARIN-D.</title> In <title level="m">Historical Corpora: Challenges and Perspectives</title>, edited by <editor>Jost Gippert</editor> and <editor>Ralf Gehrke</editor>, <biblScope unit="page">181–96</biblScope>. <pubPlace>Tübingen</pubPlace>: <publisher>Narr</publisher>.</bibl>
-          <bibl xml:id="tei16"><orgName>TEI Consortium</orgName>. <date>2016</date>. <title level="m">TEI P5: Guidelines for Electronic Text Encoding and Interchange</title>. <edition>Version 3.0.0</edition>. Last updated March 29. <pubPlace>N.p.</pubPlace>: <publisher>TEI Consortium</publisher>. <ptr target="http://www.tei-c.org/Vault/P5/3.0.0/doc/tei-p5-doc/en/html/"/>.</bibl>
+          <bibl xml:id="clarin12"><orgName>CLARIN-D AP 5</orgName>. <date>2012</date>. <title
+              level="u">CLARIN-D User Guide</title>. <edition>Version 1.0.1</edition>. <ptr
+              target="http://www.clarin-d.de/de/hilfe/benutzerhandbuch"/>.</bibl>
+          <bibl xml:id="dfg15a"><orgName>Deutsche Forschungsgemeinschaft (DFG)</orgName>.
+              <date>2015</date>. <title level="u">Handreichung: Empfehlungen zu datentechnischen
+              Standards und Tools bei der Erhebung von Sprachkorpora.</title>
+            <ptr
+              target="http://www.dfg.de/download/pdf/foerderung/grundlagen_dfg_foerderung/informationen_fachwissenschaften/geisteswissenschaften/standards_sprachkorpora.pdf"
+            />.</bibl>
+          <bibl xml:id="dfg15b"><orgName>Deutsche Forschungsgemeinschaft (DFG)</orgName>.
+              <date>2015</date>. <title level="u">Förderkriterien für wissenschaftliche Editionen in
+              der Literaturwissenschaft.</title>
+            <ptr
+              target="http://www.dfg.de/download/pdf/foerderung/antragstellung/forschungsdaten/foerderkriterien_editionen_literaturwissenschaft.pdf"
+            />.</bibl>
+          <bibl xml:id="gansel11"><author>Gansel, Christina</author>. <date>2011</date>. <title
+              level="m">Textsortenlinguistik</title>. <pubPlace>Göttingen</pubPlace>:
+              <publisher>Vandenhoeck &amp; Ruprecht</publisher>.</bibl>
+          <bibl xml:id="geyken12"><author>Geyken, Alexander</author>, <author>Susanne Haaf</author>,
+            and <author>Frank Wiegand</author>. <date>2012</date>. <title level="a">The DTA
+                <soCalled>base format</soCalled>: A TEI-Subset for the Compilation of Interoperable
+              Corpora.</title> In <title level="m">Proceedings of the 11th Conference on Natural
+              Language Processing (KONVENS)</title>, edited by <editor>Jeremy Jancsary</editor>,
+              <biblScope>383–91</biblScope>. <pubPlace>Vienna</pubPlace>: <publisher>Österreichische
+              Gesellschaft für Artificial Intelligence</publisher>. <ptr
+              target="http://www.oegai.at/konvens2012/proceedings/57_geyken12w/57_geyken12w.pdf"
+            />.</bibl>
+          <bibl xml:id="haaf1415"><author>Haaf, Susanne</author>, <author>Alexander Geyken</author>,
+            and <author>Frank Wiegand</author>. <date>2014–15</date>. <title level="a">The DTA
+                <soCalled>Base Format</soCalled>: A TEI Subset for the Compilation of a Large
+              Reference Corpus of Printed Text from Multiple Sources.</title>
+            <title level="j">Journal of the Text Encoding Initiative</title>
+            <biblScope unit="issue">8</biblScope>. <ptr target="http://jtei.revues.org/1114"/>.
+              doi:<idno type="doi">10.4000/jtei.1114</idno>.</bibl>
+          <bibl xml:id="haaf13"><author>Haaf, Susanne</author>, <author>Frank Wiegand</author>, and
+              <author>Alexander Geyken</author>. <date>2013</date>. <title level="a">Measuring the
+              Correctness of Double-Keying: Error Classification and Quality Control in a Large
+              Corpus of TEI-Annotated Historical Text.</title>
+            <title level="j">Journal of the Text Encoding Initiative</title>
+            <biblScope unit="issue">4</biblScope>. <ptr target="http://jtei.revues.org/739"/>.
+              doi:<idno type="doi">10.4000/jtei.739</idno>.</bibl>
+          <bibl xml:id="haaf14"><author>Haaf, Susanne</author>, and <author>Matthias
+            Schulz</author>. <date>2014</date>. <title level="a">Historical Newspapers &amp;
+              Journals for the DTA.</title> In <title level="m">Proceedings of the LRT4HDA Workshop,
+              Held at the 9th LREC Conference</title>, edited by <editor>Kristín
+              Bjarnadóttir</editor>, <editor>Mathew Driscoll</editor>, <editor>Steven
+              Krauwer</editor>, <editor>Stelios Piperidis</editor>, <editor>Cristina
+            Vertan</editor>, and <editor>Martin Wynne</editor>, <biblScope unit="page"
+              >50–54</biblScope>. <pubPlace>N.p.</pubPlace>: <publisher>European Language Resources
+              Association</publisher>. <ptr
+              target="http://www.lrec-conf.org/proceedings/lrec2014/workshops/LREC2014Workshop-LRT4HDA%20Proceedings.pdf#page=57"
+            />.</bibl>
+          <bibl xml:id="rahtz14"><author>Rahtz, Sebastian</author>, and <author>Lou
+            Burnard</author>. <date>2014</date>. <title level="u">Advanced Topics in ODD.</title> In
+              <title level="m">ODD: One Document Does it All</title>. Workshop at the Text Encoding
+            Initiative Conference and Members Meeting, Oct 22–24 Evanston, IL. <ptr
+              target="http://tei.it.ox.ac.uk/Talks/2014-10-odds/talk-05-advanced.xml"/>.</bibl>
+          <bibl xml:id="thomas15"><author>Thomas, Christian</author>. <date>2015</date>. <title
+              level="u">Hidden Kosmos—Humboldts <q>Kosmos-Vorträge</q> als Probe der Digital
+              Humanities.</title> Presentation at the DHd Annual Conference <title level="u">Von
+              Daten zu Erkenntnissen: Digitale Geisteswissenschaften als Mittler zwischen
+              Information und Interpretation</title>, February 23–27, Graz, Austria. <ptr
+              target="https://www.culture.hu-berlin.de/de/forschung/projekte/hidden-kosmos/media/c-thomas-dhd-graz-paper-hidden-kosmos-20150126.pdf"
+            />.</bibl>
+          <bibl xml:id="thomas16"><author>Thomas, Christian</author>, <author>Benjamin
+              Fiechter</author>, and <author>Marius Hug</author>. <date>2016</date>. <title
+              level="a">Methoden und Ziele der Erschließung handschriftlicher Quellen zu Alexander
+              von Humboldts Kosmos-Vorträgen: Das Projekt Hidden Kosmos der Humboldt-Universität zu
+              Berlin.</title> In <title level="m">Horizonte der Humboldt-Forschung: Natur, Kultur,
+              Schreiben</title>, edited by <editor>Ottmar Ette</editor> and <editor>Julian
+              Drews</editor>, <biblScope unit="page">287–318</biblScope>.
+              <pubPlace>Hildesheim</pubPlace>: <publisher>Georg Olms</publisher>.</bibl>
+          <bibl xml:id="thomas15b"><author>Thomas, Christian</author>, and <author>Frank
+              Wiegand</author>. <date>2015</date>. <title level="a">Making Great Work Even Better:
+              Appraisal and Digital Curation of Widely Dispersed Electronic Textual Resources (c.
+              15th–19th centuries) in CLARIN-D.</title> In <title level="m">Historical Corpora:
+              Challenges and Perspectives</title>, edited by <editor>Jost Gippert</editor> and
+              <editor>Ralf Gehrke</editor>, <biblScope unit="page">181–96</biblScope>.
+              <pubPlace>Tübingen</pubPlace>: <publisher>Narr</publisher>.</bibl>
+          <bibl xml:id="tei16"><orgName>TEI Consortium</orgName>. <date>2016</date>. <title
+              level="m">TEI P5: Guidelines for Electronic Text Encoding and Interchange</title>.
+              <edition>Version 3.0.0</edition>. Last updated March 29. <pubPlace>N.p.</pubPlace>:
+              <publisher>TEI Consortium</publisher>. <ptr
+              target="http://www.tei-c.org/Vault/P5/3.0.0/doc/tei-p5-doc/en/html/"/>.</bibl>
         </listBibl>
         <listBibl>
           <head>Historical Sources</head>
-          <bibl xml:id="andrea1616"><author>Andreä, Johann Valentin</author>. <date>1616</date>. <title level="a">Chymische Hochzeit Christiani Rosencreutz Anno 1459</title>. <pubPlace>Straßburg</pubPlace>. In <title level="m">Deutsches Textarchiv</title>. <ptr target="http://www.deutschestextarchiv.de/valentin_hochzeit_1616"/>.</bibl>
-          <bibl xml:id="anonym1827a"><author>Anonymous</author>. [<date>1827/28a</date>]. <title level="a">Alexander von Humboldts Vorlesungen über phÿsikalische Geographie nebst Prolegomenen über die Stellung der Gestirne. Berlin im Winter von 1827 bis 1828.</title> [<pubPlace>Berlin</pubPlace>]. In <title level="m">Deutsches Textarchiv</title>. <ptr target="http://www.deutschestextarchiv.de/nn_msgermqu2345_1827"/>.</bibl>
-          <bibl xml:id="anonym1827b"><author>Anonymous</author>. [<date>1827/28b</date>]. <title level="a">Physikalische Geographie von Heinr. Alex. Freiherr v. Humboldt. [V]orgetragen im Wintersemester 1827/8.</title> [<pubPlace>Berlin</pubPlace>]. In <title level="m">Deutsches Textarchiv</title>. <ptr target="http://www.deutschestextarchiv.de/nn_n0171w1_1828"/>.</bibl>
-          <bibl xml:id="anonym1827c"><author>Anonymous</author>. [<date>1827/28c</date>]. <title level="a">Die physikalische Geographie von Herrn Alexander v. Humboldt, vorgetragen im Semestre 1827/28.</title> [<pubPlace>Berlin</pubPlace>]. In <title level="m">Deutsches Textarchiv</title>. <ptr target="http://www.deutschestextarchiv.de/nn_oktavgfeo79_1828"/>.</bibl>
-          <bibl xml:id="anonym1828"><author>Anonymous</author>. [<date>1828</date>]. <title level="a">Physikalische Geographie. Vorgetragen von Alexander von Humboldt.</title> [<pubPlace>Berlin</pubPlace>]. In <title level="m">Deutsches Textarchiv</title>. <ptr target="http://www.deutschestextarchiv.de/nn_msgermqu2124_1827"/>.</bibl>
-          <bibl xml:id="hufeland1829"><author>Hufeland, Otto</author>. [<date>Ca. 1829</date>]. <title level="a">Vorlesungen über physicalische Geographie von A. v. Humboldt. [G]eschrieben im Sommer 1829 durch Otto Hufeland.</title> [<pubPlace>Berlin</pubPlace>]. In <title level="m">Deutsches Textarchiv</title>. <ptr target="http://www.deutschestextarchiv.de/hufeland_privatbesitz_1829"/>.</bibl>
-          <bibl xml:id="parthey1827"><author>Parthey, Gustav</author>. [<date>1827/28</date>]. <title level="a">Alexander von Humboldt[:] Vorlesungen über physikalische Geographie. Novmbr. 1827 bis April,[!] 1828. Nachgeschrieben von G. Partheÿ.</title> [<pubPlace>Berlin</pubPlace>]. In <title level="m">Deutsches Textarchiv</title>. <ptr target="http://www.deutschestextarchiv.de/parthey_msgermqu1711_1828"/>.</bibl>
-          <bibl xml:id="reuss1717"><author>Reuß-Ebersdorf, Erdmuthe Benigna von</author>. <date>1717</date>. <title level="m">[Letter to Heinrich XXIV. (Reuß-Köstritz); Ebersdorf (Thuringia, Germany), October 8, 1717]</title>. <pubPlace>Ebersdorf</pubPlace>. In <title level="m">Deutsches Textarchiv</title>. <ptr target="http://www.deutschestextarchiv.de/reuss_paragiatsherrschaftabiv15_1717"/>.</bibl>
+          <bibl xml:id="andrea1616"><author>Andreä, Johann Valentin</author>. <date>1616</date>.
+              <title level="a">Chymische Hochzeit Christiani Rosencreutz Anno 1459</title>.
+              <pubPlace>Straßburg</pubPlace>. In <title level="m">Deutsches Textarchiv</title>. <ptr
+              target="http://www.deutschestextarchiv.de/valentin_hochzeit_1616"/>.</bibl>
+          <bibl xml:id="anonym1827a"><author>Anonymous</author>. [<date>1827/28a</date>]. <title
+              level="a">Alexander von Humboldts Vorlesungen über phÿsikalische Geographie nebst
+              Prolegomenen über die Stellung der Gestirne. Berlin im Winter von 1827 bis
+              1828.</title> [<pubPlace>Berlin</pubPlace>]. In <title level="m">Deutsches
+              Textarchiv</title>. <ptr
+              target="http://www.deutschestextarchiv.de/nn_msgermqu2345_1827"/>.</bibl>
+          <bibl xml:id="anonym1827b"><author>Anonymous</author>. [<date>1827/28b</date>]. <title
+              level="a">Physikalische Geographie von Heinr. Alex. Freiherr v. Humboldt.
+              [V]orgetragen im Wintersemester 1827/8.</title> [<pubPlace>Berlin</pubPlace>]. In
+              <title level="m">Deutsches Textarchiv</title>. <ptr
+              target="http://www.deutschestextarchiv.de/nn_n0171w1_1828"/>.</bibl>
+          <bibl xml:id="anonym1827c"><author>Anonymous</author>. [<date>1827/28c</date>]. <title
+              level="a">Die physikalische Geographie von Herrn Alexander v. Humboldt, vorgetragen im
+              Semestre 1827/28.</title> [<pubPlace>Berlin</pubPlace>]. In <title level="m">Deutsches
+              Textarchiv</title>. <ptr
+              target="http://www.deutschestextarchiv.de/nn_oktavgfeo79_1828"/>.</bibl>
+          <bibl xml:id="anonym1828"><author>Anonymous</author>. [<date>1828</date>]. <title
+              level="a">Physikalische Geographie. Vorgetragen von Alexander von Humboldt.</title>
+              [<pubPlace>Berlin</pubPlace>]. In <title level="m">Deutsches Textarchiv</title>. <ptr
+              target="http://www.deutschestextarchiv.de/nn_msgermqu2124_1827"/>.</bibl>
+          <bibl xml:id="hufeland1829"><author>Hufeland, Otto</author>. [<date>Ca. 1829</date>].
+              <title level="a">Vorlesungen über physicalische Geographie von A. v. Humboldt.
+              [G]eschrieben im Sommer 1829 durch Otto Hufeland.</title>
+            [<pubPlace>Berlin</pubPlace>]. In <title level="m">Deutsches Textarchiv</title>. <ptr
+              target="http://www.deutschestextarchiv.de/hufeland_privatbesitz_1829"/>.</bibl>
+          <bibl xml:id="parthey1827"><author>Parthey, Gustav</author>. [<date>1827/28</date>].
+              <title level="a">Alexander von Humboldt[:] Vorlesungen über physikalische Geographie.
+              Novmbr. 1827 bis April,[!] 1828. Nachgeschrieben von G. Partheÿ.</title>
+              [<pubPlace>Berlin</pubPlace>]. In <title level="m">Deutsches Textarchiv</title>. <ptr
+              target="http://www.deutschestextarchiv.de/parthey_msgermqu1711_1828"/>.</bibl>
+          <bibl xml:id="reuss1717"><author>Reuß-Ebersdorf, Erdmuthe Benigna von</author>.
+              <date>1717</date>. <title level="m">[Letter to Heinrich XXIV. (Reuß-Köstritz);
+              Ebersdorf (Thuringia, Germany), October 8, 1717]</title>.
+              <pubPlace>Ebersdorf</pubPlace>. In <title level="m">Deutsches Textarchiv</title>. <ptr
+              target="http://www.deutschestextarchiv.de/reuss_paragiatsherrschaftabiv15_1717"
+            />.</bibl>
         </listBibl>
       </div>
     </back>

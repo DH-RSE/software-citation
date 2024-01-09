@@ -13,7 +13,11 @@
             <forename>Martin</forename>
             <surname>Holmes</surname>
           </name>
-          <affiliation>Martin Holmes is a <roleName>programmer</roleName> in <orgName>the University of Victoria Humanities Computing and Media Centre</orgName>. He served on the <orgName>TEI Technical Council</orgName> (2010–2015) and was <roleName>Managing Editor</roleName> of the <title level="j">Journal of the TEI</title> (2013–2015).</affiliation>
+          <affiliation>Martin Holmes is a <roleName>programmer</roleName> in <orgName>the University
+              of Victoria Humanities Computing and Media Centre</orgName>. He served on the
+              <orgName>TEI Technical Council</orgName> (2010–2015) and was <roleName>Managing
+              Editor</roleName> of the <title level="j">Journal of the TEI</title>
+            (2013–2015).</affiliation>
           <email>mholmes@uvic.ca</email>
         </author>
       </titleStmt>
@@ -22,7 +26,8 @@
         <date>03/02/2022</date>
         <availability>
           <licence target="https://creativecommons.org/licenses/by/4.0/">
-            <p>For this publication a Creative Commons Attribution 4.0 international license has been granted by the author(s), who retain full copyright.</p>
+            <p>For this publication a Creative Commons Attribution 4.0 international license has
+              been granted by the author(s), who retain full copyright.</p>
           </licence>
         </availability>
       </publicationStmt>
@@ -42,7 +47,9 @@
     </fileDesc>
     <encodingDesc>
       <projectDesc>
-        <p>OpenEdition Journals—Centre for Open Electronic Publishing—is the platform for journals in the humanities and social sciences, open to quality periodicals seeking to publish full-text articles online.</p>
+        <p>OpenEdition Journals—Centre for Open Electronic Publishing—is the platform for journals
+          in the humanities and social sciences, open to quality periodicals seeking to publish
+          full-text articles online.</p>
       </projectDesc>
     </encodingDesc>
     <profileDesc>
@@ -61,62 +68,298 @@
   <text>
     <front>
       <div type="abstract" xml:id="abstract">
-        <p>Both relational databases (RDBs) and XML have strengths and weaknesses as data storage and modeling systems. Most researchers working with historical and literary data in the humanities would argue for the superiority of XML, since it allows unlimited nesting, linking, and complexity. Relational database proponents claim superior querying and processing speed, although recent advances in XML languages and tools have eroded that advantage.</p>
-        <p>Nevertheless, RDBs remain popular and are widely used, particularly in the early stages of projects where resources and metadata are being collected, and projects may end up with both an RDB and an XML document collection. Programmers must then integrate these distinct forms of data when building project outputs. This article discusses the Digital Victorian Periodical Poetry (DVPP) project, where metadata on about 15,000 poems from nineteenth-century periodicals is captured in a MySQL database, and periodically exported to create a TEI file for each poem. Many of the poems are then transcribed and encoded. The canonical source of metadata is the RDB, while the canonical source of textual data is the TEI file. Metadata in the TEI files must be periodically updated from the RDB, without disturbing the textual encoding. Changes to the RDB data may result in changes to the id and filename of the related TEI file, so any existing TEI data is migrated to a new file, and the Subversion repository must be appropriately updated. All of this is done with XSLT and Ant.</p>
+        <p>Both relational databases (RDBs) and XML have strengths and weaknesses as data storage
+          and modeling systems. Most researchers working with historical and literary data in the
+          humanities would argue for the superiority of XML, since it allows unlimited nesting,
+          linking, and complexity. Relational database proponents claim superior querying and
+          processing speed, although recent advances in XML languages and tools have eroded that
+          advantage.</p>
+        <p>Nevertheless, RDBs remain popular and are widely used, particularly in the early stages
+          of projects where resources and metadata are being collected, and projects may end up with
+          both an RDB and an XML document collection. Programmers must then integrate these distinct
+          forms of data when building project outputs. This article discusses the Digital Victorian
+          Periodical Poetry (DVPP) project, where metadata on about 15,000 poems from
+          nineteenth-century periodicals is captured in a MySQL database, and periodically exported
+          to create a TEI file for each poem. Many of the poems are then transcribed and encoded.
+          The canonical source of metadata is the RDB, while the canonical source of textual data is
+          the TEI file. Metadata in the TEI files must be periodically updated from the RDB, without
+          disturbing the textual encoding. Changes to the RDB data may result in changes to the id
+          and filename of the related TEI file, so any existing TEI data is migrated to a new file,
+          and the Subversion repository must be appropriately updated. All of this is done with XSLT
+          and Ant.</p>
       </div>
       <div type="acknowledgements">
-        <p>The project described in this paper is supported by a <ref target="https://www.sshrc-crsh.gc.ca/">Social Sciences and Humanities Research Council of Canada</ref> Insight Grant.</p>
+        <p>The project described in this paper is supported by a <ref
+            target="https://www.sshrc-crsh.gc.ca/">Social Sciences and Humanities Research Council
+            of Canada</ref> Insight Grant.</p>
       </div>
     </front>
     <body>
       <div xml:id="background">
         <head>Background</head>
-        <p>Relational databases (RDBs) and XML are both mature technologies that have been in common use for decades. It is arguable that they arise out of the same roots. Early work on data storage and modeling in the 1960s gave rise to IBM’s mainframe database management system IMS, which represented data in the form of hierarchical trees. <ref type="bibl" xml:id="quoteref1" target="#date1991">C. J. Date’s (1991) classic <title level="m">An Introduction to Database Systems</title></ref> has an appendix devoted to IMS which describes it in terminology that would be familiar to any XML encoder. IMS even addresses the perennial issue of overlapping hierarchies, by allowing <quote source="#quoteref1">a secondary data structure</quote> which is <quote source="#quoteref1">still a hierarchy, but a hierarchy in which participant segments have been rearranged, possibly drastically</quote>; in other words, it allows for multiple hierarchies over the same dataset. However, beginning with the work of E. F. Codd in the 1970s and the rise of SQL, the relational database model familiar today became dominant, and remained so until the relatively recent popularity of NoSQL approaches.</p>
-        <p>In modeling humanities datasets, both relational databases and XML have notable advantages in different contexts. <quote source="#quoterefflanders">Relational databases emphasize repeatable structures that assume a fundamental similarity of records across the dataset, while XML emphasizes a grammar-based structure that is more open-ended and documentary, but requires that the document be conceptualized as a tree. Each of these approaches might offer certain kinds of informational advantages</quote> (<ref type="bibl" xml:id="quoterefflanders" target="#flanders2018">Flanders &amp; Jannidis 2018</ref>). While RDBMSes have traditionally been considered to have advantages in terms of enforceable constraints on linking and data integrity as well as speed, members of the TEI and related communities favor XML, pointing to its flexibility and extensibility. In recent years, the speed and power of XSLT and XQuery tools, the development of a rich array of schema and validation tools, and the appearance of XML databases have all but eradicated the traditional advantages claimed for relational databases.</p>
-        <p>Nevertheless, RDBs are still popular, and many researchers seem instinctively to prefer them. As Stephen Ramsay (<ref xml:id="quotereframsay" target="#ramsay2004" type="bibl">2004</ref>) notes, <quote source="#quotereframsay">the data to which humanist scholars are accustomed—literary works, historical events, textual recensions, linguistic phenomena—are, of course, rarely simple. We would do well, however, to bear in mind that what might be viewed as a fundamental inadequacy has often proved to be the primary attraction of relational database systems for the humanist scholar.</quote> Most digital humanities programmers have encountered researchers who know little about databases or data modeling, but are nevertheless convinced that what they need and must have for their project is a database. Databases are somehow compelling and attractive in a way that XML is not. Perhaps the familiarity of tabular data representations is comforting; maybe forcing data into constrained representations seems to constitute mastering it somehow; or perhaps the tendency to gather initial data in the early stages of a project using spreadsheets, for want of a better tool, encourages conception of data (especially metadata) in terms of columns and rows. Whatever the reason, in one way or another, sometimes against our better judgement or advice, a project may end up with both an RDB and a TEI XML document collection, and programmers must then find ways to integrate these distinct forms of data when building project outputs and products.</p>
-        <p>Approaches to integrating RDB and XML data have normally taken the form of storing XML data into RDB fields, and then providing some level of richer access to that data through the use of XPath or XQuery (see <ref type="bibl" target="#bertino2001">Bertino and Catania</ref> for a useful overview). This is the approach taken by the ReMetCa team (<ref type="bibl" target="#blanco2015">González-Blanco and Rodríguez 2015</ref>): XML fragments representing verse (rather than complete documents) are stored in text fields in a relational database, and the relationships among them are modeled using the RDB schema. However, such an approach is far from ideal. González-Blanco and Rodríguez describe some of the limitations and frustrations they encountered in modeling the poetic structure of the verse in their database; they struggled with <quote source="#quoteref2">a complex model of relationships among those components which are very difficult to represent in a database,</quote> and they conclude that <quote source="#quoteref2">the E-R model is inappropriate for this purpose due to its center-based structure, with the entities of poem, line, and stanza in the middle of its referential domain of study</quote> (<ref xml:id="quoteref2" type="bibl" target="#blanco2015">para 8</ref>). <ref type="bibl" target="#gibson2012">Gibson (2012)</ref> describes a similar scenario with mixed RDB and XML data, and how he used Saxonʼs SQL extension functions to overcome the problem.</p>
-        <p>However, storing XML data in RDB fields is suboptimal. Most serious encoding projects make use of version-control systems such as Git or Subversion, for very good reasons: in a project with many transcribers and encoders, where multiple waves of encoding and annotation may be applied to each document, it is essential to maintain a detailed revision history that makes it possible to recover any previous incarnation of any document, and to track the revisions made to specific parts of the document by specific encoders. Revision control of XML document collections is simple, elegant, and mature, but while it is possible to implement something approximating version control for a relational database, it is not easy, and most solutions such as Liquibase are focused primarily on versioning database schemas and stored functions rather than data.</p>
+        <p>Relational databases (RDBs) and XML are both mature technologies that have been in common
+          use for decades. It is arguable that they arise out of the same roots. Early work on data
+          storage and modeling in the 1960s gave rise to IBM’s mainframe database management system
+          IMS, which represented data in the form of hierarchical trees. <ref type="bibl"
+            xml:id="quoteref1" target="#date1991">C. J. Date’s (1991) classic <title level="m">An
+              Introduction to Database Systems</title></ref> has an appendix devoted to IMS which
+          describes it in terminology that would be familiar to any XML encoder. IMS even addresses
+          the perennial issue of overlapping hierarchies, by allowing <quote source="#quoteref1">a
+            secondary data structure</quote> which is <quote source="#quoteref1">still a hierarchy,
+            but a hierarchy in which participant segments have been rearranged, possibly
+            drastically</quote>; in other words, it allows for multiple hierarchies over the same
+          dataset. However, beginning with the work of E. F. Codd in the 1970s and the rise of SQL,
+          the relational database model familiar today became dominant, and remained so until the
+          relatively recent popularity of NoSQL approaches.</p>
+        <p>In modeling humanities datasets, both relational databases and XML have notable
+          advantages in different contexts. <quote source="#quoterefflanders">Relational databases
+            emphasize repeatable structures that assume a fundamental similarity of records across
+            the dataset, while XML emphasizes a grammar-based structure that is more open-ended and
+            documentary, but requires that the document be conceptualized as a tree. Each of these
+            approaches might offer certain kinds of informational advantages</quote> (<ref
+            type="bibl" xml:id="quoterefflanders" target="#flanders2018">Flanders &amp; Jannidis
+            2018</ref>). While RDBMSes have traditionally been considered to have advantages in
+          terms of enforceable constraints on linking and data integrity as well as speed, members
+          of the TEI and related communities favor XML, pointing to its flexibility and
+          extensibility. In recent years, the speed and power of XSLT and XQuery tools, the
+          development of a rich array of schema and validation tools, and the appearance of XML
+          databases have all but eradicated the traditional advantages claimed for relational
+          databases.</p>
+        <p>Nevertheless, RDBs are still popular, and many researchers seem instinctively to prefer
+          them. As Stephen Ramsay (<ref xml:id="quotereframsay" target="#ramsay2004" type="bibl"
+            >2004</ref>) notes, <quote source="#quotereframsay">the data to which humanist scholars
+            are accustomed—literary works, historical events, textual recensions, linguistic
+            phenomena—are, of course, rarely simple. We would do well, however, to bear in mind that
+            what might be viewed as a fundamental inadequacy has often proved to be the primary
+            attraction of relational database systems for the humanist scholar.</quote> Most digital
+          humanities programmers have encountered researchers who know little about databases or
+          data modeling, but are nevertheless convinced that what they need and must have for their
+          project is a database. Databases are somehow compelling and attractive in a way that XML
+          is not. Perhaps the familiarity of tabular data representations is comforting; maybe
+          forcing data into constrained representations seems to constitute mastering it somehow; or
+          perhaps the tendency to gather initial data in the early stages of a project using
+          spreadsheets, for want of a better tool, encourages conception of data (especially
+          metadata) in terms of columns and rows. Whatever the reason, in one way or another,
+          sometimes against our better judgement or advice, a project may end up with both an RDB
+          and a TEI XML document collection, and programmers must then find ways to integrate these
+          distinct forms of data when building project outputs and products.</p>
+        <p>Approaches to integrating RDB and XML data have normally taken the form of storing XML
+          data into RDB fields, and then providing some level of richer access to that data through
+          the use of XPath or XQuery (see <ref type="bibl" target="#bertino2001">Bertino and
+            Catania</ref> for a useful overview). This is the approach taken by the ReMetCa team
+            (<ref type="bibl" target="#blanco2015">González-Blanco and Rodríguez 2015</ref>): XML
+          fragments representing verse (rather than complete documents) are stored in text fields in
+          a relational database, and the relationships among them are modeled using the RDB schema.
+          However, such an approach is far from ideal. González-Blanco and Rodríguez describe some
+          of the limitations and frustrations they encountered in modeling the poetic structure of
+          the verse in their database; they struggled with <quote source="#quoteref2">a complex
+            model of relationships among those components which are very difficult to represent in a
+            database,</quote> and they conclude that <quote source="#quoteref2">the E-R model is
+            inappropriate for this purpose due to its center-based structure, with the entities of
+            poem, line, and stanza in the middle of its referential domain of study</quote> (<ref
+            xml:id="quoteref2" type="bibl" target="#blanco2015">para 8</ref>). <ref type="bibl"
+            target="#gibson2012">Gibson (2012)</ref> describes a similar scenario with mixed RDB and
+          XML data, and how he used Saxonʼs SQL extension functions to overcome the problem.</p>
+        <p>However, storing XML data in RDB fields is suboptimal. Most serious encoding projects
+          make use of version-control systems such as Git or Subversion, for very good reasons: in a
+          project with many transcribers and encoders, where multiple waves of encoding and
+          annotation may be applied to each document, it is essential to maintain a detailed
+          revision history that makes it possible to recover any previous incarnation of any
+          document, and to track the revisions made to specific parts of the document by specific
+          encoders. Revision control of XML document collections is simple, elegant, and mature, but
+          while it is possible to implement something approximating version control for a relational
+          database, it is not easy, and most solutions such as Liquibase are focused primarily on
+          versioning database schemas and stored functions rather than data.</p>
       </div>
       <div xml:id="dvpp">
         <head>The <title level="m">Digital Victorian Periodical Poetry</title> project</head>
         <figure xml:id="dvppSite">
           <graphic url="images/dvpp_site.png" width="1124px" height="552px"/>
-          <head type="legend">The <title level="m">Digital Victorian Periodical Poetry</title> website.</head>
+          <head type="legend">The <title level="m">Digital Victorian Periodical Poetry</title>
+            website.</head>
         </figure>
-        <p>This paper will focus on the integration of RDB and XML data in the <title level="m"><ref target="https://dvpp.uvic.ca/">Digital Victorian Periodical Poetry</ref></title> project. This project began life many years ago as a pure-metadata project, capturing information about tens of thousands of poems that appeared in British periodicals during the nineteenth century. At that time, an RDB system seemed a natural and sufficient tool for the job, so a MySQL database, along with a data-entry interface, was set up for the researchers, and data collection proceeded rapidly (<ptr type="crossref" target="#dvppSite"/>). However, after some years the project gained an additional research focus, and more recently funding from the Social Sciences and Research Council of Canada, to transcribe and encode a subset of these poems; we are focusing primarily on the decade years (1820, 1830, 1840, and so on through to 1900), and at the time of writing we have encoded more than 2,000 poems. Meanwhile, indexing of the much larger dataset continues.</p>
+        <p>This paper will focus on the integration of RDB and XML data in the <title level="m"><ref
+              target="https://dvpp.uvic.ca/">Digital Victorian Periodical Poetry</ref></title>
+          project. This project began life many years ago as a pure-metadata project, capturing
+          information about tens of thousands of poems that appeared in British periodicals during
+          the nineteenth century. At that time, an RDB system seemed a natural and sufficient tool
+          for the job, so a MySQL database, along with a data-entry interface, was set up for the
+          researchers, and data collection proceeded rapidly (<ptr type="crossref"
+            target="#dvppSite"/>). However, after some years the project gained an additional
+          research focus, and more recently funding from the Social Sciences and Research Council of
+          Canada, to transcribe and encode a subset of these poems; we are focusing primarily on the
+          decade years (1820, 1830, 1840, and so on through to 1900), and at the time of writing we
+          have encoded more than 2,000 poems. Meanwhile, indexing of the much larger dataset
+          continues.</p>
         <figure xml:id="dbRecord">
           <graphic url="images/dvpp_rdb.png" width="1080px" height="915px"/>
           <head type="legend">A record in the relational database.</head>
         </figure>
-        <p>The MySQL database is relatively straightforward. The main table is the Poems table, in which each record corresponds to a specific poem appearing in a given periodical on a given date. Another table, Organs, contains the list of periodicals, and each poem record points to a single organ record. A third table, People, contains information about individuals who have played roles in the production of poems, as authors, translators, or illustrators; people are linked in one-to-many relationships through role tables, so that one poem may have multiple illustrators, and the author of one poem may be the translator of another. The database front end is written in PHP.</p>
-        <p>Our long-term plan is for the entire dataset to be in the form of TEI XML files, but for the first few years of the project, data will continue to be added to the RDB system, since we have good methods and protocols for this, as well as trained research assistants who are used to working with it. We are now also well into our transcription and encoding process, and for that we need to generate individual TEI files for each poem, and store them in Subversion. Transcription involves some fairly dense encoding, since we mark up rhyme schemes and rhyming segments, detailed information about page layout and mise-en-page, and analytic annotations relating to various sonic devices such as choruses, refrains, and anaphoras. (All poems on the <ref target="https://dvpp.uvic.ca/">DVPP site</ref> have links to their XML source, and more details of our encoding practices appear in <ref type="bibl" target="#fralick2019">Fralick et al. 2019</ref>.)</p>
-        <p>In this hybrid project, the canonical source of metadata for the poems is the RDB, while the canonical source of textual data is the TEI XML files. To build and test the project outputs, we need to generate TEI files for every poem, whether or not it has, or will have, an encoded transcription. The metadata stored in the TEI files must be periodically updated based on the RDB, without disturbing any of the textual encoding or the additional metadata in the TEI header relating specifically to the encoding (responsibility statements, rendition elements, category references, and so on). Changes to the RDB data may result in changes to the id and filename of the related TEI file,<note>Each poem in the database has a fixed numeric identifier, and this forms part of the id/filename of the TEI file. However, because we are a team of humans, we find it much easier to find and discuss filenames and ids when they have a human-readable component, so a <gi>TEI</gi>/<att>xml:id</att> for a poem is created by combining the database numerical id with a few words from the poem title, processed according to a fixed algorithm. An example would be <val>pom_11993_ulysses_in_ogygia</val>. Filenames always match root ids + <code>.xml</code>. If a poem title changes in the database as a result of new information or data correction, then the id and filename are regenerated to ensure consistency.</note> so any existing TEI data must be migrated to a new file, and the Subversion repository must be appropriately updated. Below I describe how this process is accomplished safely without loss of data, using a system based primarily on Apache Ant<note>The Ant build file for this process can be seen in our <ref target="https://hcmc.uvic.ca/svn/dvpp/buildTEI.xml">Subversion repository</ref>, and details of the process can be found our <ref target="https://dvpp.uvic.ca/dvpp.html#refreshDatabases">project documentation</ref>.</note> and XSLT (<ptr type="crossref" target="#flowchart"/>). <figure xml:id="flowchart">
+        <p>The MySQL database is relatively straightforward. The main table is the Poems table, in
+          which each record corresponds to a specific poem appearing in a given periodical on a
+          given date. Another table, Organs, contains the list of periodicals, and each poem record
+          points to a single organ record. A third table, People, contains information about
+          individuals who have played roles in the production of poems, as authors, translators, or
+          illustrators; people are linked in one-to-many relationships through role tables, so that
+          one poem may have multiple illustrators, and the author of one poem may be the translator
+          of another. The database front end is written in PHP.</p>
+        <p>Our long-term plan is for the entire dataset to be in the form of TEI XML files, but for
+          the first few years of the project, data will continue to be added to the RDB system,
+          since we have good methods and protocols for this, as well as trained research assistants
+          who are used to working with it. We are now also well into our transcription and encoding
+          process, and for that we need to generate individual TEI files for each poem, and store
+          them in Subversion. Transcription involves some fairly dense encoding, since we mark up
+          rhyme schemes and rhyming segments, detailed information about page layout and
+          mise-en-page, and analytic annotations relating to various sonic devices such as choruses,
+          refrains, and anaphoras. (All poems on the <ref target="https://dvpp.uvic.ca/">DVPP
+            site</ref> have links to their XML source, and more details of our encoding practices
+          appear in <ref type="bibl" target="#fralick2019">Fralick et al. 2019</ref>.)</p>
+        <p>In this hybrid project, the canonical source of metadata for the poems is the RDB, while
+          the canonical source of textual data is the TEI XML files. To build and test the project
+          outputs, we need to generate TEI files for every poem, whether or not it has, or will
+          have, an encoded transcription. The metadata stored in the TEI files must be periodically
+          updated based on the RDB, without disturbing any of the textual encoding or the additional
+          metadata in the TEI header relating specifically to the encoding (responsibility
+          statements, rendition elements, category references, and so on). Changes to the RDB data
+          may result in changes to the id and filename of the related TEI file,<note>Each poem in
+            the database has a fixed numeric identifier, and this forms part of the id/filename of
+            the TEI file. However, because we are a team of humans, we find it much easier to find
+            and discuss filenames and ids when they have a human-readable component, so a
+              <gi>TEI</gi>/<att>xml:id</att> for a poem is created by combining the database
+            numerical id with a few words from the poem title, processed according to a fixed
+            algorithm. An example would be <val>pom_11993_ulysses_in_ogygia</val>. Filenames always
+            match root ids + <code>.xml</code>. If a poem title changes in the database as a result
+            of new information or data correction, then the id and filename are regenerated to
+            ensure consistency.</note> so any existing TEI data must be migrated to a new file, and
+          the Subversion repository must be appropriately updated. Below I describe how this process
+          is accomplished safely without loss of data, using a system based primarily on Apache
+            Ant<note>The Ant build file for this process can be seen in our <ref
+              target="https://hcmc.uvic.ca/svn/dvpp/buildTEI.xml">Subversion repository</ref>, and
+            details of the process can be found our <ref
+              target="https://dvpp.uvic.ca/dvpp.html#refreshDatabases">project
+            documentation</ref>.</note> and XSLT (<ptr type="crossref" target="#flowchart"/>).
+            <figure xml:id="flowchart">
             <graphic url="images/flowchart.png" width="771px" height="1188px"/>
             <head type="legend">A simple representation of the metadata integration process.</head>
           </figure>
         </p>
-        <p>In the initial part of the process, the current state of the database is dumped into an XML file (the application mysqldump can provide data in XML format). This file is stored in the Subversion repository, giving us at least a semblance of version control over the SQL data, albeit in a rather impoverished fashion. Each poem record in the database is matched against an equivalent XML file if there is one. If there is no matching file, then one is created. If there is a matching file and no changes are required to its filename and id, then its metadata is simply updated based on the poem record from the database. If there is a matching file, but modifications to the filename and id are needed, then a new file is created and all relevant TEI data is migrated into that file. Then, <list rend="bulleted">
-            <item>If a file is new (i.e., not already tracked by Subversion), it must be added to the repository.</item>
-            <item>If a file has not changed during this operation, that means it is obsolete and must be removed from the repository. (This only happens when an entire poem record has been deleted from the database for some reason.)</item>
-            <item>If a file has changed during this operation, the changes can simply be committed.</item>
+        <p>In the initial part of the process, the current state of the database is dumped into an
+          XML file (the application mysqldump can provide data in XML format). This file is stored
+          in the Subversion repository, giving us at least a semblance of version control over the
+          SQL data, albeit in a rather impoverished fashion. Each poem record in the database is
+          matched against an equivalent XML file if there is one. If there is no matching file, then
+          one is created. If there is a matching file and no changes are required to its filename
+          and id, then its metadata is simply updated based on the poem record from the database. If
+          there is a matching file, but modifications to the filename and id are needed, then a new
+          file is created and all relevant TEI data is migrated into that file. Then, <list
+            rend="bulleted">
+            <item>If a file is new (i.e., not already tracked by Subversion), it must be added to
+              the repository.</item>
+            <item>If a file has not changed during this operation, that means it is obsolete and
+              must be removed from the repository. (This only happens when an entire poem record has
+              been deleted from the database for some reason.)</item>
+            <item>If a file has changed during this operation, the changes can simply be
+              committed.</item>
           </list>
         </p>
-        <p>In the final stage of the process, two shell scripts are created, <code>svnAddNewFiles.sh</code> and <code>svnMoveObsoleteFiles.sh</code>. These could be run automatically as part of the build process, but generally we examine the files before running them, as a final check to ensure that nothing unexpected has happened. Obsolete files, rather than being deleted entirely, are moved to an <code>obsolete</code> folder in the repository, so that if something has actually gone wrong—for example, if a poem record has inadvertently been deleted from the database—we do not also lose track of any metadata, transcription, or encoding. We might of course just delete obsolete files—after all, version control systems like Subversion exist in order to preserve the entire document history—but it can be difficult to determine that a document used to exist once it has been deleted; documents in the <code>obsolete</code> folder are organized by date, so we can more easily diagnose and reverse problems caused by errors in the database.</p>
-        <p>Normally, we run the database integration process only on a small subset of the data at one time; for example, we may refresh the metadata in all the poems from a specific periodical in a specific year, in preparation for the transcription/encoding team’s work on that year. At specific times, we run the process over the entire collection to bring the TEI up to date with the database. Meanwhile, the two teams (poem indexers and TEI encoders) can work in parallel without risk to the integrity of either dataset.</p>
-        <p>By the end of 2022, we plan to eliminate the relational database entirely. Although it is a convenient tool for collecting metadata while working through large numbers of periodicals, its limitations are constantly frustrating; every day we encounter situations in which something relatively trivial to encode in TEI would require substantial modification to the structure and complexity of the database. For example, degrees of uncertainty about the identity of an author, or about whether two pseudonyms represent the same person, can easily be expressed in TEI, but require additional joining tables in the database (along with modifications to the data-entry user interface which are not trivial). Similarly, some poems claim to be translations but are probably not, and their <soCalled>translators</soCalled> are probably their authors. Real humanities data is deeply nested, loosely connected, ambiguous, suggestive, and multivalent; characteristics such as these are difficult to handle in a categorical system such as an RDB, but they are the bread and butter of TEI encoding.<note>There are of course established methods for representing such relationships in RDB systems, but these typically involve the use of pointers and linking tables and rapidly become extremely complex. It is also remarkably difficult to create intuitive graphical front-end systems for editors of such database structures. For our team, the main value of the database is the apparent simplicity of its tabular structure and form-based editing, so attempting to model dense TEI encoding in an RDB and map it to TEI with something like object-relational mapping would be pointless.</note> When the initial phase of metadata collection is complete, we will run one final integration process and then archive the database. Maintaining and extending the metadata in the XML collection is no more difficult than doing it in the database, and having a single data collection whose referential integrity and coherence can be more easily tested will result in a simpler workflow for the final phases of the project. The intended products from this project include a complete static searchable website with a page for every poem, person, periodical, or other entity in the collection, as well as downloadable datasets optimized for text-analysis purposes, and TEI XML is the optimal starting point for such outputs.</p>
-        <p>The purpose of this article has not been to recommend one or another method of modeling a text collection. Although I personally believe that TEI has significant advantages over RDBs—it can handle both complex metadata and rich textual encoding with ease—it is very common for TEI collections to coexist with data in relational databases, and for TEI projects to inherit such data. My purpose here has been to demonstrate one method of synchronizing and integrating the two on a continual basis without any risk of data loss.</p>
+        <p>In the final stage of the process, two shell scripts are created,
+            <code>svnAddNewFiles.sh</code> and <code>svnMoveObsoleteFiles.sh</code>. These could be
+          run automatically as part of the build process, but generally we examine the files before
+          running them, as a final check to ensure that nothing unexpected has happened. Obsolete
+          files, rather than being deleted entirely, are moved to an <code>obsolete</code> folder in
+          the repository, so that if something has actually gone wrong—for example, if a poem record
+          has inadvertently been deleted from the database—we do not also lose track of any
+          metadata, transcription, or encoding. We might of course just delete obsolete files—after
+          all, version control systems like Subversion exist in order to preserve the entire
+          document history—but it can be difficult to determine that a document used to exist once
+          it has been deleted; documents in the <code>obsolete</code> folder are organized by date,
+          so we can more easily diagnose and reverse problems caused by errors in the database.</p>
+        <p>Normally, we run the database integration process only on a small subset of the data at
+          one time; for example, we may refresh the metadata in all the poems from a specific
+          periodical in a specific year, in preparation for the transcription/encoding team’s work
+          on that year. At specific times, we run the process over the entire collection to bring
+          the TEI up to date with the database. Meanwhile, the two teams (poem indexers and TEI
+          encoders) can work in parallel without risk to the integrity of either dataset.</p>
+        <p>By the end of 2022, we plan to eliminate the relational database entirely. Although it is
+          a convenient tool for collecting metadata while working through large numbers of
+          periodicals, its limitations are constantly frustrating; every day we encounter situations
+          in which something relatively trivial to encode in TEI would require substantial
+          modification to the structure and complexity of the database. For example, degrees of
+          uncertainty about the identity of an author, or about whether two pseudonyms represent the
+          same person, can easily be expressed in TEI, but require additional joining tables in the
+          database (along with modifications to the data-entry user interface which are not
+          trivial). Similarly, some poems claim to be translations but are probably not, and their
+            <soCalled>translators</soCalled> are probably their authors. Real humanities data is
+          deeply nested, loosely connected, ambiguous, suggestive, and multivalent; characteristics
+          such as these are difficult to handle in a categorical system such as an RDB, but they are
+          the bread and butter of TEI encoding.<note>There are of course established methods for
+            representing such relationships in RDB systems, but these typically involve the use of
+            pointers and linking tables and rapidly become extremely complex. It is also remarkably
+            difficult to create intuitive graphical front-end systems for editors of such database
+            structures. For our team, the main value of the database is the apparent simplicity of
+            its tabular structure and form-based editing, so attempting to model dense TEI encoding
+            in an RDB and map it to TEI with something like object-relational mapping would be
+            pointless.</note> When the initial phase of metadata collection is complete, we will run
+          one final integration process and then archive the database. Maintaining and extending the
+          metadata in the XML collection is no more difficult than doing it in the database, and
+          having a single data collection whose referential integrity and coherence can be more
+          easily tested will result in a simpler workflow for the final phases of the project. The
+          intended products from this project include a complete static searchable website with a
+          page for every poem, person, periodical, or other entity in the collection, as well as
+          downloadable datasets optimized for text-analysis purposes, and TEI XML is the optimal
+          starting point for such outputs.</p>
+        <p>The purpose of this article has not been to recommend one or another method of modeling a
+          text collection. Although I personally believe that TEI has significant advantages over
+          RDBs—it can handle both complex metadata and rich textual encoding with ease—it is very
+          common for TEI collections to coexist with data in relational databases, and for TEI
+          projects to inherit such data. My purpose here has been to demonstrate one method of
+          synchronizing and integrating the two on a continual basis without any risk of data
+          loss.</p>
       </div>
     </body>
     <back>
       <div type="bibliography">
         <listBibl>
-          <bibl xml:id="bertino2001"><author>Bertino, E.</author>, and <author>B. Catania</author>. <date>2001</date>. <title level="a">Integrating XML and Databases.</title> <title level="j">IEEE Internet Computing</title> (<biblScope unit="issue">5</biblScope>:<biblScope unit="issue">4</biblScope>) <biblScope unit="page">84–88</biblScope>. <ptr target="https://doi.org/10.1109/4236.939454"/>.</bibl>
-          <bibl xml:id="date1991"><author>Date, C. J.</author> <date>1991</date>. <title level="m">An Introduction to Database Systems</title>. <biblScope unit="volume">Vol. 1</biblScope>. <edition>5th edition</edition>. <pubPlace>Reading, MA</pubPlace>: <publisher>Addison-Wesley</publisher>.</bibl>
-          <bibl xml:id="flanders2018"><author>Flanders, Julia</author>, and <author>Fotis Jannidis</author>. <date>2018</date>. <title level="a">Data Modeling in a Digital Humanities Context.</title>. In <title level="m">The Shape of Data in the Digital Humanities: Modeling Texts and Text-based Resources</title>, ed. <editor>Julia Flanders</editor> and <editor>Fotis Jannidis</editor>, <biblScope unit="page">9</biblScope>. <publisher>Routledge</publisher>. <ptr target="https://doi.org/10.4324/9781315552941"/>.</bibl>
-          <bibl xml:id="fralick2019"><author>Fralick, Kaitlyn</author>, <author>Kailey Fukushima</author>, <author>Martin Holmes</author>, and <author>Sarah Karlson</author>. <date>2019</date>. <title level="a">How We Tripled Our Encoding Speed in the Digital Victorian Periodical Poetry Project.</title> Text Encoding Initiative Conference, Graz, Austria, 19 September 2019. <ptr target="https://zenodo.org/record/3449241"/>.</bibl>
-          <bibl xml:id="gibson2012"><author>Gibson, Matthew</author>. <date>2012</date>. <title level="a">Using XSLT’s SQL Extension with Encyclopedia Virginia.</title> <title level="j">Code{4}lib Journal</title> <biblScope unit="volume">16.</biblScope> <ptr target="https://journal.code4lib.org/articles/6486"/>.</bibl>
-          <bibl xml:id="blanco2015"><author>González-Blanco, Elena</author>, and <author>José Luis Rodríguez</author>. <date>2015</date>. <title level="a">ReMetCa: A Proposal for Integrating RDBMS and TEI-Verse.</title> <title level="j">Journal of the Text Encoding Initiative</title>, <biblScope unit="issue">Issue 8</biblScope>. <ptr target="http://journals.openedition.org/jtei/1274"/>. <idno type="DOI">DOI: 10.4000/jtei.1274</idno>.</bibl>
-          <bibl xml:id="ramsay2004"><author>Ramsay, Stephen</author>. <title level="a">Databases.</title> <date>2004</date>. In <title level="m">A Companion to Digital Humanities</title>, ed. <editor>Susan Schreibman</editor>, <editor>Ray Siemens</editor>, and <editor>John Unsworth</editor>. <pubPlace>Oxford</pubPlace>: <publisher>Blackwell</publisher>. <ptr target="http://www.digitalhumanities.org/companion/"/>.</bibl>
+          <bibl xml:id="bertino2001"><author>Bertino, E.</author>, and <author>B. Catania</author>.
+              <date>2001</date>. <title level="a">Integrating XML and Databases.</title>
+            <title level="j">IEEE Internet Computing</title> (<biblScope unit="issue"
+              >5</biblScope>:<biblScope unit="issue">4</biblScope>) <biblScope unit="page"
+              >84–88</biblScope>. <ptr target="https://doi.org/10.1109/4236.939454"/>.</bibl>
+          <bibl xml:id="date1991"><author>Date, C. J.</author>
+            <date>1991</date>. <title level="m">An Introduction to Database Systems</title>.
+              <biblScope unit="volume">Vol. 1</biblScope>. <edition>5th edition</edition>.
+              <pubPlace>Reading, MA</pubPlace>: <publisher>Addison-Wesley</publisher>.</bibl>
+          <bibl xml:id="flanders2018"><author>Flanders, Julia</author>, and <author>Fotis
+              Jannidis</author>. <date>2018</date>. <title level="a">Data Modeling in a Digital
+              Humanities Context.</title>. In <title level="m">The Shape of Data in the Digital
+              Humanities: Modeling Texts and Text-based Resources</title>, ed. <editor>Julia
+              Flanders</editor> and <editor>Fotis Jannidis</editor>, <biblScope unit="page"
+              >9</biblScope>. <publisher>Routledge</publisher>. <ptr
+              target="https://doi.org/10.4324/9781315552941"/>.</bibl>
+          <bibl xml:id="fralick2019"><author>Fralick, Kaitlyn</author>, <author>Kailey
+              Fukushima</author>, <author>Martin Holmes</author>, and <author>Sarah
+            Karlson</author>. <date>2019</date>. <title level="a">How We Tripled Our Encoding Speed
+              in the Digital Victorian Periodical Poetry Project.</title> Text Encoding Initiative
+            Conference, Graz, Austria, 19 September 2019. <ptr
+              target="https://zenodo.org/record/3449241"/>.</bibl>
+          <bibl xml:id="gibson2012"><author>Gibson, Matthew</author>. <date>2012</date>. <title
+              level="a">Using XSLT’s SQL Extension with Encyclopedia Virginia.</title>
+            <title level="j">Code{4}lib Journal</title>
+            <biblScope unit="volume">16.</biblScope>
+            <ptr target="https://journal.code4lib.org/articles/6486"/>.</bibl>
+          <bibl xml:id="blanco2015"><author>González-Blanco, Elena</author>, and <author>José Luis
+              Rodríguez</author>. <date>2015</date>. <title level="a">ReMetCa: A Proposal for
+              Integrating RDBMS and TEI-Verse.</title>
+            <title level="j">Journal of the Text Encoding Initiative</title>, <biblScope
+              unit="issue">Issue 8</biblScope>. <ptr
+              target="http://journals.openedition.org/jtei/1274"/>. <idno type="DOI">DOI:
+              10.4000/jtei.1274</idno>.</bibl>
+          <bibl xml:id="ramsay2004"><author>Ramsay, Stephen</author>. <title level="a"
+              >Databases.</title>
+            <date>2004</date>. In <title level="m">A Companion to Digital Humanities</title>, ed.
+              <editor>Susan Schreibman</editor>, <editor>Ray Siemens</editor>, and <editor>John
+              Unsworth</editor>. <pubPlace>Oxford</pubPlace>: <publisher>Blackwell</publisher>. <ptr
+              target="http://www.digitalhumanities.org/companion/"/>.</bibl>
         </listBibl>
       </div>
     </back>

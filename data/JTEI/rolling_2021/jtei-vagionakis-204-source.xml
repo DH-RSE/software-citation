@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml"
-	schematypens="http://purl.oclc.org/dsdl/schematron"?><!-- $Id: $ --><TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI">
-  <teiHeader>
+	schematypens="http://purl.oclc.org/dsdl/schematron"?><!-- $Id: $ -->
+<TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI">
+   <teiHeader>
       <fileDesc>
          <titleStmt>
             <title type="main">Cretan Institutional Inscriptions: A New EpiDoc Database</title>
@@ -9,7 +10,9 @@
                   <forename>Irene</forename>
                   <surname>Vagionakis</surname>
                </name>
-               <affiliation>Irene Vagionakis is currently a <roleName>research fellow</roleName> in digital humanities at the Department of History and Cultures of the <orgName>Alma Mater Studiorum University of Bologna</orgName>.</affiliation>
+               <affiliation>Irene Vagionakis is currently a <roleName>research fellow</roleName> in
+                  digital humanities at the Department of History and Cultures of the <orgName>Alma
+                     Mater Studiorum University of Bologna</orgName>.</affiliation>
                <email>irene.vagionakis2@unibo.it</email>
             </author>
          </titleStmt>
@@ -18,7 +21,8 @@
             <date/>
             <availability>
                <licence target="https://creativecommons.org/licenses/by/4.0/">
-                  <p>For this publication a Creative Commons Attribution 4.0 International license has been granted by the author(s) who retain full copyright.</p>
+                  <p>For this publication a Creative Commons Attribution 4.0 International license
+                     has been granted by the author(s) who retain full copyright.</p>
                </licence>
             </availability>
          </publicationStmt>
@@ -36,7 +40,9 @@
       </fileDesc>
       <encodingDesc>
          <projectDesc>
-            <p>OpenEdition Journals -centre for open electronic publishing- is the platform for journals in the humanities and social sciences, open to quality periodicals looking to publish full-text articles online.</p>
+            <p>OpenEdition Journals -centre for open electronic publishing- is the platform for
+               journals in the humanities and social sciences, open to quality periodicals looking
+               to publish full-text articles online.</p>
          </projectDesc>
       </encodingDesc>
       <profileDesc>
@@ -59,136 +65,708 @@
       <revisionDesc>
          <change/>
       </revisionDesc>
-  </teiHeader>
-  <text>
+   </teiHeader>
+   <text>
       <front>
          <div type="abstract" xml:id="abstract">
-            <p>The paper presents the database Cretan Institutional Inscriptions, which was created as part of a PhD research project carried out at the University of Venice Ca’ Foscari. The database, built using the EpiDoc Front-End Services (EFES) platform, collects the EpiDoc editions of six hundred inscriptions that shed light on the institutions of the political entities of Crete from the seventh to the first century BCE. The aim of the paper is to outline the main issues addressed during the creation of the database and the encoding of the inscriptions and to illustrate the core features of the database, with an emphasis on the advantages deriving from the combined use of the TEI-EpiDoc standard and of the EFES platform.</p>
+            <p>The paper presents the database Cretan Institutional Inscriptions, which was created
+               as part of a PhD research project carried out at the University of Venice Ca’
+               Foscari. The database, built using the EpiDoc Front-End Services (EFES) platform,
+               collects the EpiDoc editions of six hundred inscriptions that shed light on the
+               institutions of the political entities of Crete from the seventh to the first century
+               BCE. The aim of the paper is to outline the main issues addressed during the creation
+               of the database and the encoding of the inscriptions and to illustrate the core
+               features of the database, with an emphasis on the advantages deriving from the
+               combined use of the TEI-EpiDoc standard and of the EFES platform.</p>
          </div>
          <div type="acknowledgements" xml:id="ak">
-            <p>I would like to express my gratitude to my PhD supervisors, Claudia Antonetti and Gabriel Bodard, and to all those who have enriched me with their invaluable advice and support, especially Alice Bencivenni, Lucia Criscuolo, Giovanni Geraci, Francesco Guizzi, Pietro Maria Liuzzo, Federicomaria Muccioli, Jamie Norrish, Simona Stoyanova, Polina Yordanova, and the two anonymous reviewers of the paper. My research would not have been possible without the support of the University of Venice Ca’ Foscari and the Italian School of Archaeology at Athens. I am also very grateful to the Venice Centre for Digital and Public Humanities (VeDPH), the Institute for Computational Linguistics A. Zampolli of the National Research Council of Italy (ILC-CNR) and the Italian node of Common Language Resources and Technology Infrastructure (CLARIN-IT) for publishing the database.</p>
+            <p>I would like to express my gratitude to my PhD supervisors, Claudia Antonetti and
+               Gabriel Bodard, and to all those who have enriched me with their invaluable advice
+               and support, especially Alice Bencivenni, Lucia Criscuolo, Giovanni Geraci, Francesco
+               Guizzi, Pietro Maria Liuzzo, Federicomaria Muccioli, Jamie Norrish, Simona Stoyanova,
+               Polina Yordanova, and the two anonymous reviewers of the paper. My research would not
+               have been possible without the support of the University of Venice Ca’ Foscari and
+               the Italian School of Archaeology at Athens. I am also very grateful to the Venice
+               Centre for Digital and Public Humanities (VeDPH), the Institute for Computational
+               Linguistics A. Zampolli of the National Research Council of Italy (ILC-CNR) and the
+               Italian node of Common Language Resources and Technology Infrastructure (CLARIN-IT)
+               for publishing the database.</p>
          </div>
       </front>
       <body>
-            <div xml:id="introduction">
-               <head>Introduction</head>
-               <p>The database <title level="m">Cretan Institutional Inscriptions</title>, which is available under an Open Access license at <ptr target="http://cretaninscriptions.vedph.it"/>,<note><ref type="bibl" target="#vagionakis2021">Vagionakis 2021</ref>. The related dataset is accessible at <ptr target="http://hdl.handle.net/20.500.11752/OPEN-548"/>, accessed July 21, 2021. All the contents are distributed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.</note> was created in the context of my PhD research project at the University of Venice Ca’ Foscari <title level="u"><foreign xml:lang="grc-Latn">Kretikai Politeiai</foreign>: Cretan Institutions from VII to I Century BC</title>, under the supervision of Claudia Antonetti and Gabriel Bodard.</p>
-               <p>The aim of the project, which started in September 2016 and ended in February 2020, was to examine the records pertaining to Cretan institutions, in particular the epigraphic records, in order to propose an up-to-date reconstruction of the institutional framework of the island’s political entities from the rise of the <foreign xml:lang="grc-Latn">poleis</foreign> and the appearance of the first inscriptions in Greek alphabet(s) to the Roman conquest of Crete (seventh to first century BCE).</p>
-               <p>The epigraphic records I examined consisted of six hundred Greek inscriptions, for each of which I have provided a digital XML edition compliant with the TEI-EpiDoc standard, including a commentary focused on the institutional data offered by the document. The editions of these inscriptions, along with a collection of the most relevant literary sources, have been collected in the database Cretan Institutional Inscriptions, which I created using the EpiDoc Front-End Services (EFES) platform. To facilitate consulting the epigraphic records, the database also includes, in addition to the ancient sources, two catalogs providing information about the Cretan political entities and the institutional elements considered.</p>
-               <p>The aim of this paper is to illustrate the main issues tackled during the creation of the database and to examine the choices made, focusing on the advantages offered by the use of EpiDoc and EFES.</p>
-            </div>
-            <div xml:id="Cretan_epigraphy">
-               <head>Cretan Epigraphy and Cretan Institutions</head>
-               <p>I decided to investigate the Cretan institutions because of the widespread tendency—resulting from the postulation of the existence of <emph>one</emph> cohesive <foreign xml:lang="grc-Latn">Kretike politeia</foreign> (on which see Arist. <title level="m">Pol.</title> II 1263b-1273b, Ephor. <title level="m">FGrHist</title> 70 F 149)—to extend <foreign>a priori</foreign> to the rest of the island what was known only for few delimited better explored areas, especially Gortyn, in the attempt to trace back to a single model the rich variety of <quote source="#HomIl">one hundred-citied Crete</quote> (<bibl xml:id="HomIl">Hom. <title level="m">Il.</title> 2.649</bibl>). I considered it essential, instead, to take a geographical approach in order to examine the specificity of each political entity of Crete (<foreign xml:lang="grc-Latn">poleis</foreign>, <foreign xml:lang="grc-Latn">koina</foreign>, dependent communities, extra-urban sanctuaries and hegemonic alliances).</p>
-               <p>A very successful study of Cretan inscriptions and institutions that took account of the local peculiarities had already been made by Federico Halbherr and Margherita Guarducci, culminating in the publication by the latter of the four volumes of the corpus of the <title level="m">Inscriptiones Creticae</title> (<ref type="bibl" target="#icret">Guarducci 1935–50</ref>). The epigraphic findings of the last seventy years, however, have nearly doubled the number of available inscriptions, from about 2,000 to about 3,900,<note><p>This estimate is based on a cross-check of the <title level="j">Supplementum Epigraphicum Graecum</title>, of the <title level="a">Bulletin Épigraphique</title> included in the <title level="j">Revue des Études Grecques</title> and of the database <title level="m">Searchable Greek Inscriptions</title> of the Packard Humanities Institute (last updated July 13, 2020, <ptr target="https://inscriptions.packhum.org/"/>).</p></note> making it necessary to review the material in light of the discoveries made after the publication of the <ref type="bibl" target="#icret"><title level="m">Inscriptiones Creticae</title></ref>.<note><p>A similar review was accomplished, from a linguistic perspective, by Genevrois (<ref type="bibl" target="#genevrois2017">2017</ref>).</p></note></p>
-            </div>
-            <div xml:id="institutional_inscriptions">
-               <head><soCalled>Institutional</soCalled> Inscriptions</head>
-               <p>The preparation of an epigraphic collection of Cretan <soCalled>institutional</soCalled> inscriptions posed many problems, starting from the selection of the material: What epigraphic documents could be properly considered as <soCalled>institutional</soCalled>? How could the study of a discouragingly fragmentary documentation be approached? In what way could a collection of such texts prove to be useful?</p>
-               <p>The very first issue to tackle at the beginning of my research was, naturally, what should be considered an <soCalled>institution</soCalled>. The institutional elements that I have included in my analysis are the outcome of an arduous selection intended to come as close as possible to the ancient concept of <soCalled>institution</soCalled>. This term tends to cover almost everything pertaining to the public life of the communities being considered, ending up coinciding with what in the Cretan inscriptions is summarized in the formulaic expression <foreign xml:lang="grc-Latn">ta thina kai ta anthropina panta</foreign> (<q>all the divine and the human things</q>). The breadth of the ancient concept, therefore, has been an incentive to make as inclusive as possible a selection of aspects pertaining to the public sphere, excluding the cults: assemblies, officials, boards, associations, civic subdivisions (including tribes, social statuses, and age classes), months, celebrations (including festivities, sacrifices and religious rites, competitions, performances, and practices linked with commensality), institutional practices and instruments (such as polls or public seals), public spaces (such as courthouses or archives), and institutional frameworks in the broad sense.</p>
-               <p>Given the nature of the records, eminently epigraphic and only to a small extent of literary, numismatic, or archaeological origin, another central issue that I had to address during the initial phases of my research was to reflect on which inscriptions could be properly considered <soCalled>institutional</soCalled>, or more precisely, <soCalled>institutionally relevant</soCalled>.</p>
-               <p>There are, in fact, some obvious cases like the majority of the well-preserved public documents, such as the decree from Knossos <ref type="bibl" target="#icret"><title level="m">I.Cret.</title></ref> I 8 12 of the late second century BCE, where an undamaged enactment formula mentions the board of the officials called <foreign xml:lang="grc-Latn">kosmoi</foreign> and the <foreign xml:lang="grc-Latn">polis</foreign> as those responsible for the decreeing (l. 1, ἔδοξεν Κνωσίων τοῖς κόσμοις καὶ τᾶι πόλι).</p>
-               <p>Institutionally relevant information, however, can also be provided by nonofficial inscriptions, such as the private epitaph for Adrastos, who died prematurely, from Polyrrhenia <ref type="bibl" target="#icret"><title level="m">I.Cret.</title></ref> II 23 20 of the second century BCE, mentioning the <foreign xml:lang="grc-Latn">agela</foreign>, the group of young men—somewhat similar to the Athenian <foreign xml:lang="grc-Latn">ephebia</foreign>—to which he belonged (l. 1, ἐξ̣ ἀγέλας̣).</p>
-               <p>In many other documents, again, the meaningful terms are well preserved, but their context is irreparably lost, as in the case of the inscription from Milatos <ref type="bibl" target="#icret"><title level="m">I.Cret.</title></ref> I 21 2 of the third or second century BCE, where the term <foreign xml:lang="grc-Latn">kosmos</foreign>, perfectly legible, is completely surrounded by lacunae (l. 2, [- - -] κόσμον [- - -]).</p>
-               <p>More challenging are the cases where the meaningful terms themselves are lost. For example, in the building inscription from Gortyn <ref type="bibl" target="#icret"><title level="m">I.Cret.</title></ref> IV 258 of the second century BCE the verb <foreign xml:lang="grc-Latn">epimeleomai</foreign> (<mentioned>to take care of</mentioned>) clearly indicates that the name of the promoter of the initiative was originally written on the stone (l. 2, [- - - ἐπε]μ̣ελῆθε̣[ν - - -]). Analogously, in the treaty between Hierapytna and another city whose name is lost <ref type="bibl" target="#icret"><title level="m">I.Cret.</title></ref> III 3 6, of the late third or early second century BCE, the terms <foreign xml:lang="grc-Latn">menos</foreign> (<mentioned>month</mentioned>) and <foreign xml:lang="grc-Latn">edoxen</foreign> (<mentioned>it was decreed</mentioned>) are preserved, but the names both of the month and of the promoter of the decreeing are lost (ll. 1–2, μηνὸς [- - -] τάδε ἔδ̣[οξ]εν̣ τ[- - -]). In these cases, therefore, I have deemed it appropriate to consider these absences too, taking account also of the additional terminology connected to <soCalled>institutional</soCalled> actions, such as nouns like <mentioned>month</mentioned>, or verbs like <mentioned>to take care of</mentioned>, <mentioned>to decree</mentioned> or <mentioned>to vote</mentioned> (<foreign xml:lang="grc-Latn">psephizo</foreign>), or even prepositions and articles like <foreign xml:lang="grc-Latn">epi ton</foreign>, which in dating formulas reveal, for example, the originary mention of the tribe in office. Dealing with extremely fragmentary records, therefore, I took the approach of paying due attention to the excerpts from the originary contexts and to the voids, which could lead to a better understanding of formulaic expressions and of their variations.</p>
-               <p>Following these criteria, I selected a collection of six hundred <soCalled>institutional</soCalled> inscriptions, comprising texts coming from Crete or concerning Crete, as the documentary base of my study.</p>
-            </div>
-            <div xml:id="digital_epigraphic_collection">
-               <head>Towards the Creation of a Born-Digital Epigraphic Collection with EFES</head>
-               <p>Once the relevant material had been defined, another major issue that I had to face was to decide how to deal efficiently with it. While I was in the process of starting a more traditional and <soCalled>monographic</soCalled> study of Cretan institutions, a fortuitous coincidence of circumstances led me toward a more stimulating approach: the preparation of an annotated born-digital collection of the inscriptions I had previously selected.</p>
-               <p>In the first place, my shift toward an eminently epigraphic approach derived from the difficulty of dealing with the epigraphic attestations of the institutions in any other way. These attestations, in fact, were so strictly interconnected with their context as to be hardly extractable from the inscriptions where they occurred; to analyze them required having the complete texts of those inscriptions constantly at hand. This practical need then led to my decision to prepare new editions of the inscriptions, mainly because many of them were outdated, and also because of the discovery of Gérard Genevrois’s admirable monograph on Cretan institutional terminology (<ref type="bibl" target="#genevrois2017">Genevrois 2017</ref>), which definitively dissuaded me from configuring my study in a way that could have ended up overlapping too much with his work.</p>
-               <p>Immediately after this discovery I was able to shift from creating a traditional collection of editions of the previously selected six hundred inscriptions to creating it as a born-digital epigraphic collection because of another event that also happened in 2017: the appearance of a powerful new tool for digital epigraphy, EpiDoc Front-End Services (EFES).<note><p>GitHub repository, accessed July 21, 2021, <ptr target="https://github.com/EpiDoc/EFES"/>.</p></note> Although I was already aware of the many benefits deriving from a semantic markup of the inscriptions,<note><p>On which see <ptr type="crossref" target="#EpiDoc_EFES"/> and <ptr type="crossref" target="#encodingInstitutions"/>.</p></note> what really persuaded me to adopt a TEI-based approach for the creation of my epigraphic editions was actually the great facilitation that EFES offered in using TEI-EpiDoc, which I will discuss in the following section.</p>
-            </div>
-            <div xml:id="EpiDoc_EFES">
-               <head>The Benefits of Using EpiDoc and EFES</head>
-               <p>I was already familiar with the epigraphic subset of the TEI standard, EpiDoc,<note><p><title level="u">EpiDoc: Epigraphic Documents in TEI XML</title>, accessed July 21, 2021, <ptr target="http://epidoc.stoa.org/"/>, <ref type="bibl" target="#epidoc">Elliott et al. 2020</ref>.</p></note> which I had been using since 2014 on other projects, the <ref type="bibl" target="#igcyr"><title level="m">Inscriptions of Greek Cyrenaica</title></ref><note><p>In the HELLAS Unibo Laboratory Department of History and Cultures (DiSCi), Alma Mater Studiorum University of Bologna, accessed July 21, 2021, <ptr target="https://disci.unibo.it/it/ricerca/laboratori-di-ricerca/hellas-unibo"/>.</p></note> and <ref type="bibl" target="#aio"><title level="m">Attic Inscriptions Online</title></ref>. This previous experience with EpiDoc encoding made me extremely aware both of its advantages and of its limits.</p>
-               <p>Starting with the advantages, EpiDoc’s semantic nature allows users to mark up efficiently not only the traditional components of a critical edition of an inscription (such as its metadata, text, apparatus, translation, commentary, and bibliography), but also specific interpretive features occurring in the epigraphic texts themselves, which could be linguistic, historical, topographic, prosopographical, and so on.<note><p>See <ref type="bibl" target="#epidoc">Elliott et al. 2020</ref>.</p></note> The flexibility of the EpiDoc encoding, moreover, allows the digital epigraphists to choose what features to mark up, according to their particular research topics.</p>
-               <p>The possibility of semantically encoding internal features of the texts definitely opens wide the doors to enriched ways of interacting with epigraphic editions.<note><p>On the usefulness of adopting EpiDoc in the epigraphic field see Babeu (<ref type="bibl" target="#babeu2011">2011</ref>) and Bodard and Stoyanova (<ref type="bibl" target="#bodard_stoyanova2016">2016</ref>).</p></note> A collection of semantically encoded inscriptions, in fact, could be queried in a very accurate way, allowing digital epigraphists to identify recurring patterns and features more easily. Furthermore, EpiDoc markup could lead to faster indexing of specific elements, such as places or personal names, that are mentioned in the texts.</p>
-               <p>My previous experience, however, also showed me that it is not always possible to transform these potentialities into reality quickly, especially in the context of small projects lacking the support of IT experts. And wider epigraphic projects often benefit from IT support only in the initial and final phases of the work. In some cases, the epigraphists are able to see the fruits of their intense and years-long encoding effort only at the publication stage, at the end of their work, which may be quite discouraging!</p>
-               <p>This is particularly true for the creation of publishable output of the encoded inscriptions. The EpiDoc Reference XSLT Stylesheets, created <q>for transformation of EpiDoc XML files into HTML</q>,<note><p>Accessed July 21, 2021, <ptr target="https://github.com/EpiDoc/Stylesheets"/>.</p></note> require relatively advanced knowledge of XSLT to use them to produce a satisfying HTML edition for online publication or to generate a printable PDF. Not to mention the creation of a complete searchable database to be published online, equipped with indexes and appropriate search filters: this is far beyond the IT skills of the average epigraphist.</p>
-               <p>The situation is a little better for those who use EpiDoc as a tool for simplifying their research work on a collection of ancient documents, without aiming at the publication of the encoded inscriptions. The querying of a set of EpiDoc inscriptions is possible to some extent even without technical support: in some advanced XML editors, particularly Oxygen, it is possible to perform XPath queries that allow the identification of all the occurrences of specific features in the epigraphic collection according to their markup. The XPath queries in an advanced XML editor also allow the creation of lists of specific elements mentioned in the inscriptions, but to my knowledge the creation of proper indexes—before EFES—was almost impossible to achieve without the help of an IT expert.</p>
-               <p>Thus, despite the many benefits that EpiDoc encoding <emph>potentially</emph> offers, epigraphists might often be discouraged from adopting it by the amount of time that such an approach requires, combined with the fact that in many cases these benefits become tangible only at the end of the work, and only if one has IT support.</p>
-               <p>In light of these limitations, it is easy to understand how deeply the release of EFES has transformed the field of digital epigraphy. EFES, developed at the Institute of Classical Studies of the School of Advanced Study of the University of London as the epigraphic specialization of the Kiln platform,<note><p><title level="a">New Digital Publishing Tool: EpiDoc Front-End Services</title>, September 1, 2017, <ptr target="https://ics.sas.ac.uk/about-us/news/new-digital-publishing-tool-epidoc-front-end-services"/>; see also the Kiln GitHub repository, accessed July 21, 2021,<ptr target="https://kcl-ddh.github.io/kiln/"/>.</p></note> is a platform that simplifies the creation and management of databases of inscriptions encoded following the EpiDoc Guidelines. More specifically, EFES was developed to make it easy for EpiDoc users to view a publishable form of their inscriptions, and to publish them online in a full-featured searchable database, by easily ingesting EpiDoc texts and providing formatting for their display and indexing through the EpiDoc reference XSLT stylesheets. The ease of configuration of the XSLT transformations, and the possibility of already having, during construction, an immediate front-end visualization of the desired final outcome of the TEI-EpiDoc marked-up documents, allow smooth creation of an epigraphic database even without a large team or in-depth IT skills. Beyond this, EFES is also remarkable for the ease of creation and display of the indexes of the various categories of marked-up terms, which significantly simplifies comparative analysis of the data under consideration. EFES is thus proving to be an extremely useful tool not only for publishing inscriptions online, but also for studying them before their publication or even without the intention of publishing them, especially when dealing with large collections of documents and data sets.<note><p>See Bodard and Yordanova (<ref type="bibl" target="#bodard_yordanova_2020">2020</ref>).</p></note></p>
-               <p>Some of these useful features of EFES are common to other existing tools, such as TEI Publisher,<note><p>Accessed July 21, 2021, <ptr target="https://teipublisher.com/index.html"/>.</p></note> TAPAS,<note><p>Accessed July 21, 2021, <ptr target="http://www.tapasproject.org/"/>.</p></note> or Kiln itself, which is EFES’s direct ancestor. What makes EFES unique, however, is the fact that it is the only one of those tools to have be designed specifically for epigraphic purposes and to be deeply integrated with the EpiDoc Schema/Guidelines and with its reference stylesheets. Not only does it use, by default, the EpiDoc reference stylesheets for transforming the inscriptions and for indexing, it also comes with a set of default search facets and indexes that are specifically meant for epigraphic documents. The default facets include the findspot of the inscription, its place of origin, its current location, its support material, its object type, its document type, and the type of evidence of its date. The search/browse page, moreover, also includes a slider for filtering the inscriptions by date and a box for textual searches, which can be limited to the indexed forms of the terms. The default indexes include places, personal names (onomastics), identifiable persons (prosopography), divinities, institutions, words, lemmata, symbols, numerals, abbreviations, and uninterpreted text fragments. New facets and indexes can easily be added even without mastering XSLT, along the lines of the existing ones and by following the detailed instructions provided in the EFES Wiki documentation.<note><p>Accessed July 21, 2021, <ptr target="https://github.com/EpiDoc/EFES/wiki"/>. Creation of new facets, last updated April 11, 2018: <ptr target="https://github.com/EpiDoc/EFES/wiki/Search-interface"/>. Creation of new indexes, last updated May 27, 2020: <ptr target="https://github.com/EpiDoc/EFES/wiki/Indices"/>.</p></note> Furthermore, EFES makes it possible to create an epigraphic concordance of the various editions of each inscription and to add information pages as TEI XML files (suitable for displaying both information on the database itself and potential additional accompanying information).</p>
-               <p>Against this background, the combined use of the EpiDoc encoding and of the EFES tool seemed to be a promising approach for the purposes of my research project, and so it was.</p>
-               <p>I initially aimed to create updated digital editions of the inscriptions mentioning Cretan institutional elements that could be used to facilitate a comparative analysis of the latter. The ability to generate and view the indexes of the mentioned institutional elements gradually, while I was in the process of encoding the inscriptions in EpiDoc, totally met my needs, and helped me very much in the identification of recurring patterns. As I was expected to submit my doctoral thesis in PDF format, I also needed to convert the epigraphic editions into PDF, and by running EFES locally I have been able to view their transformed HTML versions on a browser and to naively copy and paste them into a Microsoft Word file.<note><p>I am very grateful to Pietro Maria Liuzzo for teaching me how to avoid this conversion step by using XSL-FO, which can be used to generate a PDF directly from the raw XML files. The use of XSL-FO, however, requires some additional skills that are not needed in the copy-and-paste-from-the-browser process.</p></note> Although I had not planned it from the beginning, EFES also proved to be useful in the (online) publication of the results of my research. The ease with which EFES allows the creation of a searchable epigraphic database, in fact, spontaneously led me to decide to publish it online once completed, making available not only the HTML editions—which can also be downloaded as printable PDFs—but also the raw XML files for reuse. The aim of the online publication, in fact, is to allow other researchers to query the epigraphic collection for their needs and to encourage the reuse of the dataset for unpredictable future digital humanities purposes.</p>
-            </div>
-            <div xml:id="overview">
-               <head><title level="m">Cretan Institutional Inscriptions</title>: An Overview of the Database</head>
-               <p>The core of the EFES-based database <title level="m">Cretan Institutional Inscriptions</title> consists of the EpiDoc editions of the previously selected six hundred inscriptions, which can be exported both in PDF and in their original XML format. Each edition is composed of an essential descriptive lemma; a bibliographic lemma, also including links to external online resources; a critical edition of the Greek text; a selective apparatus—where necessary—recording mainly the most significant readings or restorations affecting the institutional terms; and a commentary to contextualize the institutional elements mentioned in the document.</p>
-               <p>Thanks to the EpiDoc markup of the texts and of their metadata,<note><p>On which see <ptr target="#encodingInstitutions" type="crossref"/>.</p></note> the inscriptions can be browsed by applying one or more customized search facets, which allow the selection of the documents according to the bibliographic reference of their main editions, period, specific date, place, and wider area of origin, current location, documentary type, support type, and also to the mentioned divinities, toponyms, or ethnic adjectives and, most importantly, institutional elements. As for the latter, specific facets further allow one to browse the inscriptions on the basis of the occurrence in their texts of precise institutional terms (such as <foreign xml:lang="grc-Latn">boule</foreign> or <foreign xml:lang="grc-Latn">agoranomos</foreign>), or of their institutional categories (such as <mentioned>assembly</mentioned> or <mentioned>official</mentioned>), or of their spheres of competence or roles (such as <mentioned>decreer</mentioned> or <mentioned>eponym</mentioned>).</p>
-               <p>The EpiDoc markup also provides the foundation for the rich query possibilities of the database. It allows the insertion of elements with attributes having as values the base forms of the terms both in Greek—with the preservation of the local dialectal variants—and in a standardized transliteration. This enables textual searches to be performed that would otherwise be inconceivable on an epigraphic record such as the Cretan one, which is scattered with graphic variants and lacunae, by using the indexed terms to overcome the limits of the record.</p>
-               <p>In addition to the inscriptions, the database includes two catalogs, whose aim is to offer some insights into the complex mosaic of the many political entities of Crete and of their institutions. Also, the database includes a collection of the most significant literary sources pertaining to the Cretan institutions and a list of all the mentioned bibliographic references. These four sections, <title level="a">Political entities</title>, <title level="a">Institutions</title>, <title level="a">Literary sources</title>, and <title level="a">Bibliographic references</title>, have been added to the database as pages generated from TEI XML files, which could be natively included in EFES.</p>
-               <p>As mentioned above, the database also includes several thematic indexes listing the marked-up terms along with the references to the inscriptions in which they occur, divided into institutions, toponyms and ethnic adjectives, lemmata (both of institutions and of other significant terms), prosopographical elements, anthroponyms, and names of divinities, nymphs, and heroes.</p>
-            </div>
-            <div xml:id="encodingInstitutions">
-               <head>Encoding Institutions (and More) with EpiDoc</head>
-               <p>For my epigraphic collection, the TEI-EpiDoc markup was beneficial as applied to the entire editions of the inscriptions,<note><p>Following the structure of the EpiDoc template that can be found in the EpiDoc Guidelines v. 9.2, October 13, 2020: <ptr target="https://epidoc.stoa.org/gl/latest/ex-epidoctemplate.xml?format=raw"/>. See also EpiDoc Guidelines v. 9.2, October 13, 2020, <ptr target="https://epidoc.stoa.org/gl/latest/supp-structure.html"/> and <title level="a">EpiDoc Edition Structure Quick Reference</title>, March 17, 2017, <ptr target="https://svn.code.sf.net/p/epidoc/code/trunk/guidelines/msword/structure-cheatsheet.pdf"/>.</p></note> but it proved to be particularly useful in the encoding of the Greek texts (in the <tag type="start">div type="edition"</tag>), where it was strictly connected to my research questions. The EpiDoc elements, attributes and attribute values I chose to use inside the <tag type="start">div type="edition"</tag> facilitated my analysis of the institutional elements mentioned in the documents, aiming at the identification, contextualization, and indexing of the institutional terms and of the attested individuals holding an office. A TEI-based approach proved to be especially effective for dealing with the challenging Cretan institutional records,<note><p>See <ptr type="crossref" target="#institutional_inscriptions"/> above.</p></note> because, in particular, the possibility of using multiple attributes in the same element allowed me to extract the institutional occurrences as contextually as possible. In other words, it allowed me to identify and index not only the simple occurrence of the institutional terms, but also a set of connected details that were extremely valuable for examining and then classifying them according to several variables.</p>
-               <p>Let us now look in detail at the markup of the institutional terms. The EpiDoc Guidelines, in this respect, do not offer many details. The closest case is the one presented in the <title level="a">Titles, Offices, Political Posts, Honorifics, Occupations</title> section.<note><p>EpiDoc Guidelines v. 9.2, October 13, 2020, <ptr target="https://epidoc.stoa.org/gl/latest/idx-titlesoffices.html"/>.</p></note> Here, besides suggesting that one encode <q>different types of offices, posts, and other titles</q> with the <gi>w</gi> element and the <att>lemma</att> attribute for indexing purposes, it also suggests using the <gi>rs</gi> (referencing string) element with a <att>type</att> attribute, and possibly also a <att>ref</att> or <att>key</att> attribute to point to an authority list of the marked-up terms. The most relevant of the two examples included in the page accordingly proposes marking up <mentioned><foreign xml:lang="grc">ἀρχόντων</foreign></mentioned> with <tag type="start">rs type="official" key="archon"</tag>.</p>
-               <p>Starting from this approach and expanding it, I decided to adopt the following markup for the institutional elements mentioned in the inscriptions. Each institutional term was encoded using the <gi>rs</gi> element with a <att>type</att> attribute having the value <val>institution</val> (conceptually wider than <val>official</val>). Each <gi>rs</gi> has been provided with a <att>key</att> attribute, used to define a standardized transliterated base form of each institutional element; all the possible values of the <att>key</att> attribute have been listed in the connected authority list.</p>
-               <p>Another crucial role has been played by two further attributes of <gi>rs</gi> that I decided to add: <att>subtype</att> and <att>role</att>, whose values have also been listed in the related authority lists. These attributes have been particularly useful to my research because they have allowed the specification—on a case-by-case basis—of the nature and the role or sphere of competence of each occurrence of an institutional element. This avoided the risky operation of trying to define them in an abstract way, on the basis of etymological speculation, or preconceptions derived from the literary sources, or not always pertinent parallels.<note><p>One example of these tendencies is the assumption, on the basis of Arist. <title level="m">Pol</title>. II 1272a, that one of the main tasks of the <foreign xml:lang="grc-Latn">kosmoi</foreign> was to be military leaders. However, in none of the 760 epigraphic occurrences of the Cretan <foreign xml:lang="grc-Latn">kosmoi</foreign> are they mentioned as such!</p></note> In particular, I have used the attribute <att>subtype</att> to specify for each occurrence the institutional category it belongs to, such as <val>official</val> or <val>assembly</val>, and the attribute <att>role</att> to specify its precise function in that particular context, for example <val>dedicant</val> or <val>decreer</val>, or, if its function is unknown, its field of action, such as <val>cult</val> or <val>war</val>. The combination of these attributes proved to be particularly efficient for addressing my main research questions, which were aimed at understanding the variations of the forms in which the institutional elements appear and of their role/function/sphere of competence: the same institutional element, for example an official like the <foreign xml:lang="grc-Latn">kosmos</foreign>, could sometimes appear alone as a single official (<tag type="start">rs type="institution" subtype="official" role="..." key="kosmos"</tag>), sometimes as a member of the board of the <foreign xml:lang="grc-Latn">kosmoi</foreign> (<tag type="start">rs type="institution" subtype="board" role="..." key="kosmos"</tag>). Some actions, also, turned out to be performed only by the full board of the <foreign xml:lang="grc-Latn">kosmoi</foreign> (for example the act of decreeing, <tag type="start">rs type="institution" subtype="board" role="decreer" key="kosmos"</tag>, or the promotion of building activities, <tag type="start">rs type="institution" subtype="board" role="builder" key="kosmos"</tag>), whereas other actions were sometimes attested in connection with single <foreign xml:lang="grc-Latn">kosmoi</foreign> and sometimes with their full board (for example being a dedicant: <tag type="start">rs type="institution" subtype="official" role="dedicant" key="kosmos"</tag>, but also <tag type="start">rs type="institution" subtype="board" role="dedicant" key="kosmos"</tag>).</p>
-               <p>The use of another attribute of <gi>rs</gi>, <att>ref</att>, also allowed a direct link between the specific occurrences of institutional elements and the political entity they belong to, pointing to the authority list of the places. The possibility of linking each occurrence to its political entity, in fact, was absolutely essential given the geographical approach of my research, aimed at identifying and valorizing the institutional specificity of each political entity of Crete.<note><p>See <ptr type="crossref" target="#Cretan_epigraphy"/> above.</p></note> The attribute <att>ref</att> proved to be very useful because the political entity of the institutional element very often differs from the findspot or the origin place of the inscription,<note><p>This is particularly true for treaties, which always involve at least two different political entities, and for the inscriptions which were placed in extra-urban sanctuaries.</p></note> and therefore this information could not be extracted from any of the metadata of the inscription itself.</p>
-               <p>In addition to <gi>rs</gi>, I have marked up the institutional terms—as well as some other significant terms, even if not strictly institutional—with the <gi>w</gi> element and its attribute <att>lemma</att>, as suggested also by the EpiDoc Guidelines.<note><p>EpiDoc Guidelines v. 9.2, October 13, 2020, <ptr target="https://epidoc.stoa.org/gl/latest/idx-titlesoffices.html"/>. See also EpiDoc Guidelines v. 9.2, October 13, 2020, <ptr target="https://epidoc.stoa.org/gl/latest/idx-wordslemmata.html"/>.</p></note> In the cases in which the term is preceded or followed by the name of the individual holding that office, I have encoded the name both as a prosopographical datum (with the <gi>persName</gi> element and its attributes <att>type</att> with value <val>attested</val>, <att>key</att> and, where applicable, <att>ref</att>, for linking the person to their political entity) and as an onomastic one (with the <gi>name</gi> element and its attributes <att>nymRef</att> and, where applicable, <att>type</att> with value <val>patronymic</val>, <val>metronymic</val> or <val>andronym</val>).<note><p>Broadly following the suggestions of the EpiDoc Guidelines v. 9.2, October 13, 2020, <ptr target="https://epidoc.stoa.org/gl/latest/idx-persnames.html"/>.</p></note></p>
-               <figure xml:id="example1">
-                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                     <rs type="institution" subtype="official" role="eponym" key="damiorgos" ref="#olous">ἐπὶ <w lemma="δαμιοργός">δαμιοργοῦ</w> <persName type="attested" key="Leukos"><name nymRef="Λεῦκος">Λεύκου</name></persName></rs>
-                  </egXML>
-                  <head type="legend">The encoding of an institutional element (<ref type="bibl" target="#icret"><title level="m">I.Cret.</title> I 22 4 A, l. 31</ref>).</head>
-               </figure>
-               <p>Besides the institutional terms and the individuals holding an office, I also considered it useful to consistently mark up all the occurrences in the texts of toponyms and ethnic adjectives and of honored individuals, foreign rulers, and theonyms. The toponyms and ethnic adjectives I have marked up using the <gi>placeName</gi> element with its attributes <att>ref</att> (for linking them to the relevant authority list) and, where applicable, <att>type</att> with the value <val>ethnic</val>.<note><p>Again following the EpiDoc Guidelines v. 9.2, October 13, 2020: <ptr target="https://epidoc.stoa.org/gl/latest/idx-geognames.html"/>.</p></note> The honored individuals, foreign rulers, and theonyms I have marked up similarly to the individual holding an office, by using the <gi>persName</gi> element and, for honored individuals and foreign rulers, also a nested <tag type="start">name nymRef=""</tag>. Broadly following a consolidated EpiDoc practice, I have added a <att>type</att> attribute to each <gi>persName</gi>, with the values <val>honoured</val> for honored individuals, <val>ruler</val> for the rulers, and <val>divine</val> for the theonyms.<note><p>The values <val>attested</val> and <val>divine</val> are recommended by the EpiDoc Guidelines v. 9.2, October 13, 2020, <ptr target="https://epidoc.stoa.org/gl/latest/idx-persnames.html"/>. The value <val>ruler</val> (instead of the <val>emperor</val> suggested by the EpiDoc Guidelines) has also been used by <title level="m">Inscriptions of Greek Cyrenaica</title> (<ref type="bibl" target="#igcyr">Dobias-Lalou 2017</ref>) and by <title level="m">IOSPE</title> (<ref type="bibl" target="#iospe">Ivantchik, Polinskaya, and Bodard 2011–</ref>): see, for example, IGCyr033700, accessed September 15, 2021, <ptr target="https://igcyr.unibo.it/igcyr/igcyr033700.xml"/> and IOSPE V 14, accessed September 15, 2021, <ptr target="https://iospe.kcl.ac.uk/5.14.xml"/>.</p></note></p>
-               <figure xml:id="example2">
-                     <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                        <div type="edition" xml:lang="grc" xml:space="preserve">                <ab>                        <lb n="1"/><rs type="institution" subtype="practice" role="decreeing" key="dokeo" ref="#polyrrhenia"><w lemma="δοκέω"><supplied reason="lost">ἔ</supplied>δο<supplied reason="lost">ξ</supplied>ε</w></rs> <unclear>τ</unclear>οῖς <rs type="institution" subtype="board" role="decreer" key="kosmos" ref="#polyrrhenia"><w lemma="κόσμος">κόσμοις</w></rs>                        <lb n="2"/><supplied reason="lost">καὶ τ</supplied>ᾶι <rs type="institution" subtype="assembly" role="decreer" key="polis" ref="#polyrrhenia"><w lemma="πόλις"><unclear>π</unclear>όλ<unclear>ι</unclear></w></rs> <persName type="honoured" key="Onymarchos f. Habraios"><name nymRef="Ὀνύμαρχος">Ὀνύμαρ<lb break="no" n="3"/><supplied reason="lost">χ</supplied>ον</name> <name nymRef="Ἁβραῖος" type="patronymic">Ἁβ<unclear>ρ</unclear>αίω</name> <placeName ref="#gortyn" type="ethnic">Γορτύνι<lb break="no" n="4"/>ον</placeName></persName> <rs type="institution" subtype="social_status" role="granted_as_privilege" key="proxenos" ref="#polyrrhenia"><w lemma="πρόξενος">πρόξενον</w></rs> ἦμεν κα<supplied reason="lost">ὶ</supplied>                        <lb n="5"/><rs type="institution" subtype="social_status" role="granted_as_privilege" key="euergetes" ref="#polyrrhenia"><w lemma="εὐεργέτας"><supplied reason="lost">εὐερ</supplied><unclear>γέτ</unclear>αν</w></rs> αὐτὸν καὶ                        <lb n="6"/><w lemma="ἔκγονος"><supplied reason="lost">ἔκγο</supplied>να.</w>                </ab>            </div>
-                     </egXML>
-                  <head type="legend">The complete encoding of an inscription text (<ref type="bibl" target="#icret"><title level="m">I.Cret.</title> II 23 5</ref>).</head>
-               </figure>
-               <figure xml:id="figure1">
-                  <graphic url="img/formatted_inscription.png" width="270px" height="195px"/>
-                  <head type="legend">The formatted text of the inscription in <ptr target="#example2" type="crossref"/> (<ref type="bibl" target="#icret"><title level="m">I.Cret.</title></ref> II 23 5).</head>
-               </figure>
-               <p>Given the markup described above, EFES was able to generate detailed indexes having the appearance of rich tables, where each piece of information is displayed in a dedicated column and can easily be combined with the other ones at a glance.</p>
-               <p>In the most complex case, that of the institutions, the index displays for each occurrence the base form of the term both in transliteration and in Greek (under the headings Istituzione and Termine attestato, obtained from <att>key</att> of <gi>rs</gi> and <att>lemma</att> of <gi>w</gi>), the potentially relevant prosopographical element (under Individuo, obtained from <att>key</att> of <gi>persName</gi>), its nature and role or sphere of competence (under Tipologia and Ambito/Ruolo, obtained from <att>subtype</att> and <att>role</att> of <gi>rs</gi>), its geographical and chronological context (under Località and Periodo, obtained from <att>ref</att> of <gi>rs</gi> and from <att>period</att> of <gi>origDate</gi>, which is encoded among the other metadata in the <gi>teiHeader</gi> of each inscription) and finally the epigraphic sources where it is attested (under Occorrenze).</p>
-               <figure xml:id="figure2">
-                  <graphic url="img/institutional_index.png" width="1092px" height="656px"/>
-                  <head type="legend">An excerpt from the index of the institutional elements.</head>
-               </figure>
-               <p>The prosopographical index, similarly, displays for each individual a combination of additional data deriving from the EpiDoc markup: their onomastic formula (under Nome, obtained from <att>key</att> of <gi>persName</gi>), their geographical context (under Località, obtained from a <att>ref</att> linked to the authority list of places),<note><p>If the individual has an ethnic adjective, marked up as <tag type="start">placeName type="ethnic"</tag>, the <att>ref</att> is the one corresponding to this <gi>placeName</gi>. Otherwise, if the individual is associated with an institutional element, marked up with <tag type="start">rs type="institution"</tag>, the <att>ref</att> is the one corresponding to this <gi>rs</gi>. If the individual is not associated with a <gi>placeName</gi> or an <gi>rs</gi>, a <att>ref</att> has been added directly to their <gi>persName</gi>.</p></note> their general role (under Tipologia, obtained from <att>type</att> of <gi>persName</gi>), and the inscriptions where they are mentioned (under Occorrenze).</p>
-               <figure xml:id="figure3">
-                  <graphic url="img/prosopographical_index.png" width="1098px" height="685px"/>
-                  <head type="legend">An excerpt from the prosopographical index.</head>
-               </figure>
-               <p>In addition to the more <soCalled>tabular</soCalled> institutional and prosopographical indexes, EFES facilitated the creation of other more traditional indexes, including the indexed terms and the references to the inscriptions that mention them. The encoding of the most significant words with <tag type="start">w lemma=""</tag> led to the creation of a word index of relevant terms attested in the inscriptions. Similarly, an index of the attested toponyms and ethnic adjectives was generated from their encoding with <tag type="start">placeName ref=""</tag>; an index of the attested divinities, nymphs, and heroes from their encoding with <tag type="start">persName type="divine" key=""</tag>; and an index of personal names—of individuals holding an office, honored individuals, and foreign rulers—from their encoding with <tag type="start">name nymRef=""</tag>.</p>
-               <p>In total, the semantic markup has involved 8,162 lemmata (<gi>w</gi>), 4,353 institutional elements (<gi>rs</gi>), 2,633 toponyms or ethnic adjectives (<gi>placeName</gi>), 1,694 anthroponyms (<gi>name</gi>) and 1,651 prosopographical elements (<gi>persName</gi>).</p>
-            </div>
-            <div xml:id="conclusions">
-               <head>Conclusions</head>
-               <p>In conclusion, I would like to emphasize how particularly efficient the combined use of EpiDoc and EFES has proven to be for the creation of a thematic database like Cretan Institutional Inscriptions. By collecting in a searchable database all the inscriptions pertaining to the Cretan institutions, records that were hitherto accessible only in a scattered way, Cretan Institutional Inscriptions is a new resource that can facilitate the finding, consultation, and reuse of these very heterogeneous documents, many of which offer further points of reflection only when considered in light of the full documentation. The example of Cretan Institutional Inscriptions, moreover, could prove helpful—from the methodological point of view—to other epigraphists who are dealing with an analogous collection of inscriptions, either with a view to analyzing it or to publishing it in a digital format.</p>
-            </div>
+         <div xml:id="introduction">
+            <head>Introduction</head>
+            <p>The database <title level="m">Cretan Institutional Inscriptions</title>, which is
+               available under an Open Access license at <ptr
+                  target="http://cretaninscriptions.vedph.it"/>,<note><ref type="bibl"
+                     target="#vagionakis2021">Vagionakis 2021</ref>. The related dataset is
+                  accessible at <ptr target="http://hdl.handle.net/20.500.11752/OPEN-548"/>,
+                  accessed July 21, 2021. All the contents are distributed under a Creative Commons
+                  Attribution-NonCommercial-ShareAlike 4.0 International License.</note> was created
+               in the context of my PhD research project at the University of Venice Ca’ Foscari
+                  <title level="u"><foreign xml:lang="grc-Latn">Kretikai Politeiai</foreign>: Cretan
+                  Institutions from VII to I Century BC</title>, under the supervision of Claudia
+               Antonetti and Gabriel Bodard.</p>
+            <p>The aim of the project, which started in September 2016 and ended in February 2020,
+               was to examine the records pertaining to Cretan institutions, in particular the
+               epigraphic records, in order to propose an up-to-date reconstruction of the
+               institutional framework of the island’s political entities from the rise of the
+                  <foreign xml:lang="grc-Latn">poleis</foreign> and the appearance of the first
+               inscriptions in Greek alphabet(s) to the Roman conquest of Crete (seventh to first
+               century BCE).</p>
+            <p>The epigraphic records I examined consisted of six hundred Greek inscriptions, for
+               each of which I have provided a digital XML edition compliant with the TEI-EpiDoc
+               standard, including a commentary focused on the institutional data offered by the
+               document. The editions of these inscriptions, along with a collection of the most
+               relevant literary sources, have been collected in the database Cretan Institutional
+               Inscriptions, which I created using the EpiDoc Front-End Services (EFES) platform. To
+               facilitate consulting the epigraphic records, the database also includes, in addition
+               to the ancient sources, two catalogs providing information about the Cretan political
+               entities and the institutional elements considered.</p>
+            <p>The aim of this paper is to illustrate the main issues tackled during the creation of
+               the database and to examine the choices made, focusing on the advantages offered by
+               the use of EpiDoc and EFES.</p>
+         </div>
+         <div xml:id="Cretan_epigraphy">
+            <head>Cretan Epigraphy and Cretan Institutions</head>
+            <p>I decided to investigate the Cretan institutions because of the widespread
+               tendency—resulting from the postulation of the existence of <emph>one</emph> cohesive
+                  <foreign xml:lang="grc-Latn">Kretike politeia</foreign> (on which see Arist.
+                  <title level="m">Pol.</title> II 1263b-1273b, Ephor. <title level="m"
+                  >FGrHist</title> 70 F 149)—to extend <foreign>a priori</foreign> to the rest of
+               the island what was known only for few delimited better explored areas, especially
+               Gortyn, in the attempt to trace back to a single model the rich variety of <quote
+                  source="#HomIl">one hundred-citied Crete</quote> (<bibl xml:id="HomIl">Hom. <title
+                     level="m">Il.</title> 2.649</bibl>). I considered it essential, instead, to
+               take a geographical approach in order to examine the specificity of each political
+               entity of Crete (<foreign xml:lang="grc-Latn">poleis</foreign>, <foreign
+                  xml:lang="grc-Latn">koina</foreign>, dependent communities, extra-urban
+               sanctuaries and hegemonic alliances).</p>
+            <p>A very successful study of Cretan inscriptions and institutions that took account of
+               the local peculiarities had already been made by Federico Halbherr and Margherita
+               Guarducci, culminating in the publication by the latter of the four volumes of the
+               corpus of the <title level="m">Inscriptiones Creticae</title> (<ref type="bibl"
+                  target="#icret">Guarducci 1935–50</ref>). The epigraphic findings of the last
+               seventy years, however, have nearly doubled the number of available inscriptions,
+               from about 2,000 to about 3,900,<note><p>This estimate is based on a cross-check of
+                     the <title level="j">Supplementum Epigraphicum Graecum</title>, of the <title
+                        level="a">Bulletin Épigraphique</title> included in the <title level="j"
+                        >Revue des Études Grecques</title> and of the database <title level="m"
+                        >Searchable Greek Inscriptions</title> of the Packard Humanities Institute
+                     (last updated July 13, 2020, <ptr target="https://inscriptions.packhum.org/"
+                     />).</p></note> making it necessary to review the material in light of the
+               discoveries made after the publication of the <ref type="bibl" target="#icret"><title
+                     level="m">Inscriptiones Creticae</title></ref>.<note><p>A similar review was
+                     accomplished, from a linguistic perspective, by Genevrois (<ref type="bibl"
+                        target="#genevrois2017">2017</ref>).</p></note></p>
+         </div>
+         <div xml:id="institutional_inscriptions">
+            <head><soCalled>Institutional</soCalled> Inscriptions</head>
+            <p>The preparation of an epigraphic collection of Cretan
+                  <soCalled>institutional</soCalled> inscriptions posed many problems, starting from
+               the selection of the material: What epigraphic documents could be properly considered
+               as <soCalled>institutional</soCalled>? How could the study of a discouragingly
+               fragmentary documentation be approached? In what way could a collection of such texts
+               prove to be useful?</p>
+            <p>The very first issue to tackle at the beginning of my research was, naturally, what
+               should be considered an <soCalled>institution</soCalled>. The institutional elements
+               that I have included in my analysis are the outcome of an arduous selection intended
+               to come as close as possible to the ancient concept of
+                  <soCalled>institution</soCalled>. This term tends to cover almost everything
+               pertaining to the public life of the communities being considered, ending up
+               coinciding with what in the Cretan inscriptions is summarized in the formulaic
+               expression <foreign xml:lang="grc-Latn">ta thina kai ta anthropina panta</foreign>
+                  (<q>all the divine and the human things</q>). The breadth of the ancient concept,
+               therefore, has been an incentive to make as inclusive as possible a selection of
+               aspects pertaining to the public sphere, excluding the cults: assemblies, officials,
+               boards, associations, civic subdivisions (including tribes, social statuses, and age
+               classes), months, celebrations (including festivities, sacrifices and religious
+               rites, competitions, performances, and practices linked with commensality),
+               institutional practices and instruments (such as polls or public seals), public
+               spaces (such as courthouses or archives), and institutional frameworks in the broad
+               sense.</p>
+            <p>Given the nature of the records, eminently epigraphic and only to a small extent of
+               literary, numismatic, or archaeological origin, another central issue that I had to
+               address during the initial phases of my research was to reflect on which inscriptions
+               could be properly considered <soCalled>institutional</soCalled>, or more precisely,
+                  <soCalled>institutionally relevant</soCalled>.</p>
+            <p>There are, in fact, some obvious cases like the majority of the well-preserved public
+               documents, such as the decree from Knossos <ref type="bibl" target="#icret"><title
+                     level="m">I.Cret.</title></ref> I 8 12 of the late second century BCE, where an
+               undamaged enactment formula mentions the board of the officials called <foreign
+                  xml:lang="grc-Latn">kosmoi</foreign> and the <foreign xml:lang="grc-Latn"
+                  >polis</foreign> as those responsible for the decreeing (l. 1, ἔδοξεν Κνωσίων τοῖς
+               κόσμοις καὶ τᾶι πόλι).</p>
+            <p>Institutionally relevant information, however, can also be provided by nonofficial
+               inscriptions, such as the private epitaph for Adrastos, who died prematurely, from
+               Polyrrhenia <ref type="bibl" target="#icret"><title level="m">I.Cret.</title></ref>
+               II 23 20 of the second century BCE, mentioning the <foreign xml:lang="grc-Latn"
+                  >agela</foreign>, the group of young men—somewhat similar to the Athenian <foreign
+                  xml:lang="grc-Latn">ephebia</foreign>—to which he belonged (l. 1, ἐξ̣
+               ἀγέλας̣).</p>
+            <p>In many other documents, again, the meaningful terms are well preserved, but their
+               context is irreparably lost, as in the case of the inscription from Milatos <ref
+                  type="bibl" target="#icret"><title level="m">I.Cret.</title></ref> I 21 2 of the
+               third or second century BCE, where the term <foreign xml:lang="grc-Latn"
+                  >kosmos</foreign>, perfectly legible, is completely surrounded by lacunae (l. 2,
+               [- - -] κόσμον [- - -]).</p>
+            <p>More challenging are the cases where the meaningful terms themselves are lost. For
+               example, in the building inscription from Gortyn <ref type="bibl" target="#icret"
+                     ><title level="m">I.Cret.</title></ref> IV 258 of the second century BCE the
+               verb <foreign xml:lang="grc-Latn">epimeleomai</foreign> (<mentioned>to take care
+                  of</mentioned>) clearly indicates that the name of the promoter of the initiative
+               was originally written on the stone (l. 2, [- - - ἐπε]μ̣ελῆθε̣[ν - - -]).
+               Analogously, in the treaty between Hierapytna and another city whose name is lost
+                  <ref type="bibl" target="#icret"><title level="m">I.Cret.</title></ref> III 3 6,
+               of the late third or early second century BCE, the terms <foreign xml:lang="grc-Latn"
+                  >menos</foreign> (<mentioned>month</mentioned>) and <foreign xml:lang="grc-Latn"
+                  >edoxen</foreign> (<mentioned>it was decreed</mentioned>) are preserved, but the
+               names both of the month and of the promoter of the decreeing are lost (ll. 1–2, μηνὸς
+               [- - -] τάδε ἔδ̣[οξ]εν̣ τ[- - -]). In these cases, therefore, I have deemed it
+               appropriate to consider these absences too, taking account also of the additional
+               terminology connected to <soCalled>institutional</soCalled> actions, such as nouns
+               like <mentioned>month</mentioned>, or verbs like <mentioned>to take care
+                  of</mentioned>, <mentioned>to decree</mentioned> or <mentioned>to vote</mentioned>
+                  (<foreign xml:lang="grc-Latn">psephizo</foreign>), or even prepositions and
+               articles like <foreign xml:lang="grc-Latn">epi ton</foreign>, which in dating
+               formulas reveal, for example, the originary mention of the tribe in office. Dealing
+               with extremely fragmentary records, therefore, I took the approach of paying due
+               attention to the excerpts from the originary contexts and to the voids, which could
+               lead to a better understanding of formulaic expressions and of their variations.</p>
+            <p>Following these criteria, I selected a collection of six hundred
+                  <soCalled>institutional</soCalled> inscriptions, comprising texts coming from
+               Crete or concerning Crete, as the documentary base of my study.</p>
+         </div>
+         <div xml:id="digital_epigraphic_collection">
+            <head>Towards the Creation of a Born-Digital Epigraphic Collection with EFES</head>
+            <p>Once the relevant material had been defined, another major issue that I had to face
+               was to decide how to deal efficiently with it. While I was in the process of starting
+               a more traditional and <soCalled>monographic</soCalled> study of Cretan institutions,
+               a fortuitous coincidence of circumstances led me toward a more stimulating approach:
+               the preparation of an annotated born-digital collection of the inscriptions I had
+               previously selected.</p>
+            <p>In the first place, my shift toward an eminently epigraphic approach derived from the
+               difficulty of dealing with the epigraphic attestations of the institutions in any
+               other way. These attestations, in fact, were so strictly interconnected with their
+               context as to be hardly extractable from the inscriptions where they occurred; to
+               analyze them required having the complete texts of those inscriptions constantly at
+               hand. This practical need then led to my decision to prepare new editions of the
+               inscriptions, mainly because many of them were outdated, and also because of the
+               discovery of Gérard Genevrois’s admirable monograph on Cretan institutional
+               terminology (<ref type="bibl" target="#genevrois2017">Genevrois 2017</ref>), which
+               definitively dissuaded me from configuring my study in a way that could have ended up
+               overlapping too much with his work.</p>
+            <p>Immediately after this discovery I was able to shift from creating a traditional
+               collection of editions of the previously selected six hundred inscriptions to
+               creating it as a born-digital epigraphic collection because of another event that
+               also happened in 2017: the appearance of a powerful new tool for digital epigraphy,
+               EpiDoc Front-End Services (EFES).<note><p>GitHub repository, accessed July 21, 2021,
+                        <ptr target="https://github.com/EpiDoc/EFES"/>.</p></note> Although I was
+               already aware of the many benefits deriving from a semantic markup of the
+                     inscriptions,<note><p>On which see <ptr type="crossref" target="#EpiDoc_EFES"/>
+                     and <ptr type="crossref" target="#encodingInstitutions"/>.</p></note> what
+               really persuaded me to adopt a TEI-based approach for the creation of my epigraphic
+               editions was actually the great facilitation that EFES offered in using TEI-EpiDoc,
+               which I will discuss in the following section.</p>
+         </div>
+         <div xml:id="EpiDoc_EFES">
+            <head>The Benefits of Using EpiDoc and EFES</head>
+            <p>I was already familiar with the epigraphic subset of the TEI standard,
+                        EpiDoc,<note><p><title level="u">EpiDoc: Epigraphic Documents in TEI
+                        XML</title>, accessed July 21, 2021, <ptr target="http://epidoc.stoa.org/"
+                     />, <ref type="bibl" target="#epidoc">Elliott et al. 2020</ref>.</p></note>
+               which I had been using since 2014 on other projects, the <ref type="bibl"
+                  target="#igcyr"><title level="m">Inscriptions of Greek
+                     Cyrenaica</title></ref><note><p>In the HELLAS Unibo Laboratory Department of
+                     History and Cultures (DiSCi), Alma Mater Studiorum University of Bologna,
+                     accessed July 21, 2021, <ptr
+                        target="https://disci.unibo.it/it/ricerca/laboratori-di-ricerca/hellas-unibo"
+                     />.</p></note> and <ref type="bibl" target="#aio"><title level="m">Attic
+                     Inscriptions Online</title></ref>. This previous experience with EpiDoc
+               encoding made me extremely aware both of its advantages and of its limits.</p>
+            <p>Starting with the advantages, EpiDoc’s semantic nature allows users to mark up
+               efficiently not only the traditional components of a critical edition of an
+               inscription (such as its metadata, text, apparatus, translation, commentary, and
+               bibliography), but also specific interpretive features occurring in the epigraphic
+               texts themselves, which could be linguistic, historical, topographic,
+               prosopographical, and so on.<note><p>See <ref type="bibl" target="#epidoc">Elliott et
+                        al. 2020</ref>.</p></note> The flexibility of the EpiDoc encoding, moreover,
+               allows the digital epigraphists to choose what features to mark up, according to
+               their particular research topics.</p>
+            <p>The possibility of semantically encoding internal features of the texts definitely
+               opens wide the doors to enriched ways of interacting with epigraphic
+                     editions.<note><p>On the usefulness of adopting EpiDoc in the epigraphic field
+                     see Babeu (<ref type="bibl" target="#babeu2011">2011</ref>) and Bodard and
+                     Stoyanova (<ref type="bibl" target="#bodard_stoyanova2016"
+                  >2016</ref>).</p></note> A collection of semantically encoded inscriptions, in
+               fact, could be queried in a very accurate way, allowing digital epigraphists to
+               identify recurring patterns and features more easily. Furthermore, EpiDoc markup
+               could lead to faster indexing of specific elements, such as places or personal names,
+               that are mentioned in the texts.</p>
+            <p>My previous experience, however, also showed me that it is not always possible to
+               transform these potentialities into reality quickly, especially in the context of
+               small projects lacking the support of IT experts. And wider epigraphic projects often
+               benefit from IT support only in the initial and final phases of the work. In some
+               cases, the epigraphists are able to see the fruits of their intense and years-long
+               encoding effort only at the publication stage, at the end of their work, which may be
+               quite discouraging!</p>
+            <p>This is particularly true for the creation of publishable output of the encoded
+               inscriptions. The EpiDoc Reference XSLT Stylesheets, created <q>for transformation of
+                  EpiDoc XML files into HTML</q>,<note><p>Accessed July 21, 2021, <ptr
+                        target="https://github.com/EpiDoc/Stylesheets"/>.</p></note> require
+               relatively advanced knowledge of XSLT to use them to produce a satisfying HTML
+               edition for online publication or to generate a printable PDF. Not to mention the
+               creation of a complete searchable database to be published online, equipped with
+               indexes and appropriate search filters: this is far beyond the IT skills of the
+               average epigraphist.</p>
+            <p>The situation is a little better for those who use EpiDoc as a tool for simplifying
+               their research work on a collection of ancient documents, without aiming at the
+               publication of the encoded inscriptions. The querying of a set of EpiDoc inscriptions
+               is possible to some extent even without technical support: in some advanced XML
+               editors, particularly Oxygen, it is possible to perform XPath queries that allow the
+               identification of all the occurrences of specific features in the epigraphic
+               collection according to their markup. The XPath queries in an advanced XML editor
+               also allow the creation of lists of specific elements mentioned in the inscriptions,
+               but to my knowledge the creation of proper indexes—before EFES—was almost impossible
+               to achieve without the help of an IT expert.</p>
+            <p>Thus, despite the many benefits that EpiDoc encoding <emph>potentially</emph> offers,
+               epigraphists might often be discouraged from adopting it by the amount of time that
+               such an approach requires, combined with the fact that in many cases these benefits
+               become tangible only at the end of the work, and only if one has IT support.</p>
+            <p>In light of these limitations, it is easy to understand how deeply the release of
+               EFES has transformed the field of digital epigraphy. EFES, developed at the Institute
+               of Classical Studies of the School of Advanced Study of the University of London as
+               the epigraphic specialization of the Kiln platform,<note><p><title level="a">New
+                        Digital Publishing Tool: EpiDoc Front-End Services</title>, September 1,
+                     2017, <ptr
+                        target="https://ics.sas.ac.uk/about-us/news/new-digital-publishing-tool-epidoc-front-end-services"
+                     />; see also the Kiln GitHub repository, accessed July 21, 2021,<ptr
+                        target="https://kcl-ddh.github.io/kiln/"/>.</p></note> is a platform that
+               simplifies the creation and management of databases of inscriptions encoded following
+               the EpiDoc Guidelines. More specifically, EFES was developed to make it easy for
+               EpiDoc users to view a publishable form of their inscriptions, and to publish them
+               online in a full-featured searchable database, by easily ingesting EpiDoc texts and
+               providing formatting for their display and indexing through the EpiDoc reference XSLT
+               stylesheets. The ease of configuration of the XSLT transformations, and the
+               possibility of already having, during construction, an immediate front-end
+               visualization of the desired final outcome of the TEI-EpiDoc marked-up documents,
+               allow smooth creation of an epigraphic database even without a large team or in-depth
+               IT skills. Beyond this, EFES is also remarkable for the ease of creation and display
+               of the indexes of the various categories of marked-up terms, which significantly
+               simplifies comparative analysis of the data under consideration. EFES is thus proving
+               to be an extremely useful tool not only for publishing inscriptions online, but also
+               for studying them before their publication or even without the intention of
+               publishing them, especially when dealing with large collections of documents and data
+                     sets.<note><p>See Bodard and Yordanova (<ref type="bibl"
+                        target="#bodard_yordanova_2020">2020</ref>).</p></note></p>
+            <p>Some of these useful features of EFES are common to other existing tools, such as TEI
+                     Publisher,<note><p>Accessed July 21, 2021, <ptr
+                        target="https://teipublisher.com/index.html"/>.</p></note>
+                     TAPAS,<note><p>Accessed July 21, 2021, <ptr
+                        target="http://www.tapasproject.org/"/>.</p></note> or Kiln itself, which is
+               EFES’s direct ancestor. What makes EFES unique, however, is the fact that it is the
+               only one of those tools to have be designed specifically for epigraphic purposes and
+               to be deeply integrated with the EpiDoc Schema/Guidelines and with its reference
+               stylesheets. Not only does it use, by default, the EpiDoc reference stylesheets for
+               transforming the inscriptions and for indexing, it also comes with a set of default
+               search facets and indexes that are specifically meant for epigraphic documents. The
+               default facets include the findspot of the inscription, its place of origin, its
+               current location, its support material, its object type, its document type, and the
+               type of evidence of its date. The search/browse page, moreover, also includes a
+               slider for filtering the inscriptions by date and a box for textual searches, which
+               can be limited to the indexed forms of the terms. The default indexes include places,
+               personal names (onomastics), identifiable persons (prosopography), divinities,
+               institutions, words, lemmata, symbols, numerals, abbreviations, and uninterpreted
+               text fragments. New facets and indexes can easily be added even without mastering
+               XSLT, along the lines of the existing ones and by following the detailed instructions
+               provided in the EFES Wiki documentation.<note><p>Accessed July 21, 2021, <ptr
+                        target="https://github.com/EpiDoc/EFES/wiki"/>. Creation of new facets, last
+                     updated April 11, 2018: <ptr
+                        target="https://github.com/EpiDoc/EFES/wiki/Search-interface"/>. Creation of
+                     new indexes, last updated May 27, 2020: <ptr
+                        target="https://github.com/EpiDoc/EFES/wiki/Indices"/>.</p></note>
+               Furthermore, EFES makes it possible to create an epigraphic concordance of the
+               various editions of each inscription and to add information pages as TEI XML files
+               (suitable for displaying both information on the database itself and potential
+               additional accompanying information).</p>
+            <p>Against this background, the combined use of the EpiDoc encoding and of the EFES tool
+               seemed to be a promising approach for the purposes of my research project, and so it
+               was.</p>
+            <p>I initially aimed to create updated digital editions of the inscriptions mentioning
+               Cretan institutional elements that could be used to facilitate a comparative analysis
+               of the latter. The ability to generate and view the indexes of the mentioned
+               institutional elements gradually, while I was in the process of encoding the
+               inscriptions in EpiDoc, totally met my needs, and helped me very much in the
+               identification of recurring patterns. As I was expected to submit my doctoral thesis
+               in PDF format, I also needed to convert the epigraphic editions into PDF, and by
+               running EFES locally I have been able to view their transformed HTML versions on a
+               browser and to naively copy and paste them into a Microsoft Word file.<note><p>I am
+                     very grateful to Pietro Maria Liuzzo for teaching me how to avoid this
+                     conversion step by using XSL-FO, which can be used to generate a PDF directly
+                     from the raw XML files. The use of XSL-FO, however, requires some additional
+                     skills that are not needed in the copy-and-paste-from-the-browser
+                  process.</p></note> Although I had not planned it from the beginning, EFES also
+               proved to be useful in the (online) publication of the results of my research. The
+               ease with which EFES allows the creation of a searchable epigraphic database, in
+               fact, spontaneously led me to decide to publish it online once completed, making
+               available not only the HTML editions—which can also be downloaded as printable
+               PDFs—but also the raw XML files for reuse. The aim of the online publication, in
+               fact, is to allow other researchers to query the epigraphic collection for their
+               needs and to encourage the reuse of the dataset for unpredictable future digital
+               humanities purposes.</p>
+         </div>
+         <div xml:id="overview">
+            <head><title level="m">Cretan Institutional Inscriptions</title>: An Overview of the
+               Database</head>
+            <p>The core of the EFES-based database <title level="m">Cretan Institutional
+                  Inscriptions</title> consists of the EpiDoc editions of the previously selected
+               six hundred inscriptions, which can be exported both in PDF and in their original XML
+               format. Each edition is composed of an essential descriptive lemma; a bibliographic
+               lemma, also including links to external online resources; a critical edition of the
+               Greek text; a selective apparatus—where necessary—recording mainly the most
+               significant readings or restorations affecting the institutional terms; and a
+               commentary to contextualize the institutional elements mentioned in the document.</p>
+            <p>Thanks to the EpiDoc markup of the texts and of their metadata,<note><p>On which see
+                        <ptr target="#encodingInstitutions" type="crossref"/>.</p></note> the
+               inscriptions can be browsed by applying one or more customized search facets, which
+               allow the selection of the documents according to the bibliographic reference of
+               their main editions, period, specific date, place, and wider area of origin, current
+               location, documentary type, support type, and also to the mentioned divinities,
+               toponyms, or ethnic adjectives and, most importantly, institutional elements. As for
+               the latter, specific facets further allow one to browse the inscriptions on the basis
+               of the occurrence in their texts of precise institutional terms (such as <foreign
+                  xml:lang="grc-Latn">boule</foreign> or <foreign xml:lang="grc-Latn"
+                  >agoranomos</foreign>), or of their institutional categories (such as
+                  <mentioned>assembly</mentioned> or <mentioned>official</mentioned>), or of their
+               spheres of competence or roles (such as <mentioned>decreer</mentioned> or
+                  <mentioned>eponym</mentioned>).</p>
+            <p>The EpiDoc markup also provides the foundation for the rich query possibilities of
+               the database. It allows the insertion of elements with attributes having as values
+               the base forms of the terms both in Greek—with the preservation of the local
+               dialectal variants—and in a standardized transliteration. This enables textual
+               searches to be performed that would otherwise be inconceivable on an epigraphic
+               record such as the Cretan one, which is scattered with graphic variants and lacunae,
+               by using the indexed terms to overcome the limits of the record.</p>
+            <p>In addition to the inscriptions, the database includes two catalogs, whose aim is to
+               offer some insights into the complex mosaic of the many political entities of Crete
+               and of their institutions. Also, the database includes a collection of the most
+               significant literary sources pertaining to the Cretan institutions and a list of all
+               the mentioned bibliographic references. These four sections, <title level="a"
+                  >Political entities</title>, <title level="a">Institutions</title>, <title
+                  level="a">Literary sources</title>, and <title level="a">Bibliographic
+                  references</title>, have been added to the database as pages generated from TEI
+               XML files, which could be natively included in EFES.</p>
+            <p>As mentioned above, the database also includes several thematic indexes listing the
+               marked-up terms along with the references to the inscriptions in which they occur,
+               divided into institutions, toponyms and ethnic adjectives, lemmata (both of
+               institutions and of other significant terms), prosopographical elements,
+               anthroponyms, and names of divinities, nymphs, and heroes.</p>
+         </div>
+         <div xml:id="encodingInstitutions">
+            <head>Encoding Institutions (and More) with EpiDoc</head>
+            <p>For my epigraphic collection, the TEI-EpiDoc markup was beneficial as applied to the
+               entire editions of the inscriptions,<note><p>Following the structure of the EpiDoc
+                     template that can be found in the EpiDoc Guidelines v. 9.2, October 13, 2020:
+                        <ptr
+                        target="https://epidoc.stoa.org/gl/latest/ex-epidoctemplate.xml?format=raw"
+                     />. See also EpiDoc Guidelines v. 9.2, October 13, 2020, <ptr
+                        target="https://epidoc.stoa.org/gl/latest/supp-structure.html"/> and <title
+                        level="a">EpiDoc Edition Structure Quick Reference</title>, March 17, 2017,
+                        <ptr
+                        target="https://svn.code.sf.net/p/epidoc/code/trunk/guidelines/msword/structure-cheatsheet.pdf"
+                     />.</p></note> but it proved to be particularly useful in the encoding of the
+               Greek texts (in the <tag type="start">div type="edition"</tag>), where it was
+               strictly connected to my research questions. The EpiDoc elements, attributes and
+               attribute values I chose to use inside the <tag type="start">div type="edition"</tag>
+               facilitated my analysis of the institutional elements mentioned in the documents,
+               aiming at the identification, contextualization, and indexing of the institutional
+               terms and of the attested individuals holding an office. A TEI-based approach proved
+               to be especially effective for dealing with the challenging Cretan institutional
+                     records,<note><p>See <ptr type="crossref" target="#institutional_inscriptions"
+                     /> above.</p></note> because, in particular, the possibility of using multiple
+               attributes in the same element allowed me to extract the institutional occurrences as
+               contextually as possible. In other words, it allowed me to identify and index not
+               only the simple occurrence of the institutional terms, but also a set of connected
+               details that were extremely valuable for examining and then classifying them
+               according to several variables.</p>
+            <p>Let us now look in detail at the markup of the institutional terms. The EpiDoc
+               Guidelines, in this respect, do not offer many details. The closest case is the one
+               presented in the <title level="a">Titles, Offices, Political Posts, Honorifics,
+                  Occupations</title> section.<note><p>EpiDoc Guidelines v. 9.2, October 13, 2020,
+                        <ptr target="https://epidoc.stoa.org/gl/latest/idx-titlesoffices.html"
+                     />.</p></note> Here, besides suggesting that one encode <q>different types of
+                  offices, posts, and other titles</q> with the <gi>w</gi> element and the
+                  <att>lemma</att> attribute for indexing purposes, it also suggests using the
+                  <gi>rs</gi> (referencing string) element with a <att>type</att> attribute, and
+               possibly also a <att>ref</att> or <att>key</att> attribute to point to an authority
+               list of the marked-up terms. The most relevant of the two examples included in the
+               page accordingly proposes marking up <mentioned><foreign xml:lang="grc"
+                     >ἀρχόντων</foreign></mentioned> with <tag type="start">rs type="official"
+                  key="archon"</tag>.</p>
+            <p>Starting from this approach and expanding it, I decided to adopt the following markup
+               for the institutional elements mentioned in the inscriptions. Each institutional term
+               was encoded using the <gi>rs</gi> element with a <att>type</att> attribute having the
+               value <val>institution</val> (conceptually wider than <val>official</val>). Each
+                  <gi>rs</gi> has been provided with a <att>key</att> attribute, used to define a
+               standardized transliterated base form of each institutional element; all the possible
+               values of the <att>key</att> attribute have been listed in the connected authority
+               list.</p>
+            <p>Another crucial role has been played by two further attributes of <gi>rs</gi> that I
+               decided to add: <att>subtype</att> and <att>role</att>, whose values have also been
+               listed in the related authority lists. These attributes have been particularly useful
+               to my research because they have allowed the specification—on a case-by-case basis—of
+               the nature and the role or sphere of competence of each occurrence of an
+               institutional element. This avoided the risky operation of trying to define them in
+               an abstract way, on the basis of etymological speculation, or preconceptions derived
+               from the literary sources, or not always pertinent parallels.<note><p>One example of
+                     these tendencies is the assumption, on the basis of Arist. <title level="m"
+                        >Pol</title>. II 1272a, that one of the main tasks of the <foreign
+                        xml:lang="grc-Latn">kosmoi</foreign> was to be military leaders. However, in
+                     none of the 760 epigraphic occurrences of the Cretan <foreign
+                        xml:lang="grc-Latn">kosmoi</foreign> are they mentioned as such!</p></note>
+               In particular, I have used the attribute <att>subtype</att> to specify for each
+               occurrence the institutional category it belongs to, such as <val>official</val> or
+                  <val>assembly</val>, and the attribute <att>role</att> to specify its precise
+               function in that particular context, for example <val>dedicant</val> or
+                  <val>decreer</val>, or, if its function is unknown, its field of action, such as
+                  <val>cult</val> or <val>war</val>. The combination of these attributes proved to
+               be particularly efficient for addressing my main research questions, which were aimed
+               at understanding the variations of the forms in which the institutional elements
+               appear and of their role/function/sphere of competence: the same institutional
+               element, for example an official like the <foreign xml:lang="grc-Latn"
+                  >kosmos</foreign>, could sometimes appear alone as a single official (<tag
+                  type="start">rs type="institution" subtype="official" role="..."
+                  key="kosmos"</tag>), sometimes as a member of the board of the <foreign
+                  xml:lang="grc-Latn">kosmoi</foreign> (<tag type="start">rs type="institution"
+                  subtype="board" role="..." key="kosmos"</tag>). Some actions, also, turned out to
+               be performed only by the full board of the <foreign xml:lang="grc-Latn"
+                  >kosmoi</foreign> (for example the act of decreeing, <tag type="start">rs
+                  type="institution" subtype="board" role="decreer" key="kosmos"</tag>, or the
+               promotion of building activities, <tag type="start">rs type="institution"
+                  subtype="board" role="builder" key="kosmos"</tag>), whereas other actions were
+               sometimes attested in connection with single <foreign xml:lang="grc-Latn"
+                  >kosmoi</foreign> and sometimes with their full board (for example being a
+               dedicant: <tag type="start">rs type="institution" subtype="official" role="dedicant"
+                  key="kosmos"</tag>, but also <tag type="start">rs type="institution"
+                  subtype="board" role="dedicant" key="kosmos"</tag>).</p>
+            <p>The use of another attribute of <gi>rs</gi>, <att>ref</att>, also allowed a direct
+               link between the specific occurrences of institutional elements and the political
+               entity they belong to, pointing to the authority list of the places. The possibility
+               of linking each occurrence to its political entity, in fact, was absolutely essential
+               given the geographical approach of my research, aimed at identifying and valorizing
+               the institutional specificity of each political entity of Crete.<note><p>See <ptr
+                        type="crossref" target="#Cretan_epigraphy"/> above.</p></note> The attribute
+                  <att>ref</att> proved to be very useful because the political entity of the
+               institutional element very often differs from the findspot or the origin place of the
+                     inscription,<note><p>This is particularly true for treaties, which always
+                     involve at least two different political entities, and for the inscriptions
+                     which were placed in extra-urban sanctuaries.</p></note> and therefore this
+               information could not be extracted from any of the metadata of the inscription
+               itself.</p>
+            <p>In addition to <gi>rs</gi>, I have marked up the institutional terms—as well as some
+               other significant terms, even if not strictly institutional—with the <gi>w</gi>
+               element and its attribute <att>lemma</att>, as suggested also by the EpiDoc
+                     Guidelines.<note><p>EpiDoc Guidelines v. 9.2, October 13, 2020, <ptr
+                        target="https://epidoc.stoa.org/gl/latest/idx-titlesoffices.html"/>. See
+                     also EpiDoc Guidelines v. 9.2, October 13, 2020, <ptr
+                        target="https://epidoc.stoa.org/gl/latest/idx-wordslemmata.html"
+                  />.</p></note> In the cases in which the term is preceded or followed by the name
+               of the individual holding that office, I have encoded the name both as a
+               prosopographical datum (with the <gi>persName</gi> element and its attributes
+                  <att>type</att> with value <val>attested</val>, <att>key</att> and, where
+               applicable, <att>ref</att>, for linking the person to their political entity) and as
+               an onomastic one (with the <gi>name</gi> element and its attributes <att>nymRef</att>
+               and, where applicable, <att>type</att> with value <val>patronymic</val>,
+                  <val>metronymic</val> or <val>andronym</val>).<note><p>Broadly following the
+                     suggestions of the EpiDoc Guidelines v. 9.2, October 13, 2020, <ptr
+                        target="https://epidoc.stoa.org/gl/latest/idx-persnames.html"
+               />.</p></note></p>
+            <figure xml:id="example1">
+               <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <rs type="institution" subtype="official" role="eponym" key="damiorgos"
+                     ref="#olous">ἐπὶ <w lemma="δαμιοργός">δαμιοργοῦ</w>
+                     <persName type="attested" key="Leukos"><name nymRef="Λεῦκος"
+                        >Λεύκου</name></persName></rs>
+               </egXML>
+               <head type="legend">The encoding of an institutional element (<ref type="bibl"
+                     target="#icret"><title level="m">I.Cret.</title> I 22 4 A, l. 31</ref>).</head>
+            </figure>
+            <p>Besides the institutional terms and the individuals holding an office, I also
+               considered it useful to consistently mark up all the occurrences in the texts of
+               toponyms and ethnic adjectives and of honored individuals, foreign rulers, and
+               theonyms. The toponyms and ethnic adjectives I have marked up using the
+                  <gi>placeName</gi> element with its attributes <att>ref</att> (for linking them to
+               the relevant authority list) and, where applicable, <att>type</att> with the value
+                  <val>ethnic</val>.<note><p>Again following the EpiDoc Guidelines v. 9.2, October
+                     13, 2020: <ptr target="https://epidoc.stoa.org/gl/latest/idx-geognames.html"
+                     />.</p></note> The honored individuals, foreign rulers, and theonyms I have
+               marked up similarly to the individual holding an office, by using the
+                  <gi>persName</gi> element and, for honored individuals and foreign rulers, also a
+               nested <tag type="start">name nymRef=""</tag>. Broadly following a consolidated
+               EpiDoc practice, I have added a <att>type</att> attribute to each <gi>persName</gi>,
+               with the values <val>honoured</val> for honored individuals, <val>ruler</val> for the
+               rulers, and <val>divine</val> for the theonyms.<note><p>The values
+                        <val>attested</val> and <val>divine</val> are recommended by the EpiDoc
+                     Guidelines v. 9.2, October 13, 2020, <ptr
+                        target="https://epidoc.stoa.org/gl/latest/idx-persnames.html"/>. The value
+                        <val>ruler</val> (instead of the <val>emperor</val> suggested by the EpiDoc
+                     Guidelines) has also been used by <title level="m">Inscriptions of Greek
+                        Cyrenaica</title> (<ref type="bibl" target="#igcyr">Dobias-Lalou 2017</ref>)
+                     and by <title level="m">IOSPE</title> (<ref type="bibl" target="#iospe"
+                        >Ivantchik, Polinskaya, and Bodard 2011–</ref>): see, for example,
+                     IGCyr033700, accessed September 15, 2021, <ptr
+                        target="https://igcyr.unibo.it/igcyr/igcyr033700.xml"/> and IOSPE V 14,
+                     accessed September 15, 2021, <ptr target="https://iospe.kcl.ac.uk/5.14.xml"
+                     />.</p></note></p>
+            <figure xml:id="example2">
+               <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <div type="edition" xml:lang="grc" xml:space="preserve">                <ab>                        <lb n="1"/><rs type="institution" subtype="practice" role="decreeing" key="dokeo" ref="#polyrrhenia"><w lemma="δοκέω"><supplied reason="lost">ἔ</supplied>δο<supplied reason="lost">ξ</supplied>ε</w></rs> <unclear>τ</unclear>οῖς <rs type="institution" subtype="board" role="decreer" key="kosmos" ref="#polyrrhenia"><w lemma="κόσμος">κόσμοις</w></rs>                        <lb n="2"/><supplied reason="lost">καὶ τ</supplied>ᾶι <rs type="institution" subtype="assembly" role="decreer" key="polis" ref="#polyrrhenia"><w lemma="πόλις"><unclear>π</unclear>όλ<unclear>ι</unclear></w></rs> <persName type="honoured" key="Onymarchos f. Habraios"><name nymRef="Ὀνύμαρχος">Ὀνύμαρ<lb break="no" n="3"/><supplied reason="lost">χ</supplied>ον</name> <name nymRef="Ἁβραῖος" type="patronymic">Ἁβ<unclear>ρ</unclear>αίω</name> <placeName ref="#gortyn" type="ethnic">Γορτύνι<lb break="no" n="4"/>ον</placeName></persName> <rs type="institution" subtype="social_status" role="granted_as_privilege" key="proxenos" ref="#polyrrhenia"><w lemma="πρόξενος">πρόξενον</w></rs> ἦμεν κα<supplied reason="lost">ὶ</supplied>                        <lb n="5"/><rs type="institution" subtype="social_status" role="granted_as_privilege" key="euergetes" ref="#polyrrhenia"><w lemma="εὐεργέτας"><supplied reason="lost">εὐερ</supplied><unclear>γέτ</unclear>αν</w></rs> αὐτὸν καὶ                        <lb n="6"/><w lemma="ἔκγονος"><supplied reason="lost">ἔκγο</supplied>να.</w>                </ab>            </div>
+               </egXML>
+               <head type="legend">The complete encoding of an inscription text (<ref type="bibl"
+                     target="#icret"><title level="m">I.Cret.</title> II 23 5</ref>).</head>
+            </figure>
+            <figure xml:id="figure1">
+               <graphic url="img/formatted_inscription.png" width="270px" height="195px"/>
+               <head type="legend">The formatted text of the inscription in <ptr target="#example2"
+                     type="crossref"/> (<ref type="bibl" target="#icret"><title level="m"
+                        >I.Cret.</title></ref> II 23 5).</head>
+            </figure>
+            <p>Given the markup described above, EFES was able to generate detailed indexes having
+               the appearance of rich tables, where each piece of information is displayed in a
+               dedicated column and can easily be combined with the other ones at a glance.</p>
+            <p>In the most complex case, that of the institutions, the index displays for each
+               occurrence the base form of the term both in transliteration and in Greek (under the
+               headings Istituzione and Termine attestato, obtained from <att>key</att> of
+                  <gi>rs</gi> and <att>lemma</att> of <gi>w</gi>), the potentially relevant
+               prosopographical element (under Individuo, obtained from <att>key</att> of
+                  <gi>persName</gi>), its nature and role or sphere of competence (under Tipologia
+               and Ambito/Ruolo, obtained from <att>subtype</att> and <att>role</att> of
+               <gi>rs</gi>), its geographical and chronological context (under Località and Periodo,
+               obtained from <att>ref</att> of <gi>rs</gi> and from <att>period</att> of
+                  <gi>origDate</gi>, which is encoded among the other metadata in the
+                  <gi>teiHeader</gi> of each inscription) and finally the epigraphic sources where
+               it is attested (under Occorrenze).</p>
+            <figure xml:id="figure2">
+               <graphic url="img/institutional_index.png" width="1092px" height="656px"/>
+               <head type="legend">An excerpt from the index of the institutional elements.</head>
+            </figure>
+            <p>The prosopographical index, similarly, displays for each individual a combination of
+               additional data deriving from the EpiDoc markup: their onomastic formula (under Nome,
+               obtained from <att>key</att> of <gi>persName</gi>), their geographical context (under
+               Località, obtained from a <att>ref</att> linked to the authority list of
+                     places),<note><p>If the individual has an ethnic adjective, marked up as <tag
+                        type="start">placeName type="ethnic"</tag>, the <att>ref</att> is the one
+                     corresponding to this <gi>placeName</gi>. Otherwise, if the individual is
+                     associated with an institutional element, marked up with <tag type="start">rs
+                        type="institution"</tag>, the <att>ref</att> is the one corresponding to
+                     this <gi>rs</gi>. If the individual is not associated with a <gi>placeName</gi>
+                     or an <gi>rs</gi>, a <att>ref</att> has been added directly to their
+                        <gi>persName</gi>.</p></note> their general role (under Tipologia, obtained
+               from <att>type</att> of <gi>persName</gi>), and the inscriptions where they are
+               mentioned (under Occorrenze).</p>
+            <figure xml:id="figure3">
+               <graphic url="img/prosopographical_index.png" width="1098px" height="685px"/>
+               <head type="legend">An excerpt from the prosopographical index.</head>
+            </figure>
+            <p>In addition to the more <soCalled>tabular</soCalled> institutional and
+               prosopographical indexes, EFES facilitated the creation of other more traditional
+               indexes, including the indexed terms and the references to the inscriptions that
+               mention them. The encoding of the most significant words with <tag type="start">w
+                  lemma=""</tag> led to the creation of a word index of relevant terms attested in
+               the inscriptions. Similarly, an index of the attested toponyms and ethnic adjectives
+               was generated from their encoding with <tag type="start">placeName ref=""</tag>; an
+               index of the attested divinities, nymphs, and heroes from their encoding with <tag
+                  type="start">persName type="divine" key=""</tag>; and an index of personal
+               names—of individuals holding an office, honored individuals, and foreign rulers—from
+               their encoding with <tag type="start">name nymRef=""</tag>.</p>
+            <p>In total, the semantic markup has involved 8,162 lemmata (<gi>w</gi>), 4,353
+               institutional elements (<gi>rs</gi>), 2,633 toponyms or ethnic adjectives
+                  (<gi>placeName</gi>), 1,694 anthroponyms (<gi>name</gi>) and 1,651
+               prosopographical elements (<gi>persName</gi>).</p>
+         </div>
+         <div xml:id="conclusions">
+            <head>Conclusions</head>
+            <p>In conclusion, I would like to emphasize how particularly efficient the combined use
+               of EpiDoc and EFES has proven to be for the creation of a thematic database like
+               Cretan Institutional Inscriptions. By collecting in a searchable database all the
+               inscriptions pertaining to the Cretan institutions, records that were hitherto
+               accessible only in a scattered way, Cretan Institutional Inscriptions is a new
+               resource that can facilitate the finding, consultation, and reuse of these very
+               heterogeneous documents, many of which offer further points of reflection only when
+               considered in light of the full documentation. The example of Cretan Institutional
+               Inscriptions, moreover, could prove helpful—from the methodological point of view—to
+               other epigraphists who are dealing with an analogous collection of inscriptions,
+               either with a view to analyzing it or to publishing it in a digital format.</p>
+         </div>
       </body>
       <back>
          <div type="bibliography">
             <listBibl>
                <bibl xml:id="babeu2011">
-                  <author>Babeu, Alison</author>. <date>2011</date>. <title level="a">Epigraphy</title>, In <title level="m"><q>Rome Wasn’t Digitized in a Day</q>: Building a Cyberinfrastructure for Digital Classicists</title>, by <author>Alison Babeu</author>. <biblScope unit="page">96–117</biblScope>. CLIR publication 150 (web only, PDF). <pubPlace>Washington</pubPlace>: <publisher>CLIR</publisher>. <ptr target="https://www.clir.org/pubs/reports/pub150/"/>.</bibl>
+                  <author>Babeu, Alison</author>. <date>2011</date>. <title level="a"
+                     >Epigraphy</title>, In <title level="m"><q>Rome Wasn’t Digitized in a Day</q>:
+                     Building a Cyberinfrastructure for Digital Classicists</title>, by
+                     <author>Alison Babeu</author>. <biblScope unit="page">96–117</biblScope>. CLIR
+                  publication 150 (web only, PDF). <pubPlace>Washington</pubPlace>:
+                     <publisher>CLIR</publisher>. <ptr
+                     target="https://www.clir.org/pubs/reports/pub150/"/>.</bibl>
                <bibl xml:id="bodard_stoyanova2016">
-                  <author>Bodard, Gabriel</author>, <author>Stoyanova, Simona</author>. <date>2016</date>. <title level="a">Epigraphers and Encoders: Strategies for Teaching and Learning Digital Epigraphy</title>. Chap. 3 in <title level="m">Digital Classics Outside the Echo-Chamber: Teaching, Knowledge Exchange &amp; Public Engagement</title>, edited by <editor>Gabriel Bodard</editor> and <editor>Matteo Romanello</editor>, <biblScope unit="page">51–68</biblScope>. <pubPlace>London</pubPlace>: <publisher>Ubiquity Press</publisher>. <idno type="DOI">https://doi.org/10.5334/bat.d</idno>.</bibl>
+                  <author>Bodard, Gabriel</author>, <author>Stoyanova, Simona</author>.
+                     <date>2016</date>. <title level="a">Epigraphers and Encoders: Strategies for
+                     Teaching and Learning Digital Epigraphy</title>. Chap. 3 in <title level="m"
+                     >Digital Classics Outside the Echo-Chamber: Teaching, Knowledge Exchange &amp;
+                     Public Engagement</title>, edited by <editor>Gabriel Bodard</editor> and
+                     <editor>Matteo Romanello</editor>, <biblScope unit="page">51–68</biblScope>.
+                     <pubPlace>London</pubPlace>: <publisher>Ubiquity Press</publisher>. <idno
+                     type="DOI">https://doi.org/10.5334/bat.d</idno>.</bibl>
                <bibl xml:id="bodard_yordanova_2020">
-                  <author>Bodard, Gabriel</author>, <author>Yordanova, Polina</author>. <date>2020</date>. <title level="a">Publication, Testing and Visualization with EFES: A Tool for All Stages of the EpiDoc XML Editing Process</title>. <title level="j">Studia Universitatis Babeș-Bolyai Digitalia</title>, no. <biblScope unit="volume">1</biblScope>: <biblScope unit="page">17–35</biblScope>. <idno type="DOI">doi:10.24193/subbdigitalia.2020.1.02</idno>.</bibl>
+                  <author>Bodard, Gabriel</author>, <author>Yordanova, Polina</author>.
+                     <date>2020</date>. <title level="a">Publication, Testing and Visualization with
+                     EFES: A Tool for All Stages of the EpiDoc XML Editing Process</title>. <title
+                     level="j">Studia Universitatis Babeș-Bolyai Digitalia</title>, no. <biblScope
+                     unit="volume">1</biblScope>: <biblScope unit="page">17–35</biblScope>. <idno
+                     type="DOI">doi:10.24193/subbdigitalia.2020.1.02</idno>.</bibl>
                <bibl xml:id="igcyr">
-                  <author>Dobias-Lalou, Catherine</author>. <date>2017</date>. <title level="m">Inscriptions of Greek Cyrenaica</title>, in collaboration with <author>Alice Bencivenni</author>, <author>Hugues Berthelot</author>, with help from <author>Simona Antolini</author>, <author>Silvia Maria Marengo</author>, and <author>Emilio Rosamilia</author>. <pubPlace>Bologna</pubPlace>: <publisher>CRR-MM, Alma Mater Studiorum Università di Bologna</publisher>. <ptr target="https://igcyr.unibo.it/"/>.</bibl>
+                  <author>Dobias-Lalou, Catherine</author>. <date>2017</date>. <title level="m"
+                     >Inscriptions of Greek Cyrenaica</title>, in collaboration with <author>Alice
+                     Bencivenni</author>, <author>Hugues Berthelot</author>, with help from
+                     <author>Simona Antolini</author>, <author>Silvia Maria Marengo</author>, and
+                     <author>Emilio Rosamilia</author>. <pubPlace>Bologna</pubPlace>:
+                     <publisher>CRR-MM, Alma Mater Studiorum Università di Bologna</publisher>. <ptr
+                     target="https://igcyr.unibo.it/"/>.</bibl>
                <bibl xml:id="epidoc">
-                  <author>Elliott, Tom</author>, <author>Bodard, Gabriel</author>, <author>Mylonas, Elli</author>, <foreign>et al</foreign>. <date>2020</date>. <title level="m">EpiDoc Guidelines: Ancient Documents in TEI XML (Version 9.2)</title>. <ptr target="http://www.stoa.org/epidoc/gl/latest/"/>.</bibl>
+                  <author>Elliott, Tom</author>, <author>Bodard, Gabriel</author>, <author>Mylonas,
+                     Elli</author>, <foreign>et al</foreign>. <date>2020</date>. <title level="m"
+                     >EpiDoc Guidelines: Ancient Documents in TEI XML (Version 9.2)</title>. <ptr
+                     target="http://www.stoa.org/epidoc/gl/latest/"/>.</bibl>
                <bibl xml:id="genevrois2017">
-                  <author>Genevrois, Gerard</author>. <date>2017</date>. <title level="m">Le vocabulaire institutionnel crétois d’après les inscriptions (VIIe-IIe s. av. J.-C.). Étude philologique et dialectologique</title>. <pubPlace>Geneva, Switzerland</pubPlace>: <publisher>Droz</publisher>.</bibl>
+                  <author>Genevrois, Gerard</author>. <date>2017</date>. <title level="m">Le
+                     vocabulaire institutionnel crétois d’après les inscriptions (VIIe-IIe s. av.
+                     J.-C.). Étude philologique et dialectologique</title>. <pubPlace>Geneva,
+                     Switzerland</pubPlace>: <publisher>Droz</publisher>.</bibl>
                <bibl xml:id="icret">
-                  <editor>Guarducci, Margherita</editor>, ed. <date>1935–1950</date>. <title level="m">Inscriptiones Creticae: Opera et consilio Friderici Halbherr collectae</title>. 4 vols. <pubPlace>Rome</pubPlace>: <publisher>La Libreria dello Stato</publisher>.</bibl>
+                  <editor>Guarducci, Margherita</editor>, ed. <date>1935–1950</date>. <title
+                     level="m">Inscriptiones Creticae: Opera et consilio Friderici Halbherr
+                     collectae</title>. 4 vols. <pubPlace>Rome</pubPlace>: <publisher>La Libreria
+                     dello Stato</publisher>.</bibl>
                <bibl xml:id="iospe">
-                  <author>Ivantchik, Askold</author>, <author>Polinskaya, Irene</author>, <author>Bodard, Gabriel</author>, <foreign>et al</foreign>. <date>2011–</date>. <title>IOSPE [Inscriptiones antiquae Orae Septentrionalis Ponti Euxini graecae et latinae]: Ancient Inscriptions of the Northern Black Sea</title>. Accessed July 16, 2021. <ptr target="https://iospe.kcl.ac.uk/"/>.</bibl>
+                  <author>Ivantchik, Askold</author>, <author>Polinskaya, Irene</author>,
+                     <author>Bodard, Gabriel</author>, <foreign>et al</foreign>. <date>2011–</date>.
+                     <title>IOSPE [Inscriptiones antiquae Orae Septentrionalis Ponti Euxini graecae
+                     et latinae]: Ancient Inscriptions of the Northern Black Sea</title>. Accessed
+                  July 16, 2021. <ptr target="https://iospe.kcl.ac.uk/"/>.</bibl>
                <bibl xml:id="aio">
-                  <editor>Lambert, Stephen</editor>, <editor>Polly Low</editor>, <editor>Peter Liddel</editor>, and <editor>Chris de Lisle</editor>, eds. <date>2012–</date>. <title level="m">Attic Inscriptions Online</title>. Accessed July 16, 2021 <ptr target="https://www.atticinscriptions.com/"/>.</bibl>
-               <bibl xml:id="vagionakis2021"><author>Vagionakis, Irene</author>. <date>2021</date>. <title level="m">Cretan Institutional Inscriptions</title>. <publisher>VeDPH</publisher>, <publisher>ILC-CNR for CLARIN-IT</publisher>. Accessed July 16, 2021. <ref target="http://hdl.handle.net/20.500.11752/OPEN-550">http://hdl.handle.net/20.500.11752/OPEN-550</ref>.</bibl>
+                  <editor>Lambert, Stephen</editor>, <editor>Polly Low</editor>, <editor>Peter
+                     Liddel</editor>, and <editor>Chris de Lisle</editor>, eds. <date>2012–</date>.
+                     <title level="m">Attic Inscriptions Online</title>. Accessed July 16, 2021 <ptr
+                     target="https://www.atticinscriptions.com/"/>.</bibl>
+               <bibl xml:id="vagionakis2021"><author>Vagionakis, Irene</author>. <date>2021</date>.
+                     <title level="m">Cretan Institutional Inscriptions</title>.
+                     <publisher>VeDPH</publisher>, <publisher>ILC-CNR for CLARIN-IT</publisher>.
+                  Accessed July 16, 2021. <ref target="http://hdl.handle.net/20.500.11752/OPEN-550"
+                     >http://hdl.handle.net/20.500.11752/OPEN-550</ref>.</bibl>
             </listBibl>
          </div>
       </back>
-  </text>
+   </text>
 </TEI>

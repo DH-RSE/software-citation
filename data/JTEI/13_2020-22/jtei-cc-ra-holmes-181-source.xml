@@ -2,17 +2,21 @@
 <?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <!-- $Id: jtei-cc-ra-holmes-181-source.xml 954 2020-05-17 20:35:47Z ron $ -->
-<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" rend="jTEI">
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+  rend="jTEI">
   <teiHeader>
     <fileDesc>
       <titleStmt>
-        <title type="main">Using ODD for HTML</title>        
+        <title type="main">Using ODD for HTML</title>
         <author>
           <name>
             <forename>Martin</forename>
             <surname>Holmes</surname>
           </name>
-          <affiliation>Martin Holmes is a <roleName>programmer</roleName> in the <orgName>University of Victoria</orgName> Humanities Computing and Media Centre. He served on the TEI Technical Council from 2010 to 2015 and was managing editor of the <title level="j">Journal of the Text Encoding Initiative</title> from 2013 to 2015.</affiliation>
+          <affiliation>Martin Holmes is a <roleName>programmer</roleName> in the <orgName>University
+              of Victoria</orgName> Humanities Computing and Media Centre. He served on the TEI
+            Technical Council from 2010 to 2015 and was managing editor of the <title level="j"
+              >Journal of the Text Encoding Initiative</title> from 2013 to 2015.</affiliation>
           <email><!-- this author's email address --></email>
         </author>
       </titleStmt>
@@ -21,7 +25,8 @@
         <date>15/05/2020</date>
         <availability>
           <licence target="https://creativecommons.org/licenses/by/4.0/">
-            <p>For this publication a Creative Commons Attribution 4.0 International license has been granted by the author(s) who retain full copyright.</p>
+            <p>For this publication a Creative Commons Attribution 4.0 International license has
+              been granted by the author(s) who retain full copyright.</p>
           </licence>
         </availability>
       </publicationStmt>
@@ -41,7 +46,9 @@
     </fileDesc>
     <encodingDesc>
       <projectDesc>
-        <p>OpenEdition Journals -centre for open electronic publishing- is the platform for journals in the humanities and social sciences, open to quality periodicals looking to publish full-text articles online.</p>
+        <p>OpenEdition Journals -centre for open electronic publishing- is the platform for journals
+          in the humanities and social sciences, open to quality periodicals looking to publish
+          full-text articles online.</p>
       </projectDesc>
     </encodingDesc>
     <profileDesc>
@@ -65,95 +72,218 @@
   <text>
     <front>
       <div type="abstract" xml:id="abstract">
-        <p>Although the ODD (One Document Does it all) language is normally used to create TEI customizations or extensions, it is also a highly effective tool for editors working in other XML markup languages. This paper will discuss the use of ODD to define a highly constrained schema for HTML5 that will enforce stylistic rules and encoding practices, define custom attributes and value lists, and enable easier editing and validation of project content in the Oxygen XML Editor environment. I will provide a brief history of the project, whose first incarnation, created with the Dreamweaver HTML editor, was somewhat chaotically coded, and show how the implementation of an ODD-based schema provides huge advantages for authors, editors, and encoders, as well as substantially simplifying the code itself.</p>
+        <p>Although the ODD (One Document Does it all) language is normally used to create TEI
+          customizations or extensions, it is also a highly effective tool for editors working in
+          other XML markup languages. This paper will discuss the use of ODD to define a highly
+          constrained schema for HTML5 that will enforce stylistic rules and encoding practices,
+          define custom attributes and value lists, and enable easier editing and validation of
+          project content in the Oxygen XML Editor environment. I will provide a brief history of
+          the project, whose first incarnation, created with the Dreamweaver HTML editor, was
+          somewhat chaotically coded, and show how the implementation of an ODD-based schema
+          provides huge advantages for authors, editors, and encoders, as well as substantially
+          simplifying the code itself.</p>
       </div>
     </front>
     <body>
       <div xml:id="intro">
         <head>Introduction</head>
-        <p>Although ODD (One Document Does it all) is a feature of the TEI language, and used primarily for creating TEI schemas, ODD in fact <quote source="#quoteref1">goes beyond this to provide a generic tool for the documentation and management of any XML encoding scheme, not necessarily one based on the TEI</quote> (<ref xml:id="quoteref1" type="bibl" target="#burnard14">Burnard and Rahtz 2014</ref>). Syd Bauman (<ref xml:id="quoteref2" type="bibl" target="#bauman19">2019</ref>) points out that the TEI ODD language <quote source="#quoteref2">can be used for two related but distinctly different purposes: <list rend="inline ordered"><item>to <emph>create</emph> a markup language, including documentation and schemas; and</item> <item>to <emph>customize</emph> a markup language that was already written in ODD.</item></list></quote> This paper describes a use case which does not quite fall into either of those categories: the use of ODD to create and document a highly constrained customization of a markup language not originally written in ODD. The language in this case is HTML5, in its XHTML serialization.<note>ODD has been used to model non-TEI schemas in other projects. Bauman (<ref type="bibl" target="#bauman19">2019</ref>) mentions the Music Encoding Initiative and the W3C Internationalization Tag Set among others, and Romary and Riondet (<ref type="bibl" target="#romary18">2018</ref>) describe the use of ODD to generate schemas and documentation for EAD projects.</note></p>
-        <p>In 2017, our unit was approached by Kim Blank, a faculty member who had for some years been building a fascinating website called <title level="m">Mapping Keats’s Progress</title>.<note>The site is at <ptr target="https://johnkeats.uvic.ca/"/>, and the SVN repository for the project is at <ptr target="https://hcmc.uvic.ca/svn/keats/"/>.</note> The website is in one aspect a biography of the poet John Keats, but it has many other features. Blank describes its purposes as follows:
-          <list rend="bulleted">
+        <p>Although ODD (One Document Does it all) is a feature of the TEI language, and used
+          primarily for creating TEI schemas, ODD in fact <quote source="#quoteref1">goes beyond
+            this to provide a generic tool for the documentation and management of any XML encoding
+            scheme, not necessarily one based on the TEI</quote> (<ref xml:id="quoteref1"
+            type="bibl" target="#burnard14">Burnard and Rahtz 2014</ref>). Syd Bauman (<ref
+            xml:id="quoteref2" type="bibl" target="#bauman19">2019</ref>) points out that the TEI
+          ODD language <quote source="#quoteref2">can be used for two related but distinctly
+            different purposes: <list rend="inline ordered">
+              <item>to <emph>create</emph> a markup language, including documentation and schemas;
+                and</item>
+              <item>to <emph>customize</emph> a markup language that was already written in
+                ODD.</item>
+            </list></quote> This paper describes a use case which does not quite fall into either of
+          those categories: the use of ODD to create and document a highly constrained customization
+          of a markup language not originally written in ODD. The language in this case is HTML5, in
+          its XHTML serialization.<note>ODD has been used to model non-TEI schemas in other
+            projects. Bauman (<ref type="bibl" target="#bauman19">2019</ref>) mentions the Music
+            Encoding Initiative and the W3C Internationalization Tag Set among others, and Romary
+            and Riondet (<ref type="bibl" target="#romary18">2018</ref>) describe the use of ODD to
+            generate schemas and documentation for EAD projects.</note></p>
+        <p>In 2017, our unit was approached by Kim Blank, a faculty member who had for some years
+          been building a fascinating website called <title level="m">Mapping Keats’s
+            Progress</title>.<note>The site is at <ptr target="https://johnkeats.uvic.ca/"/>, and
+            the SVN repository for the project is at <ptr target="https://hcmc.uvic.ca/svn/keats/"
+            />.</note> The website is in one aspect a biography of the poet John Keats, but it has
+          many other features. Blank describes its purposes as follows: <list rend="bulleted">
             <item>To map some of Keats’s life in London</item>
             <item>To account for Keats’s remarkable poetic development</item>
             <item>To re-imagine the book</item>
-          </list>
-          and explains the third point in these terms:
-          <cit>
-            <quote source="#quoteref3">The site’s structure of <emph>progressive reduplication</emph> (between multiple, overlapping micro-chapters) acknowledges and attempts to embrace the fact that the dominant means to access information—via the technology you have in front of you right now—changes the way we find, look at, and engage such information.</quote>
+          </list> and explains the third point in these terms: <cit>
+            <quote source="#quoteref3">The site’s structure of <emph>progressive
+                reduplication</emph> (between multiple, overlapping micro-chapters) acknowledges and
+              attempts to embrace the fact that the dominant means to access information—via the
+              technology you have in front of you right now—changes the way we find, look at, and
+              engage such information.</quote>
             <ref xml:id="quoteref3" type="bibl" target="#blank18">Blank 2018</ref>
           </cit>
         </p>
-        <p>The site maps out the life of John Keats by year, month, and day, with entries for specific days in the form of short articles, along with yearly summaries. The <soCalled>progressive reduplication</soCalled> technique involves repetition of core information across multiple articles, so that any reader jumping into the site at any point will find enough information to make the article they are reading completely comprehensible. This acknowledges the fact that web-based materials are rarely consumed serially, but rather sampled somewhat at random, so each page must be to some extent self-contained. Balancing this requirement against the need to cater also to the more assiduous reader who may read many articles in sequence is a difficult feat of style and authorship.</p>
-        <p>The site had been developed by the author and a collaborator using the Dreamweaver web-authoring software. The researcher initially asked for help with a single problem: the fact that the site banner was slightly different in appearance on some pages than on others, and the effect of navigating through the site was slightly jarring as the banner shifted around from page to page. Examination of the code quickly revealed that the code for the banner was actually different on almost every page on the site. A deeper investigation determined that this was merely the tip of a vast iceberg of source-code chaos. Although its interface and arrangement were functional and attractive (see <ptr type="crossref" target="#figure1"/>), the HTML code had become a huge mass of incomprehensible nested structures, including twenty-four JavaScript and sixty-nine CSS files. A rather haphazard approach to development had resulted in a tendency to add new features as they occurred to either collaborator, usually by taking example code or pre-built JavaScript and CSS libraries from the Web and dropping them into the project. An example of the kind of needless complexity that had resulted from the dependence on a WYSIWYG tool to manage style and layout can be seen in <ptr type="crossref" target="#figure2"/>. Most developers will have encountered projects like this frequently, and will be familiar with the bleak anguish that afflicts a coder who inherits such a codebase.</p>
-        <p>In the fall of 2017, I began the process of rewriting it, with the aim of keeping it as simple as possible while reproducing and enhancing the design and functionality. The result has only one CSS file and a few hundred lines of JavaScript, none of which is essential.</p>
+        <p>The site maps out the life of John Keats by year, month, and day, with entries for
+          specific days in the form of short articles, along with yearly summaries. The
+            <soCalled>progressive reduplication</soCalled> technique involves repetition of core
+          information across multiple articles, so that any reader jumping into the site at any
+          point will find enough information to make the article they are reading completely
+          comprehensible. This acknowledges the fact that web-based materials are rarely consumed
+          serially, but rather sampled somewhat at random, so each page must be to some extent
+          self-contained. Balancing this requirement against the need to cater also to the more
+          assiduous reader who may read many articles in sequence is a difficult feat of style and
+          authorship.</p>
+        <p>The site had been developed by the author and a collaborator using the Dreamweaver
+          web-authoring software. The researcher initially asked for help with a single problem: the
+          fact that the site banner was slightly different in appearance on some pages than on
+          others, and the effect of navigating through the site was slightly jarring as the banner
+          shifted around from page to page. Examination of the code quickly revealed that the code
+          for the banner was actually different on almost every page on the site. A deeper
+          investigation determined that this was merely the tip of a vast iceberg of source-code
+          chaos. Although its interface and arrangement were functional and attractive (see <ptr
+            type="crossref" target="#figure1"/>), the HTML code had become a huge mass of
+          incomprehensible nested structures, including twenty-four JavaScript and sixty-nine CSS
+          files. A rather haphazard approach to development had resulted in a tendency to add new
+          features as they occurred to either collaborator, usually by taking example code or
+          pre-built JavaScript and CSS libraries from the Web and dropping them into the project. An
+          example of the kind of needless complexity that had resulted from the dependence on a
+          WYSIWYG tool to manage style and layout can be seen in <ptr type="crossref"
+            target="#figure2"/>. Most developers will have encountered projects like this
+          frequently, and will be familiar with the bleak anguish that afflicts a coder who inherits
+          such a codebase.</p>
+        <p>In the fall of 2017, I began the process of rewriting it, with the aim of keeping it as
+          simple as possible while reproducing and enhancing the design and functionality. The
+          result has only one CSS file and a few hundred lines of JavaScript, none of which is
+          essential.</p>
         <figure xml:id="figure1">
           <graphic url="images/figure1.jpg" width="1216px" height="789px"/>
-          <head type="legend">The site as it currently appears (not substantially different from the original site design).</head>
+          <head type="legend">The site as it currently appears (not substantially different from the
+            original site design).</head>
         </figure>
         <figure xml:id="figure2">
           <graphic url="images/figure2.png" width="1406px" height="807px"/>
-          <head type="legend">The long journey through fourteen nested <gi>div</gi> s to the <gi>h1</gi> element in the original Dreamweaver-generated HTML.</head>
+          <head type="legend">The long journey through fourteen nested <gi>div</gi> s to the
+              <gi>h1</gi> element in the original Dreamweaver-generated HTML.</head>
         </figure>
       </div>
       <div xml:id="useTEI">
         <head>Why Not Use TEI?</head>
-        <p>The instinctive response of a seasoned TEI encoder to content like this is to get it into TEI as soon as possible, and then build a rendering toolchain to create a fresh website. However, while the original HTML was severely out of control, the content itself was already basically complete, and encoded in HTML. Project participants were quite comfortable with HTML and preferred it as their master format for both editing and final result. They were not interested in developing a system to export the same content in different formats, so for their needs, moving the master files to TEI would be a gratuitous impediment to their work.</p>
-        <p>I was able to use a toolchain consisting of <ref target="http://www.html-tidy.org/">HTML Tidy</ref>,<note>Accessed April 17, 2020, <ptr target="http://www.html-tidy.org"/>.</note> XSLT, and Python to clean up and simplify the content to a point where it required only some proofing and enhancement. Since the project author was already familiar with HTML, but not with TEI, and the markup itself was relatively simple, it seemed easier to stick with HTML5 encoding. Given a sufficiently rigorous schema for that encoding, it would be trivial to generate TEI from the markup if we wanted it in the future. And I was intrigued with the idea of using ODD for a non-TEI language, something that is rarely done, and that would provide an opportunity for testing the ODD processing toolchain in ways that it is not normally tested.</p>
-     </div>
+        <p>The instinctive response of a seasoned TEI encoder to content like this is to get it into
+          TEI as soon as possible, and then build a rendering toolchain to create a fresh website.
+          However, while the original HTML was severely out of control, the content itself was
+          already basically complete, and encoded in HTML. Project participants were quite
+          comfortable with HTML and preferred it as their master format for both editing and final
+          result. They were not interested in developing a system to export the same content in
+          different formats, so for their needs, moving the master files to TEI would be a
+          gratuitous impediment to their work.</p>
+        <p>I was able to use a toolchain consisting of <ref target="http://www.html-tidy.org/">HTML
+            Tidy</ref>,<note>Accessed April 17, 2020, <ptr target="http://www.html-tidy.org"
+            />.</note> XSLT, and Python to clean up and simplify the content to a point where it
+          required only some proofing and enhancement. Since the project author was already familiar
+          with HTML, but not with TEI, and the markup itself was relatively simple, it seemed easier
+          to stick with HTML5 encoding. Given a sufficiently rigorous schema for that encoding, it
+          would be trivial to generate TEI from the markup if we wanted it in the future. And I was
+          intrigued with the idea of using ODD for a non-TEI language, something that is rarely
+          done, and that would provide an opportunity for testing the ODD processing toolchain in
+          ways that it is not normally tested.</p>
+      </div>
       <div xml:id="useODD">
         <head>Why Use ODD?</head>
-        <p>The W3C provides an excellent validation tool for HTML5 in the form of the <ref target="https://validator.github.io/validator/">Nu Html Checker</ref>.<note>Accessed April 17, 2020, <ptr target="https://validator.github.io/validator/"/>.</note> This is the tool we use for final validation of all HTML sites we produce. However, it is a generic tool; it checks conformance against the entire schema (in fact, against any of multiple schemas, depending on the input document type). I wanted to constrain the HTML quite aggressively, provide closed value lists for normally open attributes such as <att>class</att>, define custom attributes (as HTML5 allows) with closed value lists, and incorporate Schematron rules, to ensure that the site style and structure remain consistent throughout the document set. Good praxis also requires documentation of the rules, along with encoding guidelines and examples. ODD is the perfect choice for this (<ref type="bibl" target="#bauman19">Bauman 2019</ref>; <ref type="bibl" target="#romary18">Romary and Riondet 2018</ref>). ODD files, being TEI files, are also easily processable, a very useful feature whose value will become apparent below.</p>
-        <p>In designing the structure of the document collection, the first decision I made was prompted by the problem which had given rise to this work in the first place. Editing a page in the original Dreamweaver setup had involved editing an entire page, including its banner, footer, and so on, and this had given rise to a sort of speciation whereby originally identical blocks of boilerplate code had gradually diverged, resulting in different versions of core site components. To avoid anything like this, it made sense to specify that content documents only have content, which is easy to achieve using the <att>start</att> attribute on <gi>schemaSpec</gi> (<ptr type="crossref" target="#example1"/>).
-          <figure xml:id="example1">
+        <p>The W3C provides an excellent validation tool for HTML5 in the form of the <ref
+            target="https://validator.github.io/validator/">Nu Html Checker</ref>.<note>Accessed
+            April 17, 2020, <ptr target="https://validator.github.io/validator/"/>.</note> This is
+          the tool we use for final validation of all HTML sites we produce. However, it is a
+          generic tool; it checks conformance against the entire schema (in fact, against any of
+          multiple schemas, depending on the input document type). I wanted to constrain the HTML
+          quite aggressively, provide closed value lists for normally open attributes such as
+            <att>class</att>, define custom attributes (as HTML5 allows) with closed value lists,
+          and incorporate Schematron rules, to ensure that the site style and structure remain
+          consistent throughout the document set. Good praxis also requires documentation of the
+          rules, along with encoding guidelines and examples. ODD is the perfect choice for this
+            (<ref type="bibl" target="#bauman19">Bauman 2019</ref>; <ref type="bibl"
+            target="#romary18">Romary and Riondet 2018</ref>). ODD files, being TEI files, are also
+          easily processable, a very useful feature whose value will become apparent below.</p>
+        <p>In designing the structure of the document collection, the first decision I made was
+          prompted by the problem which had given rise to this work in the first place. Editing a
+          page in the original Dreamweaver setup had involved editing an entire page, including its
+          banner, footer, and so on, and this had given rise to a sort of speciation whereby
+          originally identical blocks of boilerplate code had gradually diverged, resulting in
+          different versions of core site components. To avoid anything like this, it made sense to
+          specify that content documents only have content, which is easy to achieve using the
+            <att>start</att> attribute on <gi>schemaSpec</gi> (<ptr type="crossref"
+            target="#example1"/>). <figure xml:id="example1">
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <schemaSpec ident="keats" start="div" ns="http://www.w3.org/1999/xhtml">
-                <!-- [...] --> 
+                <!-- [...] -->
               </schemaSpec>
             </egXML>
-            <head type="legend">The <gi>schemaSpec</gi> element, rooting the HTML5 document on <gi>div</gi> instead of <gi>html</gi>.</head>
+            <head type="legend">The <gi>schemaSpec</gi> element, rooting the HTML5 document on
+                <gi>div</gi> instead of <gi>html</gi>.</head>
           </figure>
         </p>
-        <p>A content document (which would be edited by the site author) thus consists of a very simple structure as shown in <ptr type="crossref" target="#example2"/>.</p>
+        <p>A content document (which would be edited by the site author) thus consists of a very
+          simple structure as shown in <ptr type="crossref" target="#example2"/>.</p>
         <figure xml:id="example2">
           <egXML xmlns="http://www.tei-c.org/ns/Examples">
             <div>
               <h3>31 October 1795: Keats is Born</h3>
               <div>
-                <h4>Swan and Hoop Livery Stables, 24 Moorfields
-                  Pavement Row, London, where Keats is likely 
-                  born</h4>
-                <p>Keats’s mother’s family run and own the livery
-                  stable; Keats’s father takes over the business 
-                  in 1802/3. Part of the business is known as
-                  <q>Keat’s [or Keates’s] Livery Stables.</q> 
-                  They make a very decent living from the 
-                  relatively large business. </p>
+                <h4>Swan and Hoop Livery Stables, 24 Moorfields Pavement Row, London, where Keats is
+                  likely born</h4>
+                <p>Keats’s mother’s family run and own the livery stable; Keats’s father takes over
+                  the business in 1802/3. Part of the business is known as <q>Keat’s [or Keates’s]
+                    Livery Stables.</q> They make a very decent living from the relatively large
+                  business. </p>
               </div>
             </div>
           </egXML>
           <head type="legend">A content document, rooted on the <gi>div</gi> element.</head>
         </figure>
-        <p>Analysis of the site content revealed that its features could actually be encoded using fewer than 20% of the elements available in HTML5, and only around 10% of the attributes (see <ptr type="crossref" target="#figure3"/>).
-          <figure xml:id="figure3">
+        <p>Analysis of the site content revealed that its features could actually be encoded using
+          fewer than 20% of the elements available in HTML5, and only around 10% of the attributes
+          (see <ptr type="crossref" target="#figure3"/>). <figure xml:id="figure3">
             <graphic url="images/figure3.png" width="1491px" height="828px"/>
             <head type="legend">The site uses a small subset of what HTML5 offers.</head>
-        </figure>
+          </figure>
         </p>
-        <p>Constraining the encoding choices to this limited subset results in fewer options and less learning for the encoder, and easier styling and processing when building the site. The author (along with a student editor who assisted with the correction of the converted content) was thus able to edit very effectively using the Oxygen interface, and customized element descriptions embedded in the ODD file appeared both in the schema (and thus in the Oxygen interface when editing) and in the HTML documentation generated from the ODD file, which provided additional encoding guidance. To further support easy and efficient authoring and encoding, I created an Oxygen project which provides template files for creating new content documents, Author Mode CSS for rapid proofing of authored content, and a quick-and-dirty build process which creates a complete HTML file from the current content document in the form in which it will eventually appear on the site. This enables encoders to see their work rendered in two different styles and get a clear sense of what it will look like when it is published, without their having to deal with editing complete HTML files.</p>
-        <p>HTML5 also allows the use of custom attributes. These are attributes whose names are prefixed with <code>data-</code>, and which are ignored by HTML5 validators. I was able to make use of this feature to provide a simple method of encoding a common scenario in the site, where a small graphic appearing in the text is paired with a larger version of the same graphic (typically not just a higher-resolution graphic but one which actually includes more content) by specifying a custom attribute for the <gi>img</gi> element in the ODD file.<note>HTML5 provides more sophisticated methods of encoding responsive images, but given the simple needs of this project, a single custom attribute was chosen as the encoding method. At build time this is transformed into a simple linking structure which pops up the larger version when the user clicks on the smaller one.</note>
+        <p>Constraining the encoding choices to this limited subset results in fewer options and
+          less learning for the encoder, and easier styling and processing when building the site.
+          The author (along with a student editor who assisted with the correction of the converted
+          content) was thus able to edit very effectively using the Oxygen interface, and customized
+          element descriptions embedded in the ODD file appeared both in the schema (and thus in the
+          Oxygen interface when editing) and in the HTML documentation generated from the ODD file,
+          which provided additional encoding guidance. To further support easy and efficient
+          authoring and encoding, I created an Oxygen project which provides template files for
+          creating new content documents, Author Mode CSS for rapid proofing of authored content,
+          and a quick-and-dirty build process which creates a complete HTML file from the current
+          content document in the form in which it will eventually appear on the site. This enables
+          encoders to see their work rendered in two different styles and get a clear sense of what
+          it will look like when it is published, without their having to deal with editing complete
+          HTML files.</p>
+        <p>HTML5 also allows the use of custom attributes. These are attributes whose names are
+          prefixed with <code>data-</code>, and which are ignored by HTML5 validators. I was able to
+          make use of this feature to provide a simple method of encoding a common scenario in the
+          site, where a small graphic appearing in the text is paired with a larger version of the
+          same graphic (typically not just a higher-resolution graphic but one which actually
+          includes more content) by specifying a custom attribute for the <gi>img</gi> element in
+          the ODD file.<note>HTML5 provides more sophisticated methods of encoding responsive
+            images, but given the simple needs of this project, a single custom attribute was chosen
+            as the encoding method. At build time this is transformed into a simple linking
+            structure which pops up the larger version when the user clicks on the smaller
+            one.</note>
           <figure xml:id="example3">
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <elementSpec ident="img" ns="http://www.w3.org/1999/xhtml" module="xhtml5">
-                <desc>Image element. May be rendered inline 
-                  or as a block, depending on where it appears 
-                  in the document structure.</desc>
-                <!--[...]--> 
+                <desc>Image element. May be rendered inline or as a block, depending on where it
+                  appears in the document structure.</desc>
+                <!--[...]-->
                 <attList>
-                  <!-- [...]--> 
+                  <!-- [...]-->
                   <attDef ident="data-lg-version" usage="opt">
-                    <gloss>path to a larger version of the image to 
-                      show as a popup (usually a relative path)</gloss>
+                    <gloss>path to a larger version of the image to show as a popup (usually a
+                      relative path)</gloss>
                     <datatype>
                       <dataRef key="teidata.pointer"/>
                     </datatype>
@@ -161,31 +291,35 @@
                 </attList>
               </elementSpec>
             </egXML>
-            <head type="legend">Defining a custom attribute for a larger variant of an image on the <gi>img</gi> element.</head>
-          </figure>        
+            <head type="legend">Defining a custom attribute for a larger variant of an image on the
+                <gi>img</gi> element.</head>
+          </figure>
         </p>
-        <p>This allows encoding such as:
-          <figure xml:id="example4">
+        <p>This allows encoding such as: <figure xml:id="example4">
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <figure class="rightFloat">
-                <img src="images/Lockhart1824_SMALL.jpg" data-lg-version="images/Lockhart1824_LARGE.jpg" width="400" height="463"/>
+                <img src="images/Lockhart1824_SMALL.jpg"
+                  data-lg-version="images/Lockhart1824_LARGE.jpg" width="400" height="463"/>
                 <figcaption>
                   <q>Z</q> — John Gibson Lockhart, 1824, by G. S. Newton </figcaption>
               </figure>
             </egXML>
-            <head type="legend">The custom <att>data-lg-version</att> attribute as it is used in the site encoding.</head>
+            <head type="legend">The custom <att>data-lg-version</att> attribute as it is used in the
+              site encoding.</head>
           </figure>
         </p>
-        <p>The TEI attribute class structure was used to create generic attribute classes such as <ident>att.classable</ident>, to which all HTML elements which need the <att>class</att> attribute belong; then, at the element level, the definition of the <att>class</att> attribute was overridden to constrain it to a fixed value list appropriate for that element:
-          <figure xml:id="example5">
+        <p>The TEI attribute class structure was used to create generic attribute classes such as
+            <ident>att.classable</ident>, to which all HTML elements which need the <att>class</att>
+          attribute belong; then, at the element level, the definition of the <att>class</att>
+          attribute was overridden to constrain it to a fixed value list appropriate for that
+          element: <figure xml:id="example5">
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <elementSpec ident="img" ns="http://www.w3.org/1999/xhtml" module="xhtml5">
-                <desc>Image element. May be rendered inline
-                  or as a block, depending on where it appears 
-                  in the document structure.</desc>
-                <!-- [...]--> 
+                <desc>Image element. May be rendered inline or as a block, depending on where it
+                  appears in the document structure.</desc>
+                <!-- [...]-->
                 <attList>
-                  <!-- [...]--> 
+                  <!-- [...]-->
                   <attDef ident="class" mode="change" usage="opt">
                     <valList type="closed" mode="add">
                       <valItem ident="normal">
@@ -199,36 +333,50 @@
                 </attList>
               </elementSpec>
             </egXML>
-            <head type="legend">The class attribute, inherited from <ident>att.class</ident>, is overridden for the <gi>img</gi> element to allow only two values.</head>
+            <head type="legend">The class attribute, inherited from <ident>att.class</ident>, is
+              overridden for the <gi>img</gi> element to allow only two values.</head>
           </figure>
         </p>
-        <p>This approach provides a considerable advantage over regular HTML5 editing and validation with the W3C tools, because the latter would allow any value in the required form for <att>class</att>; using ODD allows us to constrain the values at different points in the schema.</p>
-        <p>A further advantage of ODD is that it allows us to include Schematron rules. A simple example of how effective this can be is shown by a constraint applied to the HTML5 <gi>span</gi> element. <gi>span</gi> is a generic inline element with no inherent semantic force at all. The only reason for using it is to apply some specific styling to a piece of inline text. Therefore we can formulate the following rule:
-          <figure xml:id="example6">
+        <p>This approach provides a considerable advantage over regular HTML5 editing and validation
+          with the W3C tools, because the latter would allow any value in the required form for
+            <att>class</att>; using ODD allows us to constrain the values at different points in the
+          schema.</p>
+        <p>A further advantage of ODD is that it allows us to include Schematron rules. A simple
+          example of how effective this can be is shown by a constraint applied to the HTML5
+            <gi>span</gi> element. <gi>span</gi> is a generic inline element with no inherent
+          semantic force at all. The only reason for using it is to apply some specific styling to a
+          piece of inline text. Therefore we can formulate the following rule: <figure
+            xml:id="example6">
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <elementSpec ident="span" ns="http://www.w3.org/1999/xhtml" module="xhtml5">
-                <desc>General-purpose phrase-level element. 
-                  Use only if there is no more specific alternative 
-                  for what you want.</desc>
-                <!-- [...] --> 
+                <desc>General-purpose phrase-level element. Use only if there is no more specific
+                  alternative for what you want.</desc>
+                <!-- [...] -->
                 <constraintSpec ident="spansMustHaveStyleOrClass" scheme="schematron">
                   <constraint>
-                    <sch:assert test="@class or @style"> A span element must 
-                      have either a style or a class attribute. </sch:assert>
+                    <sch:assert test="@class or @style"> A span element must have either a style or
+                      a class attribute. </sch:assert>
                   </constraint>
                 </constraintSpec>
-                <!-- [...] --> 
+                <!-- [...] -->
               </elementSpec>
             </egXML>
-            <head type="legend">Defining a Schematron constraint to control how <gi>span</gi> is used.</head></figure>
-        </p>          
-        <p>This prevents the encoder from using <gi>span</gi> without a specific reason (<att>style</att> or <att>class</att>).</p>
-        <p>Following the model of many TEI projects, we also separated out components resembling authority records such as the list of biographies, as well as index entries and bibliography lists, into separate files, all rooted on the <gi>div</gi> element and constrained by the same schema.</p>
+            <head type="legend">Defining a Schematron constraint to control how <gi>span</gi> is
+              used.</head>
+          </figure>
+        </p>
+        <p>This prevents the encoder from using <gi>span</gi> without a specific reason
+            (<att>style</att> or <att>class</att>).</p>
+        <p>Following the model of many TEI projects, we also separated out components resembling
+          authority records such as the list of biographies, as well as index entries and
+          bibliography lists, into separate files, all rooted on the <gi>div</gi> element and
+          constrained by the same schema.</p>
       </div>
       <div xml:id="output">
         <head>Building Output from the ODD</head>
-        <p>I created a build process, using Ant and Saxon, to turn our ODD file into the various products we need to create from it, as shown in <ptr type="crossref" target="#figure4"/>.
-          <figure xml:id="figure4">
+        <p>I created a build process, using Ant and Saxon, to turn our ODD file into the various
+          products we need to create from it, as shown in <ptr type="crossref" target="#figure4"/>.
+            <figure xml:id="figure4">
             <graphic url="images/figure4.png" height="1250px" width="611px"/>
             <head type="legend">A diagram of the ODD building process.</head>
           </figure>
@@ -236,66 +384,159 @@
         <p>The five phases of this process are:</p>
         <list rend="ordered">
           <item>
-            <p><emph>Refreshing the ODD content.</emph> This is a process we commonly use in our TEI projects,<note>An example would be the <title level="m">Digital Victorian Periodical Poetry</title> project (version 0.9beta, updated March 3, 2020, <ptr target="https://dvpp.uvic.ca/"/>), in which taxonomies of, for example, rhyme types or sonic devices used in the poetry are encoded using TEI <gi>taxonomy</gi> and <gi>category</gi> structures, and then these definitions are harvested into the ODD file to provide <gi>valList</gi>s for <att>ana</att> attributes.</note> where specific attributes are intended to be used only as pointers to particular items elsewhere in the project. One example involves the tagging of people in the text. A file <ident>people.xml</ident> contains a list of brief biographies, each of which is a <gi>li</gi> element with a unique ID:
-              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+            <p><emph>Refreshing the ODD content.</emph> This is a process we commonly use in our TEI
+                projects,<note>An example would be the <title level="m">Digital Victorian Periodical
+                  Poetry</title> project (version 0.9beta, updated March 3, 2020, <ptr
+                  target="https://dvpp.uvic.ca/"/>), in which taxonomies of, for example, rhyme
+                types or sonic devices used in the poetry are encoded using TEI <gi>taxonomy</gi>
+                and <gi>category</gi> structures, and then these definitions are harvested into the
+                ODD file to provide <gi>valList</gi>s for <att>ana</att> attributes.</note> where
+              specific attributes are intended to be used only as pointers to particular items
+              elsewhere in the project. One example involves the tagging of people in the text. A
+              file <ident>people.xml</ident> contains a list of brief biographies, each of which is
+              a <gi>li</gi> element with a unique ID: <egXML
+                xmlns="http://www.tei-c.org/ns/Examples">
                 <li id="keats_t_sen"> [...] </li>
               </egXML>
             </p>
-            <p>When a name is tagged in the text, it needs to be linked to one of these IDs, using the custom <att>data-id</att> attribute. In order to ensure that links are only made to real IDs in <ident>people.xml</ident>, the <soCalled>Refresh</soCalled> part of the build process collects all those IDs, then uses them to [re]construct the <gi>valList</gi> for the <att>data-id</att> attribute, so that it is impossible to link to a nonexistent ID. The encoder in Oxygen is also helpfully prompted when linking a name:
-              <figure xml:id="figure6">
+            <p>When a name is tagged in the text, it needs to be linked to one of these IDs, using
+              the custom <att>data-id</att> attribute. In order to ensure that links are only made
+              to real IDs in <ident>people.xml</ident>, the <soCalled>Refresh</soCalled> part of the
+              build process collects all those IDs, then uses them to [re]construct the
+                <gi>valList</gi> for the <att>data-id</att> attribute, so that it is impossible to
+              link to a nonexistent ID. The encoder in Oxygen is also helpfully prompted when
+              linking a name: <figure xml:id="figure6">
                 <graphic url="images/figure5.png" width="1004px" height="503px"/>
-                <head type="legend">Linking IDs built into the schema provide help for the encoder in Oxygen.</head>
+                <head type="legend">Linking IDs built into the schema provide help for the encoder
+                  in Oxygen.</head>
               </figure>
             </p>
           </item>
-          <item><emph>Building the documentation.</emph> This part of the build process uses the standard TEI Stylesheets process to create HTML documentation from the ODD file (and then follows it up with some post-processing tweaks to make it more reader-friendly). The resulting documentation can be seen <ref target="http://johnkeats.uvic.ca/documentation/keats.html">on the project site</ref>.<note><bibl><author>Martin Holmes</author>, <title level="u">Schema and Documentation for <title level="m">Mapping Keats’s Progress</title> project</title>, last updated March 20, 2020, <ptr target="http://johnkeats.uvic.ca/documentation/keats.html"/>.</bibl></note></item>
-          <item><emph>Building the schema.</emph> Again, this uses the standard TEI Stylesheet process to create a RELAX NG schema from the ODD file.</item>
-          <item><emph>Extracting the Schematron.</emph> Schematron rules are then extracted from the RELAX NG schema using XSLT available from the <ref target="http://schematron.com/front-page/the-schematron-skeleton-implementation/">Schematron project</ref>.<note><title level="u">The Schematron <soCalled>Skeleton</soCalled> Implementation</title>, accessed April 18, 2020, <ptr target="http://schematron.com/front-page/the-schematron-skeleton-implementation/"/>.</note></item>
-          <item><emph>Compiling the Schematron.</emph> Although Schematron rules inside the RELAX NG file are enforced within the Oxygen editing environment, the automated site-build process needs to do a complete validation of all the files, and this is most effectively done by compiling the extracted Schematron into an XSLT file, again using XSLT from the Schematron project; the site-build process can then do automatic validation of the content documents before building the site.</item>
+          <item><emph>Building the documentation.</emph> This part of the build process uses the
+            standard TEI Stylesheets process to create HTML documentation from the ODD file (and
+            then follows it up with some post-processing tweaks to make it more reader-friendly).
+            The resulting documentation can be seen <ref
+              target="http://johnkeats.uvic.ca/documentation/keats.html">on the project
+                  site</ref>.<note><bibl><author>Martin Holmes</author>, <title level="u">Schema and
+                  Documentation for <title level="m">Mapping Keats’s Progress</title>
+                  project</title>, last updated March 20, 2020, <ptr
+                  target="http://johnkeats.uvic.ca/documentation/keats.html"/>.</bibl></note></item>
+          <item><emph>Building the schema.</emph> Again, this uses the standard TEI Stylesheet
+            process to create a RELAX NG schema from the ODD file.</item>
+          <item><emph>Extracting the Schematron.</emph> Schematron rules are then extracted from the
+            RELAX NG schema using XSLT available from the <ref
+              target="http://schematron.com/front-page/the-schematron-skeleton-implementation/"
+              >Schematron project</ref>.<note><title level="u">The Schematron
+                  <soCalled>Skeleton</soCalled> Implementation</title>, accessed April 18, 2020,
+                <ptr
+                target="http://schematron.com/front-page/the-schematron-skeleton-implementation/"
+              />.</note></item>
+          <item><emph>Compiling the Schematron.</emph> Although Schematron rules inside the RELAX NG
+            file are enforced within the Oxygen editing environment, the automated site-build
+            process needs to do a complete validation of all the files, and this is most effectively
+            done by compiling the extracted Schematron into an XSLT file, again using XSLT from the
+            Schematron project; the site-build process can then do automatic validation of the
+            content documents before building the site.</item>
         </list>
       </div>
       <div xml:id="site">
         <head>Building the Site</head>
-        <p>Although the focus of this article is on the utility of ODD as a tool for managing encoding projects not based on TEI, it is important to include the final stage of the process, which builds the final HTML website from the fragmentary content documents created by the author and encoder. These are the stages in building the site, in a process which is managed by Ant and based largely on XSLT transformations:
-          <list rend="ordered">
-            <item>Validate the content documents against the RELAX NG schema, using the Jing validator. Stop the build if anything is invalid.</item>
-            <item>Validate the content documents against the Schematron rules as extracted into XSLT, using the Saxon XSLT transformer. Again, stop the build if anything is invalid.</item>
-            <item>Parse the source to list all media files which are <emph>actually used</emph> in the site, and copy them to the output. This avoids cluttering the web server directories with images or other media which are not actually being referenced.</item>
-            <item>Create complete HTML files from the content documents, by integrating them into templates and inserting menus, banners, footers, and other boilerplate components.</item>
-            <item>Build index files for the JavaScript <ref target="https://github.com/projectEndings/staticSearch">staticSearch</ref> search engine, which the site uses in preference to a server-based search.<note>Accessed April 17, 2020, <ptr target="https://github.com/projectEndings/staticSearch"/>.</note> This provides a simple, rapid, and robust method of searching the site, without any dependency on an external service or a database back end.</item>
-            <item>Validate all the HTML and CSS with the VNU validator. Stop the build if anything is invalid.</item>
+        <p>Although the focus of this article is on the utility of ODD as a tool for managing
+          encoding projects not based on TEI, it is important to include the final stage of the
+          process, which builds the final HTML website from the fragmentary content documents
+          created by the author and encoder. These are the stages in building the site, in a process
+          which is managed by Ant and based largely on XSLT transformations: <list rend="ordered">
+            <item>Validate the content documents against the RELAX NG schema, using the Jing
+              validator. Stop the build if anything is invalid.</item>
+            <item>Validate the content documents against the Schematron rules as extracted into
+              XSLT, using the Saxon XSLT transformer. Again, stop the build if anything is
+              invalid.</item>
+            <item>Parse the source to list all media files which are <emph>actually used</emph> in
+              the site, and copy them to the output. This avoids cluttering the web server
+              directories with images or other media which are not actually being referenced.</item>
+            <item>Create complete HTML files from the content documents, by integrating them into
+              templates and inserting menus, banners, footers, and other boilerplate
+              components.</item>
+            <item>Build index files for the JavaScript <ref
+                target="https://github.com/projectEndings/staticSearch">staticSearch</ref> search
+              engine, which the site uses in preference to a server-based search.<note>Accessed
+                April 17, 2020, <ptr target="https://github.com/projectEndings/staticSearch"
+                />.</note> This provides a simple, rapid, and robust method of searching the site,
+              without any dependency on an external service or a database back end.</item>
+            <item>Validate all the HTML and CSS with the VNU validator. Stop the build if anything
+              is invalid.</item>
           </list>
         </p>
-        <p>When a new version of the site is published, it is a complete, freshly built version which has passed all the build tests and which we know to be completely valid. In accordance with the principles of our Endings project it is <quote source="#quoteref4">coherent, consistent and complete</quote>.<note><bibl xml:id="quoteref4">Release Management principle 5.2, <title level="u">Principles</title>, The Endings Project: Building Sustainable Digital Humanities Projects, accessed April 18, 2020, <ptr target="https://projectendings.github.io/principles/"/>.</bibl></note> Anyone working on the project can run the site-build process and create a new version if they have the credentials to push it to the web server, but the build process cannot be completed unless both the edited content and the generated HTML and CSS are valid.</p>
+        <p>When a new version of the site is published, it is a complete, freshly built version
+          which has passed all the build tests and which we know to be completely valid. In
+          accordance with the principles of our Endings project it is <quote source="#quoteref4"
+            >coherent, consistent and complete</quote>.<note><bibl xml:id="quoteref4">Release
+              Management principle 5.2, <title level="u">Principles</title>, The Endings Project:
+              Building Sustainable Digital Humanities Projects, accessed April 18, 2020, <ptr
+                target="https://projectendings.github.io/principles/"/>.</bibl></note> Anyone
+          working on the project can run the site-build process and create a new version if they
+          have the credentials to push it to the web server, but the build process cannot be
+          completed unless both the edited content and the generated HTML and CSS are valid.</p>
       </div>
       <div xml:id="conclusion">
         <head>Conclusion</head>
-        <p>The use of ODD provides a range of substantial advantages when using a non-TEI XML language, even when other validators exist for that language:
-          <list rend="bulleted">
-            <item>A substantially reduced schema can be created, excluding elements from the larger schema which are not required for the project.</item>
-            <item>Components such as attributes which are only loosely constrained in the main language can be aggressively constrained through the ODD file.</item>
-            <item>Content documents can be rooted on elements other than the standard root element, so they can be simpler than full documents and contain only what is relevant.</item>
-            <item>Intra-project linking can be constrained by the schema through processing of the site content itself to generate some of the schema specification components.</item>
-            <item>Editors can be supported in their use of an XML editor such as Oxygen through the embedding of information from the <gi>schemaSpec</gi> into the output schema, providing popup prompts to help the encoder.</item>
-            <item>Detailed project documentation can be integrated with the schema specification and built into a comprehensive guidelines document.</item>
+        <p>The use of ODD provides a range of substantial advantages when using a non-TEI XML
+          language, even when other validators exist for that language: <list rend="bulleted">
+            <item>A substantially reduced schema can be created, excluding elements from the larger
+              schema which are not required for the project.</item>
+            <item>Components such as attributes which are only loosely constrained in the main
+              language can be aggressively constrained through the ODD file.</item>
+            <item>Content documents can be rooted on elements other than the standard root element,
+              so they can be simpler than full documents and contain only what is relevant.</item>
+            <item>Intra-project linking can be constrained by the schema through processing of the
+              site content itself to generate some of the schema specification components.</item>
+            <item>Editors can be supported in their use of an XML editor such as Oxygen through the
+              embedding of information from the <gi>schemaSpec</gi> into the output schema,
+              providing popup prompts to help the encoder.</item>
+            <item>Detailed project documentation can be integrated with the schema specification and
+              built into a comprehensive guidelines document.</item>
           </list>
         </p>
-        <p>These advantages have paid off for the <title level="m">Mapping Keats’s Progress</title> project. The site has now been live for over a year at the time of writing, and the author is steadily adding to it and refining the existing content. This experience shows that, even where TEI is not used on a project, ODD may still provide a highly effective tool for managing schemas, encoding, and documentation.</p>
+        <p>These advantages have paid off for the <title level="m">Mapping Keats’s Progress</title>
+          project. The site has now been live for over a year at the time of writing, and the author
+          is steadily adding to it and refining the existing content. This experience shows that,
+          even where TEI is not used on a project, ODD may still provide a highly effective tool for
+          managing schemas, encoding, and documentation.</p>
       </div>
-      </body>
-      <back>
-        <div type="appendix" xml:id="appendix1">
-          <head>ODD File for the <title level="m">Mapping Keats’s Progress</title> project</head>
-          <p><ref target="https://journals.openedition.org/jtei/3126?file=1">keats.odd</ref> (also available from <ref target="https://hcmc.uvic.ca/svn/keats/schema/keats.odd"/>).</p>
-        </div>
-        <div type="bibliography">
-          <listBibl>
-            <bibl xml:id="bauman19"><author>Bauman, Syd</author>. <date>2019</date>. <title level="a">A TEI Customization for Writing TEI Customizations</title>. <title level="j">Journal of the Text Encoding Initiative</title> <biblScope unit="issue">12</biblScope>. <ptr target="https://journals.openedition.org/jtei/2573"/>; doi:<idno type="doi">10.4000/jtei.2573</idno>.</bibl>
-            <bibl xml:id="blank18"><author>Blank, G. Kim</author>. <date>2018</date>. <title level="u"><title level="m">Mapping Keats’s Progress</title> &amp; the Holy Grail</title>. <title level="m">Mapping Keats’s Progress: A Critical Chronology</title>, edition 2.8, last modified April 2, 2020. <ptr target="http://johnkeats.uvic.ca/mkpHolyGrail.html"/>.</bibl>
-            <bibl xml:id="burnard14"><author>Burnard, Lou</author>, and <author>Sebastian Rahtz</author>. <date>2014</date>. <title level="u">ODD: One Document Does It All</title>. Workshop delivered at TEI 2014 Conference and Members Meeting, Evanston, IL, October 25. <ptr target="http://www.tei-c.org/Vault/MembersMeetings/2014/workshops/odd-one-document-does-it-all/index.html"/>.</bibl>
-            <bibl xml:id="romary18"><author>Romary, Laurent</author>, and <author>Charles Riondet</author>. <date>2018</date>. <title level="a">EAD-ODD: A Solution for Project-Specific EAD Schemes</title>. <title level="j">Archival Science</title> <biblScope unit="volume">18</biblScope> (<biblScope unit="issue">2</biblScope>): <biblScope unit="page">165–84</biblScope>. doi:<idno type="doi">10.1007/s10502-018-9290-y</idno>.</bibl>
-          </listBibl>
-        </div>
-      </back>
+    </body>
+    <back>
+      <div type="appendix" xml:id="appendix1">
+        <head>ODD File for the <title level="m">Mapping Keats’s Progress</title> project</head>
+        <p><ref target="https://journals.openedition.org/jtei/3126?file=1">keats.odd</ref> (also
+          available from <ref target="https://hcmc.uvic.ca/svn/keats/schema/keats.odd"/>).</p>
+      </div>
+      <div type="bibliography">
+        <listBibl>
+          <bibl xml:id="bauman19"><author>Bauman, Syd</author>. <date>2019</date>. <title level="a"
+              >A TEI Customization for Writing TEI Customizations</title>. <title level="j">Journal
+              of the Text Encoding Initiative</title>
+            <biblScope unit="issue">12</biblScope>. <ptr
+              target="https://journals.openedition.org/jtei/2573"/>; doi:<idno type="doi"
+              >10.4000/jtei.2573</idno>.</bibl>
+          <bibl xml:id="blank18"><author>Blank, G. Kim</author>. <date>2018</date>. <title level="u"
+                ><title level="m">Mapping Keats’s Progress</title> &amp; the Holy Grail</title>.
+              <title level="m">Mapping Keats’s Progress: A Critical Chronology</title>, edition 2.8,
+            last modified April 2, 2020. <ptr target="http://johnkeats.uvic.ca/mkpHolyGrail.html"
+            />.</bibl>
+          <bibl xml:id="burnard14"><author>Burnard, Lou</author>, and <author>Sebastian
+              Rahtz</author>. <date>2014</date>. <title level="u">ODD: One Document Does It
+              All</title>. Workshop delivered at TEI 2014 Conference and Members Meeting, Evanston,
+            IL, October 25. <ptr
+              target="http://www.tei-c.org/Vault/MembersMeetings/2014/workshops/odd-one-document-does-it-all/index.html"
+            />.</bibl>
+          <bibl xml:id="romary18"><author>Romary, Laurent</author>, and <author>Charles
+              Riondet</author>. <date>2018</date>. <title level="a">EAD-ODD: A Solution for
+              Project-Specific EAD Schemes</title>. <title level="j">Archival Science</title>
+            <biblScope unit="volume">18</biblScope> (<biblScope unit="issue">2</biblScope>):
+              <biblScope unit="page">165–84</biblScope>. doi:<idno type="doi"
+              >10.1007/s10502-018-9290-y</idno>.</bibl>
+        </listBibl>
+      </div>
+    </back>
   </text>
 </TEI>

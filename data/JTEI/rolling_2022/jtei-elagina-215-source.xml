@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml"
-	schematypens="http://purl.oclc.org/dsdl/schematron"?><!--$Id: jtei-elagina-215-source.xml 1083 2022-01-31 09:18:47Z pietro.liuzzo $--><TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI">
+	schematypens="http://purl.oclc.org/dsdl/schematron"?><!--$Id: jtei-elagina-215-source.xml 1083 2022-01-31 09:18:47Z pietro.liuzzo $-->
+<TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI">
    <teiHeader>
       <fileDesc>
          <titleStmt>
@@ -11,7 +12,12 @@
                   <surname>Elagina</surname>
                </name>
                <affiliation><!-- a prose description of this author's affiliation, containing <roleName> and <orgName>-->
-                  Daria Elagina is <roleName>Principal Investigator</roleName> of the project <title level="u">The Chronicle of John of Nikiu: Text-Critical edition and Digital Research Platform</title> at the <orgName>University of Hamburg</orgName>, funded by the Deutsche Forschungsgemeinschaft (DFG, German Research Association) - 470097824. Her main research areas are textual criticism, manuscriptology, and sphragistics.</affiliation>
+                  Daria Elagina is <roleName>Principal Investigator</roleName> of the project <title
+                     level="u">The Chronicle of John of Nikiu: Text-Critical edition and Digital
+                     Research Platform</title> at the <orgName>University of Hamburg</orgName>,
+                  funded by the Deutsche Forschungsgemeinschaft (DFG, German Research Association) -
+                  470097824. Her main research areas are textual criticism, manuscriptology, and
+                  sphragistics.</affiliation>
                <email>daria.elagina@uni-hamburg.de</email>
             </author>
          </titleStmt>
@@ -20,7 +26,8 @@
             <date>22/01/2022</date>
             <availability>
                <licence target="https://creativecommons.org/licenses/by/4.0/">
-                  <p>For this publication a Creative Commons Attribution 4.0 International license has been granted by the author(s) who retain full copyright.</p>
+                  <p>For this publication a Creative Commons Attribution 4.0 International license
+                     has been granted by the author(s) who retain full copyright.</p>
                </licence>
             </availability>
          </publicationStmt>
@@ -39,7 +46,9 @@
       </fileDesc>
       <encodingDesc>
          <projectDesc>
-            <p>OpenEdition Journals -centre for open electronic publishing- is the platform for journals in the humanities and social sciences, open to quality periodicals looking to publish full-text articles online.</p>
+            <p>OpenEdition Journals -centre for open electronic publishing- is the platform for
+               journals in the humanities and social sciences, open to quality periodicals looking
+               to publish full-text articles online.</p>
          </projectDesc>
       </encodingDesc>
       <profileDesc>
@@ -48,7 +57,7 @@
          </langUsage>
          <textClass>
             <keywords xml:lang="en">
-          <!-- a list of keywords, each in its own <term> -->
+               <!-- a list of keywords, each in its own <term> -->
                <term>Ethiopian Studies</term>
                <term>text reuse</term>
                <term>digital edition</term>
@@ -63,211 +72,837 @@
    </teiHeader>
    <text>
       <front>
-         <div type="abstract" xml:id="abstract"><p>The paper discusses the phenomenon of text reuse in the manuscript tradition of Ethiopia and Eritrea and, by examining examples of different forms of text reuse, presents the possibilities of its encoding in TEI XML within the frame of the project Beta maṣāḥǝft. Text reuse, which consists in the implicit or explicit repetition of text, is attested in a variety of forms, including quotations, allusions, paraphrases, and cross-linguistic text reuse. The documentation of this practice contributes to the study of different aspects of the manuscript tradition, for example, to the impact and relative dating of texts, and history of their transmission. The variety of text reuse forms allows for different approaches to their encoding which are presented in this paper to illustrate the possibilities of text reuse markup within the project’s schema. Additionally, the paper discusses the concept of narrative units and its difference to the concept of text reuse, as well as the markup of a type of text reuse which involves the reference to external entities.</p></div>
+         <div type="abstract" xml:id="abstract">
+            <p>The paper discusses the phenomenon of text reuse in the manuscript tradition of
+               Ethiopia and Eritrea and, by examining examples of different forms of text reuse,
+               presents the possibilities of its encoding in TEI XML within the frame of the project
+               Beta maṣāḥǝft. Text reuse, which consists in the implicit or explicit repetition of
+               text, is attested in a variety of forms, including quotations, allusions,
+               paraphrases, and cross-linguistic text reuse. The documentation of this practice
+               contributes to the study of different aspects of the manuscript tradition, for
+               example, to the impact and relative dating of texts, and history of their
+               transmission. The variety of text reuse forms allows for different approaches to
+               their encoding which are presented in this paper to illustrate the possibilities of
+               text reuse markup within the project’s schema. Additionally, the paper discusses the
+               concept of narrative units and its difference to the concept of text reuse, as well
+               as the markup of a type of text reuse which involves the reference to external
+               entities.</p>
+         </div>
       </front>
       <body>
-      <!-- text divisions, each with an @xml:id and <head> -->
+         <!-- text divisions, each with an @xml:id and <head> -->
          <div xml:id="intro">
             <head>Introduction</head>
-            <p>The literary tradition of Ethiopia and Eritrea incorporates an important aspect of text reuse, that is an implicit or explicit repetition of text or, according to John Lee <quote source="#quoteref1">the transformation of a source text into a target text in order to serve different purpose</quote> (<ref type="bibl" target="#lee2007" xml:id="quoteref1">Lee 2007, 472</ref>). Under the term <term>text reuse</term> one understands not a circulation of the same piece of text independently or inside collections of texts, but an incorporation and integration of a particular text (source text) or a portion of it into a newly created one (target/recipient text). Text reuse can take various forms and can be basically divided into two main types: syntactic text reuse – for example, quotations – and semantic text reuse – for example, allusions, paraphrases (<ref type="bibl" target="#franzini2016">G. Franzini, E. Franzini and Büchler 2016</ref>). Translations or transliterations are forms of cross-linguistic text reuse. The detection of passages which quote or refer to other texts (borrowed material) is a challenge, especially if the text reuse takes an implicit form and is not signalized in the recipient text. However, the detection of text reuse and the establishment of relations between the source text and the recipient text would contribute to the study of the literary tradition of Ethiopia and Eritrea, especially to the fields of textual criticism, source criticism, the study of intertextuality<note><p>The term <term>intertextuality</term> was coined by Julia Kristeva and is applied now to a broad range of theories on relations between texts. Here I quote a brief explanation by Anabel Tèrnes on the basic difference between the traditional and intertextual approach of Kristeva: <quote source="#quoteref2"><foreign xml:lang="de">Die traditionelle Forschung zu den Beziehungen zwischen Texten geht davon aus, dass der zitierende Text sich der Textelemente eines fremden Textes bedient, d.h. sie in seine Struktur integriert, während der zitierte Text von diesem Prozess unangetastet bleibt. Das Zitat erhält seinen Sinn durch den es umgebenden neuen Kontext. Im Gegensatz dazu gehen Kristeva und die mit ihr assoziierten Literaturkritiker der Gruppe Tel Quel davon aus, dass erst der Dialog, die Verweisungsmechanismen zwischen Text und Prätext den Sinn beider Texte konstituieren. Textsinn ist demnach Effekt eines Textspielverfahrens. Die telquelistische Texttheorie geht insofern über die klassische Konzeption der Literatur hinaus, als für sie der Sinn keine Gegebenheit ist, die nur noch mittels einer instrumentalen Zeichenstruktur darzustellen wäre, sondern Sinn wird im Text erzeugt, und zwar durch Transformation, Auflösung, Be- und Verarbeitung bereits bestehenden Sinns, der immer in Textform vorliegt. Ein anderer Name für diese Auffassung von Sinnproduktion ist der Begriff Intertextualität.</foreign></quote> (<ref target="#ternes2016" type="bibl" xml:id="quoteref2">Ternès 2016, 13–14</ref>)</p></note> and others. For example, the detection of quotations, allusions, and translations of a given text is crucial in textual criticism because these phenomena represent the so-called indirect transmission and might contribute to the understanding of the history of text transmission in general. The identification of quotations might provide data for at least the relative dating of a quoted literary work. Additionally, the study of text reuse and the relations between the source texts and the recipient texts could provide data for an analysis of the impact and quotability of specific texts in Ethiopian and Eritrean manuscript culture. In other words, a massive involvement of a text as a source for text reuse into literary production could well document a perception of this text as a reliable and, thus, quotable source of information and consequently illustrate its specific impact on the literary and epistemological tradition, as well as the level and scope of its distribution.</p>
+            <p>The literary tradition of Ethiopia and Eritrea incorporates an important aspect of
+               text reuse, that is an implicit or explicit repetition of text or, according to John
+               Lee <quote source="#quoteref1">the transformation of a source text into a target text
+                  in order to serve different purpose</quote> (<ref type="bibl" target="#lee2007"
+                  xml:id="quoteref1">Lee 2007, 472</ref>). Under the term <term>text reuse</term>
+               one understands not a circulation of the same piece of text independently or inside
+               collections of texts, but an incorporation and integration of a particular text
+               (source text) or a portion of it into a newly created one (target/recipient text).
+               Text reuse can take various forms and can be basically divided into two main types:
+               syntactic text reuse – for example, quotations – and semantic text reuse – for
+               example, allusions, paraphrases (<ref type="bibl" target="#franzini2016">G. Franzini,
+                  E. Franzini and Büchler 2016</ref>). Translations or transliterations are forms of
+               cross-linguistic text reuse. The detection of passages which quote or refer to other
+               texts (borrowed material) is a challenge, especially if the text reuse takes an
+               implicit form and is not signalized in the recipient text. However, the detection of
+               text reuse and the establishment of relations between the source text and the
+               recipient text would contribute to the study of the literary tradition of Ethiopia
+               and Eritrea, especially to the fields of textual criticism, source criticism, the
+               study of intertextuality<note><p>The term <term>intertextuality</term> was coined by
+                     Julia Kristeva and is applied now to a broad range of theories on relations
+                     between texts. Here I quote a brief explanation by Anabel Tèrnes on the basic
+                     difference between the traditional and intertextual approach of Kristeva:
+                        <quote source="#quoteref2"><foreign xml:lang="de">Die traditionelle
+                           Forschung zu den Beziehungen zwischen Texten geht davon aus, dass der
+                           zitierende Text sich der Textelemente eines fremden Textes bedient, d.h.
+                           sie in seine Struktur integriert, während der zitierte Text von diesem
+                           Prozess unangetastet bleibt. Das Zitat erhält seinen Sinn durch den es
+                           umgebenden neuen Kontext. Im Gegensatz dazu gehen Kristeva und die mit
+                           ihr assoziierten Literaturkritiker der Gruppe Tel Quel davon aus, dass
+                           erst der Dialog, die Verweisungsmechanismen zwischen Text und Prätext den
+                           Sinn beider Texte konstituieren. Textsinn ist demnach Effekt eines
+                           Textspielverfahrens. Die telquelistische Texttheorie geht insofern über
+                           die klassische Konzeption der Literatur hinaus, als für sie der Sinn
+                           keine Gegebenheit ist, die nur noch mittels einer instrumentalen
+                           Zeichenstruktur darzustellen wäre, sondern Sinn wird im Text erzeugt, und
+                           zwar durch Transformation, Auflösung, Be- und Verarbeitung bereits
+                           bestehenden Sinns, der immer in Textform vorliegt. Ein anderer Name für
+                           diese Auffassung von Sinnproduktion ist der Begriff
+                           Intertextualität.</foreign></quote> (<ref target="#ternes2016"
+                        type="bibl" xml:id="quoteref2">Ternès 2016, 13–14</ref>)</p></note> and
+               others. For example, the detection of quotations, allusions, and translations of a
+               given text is crucial in textual criticism because these phenomena represent the
+               so-called indirect transmission and might contribute to the understanding of the
+               history of text transmission in general. The identification of quotations might
+               provide data for at least the relative dating of a quoted literary work.
+               Additionally, the study of text reuse and the relations between the source texts and
+               the recipient texts could provide data for an analysis of the impact and quotability
+               of specific texts in Ethiopian and Eritrean manuscript culture. In other words, a
+               massive involvement of a text as a source for text reuse into literary production
+               could well document a perception of this text as a reliable and, thus, quotable
+               source of information and consequently illustrate its specific impact on the literary
+               and epistemological tradition, as well as the level and scope of its
+               distribution.</p>
          </div>
-              <div xml:id="obj">
-                 <head>Objectives</head>
-                 <p>In this paper I would like to present several different cases of encoding of text reuse in the project <title level="u">Beta maṣāḥǝft</title><note><p>The project <title level="m">Beta maṣāḥǝft: Manuscripts of Ethiopia and Eritrea (Schriftkultur des christlichen Äthiopiens: eine multimediale Forschungsumgebung)</title> is a long-term project funded within the framework of the Academies’ Programme (coordinated by the Union of the German Academies of Sciences and Humanities) under survey of the Akademie der Wissenschaften in Hamburg. The goal of the project is the establishment of a multi-media research environment for the study of the manuscript culture of Ethiopia and Eritrea. For the project’s website visit: accessed January 23, 2022, <ptr target="https://www.betamasaheft.uni-hamburg.de/about.html"/>. For the project’s web application visit: accessed January 23, 2022, <ptr target="https://betamasaheft.eu/"/>. See <ref type="bibl" target="#liuzzo2019">Liuzzo 2019</ref>.</p></note> and discuss, based on these examples, the approach to the encoding, its challenges, and limitations, as well as some models for the future encoding strategy.<note><p>Some encoding examples were presented in September 2019 at the poster session of the 2019 TEI Conference <title level="u">What is text, really? TEI and beyond</title> at University of Graz in Austria under the title <title level="u">Case Study for Encoding: Ethiopian Psalter of the Virgin</title>.</p></note> The examples presented below may serve as proposals for the encoding of text reuse, which has not yet been strictly determined in the project’s Guidelines, although the technical possibilities discussed in the paper have already been documented there (<ref target="#liuzzo2018" type="bibl">Liuzzo et al. 2018</ref>).<note><p>Accessed January 23, 2022, <ptr target="https://betamasaheft.eu/Guidelines/?id=general"/>.</p></note> The paper focuses on the conceptual understanding of different forms of text reuse, the structured application of existing encoding methods, and on providing via practical examples of text reuse encoding that is applicable in other contexts outside the project from which the examples have been taken. The attempt has also been made to approach the differences between the encoding of text reuse and other instances of parallel text transmissions. The purpose being to address the problem in this paper rather than merely document the established and exhaustive methods of markup.</p>
-               <p>The encoding of text reuse can be split into three main aspects: the markup of borrowed material, encoding of relations between the source text and the recipient text, and the markup of elements that signalize the presence of text reuse (<ref type="bibl" target="#berti2015">Berti et al. 2015, 2</ref>). The focus here is mainly on the first two aspects, that is, the markup of borrowed material and the markup of relations. The markup of borrowed material using <tag>div type="textpart"</tag>s in the recipient text is applicable if a precise identification of a string of a reused text is possible and if the introduction of these <tag>div type="textpart"</tag>s does not cause a conflict of overlapping hierarchies<note><p>Overlapping hierarchies represent two or more coexisting structures in one document, which interact in a non-hierarchical way. As a result, a document cannot be represented as a tree graph.</p></note> with other <tag>div type="textpart"</tag>s of the text. Otherwise, a relation can be ascribed to a longer <tag>div type="textpart"</tag> without a precise specification of the string. The relations between the source and the recipient texts can be established if the source text is identifiable, using for example a <tag>relation name="saws:hasUsed"</tag><note><p>This relation saws:hasUsed is part of the ontology of the project <title level="m">Sharing Ancient WisdomS (SAWS)</title>, accessed January 23, 2022, <ptr target="https://ancientwisdoms.ac.uk/"/>, and reflects a relation between a Person (an author) and the Original Material (transcription of a text produced by a scribe). See, accessed January 23, 2022, <ptr target="https://ancientwisdoms.ac.uk/media/ontology/SAWS_relationship_types.html"/>. However, within the project <title level="m">Beta maṣāḥǝft</title> the relation is applied to encode a text reuse in very generic way. See, accessed January 23, 2022, <ptr target="https://betamasaheft.eu/Guidelines/?id=relations"/>. As the authorship of most Ethiopian literary works (especially those which have been originally produced in Ethiopia or Eritrea) is unknown, this application might be legitimate.</p></note> with a possible precise explanation of the type of text reuse in a <gi>desc</gi> element. This relation does not presuppose the type or the scale of text reuse and thus applicable to almost any case of the encoding of borrowed material in the text.</p></div>
-              <div xml:id="relations"> <head>Encoding of Relations</head>
-               <p>A good example of the strategy of encoding of text reuse with <tag>relation name="saws:hasUsed"</tag> is the case of <ref target="https://betamasaheft.eu/LIT5188MashafaMadbal"><title level="m">Maṣḥafa madbal</title> (CAe 5188)</ref>,<note><p>Accessed January 23, 2022, <ptr target="https://betamasaheft.eu/LIT5188MashafaMadbal"/> .</p></note> an Ethiopic literary work consisting of paraphrases in verses of the Bible and its Apocrypha (<ref type="bibl" target="#wright1877">Wright 1877, 285a–286a</ref>). The work is divided into two main parts, the first, <title level="m">Mǝśṭira zaman bǝluy</title>, is a paraphrase of the <ref target="https://betamasaheft.eu/LIT3530OldTes"><title level="m">Old Testament</title> (CAe 3530)</ref><note><p>Accessed January 23, 2022, <ptr target="https://betamasaheft.eu/LIT3530OldTes"/>.</p></note> and its Apocrypha and the second, <title level="m">Mǝśṭira zaman ḥaddis</title>, a paraphrase of the <ref target="https://betamasaheft.eu/LIT2072NewTes"><title level="m">New Testament</title> (CAe 2072)</ref><note><p>Accessed January 23, 2022, <ptr target="https://betamasaheft.eu/LIT2072NewTes"/>.</p></note> and its Apocrypha. Aside from the reused material both parts contain introductions in prose which seem not to be based on borrowed material. The relations between the recipient and source texts, the <title level="m">Old Testament</title>, and the <title level="m">New Testament</title>, can then be encoded as follows, where <title level="m">Maṣḥafa madbal</title> contains two <gi>div</gi>s, the first one <tag>div type="textpart" subtype="part" xml:lang="gez" xml:id="PartI"</tag> for <title level="m">Mǝśṭira zaman bǝluy</title>, and the second one <tag>div type="textpart" subtype="part" xml:lang="gez" xml:id="PartII"</tag> for <title level="m">Mǝśṭira zaman ḥaddis</title>:</p>
-               <figure xml:id="example1">
-                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                     <listRelation>
-                        <relation name="saws:hasUsed" 
-                           ref="http://purl.org/saws/ontology#hasUsed"
-                           active="https://betamasaheft.eu/LIT5188MashafaMadbal#PartI"
-                           passive="https://betamasaheft.eu/LIT3530OldTes"> <desc>Mǝśṭira zaman bǝluy contains a paraphrase of the Old Testament and its Apocrypha in verses.</desc>
-                        </relation>
-                        <relation name="saws:hasUsed" 
-                           ref="http://purl.org/saws/ontology#hasUsed"
-                           active=" https://betamasaheft.eu/LIT5188MashafaMadbal#PartII"
-                           passive=" https://betamasaheft.eu/LIT2072NewTes"> 
-                           <desc>Mǝśṭira zaman ḥaddis contains a paraphrase of the New Testament in verses.</desc>
-                        </relation>
-                        …
-                     </listRelation>
-                  </egXML>
-                  <head type="legend">Use of <tag>relation name="saws:hasUsed"</tag></head>
-               </figure>
-               <p>Further encoding of more precise relations between the single text parts of the recipient text and the source texts is also possible. In the previous example, a relation was stated between <title level="m">Mǝśṭira zaman ḥaddis</title> and the <title level="m">New Testament</title> in general. However, <title level="m">Mǝśṭira zaman ḥaddis</title> contains a section clearly referring to the <ref target="https://betamasaheft.eu/LIT1560Gospel"><title level="m">Four Gospels</title> (CAe 1560)</ref><note><p>Accessed January 23, 2022, <ptr target="https://betamasaheft.eu/LIT1560Gospel"/>.</p></note> (part of the <title level="m">New Testament</title>). This relation can be additionally encoded as in the following example, where <title level="m">Mǝśṭira zaman ḥaddis</title> has a <tag>div type="textpart" subtype="part" xml:lang="gez" xml:id="FourGospels"</tag> standing for the paraphrase of the <title level="m">Four Gospels</title>:</p>
-           <figure xml:id="example2"> 
-              <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                 <relation name="saws:hasUsed" 
-               ref="http://purl.org/saws/ontology#hasUsed"
-               active="https://betamasaheft.eu/LIT5188MashafaMadbal#FourGospels" 
-               passive=" https://betamasaheft.eu/LIT1560Gospel">
-            </relation>
-              </egXML>
-              <head type="legend"><gi>relation</gi> used to document text reuse at the level of a text part.</head>
-           </figure>
-               <p>In some cases, a particular <tag>div type="textpart"</tag> of the recipient text can even be linked to a project identifier of a source text using a <att>corresp</att> attribute. In the project <title level="m">Beta maṣāḥǝft</title> such a way of encoding is often applied to descriptions of collections containing texts with attested independent circulation.<note><p>See, accessed January 23, 2022, <ptr target="https://betamasaheft.eu/Guidelines/?id=definitionWorks"/>.</p></note> However, for some cases of text reuse this practice seems also to be appropriate, especially if the text contains clearly delimited <term>verbatim</term> quotations such as the so-called Ethiopian <ref target="https://betamasaheft.eu/LIT3985Mazmura"><title level="m">Psalter of the Virgin (Mazmura Dǝngǝl)</title> (CAe 3985)</ref>,<note><p>Accessed January 23, 2022, <ptr target="https://betamasaheft.eu/LIT3985Mazmura"/> .</p></note> a hymnological composition dedicated to St Mary. It consists of the <ref target="https://betamasaheft.eu/LIT2000Mazmur"><title level="m">Psalms of David</title> (CAe 2000)</ref>,<note><p>Accessed January 23, 2022, <ptr target="https://betamasaheft.eu/LIT2000Mazmur"/>.</p></note> the <ref target="https://betamasaheft.eu/LIT1828Mahale"><title level="m">Canticles of the Prophets</title> (CAe 1828)</ref>,<note><p>Accessed January 23, 2022, <ptr target="https://betamasaheft.eu/LIT1828Mahale"/>.</p></note> and the five sections of the <ref target="https://betamasaheft.eu/LIT2362Songof"><title level="m">Song of Songs</title> (CAe 2362)</ref><note><p>Accessed January 23, 2022, <ptr target="https://betamasaheft.eu/LIT2362Songof"/>.</p></note> (those texts constituting traditionally the <ref target="https://betamasaheft.eu/LIT2701Dawit"><title level="m">Ethiopian Psalter</title> (CAe 2701)</ref><note><p>Accessed January 23, 2022, <ptr target="https://betamasaheft.eu/LIT2701Dawit"/>.</p></note>), as well as additional texts of a much later origin, ascribed to a certain monk named Mazmura Dǝngǝl from the fifteenth century and dedicated to St Mary (which are referred to as Marian texts).<note><p>For the translation of Marian texts see also <ref type="bibl" target="#raineri2005">Raineri 2005, 133–187</ref>.</p></note> The Marian texts consist of an opening prayer and 150 short psalms corresponding to and inspired by the <title level="m">Psalms of David</title>, 15 prayers corresponding to the <title level="m">Canticles of the Prophets</title> and five prayers inspired by the <title level="m">Song of Songs</title>. They are usually written directly after the corresponding texts of the <title level="m"
-                  >Psalter</title>. The Marian texts are not attested in their independent circulation and are always combined with the corresponding texts of the <title level="m">Psalms of David</title> (<ref type="bibl" target="#sokolinskaia2007">Sokolinskaia and Pietruschka 2007</ref>). Thus, the single sections of the <title level="m">Ethiopian Psalter</title> constitute indispensable parts of the <title level="m">Psalter of the Virgin</title> and represent a case of text reuse as <term>verbatim</term> quotations, which are well identifiable and may be clearly delimited from the Marian texts. Every psalm of the <title level="m">Psalter of the Virgin</title> consists of a quotation of a <title level="m">Psalm of David</title> and of a corresponding Marian text marked up with <tag>div type="textpart"</tag>s. The <tag>div type="textpart"</tag>s of the quotations can thus be linked to the corresponding <title level="m">Psalms of David</title> using a <att>corresp</att> attribute. As every <title level="m">Psalm of David</title> has its own pointer<note><p>For example, the short-form URIs used in the examples in this paper <q><ptr target="https://betamasaheft.eu/LIT2000Mazmur#Ps1"/></q> considers the URI <ptr target="https://betamasaheft.eu/LIT2000Mazmur"/> as base of a graph where <term>Ps1</term> identifies an entity corresponding to the element (<gi>div</gi> in this case) and its <att>xml:id</att>. These short URIs are used in the data and can be resolved to a URL like <ptr target="https://betamasaheft.eu/works/LIT2000Mazmur/text#Ps1"/>, <ptr target="https://betamasaheft.eu/LIT2000Mazmur.Ps1"/>, or accessed January 23, 2022, <ptr target="https://betamasaheft.eu/LIT2000Mazmur.1"/>, all of which map to a parametrized URL of the format <ptr target="https://betamasaheft.eu/works/LIT2000Mazmur/text?ref=Ps1"/> calling a Distributed Text Services (DTS) compliant Endpoint for <ptr target="https://betamasaheft.eu/api/dts/document?id=https://betamasaheft.eu/LIT2000Mazmur&amp;ref=Ps1"/>. For DTS see, accessed January 23, 2022, <ptr target="https://distributed-text-services.github.io/specifications/"/>.</p></note> a <att>corresp</att> attribute points exactly to a quoted Psalm, as in the example below:</p>
-               <figure xml:id="example3">
-                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                     <div type="edition" xml:lang="gez">
-                        …
-                        <div type="textpart" subtype="Psalm" xml:id="Ps1" n="1">
-                           <label>Psalm 1</label>
-                           <div type="textpart" subtype="PsalmofDavid" 
-                              corresp=" https://betamasaheft.eu/LIT2000Mazmur#Ps1" 
-                              xml:id="PsD1"/>
-                           <div type="textpart" subtype="PsalmoftheVirgin" xml:id="PsV1"/>
+         <div xml:id="obj">
+            <head>Objectives</head>
+            <p>In this paper I would like to present several different cases of encoding of text
+               reuse in the project <title level="u">Beta maṣāḥǝft</title><note><p>The project
+                        <title level="m">Beta maṣāḥǝft: Manuscripts of Ethiopia and Eritrea
+                        (Schriftkultur des christlichen Äthiopiens: eine multimediale
+                        Forschungsumgebung)</title> is a long-term project funded within the
+                     framework of the Academies’ Programme (coordinated by the Union of the German
+                     Academies of Sciences and Humanities) under survey of the Akademie der
+                     Wissenschaften in Hamburg. The goal of the project is the establishment of a
+                     multi-media research environment for the study of the manuscript culture of
+                     Ethiopia and Eritrea. For the project’s website visit: accessed January 23,
+                     2022, <ptr target="https://www.betamasaheft.uni-hamburg.de/about.html"/>. For
+                     the project’s web application visit: accessed January 23, 2022, <ptr
+                        target="https://betamasaheft.eu/"/>. See <ref type="bibl"
+                        target="#liuzzo2019">Liuzzo 2019</ref>.</p></note> and discuss, based on
+               these examples, the approach to the encoding, its challenges, and limitations, as
+               well as some models for the future encoding strategy.<note><p>Some encoding examples
+                     were presented in September 2019 at the poster session of the 2019 TEI
+                     Conference <title level="u">What is text, really? TEI and beyond</title> at
+                     University of Graz in Austria under the title <title level="u">Case Study for
+                        Encoding: Ethiopian Psalter of the Virgin</title>.</p></note> The examples
+               presented below may serve as proposals for the encoding of text reuse, which has not
+               yet been strictly determined in the project’s Guidelines, although the technical
+               possibilities discussed in the paper have already been documented there (<ref
+                  target="#liuzzo2018" type="bibl">Liuzzo et al. 2018</ref>).<note><p>Accessed
+                     January 23, 2022, <ptr target="https://betamasaheft.eu/Guidelines/?id=general"
+                     />.</p></note> The paper focuses on the conceptual understanding of different
+               forms of text reuse, the structured application of existing encoding methods, and on
+               providing via practical examples of text reuse encoding that is applicable in other
+               contexts outside the project from which the examples have been taken. The attempt has
+               also been made to approach the differences between the encoding of text reuse and
+               other instances of parallel text transmissions. The purpose being to address the
+               problem in this paper rather than merely document the established and exhaustive
+               methods of markup.</p>
+            <p>The encoding of text reuse can be split into three main aspects: the markup of
+               borrowed material, encoding of relations between the source text and the recipient
+               text, and the markup of elements that signalize the presence of text reuse (<ref
+                  type="bibl" target="#berti2015">Berti et al. 2015, 2</ref>). The focus here is
+               mainly on the first two aspects, that is, the markup of borrowed material and the
+               markup of relations. The markup of borrowed material using <tag>div
+                  type="textpart"</tag>s in the recipient text is applicable if a precise
+               identification of a string of a reused text is possible and if the introduction of
+               these <tag>div type="textpart"</tag>s does not cause a conflict of overlapping
+                     hierarchies<note><p>Overlapping hierarchies represent two or more coexisting
+                     structures in one document, which interact in a non-hierarchical way. As a
+                     result, a document cannot be represented as a tree graph.</p></note> with other
+                  <tag>div type="textpart"</tag>s of the text. Otherwise, a relation can be ascribed
+               to a longer <tag>div type="textpart"</tag> without a precise specification of the
+               string. The relations between the source and the recipient texts can be established
+               if the source text is identifiable, using for example a <tag>relation
+                  name="saws:hasUsed"</tag><note><p>This relation saws:hasUsed is part of the
+                     ontology of the project <title level="m">Sharing Ancient WisdomS
+                     (SAWS)</title>, accessed January 23, 2022, <ptr
+                        target="https://ancientwisdoms.ac.uk/"/>, and reflects a relation between a
+                     Person (an author) and the Original Material (transcription of a text produced
+                     by a scribe). See, accessed January 23, 2022, <ptr
+                        target="https://ancientwisdoms.ac.uk/media/ontology/SAWS_relationship_types.html"
+                     />. However, within the project <title level="m">Beta maṣāḥǝft</title> the
+                     relation is applied to encode a text reuse in very generic way. See, accessed
+                     January 23, 2022, <ptr
+                        target="https://betamasaheft.eu/Guidelines/?id=relations"/>. As the
+                     authorship of most Ethiopian literary works (especially those which have been
+                     originally produced in Ethiopia or Eritrea) is unknown, this application might
+                     be legitimate.</p></note> with a possible precise explanation of the type of
+               text reuse in a <gi>desc</gi> element. This relation does not presuppose the type or
+               the scale of text reuse and thus applicable to almost any case of the encoding of
+               borrowed material in the text.</p>
+         </div>
+         <div xml:id="relations">
+            <head>Encoding of Relations</head>
+            <p>A good example of the strategy of encoding of text reuse with <tag>relation
+                  name="saws:hasUsed"</tag> is the case of <ref
+                  target="https://betamasaheft.eu/LIT5188MashafaMadbal"><title level="m">Maṣḥafa
+                     madbal</title> (CAe 5188)</ref>,<note><p>Accessed January 23, 2022, <ptr
+                        target="https://betamasaheft.eu/LIT5188MashafaMadbal"/> .</p></note> an
+               Ethiopic literary work consisting of paraphrases in verses of the Bible and its
+               Apocrypha (<ref type="bibl" target="#wright1877">Wright 1877, 285a–286a</ref>). The
+               work is divided into two main parts, the first, <title level="m">Mǝśṭira zaman
+                  bǝluy</title>, is a paraphrase of the <ref
+                  target="https://betamasaheft.eu/LIT3530OldTes"><title level="m">Old
+                     Testament</title> (CAe 3530)</ref><note><p>Accessed January 23, 2022, <ptr
+                        target="https://betamasaheft.eu/LIT3530OldTes"/>.</p></note> and its
+               Apocrypha and the second, <title level="m">Mǝśṭira zaman ḥaddis</title>, a paraphrase
+               of the <ref target="https://betamasaheft.eu/LIT2072NewTes"><title level="m">New
+                     Testament</title> (CAe 2072)</ref><note><p>Accessed January 23, 2022, <ptr
+                        target="https://betamasaheft.eu/LIT2072NewTes"/>.</p></note> and its
+               Apocrypha. Aside from the reused material both parts contain introductions in prose
+               which seem not to be based on borrowed material. The relations between the recipient
+               and source texts, the <title level="m">Old Testament</title>, and the <title
+                  level="m">New Testament</title>, can then be encoded as follows, where <title
+                  level="m">Maṣḥafa madbal</title> contains two <gi>div</gi>s, the first one
+                  <tag>div type="textpart" subtype="part" xml:lang="gez" xml:id="PartI"</tag> for
+                  <title level="m">Mǝśṭira zaman bǝluy</title>, and the second one <tag>div
+                  type="textpart" subtype="part" xml:lang="gez" xml:id="PartII"</tag> for <title
+                  level="m">Mǝśṭira zaman ḥaddis</title>:</p>
+            <figure xml:id="example1">
+               <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <listRelation>
+                     <relation name="saws:hasUsed" ref="http://purl.org/saws/ontology#hasUsed"
+                        active="https://betamasaheft.eu/LIT5188MashafaMadbal#PartI"
+                        passive="https://betamasaheft.eu/LIT3530OldTes">
+                        <desc>Mǝśṭira zaman bǝluy contains a paraphrase of the Old Testament and its
+                           Apocrypha in verses.</desc>
+                     </relation>
+                     <relation name="saws:hasUsed" ref="http://purl.org/saws/ontology#hasUsed"
+                        active=" https://betamasaheft.eu/LIT5188MashafaMadbal#PartII"
+                        passive=" https://betamasaheft.eu/LIT2072NewTes">
+                        <desc>Mǝśṭira zaman ḥaddis contains a paraphrase of the New Testament in
+                           verses.</desc>
+                     </relation> … </listRelation>
+               </egXML>
+               <head type="legend">Use of <tag>relation name="saws:hasUsed"</tag></head>
+            </figure>
+            <p>Further encoding of more precise relations between the single text parts of the
+               recipient text and the source texts is also possible. In the previous example, a
+               relation was stated between <title level="m">Mǝśṭira zaman ḥaddis</title> and the
+                  <title level="m">New Testament</title> in general. However, <title level="m"
+                  >Mǝśṭira zaman ḥaddis</title> contains a section clearly referring to the <ref
+                  target="https://betamasaheft.eu/LIT1560Gospel"><title level="m">Four
+                     Gospels</title> (CAe 1560)</ref><note><p>Accessed January 23, 2022, <ptr
+                        target="https://betamasaheft.eu/LIT1560Gospel"/>.</p></note> (part of the
+                  <title level="m">New Testament</title>). This relation can be additionally encoded
+               as in the following example, where <title level="m">Mǝśṭira zaman ḥaddis</title> has
+               a <tag>div type="textpart" subtype="part" xml:lang="gez" xml:id="FourGospels"</tag>
+               standing for the paraphrase of the <title level="m">Four Gospels</title>:</p>
+            <figure xml:id="example2">
+               <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <relation name="saws:hasUsed" ref="http://purl.org/saws/ontology#hasUsed"
+                     active="https://betamasaheft.eu/LIT5188MashafaMadbal#FourGospels"
+                     passive=" https://betamasaheft.eu/LIT1560Gospel"> </relation>
+               </egXML>
+               <head type="legend"><gi>relation</gi> used to document text reuse at the level of a
+                  text part.</head>
+            </figure>
+            <p>In some cases, a particular <tag>div type="textpart"</tag> of the recipient text can
+               even be linked to a project identifier of a source text using a <att>corresp</att>
+               attribute. In the project <title level="m">Beta maṣāḥǝft</title> such a way of
+               encoding is often applied to descriptions of collections containing texts with
+               attested independent circulation.<note><p>See, accessed January 23, 2022, <ptr
+                        target="https://betamasaheft.eu/Guidelines/?id=definitionWorks"
+                  />.</p></note> However, for some cases of text reuse this practice seems also to
+               be appropriate, especially if the text contains clearly delimited
+                  <term>verbatim</term> quotations such as the so-called Ethiopian <ref
+                  target="https://betamasaheft.eu/LIT3985Mazmura"><title level="m">Psalter of the
+                     Virgin (Mazmura Dǝngǝl)</title> (CAe 3985)</ref>,<note><p>Accessed January 23,
+                     2022, <ptr target="https://betamasaheft.eu/LIT3985Mazmura"/> .</p></note> a
+               hymnological composition dedicated to St Mary. It consists of the <ref
+                  target="https://betamasaheft.eu/LIT2000Mazmur"><title level="m">Psalms of
+                     David</title> (CAe 2000)</ref>,<note><p>Accessed January 23, 2022, <ptr
+                        target="https://betamasaheft.eu/LIT2000Mazmur"/>.</p></note> the <ref
+                  target="https://betamasaheft.eu/LIT1828Mahale"><title level="m">Canticles of the
+                     Prophets</title> (CAe 1828)</ref>,<note><p>Accessed January 23, 2022, <ptr
+                        target="https://betamasaheft.eu/LIT1828Mahale"/>.</p></note> and the five
+               sections of the <ref target="https://betamasaheft.eu/LIT2362Songof"><title level="m"
+                     >Song of Songs</title> (CAe 2362)</ref><note><p>Accessed January 23, 2022, <ptr
+                        target="https://betamasaheft.eu/LIT2362Songof"/>.</p></note> (those texts
+               constituting traditionally the <ref target="https://betamasaheft.eu/LIT2701Dawit"
+                     ><title level="m">Ethiopian Psalter</title> (CAe 2701)</ref><note><p>Accessed
+                     January 23, 2022, <ptr target="https://betamasaheft.eu/LIT2701Dawit"
+                  />.</p></note>), as well as additional texts of a much later origin, ascribed to a
+               certain monk named Mazmura Dǝngǝl from the fifteenth century and dedicated to St Mary
+               (which are referred to as Marian texts).<note><p>For the translation of Marian texts
+                     see also <ref type="bibl" target="#raineri2005">Raineri 2005,
+                     133–187</ref>.</p></note> The Marian texts consist of an opening prayer and 150
+               short psalms corresponding to and inspired by the <title level="m">Psalms of
+                  David</title>, 15 prayers corresponding to the <title level="m">Canticles of the
+                  Prophets</title> and five prayers inspired by the <title level="m">Song of
+                  Songs</title>. They are usually written directly after the corresponding texts of
+               the <title level="m">Psalter</title>. The Marian texts are not attested in their
+               independent circulation and are always combined with the corresponding texts of the
+                  <title level="m">Psalms of David</title> (<ref type="bibl"
+                  target="#sokolinskaia2007">Sokolinskaia and Pietruschka 2007</ref>). Thus, the
+               single sections of the <title level="m">Ethiopian Psalter</title> constitute
+               indispensable parts of the <title level="m">Psalter of the Virgin</title> and
+               represent a case of text reuse as <term>verbatim</term> quotations, which are well
+               identifiable and may be clearly delimited from the Marian texts. Every psalm of the
+                  <title level="m">Psalter of the Virgin</title> consists of a quotation of a <title
+                  level="m">Psalm of David</title> and of a corresponding Marian text marked up with
+                  <tag>div type="textpart"</tag>s. The <tag>div type="textpart"</tag>s of the
+               quotations can thus be linked to the corresponding <title level="m">Psalms of
+                  David</title> using a <att>corresp</att> attribute. As every <title level="m"
+                  >Psalm of David</title> has its own pointer<note><p>For example, the short-form
+                     URIs used in the examples in this paper <q><ptr
+                           target="https://betamasaheft.eu/LIT2000Mazmur#Ps1"/></q> considers the
+                     URI <ptr target="https://betamasaheft.eu/LIT2000Mazmur"/> as base of a graph
+                     where <term>Ps1</term> identifies an entity corresponding to the element
+                        (<gi>div</gi> in this case) and its <att>xml:id</att>. These short URIs are
+                     used in the data and can be resolved to a URL like <ptr
+                        target="https://betamasaheft.eu/works/LIT2000Mazmur/text#Ps1"/>, <ptr
+                        target="https://betamasaheft.eu/LIT2000Mazmur.Ps1"/>, or accessed January
+                     23, 2022, <ptr target="https://betamasaheft.eu/LIT2000Mazmur.1"/>, all of which
+                     map to a parametrized URL of the format <ptr
+                        target="https://betamasaheft.eu/works/LIT2000Mazmur/text?ref=Ps1"/> calling
+                     a Distributed Text Services (DTS) compliant Endpoint for <ptr
+                        target="https://betamasaheft.eu/api/dts/document?id=https://betamasaheft.eu/LIT2000Mazmur&amp;ref=Ps1"
+                     />. For DTS see, accessed January 23, 2022, <ptr
+                        target="https://distributed-text-services.github.io/specifications/"
+                  />.</p></note> a <att>corresp</att> attribute points exactly to a quoted Psalm, as
+               in the example below:</p>
+            <figure xml:id="example3">
+               <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <div type="edition" xml:lang="gez"> … <div type="textpart" subtype="Psalm"
+                        xml:id="Ps1" n="1">
+                        <label>Psalm 1</label>
+                        <div type="textpart" subtype="PsalmofDavid"
+                           corresp=" https://betamasaheft.eu/LIT2000Mazmur#Ps1" xml:id="PsD1"/>
+                        <div type="textpart" subtype="PsalmoftheVirgin" xml:id="PsV1"/>
+                     </div> … </div>
+               </egXML>
+               <head type="legend">Text reuse of the Psalter of David in the Psalter of the
+                  Virgin</head>
+            </figure>
+            <p>The process of encoding of the <title level="m">Psalter of the Virgin</title> in the
+               proposed way is the opposite to the composing of its text by a scribe, when
+               considering how a <title level="m">Psalter</title> manuscript is transformed into a
+                  <title level="m">Psalter of the Virgin</title>. A scribe must add the Marian texts
+               to the text of the <title level="m">Psalter</title>, whereas the proposed encoding
+               ideally transcludes the <title level="m">Psalter</title> into a <title level="m"
+                  >Psalter of the Virgin</title>.<note><p>This is what the application does with the
+                     markup, that is fetch the text from <att>corresp</att> for the view.</p></note>
+               The same is applicable to other texts, such as the <title level="m">Canticles of the
+                  Prophets</title> and the <title level="m">Song of Songs</title>. Here the
+               quotations can be linked precisely to the quoted portions of text, for they
+               correspond to the existing text divisions of the source texts:</p>
+
+            <figure xml:id="example4">
+               <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <div type="textpart" xml:id="Canticles">
+                     <div type="textpart" xml:id="Canticle1">
+                        <div type="textpart" subtype="Canticle" xml:id="FirstMoses"
+                           corresp="https://betamasaheft.eu/LIT1828#Moses1">
+                           <label>First Prayer of Moses</label>
                         </div>
-                        …
+                        <div type="textpart" subtype="Canticle" xml:id="MarianPrayer1"/>
+                     </div> … </div>
+                  <div type="textpart" xml:id="SongOfSongs">
+                     <div type="textpart" xml:id="Song1">
+                        <div type="textpart" subtype="Canticle" xml:id="FirstCanticle"
+                           corresp=" https://betamasaheft.eu/LIT2362Songof#FirstCanticle"> </div>
+                        <div type="textpart" subtype="Canticle" xml:id="FirstMarianCanticle"/>
                      </div>
-                  </egXML>
-                  <head type="legend">Text reuse of the Psalter of David in the Psalter of the Virgin</head>
-               </figure>
-               <p>The process of encoding of the <title level="m">Psalter of the Virgin</title> in the proposed way is the opposite to the composing of its text by a scribe, when considering how a <title level="m">Psalter</title> manuscript is transformed into a <title level="m">Psalter of the Virgin</title>. A scribe must add the Marian texts to the text of the <title level="m">Psalter</title>, whereas the proposed encoding ideally transcludes the <title level="m">Psalter</title> into a <title level="m">Psalter of the Virgin</title>.<note><p>This is what the application does with the markup, that is fetch the text from <att>corresp</att> for the view.</p></note> The same is applicable to other texts, such as the <title level="m">Canticles of the Prophets</title> and the <title level="m">Song of Songs</title>. Here the quotations can be linked precisely to the quoted portions of text, for they correspond to the existing text divisions of the source texts:</p>
-         
-         <figure xml:id="example4">
-            <egXML xmlns="http://www.tei-c.org/ns/Examples">
-               <div type="textpart" xml:id="Canticles">
-                  <div type="textpart" xml:id="Canticle1">
-                     <div type="textpart" subtype="Canticle" xml:id="FirstMoses" corresp="https://betamasaheft.eu/LIT1828#Moses1">
-                        <label>First Prayer of Moses</label>
-                     </div>
-                     <div type="textpart" subtype="Canticle" xml:id="MarianPrayer1"></div>
                   </div>
-                  …
-               </div>
-               <div type="textpart" xml:id="SongOfSongs">
-                  <div type="textpart" xml:id="Song1">
-                     <div type="textpart" subtype="Canticle" xml:id="FirstCanticle" corresp=" https://betamasaheft.eu/LIT2362Songof#FirstCanticle">
-                     </div>
-                     <div type="textpart" subtype="Canticle" xml:id="FirstMarianCanticle"></div>
+               </egXML>
+
+               <head type="legend">Text reuse of the <title level="m">Song of Songs</title> in the
+                     <title level="m">Canticles of the Prophets</title>.</head>
+            </figure>
+            <p>Additionally a relation between textual units is encoded using <tag>relation
+                  name="saws:contains"</tag>, as those texts are always contained by the <title
+                  level="m">Psalter of the Virgin</title>:</p>
+            <figure xml:id="example5">
+               <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <listRelation> … <relation name="saws:contains"
+                        ref="http://purl.org/saws/ontology#contains"
+                        active="https://betamasaheft.eu/LIT3985Mazmura"
+                        passive="https://betamasaheft.eu/LIT2000Mazmur"/>
+                     <relation name="saws:contains" ref="http://purl.org/saws/ontology#contains"
+                        active="https://betamasaheft.eu/LIT3985Mazmura"
+                        passive="https://betamasaheft.eu/LIT1828Mahale"/>
+                     <relation name="saws:contains" ref="http://purl.org/saws/ontology#contains"
+                        active="https://betamasaheft.eu/LIT3985Mazmura"
+                        passive="https://betamasaheft.eu/LIT2362Songof"/>
+                  </listRelation>
+               </egXML>
+               <head type="legend">Text reuse encoded as <tag>relation
+                  name='saws:contains'</tag></head>
+            </figure>
+            <p>As already mentioned, the last method of encoding text reuse with the help of the
+                  <att>corresp</att> attribute is extremely economic for it utilizes the traditional
+               system of text divisions of the Ethiopic Bible and does not require the encoding of
+               relations between single text parts of the source and recipient texts in
+                  <gi>relation</gi> elements. The source text is pointed directly in the <tag>div
+                  type="textpart"</tag>. However, this encoding practice has its limitations:
+               firstly, the text reuse should be in form of <term>verbatim</term> quotations
+               otherwise the pointing to the source text with a <att>corresp</att> element would be
+               not satisfactory; secondly, the quotation should be clearly delimited from the rest
+               of the text; and thirdly, it presupposes the existence of the encoded structure of
+               text which would allow the indication of particular passages by using a referencing
+               system. In the particular case of the <title level="m">Psalter of the Virgin</title>,
+               the usage of a <att>corresp</att> element seems to be the most economic and simple
+                     solution,<note><p>In case of literal quotations, the Guidelines of the project
+                     allows also for encoding them using <gi>cit</gi> containing <gi>quote</gi> and
+                     the <gi>ref</gi> pointing to the source text. See, accessed January 23, 2022,
+                        <ptr target="https://betamasaheft.eu/Guidelines/?id=referencing-the-text"/>.
+                     In this case also the quotation should correspond precisely to a <tag>div
+                        type="textpart"</tag> of the source text.</p></note> because each psalm of
+               David perfectly corresponds to the same psalm of David in the <title level="m"
+                  >Psalter of the Virgin</title> and the <title level="m">Psalms of David</title>
+               have already been encoded using corresponding <tag>div
+                     type="textpart"</tag>.<note><p>Alternatively, it is possible to use a reference
+                     system to point to corresponding string of reused material.</p></note>
+               Moreover, there is at least one example that evidences the turning of a Psalter
+               manuscript into the <title level="m">Psalter of the Virgin</title>, simply by adding
+               Marian texts (<ref type="bibl" target="#sokolinskaia2007">Sokolinskaia and
+                  Pietruschka 2007</ref>).</p>
+         </div>
+         <div xml:id="borrowed">
+            <head>Markup of Borrowed Material</head>
+            <p>Some examples of text reuse are slightly more complicated and the introduction of
+                  <tag>div type="textpart"</tag>s in the recipient text, which correspond to the
+               borrowed material, may be a legitimate practice, even if they do not belong to the
+               traditional system of text divisions. An example is the <ref
+                  target="https://betamasaheft.eu/LIT2630Zenahu"><title level="m">Vita of Cyril of
+                     Alexandria</title> (CAe 2630)</ref>.<note><p>Accessed January 23, 2022, <ptr
+                        target="https://betamasaheft.eu/LIT2630Zenahu"/>.</p></note> This text,
+               originally composed in Geez, is a compiled biography of Cyril of Alexandria based on
+               different texts. The <title level="m">Vita</title> states at its beginning that the
+               text derives information from the <ref target="https://betamasaheft.eu/LIT2375Synaxa"
+                     ><title level="m">Synaxarium</title> (CAe 2375)</ref>,<note><p>Accessed January
+                     23, 2022, <ptr target="https://betamasaheft.eu/LIT2375Synaxa"/>. A hagiographic
+                     compilation, for more details see <ref type="bibl" target="#gerard2010">Colin
+                        and Bausi 2010</ref>.</p></note>
+               <ref target="https://betamasaheft.eu/LIT1239Chroni"><title level="m">Chronicle of
+                     John of Nikiu</title> (CAe 1239)</ref>,<note><p>Accessed January 23, 2022, <ptr
+                        target="https://betamasaheft.eu/LIT1239Chroni"/>. A historiographical work
+                     composed in the seventh century in Egypt, for more details see <ref type="bibl"
+                        target="#weninger2007">Weninger 2007</ref>.</p></note>
+               <ref target="https://betamasaheft.eu/LIT1011Abusak"><title level="m"
+                     >ʾAbušākǝr</title> (CAe 1011)</ref>, <note><p>Accessed January 23, 2022, <ptr
+                        target="https://betamasaheft.eu/LIT1011Abusak"/>. A chronological treatise
+                     composed in the thirteenth century, for more details see <ref type="bibl"
+                        target="#uhlig2003">Uhlig 2003</ref>.</p></note> and <ref
+                  target="https://betamasaheft.eu/LIT4723TarikaWaldaAmid"><title level="m">Tārika
+                     Walda ʿAmid</title> (CAe 4723)</ref>.<note><p>Accessed January 23, 2022, <ptr
+                        target="https://betamasaheft.eu/LIT4723TarikaWaldaAmid"/>. A universal
+                     chronicle composed in the thirteenth century, which was translated into
+                     Ethiopic and augmented by local accounts. For more details see <ref type="bibl"
+                        target="#pietruschka2005">Pietruschka 2005</ref>.</p></note> The portions of
+               text based on the <title level="m">Synaxarium</title> and the <title level="m"
+                  >Chronicle of John of Nikiu</title> are signalized, while others are not clearly
+               identifiable at least for the time being. For the sake of brevity, only the relations
+               between the <title level="m">Vita of Cyril of Alexandria</title> and the <title
+                  level="m">Chronicle of John of Nikiu</title> will be discussed. The <title
+                  level="m">Chronicle of John of Nikiu</title>, the source text, is a lengthy text
+               divided into 122 Chapters. The <title level="m">Vita of Cyril of
+                     Alexandria</title><note><p>In the absence of an edition of that text, I refer
+                     here to the manuscript <title level="a">Däbrä Dammo ʾAbuna ʾArägawi,
+                        Ethio-SPaRe, DD-026</title>, ff. 3r-6v, catalogued as Abreham Adugna, Denis
+                     Nosnitsin, Pietro Maria Liuzzo, Magdalena Krzyzanowska, <title level="a"
+                        >Bǝḥerāwi Kǝllǝlāwi Mangǝśti Tǝgrāy, Dabra Dāmmo ʾAbuna ʾAragāwi,
+                        DD-026</title>, in <title level="j">Die Schriftkultur des christlichen
+                        Äthiopiens und Eritreas: Eine multimediale Forschungsumgebung / Beta
+                        maṣāḥǝft</title>, edited by Alessandro Bausi, accessed August 4, 2021, <ptr
+                        target="https://betamasaheft.eu/ESdd026"/>.</p></note> attests the text
+               reuse of two of its chapters, chapter 79<note><p>For example, Däbrä Dammo ʾAbuna
+                     ʾArägawi, Ethio-SPaRe, DD-026, fol. 3ra.</p></note> in the form of an almost
+                  <term>verbatim</term> quotation and chapter 87<note><p>For example, Däbrä Dammo
+                     ʾAbuna ʾArägawi, Ethio-SPaRe, DD-026, fol. 5va.</p></note> in the form of a
+               quite concise paraphrase. Both cases of text reuse are signalized by a clear
+               reference to the cited work and even to the chapter numbers.</p>
+            <p>In this case it appears legitimate and practical to introduce text divisions with
+                  <tag>div type="textpart"</tag> elements in the <title level="m">Vita of Cyril of
+                  Alexandria</title> which would correspond to single cases of text reuse: the
+               quotation and the paraphrase from the <title level="m">Chronicle of John of
+                  Nikiu</title> are clearly delimited from the rest of the text and it is hardly
+               imaginable that possible alternative text divisions (for example, introduced by a
+               future edition) would create a conflict of overlapping hierarchies, thus the borrowed
+               material in the <title level="m">Vita of Cyril of Alexandria</title> might be marked
+               up with following <tag>div type="textpart"</tag>s, where <tag>div type="textpart"
+                  subtype="vita" xml:id="VitaOfCyril"</tag> is the <title level="m">Vita of Cyril of
+                  Alexandria</title> inside the patristic collection <ref
+                  target="https://betamasaheft.eu/LIT3309Qerellos"><title level="m">Qerəllos</title>
+                  (CAe 3309)</ref><note><p>Accessed January 23, 2022, <ptr
+                        target="https://betamasaheft.eu/LIT3309Qerellos"/>.</p></note> named after
+               Cyril of Alexandria (<ref type="bibl" target="#bausi2010">Bausi 2010</ref>):</p>
+
+            <figure xml:id="example6">
+               <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <div type="textpart" subtype="vita" xml:id="VitaOfCyril"
+                     corresp=" https://betamasaheft.eu/LIT2630Zenahu">
+                     <label>Short biography of Cyril</label>
+                     <div type="textpart" xml:id="Introduction"/>
+                     <div type="textpart" xml:id="JohnOfNikiu79"/> … <div type="textpart"
+                        xml:id="JohnOfNikiu87"/>
                   </div>
-               </div>
-               
-            </egXML>
-            
-            <head type="legend">Text reuse of the <title level="m">Song of Songs</title> in the <title level="m">Canticles of the Prophets</title>.</head>
-         </figure>
-               <p>Additionally a relation between textual units is encoded using <tag>relation name="saws:contains"</tag>, as those texts are always contained by the <title level="m">Psalter of the Virgin</title>:</p>
-              <figure xml:id="example5">
-                 <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                    <listRelation>
-                       …
-                       <relation name="saws:contains" 
-                          ref="http://purl.org/saws/ontology#contains"
-                          active="https://betamasaheft.eu/LIT3985Mazmura" 
-                          passive="https://betamasaheft.eu/LIT2000Mazmur"></relation>
-                       <relation name="saws:contains" 
-                          ref="http://purl.org/saws/ontology#contains"
-                          active="https://betamasaheft.eu/LIT3985Mazmura" 
-                          passive="https://betamasaheft.eu/LIT1828Mahale"></relation>
-                       <relation name="saws:contains" 
-                          ref="http://purl.org/saws/ontology#contains"
-                          active="https://betamasaheft.eu/LIT3985Mazmura" 
-                          passive="https://betamasaheft.eu/LIT2362Songof"></relation>
-                    </listRelation>
-                    
-                 </egXML>
-                 <head type="legend">Text reuse encoded as <tag>relation name='saws:contains'</tag></head>
-              </figure>
-               <p>As already mentioned, the last method of encoding text reuse with the help of the <att>corresp</att> attribute is extremely economic for it utilizes the traditional system of text divisions of the Ethiopic Bible and does not require the encoding of relations between single text parts of the source and recipient texts in <gi>relation</gi> elements. The source text is pointed directly in the <tag>div type="textpart"</tag>. However, this encoding practice has its limitations: firstly, the text reuse should be in form of <term>verbatim</term> quotations otherwise the pointing to the source text with a <att>corresp</att> element would be not satisfactory; secondly, the quotation should be clearly delimited from the rest of the text; and thirdly, it presupposes the existence of the encoded structure of text which would allow the indication of particular passages by using a referencing system. In the particular case of the <title level="m">Psalter of the Virgin</title>, the usage of a <att>corresp</att> element seems to be the most economic and simple solution,<note><p>In case of literal quotations, the Guidelines of the project allows also for encoding them using <gi>cit</gi> containing <gi>quote</gi> and the <gi>ref</gi> pointing to the source text. See, accessed January 23, 2022, <ptr target="https://betamasaheft.eu/Guidelines/?id=referencing-the-text"/>. In this case also the quotation should correspond precisely to a <tag>div type="textpart"</tag> of the source text.</p></note> because each psalm of David perfectly corresponds to the same psalm of David in the <title level="m">Psalter of the Virgin</title> and the <title level="m">Psalms of David</title> have already been encoded using corresponding <tag>div type="textpart"</tag>.<note><p>Alternatively, it is possible to use a reference system to point to corresponding string of reused material.</p></note> Moreover, there is at least one example that evidences the turning of a Psalter manuscript into the <title level="m">Psalter of the Virgin</title>, simply by adding Marian texts (<ref type="bibl" target="#sokolinskaia2007">Sokolinskaia and Pietruschka 2007</ref>).</p></div>
-             <div xml:id="borrowed">
-                <head>Markup of Borrowed Material</head>
-               <p>Some examples of text reuse are slightly more complicated and the introduction of <tag>div type="textpart"</tag>s in the recipient text, which correspond to the borrowed material, may be a legitimate practice, even if they do not belong to the traditional system of text divisions. An example is the <ref target="https://betamasaheft.eu/LIT2630Zenahu"><title level="m">Vita of Cyril of Alexandria</title> (CAe 2630)</ref>.<note><p>Accessed January 23, 2022, <ptr target="https://betamasaheft.eu/LIT2630Zenahu"/>.</p></note> This text, originally composed in Geez, is a compiled biography of Cyril of Alexandria based on different texts. The <title level="m">Vita</title> states at its beginning that the text derives information from the <ref target="https://betamasaheft.eu/LIT2375Synaxa"><title level="m">Synaxarium</title> (CAe 2375)</ref>,<note><p>Accessed January 23, 2022, <ptr target="https://betamasaheft.eu/LIT2375Synaxa"/>. A hagiographic compilation, for more details see <ref type="bibl" target="#gerard2010">Colin and Bausi 2010</ref>.</p></note> <ref target="https://betamasaheft.eu/LIT1239Chroni"><title level="m">Chronicle of John of Nikiu</title> (CAe 1239)</ref>,<note><p>Accessed January 23, 2022, <ptr target="https://betamasaheft.eu/LIT1239Chroni"/>. A historiographical work composed in the seventh century in Egypt, for more details see <ref type="bibl" target="#weninger2007">Weninger 2007</ref>.</p></note> <ref target="https://betamasaheft.eu/LIT1011Abusak"><title level="m">ʾAbušākǝr</title> (CAe 1011)</ref>, <note><p>Accessed January 23, 2022, <ptr target="https://betamasaheft.eu/LIT1011Abusak"/>. A chronological treatise composed in the thirteenth century, for more details see <ref type="bibl" target="#uhlig2003">Uhlig 2003</ref>.</p></note> and <ref target="https://betamasaheft.eu/LIT4723TarikaWaldaAmid"><title level="m">Tārika Walda ʿAmid</title> (CAe 4723)</ref>.<note><p>Accessed January 23, 2022, <ptr target="https://betamasaheft.eu/LIT4723TarikaWaldaAmid"/>. A universal chronicle composed in the thirteenth century, which was translated into Ethiopic and augmented by local accounts. For more details see <ref type="bibl" target="#pietruschka2005">Pietruschka 2005</ref>.</p></note> The portions of text based on the <title level="m">Synaxarium</title> and the <title level="m">Chronicle of John of Nikiu</title> are signalized, while others are not clearly identifiable at least for the time being. For the sake of brevity, only the relations between the <title level="m">Vita of Cyril of Alexandria</title> and the <title level="m">Chronicle of John of Nikiu</title> will be discussed. The <title level="m">Chronicle of John of Nikiu</title>, the source text, is a lengthy text divided into 122 Chapters. The <title level="m">Vita of Cyril of Alexandria</title><note><p>In the absence of an edition of that text, I refer here to the manuscript <title level="a">Däbrä Dammo ʾAbuna ʾArägawi, Ethio-SPaRe, DD-026</title>, ff. 3r-6v, catalogued as Abreham Adugna, Denis Nosnitsin, Pietro Maria Liuzzo, Magdalena Krzyzanowska, <title level="a">Bǝḥerāwi Kǝllǝlāwi Mangǝśti Tǝgrāy, Dabra Dāmmo ʾAbuna ʾAragāwi, DD-026</title>, in <title level="j">Die Schriftkultur des christlichen Äthiopiens und Eritreas: Eine multimediale Forschungsumgebung / Beta maṣāḥǝft</title>, edited by Alessandro Bausi, accessed August 4, 2021, <ptr target="https://betamasaheft.eu/ESdd026"/>.</p></note> attests the text reuse of two of its chapters, chapter 79<note><p>For example, Däbrä Dammo ʾAbuna ʾArägawi, Ethio-SPaRe, DD-026, fol. 3ra.</p></note> in the form of an almost <term>verbatim</term> quotation and chapter 87<note><p>For example, Däbrä Dammo ʾAbuna ʾArägawi, Ethio-SPaRe, DD-026, fol. 5va.</p></note> in the form of a quite concise paraphrase. Both cases of text reuse are signalized by a clear reference to the cited work and even to the chapter numbers.</p>
-               <p>In this case it appears legitimate and practical to introduce text divisions with <tag>div type="textpart"</tag> elements in the <title level="m">Vita of Cyril of Alexandria</title> which would correspond to single cases of text reuse: the quotation and the paraphrase from the <title level="m">Chronicle of John of Nikiu</title> are clearly delimited from the rest of the text and it is hardly imaginable that possible alternative text divisions (for example, introduced by a future edition) would create a conflict of overlapping hierarchies, thus the borrowed material in the <title level="m">Vita of Cyril of Alexandria</title> might be marked up with following <tag>div type="textpart"</tag>s, where <tag>div type="textpart" subtype="vita" xml:id="VitaOfCyril"</tag> is the <title level="m">Vita of Cyril of Alexandria</title> inside the patristic collection <ref target="https://betamasaheft.eu/LIT3309Qerellos"><title level="m">Qerəllos</title> (CAe 3309)</ref><note><p>Accessed January 23, 2022, <ptr target="https://betamasaheft.eu/LIT3309Qerellos"/>.</p></note> named after Cyril of Alexandria (<ref type="bibl" target="#bausi2010">Bausi 2010</ref>):</p>
-               
-               <figure xml:id="example6">
-                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                     <div type="textpart" subtype="vita" xml:id="VitaOfCyril" corresp=" https://betamasaheft.eu/LIT2630Zenahu">
-                        <label>Short biography of Cyril</label>
-                        <div type="textpart" xml:id="Introduction"></div>
-                        <div type="textpart" xml:id="JohnOfNikiu79"></div>
-                        …
-                        <div type="textpart" xml:id="JohnOfNikiu87"></div>
-                     </div>
-                     
-                  </egXML>
-                  <head type="legend"><tag>div type='textpart'</tag> in the <title level="m">Qerəllos</title></head>
-               </figure>
-            
-               <p>The corresponding relations to chapters 79 and 87 of the <title level="m">Chronicle of John of Nikiu</title> could then be encoded as follows:</p>
-               <p> </p>
-              <figure xml:id="example7">
-                 <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                    <relation name="saws:hasUsed" ref="http://purl.org/saws/ontology#hasUsed" 
-                    active=" https://betamasaheft.eu/LIT3309Qerellos#JohnOfNikiu79" 
-                    passive=" https://betamasaheft.eu/LIT1239Chroni#Chapter79">
-                    <desc>This part of the short biography of Cyril contains an almost verbatim quotation of
-                       Chapter 79 of the Chronicle of John of Nikiu.</desc>
-                 </relation>
-                 <relation name="saws:hasUsed" ref="http://purl.org/saws/ontology#hasUsed" 
-                    active=" https://betamasaheft.eu/LIT3309Qerellos#JohnOfNikiu87" 
-                    passive=" https://betamasaheft.eu/LIT1239Chroni#Chapter87">
-                    <desc>This part of the short biography of Cyril contains a concise paraphrase of
-                       Chapter 87 of the Chronicle of John of Nikiu.</desc>
-                 </relation>
-                 </egXML>
-                 <head type="legend">Text reuse of the <title level="m">Chronicle of John of Nikiu</title> in the <title level="m">Vita of Cyril of Alexandria</title></head>
-              </figure>
-            
-                <p>I have preferred to encode the first case of text reuse using a <tag>relation name="saws:hasUsed"</tag> rather than a <att>corresp</att> attribute as in the previous case, for two reasons. Firstly, the marked-up string contains a sentence signalizing the text reuse. As I consider it to be a part of a <tag>div type="textpart"</tag>, this <tag>div type="textpart"</tag> does not correspond any more precisely to chapter 79 of the <title level="m">Chronicle of John of Nikiu</title>. Secondly, the text of the chapter has a small but crucial modification, which could have been introduced via scribal error or the compiler’s intention. In the text of the <title level="m">Chronicle of John of Nikiu</title> this chapter tells the story of St Theophilus and mentions St Cyril, his nephew, only once (<ref type="bibl" target="#zotenberg1883">Zotenberg 1883, 88–89, 315–317</ref>; <ref type="bibl" target="#charles1916">Charles 1916, 75–76</ref>; <ref type="bibl" target="#elagina2018">Elagina 2018, 116–119</ref>). However, in the <title level="m">Vita of Cyril of Alexandria</title> the name of Theophilus was substituted by the name of Cyril thus the story of Theophilus becoming a bishop becomes that of Cyril (<ref type="bibl" target="#elagina2018">Elagina 2018, lxi, 116–119</ref>).<note><p>Däbrä Dammo ʾAbuna ʾArägawi, Ethio-SPaRe, DD-026, fol. 3vb.</p></note> It is difficult to determine whether this innovation was the intention of the compiler of the <title level="m">Vita of Cyril of Alexandria</title> or scribal error, whether in the text of the <title level="m">Vita of Cyril of Alexandria</title> or its <term>Vorlage</term>. Despite being a small innovation in formal terms, it changes the meaning of the text completely and can represent a deep reworking of the source material. Thus, I preferred to encode it using <tag>relation name="saws:hasUsed"</tag> and to describe the relation more precisely in the <gi>desc</gi>.</p>
-               <p>Regarding the example of the <title level="m">Vita of Cyril of Alexandria</title> the possibility and added value of defining the strings of borrowed material with <tag>div type="textpart"</tag>s may be discussed. Basically, if introducing such <tag>div type="textpart"</tag>s is possible and does not alter the already established system of text divisions, the markup of precise strings of borrowed material could be a sustainable practice. Especially in the case of a lengthy recipient text, which attests phenomena of sporadic text reuse, or of unsignalized hardly retrievable text reuse, the markup of borrowed material in a digital edition could be a good solution. To distinguish the markup of text reuse from other text divisions for the sake of searchability and for an adequate visualization, one can use a value <soCalled>textreuse</soCalled> in the <att>subtype</att> attribute to signalize the specific character of the <tag>div type="textpart"</tag>s. This method of encoding could then signalize text reuse even if a corresponding <tag>div type="textpart"</tag> cannot be linked with a <att>corresp</att> attribute or <gi>relation</gi> to an internal or external identifier of a source text.<note><p>With <term>internal</term> I understand the identifiers of the project <title level="m">Beta maṣāḥǝft</title>, while the <term>external</term> identifiers designate those applied in other projects.</p></note> Besides the possibility of highlighting the borrowed material in the text, this markup would provide more usable data for quantitative and qualitative analysis of the scale of text reuse in a literary work, or in a group of literary works if they follow the same way of encoding. For example, one could compare the strings of the borrowed material with the strings of an <soCalled>innovative</soCalled> text to analyze their ratio, or compare the strings of borrowed material from different sources, etc.</p></div>
-               <div xml:id="narratives"><head>Narrative Units and Text Reuse</head>
-                  <p>At this point the concept of narrative units is addressed, which is applied for the encoding of some other cases of parallel text transmissions in the project <title level="m">Beta maṣāḥǝft</title>. The project inherited the concept from Orlandi (<ref type="bibl" target="#orlandi2013">2013, 93</ref>) and applies the definition of a narrative unit as <quote source="#quoteref3">a unit which is only about form and general content and not one exact sequence.<gap/> While textual units (i.e., works of literature – D.E.) must have, by definition, a fixed content and a precise sequence, narrative units do not have these requirements and allow for a constructive fuzziness which enables researchers to point to an ideal text which does not have fixed contents in a fixed sequence. One practical use of this distinction is, for example, to associate narrative portions to different recensions of a text</quote> (<ref target="#liuzzo2019" type="bibl" xml:id="quoteref3">Liuzzo 2019, 83</ref>). Indeed, the database of the project contains by now 182 narrative units, which can be divided into two main groups: narrative units which define a specific type of a text (for example, <ref target="https://betamasaheft.eu/narratives/NAR0001gwelt">NAR0001gwelt</ref><note><p>Accessed January 23, 2022, <ptr target="https://betamasaheft.eu/narratives/NAR0001gwelt"/>.</p></note> for a text of a land donation) and narrative units which refer to portions of texts which are transmitted as <quote source="#quoteref4">different versions in multiple recensions of the same work or even in different works</quote> (<ref type="bibl" target="#liuzzo2018" xml:id="quoteref4">Liuzzo et al. 2018</ref>). For example, <ref target="https://betamasaheft.eu/narratives/NAR0013pelican">NAR0013pelican</ref><note><p>Accessed January 23, 2022, <ptr target="https://betamasaheft.eu/narratives/NAR0013pelican"/>.</p></note> always indicates the portion of text on the pelican in different recensions of the <ref target="https://betamasaheft.eu/works/LIT1401Physio">
-                  <title level="m">Physiologus</title> (CAe 1401)</ref><note><p>Accessed January 23, 2022, <ptr target="https://betamasaheft.eu/works/LIT1401Physio"/>.</p></note> in Ethiopic (<ref type="bibl" target="#villa2018">Villa 2018</ref>).</p>
-               <p>However, the concept of narrative units does not necessarily implicate the <term>source text–recipient text</term> relation, which is a core concept of text reuse. In case of multiple translations of a literary work, as with the Ethiopic <title level="m">Synaxarium</title>, extant in two translations, <ref target="https://betamasaheft.eu/works/LIT4032SenkessarS"><title level="m">Synaxarium</title> (Group A) (CAe 4032)</ref><note><p>Accessed January 23, 2022, <ptr target="https://betamasaheft.eu/works/LIT4032SenkessarS"/>.</p></note> and <ref target="https://betamasaheft.eu/works/LIT4033SenkessarS"><title level="m">Synaxarium</title> (Group B) (CAe 4033)</ref><note><p>Accessed January 23, 2022, <ptr target="https://betamasaheft.eu/works/LIT4033SenkessarS"/>.</p></note> none of its translations is a source for another one, but they do share narrative units. Moreover, upon returning to the definition of text reuse at the beginning of this paper, it can be seen that the text reuse implies that a material has been borrowed <quote source="#quoteref5">in order to serve a different purpose</quote> (<ref target="#lee2007" type="bibl" xml:id="quoteref5">Lee 2007, 472</ref>). This is an important aspect of text reuse which means for instance, that a new text redaction which preserves the initial purpose of a text does not represent a case of text reuse, but again it shares narrative units with the previous text redaction. Thus, the narrative units are employed to document a different phenomenon: texts which might at least theoretically be traced back to a common (often very distant) ancestor—be it a certain text or a text model (as in the case of land grants above)—whereas the text reuse implies that the texts reveal <term>ancestor – descendant</term> relationships. That, however, does not mean that narrative units are completely excluded from the markup of text reuse. For example, if the source text has been lost, but its alternative versions or recensions are still attested, the recipient text can be linked to the narrative units of these versions. The same is applicable if the source text is not clearly identifiable.</p></div>
-               <div xml:id="linking">
-                  <head>Linking to External Resources</head>
-                  <p>The last example presents a way of implicitly documenting text reuse, involving external resources. The above-mentioned <title level="m">Chronicle of John of Nikiu</title>, quoted and paraphrased in the <title level="m">Vita of Cyril of Alexandria</title>, is itself dependent on several sources. This historiographical text was written around the end of the seventh century in Egypt by John, an Egyptian bishop. The original of the <title level="m">Chronicle of John of Nikiu</title> was compiled either in Greek or in Coptic. Around the twelfth century the text was translated into Arabic and transmitted into Ethiopic at the beginning of the seventeenth century. The Ethiopic version is the only surviving version of this text at the current state of the knowledge. The first part of the <title level="m">Chronicle of John of Nikiu</title> apparently relies on several sources and shows parallels with a number of other texts (<ref type="bibl" target="#zotenberg1883">Zotenberg 1883, 9–10</ref>; <ref type="bibl" target="#charles1916">Charles 1916, xi–xii</ref>; <ref type="bibl" target="#carile1986">Carile 1986, 362–363</ref>). As the text belongs to the genre of a universal chronicle the author had to rely on already existing textual traditions to describe the events prior to his time. Thus, the <title level="m">Chronicle of John of Nikiu</title> attests numerous cases of text reuse which could be marked up and linked to the available parallel traditions, which however had not necessarily been the direct sources for the <title level="m">Chronicle of John of Nikiu</title>. One such tradition is the <title level="m">Chronicle of John Malalas</title>, which is the earliest extant example of a Byzantine chronicle (<ref type="bibl" target="#jeffreys1986">E. Jeffreys, M. Jeffreys, and Scott 1986, xxi-xxiii</ref>). The similarities between these two texts are so striking that the <title level="m">Chronicle of John of Nikiu</title> is even included in the list of the witnesses to the <title level="m">Chronicle of John Malalas</title> (<ref type="bibl" target="#jeffreys1986">E. Jeffreys, M. Jeffreys, and Scott 1986, xxvi</ref>).<note><p>However, pointing that <quote source="#quoteref6">John of Nikiu is rarely of independent value as a witness to Malala’s text</quote> (<ref type="bibl" target="#jeffreys1986" xml:id="quoteref6">E. Jeffreys, M. Jeffreys, and Scott 1986, xxxvi</ref>).</p></note> Currently a digital edition of the <title level="m">Chronicle of John Malalas</title><note><p>Based on the edition by Thurn (<ref type="bibl" target="#thurn2000">2000</ref>).</p></note> and a philological and historical commentary are the focus of the project of the Heidelberger Akademie der Wissenschaften, held at the Universität Tübingen.<note><p>Accessed January 23, 2022, <ptr target="https://malalas.hadw-bw.de/"/>.</p></note> The text, which is partially available on-line, is visualized according to the books and chapters of the <title level="m">Chronicle of John Malalas</title>, each of the chapters having its own URL. The encoding practice of the project <title level="m">Beta maṣāḥǝft</title> allows for the linking of a particular work or its single <tag>div type="textpart"</tag>s to external entries using <tag>relation name="skos:exactMatch"</tag><note><p>SKOS stands for Simple Knowledge Organization System, a W3C recommendation for structured controlled vocabularies (<ptr target="https://www.w3.org/2004/02/skos/"/>), <code>skos:exactMatch</code> and <code>skos:broadMatch</code> are SKOS mapping properties, used to state alignment between concept in different concept schemes.</p></note> or <tag>relation name="skos:broadMatch"</tag>.<note><p>See, accessed January 23, 2022, <ptr target="https://betamasaheft.eu/Guidelines/?id=work-teiHeader"/>. The application of this relation in the project implies according to its definition by SKOS that the passage is seen rather as a concept. But since the relations <code>skos:exactMatch</code> and <code>skos:broadMatch</code> are used to link to entities in external databases, that is most probably to the passages in other languages, referring to the interrelated passages as concepts seems reasonable.</p></note> Regarding the relations between the <title level="m">Chronicle of John of Nikiu</title> and the <title level="m">Chronicle of John Malalas</title> the application of <tag>relation name="skos:broadMatch"</tag> within the project’s Guidelines seems to be a legitimate option. Thus, for example, chapter 4 of the <title level="m">Chronicle of John of Nikiu</title> attests parallels with <ref target="https://malalas.hadw-bw.de/kommentar/1/5">Book 1.5 of the <title level="m">Chronicle of John Malalas</title></ref>.<note><p>Accessed January 23, 2022, <ptr target="https://malalas.hadw-bw.de/kommentar/1/5"/>.</p></note> Therefore, it can be encoded as in <ptr target="#example8" type="crossref"/>.</p>
-               <figure xml:id="example8">
-                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                     <div type="textpart" subtype="chapter" n="4" xml:lang="gez" xml:id="Chapter4">
-                        <label xml:lang="en">Chapter 4</label>
-                        <listRelation>
-                           <relation name="skos:broadMatch"
-                              ref="http://www.w3.org/2004/02/skos/core#broader"
-                              active="https://malalas.hadw-bw.de/kommentar/1/5"
-                              passive=" https://betamasaheft.eu/LIT1239Chroni#4">
-                              <desc>Parallel transmission in John Malalas 1.5.</desc>
-                           </relation>
-                        </listRelation>
-                     </div>
-                  </egXML>
-                  <head type="legend">Parallel transmission of the <title level="m">Chronicle of John of Nikiu</title> in the <title level="m">Chronicle of John Malalas</title></head>
-               </figure>
-               <p>This is rather an implicit and economic way of encoding text reuse. The similarities between the <title level="m">Chronicle of John Malalas</title> and the <title level="m">Chronicle of John of Nikiu</title> attest the case of text reuse in the <title level="m">Chronicle of John of Nikiu</title>, however, they do not directly point to the <title level="m">Chronicle of John Malalas</title> as a source text.<note><p>Alternatively, this case could also imply a markup using narrative units for portions of the <title level="m">Chronicle of John of Nikiu</title> for which parallel traditions are attested.</p></note> It is important to note here also that the text reuse took place at the stage of the production of the original text of the <title level="m">Chronicle of John of Nikiu</title>, in Egypt, in Coptic or Greek, but not in Ethiopic language. Therefore, in this case the text reuse is not documented for the manuscript culture of Ethiopia and Eritrea but rather for the Coptic or Copto-Greek manuscript culture, in which the original was produced.</p></div>
-              <div xml:id="conclusions"> <head>Conclusion</head>
-                 <p>Text reuse is an interesting aspect of literary traditions, which opens wide perspectives for future studies. Its detection and documentation may help a deeper understanding of a given written culture. In this paper I attempted to address the existing approaches and possibilities of encoding the text reuse in the project <title level="m">Beta maṣāḥǝft</title>. The variety of forms of text reuse is reflected in the variety of possibilities of its encoding, ranging from exact mapping of the relation between target text and the source text to a more fluid descriptive markup. The article has addressed several problems faced in the encoding of text reuse: the mapping of the source and the recipient texts, the markup of the strings of borrowed material, the encoding of text reuse of a different manuscript tradition within the frame of the project. The strategies of encoding the single cases presented in the paper may certainly be criticized and improved, however, they seem to satisfy the basic academic needs. Nevertheless, a more standardized approach to the encoding of text reuse might deliver better data for statistical approaches at the level of a single work, the literary production of a particular period or of the tradition in general.</p></div>
-            
+               </egXML>
+               <head type="legend"><tag>div type='textpart'</tag> in the <title level="m"
+                     >Qerəllos</title></head>
+            </figure>
+
+            <p>The corresponding relations to chapters 79 and 87 of the <title level="m">Chronicle
+                  of John of Nikiu</title> could then be encoded as follows:</p>
+            <p> </p>
+            <figure xml:id="example7">
+               <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <relation name="saws:hasUsed" ref="http://purl.org/saws/ontology#hasUsed"
+                     active=" https://betamasaheft.eu/LIT3309Qerellos#JohnOfNikiu79"
+                     passive=" https://betamasaheft.eu/LIT1239Chroni#Chapter79">
+                     <desc>This part of the short biography of Cyril contains an almost verbatim
+                        quotation of Chapter 79 of the Chronicle of John of Nikiu.</desc>
+                  </relation>
+                  <relation name="saws:hasUsed" ref="http://purl.org/saws/ontology#hasUsed"
+                     active=" https://betamasaheft.eu/LIT3309Qerellos#JohnOfNikiu87"
+                     passive=" https://betamasaheft.eu/LIT1239Chroni#Chapter87">
+                     <desc>This part of the short biography of Cyril contains a concise paraphrase
+                        of Chapter 87 of the Chronicle of John of Nikiu.</desc>
+                  </relation>
+               </egXML>
+               <head type="legend">Text reuse of the <title level="m">Chronicle of John of
+                     Nikiu</title> in the <title level="m">Vita of Cyril of
+                  Alexandria</title></head>
+            </figure>
+
+            <p>I have preferred to encode the first case of text reuse using a <tag>relation
+                  name="saws:hasUsed"</tag> rather than a <att>corresp</att> attribute as in the
+               previous case, for two reasons. Firstly, the marked-up string contains a sentence
+               signalizing the text reuse. As I consider it to be a part of a <tag>div
+                  type="textpart"</tag>, this <tag>div type="textpart"</tag> does not correspond any
+               more precisely to chapter 79 of the <title level="m">Chronicle of John of
+                  Nikiu</title>. Secondly, the text of the chapter has a small but crucial
+               modification, which could have been introduced via scribal error or the compiler’s
+               intention. In the text of the <title level="m">Chronicle of John of Nikiu</title>
+               this chapter tells the story of St Theophilus and mentions St Cyril, his nephew, only
+               once (<ref type="bibl" target="#zotenberg1883">Zotenberg 1883, 88–89, 315–317</ref>;
+                  <ref type="bibl" target="#charles1916">Charles 1916, 75–76</ref>; <ref type="bibl"
+                  target="#elagina2018">Elagina 2018, 116–119</ref>). However, in the <title
+                  level="m">Vita of Cyril of Alexandria</title> the name of Theophilus was
+               substituted by the name of Cyril thus the story of Theophilus becoming a bishop
+               becomes that of Cyril (<ref type="bibl" target="#elagina2018">Elagina 2018, lxi,
+                  116–119</ref>).<note><p>Däbrä Dammo ʾAbuna ʾArägawi, Ethio-SPaRe, DD-026, fol.
+                     3vb.</p></note> It is difficult to determine whether this innovation was the
+               intention of the compiler of the <title level="m">Vita of Cyril of Alexandria</title>
+               or scribal error, whether in the text of the <title level="m">Vita of Cyril of
+                  Alexandria</title> or its <term>Vorlage</term>. Despite being a small innovation
+               in formal terms, it changes the meaning of the text completely and can represent a
+               deep reworking of the source material. Thus, I preferred to encode it using
+                  <tag>relation name="saws:hasUsed"</tag> and to describe the relation more
+               precisely in the <gi>desc</gi>.</p>
+            <p>Regarding the example of the <title level="m">Vita of Cyril of Alexandria</title> the
+               possibility and added value of defining the strings of borrowed material with
+                  <tag>div type="textpart"</tag>s may be discussed. Basically, if introducing such
+                  <tag>div type="textpart"</tag>s is possible and does not alter the already
+               established system of text divisions, the markup of precise strings of borrowed
+               material could be a sustainable practice. Especially in the case of a lengthy
+               recipient text, which attests phenomena of sporadic text reuse, or of unsignalized
+               hardly retrievable text reuse, the markup of borrowed material in a digital edition
+               could be a good solution. To distinguish the markup of text reuse from other text
+               divisions for the sake of searchability and for an adequate visualization, one can
+               use a value <soCalled>textreuse</soCalled> in the <att>subtype</att> attribute to
+               signalize the specific character of the <tag>div type="textpart"</tag>s. This method
+               of encoding could then signalize text reuse even if a corresponding <tag>div
+                  type="textpart"</tag> cannot be linked with a <att>corresp</att> attribute or
+                  <gi>relation</gi> to an internal or external identifier of a source
+                     text.<note><p>With <term>internal</term> I understand the identifiers of the
+                     project <title level="m">Beta maṣāḥǝft</title>, while the <term>external</term>
+                     identifiers designate those applied in other projects.</p></note> Besides the
+               possibility of highlighting the borrowed material in the text, this markup would
+               provide more usable data for quantitative and qualitative analysis of the scale of
+               text reuse in a literary work, or in a group of literary works if they follow the
+               same way of encoding. For example, one could compare the strings of the borrowed
+               material with the strings of an <soCalled>innovative</soCalled> text to analyze their
+               ratio, or compare the strings of borrowed material from different sources, etc.</p>
+         </div>
+         <div xml:id="narratives">
+            <head>Narrative Units and Text Reuse</head>
+            <p>At this point the concept of narrative units is addressed, which is applied for the
+               encoding of some other cases of parallel text transmissions in the project <title
+                  level="m">Beta maṣāḥǝft</title>. The project inherited the concept from Orlandi
+                  (<ref type="bibl" target="#orlandi2013">2013, 93</ref>) and applies the definition
+               of a narrative unit as <quote source="#quoteref3">a unit which is only about form and
+                  general content and not one exact sequence.<gap/> While textual units (i.e., works
+                  of literature – D.E.) must have, by definition, a fixed content and a precise
+                  sequence, narrative units do not have these requirements and allow for a
+                  constructive fuzziness which enables researchers to point to an ideal text which
+                  does not have fixed contents in a fixed sequence. One practical use of this
+                  distinction is, for example, to associate narrative portions to different
+                  recensions of a text</quote> (<ref target="#liuzzo2019" type="bibl"
+                  xml:id="quoteref3">Liuzzo 2019, 83</ref>). Indeed, the database of the project
+               contains by now 182 narrative units, which can be divided into two main groups:
+               narrative units which define a specific type of a text (for example, <ref
+                  target="https://betamasaheft.eu/narratives/NAR0001gwelt"
+                     >NAR0001gwelt</ref><note><p>Accessed January 23, 2022, <ptr
+                        target="https://betamasaheft.eu/narratives/NAR0001gwelt"/>.</p></note> for a
+               text of a land donation) and narrative units which refer to portions of texts which
+               are transmitted as <quote source="#quoteref4">different versions in multiple
+                  recensions of the same work or even in different works</quote> (<ref type="bibl"
+                  target="#liuzzo2018" xml:id="quoteref4">Liuzzo et al. 2018</ref>). For example,
+                  <ref target="https://betamasaheft.eu/narratives/NAR0013pelican"
+                  >NAR0013pelican</ref><note><p>Accessed January 23, 2022, <ptr
+                        target="https://betamasaheft.eu/narratives/NAR0013pelican"/>.</p></note>
+               always indicates the portion of text on the pelican in different recensions of the
+                  <ref target="https://betamasaheft.eu/works/LIT1401Physio">
+                  <title level="m">Physiologus</title> (CAe 1401)</ref><note><p>Accessed January 23,
+                     2022, <ptr target="https://betamasaheft.eu/works/LIT1401Physio"/>.</p></note>
+               in Ethiopic (<ref type="bibl" target="#villa2018">Villa 2018</ref>).</p>
+            <p>However, the concept of narrative units does not necessarily implicate the
+                  <term>source text–recipient text</term> relation, which is a core concept of text
+               reuse. In case of multiple translations of a literary work, as with the Ethiopic
+                  <title level="m">Synaxarium</title>, extant in two translations, <ref
+                  target="https://betamasaheft.eu/works/LIT4032SenkessarS"><title level="m"
+                     >Synaxarium</title> (Group A) (CAe 4032)</ref><note><p>Accessed January 23,
+                     2022, <ptr target="https://betamasaheft.eu/works/LIT4032SenkessarS"
+                  />.</p></note> and <ref target="https://betamasaheft.eu/works/LIT4033SenkessarS"
+                     ><title level="m">Synaxarium</title> (Group B) (CAe
+                     4033)</ref><note><p>Accessed January 23, 2022, <ptr
+                        target="https://betamasaheft.eu/works/LIT4033SenkessarS"/>.</p></note> none
+               of its translations is a source for another one, but they do share narrative units.
+               Moreover, upon returning to the definition of text reuse at the beginning of this
+               paper, it can be seen that the text reuse implies that a material has been borrowed
+                  <quote source="#quoteref5">in order to serve a different purpose</quote> (<ref
+                  target="#lee2007" type="bibl" xml:id="quoteref5">Lee 2007, 472</ref>). This is an
+               important aspect of text reuse which means for instance, that a new text redaction
+               which preserves the initial purpose of a text does not represent a case of text
+               reuse, but again it shares narrative units with the previous text redaction. Thus,
+               the narrative units are employed to document a different phenomenon: texts which
+               might at least theoretically be traced back to a common (often very distant)
+               ancestor—be it a certain text or a text model (as in the case of land grants
+               above)—whereas the text reuse implies that the texts reveal <term>ancestor –
+                  descendant</term> relationships. That, however, does not mean that narrative units
+               are completely excluded from the markup of text reuse. For example, if the source
+               text has been lost, but its alternative versions or recensions are still attested,
+               the recipient text can be linked to the narrative units of these versions. The same
+               is applicable if the source text is not clearly identifiable.</p>
+         </div>
+         <div xml:id="linking">
+            <head>Linking to External Resources</head>
+            <p>The last example presents a way of implicitly documenting text reuse, involving
+               external resources. The above-mentioned <title level="m">Chronicle of John of
+                  Nikiu</title>, quoted and paraphrased in the <title level="m">Vita of Cyril of
+                  Alexandria</title>, is itself dependent on several sources. This historiographical
+               text was written around the end of the seventh century in Egypt by John, an Egyptian
+               bishop. The original of the <title level="m">Chronicle of John of Nikiu</title> was
+               compiled either in Greek or in Coptic. Around the twelfth century the text was
+               translated into Arabic and transmitted into Ethiopic at the beginning of the
+               seventeenth century. The Ethiopic version is the only surviving version of this text
+               at the current state of the knowledge. The first part of the <title level="m"
+                  >Chronicle of John of Nikiu</title> apparently relies on several sources and shows
+               parallels with a number of other texts (<ref type="bibl" target="#zotenberg1883"
+                  >Zotenberg 1883, 9–10</ref>; <ref type="bibl" target="#charles1916">Charles 1916,
+                  xi–xii</ref>; <ref type="bibl" target="#carile1986">Carile 1986, 362–363</ref>).
+               As the text belongs to the genre of a universal chronicle the author had to rely on
+               already existing textual traditions to describe the events prior to his time. Thus,
+               the <title level="m">Chronicle of John of Nikiu</title> attests numerous cases of
+               text reuse which could be marked up and linked to the available parallel traditions,
+               which however had not necessarily been the direct sources for the <title level="m"
+                  >Chronicle of John of Nikiu</title>. One such tradition is the <title level="m"
+                  >Chronicle of John Malalas</title>, which is the earliest extant example of a
+               Byzantine chronicle (<ref type="bibl" target="#jeffreys1986">E. Jeffreys, M.
+                  Jeffreys, and Scott 1986, xxi-xxiii</ref>). The similarities between these two
+               texts are so striking that the <title level="m">Chronicle of John of Nikiu</title> is
+               even included in the list of the witnesses to the <title level="m">Chronicle of John
+                  Malalas</title> (<ref type="bibl" target="#jeffreys1986">E. Jeffreys, M. Jeffreys,
+                  and Scott 1986, xxvi</ref>).<note><p>However, pointing that <quote
+                        source="#quoteref6">John of Nikiu is rarely of independent value as a
+                        witness to Malala’s text</quote> (<ref type="bibl" target="#jeffreys1986"
+                        xml:id="quoteref6">E. Jeffreys, M. Jeffreys, and Scott 1986,
+                     xxxvi</ref>).</p></note> Currently a digital edition of the <title level="m"
+                  >Chronicle of John Malalas</title><note><p>Based on the edition by Thurn (<ref
+                        type="bibl" target="#thurn2000">2000</ref>).</p></note> and a philological
+               and historical commentary are the focus of the project of the Heidelberger Akademie
+               der Wissenschaften, held at the Universität Tübingen.<note><p>Accessed January 23,
+                     2022, <ptr target="https://malalas.hadw-bw.de/"/>.</p></note> The text, which
+               is partially available on-line, is visualized according to the books and chapters of
+               the <title level="m">Chronicle of John Malalas</title>, each of the chapters having
+               its own URL. The encoding practice of the project <title level="m">Beta
+                  maṣāḥǝft</title> allows for the linking of a particular work or its single
+                  <tag>div type="textpart"</tag>s to external entries using <tag>relation
+                  name="skos:exactMatch"</tag><note><p>SKOS stands for Simple Knowledge Organization
+                     System, a W3C recommendation for structured controlled vocabularies (<ptr
+                        target="https://www.w3.org/2004/02/skos/"/>), <code>skos:exactMatch</code>
+                     and <code>skos:broadMatch</code> are SKOS mapping properties, used to state
+                     alignment between concept in different concept schemes.</p></note> or
+                  <tag>relation name="skos:broadMatch"</tag>.<note><p>See, accessed January 23,
+                     2022, <ptr target="https://betamasaheft.eu/Guidelines/?id=work-teiHeader"/>.
+                     The application of this relation in the project implies according to its
+                     definition by SKOS that the passage is seen rather as a concept. But since the
+                     relations <code>skos:exactMatch</code> and <code>skos:broadMatch</code> are
+                     used to link to entities in external databases, that is most probably to the
+                     passages in other languages, referring to the interrelated passages as concepts
+                     seems reasonable.</p></note> Regarding the relations between the <title
+                  level="m">Chronicle of John of Nikiu</title> and the <title level="m">Chronicle of
+                  John Malalas</title> the application of <tag>relation name="skos:broadMatch"</tag>
+               within the project’s Guidelines seems to be a legitimate option. Thus, for example,
+               chapter 4 of the <title level="m">Chronicle of John of Nikiu</title> attests
+               parallels with <ref target="https://malalas.hadw-bw.de/kommentar/1/5">Book 1.5 of the
+                     <title level="m">Chronicle of John Malalas</title></ref>.<note><p>Accessed
+                     January 23, 2022, <ptr target="https://malalas.hadw-bw.de/kommentar/1/5"
+                  />.</p></note> Therefore, it can be encoded as in <ptr target="#example8"
+                  type="crossref"/>.</p>
+            <figure xml:id="example8">
+               <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <div type="textpart" subtype="chapter" n="4" xml:lang="gez" xml:id="Chapter4">
+                     <label xml:lang="en">Chapter 4</label>
+                     <listRelation>
+                        <relation name="skos:broadMatch"
+                           ref="http://www.w3.org/2004/02/skos/core#broader"
+                           active="https://malalas.hadw-bw.de/kommentar/1/5"
+                           passive=" https://betamasaheft.eu/LIT1239Chroni#4">
+                           <desc>Parallel transmission in John Malalas 1.5.</desc>
+                        </relation>
+                     </listRelation>
+                  </div>
+               </egXML>
+               <head type="legend">Parallel transmission of the <title level="m">Chronicle of John
+                     of Nikiu</title> in the <title level="m">Chronicle of John
+                  Malalas</title></head>
+            </figure>
+            <p>This is rather an implicit and economic way of encoding text reuse. The similarities
+               between the <title level="m">Chronicle of John Malalas</title> and the <title
+                  level="m">Chronicle of John of Nikiu</title> attest the case of text reuse in the
+                  <title level="m">Chronicle of John of Nikiu</title>, however, they do not directly
+               point to the <title level="m">Chronicle of John Malalas</title> as a source
+                     text.<note><p>Alternatively, this case could also imply a markup using
+                     narrative units for portions of the <title level="m">Chronicle of John of
+                        Nikiu</title> for which parallel traditions are attested.</p></note> It is
+               important to note here also that the text reuse took place at the stage of the
+               production of the original text of the <title level="m">Chronicle of John of
+                  Nikiu</title>, in Egypt, in Coptic or Greek, but not in Ethiopic language.
+               Therefore, in this case the text reuse is not documented for the manuscript culture
+               of Ethiopia and Eritrea but rather for the Coptic or Copto-Greek manuscript culture,
+               in which the original was produced.</p>
+         </div>
+         <div xml:id="conclusions">
+            <head>Conclusion</head>
+            <p>Text reuse is an interesting aspect of literary traditions, which opens wide
+               perspectives for future studies. Its detection and documentation may help a deeper
+               understanding of a given written culture. In this paper I attempted to address the
+               existing approaches and possibilities of encoding the text reuse in the project
+                  <title level="m">Beta maṣāḥǝft</title>. The variety of forms of text reuse is
+               reflected in the variety of possibilities of its encoding, ranging from exact mapping
+               of the relation between target text and the source text to a more fluid descriptive
+               markup. The article has addressed several problems faced in the encoding of text
+               reuse: the mapping of the source and the recipient texts, the markup of the strings
+               of borrowed material, the encoding of text reuse of a different manuscript tradition
+               within the frame of the project. The strategies of encoding the single cases
+               presented in the paper may certainly be criticized and improved, however, they seem
+               to satisfy the basic academic needs. Nevertheless, a more standardized approach to
+               the encoding of text reuse might deliver better data for statistical approaches at
+               the level of a single work, the literary production of a particular period or of the
+               tradition in general.</p>
+         </div>
+
       </body>
       <back>
          <div type="bibliography">
-        <!-- the bibliography for the article, organized as a series of <bibl> elements inside <listBibl> -->
+            <!-- the bibliography for the article, organized as a series of <bibl> elements inside <listBibl> -->
             <listBibl>
-               <bibl xml:id="bausi2010"><author>Bausi, Alessandro</author>. <date>2010</date>. <title level="a">Qerǝllos.</title> In <title level="m">Encyclopaedia Aethiopica</title>, edited by <editor>Siegbert Uhlig</editor> and <editor>Alessandro Bausi</editor>, IV:287a–90. <pubPlace>Wiesbaden</pubPlace>: <publisher>Harrassowitz Verlag</publisher>.</bibl>
-               <bibl xml:id="berti2015"><author>Monica Berti</author>, <author>Bridget Almas</author>, <author>David Dubin</author>, <author>Greta Franzini</author>, <author>Simona Stoyanova</author> and <author>Gregory R. Crane</author>. <date>2015</date>. <title level="a">The Linked Fragment: TEI and the Encoding of Text Reuses of Lost Authors</title>, <title level="j">Journal of the Text Encoding Initiative</title> <biblScope unit="issue">8</biblScope> <idno type="URL">http://journals.openedition.org/jtei/1218</idno>, doi:<idno type="DOI">10.4000/jtei.1218</idno>.</bibl>
-               <bibl xml:id="carile1986"><author>Carile, Antonio</author>. <date>1986</date>. <title level="a">Giovanni Di Nikius: Cronista Bizantino-Copto Del VII Secolo.</title> In <title level="m">Byzantium: Tribute to Andreas N. Stratos</title>, II: Theology and Philology: 353–98. <pubPlace>Athens</pubPlace>.</bibl>
-               <bibl xml:id="charles1916"><author>Charles, Robert Henry</author>. <date>1916</date>. <title level="m">The Chronicle of John, Bishop of Nikiu Translated from Zotenberg’s Ethiopic Text.</title> Text and Translation Society <pubPlace>London</pubPlace>: <publisher>Williams &amp; Norgate</publisher>. <ptr target="https://archive.org/details/CharlesTheChronicleOfJohnBishopOfNikiuTranslatedFromZotenbergsEthiopicText/"/>.</bibl>
-               <bibl xml:id="gerard2010"><author>Colin, Gérard</author>, and <author>Alessandro Bausi</author>. <date>2010</date>. <title level="a">Sǝnkǝssar.</title> In <title level="m">Encyclopaedia Aethiopica</title>, edited by <editor>Siegbert Uhlig</editor> and <editor>Alessandro Bausi</editor>, IV:621a–23. <pubPlace>Wiesbaden</pubPlace>: <publisher>Harrassowitz Verlag</publisher>.</bibl>
-               <bibl xml:id="elagina2018"><author>Elagina, Daria</author>. <date>2018</date>. <title level="u">The Textual Tradition of the Chronicle of John of Nikiu: Towards the Critical Edition of the Ethiopic Version.</title> <pubPlace>Hamburg</pubPlace>: Universität Hamburg. <ptr target="https://ediss.sub.uni-hamburg.de/handle/ediss/6331"/> .</bibl>
-               <bibl xml:id="franzini2016"><author>Franzini, Greta</author>, <author>Emily Franzini</author>, and <author>Marco Büchler</author>. <date>2016</date>. <title level="a">Historical Text Reuse: What Is It?</title> 2016. <ptr target="http://www.etrap.eu/historical-text-re-use/"/>.</bibl>
-               <bibl xml:id="jeffreys1986"><author>Jeffreys, Elizabeth</author>, <author>Michael Jeffreys</author>, and <author>Roger Scott</author>, trans. 1986. <title level="m">The Chronicle of John Malalas</title>. Vol. 4. Byzantina Australiensia. <pubPlace>Melbourne</pubPlace>:<publisher> Australian Association for Byzantine Studies</publisher>.</bibl>
-               <bibl xml:id="lee2007"><author>Lee, John</author>. <date>2007</date>. <title level="a">A Computational Model of Text Reuse in Ancient Literary Texts.</title> In <title level="m">Proceedings of the 45th Annual Meeting of the Association of Computational Linguistics</title>, edited by <editor>Annie Zaenen</editor> and <editor>Antal van den Bosch</editor>, 472–479. <pubPlace>Prague</pubPlace>: <publisher>Association for Computational Linguistics</publisher>. <ptr target="https://aclanthology.org/P07-1060.pdf"/>.</bibl>
-               <bibl xml:id="liuzzo2019"><author>Liuzzo, Pietro Maria</author>. <date>2019</date>. <title level="m">Digital Approaches to Ethiopian and Eritrean Studies</title>. Supplement to Aethiopica 8. <pubPlace>Wiesbaden</pubPlace>: <publisher>Harrassowitz Verlag</publisher>. <ptr target="https://doi.org/10.2307/j.ctvrnfr3q"/> .</bibl>
-               <bibl xml:id="liuzzo2018"><author>Liuzzo, Pietro Maria</author>, <author>Dorothea Reule</author>, <author>Eugenia Sokolinski</author>, <author>Solomon Gebreyes</author>, <author>Daria Elagina</author>, <author>Denis Nosnitsin</author>, <author>Eliana Dal Sasso</author>, and <author>Jacopo Gnisci</author>. <date>2018–</date>. <title level="m">Beta Maṣāḥǝft Guidelines.</title> <ptr target="https://betamasaheft.eu/Guidelines/"/>.</bibl>
-               <bibl xml:id="orlandi2013"><author>Orlandi, Tito</author>. <date>2013</date>. <title level="a">A Terminology for the Identification of Coptic Literary Documents</title>, <title level="j">Journal of Coptic Studies</title>, no. 15: 87–94. doi:<idno type="DOI">10.2143/JCS.15.0.3005414</idno>.</bibl>
-               <bibl xml:id="pietruschka2005"><author>Pietruschka, Ute</author>. <date>2005</date>. <title level="a">Giyorgis Wäldä ʿAmid.</title> In <title level="m">Encyclopaedia Aethiopica</title>, edited by <editor>Siegbert Uhlig</editor>, II:812b–14. <pubPlace>Wiesbaden</pubPlace>: <publisher>Harrassowitz Verlag</publisher>.</bibl>
-               <bibl xml:id="raineri2005"><author>Raineri, Osvaldo</author>. <date>2005</date>. <title level="m">Salmi Etiopici Di Cristo e Della Vergine</title>. <pubPlace>Roma</pubPlace>: <publisher>Appunti di Viaggio</publisher>.</bibl>
-               <bibl xml:id="sokolinskaia2007"><author>Sokolinskaia, Evgenia</author>, and <author>Ute Pietruschka</author>. 2007. <title level="a">Mäzmurä Dǝngǝl.</title> In <title level="m">Encyclopaedia Aethiopica</title>, edited by <editor>Siegbert Uhlig</editor>, III:896b–97. <pubPlace>Wiesbaden</pubPlace>: <publisher>Harrassowitz Verlag</publisher>.</bibl>
-               <bibl xml:id="ternes2016"><author>Ternès, Anabel</author>. <date>2016</date>. <title level="m">Intertextualität: Der Text Als Collage</title>. <pubPlace>Wiesbaden</pubPlace>: <publisher>Springer</publisher>.</bibl>
-               <bibl xml:id="thurn2000"><author>Thurn, Ioannes</author>, ed. <date>2000</date>. <title level="m">Ioannis Malalae Chronographia</title>. Vol. 35. Corpus Fontium Historiae Byzantiae. <pubPlace>Berlin</pubPlace>: <publisher>Walter de Gruyter</publisher>.</bibl>
-               <bibl xml:id="uhlig2003"><author>Uhlig, Siegbert</author>. <date>2003</date>. <title level="a">Abušakər.</title> In <title level="m">Encyclopaedia Aethiopica</title>, edited by <editor>Siegbert Uhlig</editor>, I: A-C:56b–57b. <pubPlace>Wiesbaden</pubPlace>: <publisher>Harrassowitz Verlag</publisher>.</bibl>
-               <bibl xml:id="villa2018"><author>Villa, Massimo</author>. <date>2018</date>. <title level="a">Encoding Strategies and the Ethiopic Literary Heritage: The Physiologus as a Case Study.</title> <title level="j">Comparative Oriental Manuscript Studies Bulletin</title> 4/1 <title level="m">Linking Manuscripts from the Coptic, Ethiopian and Syriac Domain: Present and Future Synergy Strategies</title>: 143–50. doi:<idno type="DOI">10.25592/uhhfdm.271</idno>.</bibl>
-               <bibl xml:id="weninger2007"><author>Weninger, Stefan</author>. <date>2007</date>. <title level="a">John of Nikiu.</title> In <title level="m">Encyclopaedia Aethiopica</title>, edited by <editor>Siegbert Uhlig</editor>, III:298a–99a. <pubPlace>Wiesbaden</pubPlace>: <publisher>Harrassowitz Verlag</publisher>.</bibl>
-               <bibl xml:id="wright1877"><author>Wright, William</author>. <date>1877</date>. <title level="m">Catalogue of the Ethiopic Manuscripts in the British Museum Acquired since the Year 1847</title>. <pubPlace>Piccadilly, Covent Garden–Berlin</pubPlace>: <publisher>Longmans &amp; CO., Asher &amp; CO.</publisher> <ptr target="https://archive.org/details/catalogueofethio00brituoft"/>.</bibl>
-               <bibl xml:id="zotenberg1883"><author>Zotenberg, Hermann</author>. <date>1883</date>. <title level="m">Chronique de Jean, évêque de Nikiou: texte éthiopien</title>. Edited and translated by <editor>Hermann Zotenberg</editor>. Extrait des Notices des Manuscrits 24/1. <pubPlace>Paris</pubPlace>: <publisher>Imprimerie nationale</publisher>. <ptr target="http://catalogue.bnf.fr/ark:/12148/cb30650253k"/>.</bibl>
+               <bibl xml:id="bausi2010"><author>Bausi, Alessandro</author>. <date>2010</date>.
+                     <title level="a">Qerǝllos.</title> In <title level="m">Encyclopaedia
+                     Aethiopica</title>, edited by <editor>Siegbert Uhlig</editor> and
+                     <editor>Alessandro Bausi</editor>, IV:287a–90. <pubPlace>Wiesbaden</pubPlace>:
+                     <publisher>Harrassowitz Verlag</publisher>.</bibl>
+               <bibl xml:id="berti2015"><author>Monica Berti</author>, <author>Bridget
+                     Almas</author>, <author>David Dubin</author>, <author>Greta Franzini</author>,
+                     <author>Simona Stoyanova</author> and <author>Gregory R. Crane</author>.
+                     <date>2015</date>. <title level="a">The Linked Fragment: TEI and the Encoding
+                     of Text Reuses of Lost Authors</title>, <title level="j">Journal of the Text
+                     Encoding Initiative</title>
+                  <biblScope unit="issue">8</biblScope>
+                  <idno type="URL">http://journals.openedition.org/jtei/1218</idno>, doi:<idno
+                     type="DOI">10.4000/jtei.1218</idno>.</bibl>
+               <bibl xml:id="carile1986"><author>Carile, Antonio</author>. <date>1986</date>. <title
+                     level="a">Giovanni Di Nikius: Cronista Bizantino-Copto Del VII Secolo.</title>
+                  In <title level="m">Byzantium: Tribute to Andreas N. Stratos</title>, II: Theology
+                  and Philology: 353–98. <pubPlace>Athens</pubPlace>.</bibl>
+               <bibl xml:id="charles1916"><author>Charles, Robert Henry</author>. <date>1916</date>.
+                     <title level="m">The Chronicle of John, Bishop of Nikiu Translated from
+                     Zotenberg’s Ethiopic Text.</title> Text and Translation Society
+                     <pubPlace>London</pubPlace>: <publisher>Williams &amp; Norgate</publisher>.
+                     <ptr
+                     target="https://archive.org/details/CharlesTheChronicleOfJohnBishopOfNikiuTranslatedFromZotenbergsEthiopicText/"
+                  />.</bibl>
+               <bibl xml:id="gerard2010"><author>Colin, Gérard</author>, and <author>Alessandro
+                     Bausi</author>. <date>2010</date>. <title level="a">Sǝnkǝssar.</title> In
+                     <title level="m">Encyclopaedia Aethiopica</title>, edited by <editor>Siegbert
+                     Uhlig</editor> and <editor>Alessandro Bausi</editor>, IV:621a–23.
+                     <pubPlace>Wiesbaden</pubPlace>: <publisher>Harrassowitz
+                  Verlag</publisher>.</bibl>
+               <bibl xml:id="elagina2018"><author>Elagina, Daria</author>. <date>2018</date>. <title
+                     level="u">The Textual Tradition of the Chronicle of John of Nikiu: Towards the
+                     Critical Edition of the Ethiopic Version.</title>
+                  <pubPlace>Hamburg</pubPlace>: Universität Hamburg. <ptr
+                     target="https://ediss.sub.uni-hamburg.de/handle/ediss/6331"/> .</bibl>
+               <bibl xml:id="franzini2016"><author>Franzini, Greta</author>, <author>Emily
+                     Franzini</author>, and <author>Marco Büchler</author>. <date>2016</date>.
+                     <title level="a">Historical Text Reuse: What Is It?</title> 2016. <ptr
+                     target="http://www.etrap.eu/historical-text-re-use/"/>.</bibl>
+               <bibl xml:id="jeffreys1986"><author>Jeffreys, Elizabeth</author>, <author>Michael
+                     Jeffreys</author>, and <author>Roger Scott</author>, trans. 1986. <title
+                     level="m">The Chronicle of John Malalas</title>. Vol. 4. Byzantina
+                  Australiensia. <pubPlace>Melbourne</pubPlace>:<publisher> Australian Association
+                     for Byzantine Studies</publisher>.</bibl>
+               <bibl xml:id="lee2007"><author>Lee, John</author>. <date>2007</date>. <title
+                     level="a">A Computational Model of Text Reuse in Ancient Literary
+                     Texts.</title> In <title level="m">Proceedings of the 45th Annual Meeting of
+                     the Association of Computational Linguistics</title>, edited by <editor>Annie
+                     Zaenen</editor> and <editor>Antal van den Bosch</editor>, 472–479.
+                     <pubPlace>Prague</pubPlace>: <publisher>Association for Computational
+                     Linguistics</publisher>. <ptr target="https://aclanthology.org/P07-1060.pdf"
+                  />.</bibl>
+               <bibl xml:id="liuzzo2019"><author>Liuzzo, Pietro Maria</author>. <date>2019</date>.
+                     <title level="m">Digital Approaches to Ethiopian and Eritrean Studies</title>.
+                  Supplement to Aethiopica 8. <pubPlace>Wiesbaden</pubPlace>:
+                     <publisher>Harrassowitz Verlag</publisher>. <ptr
+                     target="https://doi.org/10.2307/j.ctvrnfr3q"/> .</bibl>
+               <bibl xml:id="liuzzo2018"><author>Liuzzo, Pietro Maria</author>, <author>Dorothea
+                     Reule</author>, <author>Eugenia Sokolinski</author>, <author>Solomon
+                     Gebreyes</author>, <author>Daria Elagina</author>, <author>Denis
+                     Nosnitsin</author>, <author>Eliana Dal Sasso</author>, and <author>Jacopo
+                     Gnisci</author>. <date>2018–</date>. <title level="m">Beta Maṣāḥǝft
+                     Guidelines.</title>
+                  <ptr target="https://betamasaheft.eu/Guidelines/"/>.</bibl>
+               <bibl xml:id="orlandi2013"><author>Orlandi, Tito</author>. <date>2013</date>. <title
+                     level="a">A Terminology for the Identification of Coptic Literary
+                     Documents</title>, <title level="j">Journal of Coptic Studies</title>, no. 15:
+                  87–94. doi:<idno type="DOI">10.2143/JCS.15.0.3005414</idno>.</bibl>
+               <bibl xml:id="pietruschka2005"><author>Pietruschka, Ute</author>. <date>2005</date>.
+                     <title level="a">Giyorgis Wäldä ʿAmid.</title> In <title level="m"
+                     >Encyclopaedia Aethiopica</title>, edited by <editor>Siegbert Uhlig</editor>,
+                  II:812b–14. <pubPlace>Wiesbaden</pubPlace>: <publisher>Harrassowitz
+                     Verlag</publisher>.</bibl>
+               <bibl xml:id="raineri2005"><author>Raineri, Osvaldo</author>. <date>2005</date>.
+                     <title level="m">Salmi Etiopici Di Cristo e Della Vergine</title>.
+                     <pubPlace>Roma</pubPlace>: <publisher>Appunti di Viaggio</publisher>.</bibl>
+               <bibl xml:id="sokolinskaia2007"><author>Sokolinskaia, Evgenia</author>, and
+                     <author>Ute Pietruschka</author>. 2007. <title level="a">Mäzmurä
+                     Dǝngǝl.</title> In <title level="m">Encyclopaedia Aethiopica</title>, edited by
+                     <editor>Siegbert Uhlig</editor>, III:896b–97. <pubPlace>Wiesbaden</pubPlace>:
+                     <publisher>Harrassowitz Verlag</publisher>.</bibl>
+               <bibl xml:id="ternes2016"><author>Ternès, Anabel</author>. <date>2016</date>. <title
+                     level="m">Intertextualität: Der Text Als Collage</title>.
+                     <pubPlace>Wiesbaden</pubPlace>: <publisher>Springer</publisher>.</bibl>
+               <bibl xml:id="thurn2000"><author>Thurn, Ioannes</author>, ed. <date>2000</date>.
+                     <title level="m">Ioannis Malalae Chronographia</title>. Vol. 35. Corpus Fontium
+                  Historiae Byzantiae. <pubPlace>Berlin</pubPlace>: <publisher>Walter de
+                     Gruyter</publisher>.</bibl>
+               <bibl xml:id="uhlig2003"><author>Uhlig, Siegbert</author>. <date>2003</date>. <title
+                     level="a">Abušakər.</title> In <title level="m">Encyclopaedia
+                     Aethiopica</title>, edited by <editor>Siegbert Uhlig</editor>, I: A-C:56b–57b.
+                     <pubPlace>Wiesbaden</pubPlace>: <publisher>Harrassowitz
+                  Verlag</publisher>.</bibl>
+               <bibl xml:id="villa2018"><author>Villa, Massimo</author>. <date>2018</date>. <title
+                     level="a">Encoding Strategies and the Ethiopic Literary Heritage: The
+                     Physiologus as a Case Study.</title>
+                  <title level="j">Comparative Oriental Manuscript Studies Bulletin</title> 4/1
+                     <title level="m">Linking Manuscripts from the Coptic, Ethiopian and Syriac
+                     Domain: Present and Future Synergy Strategies</title>: 143–50. doi:<idno
+                     type="DOI">10.25592/uhhfdm.271</idno>.</bibl>
+               <bibl xml:id="weninger2007"><author>Weninger, Stefan</author>. <date>2007</date>.
+                     <title level="a">John of Nikiu.</title> In <title level="m">Encyclopaedia
+                     Aethiopica</title>, edited by <editor>Siegbert Uhlig</editor>, III:298a–99a.
+                     <pubPlace>Wiesbaden</pubPlace>: <publisher>Harrassowitz
+                  Verlag</publisher>.</bibl>
+               <bibl xml:id="wright1877"><author>Wright, William</author>. <date>1877</date>. <title
+                     level="m">Catalogue of the Ethiopic Manuscripts in the British Museum Acquired
+                     since the Year 1847</title>. <pubPlace>Piccadilly, Covent
+                     Garden–Berlin</pubPlace>: <publisher>Longmans &amp; CO., Asher &amp;
+                     CO.</publisher>
+                  <ptr target="https://archive.org/details/catalogueofethio00brituoft"/>.</bibl>
+               <bibl xml:id="zotenberg1883"><author>Zotenberg, Hermann</author>. <date>1883</date>.
+                     <title level="m">Chronique de Jean, évêque de Nikiou: texte éthiopien</title>.
+                  Edited and translated by <editor>Hermann Zotenberg</editor>. Extrait des Notices
+                  des Manuscrits 24/1. <pubPlace>Paris</pubPlace>: <publisher>Imprimerie
+                     nationale</publisher>. <ptr
+                     target="http://catalogue.bnf.fr/ark:/12148/cb30650253k"/>.</bibl>
             </listBibl>
          </div>
       </back>
