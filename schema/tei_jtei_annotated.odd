@@ -2624,7 +2624,7 @@
             </constraintSpec>
             <constraintSpec ident="jtei.sch-note-blocks" scheme="schematron">
               <constraint>
-                <sch:rule context="tei:note">
+                <sch:rule context="tei:note" role="warning">
                   <sch:report
                     test=".//(tei:cit|tei:table|tei:list[not(tokenize(@rend, '\s+')[. eq 'inline'])]|tei:figure|eg:egXML|tei:eg)"
                     see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#footnotes"
@@ -2849,7 +2849,7 @@
           <elementSpec ident="rendition" mode="change" module="header">
             <constraintSpec ident="jtei.sch-rendition" scheme="schematron">
               <constraint>
-                <sch:rule context="tei:rendition">
+                <sch:rule context="tei:rendition" role="warning">
                   <sch:assert test="key('idrefs', @xml:id)[. instance of attribute(rendition)]">
                     Please remove all <sch:name/> definitions that aren't actually being used in the article.
                   </sch:assert>
@@ -3174,7 +3174,7 @@
           <elementSpec ident="gap" module="core" mode="change">
             <constraintSpec ident="jtei.sch-gap" scheme="schematron">
               <constraint>
-                <sch:rule context="tei:gap">
+                <sch:rule context="tei:gap" role="warning">
                   <sch:report
                     test="following-sibling::node()[1][self::text()] and starts-with(following-sibling::node()[1], '.')"
                     see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#inline_rhetorical"
@@ -3199,7 +3199,7 @@
           
           <constraintSpec ident="jtei.sch-straightApos" scheme="schematron">
             <constraint>
-              <sch:rule context="text()[not(ancestor::tei:eg|ancestor::eg:egXML|ancestor::tei:code|ancestor::tei:tag|ancestor::tei:mentioned)]">
+              <sch:rule context="text()[not(ancestor::tei:eg|ancestor::eg:egXML|ancestor::tei:code|ancestor::tei:tag|ancestor::tei:mentioned)]" role="warning">
                 <sch:report test="matches(., $apos.straight)" 
                             sqf:fix="apostrophe.replace"
                             see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#faq"
@@ -3275,7 +3275,7 @@
           </constraintSpec>
           <constraintSpec ident="jtei.sch-ieEg" scheme="schematron">
             <constraint>
-              <sch:rule context="text()[not(ancestor::tei:eg|ancestor::eg:egXML|ancestor::tei:code|ancestor::tei:tag)]">
+              <sch:rule context="text()[not(ancestor::tei:eg|ancestor::eg:egXML|ancestor::tei:code|ancestor::tei:tag)]" role="warning">
                 <sch:report test="matches(., '(i\.e\.|e\.g\.)[^,]', 'i')" sqf:fix="comma.add">
                   You should put a comma after "i.e." and "e.g.". 
                 </sch:report>
