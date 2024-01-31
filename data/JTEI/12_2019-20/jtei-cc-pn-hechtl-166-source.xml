@@ -1,0 +1,658 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<!-- MDH NOTE TO SELF 2020-04-06: authors are fond of "cf.", but I think it's mostly used wrongly
+     in place of "See"; check https://www.chicagomanualofstyle.org/book/ed17/part3/ch14/psec042.html and 
+     get opinions from other editors. -->
+<!-- $Id: jtei-cc-pn-hechtl-166-source.xml 963 2020-05-19 22:36:51Z ron $ -->
+<TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="main">Collaborative Encoding of Text Genesis: A Pedagogical Approach for
+          Teaching Genetic Encoding with the TEI</title>
+        <author>
+          <name>
+            <forename>Stefano</forename>
+            <surname>Apostolo</surname>
+          </name>
+          <affiliation>Stefano Apostolo studied German Studies (Milan/Heidelberg) and did his Ph.D.
+            (Milan/Vienna) focusing on the philological analysis of an unpublished novel by Thomas
+            Bernhard. He currently works as a postdoctoral researcher at <orgName>the Università
+              degli Studi di Milano</orgName>, where he conducts research on the literary relations
+            between the Wiener Gruppe and the Gruppe 47.</affiliation>
+          <email>stefano.apostolo@unimi.it</email>
+        </author>
+        <author>
+          <name>
+            <forename>Ingo</forename>
+            <surname>Börner</surname>
+          </name>
+          <affiliation>Ingo Börner studied Russian and German studies in Vienna and Moscow. He
+            currently works at <orgName>the Austrian Centre for Digital Humanities at the Austrian
+              Academy of Sciences</orgName>, where he is involved in the creation of the <title
+              level="a">Critical Edition of Arthur Schnitzler’s Early Works</title>. His research
+            interests are in the areas of digital scholarly editing and digital
+            humanities.</affiliation>
+          <email>ingo.boerner@oeaw.ac.at</email>
+        </author>
+        <author>
+          <name>
+            <forename>Angelika</forename>
+            <surname>Hechtl</surname>
+          </name>
+          <affiliation>Angelika Hechtl studied Russian, Ukrainian and German Studies in Vienna and
+            Moscow. She currently works as a teaching and research associate at <orgName>the Vienna
+              University of Economics and Business</orgName>.</affiliation>
+          <email>angelika.hechtl@gmail.com</email>
+        </author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>TEI Consortium</publisher>
+        <date>14/04/2020</date>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by/4.0/">
+            <p>For this publication a Creative Commons Attribution 4.0 International license has
+              been granted by the author(s) who retain full copyright.</p>
+          </licence>
+        </availability>
+      </publicationStmt>
+      <seriesStmt>
+        <title level="j">Journal of the Text Encoding Initiative</title>
+        <editor role="guest">Janelle Jenstad</editor>
+        <editor role="guest">Kathryn Tomasek</editor>
+        <editor role="guest">Martin Holmes</editor>
+        <editor role="chief">John Walsh</editor>
+        <editor role="managing">Anne Baillot</editor>
+        <editor role="technical">Ron Van den Branden</editor>
+        <biblScope unit="issue" n="12">Selected Papers from the 2017 TEI Conference</biblScope>
+      </seriesStmt>
+      <sourceDesc>
+        <p>No source, born digital.</p>
+      </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+      <projectDesc>
+        <p>OpenEdition Journals -centre for open electronic publishing- is the platform for journals
+          in the humanities and social sciences, open to quality periodicals looking to publish
+          full-text articles online.</p>
+      </projectDesc>
+    </encodingDesc>
+    <profileDesc>
+      <langUsage>
+        <language ident="en">en</language>
+      </langUsage>
+      <textClass>
+        <keywords xml:lang="en">
+          <term>text genesis</term>
+          <term>collaborative encoding</term>
+          <term>teaching TEI</term>
+        </keywords>
+      </textClass>
+    </profileDesc>
+    <revisionDesc>
+      <change when="2020-04-14">Ron Van den Branden made some minor edits.</change>
+      <change when="2020-04-14">Ron Van den Branden normalized whitespace and added SVN ID
+        keyword.</change>
+      <change when="2020-04-06">Martin Holmes made some minor edits.</change>
+      <change when="2020-04-06">Amy Tang encoded the file.</change>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <front>
+      <div type="abstract" xml:id="abstract">
+        <p>The paper discusses the question of how genetic encoding can be taught in order to
+          introduce encoding strategies of text genesis to less technologically adept scholars. The
+          TEI Guidelines have offered ways to encode manuscript genetics for almost a decade (<ref
+            target="https://tei-c.org/Vault/P5/3.6.0/doc/tei-p5-doc/en/html/PH.html#PH-changes"
+            >chapter 11.7</ref>). However, this topic is considered to be relatively advanced, and
+          is rarely covered in introductory courses or teaching materials. The paper is based on two
+          encoding workshops at the University of Vienna in different settings. Participants
+          produced a <foreign>dossier génétique</foreign> (genetic dossier) in a collaborative
+          writing process. They had at their disposal several writing tools (pens, typewriters) and
+          different kinds of paper, in order to produce a text with several layers, while the whole
+          process was recorded on video. The products were then digitized, and each group got
+          digital copies of a different one. Participants analyzed the specific phenomena of the
+          primary sources, such as additions, corrections, deletions or scribal hands. The
+          participants were then introduced to the necessary encoding strategies to represent the
+          genesis of texts. After the introduction to the transcription tool Transkribus, the
+          students transcribed one of the texts, exported it, and enriched it further with Oxygen
+          Author using a dedicated framework.</p>
+      </div>
+    </front>
+    <body>
+      <div xml:id="introduction">
+        <head>Introduction</head>
+        <p>This paper presents the results of a pedagogical approach for teaching genetic encoding
+          with TEI. We report on two workshops, in which we introduced beginners in digital text
+          encoding to the challenging task of textual criticism. In particular, we discuss the
+          question of how encoding text genesis using TEI can be taught to technologically
+          less-experienced students and scholars.</p>
+        <p>The TEI Guidelines have offered ways to encode manuscript genetics for almost a decade
+          now, but even the more recent teaching materials for electronic text encoding and the TEI
+          do not cover all aspects of genetic encoding, especially when it comes to the encoding of
+          interrelated versions of a text or the identification of more complex revision campaigns.
+          There may be two reasons for this: even though manuscripts are fascinating research
+          objects, they are very hard to work with; and one has to know about the context of the
+          manuscript and be able to reconstruct the writing process of its author. In short, it
+          takes a lot of training and experience to be able to work with complex manuscript material
+          properly.</p>
+        <p>Moreover, in addition to the textual material itself, the application of the TEI
+          Guidelines to the material is a challenge as well. The TEI Guidelines, by one of its
+          guiding principles, is theoretically agnostic, meaning that it does not favor one or
+          another editorial school or theory. Therefore, the more general Guidelines must be adapted
+          for the encoding of manuscript genetics. Maybe because of this, encoding of manuscript
+          genetics is a topic considered not well suited for beginners, who are the target audience
+          of most teaching materials. There still seems to be a lack of materials extensively
+          targeting specific aspects of textual criticism, and genetic encoding is one of the more
+          neglected aspects. This absence leads to a disjuncture between teaching of the TEI and the
+          needs of genetic edition projects. To address this need, we tested an approach based on
+          active learning to engage participants early in the learning process of text encoding with
+          more advanced chapters of the TEI Guidelines.</p>
+      </div>
+      <div xml:id="geneticCriticism">
+        <head>Genetic Criticism</head>
+        <p>Genetic textual criticism, the identification of textual variants and the reconstruction
+          of the genesis of a (literary) text, is one of the more challenging and interesting tasks
+          philologists currently face. The genetic approach aims to reconstruct the writing process
+          and, in a way, to understand what might have happened in the author’s mind while he or she
+          was writing. Therefore, scholars are not merely concerned with recording <soCalled>what is
+            on the page</soCalled>, as they do when producing a detailed diplomatic transcription of
+          a document; they also use this evidence in order to understand how <soCalled>what there is
+            on the page</soCalled> might have come into being. On the document level, genetic
+          criticism therefore tries to capture the various traces of the writing process, to
+          reconstruct the <soCalled>micro genesis</soCalled> of a document. But scholars are also
+          interested in documenting and reconstructing the interrelations of several documents,
+          forming a so-called <soCalled><foreign>dossier génétique</foreign></soCalled>, a genetic
+          dossier (see <ref target="#grésillon1999" type="bibl">Grésillon 1999</ref>). They aim to
+          understand the <soCalled>macro genesis</soCalled> of a whole text.</p>
+        <p>For ten years now, the TEI Guidelines have provided ways to encode manuscript genetics.
+          Means to encode the relevant traces of the writing process can be found mainly in chapter
+          11 on <title level="a">Representing Primary Sources</title>. The encoding of textual
+          variants can be achieved with the encoding strategies described in chapter 12 on the
+            <title level="a">Critical Apparatus</title>. Interrelations between documents, which
+          form the basis for understanding the macro genesis of a text, are still seldom encoded.
+          The Critical Apparatus is used to encode textual variance. However, if one wants to
+          foreground not the differences between witnesses, but the similarities in witnesses that
+          vary to a great extent, encoding them using the strategies described in the chapter on the
+          critical apparatus is not feasible. There have been proposals to encode interrelations of
+          individual witnesses as graph structures, for which the TEI offers a set of dedicated
+          elements in the chapter on <title level="a">Graphs, Networks, and Tree</title> (cf. <ref
+            type="bibl" target="#tei2018">TEI Consortium 2018</ref>).</p>
+        <p>More and more projects are focusing on the genetic aspects of texts in their editions.
+          Several recent research projects demonstrate how text genesis can be done within the TEI,
+          e.g., the <ref target="#vanhulle2018" type="bibl"><title level="m">Samuel Beckett Digital
+              Manuscript Project</title></ref>,<note><ptr target="http://www.beckettarchive.org"
+            />.</note> the <ref target="#denlinger2013" type="bibl"><title level="m">Shelley-Godwin
+              Archive</title></ref>,<note><ptr target="http://shelleygodwinarchive.org"/>.</note>
+          the digital <ref target="#bohnenkamp2018" type="bibl"><title level="m"
+              >Faustedition</title></ref>,<note><ptr target="http://beta.faustedition.net"/>.</note>
+          and the <ref target="#radecke2015" type="bibl"><title level="m">Theodor Fontanes
+              Notizbücher</title></ref>.<note><ptr target="https://fontane-nb.dariah.eu"
+          />.</note>)</p>
+        <p>Within the Guidelines, the chapter on <title level="a">Representation of Primary
+            Sources</title> that describes the elements and methods for encoding phenomena of
+          interest to scholars of genetic criticism has an interesting genesis itself. To better
+          understand why some of the concepts were not included, or were only partly included in
+          more recent teaching materials, we should consider how this chapter of the Guidelines was
+          extended for the purposes of genetic editing. Tags used to represent typical
+          characteristics of primary sources like additions <gi>add</gi> and deletions <gi>del</gi>
+          were already part of P1 (<ref target="#tei1990" type="bibl">TEI P1</ref>).</p>
+        <p>It took several years to revise the TEI Guidelines to cope with demands of genetic
+          criticism. The initiative to overhaul the chapter on <title level="a">Primary
+            Sources</title> was a result of work done by the Special Interest Group (SIG) on
+          Manuscripts. A subgroup of this SIG, the <soCalled>task force on Genetic
+            Editions</soCalled> proposed <title level="a">An Encoding Model for Genetic
+            Editions</title> as a TEI customization. The resulting ODD was written in 2009 by Elena
+          Pierazzo and Malte Rehbein, with contributions by Lou Burnard, Gregor Middell, and Moritz
+          Wissenbach, and proposed to the TEI Council in 2010 (<ref target="#pierazzo2010"
+            type="bibl">Pierazzo et al. 2010</ref>).</p>
+        <p>It is helpful to go back to this draft version to understand how the recent versions of
+          the Guidelines implement the elements proposed by the SIG in a more general manner. For
+          example, the proposed <gi>ge:stageNote</gi> to describe a writing stage, a concept known
+          to scholars of genetic criticism, became the more general or <soCalled>neutral</soCalled>
+          <gi>change</gi> in <gi>listChange</gi>. Whereas the names of some of the proposed elements
+          were altered and their scope extended to a wider range of use cases, most of the examples
+          put together by the authors of the proposal ended up in the Guidelines. This becomes
+          problematic, because while some of the examples are taken from <soCalled>real
+            world</soCalled> literary texts, for example the <ref target="#folsom" type="bibl"
+              ><title level="m">Walt Whitman Archive</title></ref>,<note><ptr
+              target="https://whitmanarchive.org"/>.</note> and the <ref target="#henrik2017"
+            type="bibl"><title level="m">Manuscripts of Henrik Ibsen</title></ref>,<note><ptr
+              target="http://www.ibsen.uio.no"/>.</note> there are some which are especially
+          constructed for illustrative purposes. Most notable in this regard is the example
+          demonstrating the use of <gi>undo</gi>. The Guidelines demonstrate the application of this
+          element to a handwritten sentence—an <soCalled>imaginary</soCalled> example, as the
+          caption reads. <figure xml:id="fig1">
+            <graphic url="images/fig_01.jpg" width="1070px" height="164px"/>
+            <head type="legend">Example of <gi>undo</gi> in the Guidelines<note>
+                <p><ptr
+                    target="https://tei-c.org/Vault/P5/3.3.0/doc/tei-p5-doc/en/html/Images/undoing1.jpg"
+                  />.</p>
+              </note></head>
+          </figure> While this example is perfect for illustrating the use of <gi>undo</gi>, on a
+          meta-level it addresses a crucial point that we want to explore further in this paper: the
+            <soCalled>imaginary</soCalled> example is something especially constructed for
+          demonstrative and pedagogical purposes and stands in harsh contrast to other examples,
+          taken from archival material. While the above-mentioned sentence is very easy to read and
+          shows only the relevant textual phenomena, the other illustrative material displays a
+          variety of hands and comes from a variety of languages. This case shows the difficulty of
+          finding illustrative material to demonstrate certain textual phenomena and possible
+          encoding strategies. When teaching encoding, one is always in need of illustrative
+          examples and torn between two approaches. One may take <soCalled>real world</soCalled>
+          material, which may overwhelm the participants because they have to decipher a
+          hard-to-read hand or read text in a foreign language or vernacular, and because they have
+          to know a lot about the writing processes of its author and the writing tools used.
+          Alternatively, one may use examples constructed for teaching purposes, which are easier to
+          work with but have the problem that, later on, students might be daunted when they have to
+          use their newly gained experience on <soCalled>real world material</soCalled>.</p>
+      </div>
+      <div xml:id="teachingMaterial">
+        <head>Teaching Materials for Text Genesis</head>
+        <p>There are several resources for learning text encoding with the TEI. In the following
+          section, we discuss two outstanding courses that offer teaching materials for text genesis.<note>
+            <p>In the following section we chose widely-known course materials that aim at giving a
+              broad overview of the possibilities of the TEI. We did not look into the more specific
+              but still pedagogically-relevant documentation of specialized tools, such as the
+              extensive documentation of the Versioning machine (<ref target="#schreibman2016"
+                type="bibl">Schreibman et al. 2016</ref>), which discusses encoding of textual
+              variance by means of the critical apparatus.</p>
+          </note>
+          <ref target="#vandenbranden" type="bibl"><title level="m">TEI By
+              Example</title></ref><note><ptr target="http://teibyexample.org"/>.</note>—probably
+          the most widely-known resource introducing beginners to the TEI—in the tutorial section
+          uses <ref target="http://teibyexample.org/modules/TBED06v00.htm">an essay by school child
+              <soCalled>Hannah Renton</soCalled></ref> as the material to familiarize learners with
+          digital textual criticism. Why did the authors of this tutorial choose this three-page
+          essay as an example to introduce the encoding of primary sources? It obviously has some
+          advantages over the <soCalled>real</soCalled> examples of manuscripts taken from digital
+          archives. The handwriting is relatively clear, and the genesis of the text is not too
+          complex. Learners will most likely understand how the text was produced because they have
+          an understanding of the writing process. They have probably written similar essays
+          themselves and had them returned with marks from their teachers, which in this case
+          results in two scribal hands being identifiable in the manuscript.</p>
+        <p>Whereas <title level="m">TEI By Example</title> provides an excellent introduction to the
+          encoding of manuscript material by explaining the use of the basic tagging in a
+          transcription within <gi>text</gi>, the tutorial could not cover the above-mentioned more
+          recent developments of the TEI in regard to genetic criticism. The development of the
+          tutorials began in 2006, and a sneak preview was published in mid 2009. <title level="m"
+            >TEI By Example</title> was already finished when the work of implementing the means for
+          genetic editing into the Guidelines was done.</p>
+        <p>However, even very recent teaching materials addressed to beginners do not cover the
+          encoding of text genesis in terms of <foreign>critique génétique</foreign>. In the
+          #dariahTeach-MOOC taught by <ref target="#pierazzo2017" type="bibl">Elena Pierazzo and
+            Marjorie Burghart</ref>, <title level="m">Digital Scholarly Editions: Manuscripts, Text
+            and TEI Encoding</title>,<note><ptr
+              target="https://teach.dariah.eu/course/view.php?id=32"/>.</note> participants learn
+          how to transcribe a text and how to link their transcriptions to (zoned) digital images in
+            <gi>facsimile</gi>. The possibility of combining transcription and facsimile, as one can
+          do in <gi>sourceDoc</gi>, is not covered. However, the authors of the MOOC list as a
+          reference project the <title level="m">Shelley-Godwin Archive</title>, which follows
+          precisely this encoding approach. The materials used as examples for the encoding are all
+          taken exclusively from manuscripts and prints. The documents are not too difficult but for
+          inexperienced students and sometimes even for scholars coming from non-English-speaking
+          backgrounds it is still challenging to read them because they feature various historical
+          writing styles and are in Latin or English. In general, genetic processes are not included
+          in the teaching materials in great detail. This fact served as a starting point for our
+          workshop: is it possible to teach genetic editing with the TEI in an introductory course
+          by focusing on encoding of the writing process?</p>
+      </div>
+      <div xml:id="teachingGeneticEncoding">
+        <head>Teaching Genetic Encoding</head>
+        <p>In 2017, at the University of Vienna, we offered two workshops in which we taught genetic
+          encoding to experienced practitioners as well as beginners. Since we agree with Brett
+          Greatley-Hirsch, who stresses the importance of collaboration and a learning-by-doing
+          approach in digital humanities teaching (<ref target="#hirsch2012" type="bibl">Hirsch
+            2012</ref>), we centered the workshops around a process of collaborative text
+          production. Participants produced their texts in several writing stages, using a variety
+          of writing tools in small groups. The resulting genetic dossiers were then exchanged
+          between the groups, encoded, and their genesis reconstructed. The whole text production
+          process was recorded on video, which was then used to compare the encoded genesis of the
+          texts with the actual events.</p>
+        <p>Thinking of how the participants of a workshop could benefit the most we chose
+            <soCalled>active learning</soCalled> as our pedagogical approach. Active learning is
+          understood as a learner-centered rather than teacher-centered approach to teaching.
+          Instead of passively listening to an instructor’s input, students complete tasks on their
+          own and even solve their problems themselves (<ref target="#bonwell1991" type="bibl"
+            >Bonwell and Eison 1991</ref>). The instructor simply guides this process and supports
+          the discovery of solutions to the problems. As Biggs and Tang argue, <quote
+            source="#quoteref1">Teaching is not a matter of transmitting but of engaging students in
+            active learning, building their knowledge in terms of what they already
+            understand</quote> (<ref xml:id="quoteref1" target="#biggs2011" type="bibl">Biggs and
+            Tang 2011, 22</ref>).</p>
+        <p>In learning to encode, an active learning approach has many advantages. Firstly, it is
+          learning by doing. Even students with little or no experience in text encoding can quickly
+          become acquainted with the TEI and take their first steps by practicing. Secondly, the
+          group setting encourages students to help each other and to learn by explaining difficult
+          issues to others. It is crucial that instructors are available to help and explain.
+          Students should have the opportunity to have their results checked by the instructor to
+          prevent them from learning incorrect solutions and problem-solving patterns. Thirdly,
+          students are working on a palpable problem, thus acquiring practical skills and gaining
+          high problem-solving competency. Fourthly, students are continuously provided with
+          scaffolding during the process, in order to reduce the complexity of the task. For
+          example, in working with manuscripts of literary texts from digital edition projects,
+          participants face many challenges at once; while working with their self-produced texts,
+          some of these difficulties (for example an unknown script) can be circumvented. In
+          addition, the authors of the original materials are there to be interrogated and thus can
+          be asked about the actual writing process. In our case, we followed a bottom-up principle:
+          participants were provided with solutions only after they encountered challenges. On a
+          meta level, we employed the method of <quote source="#quoteref2">participatory
+            observation</quote> (<ref xml:id="quoteref2" target="#hennink2011" type="bibl">Hennink
+            et al. 2001, 179–185</ref>): we took part as instructors and later, with the help of
+          several means of data collection including audio and video recording of the workshops, we
+          reflected on the whole process. We also interviewed the participants and asked them for
+          their feedback.</p>
+        <p>We were looking for a writing task that our participants would most likely remember from
+          school. In German-speaking countries, comic strips are commonly used as a means of
+          learning how to write a story and serve as a writing stimulus. We wanted our participants
+          to focus on text production and prevent them from writing texts that would be too complex
+          or sophisticated. We opted for a well-known comic strip with six frames—the first comic
+          from the series <soCalled>Father and Son</soCalled> by Erich Ohser. The strip is known
+          under two titles <title level="a">Vater hat geholfen</title> [Father helped] or <title
+            level="a">Der schlechte Hausaufsatz</title> [Bad homework] and was published in 1934 in
+          the <title level="m">Berliner Illustrierte Zeitung</title>. Due to satirical
+          representations of Joseph Goebbels and Adolf Hitler during the Weimar Republic, the author
+          was forced to assume a pseudonym and published his work under the name
+            <soCalled>e.o.plauen</soCalled>. From 1940 on he again published cartoons on political
+          themes and was later arrested on charges of expressing anti-Nazi opinions. Erich Ohser
+          committed suicide in 1944.<note><p>On March 18th, 2018 Google paid tribute to Erich Ohsers
+              115th birthday, when a Google-Doodle was available for users in Germany, Austria, and
+              Switzerland: <ptr
+                target="https://www.google.com/doodles/erich-ohsers-115th-birthday?hl=en"
+            />.</p></note> Erich Ohser’s <soCalled>father and son stories</soCalled> are widely used
+          in Austrian primary schools to practice storytelling. We chose this iconic comic strip for
+          our workshops because it moves the writing process in one direction, but still provides
+          freedom for the participants in writing the text. Furthermore, the material is already out
+          of copyright. <figure xml:id="fig2">
+            <graphic url="images/fig_02.jpg" width="939px" height="1233px"/>
+            <head type="legend">Comic strip used as writing prompt</head>
+          </figure>
+        </p>
+        <div xml:id="workshop1">
+          <head>Workshop 1: Group of 6 Students, 4 Hours</head>
+          <p>The first workshop took place on May 12th, 2017. The turnout was of a manageable size,
+            with six participants and three instructors. The attendees turned out to be a
+            heterogeneous group. For example, half of the participants had prior experience in
+            non-digital textual editing; a very experienced professor was the only one in the group
+            who had actually worked with a typewriter before; a 25-year-old student had no prior
+            editing or TEI experience. We asked the participants to install the transcription
+            software <ref target="https://transkribus.eu/Transkribus/">Transkribus</ref> and the
+            Oxygen XML Editor on their personal computers beforehand so that we could start without
+            troubleshooting installation problems.</p>
+          <p>At the beginning of the workshop, we asked our participants to sign a consent form so
+            that we could record and analyze the writing and encoding process as well their results.
+            We planned the workshop for four hours and managed to finish it within time. After the
+            workshop, we discussed the results in an informal setting.</p>
+          <p>The workshop was divided into five phases, which included practical aspects as well as
+            theoretical input. Our idea was to start immediately with an active task, and we began
+            the writing process. The first phase (1) focused on producing a text that served as the
+            material for the encoding task. The participants were divided into two groups with three
+            people in each. Both groups were given the same comic strip as a stimulus for producing
+            a text. On the basis of the image, the participants were instructed to collaboratively
+            write a text using different writing tools. We asked them to create several versions,
+            including at least a handwritten draft, a typescript with corrections, and a final
+            version. Each group was equipped with a typewriter and had various writing tools such as
+            pens, crayons, markers, pencils, and highlighters at their disposal. They could also use
+            carbon-copy paper for the duplication of their typescript, which turned out to be a
+            technical challenge for one group. The text production process was recorded on video
+            with two cameras. At first, the participants reacted a little hesitantly to the
+            unexpected task of having to produce a text based on material they knew from primary
+            school, but they soon adjusted to the situation and began to enjoy it. Later they
+            described working in a group as inspiring and helpful. We observed different approaches
+            in the text production: One group worked in parallel on their versions, the other one
+            took turns. This resulted in two different kinds of genetic dossiers. After 25 minutes
+            of text production, we collected the dossiers and scanned them while the participants
+            had a break. We then exchanged the texts and provided the groups with scans. They were
+            asked to order the material and think about how the texts had been produced. The dossier
+            of the group in which more participants had worked simultaneously was harder to
+            reconstruct. <figure xml:id="fig3">
+              <graphic url="images/fig_03.jpg" width="843px" height="600px"/>
+              <head type="legend">Examples of participant’s texts</head>
+            </figure>
+          </p>
+          <p>The second phase (2) of the workshop was dedicated to transcribing. We introduced the
+            participants to the tool Transkribus. This is a platform for the transcription of
+            handwritten documents which has been released by the University of Innsbruck and can be
+            downloaded as a desktop version for free. We used this tool because it is a quick way to
+            produce a line-based transcription that is linked to the image files via coordinates.
+            The tool also allows for collaboration, so that the group could work together on their
+            transcriptions. Transkribus can export TEI-XML, making use of <gi>facsimile</gi> with
+              <gi>zone</gi>, and includes the transcription in <gi>text</gi>. Another advantage of
+            the tool is its tagging functionality, which we used later to add some basic markup to
+            the transcription. Unfortunately, Transkribus did not support nested tags of the same
+            type at the time we used it, which prevented us from doing most of the encoding process
+            within the Graphical User Interface. The tool is still under active development, and at
+            the time we used it, unfortunately, there was a bug which resulted in the loss of some
+            attributes added to the tagging when exporting to TEI. Although it is easy to use for
+            beginners the tool itself is not designed to produce an embedded transcription in
+              <gi>sourceDoc</gi>, but in <gi>text</gi>. We exported all texts with the option
+              <soCalled>Line tags</soCalled> resulting in an incorrect intermediary encoding of text
+            lines as <gi>l</gi>, but this allowed for an easier transformation to our desired
+            base-encoding. The XSLT that handled this transformation took the lines from
+              <gi>facsimile</gi> and produced the corresponding embedded transcription in
+              <gi>zone</gi> and <gi>line</gi> within <gi>sourceDoc</gi>. It also added the base
+            structure for encoding of <gi>handNote</gi> and stages within <gi>listChange</gi> in the
+              <gi>profileDesc</gi> of the <gi>teiHeader</gi>. The stylesheet was included as a
+            transformation scenario in a framework for the Oxygen XML Author, which the participants
+            went on to use in the following step. <figure xml:id="fig4">
+              <graphic url="images/fig_04.jpg" width="1075px" height="604px"/>
+              <head type="legend">Transcribing with the tool Transkribus</head>
+            </figure>
+          </p>
+          <p>In the third phase (3), after having produced a basic transcription of the documents,
+            we demonstrated how to export the transcription as a Word, PDF, and TEI-XML document.
+            Then we gave a short introduction on how to use TEI to encode genetic phenomena using
+            examples from the previously produced material and to explain the TEI Guidelines so that
+            the participants could refer to them if they had questions about how to encode certain
+            phenomena. Some of the basic tags had already been introduced when tagging with the
+            transcription tool: <gi>add</gi>, <gi>del</gi>, <gi>retrace</gi>, <gi>undo</gi>, etc. We
+            pointed the participants to methods for encoding of writing stages, which could be
+            demonstrated on the typescript with added corrections, and we explained how metadata
+            could be recorded in the <gi>teiHeader</gi>. We mentioned approaches to encoding
+            information on scribal hands in <gi>handNote</gi> and on revision campaigns in
+              <gi>change</gi>. To put this knowledge into practice, the participants encoded the
+            texts using the distributed framework for Oxygen XML Author.<note><p><ptr
+                  target="https://github.com/likeanga/collaborative_encoding"/>.</p></note> They
+            added scribal hands to the elements and tried to identify text stages. After that, the
+            participants connected the genetic phenomena to <gi>change</gi> elements in the header
+            with the corresponding attribute <att>change</att>. The framework supported them while
+            encoding by enforcing a predefined schema, and the encoders could switch between the
+            Author and Text modes for visual feedback on their work.</p>
+          <p>The fourth phase (4) consisted of a final discussion of the results with the whole
+            group. Together we also watched some parts of the recorded video. We then realized that
+            one would need at least two cameras per group—one capturing a close up of the writing
+            process, and another one recording an overview of the group work—to grasp all aspects of
+            the writing process fully. Even though the recordings did not fully capture the whole
+            process of text production, the groups still had the opportunity to discuss their
+            reconstructed writing process with the authors in the other group and then to reflect on
+            the means to encode their observations. We fell short on practically encoding the
+            interrelations of the witnesses produced, but we informed the participants of possible
+            strategies using graph structures to encode them. <figure xml:id="fig5">
+              <graphic url="images/fig_05.jpg" width="1018px" height="356px"/>
+              <head type="legend">Groups at work; and a typewriter, an unfamiliar device to younger
+                participants</head>
+            </figure>
+          </p>
+        </div>
+        <div xml:id="workshop2">
+          <head>Workshop 2: Group of 30 Students, 1.5 Hours</head>
+          <p>Six months later, on October 31st, 2017, we tested this pedagogical approach to genetic
+            encoding in a different setting. The second workshop had to be adapted so that we could
+            work with a group of 30 students for only 1.5 hours in an introductory course in Digital
+            Humanities. In the weeks prior to the session the students had worked with the tool
+            Transkribus and done some basic TEI encoding. We wanted to test whether and how we could
+            fit the adapted workshop into a regular university lesson, which lasts 90 minutes in the
+            Austrian university context. Because the group was larger, not all of the students could
+            participate in the text production on the typewriter, so a small group of four people
+            produced the text that served as material for the others to encode. Meanwhile, we
+            explained to the remaining students how to encode text genetic phenomena. For this short
+            introduction to the representation of primary sources, the encoding of writing stages,
+            and identification of scribal hands, we used examples of a typescript with handwritten
+            corrections. After the group of students had completed their text, they reported on
+            their writing experience, especially on working with the typewriter, which is an
+            unfamiliar tool for this generation. We had a portable document scanner at our disposal,
+            and we produced scans of material and distributed them to all participants. All students
+            then tried to reconstruct and encode the material in smaller groups of 4 to 5 people.
+            They discussed the typescript and produced a basic transcription in Transkribus before
+            switching to the XML editor for further enrichment. The task was not to encode the whole
+            text but to focus on the parts with traces of the writing process. We also had the group
+            that produced the text themselves encode their material with the help of one instructor
+            so that it could later serve for comparison to the other groups’ solutions.</p>
+
+          <p>We were pleasantly surprised that the shorter version of the teaching sequence seemed
+            to be successful even in the limited time and with the bigger group—with the
+            prerequisite that more than one instructor was present to handle the introduction to the
+            encoding of text genesis and the text production in parallel. However, this format could
+            still be modified slightly, given that the results were not yet completely satisfactory.
+            For instance, the limited time meant that the comparison of the group’s encoded text
+            with the model solution and the video of the writing process had to be given as
+            homework. We also noticed that this kind of teaching approach needs to be well prepared
+            in the previous lessons and reflected on in the following one. Students could be better
+            prepared by introducing the means for encoding text genetic phenomena beforehand,
+            especially because the whole spectrum of possible genetic phenomena that might appear in
+            the text produced cannot be easily handled within 90 minutes. The presence of several
+            instructors was helpful because they could support the students in looking up the
+            elements in the Guidelines and applying what they learned to the encoding. Furthermore,
+            it would be desirable for all students to participate in the writing process, but due to
+            logistical limitations, this was not feasible in this particular case. The result of the
+            writing process was only one witness, so it was only possible to focus on the micro
+            genesis. Still, an advantage of having to deal with only one text is that instructors
+            have time to produce a model encoding themselves or can at least address common mistakes
+            in the group’s solution in class.</p>
+        </div>
+      </div>
+      <div xml:id="results">
+        <head>Results and Outlook</head>
+        <p>During the workshops, we again realized that encoding textual genesis is a very demanding
+          and complicated task. Therefore, it is necessary to find ways to reduce the complexity for
+          teaching purposes. In the given context we tried to make the task easier by working with
+          self-produced material, which eliminated the problem of not being able to read the
+          language and/or handwriting. None of the participants reported any problems in deciphering
+          the material produced by colleagues, nor were there any problems in understanding the
+          language or the content of the text. Working with this kind of material thus reduces
+          typical barriers when working with original material from editorial projects. Furthermore,
+          when learning how to encode phenomena in a pedagogical setting, it helps when there is a
+          definite solution or right answer. In particular, students want to know if the way they
+          solved a task was the correct one. Having the authors of the text present can help in
+          clarifying aspects of the textual genesis. As mentioned before, in a limited time it is
+          easier to focus on micro genesis (at a document level) than on macro genesis (the
+          inter-document level), as the second workshop showed. This may also be one of the reasons
+          why the existing teaching materials discussed in <ptr target="#teachingMaterial"
+            type="crossref"/> focus on the encoding of micro-genetic aspects. Working with a
+          typewriter allows students to produce a text with clearly distinguishable writing stages
+          in a single document, thus allowing encoders to reconstruct the genesis of a text based on
+          material evidence. The typewriter played a very important role in both workshops, at times
+          seeming to be the real protagonist of our experiment. In fact, the very presence of this
+          writing tool fascinated the younger participants who, as several of them remarked, had
+          never used one before. On the other hand, we also registered a feeling of pleasant
+          surprise on the part of more experienced participants, who enjoyed telling about their
+          first encounters in early days with this instrument. So, interestingly enough, the
+          typewriter managed to capture the interest of all the learners, linking them with one
+          another and giving the experiment a more craftsmanlike and authentic tone. This experience
+          might be extended into contexts in which participants experiment with producing
+          manuscripts using early writing tools such as quill pens.</p>
+        <p>Even if working with a typewriter did not directly benefit the encoding skills of the
+          participants, they still gained an understanding of writing processes with different media
+          and of text production in general. This observation might be of some importance,
+          especially when training encoders to work with material produced with historical writing
+          tools: to really understand how what is on the page came into being, it is necessary to
+          have an understanding of the writing tools used and how they function.</p>
+        <p>Our experiments have shown that having students produce the material for encoding
+          themselves not only reduces several obstacles in the sense of pedagogical scaffolding but
+          can also be a motivating factor in such a teaching setting. It is essential not only to
+          think about the editorial and technical aspects, but also to take into consideration that
+          a deeper understanding of the writing processes should be conveyed as well. Allowing
+          participants to experience the process themselves may support learning. The workshops also
+          convinced us that with this approach even tricky aspects of encoding can be tackled with
+          beginners. However, we think that a clearer methodology for conducting research on the
+          pedagogy of text encoding in general is needed, especially when it comes to validating the
+          effectiveness of a chosen pedagogical approach. It is difficult to recreate a prior
+          pedagogical setting under the very same conditions.</p>
+        <p>Searching for available teaching material on the encoding of text genesis has shown that
+          there is apparently a need for more (online) teaching material on genetic encoding.
+          Workshops of this sort will always attract only a small audience at a venue or
+          institution, are time-consuming in the preparation, and are quite logistically demanding
+          to realize. Bringing resources like <title level="m">TEI By Example</title> up to date
+          with the current development status of the Guidelines and probably supplementing them with
+          video content, e.g., of a text production process, which could later be encoded, would
+          probably lead to a more solid foundation in the pedagogy of genetic text encoding.</p>
+      </div>
+    </body>
+    <back>
+      <div type="bibliography">
+        <listBibl>
+          <bibl xml:id="biggs2011"><author>Biggs, John B.</author> and <author>Catherine So-kum
+              Tang</author>. <date>2011</date>. <title level="m">Teaching for Quality Learning at
+              University: What the Student Does</title>. <edition>4th edition</edition>.
+              <pubPlace>Maidenhead</pubPlace>: <publisher>McGraw-Hill/Society for Research into
+              Higher Education &amp; Open University Press</publisher>.</bibl>
+          <bibl xml:id="bohnenkamp2018"><editor>Bohnenkamp, Anne</editor>, <editor>Silke
+              Henke</editor>, and <editor>Fotis Jannidis</editor> (eds.). <date>2018</date>. <title
+              level="m">Historisch-kritische Faustedition</title>. <pubPlace>Frankfurt am
+              Main</pubPlace>. <ptr target="http://beta.faustedition.net"/>.</bibl>
+          <bibl xml:id="bonwell1991"><author>Bonwell, Charles C.</author> and <author>James A.
+              Eison</author>. <date>1991</date>. <title level="m">Active Learning: Creating
+              Excitement in the Classroom</title>. <title level="s">ASHE-ERIC Higher Education
+              Report 1</title>. <pubPlace>Washington, DC</pubPlace>: <publisher>School of Education
+              and Human Development, George Washington University</publisher>.</bibl>
+          <bibl xml:id="denlinger2013"><editor>Denlinger, Elizabeth C.</editor> and <editor>Neil
+              Fraistat</editor> (eds.). <date>2013</date>. <title level="m">The Shelley-Godwin
+              Archive</title>. <ptr target="http://shelleygodwinarchive.org"/>.</bibl>
+          <bibl xml:id="folsom"><editor>Folsom, Ed</editor> and <editor>Kenneth M. Price</editor>
+            (eds.). <title level="m">The Walt Whitman Archive</title>. <ptr
+              target="https://whitmanarchive.org"/>.</bibl>
+          <bibl xml:id="grésillon1999"><author>Grésillon, Almuth</author>. <date>1991</date>. <title
+              level="m">Literarische Handschriften. Einführung in Die <title level="a">Critique
+                Génétique</title></title>. <pubPlace>Bern</pubPlace>: <publisher>P.
+            Lang</publisher>.</bibl>
+          <bibl xml:id="hennink2011"><author>Hennink, Monique M</author>, <author>Inge
+              Hutter</author>, and <author>Ajay Bailey</author>. <date>2011</date>. <title level="m"
+              >Qualitative Research Methods</title>. <pubPlace>London</pubPlace>:
+              <publisher>SAGE</publisher>.</bibl>
+          <bibl xml:id="henrik2017"><title level="m">Henrik Ibsens Skrifter</title>.
+              <date>2017</date>. <publisher>Senter for Ibsen-studier</publisher>. <ptr
+              target="http://www.ibsen.uio.no"/>.</bibl>
+          <bibl xml:id="hirsch2012"><author>Hirsch, Brett D.</author>
+            <date>2012</date>. <title level="a"><tag type="end">Parentheses</tag>. Digital
+              Humanities and the Place of Pedagogy</title>. <title level="m">Digital Humanities
+              Pedagogy. Practices, Principles and Politics</title>, edited by <editor>Brett D
+              Hirsch</editor>, <biblScope unit="page">3–30</biblScope>. <publisher>Open Book
+              Publishers</publisher>.</bibl>
+          <bibl xml:id="pierazzo2010"><author>Pierazzo, Elena</author>, <author>Lou
+            Burnard</author>, <author>Fotis Jannidis</author>, and <author>Malte Rehbein</author>.
+              <date>2010</date>. <title level="m">An Encoding Model for Genetic Editions</title>.
+              <ptr target="https://tei-c.org/Vault/TC/tcw19.html"/>.</bibl>
+          <bibl xml:id="pierazzo2017"><author>Pierazzo, Elena</author> and <author>Marjorie
+              Burghart</author>. <date>2017</date>. <title level="a">Digital Scholarly Editions.
+              Manuscripts, Text and TEI Encoding</title>. <title level="m">dariahTeach</title>. <ptr
+              target="https://teach.dariah.eu/course/view.php?id=32"/>.</bibl>
+          <bibl xml:id="radecke2015"><editor>Radecke, Gabriele</editor> (ed.). <date>2015</date>.
+              <title level="m">Theodor Fontane: Notizbücher. Digitale genetisch-kritische und
+              kommentierte Edition</title>. Version 0.1. <ptr
+              target="https://fontane-nb.dariah.eu/index.html"/>.</bibl>
+          <bibl xml:id="schreibman2016"><author>Schreibman, Susan</author> et al. <date>2016</date>.
+              <title level="m">Versioning Machine 5.0. Documentation</title>. <ptr
+              target="http://v-machine.org/documentation"/>.</bibl>
+          <bibl xml:id="tei2018"><author>TEI Consortium</author>. <date>2018</date>. <title
+              level="m">TEI P5: Guidelines for Electronic Text Encoding and Interchange</title>.
+            Version 3.3.0. Last updated January 31. <pubPlace>N.p.</pubPlace>: <publisher>TEI
+              Consortium</publisher>. <ptr
+              target="https://www.tei-c.org/Vault/P5/3.3.0/doc/tei-p5-doc/en/html/"/>.</bibl>
+          <bibl xml:id="tei1990"><title level="m">TEI P1 Guidelines for the Encoding and Interchange
+              of Machine Readable Texts. First draft 16 July 1990.</title>
+            <date>1990</date>. Accessed via <ptr target="http://www.tei-c.org/Vault/Vault-GL.html"
+            />.</bibl>
+          <bibl xml:id="vandenbranden"><author>Van den Branden, Ron</author>, <author>Melissa
+              Terras</author>, <author>Edward Vanhoutte</author>. <title level="m">TEI By
+              Example</title>. <ptr target="http://www.teibyexample.org"/>.</bibl>
+          <bibl xml:id="vanhulle2018"><editor>Van Hulle, Dirk</editor>, <editor>Shane
+              Weller</editor>, and <editor>Vincent Neyt</editor> (eds.). <date>2018</date>. <title
+              xml:id="m">The Samuel Beckett Digital Manuscript Project</title>.
+              <pubPlace>Brussels</pubPlace>: <publisher>University Press Antwerp</publisher>. <ptr
+              target="http://www.beckettarchive.org"/>.</bibl>
+        </listBibl>
+      </div>
+    </back>
+  </text>
+</TEI>

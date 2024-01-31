@@ -1,0 +1,1539 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="main">The DTA <soCalled>Base Format</soCalled></title>
+        <title type="sub">A TEI Subset for the Compilation of a Large Reference Corpus of Printed
+          Text from Multiple Sources</title>
+        <author>
+          <name><forename>Susanne</forename>
+            <surname>Haaf</surname></name>
+          <affiliation>Susanne Haaf works as a <roleName>research assistant</roleName> for the
+            German Text Archive (DTA) and CLARIN-D at the <orgName>Berlin-Brandenburg Academy of
+              Sciences and Humanities (BBAW)</orgName>.</affiliation>
+          <email>haaf@bbaw.de</email>
+        </author>
+        <author>
+          <name><forename>Alexander</forename>
+            <surname>Geyken</surname></name>
+          <affiliation>Alexander Geyken works at the <orgName>Berlin-Brandenburg Academy of Sciences
+              and Humanities (BBAW)</orgName>, and is <roleName>head of the project groups of the
+              Digital Dictionary of German Language (DWDS, a long-term BBAW-project) and the German
+              Text Archive (DTA)</roleName>.</affiliation>
+          <email>geyken@bbaw.de</email>
+        </author>
+        <author>
+          <name><forename>Frank</forename>
+            <surname>Wiegand</surname></name>
+          <affiliation>Frank Wiegand works as a <roleName>research assistant/software
+              developer</roleName> for the German Text Archive (DTA) and the Digital Dictionary of
+            German Language (DWDS) at the <orgName>Berlin-Brandenburg Academy of Sciences and
+              Humanities (BBAW)</orgName>.</affiliation>
+          <email>wiegand@bbaw.de</email>
+        </author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>TEI Consortium</publisher>
+        <date>09/04/2015</date>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by/4.0/">
+            <p>For this publication a Creative Commons Attribution 4.0 International license has
+              been granted by the author(s) who retain full copyright.</p>
+          </licence>
+        </availability>
+      </publicationStmt>
+      <seriesStmt>
+        <title level="j">Journal of the Text Encoding Initiative</title>
+        <editor role="guest">Arianna Ciula</editor>
+        <editor role="guest">Fabio Ciotti</editor>
+        <editor role="chief">John Walsh</editor>
+        <editor role="managing">Martin Holmes</editor>
+        <editor role="technical">Ron Van den Branden</editor>
+        <biblScope unit="issue" n="8">Selected Papers from the 2013 TEI Conference</biblScope>
+      </seriesStmt>
+      <sourceDesc>
+        <p>No source, born digital.</p>
+      </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+      <projectDesc>
+        <p>Revues.org -centre for open electronic publishing- is the platform for journals in the
+          humanities and social sciences, open to quality periodicals looking to publish full-text
+          articles online.</p>
+      </projectDesc>
+      <tagsDecl>
+        <rendition xml:id="right">text-align:right;</rendition>
+      </tagsDecl>
+    </encodingDesc>
+    <profileDesc>
+      <langUsage>
+        <language ident="en">en</language>
+      </langUsage>
+      <textClass>
+        <keywords xml:lang="en">
+          <term>TEI customization</term>
+          <term>historical corpora</term>
+          <term>corpus annotation</term>
+          <term>interoperability</term>
+          <term>interchange</term>
+          <term>schema design</term>
+          <term>standardization</term>
+        </keywords>
+      </textClass>
+    </profileDesc>
+  </teiHeader>
+  <text>
+    <front>
+      <div type="abstract" xml:id="abstract">
+        <p>In this article we describe the DTA <soCalled>Base Format</soCalled> (DTABf), a strict
+          subset of the TEI P5 tag set. The purpose of the DTABf is to provide a balance between
+          expressiveness and precision as well as an interoperable annotation scheme for a large
+          variety of text types of historical corpora of printed text from multiple sources. The
+          DTABf has been developed on the basis of a large amount of historical text data in the
+          core corpus of the project Deutsches Textarchiv (DTA) and text collections from 15
+          cooperating projects with a current total of 210 million tokens. The DTABf is a
+            <soCalled>living</soCalled> TEI format which is continuously adjusted when new text
+          candidates for the DTA containing new structural phenomena are encountered. We also focus
+          on other aspects of the DTABf including consistency, interoperability with other TEI
+          dialects, HTML and other presentations of the TEI texts, and conversion into other
+          formats, as well as linguistic analysis. We include some examples of best practices to
+          illustrate how external corpora can be losslessly converted into the DTABf, thus enabling
+          third parties to use the DTABf in their specific projects. The DTABf is comprehensively
+          documented, and several software tools are available for working with it, making it a
+          widely used format for the encoding of historical printed German text.</p>
+      </div>
+    </front>
+    <body>
+      <div xml:id="intro">
+        <head>Introduction</head>
+        <p>Until recently the creation of large historical reference corpora was, from the point of
+          view of its encoding, a rather project-specific activity. Although reference corpora were
+          built from texts of various origins, the texts had to be converted into a tailor-made
+          format. For example, corpora like the well-known <ref
+            target="http://www.natcorp.ox.ac.uk/">British National Corpus</ref><note>BNC, <ptr
+              target="http://www.natcorp.ox.ac.uk/"/>.</note> and the DWDS core corpus (<ref
+            type="bibl" target="#geyken07">Geyken 2007</ref>) are both annotated on the basis of the
+          Guidelines of the Text Encoding Initiative (most recent release: P5; see <ref type="bibl"
+            target="#tei14">TEI Consortium 2014</ref>). However, the encoding in these cases was
+          typically carried out specifically for the creation of these corpora—that is, it was a
+          unidirectional process. The interchange, and more importantly the interoperability, of
+          corpora with other corpora played only a minor role.</p>
+        <p>In recent years the picture has dramatically changed. With the availability of more and
+          more digitized texts in TEI P5 format and the advent of many academic and non-academic
+          corpus-building projects, the task of creating reference corpora has shifted from a
+          project-specific task to a more general task, requiring joint efforts by many
+          stakeholders. In this new situation, individual projects creating corpora must ensure that
+          their resulting annotation scheme is valid against a TEI P5 schema, and also enables easy
+          reuse of both their metadata and text data in other project contexts. In other words,
+          corpus projects are required to provide interoperable TEI data, so that the resulting
+          corpora compiled from different sources can be made exploitable by common methods and
+          tools. Interoperability issues affect different aspects, from metadata exchange through
+          the extraction and analysis of document components up to (at least for historical texts)
+          the creation of a uniform stylesheet in order to present all corpus texts in a similar
+            way.<note>For a discussion of this issue see <ref type="bibl" target="#geyken12">Geyken,
+              Haaf, and Wiegand 2012,
+              <!-- MH: I agree; my reading of CMoS suggests no "pp.".--><!--pp.-->
+            383ff</ref>.</note></p>
+        <p>A main prerequisite for interoperability between corpora is the homogeneity of text
+          structure. Thus, because of the intentionally high flexibility of the TEI tag
+            set,<note>See <ref xml:id="quoteref1" type="bibl" target="#tei14">TEI Consortium 2014,
+              23.3, <title level="a">Using the TEI: Personalization and Customization</title></ref>,
+              <ptr target="http://www.tei-c.org/Vault/P5/2.6.0/doc/tei-p5-doc/en/html/USE.html#MD"
+            />: <quote source="#quoteref1"><supplied>T</supplied>he TEI scheme supports a variety of
+              different approaches to solving similar problems, and also defines a much richer set
+              of elements than is likely to be necessary in any given project.<gap/> For these
+              reasons, it is almost impossible to use the TEI scheme without customizing or
+              personalizing it in some way.</quote></note> it is no longer sufficient to base the
+          annotation on the TEI Guidelines in their entirety. Rather, the TEI tag set has to be
+          narrowed down to subsets that are both extensive, considering the structural phenomena
+          they must document, and unambiguous about how similar phenomena may be encoded. Given
+          these requirements, the desirability of creating some common agreed-upon TEI formats for
+          certain editing purposes—and sharing these formats with the community in order to achieve
+          homogeneously tagged TEI texts across project borders—is evident and has already been
+          attempted several times (see, e.g., <ref type="bibl" target="#pytlikzillig09">Pytlik
+            Zillig 2009</ref>; <ref type="bibl" target="#unsworth11">Unsworth 2011</ref>).</p>
+        <p>Interoperability problems with TEI-encoded documents can occur on several levels: the
+          exchange of metadata, the consistent extraction of document components, and the creation
+          of a uniform stylesheet. It is well known that the flexibility of the TEI may lead to
+          significant structural variation in TEI-conformant headers. This forces computational
+          methods to deal with an enormous number of different cases for semantically consistent
+          information extraction. Within the transcription itself, similar problems may occur with
+          the extraction of structural phenomena in a text collection. For example, letters or
+          quotations can be annotated differently across different document collections. Therefore
+          it can be very difficult or even impossible to formulate a query that retrieves <q>all
+            letters</q> across all document collections without knowing all the solutions adopted by
+          all the individual collections. For complex queries the problem becomes even harder.
+          Obviously, a standardized encoding across collections would be very helpful in solving
+          this problem.</p>
+        <p>Last but not least, structural variation poses difficulties which should not be
+          underestimated to the creation of a satisfactory rendering stylesheet that maps similar
+          structural phenomena to identical styles. As a consequence, at present, document
+          collections encoded in TEI can be exchanged only by accepting the loss of interoperability
+          on one or several of the above-mentioned levels.</p>
+        <p>Existing TEI P5 subsets either were provided by the TEI Consortium, such as TEI Lite
+            (<ref type="bibl" target="#burnard12">Burnard and Sperberg-McQueen 2012</ref>) and TEI
+          Tite (<ref type="bibl" target="#trolard11">Trolard 2011</ref>), or originate from text
+          digitization and curation projects, for example the Best Practices for TEI in Libraries
+            (<ref type="bibl" target="#libSIG11">TEI SIG on Libraries 2011</ref>), TEI Analytics
+            (<ref type="bibl" target="#unsworth11">Unsworth 2011</ref>; <ref type="bibl"
+            target="#pytlikzillig09">Pytlik Zillig 2009</ref>), I5 (<ref type="bibl"
+            target="#lüngen12">Lüngen and Sperberg-McQueen 2012</ref>), or TextGrid’s Baseline
+          Encoding for Text Data in TEI P5 (<ref type="bibl" target="#textgrid09">TextGrid
+            2007–2009</ref>).</p>
+        <p>A shared goal of these formats is to allow for the encoding of basic structural
+          properties such as the markup of chapters and paragraphs. These formats agree on many of
+          the most common structural features (e.g., a paragraph is marked up using the element
+            <gi>p</gi>). However, each of these formats is designed for particular audiences and
+          goals, and hence deals with the range of TEI possibilities for the markup of similar
+          structures according to its own needs.</p>
+        <p>In this article we describe the DTA <soCalled>Base Format</soCalled> (DTABf), a strict
+          subset of the TEI P5 tag set. Its purpose is to provide a balance between expressiveness
+          and precision as well as an interoperable annotation scheme for a large variety of text
+          types in historical corpora of printed text from multiple sources. The DTABf shares
+          properties and tagging solutions with the TEI P5 subsets mentioned above, but differs from
+          those formats in several aspects which we described comprehensively in <ref type="bibl"
+            target="#geyken12">Geyken, Haaf, and Wiegand 2012</ref>. For instance, unlike TEI Lite
+          and <title level="a">Best Practices for TEI in Libraries</title>, the DTABf uses
+          controlled vocabularies for the specification of attribute values, and unlike TEI Tite,
+          the DTABf forms a strict subset of the TEI tag set (i.e., no extensions of or content
+          changes to the TEI P5 tag set are made) and offers a detailed specification for metadata
+          recording within the TEI header.</p>
+        <p>The DTABf was created in a bottom-up process alongside the corpus compilation of the DTA
+          project, thus covering most of the predictable structural phenomena of historical texts.
+          It was applied to 15 text corpora from scholarly digitization projects. In addition, there
+          is a powerful infrastructure implemented by the DTA project in order to process, correct,
+          annotate, and publish texts in DTABf. These principles have helped establish the DTABf as
+          a common, shared TEI format for the annotation of historical German texts.</p>
+        <p>The remainder of this paper starts with a short presentation of the project background,
+          the Deutsches Textarchiv (DTA), which will show that a common base format was required to
+          integrate text collections from 15 external corpus projects (<ptr type="crossref"
+            target="#background"/>). In <ptr type="crossref" target="#description"/>, we describe
+          the DTABf in more detail. <ptr type="crossref" target="#dissemination"/> focuses on the
+          dissemination of the DTABf; we explain how comprehensive documentation, continuous
+          training courses, and the development of customized software tools interact to create a
+          user community for the DTABf. In <ptr type="crossref" target="#stages"/>, we present
+          examples of good practice that illustrate how different external corpora can be converted
+          into the DTABf, making such corpora interoperable in a wider context—for example, as part
+          of the text corpora provided by the large European infrastructure project <ref
+            target="https://www.clarin.eu/">CLARIN</ref>.<note>CLARIN: Common Language Resources and
+            Technology Infrastructure, <ptr target="https://www.clarin.eu/"/>.</note>
+          <ptr type="crossref" target="#lifehistory"/> discusses how new structural phenomena
+          encountered in new texts are handled within the DTABf by adding new properties to the
+          DTABf. We <ref type="crossref" target="#conclusion">conclude</ref> with a short summary
+          and some ideas about future prospects for the DTABf.</p>
+      </div>
+      <div xml:id="background">
+        <head>Project Background</head>
+        <p>The goal of the project <ref target="http://www.deutschestextarchiv.de">Deutsches
+            Textarchiv (DTA)</ref><note>The DTA (<ptr target="http://www.deutschestextarchiv.de"/>)
+            at the Berlin-Brandenburg Academy of Sciences and Humanities has been funded by the
+            Deutsche Forschungsgemeinschaft (German Research Foundation, DFG) since 2007.</note> is
+          to create a reference corpus of the historical New High German language (1600–1900) which
+          is balanced with regard to date of creation, text type, and thematic scope, and therefore
+          constitutes the basis of a reference corpus for the New High German language. The DTA
+          corpora contain printed historical works from different genres and text types (fictional
+          texts in prose, poems, dramas, scientific texts of numerous different disciplines, and
+          functional literature such as cookbooks, handbooks, sermons, or travel books). The DTA
+          acquires texts in two complementary ways: via digitization of new texts for the DTA core
+          corpus of around 1,500 historical works (approximately 150 million tokens) and via the
+          curation of existing historical text collections, digitized in other project contexts,
+          which are integrated into the DTA infrastructure (currently 120 million tokens from 15
+            projects).<note>See DTA-Erweiterungen (DTA Extensions), <ptr
+              target="http://www.deutschestextarchiv.de/dtae"/>.</note></p>
+        <p>Even though text digitization for the entire core corpus is carried out by the DTA
+          project itself and therefore can be based on similar guidelines, the DTA core corpus texts
+          are heterogeneous due to structural differences between text types, variation in printing
+          habits over time and in different regions, and peculiarities of different printing and
+          publishing houses. External texts from different sources being integrated into the DTA
+          infrastructure introduce additional heterogeneity in terms of project-specific markup
+          conventions and different primary formats.</p>
+        <p>In order to cope with this heterogeneous text collection, the DTABf was developed as an
+          annotation scheme that allows for collective processing by software tools including
+          metadata harvesting, retrieval of complex document structures, and presentation of the
+          text data in various formats, including HTML, Text, and ePUB. The DTABf is completely
+          based on the TEI P5 tag set, reducing and further constraining the stock tag set, but not
+          extending it in any way. The goal of the DTABf is to provide solutions for the tagging of
+          all structural phenomena occurring in historical printed texts down to a certain
+          annotation depth while remaining consistent and unambiguous to ensure consistent markup
+          for the DTA corpora as a whole. Thus the DTABf is the backbone of the DTA and guarantees
+          that all DTABf texts are interoperable within the DTA context as well as for re-use in
+          other projects. The DTABf is a <soCalled>living</soCalled> TEI format. It is carefully
+          adjusted when new texts containing new structural phenomena are integrated into the DTA
+          corpora.</p>
+      </div>
+      <div xml:id="description">
+        <head>Description of the DTA <soCalled>Base Format</soCalled> (DTABf)</head>
+        <div xml:id="history">
+          <head>History and Scope</head>
+          <p>The DTABf emerged from the TEI format used for the annotation of the DWDS corpus, a
+            balanced corpus for twentieth-century German (<ref type="bibl" target="#geyken07">Geyken
+              2007</ref>). With the beginning of the DTA project, the DWDS format was adapted to the
+            requirements of the encoding of historical texts. The DTABf was applied continuously to
+            all texts digitized during the first phase of the DTA project (2007–2010, approximately
+            700 texts dating from 1780 to 1900). In this period it was successively adapted to new
+            phenomena which occurred in the respective texts and which had not previously been
+            covered by the DTABf. With the beginning of DTA phase 2 (2010–2014, approximately 600
+            texts dating from 1600 to 1780), the DTABf was extensively revised on the basis of the
+            annotated historical data resulting from phase 1: the treatment of structural phenomena
+            was reconsidered and consistent solutions were determined. In the course of these
+            efforts the formal description of the DTABf as given in a corresponding ODD<note>ODD:
+                <soCalled>One document does it all</soCalled>: see <bibl><orgName>TEI
+                  Consortium</orgName>
+                <date>2014</date>, <title level="a">Customization: Getting Started with P5
+                  ODDs</title>, <ptr target="http://www.tei-c.org/Guidelines/Customization/odds.xml"
+                /></bibl>; <ref type="bibl" target="#tei14">TEI Consortium 2014, 23.3, <title
+                  level="a">Personalization and Customization</title></ref>, <ptr
+                target="http://www.tei-c.org/Vault/P5/2.6.0/doc/tei-p5-doc/en/html/USE.html#MD"
+              />.</note> was further substantiated and the DTA annotation guidelines were
+            compiled.</p>
+          <p>The revised version of the DTABf has been successfully applied not only to the phase 2
+            texts of the DTA core corpus, but also to texts originating from external project
+            contexts which were curated by the DTA in the course of the module DTAE
+            (DTA-Erweiterungen, i.e., DTA Extensions) as well as the curation project of WG 1 in
+                CLARIN-D.<note><title level="a">Integration und Aufwertung historischer
+                Textressourcen des 15.–19. Jahrhunderts in einer nachhaltigen
+                CLARIN-D-Infrastruktur: Kurationsprojekt 1 der Facharbeitsgruppe 1 Deutsche
+                Philologie</title>, <ptr
+                target="http://www.deutschestextarchiv.de/doku/clarin_kupro_index"/>; see also <ref
+                type="bibl" target="#thomas12">Thomas and Wiegand 2012</ref>.</note> Continuous
+            adjustments of the DTABf remain necessary in order to account for new phenomena, but we
+            take great care to preserve consistency and avoid ambiguity. In addition, since the
+            DTABf is now based upon a large amount of text, we are mostly able to avoid changes
+            which disturb backward compatibility.<note>See <ptr type="crossref" target="#changes"/>
+              below for more information about extensions and modifications to the DTABf.</note></p>
+          <p>As a result, the DTABf forms a TEI customization which is based on a large corpus of
+            historical texts and thus offers solutions for most structural phenomena encountered
+            within historical printed texts.</p>
+        </div>
+        <div xml:id="design">
+          <head>Design and Components</head>
+          <p>The DTABf tag set not only offers tagging solutions for text structuring but also
+            provides a specification for the description of metadata in the TEI header. As of May
+            2014, the DTABf consists of 50 TEI header elements and 75 text elements accompanied by
+            limited element- or class-specific attributes and, where applicable, attribute values.
+            See <ptr type="crossref" target="#appendix1"/> and <ptr type="crossref"
+              target="#appendix2"/> for more information on the distribution of DTABf elements
+            within the DTA corpus.</p>
+          <div xml:id="metadata">
+            <head>Recording of Metadata</head>
+            <p>The DTABf TEI header is designed to cover extensive metadata information.<note>See
+                the documentation for the DTABf-compliant recording of metadata, <title level="a"
+                  >Dokumente zum DTA-Basisformat: DTA-Basisformat—Header</title>, <ptr
+                  target="http://www.deutschestextarchiv.de/doku/basisformat_header"/>.</note>
+              First, DTABf-conformant metadata records contain bibliographic information about <list
+                rend="inline ordered">
+                <item>the digital document as published by the DTA,</item>
+                <item>all instances which preceded the current digital edition together with</item>
+                <item>the persons or organizations responsible for those instances, and</item>
+                <item>all licenses relevant for the digital object at hand</item>
+              </list>. Second, descriptions of the physical text source upon which the current
+              edition is based are required, including information about its constitution as well as
+              its physical location (institution, repository, and shelfmark). Finally, general
+              information is given about the content and design of the document (e.g., language,
+              typeface, document type) and the DTA sub-corpus it belongs to. </p>
+          </div>
+          <div xml:id="structuring">
+            <head>Formal and Semantic Structuring of Text</head>
+            <p>The tag set for text encoding contains tagging solutions for formal as well as
+              semantic text structures.<note>See the DTABf documentation for the formal and semantic
+                text annotation: <title level="a">Dokumente zum DTA-Basisformat: Formale
+                  Erschließung des Volltextes</title>, <ptr
+                  target="http://www.deutschestextarchiv.de/doku/basisformat_texterschliessung_formal"
+                />; <title level="a">Dokumente zum DTA-Basisformat: Inhaltliche Erschließung des
+                  Volltextes</title>, <ptr
+                  target="http://www.deutschestextarchiv.de/doku/basisformat_texterschliessung_inhaltlich"
+                />.</note> The former include page breaks, lists, tables, and figures, as well as
+              physical layout information like forme work and different types of highlighting. The
+              latter include chapters or text sections with titles, paragraphs, notes, opening or
+              closing text parts, special text types such as poems, letters, and indices, and inline
+              phenomena such as proper nouns or citations. Furthermore, documented editorial
+              interventions are possible (e.g., the correction of printing errors, the expansion of
+              abbreviations, normalizations, and editorial comments).</p>
+          </div>
+          <div xml:id="linguistic">
+            <head>Linguistic Tagging</head>
+            <p>Linguistic information—tokenization, lemmatization of historical forms,
+              Part-of-Speech (POS) tagging—is acquired automatically by various tools and applied to
+              the DTA texts via the standoff method.<note>DTA-Tokwrap: <title level="a">Software im
+                  Deutschen Textarchiv: 6. Tokenizer für komplexe Texte (DTA-Tokwrap)</title>, <ptr
+                  target="http://www.deutschestextarchiv.de/doku/software#dtatw"/>; <ref type="bibl"
+                  target="#jurish13">Jurish and Würzner 2013</ref>. CAB: <title level="a">Software
+                  im Deutschen Textarchiv: 8. Linguistische Analyse historischer Texte
+                (CAB)</title>, <ptr target="http://www.deutschestextarchiv.de/doku/software#cab"/>;
+                  <ref type="bibl" target="#jurish12">Jurish 2012</ref>; DDC: <title level="a"
+                  >Software im Deutschen Textarchiv: 7. Indizierung und linguistische Suche
+                  (DDC)</title>, <ptr target="http://www.deutschestextarchiv.de/doku/software#ddc"
+                />; <ref type="bibl" target="#jurish14">Jurish, Thomas, and Wiegand
+                2014</ref>.</note> We decided not to adopt an inline encoding for linguistic
+              annotations for two reasons. First, the integration of token-based linguistic analyses
+              in the texts leads to an enormous increase in the number of tags, which hinders manual
+              editing of the transcriptions. The second reason is that postprocessing TEI
+              texts―including postprocessing of linguistic annotations―often requires a conversion
+              of the TEI text into a version of the text in which the reading order has been
+              re-established (serialization). We provide such a solution for texts encoded in the
+              DTABf schema (DTA-Tokwrap) and we prefer to provide users with linguistic annotations
+              for our texts by converting the TEI texts into the Text Corpus Format (TCF),<note>A
+                  <title level="a">Tool Chaining Format used by WebLicht</title>, <ptr
+                  target="http://www.clarin.eu/category/glossary/tcf"/>.</note> the standoff format
+              used within the CLARIN project.</p>
+          </div>
+          <div xml:id="components">
+            <head>Components of the DTABf</head>
+            <p>The DTABf now consists of five components: <list rend="ordered">
+                <item><p>an <ref target="http://www.deutschestextarchiv.de/basisformat.odd">ODD
+                      file</ref><note>See <ptr
+                        target="http://www.deutschestextarchiv.de/basisformat.odd"/>.</note>
+                    specifying constraints on TEI elements, attributes, and attribute values
+                  </p></item>
+                <item><p>a <ref target="http://www.deutschestextarchiv.de/basisformat.rng">RelaxNG
+                      schema</ref><note>See <ptr
+                        target="http://www.deutschestextarchiv.de/basisformat.rng"/>.</note>
+                    generated from the ODD</p></item>
+                <item>a set of Schematron rules complementing the schema</item>
+                <item><p>comprehensive <ref
+                      target="http://www.deutschestextarchiv.de/doku/basisformat"
+                      >documentation</ref><note>See <ptr
+                        target="http://www.deutschestextarchiv.de/doku/basisformat"/>.</note>
+                    explaining the treatment of structuring requirements</p></item>
+                <item><p>the TEI text instances provided by the DTA<note>All DTA texts as well as
+                      the DTA corpora as a whole are available for download and are freely
+                      accessible on the DTA website, <ptr target="http://www.deutschestextarchiv.de"
+                      />.</note></p></item>
+              </list>
+            </p>
+          </div>
+        </div>
+        <div xml:id="consistency">
+          <head>Ensuring Consistency: The DTABf ODD, Schema, and Schematron</head>
+          <p>In order to ensure homogeneous text annotation over the entire DTA corpus, the tag set
+            has to remain unambiguous; that is, for each phenomenon there should be only one
+            possible method of encoding.</p>
+          <p>Thus, we made use of the possibilities of the ODD source format to restrict annotations
+            down to the attribute value level. First, from all possible TEI modules only a subset
+            needed for our purposes was chosen. Second, from each of the included TEI modules, only
+            a subset of available elements needed to encode the DTA corpus texts was selected.
+            Likewise, attribute classes or single attributes within certain classes were eliminated
+            from the schema if they turned out to be unnecessary for our purposes. And finally, if
+            applicable, each attribute (at the class or element level) was provided with a fixed
+            selection of permitted values. In cases where value lists could not be restricted (e.g.,
+              <att>n</att> on <gi>lg</gi> containing the number of a stanza), we set fixed data
+            types for the respective attribute values wherever possible. There are only a few cases
+            remaining where the restriction of fixed attribute values would not be reasonable (e.g.,
+              <att>quantity</att> on <gi>gap</gi> specifies the amount of text left out in the
+            transcription for whatever reason and thus can be filled with any numeral). With the
+            restrictions provided by the DTABf schema the flexibility of the TEI P5 tag set is
+            reduced in favor of unambiguous though still fully TEI P5 compliant solutions.</p>
+          <p>As stated above, the DTABf provides not only a vocabulary for text annotation but also
+            a specification for the TEI header in order to allow for consistent metadata recording.
+            Although those two vocabularies—the <gi>text</gi> tag set and the <gi>teiHeader</gi> tag
+            set—are mutually exclusive within the DTABf to a large extent, the underlying TEI P5
+            schema allows for quite a number of the elements to be valid in both the <gi>text</gi>
+            and the <gi>teiHeader</gi> areas.</p>
+          <list type="gloss">
+            <label>Example 1: Tagging of Notes and Remarks</label>
+            <item>The <gi>note</gi> element may have different attribute-value pairs depending on
+              where it is used: Within the <gi>text</gi> area notes may be marginal notes (<tag>note
+                place="right|left"</tag>), footnotes (<tag>note place="foot"</tag>), endnotes
+                (<tag>note place="end"</tag>), or editorial remarks of the person working on the
+              digital edition of the text (<tag>note type="editorial"</tag>). Within the
+                <gi>teiHeader</gi> of a document, however, other kinds of notes are relevant, e.g.,
+              remarks about responsibilities for certain instances of the digital document
+                (<tag>note type="remarkResponsibility"</tag>), about the digital document as a whole
+                (<tag>note type="remarkDocument"</tag>), or about the constitution of its physical
+              source (<tag>note type="remarkSource"</tag>).</item>
+            <label>Example 2: DTABf <gi>teiHeader</gi> elements within <gi>text</gi></label>
+            <item>There is quite a significant number of DTABf <gi>teiHeader</gi> elements which the
+              DTABf would not allow in the <gi>text</gi> area but which are allowed within
+                <gi>text</gi> according to the TEI Guidelines. Examples are <gi>biblFull</gi>,
+                <gi>msDesc</gi> and their descendants, <gi>respStmt</gi> and <gi>resp</gi> or the
+              children of <gi>persName</gi> (e.g., <gi>addName</gi>, <gi>nameLink</gi>, or
+                <gi>genName</gi>).</item>
+          </list>
+          <p>With the ODD vocabulary in itself we cannot change these constraints for elements while
+            remaining fully TEI-compliant. Therefore, to solve this problem, until recently we
+            provided two separate schemas: one representing the <ref
+              target="http://www.deutschestextarchiv.de/basisformat.rng">DTABf in its
+            entirety</ref>, the other <ref
+              target="http://www.deutschestextarchiv.de/basisformat_ohne_header.rng">excluding the
+              DTABf metadata tagset</ref>.<note>The full DTABf RNG is available for download at <ptr
+                target="http://www.deutschestextarchiv.de/basisformat.rng"/>, the reduced schema is
+              accessible under: <ptr
+                target="http://www.deutschestextarchiv.de/basisformat_ohne_header.rng"/>.</note> The
+            latter formed an interim schema to facilitate DTABf-compliant text annotation
+            irrespective of the recording and structuring of metadata, whereas the former
+            constitutes the final schema as it is applied to the complete finalized DTABf documents.
+            But the method of maintaining two separate schemas was time-consuming and thus only
+            provisional. It has now been replaced by a set of <ref
+              target="http://www.deutschestextarchiv.de/basisformat.sch">Schematron rules</ref>
+            which are defined on top of the DTABf schema and which specify contextual
+              constraints.<note>See <ptr target="http://www.deutschestextarchiv.de/basisformat.sch"
+              />.</note>
+          </p>
+          <list type="gloss">
+            <label>Example 3: Schematron rules for <gi>teiHeader</gi> only elements</label>
+            <item>This Schematron rule, which deals with elements which could be used in the
+                <gi>teiHeader</gi> or <gi>text</gi> area but should, according to the DTABf, be
+              restricted to the <gi>teiHeader</gi>, is: <egXML
+                xmlns="http://www.tei-c.org/ns/Examples">
+                <rule
+                  context="tei:addName | tei:address | tei:addrLine | tei:email | tei:biblFull | tei:country | 
+                  tei:forename | tei:genName | tei:measure | tei:msDesc | tei:nameLink | tei:publicationStmt | 
+                  tei:resp | tei:respStmt | tei:roleName | tei:surname | tei:titleStmt | tei:title">
+                  <report test="ancestor::tei:text" role="ERROR"> [E0001] Element "<name/>" not
+                    allowed anywhere within element "text". </report>
+                </rule>
+              </egXML>
+            </item>
+          </list>
+          <p>In addition, Schematron is used for further quality assurance, such as for checking the
+            content of certain elements or for specifying constraints on attribute values which
+            cannot be expressed with conventional content models.<note>However, it is possible to
+              embed Schematron rules in the ODD file by using a different namespace.</note></p>
+          <list type="gloss">
+            <label>Example 4: Schematron rules for <att>facs</att> values</label>
+            <item>For example, the DTABf constraints for the <att>facs</att> attribute of the
+              element <gi>pb</gi> cannot be expressed within ODD using regular datatypes, but can be
+              described by Schematron rules: The value of <att>facs</att> is a string starting with
+                <val>#f</val>, followed by a four-digit number; the <att>facs</att> value of the
+              first <gi>pb</gi> element in a document should be <val>#f0001</val>; the following
+                <att>facs</att> values should increase successively by 1.<lb/> The corresponding
+              Schematron rules are:<lb/>
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <rule context="tei:pb[1][not(preceding::tei:pb)]">
+                  <assert test="@facs[matches(., '^#f0001$')]" role="ERROR"> [E0015] Value of @facs
+                    within first "pb" incorrect; expected value: #f0001. </assert>
+                </rule>
+              </egXML> and <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <rule context="tei:pb[@facs]">
+                  <assert
+                    test="if (matches(@facs, '^#f\d\d\d\d') and matches(preceding::tei:pb[1]/@facs, '^#f\d\d\d\d') and (preceding::tei:pb)) then xs:integer(substring(@facs, 3)) = preceding::tei:pb[1]/xs:integer(substring(@facs, 3)) +1 else 1"
+                    role="ERROR"> [E0014] Value of @facs within "pb" incorrect; @facs-values of
+                    "pb"-elements have to increase by 1 continually starting with #f0001. </assert>
+                </rule>
+              </egXML>
+            </item>
+          </list>
+          <p>The more the DTABf grows, the more cautious we have to be with adding material
+            (elements, attributes, or attribute values) to the tag set, considering that certain
+            tagging solutions might be too flexible and/or overlap in their scope. Both cases might
+            lead to misinterpretations and thus to inconsistencies in the application of the DTABf.
+            Whenever changes to the DTABf become necessary, we have to carefully consider the DTABf
+            tag set as a whole in order to ensure its consistency.</p>
+        </div>
+        <div xml:id="levels">
+          <head>Annotation Levels</head>
+          <p>With the growth of the DTABf it gets increasingly difficult and time-consuming to apply
+            the whole range of possible DTABf annotations to each DTA corpus text. Therefore, there
+            must be a way to communicate the degree of conformity of a given TEI text with the other
+            texts in the DTA corpus. For such scenarios, the TEI Guidelines propose to divide the
+            set of elements used within a certain TEI format into different levels according to the
+            necessity of their usage.<note>See <ref type="bibl" target="#tei14">TEI Consortium 2014,
+                15.5, <title level="a">Recommendations for the Encoding of Large
+                Corpora</title></ref>,: <ptr
+                target="http://www.tei-c.org/Vault/P5/2.6.0/doc/tei-p5-doc/en/html/CC.html#CCREC"
+              />.</note> We introduced several levels of annotation, each containing a set of
+            elements which have to be used consistently where applicable in order to achieve
+            conformity with the respective level. The first three annotation levels are based on one
+            another.</p>
+          <p><emph>Level 1 (required)</emph> covers the minimal amount of text structuring which is
+            required to be applied to a text in order to achieve DTABf conformity. Elements used at
+            this level include <gi>div</gi>, <gi>head</gi>, <gi>p</gi>, <gi>lg</gi>,
+            <gi>figure</gi>, <gi>pb</gi>, and <gi>cb</gi>.</p>
+          <p><emph>Level 2 (recommended)</emph> contains additional elements (such as <gi>cit</gi>,
+              <gi>opener</gi>, <gi>closer</gi>, <gi>lb</gi>, and <gi>hi</gi>) which are not required
+            but still recommended by the DTABf. All DTA core corpus texts are consistently annotated
+            up to level 2, hence all other level 2 texts are entirely interoperable with the DTA
+            core corpus.</p>
+          <p><emph>Level 3 (optional)</emph> defines optional elements (like <gi>persName</gi>,
+              <gi>placeName</gi>, <gi>choice</gi> and its possible descendants, or <gi>foreign</gi>)
+            which are part of the DTABf though not consistently applied to the DTA core corpus.</p>
+          <p>All elements contained in the first three annotation levels, together with their
+            respective attributes and values, constitute the DTABf as a TEI P5 subset. Therefore,
+            interoperability is completely ensured down to the optional level.</p>
+          <p><emph>Level 4 (proscribed)</emph> contains TEI P5 elements which are proscribed by the
+            DTABf because they represent text structures for which a different TEI P5 solution was
+            chosen for the DTABf.<note>Ibid. For a description of the DTABf levels, see <ptr
+                target="http://www.deutschestextarchiv.de/doku/basisformat_table?lang=en"
+            />.</note></p>
+          <p>We are currently working on a way to document the DTABf level of a text within its TEI
+            header. As a consequence, the annotation level can be used as a criterion for dividing
+            the DTA corpus into subsets of variable annotation depth. The corpus query tool
+              DDC<note>DDC: Dialing DWDS Concordancer; see <title level="a">Software im Deutschen
+                Textarchiv: 7. Indizierung und linguistische Suche (DDC)</title>, <ptr
+                target="http://www.deutschestextarchiv.de/doku/software#ddc"/>.</note> allows for
+            element-based queries of the DTA corpus. Future plans include the combination of those
+            conditions so that queries within DTABf-conformant sub-corpora, which are created based
+            on level as well as on the elements represented by them, are possible via the DTA
+            website. Similar search options are to be offered by <ref
+              target="http://www.clarin.eu/content/federated-content-search">CLARIN’s Federated
+              Content Search</ref>.<note><ptr
+                target="http://www.clarin.eu/content/federated-content-search"/>.</note></p>
+        </div>
+        <div xml:id="transformation">
+          <head>Transformation of DTABf Texts into Other Formats</head>
+          <div xml:id="presentation">
+            <head>Presentation of DTABf Texts</head>
+            <p>The high granularity of the DTABf tag set and its coherent application to the DTA
+              text corpora enable us to create stylesheets for the transformation of the TEI/XML
+              documents into many other formats, including HTML, plain text with basic structural
+              information, or ePUB. These stylesheets in turn are able to deal with the whole range
+              of tagging scenarios the DTABf allows. In fact, the possibility of uniform
+              presentations of all DTABf texts was one specific goal for the design of the DTABf,
+              and is continually considered when making adjustments to it.</p>
+            <p>In most cases semantic annotations can be represented on the presentation level as
+              long as they are unambiguous, consistent, and well-documented. For instance, division
+              titles, list items, speakers, and stage directions in a drama can without any
+              difficulty be presented in such a way that users of the respective reading versions
+              are able to recognize these textual and structural phenomena at a glance (e.g., in our
+              case titles are presented as bold text of larger size; stage directions are printed in
+              italics; list items are outdented; tables are rendered as tables with dividing rules
+              between rows and cells). Also, the specifications of the DTABf down to the attribute
+              value level support the presentation of contents in underspecified elements. For
+              example, the values <val>foot</val>, <val>end</val>, <val>left</val>, and
+                <val>right</val> within the <att>place</att> attribute of the element <gi>note</gi>
+              define the position of a note in the source text. In addition, since the presentation
+              of DTA texts is meant to come as close to the original layout as possible, the DTABf
+              also includes tagging solutions for pure layout information (such as centered text,
+              italics, changes of fonts, and boldface), which additionally support the
+              presentation.</p>
+            <p>However, sometimes the semantics of structures interfere with the presentation, which
+              should ideally approximate the layout of the source text. An example of this semantic
+              interference is found in the tagging of title pages. The TEI definition of the
+                <gi>titlePage</gi> element is quite limited in that it restricts the usage of this
+              element to complete pages.<note>See <ref xml:id="quoteref2" type="bibl"
+                  target="#tei14">TEI Consortium 2014, element specification of
+                  <gi>titlePage</gi></ref>: <quote source="#quoteref2">(title page) contains the
+                  title page of a text, appearing within the front or back matter</quote>, <ptr
+                  target="http://www.tei-c.org/Vault/P5/2.6.0/doc/tei-p5-doc/en/html/ref-titlePage.html"
+                />.</note> There are cases, though, that are not met by this definition where the
+                <gi>titlePage</gi> element would still be reasonable. For example, usually the
+              heading on the first page of a newspaper edition contains bibliographic information
+              about the edition, but does not span an entire page. We therefore considered
+              refraining from using the <gi>titlePage</gi> element in newspapers and instead using
+                <gi>docTitle</gi> and analogous elements for the tagging of title information in
+              newspapers. This solution would be fully TEI-conformant. However, it would lead to
+              different encodings of semantically similar structures (in both cases we want to
+              encode title information of a document as given in the source text; the layout is only
+              of secondary interest here). Furthermore, the presentation of information on title
+              pages within the DTA corpora is based on the possibility to define the
+                <gi>titlePage</gi> element as block element and hence to homogeneously render all
+              text occurring within <gi>titlePage</gi> as centered, etc. So, if we left out
+                <gi>titlePage</gi> in newspapers, we would lose the ability to present title
+              information in this text type (newspapers) similarly to title information in all other
+              text types of the DTA corpus. We therefore decided to use <gi>titlePage</gi> for
+              newspapers as well, but introduced the attribute-value pair
+                <att>type</att>=<val>heading</val> to the DTABf to differentiate the area of title
+              information in newspapers from title pages in the narrower sense.</p>
+            <p>The fixed vocabulary of the DTABf permits several coherent presentations of DTABf
+              texts to users who can set the parameters of their preferred text presentation
+                themselves.<note>See the customizable HTML presentation which can be accessed from
+                the starting page of each book on the DTA website.</note></p>
+            <p>We did not make use of the TEI standard stylesheets for two reasons. The first reason
+              is pragmatic. The <ref target="https://github.com/TEIC/Stylesheets/">TEI stylesheet
+                library</ref><note>TEI XSL Stylesheets, <ptr
+                  target="https://github.com/TEIC/Stylesheets/"/>.</note> is a very large project on
+              its own, consisting of complex and deeply structured XSL files which try to cover most
+              of the TEI tag set (even though some elements like <gi>cb</gi> are completely ignored
+              at least by the TEI to HTML conversion stylesheets). In addition, the standard
+              stylesheets are too generic for an adequate visual representation of historical texts
+              in the DTA context where we attempt to achieve a presentation as close as possible to
+              the original print sources. We distinguish some elements with regard to their
+              presentation depending on the context of their appearance. As an example, the
+                <gi>p</gi> element describes a paragraph in prose text, but within <gi>sp</gi>
+              (speech in a performance text) the same element denotes a speaker’s utterance (which
+              may not be represented as a common paragraph in the original printing). Our own
+              stylesheet library is complemented by an extensive test suite. The stylesheets are
+              available at <ptr target="https://github.com/haoess/dta-tools"/>.</p>
+          </div>
+          <div xml:id="conversion">
+            <head>Conversion into other Common Formats</head>
+            <p>The DTABf TEI header can be converted automatically into other common metadata
+              formats. Currently, the DTA provides a Dublin Core and a Component Metadata
+              Infrastructure (CMDI)<note>See CLARIN, <title level="a">Component Metadata</title>,
+                  <ptr target="http://www.clarin.eu/content/component-metadata"/>. For the CMDI
+                profile of the DTA, see <ptr
+                  target="http://catalog.clarin.eu/ds/ComponentRegistry/?item=clarin.eu:cr1:p_1345180279115"
+                />; for a list of differences between the DTABf TEI header and DTA’s CMDI profile,
+                see <ptr target="http://www.deutschestextarchiv.de/doku/cmdi"/>.</note> version of
+              all metadata records which can be harvested via the Open Archives Initiative Protocol
+              for Metadata Harvesting (OAI-PMH).<note>See <title level="a">DTA—APIs</title>, <ptr
+                  target="http://www.deutschestextarchiv.de/api"/>.</note> In this way, DTA metadata
+              can be reused by other platforms and Online Public Access Catalogues (OPACs). In
+              addition, the CMDI metadata records for the DTA corpus texts can be interpreted by the
+                <ref target="http://catalog.clarin.eu/vlo/?theme=CLARIN-D">Virtual Language
+                Observatory</ref> (VLO) of CLARIN<note>See <ptr
+                  target="http://catalog.clarin.eu/vlo/?theme=CLARIN-D"/>.</note> and thus become
+              visible together with other language resources within the CLARIN infrastructure.</p>
+            <p>The plain text versions of all DTA documents together with their corresponding
+              linguistic annotations are provided as TCF files. The <ref
+                target="http://weblicht.sfs.uni-tuebingen.de/weblichtwiki/index.php/The_TCF_Format"
+                >Text Corpus Format</ref> (TCF)<note>See WebLicht, <title level="a">The TCF
+                  Format</title>, <ptr
+                  target="http://weblicht.sfs.uni-tuebingen.de/weblichtwiki/index.php/The_TCF_Format"
+                />.</note> is a standoff format for linguistic annotation and forms the input format
+              for CLARIN’s <ref
+                target="http://weblicht.sfs.uni-tuebingen.de/weblichtwiki/index.php/Main_Page"
+                >WebLicht</ref><note>See the WebLicht main page, <ptr
+                  target="http://weblicht.sfs.uni-tuebingen.de/weblichtwiki/index.php/Main_Page"
+                />.</note> infrastructure. Thus, it becomes possible to further analyze DTA texts
+              using linguistic tools provided within WebLicht.</p>
+          </div>
+        </div>
+      </div>
+      <div xml:id="dissemination">
+        <head>Dissemination of the DTABf </head>
+        <div xml:id="documenation">
+          <head>Documentation</head>
+          <p>All decisions concerning the DTABf are described in comprehensive documentation which
+            explains the treatment of common structuring requirements as well as special cases and
+            illustrates each phenomenon with examples from the corpus.<note>See <title level="a"
+                >DTA-Basisformat—Einführung</title>, <ptr
+                target="http://www.deutschestextarchiv.de/doku/basisformat"/>.</note> The DTABf
+            documentation is thematically subdivided into different sections (formal/semantic
+            annotation, metadata annotation, special encoding of certain text types such as journals
+            and newspapers). Not only does it explain formal customizations of the TEI tag set as
+            realized within the ODD and schema as well as the Schematron rule set, but it also
+            specifies transcription guidelines as well as rules which could not be formalized
+            without changing the content models of the TEI tag set and thus going beyond the DTABf
+            schema.</p>
+          <p>The prose documentation is supplemented by tables containing all DTABf elements,
+            attributes, and attribute values for text encoding on the one hand<note>English version:
+                <title level="a">DTA <soCalled>base format</soCalled>—overview (elements within
+                text)</title>, <ptr
+                target="http://www.deutschestextarchiv.de/doku/basisformat_table?lang=en"/>; German
+              version: <title level="a">DTA-Basisformat—Überblick (Elemente innerhalb von
+                text)</title>, <ptr
+                target="http://www.deutschestextarchiv.de/doku/basisformat_table?lang=de"/>.</note>
+            and for metadata annotation on the other.<note>English version: <title level="a">DTA
+                  <soCalled>base format</soCalled>—overview (elements within teiHeader)</title>,
+                <ptr
+                target="http://www.deutschestextarchiv.de/doku/basisformat_table_header?lang=en"/>;
+              German version: <title level="a">DTA-Basisformat—Überblick (Elemente innerhalb von
+                teiHeader)</title>, <ptr
+                target="http://www.deutschestextarchiv.de/doku/basisformat_table_header?lang=de"
+              />.</note></p>
+          <p>The DTABf documentation provides a description of the work completed so far, but more
+            importantly it serves as a guideline for users working with the DTABf for the
+            TEI-compliant structuring of historical texts.</p>
+        </div>
+        <div xml:id="training">
+          <head>Training and Tools for Users</head>
+          <p>The existence of comprehensive documentation is a necessary prerequisite for the
+            usability of the DTABf and thus for its acceptance by a larger user community. In
+            addition, the DTA offers workshops and tutorials where users learn to apply the DTABf in
+            a consistent way.</p>
+          <p>Furthermore, work on text editions according to the DTABf is supported by the DTA
+            oXygen Framework <ref target="http://www.deutschestextarchiv.de/doku/software#dtaox"
+              >DTAoX</ref>, a framework for the Author mode of the oXygen XML Editor. DTAoX provides
+            an ad hoc, WYSIWYG-like visualization of DTABf-compliant annotations in tagged text
+            passages, of the annotation levels they belong to, and of conflicts with the DTABf.
+            Additionally, to support DTABf-compliant text annotation, elements can easily be
+            inserted in the text using the DTAoX toolbar, which groups elements according to
+            semantic categories and annotation levels.<note>DTAoX is available for download at <ptr
+                target="http://www.deutschestextarchiv.de/doku/software#dtaox"/>.</note></p>
+          <figure xml:id="figure1">
+            <graphic url="img/figure1.png" width="715px" height="622px"/>
+            <head type="legend">DTAoX oXygen XML Editor framework, with toolbar for DTABf elements
+              and color scheme for different annotation levels (green: level 1; blue: level 2;
+              purple: level 3)</head>
+          </figure>
+          <p>All DTABf-compliant texts added to the DTA corpus are integrated into the quality
+            assurance platform DTAQ<note>Deutsches Textarchiv—Qualitätssicherung; see <title
+                level="a">Kollaborative Qualitätssicherung im Deutschen Textarchiv</title>, <ptr
+                target="http://www.deutschestextarchiv.de/dtaq/about"/>.</note> where their
+            transcriptions and annotations may be proofread.</p>
+        </div>
+      </div>
+      <div xml:id="stages">
+        <head>The DTABf at Different Stages of Digitization</head>
+        <div xml:id="transcription">
+          <head>Digitization by Way of Transcription – DTABf-born Texts</head>
+          <p>Homogeneity within a corpus does not only concern its tagging but also crucially
+            depends on the way transcriptions are realized. Therefore, the DTABf is complemented by
+            extensive transcription guidelines which can be referred to and further specified within
+            the DTABf-compliant TEI header.<note>For the documentation of the DTA transcription
+              guidelines, see <title level="a">DTA-Richtlinien zur Texterfassung</title>, <ptr
+                target="http://www.deutschestextarchiv.de/doku/richtlinien"/>.</note> These
+            guidelines are intended for transcriptions which are as close to the source text as
+            possible, the guiding idea being that the historical language and writing should be
+            preserved. Normalizations, if at all needed, can often be conducted on the presentation
+            level rather than within the primary transcriptions where they might adulterate the
+            results of research on historical spelling, printing habits, historical abbreviations,
+            and the like. Wherever possible, special characters are transcribed as such, using the
+            corresponding Unicode code points. Generally, editorial interventions are marked, and
+            the conditions of the source text are carefully documented as well.</p>
+        </div>
+        <div xml:id="interchange">
+          <head>Interchange of TEI Documents</head>
+          <p>The history of the DTABf coincides with the history of documents which are exchanged
+            between collaborating projects and the DTA.</p>
+          <p>An example of such a collaboration may be found in the project <ref
+              target="http://www.blumenbach-online.de/"><title level="m">Johann Friedrich
+                Blumenbach—online</title></ref>.<note><ptr target="http://www.blumenbach-online.de/"
+              />.</note> This project is working on a digital edition of Blumenbach’s printed works
+            in German and Latin as well as his handwritten texts. All texts are prepared in a TEI P5
+            format.</p>
+          <p>The DTA integrates the digitized full texts of German monographs and selected journal
+            articles of Blumenbach into its platforms. This process is not unidirectional but
+            involves several processing steps in the course of which the digital documents are
+            exchanged between and enriched by the two projects.</p>
+          <p>First, the texts are transcribed by the Blumenbach project and annotated according to
+            the Blumenbach project’s TEI P5 format. The resulting TEI P5-compliant documents are
+            automatically converted into the DTABf, analyzed by the linguistic tools of the DTA
+            (including tokenization, lemmatization, POS tagging, normalization of historical
+            spellings), and integrated into DTAQ where they can be proofread and corrected. At this
+            stage, the texts are already made available to the interested community; that is, they
+            can be read online, downloaded in different formats (such as HTML or plain text versions
+            both derived from the DTABf-XML or the TCF version containing the corresponding
+            linguistic information), and queried within the DTA.</p>
+          <p>After the completion of the first correction phase within DTAQ, the DTABf-compliant
+            texts are further processed by the DTA’s tools for automatic Named-Entity Recognition
+            (NER). The documents are then manually corrected by the Blumenbach project in light of
+            the NER results, and the corrected texts are again returned to the DTA where they are
+            re-integrated into DTAQ, published on the DTA website, and integrated into the CLARIN-D
+            infrastructure.</p>
+          <p>The TEI P5 formats used by both projects (DTABf and Blumenbach’s TEI P5 format) agree
+            semantically, so documents can be converted automatically between the two formats in the
+            course of the exchanges described above.</p>
+          <p>This workflow is a good example of interoperability and interchange of TEI documents,
+            while it also shows that manual efforts remain necessary to create TEI formats
+            compatible with one another.</p>
+        </div>
+      </div>
+      <div xml:id="lifehistory">
+        <head>Life History of the DTABf</head>
+        <p>Although the text corpus upon which the DTABf is built is already very large, new
+          structural phenomena may still be encountered, mainly because of individual printing
+          habits, especially in earlier works. In addition, the structuring of external texts
+          integrated into the DTA corpus may differ from the DTABf formally (if varying TEI
+          solutions were chosen for similar phenomena) or semantically (if tagging not provided by
+          the DTABf was applied). Therefore, the DTABf continually comes under scrutiny. The main
+          challenges are twofold: <list rend="ordered inline">
+            <item>to decide whether adaptations to the format are unavoidable in order to meet new
+              requirements, and</item>
+            <item>to ensure that any such adaptations do not lead to inconsistencies in the
+              structural markup within the corpus</item>
+          </list>.</p>
+        <div xml:id="withinscope">
+          <head>Phenomena within the Scope of the DTABf</head>
+          <div xml:id="treatingnew">
+            <head>Treating New and Known Phenomena with Established Solutions</head>
+            <p>By this point, the DTABf has achieved such comprehensive coverage of historical texts
+              that substantial changes are quite unusual. Novelties do not necessarily lead to
+              changes in the DTABf. Often the DTABf already offers solutions which may also be
+              applied to newly encountered phenomena.</p>
+            <p>For example, the DTABf provides solutions for annotating quotations and corresponding
+              bibliographic references as well as for concatenating discontinuous text passages. The
+              example below shows discontinuous citations where the quotation is presented inline,
+              whereas the bibliographic citation occurs beforehand within a marginal note. Though it
+              was new to us, we were able to handle this scenario without any extensions to the
+              existing DTABf.</p>
+            <figure xml:id="figure2">
+              <graphic url="img/figure2.png" width="645px" height="659px"/>
+              <head type="legend">Discontinuous Parts of Quotations</head>
+              <head type="license">Lucas Bacmeister, Leichpredigt ... Tessen Von Parsow (Rostock,
+                1614), facsimile 18.<note>Deutsches Textarchiv Qualitätssicherung, <ptr
+                    target="http://www.deutschestextarchiv.de/dtaq/book/view/bacmeister_predigt_1614?p=18"
+                  />.</note></head>
+            </figure>
+          </div>
+          <div xml:id="convertingnew">
+            <head>Converting New Solutions into Established Solutions</head>
+            <p>TEI tagging solutions which were applied to external texts might be compliant with
+              the DTABf in their thematic scope, though encoded using different TEI vocabulary. In
+              such cases the original tagging can easily be replaced with the DTABf solution.</p>
+            <figure xml:id="figure3">
+              <graphic url="img/figure3.png" width="624px" height="124px"/>
+              <head type="legend">Tagging of Text Loss</head>
+            </figure>
+          </div>
+        </div>
+        <div xml:id="changes">
+          <head>Changes to the DTABf</head>
+          <p>However, there are cases where new requirements cannot be handled within the DTABf and
+            changes to the format become necessary. Possible scenarios are the following:</p>
+          <list rend="ordered">
+            <item>New texts may contain structures which are new to the DTABf, for instance, within
+              new document types such as newspapers or manuscripts. <list type="gloss">
+                <label>Example 5: Newspapers</label>
+                <item><p>The DTA core corpus consists of texts from various disciplines, text types,
+                    and genres to allow for insights about the New High German language as it was
+                    used in different contexts and discourses at different points of time in its
+                    history. However, an important text type—which because of its enormous extent
+                    has not been included in the DTA corpora—is newspapers. We are currently
+                    extending the DTA corpus by adding historical newspapers in the course of
+                    different project partnerships (see <ref type="bibl" target="#haaf14">Haaf and
+                      Schulz 2014</ref>). Newspaper texts from external projects are converted into
+                    the DTABf. We adjusted the DTABf to allow for the tagging of structures which
+                    are significant for or even limited to the text type <val>newspaper</val>. Most
+                    importantly, we added division types for text passages which are typical for
+                    newspapers like political news (<att>type</att>=<val>jPoliticalNews</val>),
+                    weather reports (<att>type</att>=<val>jWeatherReports</val>), financial news
+                      (<att>type</att>=<val>jFinancialNews</val>), the feuilleton
+                      (<att>type</att>=<val>jFeuilleton</val>), and articles within those named
+                    categories (<att>type</att>=<val>jArticle</val>). Specifics of the DTABf for
+                    newspapers are covered by separate documentation.<note><title level="a"
+                        >DTA-Basisformat—Auszeichnung von Zeitungen</title>, <ptr
+                        target="http://www.deutschestextarchiv.de/doku/basisformat_zeitungen"
+                      />.</note></p></item>
+              </list>
+            </item>
+            <item>
+              <p>Structuring applied within texts from external projects (e.g., editorial comments)
+                might not yet have an equivalent within the DTABf. Therefore, new components (here,
+                a new attribute-value-pair <att>type</att>=<val>editorial</val>) are introduced.
+                  <figure xml:id="figure4">
+                  <graphic url="img/figure4.png" width="868px" height="173px"/>
+                  <head type="legend">Editorial Comments</head>
+                </figure>
+              </p>
+            </item>
+            <item>
+              <p>The documentation might lack precise examples, leading to uncertainties about the
+                applied text structuring. <figure xml:id="figure5">
+                  <graphic url="img/figure5.png" width="508px" height="750px"/>
+                  <head type="legend">List Items or Paragraphs?</head>
+                  <head type="license">Engelbert Kaempfer, Geschichte und Beschreibung von Japan,
+                    ed. Christian Wilhelm von Dohm, vol. 1 (Lemgo, 1777), pp. 69–70.<note>Deutsches
+                      Textarchiv, <ptr
+                        target="http://www.deutschestextarchiv.de/kaempfer_japan01_1777/157"/>, <ptr
+                        target="http://www.deutschestextarchiv.de/kaempfer_japan01_1777/158"
+                      />.</note></head>
+                </figure>
+              </p>
+            </item>
+            <item>
+              <p>New TEI P5 releases may introduce changes to <ident>tei_all</ident> which affect
+                the DTABf. <figure xml:id="figure6">
+                  <graphic url="img/figure6.png" width="870px" height="148px"/>
+                  <head type="legend"><att>unit</att> vs. <att>type</att> within <gi>biblScope</gi>
+                    (Release 2.3.0)</head>
+                </figure>
+              </p>
+            </item>
+          </list>
+          <p>Changes to the DTABf are carried out only if they are consistent with the existing tag
+            set and do not introduce ambiguities to the format. The changes mainly concern
+            attributes or values and only rarely TEI elements or modules.</p>
+        </div>
+      </div>
+      <div xml:id="conclusion">
+        <head>Conclusion and Further Prospects</head>
+        <p>In this paper we described the DTABf as a <soCalled>living</soCalled> TEI format for the
+          annotation of historical written texts for the creation of large reference corpora. The
+          DTA corpus base is still growing either through digitization carried out by the DTA team
+          or through the addition of text collections originating from external cooperating
+          projects. Therefore the DTABf is not static but is constantly checked and adjusted to new
+          structural phenomena.</p>
+        <p>Future work will involve the adaptation of the DTABf to manuscripts. Currently, the DTA
+          corpora almost exclusively contain printed works; only a couple of manuscripts have been
+          integrated so far for evaluation purposes.<note>See, for example, Georg Gustav Erbkam,
+            Tagebuch meiner egyptischen Reise, Teil 1, Ägypten, 1842–43, in Deutsches Textarchiv,
+              <ptr target="http://www.deutschestextarchiv.de/erbkam_tagebuch01_1842"/>; Theresia
+            Lindnerin, Koch Buch zum Gebrauch der Wohlgebohrenen Frau (um 1780), in Deutsches
+            Textarchiv Qualitätssicherung, <ptr
+              target="http://www.deutschestextarchiv.de/dtaq/book/show/lindnerin_kochbuch_1780"
+            />.</note> However, some important text types usually exist in handwritten form rather
+          than as printed documents (e.g., letters, diaries, and financial records). In order to
+          improve the balance of the DTA corpus, it would therefore be interesting to integrate
+          manuscripts from some of these widespread text types into our collection. Our tests with
+          manuscripts showed that most of the structural phenomena which occur in manuscripts are
+          similar to those in printed texts and hence can already be treated within the DTABf.
+          However, there are some additional characteristics of handwritten texts which might be
+          usefully encoded (e.g., ad hoc additions, deletions, or insertions of the writer, or the
+          change of hands within one document). These additional phenomena will necessitate
+          adaptations to the DTABf. Furthermore, they are likely to affect the presentation of the
+          TEI transcriptions—we might not be able to imitate the manuscript facsimile on the
+          presentation level to the same extent as we do for printed text sources. In addition, some
+          aspects of the metadata needed for manuscripts differ from the metadata needed for print
+          documents. The adaptations to the DTABf and its corresponding tools and services necessary
+          for the integration of manuscripts into the DTA will be performed in a document-based way
+          through the integration of further manuscripts into the DTA corpus.</p>
+        <p>Other adaptations of the DTABf will be necessary in order to integrate texts obtained via
+          Optical Character Recognition (OCR). OCR software only recognizes basic (text) zones which
+          eventually have to be mapped to semantically meaningful structures. Semi-automatic
+          subsequent structuring of OCR texts is possible, but becomes increasingly complex and
+          error-prone with greater sophistication, detail, and granularity in the target markup.
+          Therefore, based on experiences with automatic post-structuring of OCR texts in the course
+          of the DFG-funded project <title level="m">Die Grenzboten</title>,<note><title level="a"
+              >Die Grenzboten—Digitalisierung, Erschließung und Volltexterkennung einer der
+              herausragenden deutschen Zeitschriften des 19. und 20. Jahrhunderts</title>, joint
+            project of the Staats- und Universitätsbibliothek Bremen and the Berlin-Brandenburgische
+            Akademie der Wissenschaften (BBAW), <ptr
+              target="http://gepris.dfg.de/gepris/projekt/196492153"/>.</note> we are planning to
+          create an additional basic structuring level for OCR texts within the DTABf, onto which
+          semi-automatic text structuring can be implemented, and upon which further manual
+          post-structuring can be performed.</p>
+        <p>As the best practice format for the structural annotation of historical printed texts
+          within CLARIN-D,<note>See the CLARIN-D User Guide, version 1.0.1 (December 19), part II,
+            ch. 6, subsection <title level="a">Text Corpora</title>, <ptr
+              target="http://www.clarin-d.de/en/language-resources/userguide.html"/>.</note> the
+          DTABf has been brought in line with the CLARIN infrastructure. In this context, the
+          Berlin-Brandenburg Academy of Sciences and Humanities (BBAW), as one of the CLARIN-D
+          service centers,<note><title level="a">CLARIN-D Service Centres</title>, <ptr
+              target="http://www.clarin-d.de/en/clarin-d-centres.html"/>.</note> provides tools and
+          services which allow for the integration of DTABf texts into the CLARIN infrastructure
+          where they are preserved and made available for the long term. In addition, routines for
+          the conversion of DTABf texts and metadata into the CLARIN formats TCF and CMDI have been
+          developed, so that re-use of DTABf texts within the CLARIN infrastructure is possible.</p>
+      </div>
+    </body>
+    <back>
+      <div type="bibliography">
+        <listBibl>
+          <bibl xml:id="burnard12"><author>Burnard, Lou</author>, and <author>C. M.
+              Sperberg-McQueen</author>. <date>2012</date>. <title level="a">TEI Lite: Encoding for
+              Interchange: An Introduction to the TEI</title>. <edition>Final revised edition for
+              TEI P5, August</edition>. Accessed February 7 2014. <ptr
+              target="http://www.tei-c.org/Guidelines/Customization/Lite/"/>.</bibl>
+          <bibl xml:id="geyken07"><author>Geyken, Alexander</author>. <date>2007</date>. <title
+              level="a">The DWDS Corpus: A Reference Corpus for the German Language of the 20th
+              Century</title>. In <title level="m">Idioms and Collocations: Corpus-Based Linguistic
+              and Lexicographic Studies</title>, edited by <editor>Christiane Fellbaum</editor>,
+              <biblScope unit="page">23–41</biblScope>. <pubPlace>London</pubPlace>:
+              <publisher>Continuum</publisher>.</bibl>
+          <bibl xml:id="geyken12"><author>Geyken, Alexander</author>, <author>Susanne Haaf</author>,
+            and <author>Frank Wiegand</author>. <date>2012</date>. <title level="a">The DTA
+                <soCalled>base format</soCalled>: A TEI-Subset for the Compilation of Interoperable
+              Corpora</title>. In <title level="m">11th Conference on Natural Language Processing
+              (KONVENS): Empirical Methods in Natural Language Processing. Proceedings of the
+              Conference</title>, edited by <editor>Jeremy Jancsary</editor>, <biblScope unit="page"
+              >383–91</biblScope>. Schriftenreihe der Österreichischen Gesellschaft für Artificial
+            Intelligence 5. Wien: ÖGAI. Accessed February 7 2014. <ptr
+              target="http://www.oegai.at/konvens2012/proceedings/57_geyken12w/"/>.</bibl>
+          <bibl xml:id="haaf14"><author>Haaf, Susanne</author>, and <author>Matthias
+            Schulz</author>. <date>2014</date>. <title level="a">Historical Newspapers &amp;
+              Journals for the DTA</title>. In <title level="m">Language Resources and Technologies
+              for Processing and Linking Historical Documents and Archives – Deploying Linked Open
+              Data in Cultural Heritage – LRT4HDA. Proceedings of the workshop</title>, held at the
+            Ninth International Conference on Language Resources and Evaluation (LREC’14), May
+            26–31, 2014, Reykjavik (Iceland), <biblScope unit="page">50–54</biblScope>. Accessed
+            February 7 2014. <ptr
+              target="http://www.lrec-conf.org/proceedings/lrec2014/workshops/LREC2014Workshop-LRT4HDA%20Proceedings.pdf#page=57"
+            />.</bibl>
+          <bibl xml:id="jurish12"><author>Jurish, Bryan</author>. <date>2012</date>. <title
+              level="u">Finite-state Canonicalization Techniques for Historical German</title>. PhD
+            diss., Universität Potsdam. Accessed February 7 2014. <ptr
+              target="http://opus.kobv.de/ubp/volltexte/2012/5578/"/>.</bibl>
+          <bibl xml:id="jurish13"><author>Jurish, Bryan</author>, and <author>Kay-Michael
+              Würzner</author>. <date>2013</date>. <title level="a">Word and Sentence Tokenization
+              with Hidden Markov Models</title>. <title level="j">Journal for Language Technology
+              and Computational Linguistics</title>
+            <!-- [RvdB] volume/issue formatting: not 28(2)?--><!-- No, this, looks right according to Chicago: https://owl.english.purdue.edu/owl/resource/717/04/ --><biblScope
+              unit="volume">28</biblScope>, no. <biblScope unit="issue">2</biblScope>: <biblScope
+              unit="page">61–83</biblScope>. Accessed February 7 2014. <ptr
+              target="http://www.jlcl.org/2013_Heft2/3Jurish.pdf"/>.</bibl>
+          <!-- [RvdB] looked up citation at https://www.worldcat.org/title/querying-the-deutsches-textarchiv/oclc/5693651731 -->
+          <bibl xml:id="jurish14"><author>Jurish, Brian</author>, <author>Christian Thomas</author>,
+            and <author>Frank Wiegand</author>
+            <date>2014</date>. <title level="a">Querying the deutsches textarchiv</title>. <title
+              level="m">CEUR Workshop Proceedings</title>. <biblScope unit="volume"
+            >1131</biblScope>: <biblScope unit="page">25–30</biblScope>. Accessed February 7 2014.
+              <ptr target="http://ceur-ws.org/Vol-1131/mindthegap14_7.pdf"/>.</bibl>
+          <bibl xml:id="lüngen12"><author>Lüngen, Harald</author>, and <author>C. M.
+              Sperberg-McQueen</author>. <date>2012</date>. <title level="a">A TEI P5 Document
+              Grammar for the IDS Text Model</title>. <title level="j">Journal of the Text Encoding
+              Initiative</title>
+            <biblScope unit="issue">3</biblScope>. Accessed February 7 2014. <ptr
+              target="http://jtei.revues.org/508"/>. doi:<idno type="doi"
+            >10.4000/jtei.508</idno>.</bibl>
+          <bibl xml:id="tei14"><orgName>TEI Consortium</orgName>. <date>2014</date>. <title
+              level="m">TEI P5: Guidelines for Electronic Text Encoding and Interchange</title>.
+              <edition>Version 2.6.0</edition>. Last updated January 20. Accessed February 7 2014.
+              <ptr target="http://www.tei-c.org/Vault/P5/2.6.0/doc/tei-p5-doc/en/html/"/>.</bibl>
+          <bibl xml:id="libSIG11"><orgName>TEI SIG on Libraries</orgName>. <date>2011</date>. <title
+              level="a">Best Practices for TEI in Libraries: A TEI Project</title>. Edited by
+              <editor>Kevin Hawkins</editor>, <editor>Michelle Dalmau</editor>, and <editor>Syd
+              Bauman</editor>. <edition>Version 3.0</edition>. October. Accessed February 7 2014.
+              <ptr target="http://www.tei-c.org/SIG/Libraries/teiinlibraries/main-driver.html"
+            />.</bibl>
+          <bibl xml:id="textgrid09"><orgName>TextGrid</orgName>. <date>2007–2009</date>. <title
+              level="u">TextGrid’s Baseline Encoding for Text Data in TEI P5</title>. Accessed
+            February 7 2014. <ptr
+              target="http://www.textgrid.de/fileadmin/TextGrid/reports/baseline-all-en.pdf"
+            />.</bibl>
+          <bibl xml:id="thomas12"><author>Thomas, Christian</author>, and <author>Frank
+              Wiegand</author>. <date>2012</date>. <title level="a">Making Great Work Even Better:
+              Appraisal and Digital Curation of Widely Dispersed Electronic Textual Resources (c.
+              15th–19th cent.) in CLARIN-D</title>. Full Paper for the Historical Corpora 2012
+            International Conference, Goethe University, Frankfurt, Germany, December 6–9. Accessed
+            February 7 2014. <ptr target="http://edoc.bbaw.de/volltexte/2012/2308/"/>.</bibl>
+          <bibl xml:id="trolard11"><author>Trolard, Perry</author>. <date>2011</date>. <title
+              level="a">TEI Tite: A Recommendation for Off-site Text Encoding</title>.
+              <edition>Version 1.1</edition>. September. Accessed February 7 2014. <ptr
+              target="http://www.tei-c.org/release/doc/tei-p5-exemplars/html/tei_tite.doc.html"
+            />.</bibl>
+          <bibl xml:id="unsworth11"><author>Unsworth, John</author>. <date>2011</date>. <title
+              level="a">Computational Work with Very Large Text Collections: Interoperability,
+              Sustainability, and the TEI</title>. In <title level="j">Journal of the Text Encoding
+              Initiative</title>
+            <biblScope unit="issue">1</biblScope> (June). Accessed February 7 2014. <ptr
+              target="http://jtei.revues.org/215"/>. doi:<idno type="doi"
+            >10.4000/jtei.215</idno>.</bibl>
+          <bibl xml:id="pytlikzillig09"><author>Pytlik Zillig, Brian</author>. <date>2009</date>.
+              <title level="a">TEI Analytics: Converting Documents into a TEI Format for
+              Cross-collection Text Analysis</title>. In <title level="j">Literary and Linguistic
+              Computing</title>
+            <biblScope unit="volume">24</biblScope>, no. <biblScope unit="issue">2</biblScope>:
+              <biblScope unit="page">187–92</biblScope>. doi:<idno type="doi"
+              >10.1093/llc/fqp005</idno>.</bibl>
+        </listBibl>
+      </div>
+      <div type="appendix" xml:id="appendix1">
+        <head>DTABf Elements of Level 1 within <gi>text</gi> with Frequencies, Attributes, and
+          Values</head>
+        <table xml:id="table1">
+          <row role="label">
+            <cell>Element</cell>
+            <cell>Frequency*</cell>
+            <cell>Attributes</cell>
+            <cell>Values</cell>
+          </row>
+          <row>
+            <cell><gi>p</gi></cell>
+            <cell rendition="#right">1,225,251</cell>
+            <cell/>
+            <cell/>
+          </row>
+          <row>
+            <cell><gi>l</gi></cell>
+            <cell rendition="#right">811,758</cell>
+            <cell><att>n</att></cell>
+            <cell><val>[verse number (in the textsource)]</val></cell>
+          </row>
+          <row>
+            <cell rows="2"><gi>pb</gi></cell>
+            <cell rows="2" rendition="#right">558,763</cell>
+            <cell><att>n</att></cell>
+            <cell><val>[page number]</val></cell>
+          </row>
+          <row>
+            <cell><att>facs</att></cell>
+            <cell><val>[link to facsimile]</val></cell>
+          </row>
+          <row>
+            <cell><gi>item</gi></cell>
+            <cell rendition="#right">456,195</cell>
+            <cell/>
+            <cell/>
+          </row>
+          <row>
+            <cell rows="3"><gi>note</gi></cell>
+            <cell rows="3" rendition="#right">368,227</cell>
+            <cell><att>n</att></cell>
+            <cell><val>[note sign/number]</val></cell>
+          </row>
+          <row>
+            <cell><att>place</att></cell>
+            <cell><val>left</val>, <val>right</val>, <val>foot</val>, <val>end</val></cell>
+          </row>
+          <row>
+            <cell><att>type</att></cell>
+            <cell><val>editorial</val></cell>
+          </row>
+          <row>
+            <cell><gi>head</gi></cell>
+            <cell rendition="#right">247,030</cell>
+            <cell/>
+            <cell/>
+          </row>
+          <row>
+            <cell rows="2"><gi>div</gi></cell>
+            <cell rows="2" rendition="#right">223,885</cell>
+            <cell><att>n</att></cell>
+            <cell><val>[depth of text structure]</val></cell>
+          </row>
+          <row>
+            <cell><att>type</att></cell>
+            <cell><val>abbreviations</val>, <val>act</val>, <val>advertisement</val>,
+                <val>appendix</val>, <val>bibliography</val>, <val>chapter</val>,
+                <val>contents</val>, <val>copyright</val>, <val>corrigenda</val>,
+                <val>dedication</val>, <val>diaryEntry</val>, <val>edition</val>,
+              <val>figures</val>, <val>frontispiece</val>, <val>imprimatur</val>,
+              <val>imprint</val>, <val>index</val>, <val>letter</val>, <val>lexiconEntry</val>
+              <val>poem</val>, <val>postface</val>, <val>preface</val>, <val>recipe</val>,
+                <val>scene</val></cell>
+          </row>
+          <row>
+            <cell rows="2"><gi>lg</gi></cell>
+            <cell rows="2" rendition="#right">117,431</cell>
+            <cell><att>n</att></cell>
+            <cell><val>[(for stanzas:) number of stanza]</val></cell>
+          </row>
+          <row>
+            <cell><att>type</att></cell>
+            <cell><val>poem</val></cell>
+          </row>
+          <row>
+            <cell rows="3"><gi>cell</gi></cell>
+            <cell rows="3" rendition="#right">65,179</cell>
+            <cell><att>cols</att></cell>
+            <cell><val>[number of colums occupied]</val></cell>
+          </row>
+          <row>
+            <cell><att>rows</att></cell>
+            <cell><val>[number of rows occupied]</val></cell>
+          </row>
+          <row>
+            <cell><att>role</att></cell>
+            <cell><val>label</val></cell>
+          </row>
+          <row>
+            <cell rows="2"><gi>cb</gi></cell>
+            <cell rows="2" rendition="#right">63,521</cell>
+            <cell><att>n</att></cell>
+            <cell><val>[column number]</val></cell>
+          </row>
+          <row>
+            <cell><att>type</att></cell>
+            <cell><val>start</val>, <val>end</val></cell>
+          </row>
+          <row>
+            <cell><gi>list</gi></cell>
+            <cell rendition="#right">46,989</cell>
+            <cell/>
+            <cell/>
+          </row>
+          <row>
+            <cell rows="2"><gi>figure</gi></cell>
+            <cell rows="2" rendition="#right">31,731</cell>
+            <cell><att>type</att></cell>
+            <cell><val>notatedMusic</val></cell>
+          </row>
+          <row>
+            <cell><att>facs</att></cell>
+            <cell><val>[URL pointing to an image of the tagged figure]</val></cell>
+          </row>
+          <row>
+            <cell rows="2"><gi>formula</gi></cell>
+            <cell rows="2" rendition="#right">30,172</cell>
+            <cell><att>notation</att></cell>
+            <cell><val>MathML</val>, <val>TeX</val></cell>
+          </row>
+          <row>
+            <cell><att>facs</att></cell>
+            <cell><val>[pointer to a graphic of the transcribed formula]</val></cell>
+          </row>
+          <row>
+            <cell><gi>row</gi></cell>
+            <cell rendition="#right">21,749</cell>
+            <cell/>
+            <cell/>
+          </row>
+          <row>
+            <cell rows="3"><gi>gap</gi></cell>
+            <cell rows="3" rendition="#right">21,251</cell>
+            <cell><att>reason</att></cell>
+            <cell><val>fm</val>, <val>illegible</val>, <val>insignificant</val>,
+              <val>lost</val></cell>
+          </row>
+          <row>
+            <cell><att>unit</att></cell>
+            <cell><val>chars</val>, <val>words</val>, <val>lines</val>, <val>pages</val></cell>
+          </row>
+          <row>
+            <cell><att>quantity</att></cell>
+            <cell><val>[amount of text missing]</val></cell>
+          </row>
+          <row>
+            <cell><gi>supplied</gi></cell>
+            <cell rendition="#right">19,292</cell>
+            <cell/>
+            <cell/>
+          </row>
+          <row>
+            <cell><gi>table</gi></cell>
+            <cell rendition="#right">6,426</cell>
+            <cell/>
+            <cell/>
+          </row>
+          <row>
+            <cell><gi>titlePart</gi></cell>
+            <cell rendition="#right">5,324</cell>
+            <cell><att>type</att></cell>
+            <cell><val>copyright</val>, <val>dedication</val>, <val>desc</val>, <val>main</val>,
+                <val>price</val>, <val>series</val>, <val>sub</val>, <val>volume</val></cell>
+          </row>
+          <row>
+            <cell><gi>body</gi></cell>
+            <cell rendition="#right">2,621</cell>
+            <cell/>
+            <cell/>
+          </row>
+          <row>
+            <cell><gi>titlePage</gi></cell>
+            <cell rendition="#right">2,418</cell>
+            <cell><att>type</att></cell>
+            <cell><val>halftitle</val>, <val>heading</val>, <val>main</val>,
+              <val>series</val></cell>
+          </row>
+          <row>
+            <cell><gi>text</gi></cell>
+            <cell rendition="#right">2,110</cell>
+            <cell/>
+            <cell/>
+          </row>
+          <row>
+            <cell><gi>front</gi></cell>
+            <cell rendition="#right">2,073</cell>
+            <cell/>
+            <cell/>
+          </row>
+          <row>
+            <cell><gi>back</gi></cell>
+            <cell rendition="#right">1,054</cell>
+            <cell/>
+            <cell/>
+          </row>
+        </table>
+        <p>* Frequency of occurrence within the entire DTA corpus (> 2,100 works) in May 2014.</p>
+      </div>
+      <div type="appendix" xml:id="appendix2">
+        <head>DTABf Elements of Level 2 within <gi>text</gi> with Frequencies, Attributes, and
+          Values</head>
+        <table xml:id="table2">
+          <row role="label">
+            <cell>Element</cell>
+            <cell>Frequency*</cell>
+            <cell>Attributes</cell>
+            <cell>Values</cell>
+          </row>
+          <row>
+            <cell><gi>lb</gi></cell>
+            <cell rendition="#right">15,728,726</cell>
+            <cell><att>n</att></cell>
+            <cell><val>[printed line number]</val></cell>
+          </row>
+          <row>
+            <cell><gi>hi</gi></cell>
+            <cell rendition="#right">4,188,984</cell>
+            <cell><att>rendition</att></cell>
+            <cell><val>[the medium for highlighting]</val></cell>
+          </row>
+          <row>
+            <cell rows="2"><gi>fw</gi></cell>
+            <cell rows="2" rendition="#right">554,541</cell>
+            <cell><att>place</att></cell>
+            <cell><val>bottom</val>, <val>top</val></cell>
+          </row>
+          <row>
+            <cell><att>type</att></cell>
+            <cell><val>catch</val>, <val>header</val>, <val>pageNum</val>, <val>sig</val></cell>
+          </row>
+          <row>
+            <cell rows="2"><gi>milestone</gi></cell>
+            <cell rows="2" rendition="#right">77,873</cell>
+            <cell><att>unit</att></cell>
+            <cell><val>section</val></cell>
+          </row>
+          <row>
+            <cell><att>rendition</att></cell>
+            <cell><val>#hr</val>, <val>#hrBlue</val>, <val>#hrRed</val></cell>
+          </row>
+          <row>
+            <cell><gi>sp</gi></cell>
+            <cell rendition="#right">61,057</cell>
+            <cell><att>who</att></cell>
+            <cell><val>[speaker’s id (as assigned to the role)]</val></cell>
+          </row>
+          <row>
+            <cell><gi>speaker</gi></cell>
+            <cell rendition="#right">60,970</cell>
+            <cell/>
+            <cell/>
+          </row>
+          <row>
+            <cell rows="3"><gi>space</gi></cell>
+            <cell rows="3" rendition="#right">46,401</cell>
+            <cell><att>dim</att></cell>
+            <cell><val>horizontal</val>, <val>vertical</val></cell>
+          </row>
+          <row>
+            <cell><att>unit</att></cell>
+            <cell><val>[amount of space concerned]</val></cell>
+          </row>
+          <row>
+            <cell><att>quantity</att></cell>
+            <cell><val>[unit measuring the amount of space concerned]</val></cell>
+          </row>
+          <row>
+            <cell><gi>stage</gi></cell>
+            <cell rendition="#right">20,470</cell>
+            <cell/>
+            <cell/>
+          </row>
+          <row>
+            <cell><gi>bibl</gi></cell>
+            <cell rendition="#right">11,062</cell>
+            <cell/>
+            <cell/>
+          </row>
+          <row>
+            <cell><gi>quote</gi></cell>
+            <cell rendition="#right">10,384</cell>
+            <cell><att>type</att></cell>
+            <cell><val>translation</val></cell>
+          </row>
+          <row>
+            <cell><gi>cit</gi></cell>
+            <cell rendition="#right">9,847</cell>
+            <cell/>
+            <cell/>
+          </row>
+          <row>
+            <cell><gi>salute</gi></cell>
+            <cell rendition="#right">5,470</cell>
+            <cell/>
+            <cell/>
+          </row>
+          <row>
+            <cell><gi>argument</gi></cell>
+            <cell rendition="#right">4,978</cell>
+            <cell/>
+            <cell/>
+          </row>
+          <row>
+            <cell><gi>dateline</gi></cell>
+            <cell rendition="#right">4,503</cell>
+            <cell/>
+            <cell/>
+          </row>
+          <row>
+            <cell><gi>closer</gi></cell>
+            <cell rendition="#right">3,930</cell>
+            <cell/>
+            <cell/>
+          </row>
+          <row>
+            <cell><gi>docTitle</gi></cell>
+            <cell rendition="#right">2,374</cell>
+            <cell/>
+            <cell/>
+          </row>
+          <row>
+            <cell><gi>docImprint</gi></cell>
+            <cell rendition="#right">2,127</cell>
+            <cell/>
+            <cell/>
+          </row>
+          <row>
+            <cell><gi>byline</gi></cell>
+            <cell rendition="#right">2,105</cell>
+            <cell/>
+            <cell/>
+          </row>
+          <row>
+            <cell><gi>pubPlace</gi></cell>
+            <cell rendition="#right">1,963</cell>
+            <cell/>
+            <cell/>
+          </row>
+          <row>
+            <cell><gi>publisher</gi></cell>
+            <cell rendition="#right">1,944</cell>
+            <cell/>
+            <cell/>
+          </row>
+          <row>
+            <cell><gi>docDate</gi></cell>
+            <cell rendition="#right">1,903</cell>
+            <cell/>
+            <cell/>
+          </row>
+          <row>
+            <cell><gi>docAuthor</gi></cell>
+            <cell rendition="#right">1,799</cell>
+            <cell/>
+            <cell/>
+          </row>
+          <row>
+            <cell><gi>castItem</gi></cell>
+            <cell rendition="#right">1,038</cell>
+            <cell/>
+            <cell/>
+          </row>
+          <row>
+            <cell><gi>role</gi></cell>
+            <cell rendition="#right">993</cell>
+            <cell/>
+            <cell/>
+          </row>
+          <row>
+            <cell><gi>opener</gi></cell>
+            <cell rendition="#right">745</cell>
+            <cell/>
+            <cell/>
+          </row>
+          <row>
+            <cell><gi>floatingText</gi></cell>
+            <cell rendition="#right">514</cell>
+            <cell/>
+            <cell/>
+          </row>
+          <row>
+            <cell><gi>signed</gi></cell>
+            <cell rendition="#right">340</cell>
+            <cell/>
+            <cell/>
+          </row>
+          <row>
+            <cell><gi>epigraph</gi></cell>
+            <cell rendition="#right">318</cell>
+            <cell/>
+            <cell/>
+          </row>
+          <row>
+            <cell><gi>postscript</gi></cell>
+            <cell rendition="#right">238</cell>
+            <cell/>
+            <cell/>
+          </row>
+          <row>
+            <cell><gi>roleDesc</gi></cell>
+            <cell rendition="#right">144</cell>
+            <cell/>
+            <cell/>
+          </row>
+          <row>
+            <cell><gi>imprimatur</gi></cell>
+            <cell rendition="#right">111</cell>
+            <cell/>
+            <cell/>
+          </row>
+          <row>
+            <cell><gi>castList</gi></cell>
+            <cell rendition="#right">97</cell>
+            <cell/>
+            <cell/>
+          </row>
+          <row>
+            <cell><gi>castGroup</gi></cell>
+            <cell rendition="#right">64</cell>
+            <cell/>
+            <cell/>
+          </row>
+          <row>
+            <cell><gi>docEdition</gi></cell>
+            <cell rendition="#right">52</cell>
+            <cell/>
+            <cell/>
+          </row>
+          <row>
+            <cell><gi>spGrp</gi></cell>
+            <cell rendition="#right">36</cell>
+            <cell/>
+            <cell/>
+          </row>
+          <row>
+            <cell><gi>actor</gi></cell>
+            <cell rendition="#right">12</cell>
+            <cell/>
+            <cell/>
+          </row>
+        </table>
+        <p>* Frequency of occurrence within the entire DTA corpus (> 2,100 works) in May 2014.</p>
+      </div>
+    </back>
+  </text>
+</TEI>

@@ -1,0 +1,992 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://github.com/DH-RSE/software-citation/raw/main/schema/tei_jtei_annotated.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="https://github.com/DH-RSE/software-citation/raw/main/schema/tei_jtei_annotated.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="main">Medieval Glosses as a Test Subject for the Building of Tools for Digital
+          Critical Editions</title>
+        <author>
+          <name>
+            <forename>Emmanuelle</forename>
+            <surname>Kuhry</surname>
+          </name>
+          <affiliation>Emmanuelle Kuhry is a <roleName>postdoctoral researcher</roleName> in digital
+            humanities applied to medieval manuscript studies at <orgName>Institut de Recherche et
+              d’Histoire des Textes</orgName>, CNRS (Centre National de la Recherche Scientifique). </affiliation>
+          <email>emmanuelle.kuhry@irht.cnrs.fr</email>
+        </author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>TEI Consortium</publisher>
+        <date>22/08/2021</date>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by/4.0/">
+            <p>For this publication a Creative Commons Attribution 4.0 International license has
+              been granted by the author(s) who retain full copyright.</p>
+          </licence>
+        </availability>
+      </publicationStmt>
+      <seriesStmt>
+        <title level="j">Journal of the Text Encoding Initiative</title>
+        <editor role="guest">Susan Schreibman</editor>
+        <editor role="managing">Tanja Wissik</editor>
+        <editor role="managing">Joel Kalvesmaki</editor>
+        <editor role="managing">Pietro Maria Liuzzo</editor>
+        <editor role="managing">Tiago Sousa Garcia</editor>
+        <editor role="technical">Ron Van den Branden</editor>
+        <biblScope unit="issue" n="13">Selected Papers from the 2018 TEI Conference</biblScope>
+      </seriesStmt>
+      <sourceDesc>
+        <p>No source, born digital.</p>
+      </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+      <projectDesc>
+        <p>OpenEdition Journals -centre for open electronic publishing- is the platform for journals
+          in the humanities and social sciences, open to quality periodicals looking to publish
+          full-text articles online.</p>
+      </projectDesc>
+    </encodingDesc>
+    <profileDesc>
+      <langUsage>
+        <language ident="en">en</language>
+      </langUsage>
+      <textClass>
+        <keywords xml:lang="en">
+          <term>critical editions</term>
+          <term>tools</term>
+          <term>medieval manuscripts</term>
+          <term>Oxford gloss</term>
+        </keywords>
+      </textClass>
+    </profileDesc>
+    <revisionDesc>
+      <change when="2020-08-26">Ron Van den Branden applied author’s proofing corrections.</change>
+      <change when="2021-08-22">Ron Van den Branden encoded the file.</change>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <front>
+      <div type="abstract" xml:id="abstract">
+        <p>The thirteenth-century Latin corpus of the Oxford gloss has challenging features. A
+          digital scholarly edition of this corpus necessitates innovative solutions that on the one
+          hand account for the complex structure and content of the text and its manuscript
+          transmission, and on the other hand convey these data comprehensibly to the reader. There
+          are still few user-friendly tools which allow scholars to encode a digital critical
+          edition easily, particularly its critical apparatus, in TEI XML. In this article, I
+          document my approach to editing a digital corpus of philosophical glosses, and explain the
+          tools I am using and customizing to make available to a larger public of digital scholarly
+          editors, especially in the field of medieval studies.</p>
+      </div>
+    </front>
+    <body>
+      <div xml:id="oxfordgloss">
+        <head>The Oxford Gloss</head>
+        <p>The Oxford gloss, or <foreign xml:lang="la">glossa anglicana</foreign>,<note>To read more
+            about the Oxford gloss, see Burnett (<ref type="bibl" target="#burnett96">1996</ref>);
+            R. K. French (<ref type="bibl" target="#burnett97">1997</ref>).</note> is a chain of
+          annotations copied in thirteenth-century manuscripts around the Latin translations of
+          Aristotle’s treatises on nature.<note>The corpus gathers the <soCalled>older</soCalled>
+            Latin translations of Aristotle’s treatises on nature, which is why it is named <foreign
+              xml:lang="la">corpus vetustius</foreign>. These translations were completed between
+            the middle of the twelfth century and the middle of the thirteenth century, before
+            William of Moerbeke’s translations in the 1260s and 1270s (the latter are called
+                <soCalled><foreign xml:lang="la">corpus recentius</foreign></soCalled>). The former
+            are: <title level="m">Physica</title>, <title level="m">De celo et mundo</title> (On the
+            Heavens), <title level="m">De generatione et corruptione</title> (On Generation and
+            Corruption), <title level="m">Meteora</title> (Meteorology), <title level="m">De
+              plantis</title> (On Plants, apocryphal), <title level="m">De anima</title> (On the
+            Soul), <title level="m">De memoria et reminiscentia</title> (On Memory), <title
+              level="m">De sensu et sensato</title> (On Sense and the Sensible), <title level="m">De
+              somno et vigilia</title> (On Sleep), <title level="m">De morte et vita</title> (On
+            Youth and Old Age, Life and Death, and Respiration), <title level="m">De differentiis
+              spiritus et anime</title> (On the Differences between the Spirit and the Soul,
+            apocryphal), <title level="m">Liber de causis</title> (Book of Causes,
+            apocryphal).</note></p>
+        <figure xml:id="figure1">
+          <graphic url="images/figure1.jpg" width="3093px" height="1376px"/>
+          <head type="legend">First folio of <title level="m">Physica</title> in manuscripts
+            Firenze, Biblioteca Medicea Laurenziana Plut.13 sin.5, f. 1; London, British Library
+            Royal 12 G II, f. 2; and London, British Library Harley 3487, f. 4.</head>
+        </figure>
+        <p>The Aristotelian text was written in the middle of the page, in a large module. Most of
+          the gloss was copied in the margins, which were designed to accommodate several columns of
+          those notes, but a significant portion was placed between the lines. Each manuscript
+          therefore has both marginal and interlinear annotations, which are referred to universally
+          as glosses, no matter the length or content. Different techniques were used, even on the
+          same page, to link a marginal gloss to its lemma, the word or phrase in the central text.
+          Either an attachment sign was copied above the lemma and reproduced beside the gloss, or
+          the lemma was repeated at the beginning of the gloss.</p>
+        <div xml:id="glossorscholion">
+          <head>Gloss or Scholion?</head>
+          <p>The term <term>gloss</term> is sometimes distinguished from the term
+              <term>scholion</term> or <term>scholium</term>. Both designate marginal or interlinear
+            notes. For most scholars, a gloss explains a particular word through synonyms or a brief
+            definition, whereas a <term>scholium</term> treats a larger part of the text and
+            provides part of a general commentary (<ref type="bibl" target="#tov20">Tov 2020,
+              41–42</ref>). E. Tov lists even other types of additions, like interlinear and
+            marginal corrections, exegetical elements, variant readings, or scribal remarks, but in
+            the end he admits that it is difficult to distinguish between them. Other scholars treat
+            a <term>scholium</term> as a specific kind of gloss that is longer than average, and has
+            an interpretative or explanatory nature. Glosses can be assembled in a separate
+            commentary, and one can distinguish them according to a typology: prosodic, lexical,
+            morphological, etc. (<ref type="bibl" target="#wieland98">Wieland 1998, 59–60</ref>). In
+            glossed Bibles, <term>scholia</term> would be notes added in the margins for teaching
+            purposes, but not pertaining to the <term>Glossa ordinaria</term>, the corpus of glosses
+            on the Biblical text standardized in the twelfth century (<ref type="bibl"
+              target="#morard17b">Morard 2017b</ref>). In the Oxford gloss, it is difficult to
+            differentiate between glosses and <term>scholia</term> along the lines proposed by
+            scholars for other corpora, such as position or length. Some interlinear glosses in one
+            manuscript are marginal in another, and one version of a gloss might be short in one
+            manuscript but in another it might be lengthy. It is nevertheless possible to
+            distinguish types of glosses: lexical, translation-related, paraphrasing, variant
+            readings, or commentary (some of which are lengthy, and quote from one or more other
+            authors). Besides, as E. Tov (<ref type="bibl" target="#tov20">2020, 41</ref>) states,
+            the term <term>glossa</term> or <term>gloss</term> is not used in the same way in Greek
+            studies, because the Greek term <foreign xml:lang="gr">γλῶσσα</foreign> designates a
+            word in a foreign language or dialect which needs an explanation. It seems that the
+            meaning of explanation of an individual word, which was attached to the term
+              <term>glossa</term> in the High Middle Ages as a continuation of the meaning inherited
+            from the Greek, gradually dissolved into the larger meaning of <soCalled>marginal and
+              interlinear commentary</soCalled> in the Late Middle Ages, as can be witnessed in the
+            case of the <term>Glossa ordinaria</term> or of the <term>Oxford gloss</term>, which
+            both designate a corpus of notes, both marginal and interlinear, attached to a central
+            text, and for which the term <term>scholium</term> is seldom found in the literature. As
+            a matter of fact, and with the meaning of marginal commentary in medieval manuscripts,
+              <term>scholium</term> is a modern term, not used in this way in medieval lexicon and
+            bibliotheconomy; <term>scholia</term> were then designated by the terms
+              <term>notulae</term>, <term>glossae</term>, or sometimes <term>distinctiones</term>
+              (<ref type="bibl" target="#morard17b">Morard 2017b</ref>).</p>
+        </div>
+        <div xml:id="materiality">
+          <head>Materiality of the Oxford Gloss</head>
+          <p>Around twenty-six manuscripts have been found to contain part of the Oxford gloss. A
+            complete textbook usually has two hundred to three hundred folios.<note>On average the
+              dimensions of the textbooks are 300 x 200 cm. See the entries for <term>Corpus
+                vetustius</term> in the <title level="m">Aristoteles Latinus Codices</title> (see
+                <ptr type="crossref" target="#note16"/>).</note> In the manuscripts, not every
+            treatise was glossed to the same extent. Some treatises are very sparsely glossed, and
+            others receive glosses of another origin (for instance, Thomas Aquinas’s commentaries)
+            that, obviously, do not belong to the corpus of the Oxford gloss.</p>
+          <p>Masters of Arts created the gloss at the University of Oxford so that students could
+            understand Aristotelian philosophy. The gloss is believed to originate from the middle
+            of the thirteenth century, but recent studies suggest that it was in use much earlier,
+            maybe as early as the twelve twenties (<ref type="bibl" target="#kuhry19">Kuhry
+              2019</ref>).<note>See also <ptr type="crossref" target="#note8"/>.</note> It reflects
+            a lively learning environment in Oxford. Students copied glosses either during or after
+            lectures—thus implying oral transmission—or they copied them from a manuscript
+            model.</p>
+        </div>
+      </div>
+      <div xml:id="structures">
+        <head>Challenging Structures</head>
+        <p>From the researcher’s point of view, this material is remarkably complex. Unlike the
+          Biblical gloss,<note>About the Biblical gloss, see the Glossae Scripturae
+            Sacrae-electronicae (Gloss-e) program: the blog <bibl><title level="m">Sacra
+                Pagina</title>, accessed June 3, 2021, <ptr target="https://big.hypotheses.org/"
+              /></bibl>, and the digital edition <bibl><title level="a">Gloses et commentaires de la
+                Bible latine au Moyen Âge</title>, accessed June 3, 2021, <ptr
+                target="https://gloss-e.irht.cnrs.fr"/></bibl>.</note> which achieved a high level
+          of standardization, the Oxford gloss is quite variable across the manuscripts, which show
+          different levels of transmission between text and gloss as well as changes in the
+          marker-lemma which appears at the head of the gloss.<note>For a typology of the concept of
+            lemma in medieval glosses, see Morard (<ref type="bibl" target="#morard17a"
+            >2017a</ref>).</note> There are thus at least three different possible levels of
+          transmissions of the glossed text: at the levels of the central text, the lemma, and the
+          gloss’s content.<note>See <ptr target="#features" type="crossref"/> below.</note></p>
+        <p>The high level of variation among the manuscripts points to another factor of complexity:
+          that the gloss is usually considered to result from oral transmission. This means that one
+          cannot understand the text solely in terms of witnesses copied from a textual model. On
+          the other hand, there is evidence for some transmission through copying: common errors
+          between two witnesses, or a similar presentation of some groups of glosses in two or more
+          manuscripts, which cannot be explained by the layout features of the manuscript or the
+          position of the lemmas. Such features must have been arranged that way in imitation of a
+          manuscript model.</p>
+        <p>The Oxford gloss gives us an insight, albeit indirect, to a reality which is still hard
+          to apprehend concretely: the acts of teaching and of learning in thirteenth-century
+          universities. Unfortunately, the location of the glosses (between the lines, in the
+          margins), as well as their small size, make them difficult to read. Few editions have been
+          published. The consequence is that the corpus is seldom used in academic research.</p>
+        <p>Beside the structural features, intertextual features need to be highlighted, such as the
+          relationship between the Oxford gloss and its sources, like Averroes’s commentaries, and
+          between the gloss and thirteenth-century literature that quoted it. As a matter of fact,
+          careful identification shows that some later authors incorporated some of the glosses in
+          their texts without ever distinguishing them, as if they were part of the cited
+          Aristotelian text.<note xml:id="note8">At least two authors use quotations of the Oxford
+            gloss in the second third of the thirteenth century: Bartholomeus Anglicus in his
+            best-selling encyclopedia <title level="m">De proprietatibus rerum</title>, and the
+            anonymous author of the Aristotelian compilation <title level="m">Compendium
+              philosophie</title> or <title level="m">Compilatio de libris naturalibus
+              Aristotelis</title> (<ref target="#venture07" type="bibl">Ventura 2007</ref>; <ref
+              target="#kuhry19" type="bibl">Kuhry 2019</ref>).</note></p>
+      </div>
+      <div xml:id="digiglosses">
+        <head>The <soCalled>Digigloses</soCalled> Project</head>
+        <div xml:id="editorialproblems">
+          <head>Editorial Problems</head>
+          <p>The fluid and variant character of the glosses and of their links to the text make them
+            difficult to edit. The few paper editions are partial (<ref target="#burnett97"
+              type="bibl">Burnett and Mendelsohn 1997</ref>; <ref target="#french97" type="bibl">R.
+              K. French 1997</ref>; <ref target="#french98" type="bibl">E. J. French 1998</ref>;
+              <ref target="#galle08" type="bibl">Galle 2008</ref>). Representing the links between
+            the glosses and the text and the variant character of the glosses and the lemmata proves
+            to be a problem in all of them. The most accurate edition is not very easy to read (<ref
+              target="#galle08" type="bibl">Galle 2008</ref>). The corpus is huge, as the twenty-six
+            or so manuscripts span a dozen different treatises. There is no electronic edition yet.
+            My current project aims to make an electronic edition of the gloss on <title level="m"
+              >De plantis</title>. The edition will provide a critical text, but also let the reader
+            follow text and gloss as easily as a medieval reader could do, that is, text and gloss
+            being immediately connected to one another.</p>
+          <p>Reproducing the medieval layout seems a difficult goal to reach, whether in print or
+            digitally. The medieval annotators arranged the material to fit the space left on the
+            page. To spare writing space they could abbreviate some places, or tighten the script.
+            They could adapt the writing and disposition of the glosses according to the situation
+            and context, because they could see and reflect on the text as readers. Tailoring an
+            algorithm to resolve contextual and potentially subjective issues seems rather
+            cumbersome, and to promise uncertain results. New solutions must be found to represent
+            glossed corpora, other than the paper or digital editions tried so far.<note>I give a
+              survey of such solutions in my contribution (<ref target="#kuhry20" type="bibl">Kuhry
+                2020</ref>).</note></p>
+          <p>The high degree of variation between witnesses, both in content and in presentation of
+            the glosses, as well as the uncertainty about the transmission of the text (oral,
+            written, or both) both make the idea of a stemmatic or reconstructed edition irrelevant,
+            if not wrong-headed. Furthermore, the very instability and mutability of the manuscript
+            tradition best helps us understand medieval teaching; differences are windows into the
+            lively and social context which generated them. This is perhaps one of the main values
+            of an edition based on the manuscript tradition, unlike the sole publication of a
+            reconstructed text, as the content of the gloss is mainly a compilation of commentaries,
+            and can probably not be retraced to an archetypal authorial version.<note>About the lack
+              of <soCalled>authorial</soCalled> character, see <ptr type="crossref" target="#note17"
+              />. Siemens et al. (<ref target="#siemens16" type="bibl">2016</ref>) reach a similar
+              conclusion about the importance of accounting for the social context of the
+              text.</note> On the contrary, the Oxford gloss is the result of gradual, collaborative
+            work by Masters of Arts of the University of Oxford throughout the second third of the
+            thirteenth century (<ref target="#kuhry19" type="bibl">Kuhry 2019</ref>).<note
+              xml:id="note11">Identification of the sources of the Oxford gloss and of the texts of
+              Adam of Buckfield, an early commentator of the Aristotelian treatises on nature at
+              Oxford, shows that Buckfield, while being a major source for the gloss, probably
+              himself used a primitive state of the gloss (<ref target="#kuhry19" type="bibl">Kuhry
+                2019</ref>).</note> The ideal edition should thus represent the peculiarities of
+            each of several manuscripts that carry a given treatise, to help readers identify those
+              layers.<note>See Pierazzo (<ref target="#pierazzo16b" type="bibl">2016b</ref>), who
+              argues for an opposition between a Neoplatonic view of texts, which perpetuates the
+              notion of an ideal text to be reconstructed, and a Heraclitean view, which accepts and
+              accounts for the mutability of texts.</note></p>
+          <p>On the other hand, an edition which provides merely facsimiles or document-centered
+            editions of each manuscript would not be a satisfactory scholarly edition.<note
+              xml:id="note13">P. Robinson (<ref target="#robinson13" type="bibl">2013</ref>) exposes
+              the debate between advocates of document-centered and text-centered editions,
+              concluding that facsimile editions are not suited to creating a dialogue between the
+              reader, the edition, and the editor, and that a digital scholarly edition should not
+              concentrate on the document alone, but should provide the reader with means to explore
+              the text. F. Fischer (<ref target="#fischer17" type="bibl">2017</ref>) stresses the
+              need for digital editions to supply critical value, corresponding to critical
+              annotation. He also calls for ways to search corpora of digital critical editions from
+              a single gateway in addition to the possibilities offered on each distinct digital
+              critical edition website. F. Duval (<ref target="#duval17" type="bibl">2017</ref>)
+              argues for editions both critical and documentary, and highlights the importance of
+              enlightening the reader about the complexity of the transmission of texts, which
+              necessitates some form of critical apparatus to accompany an edition (<ref
+                target="#duval17" type="bibl">Duval 2017</ref>).</note> Born-digital critical
+            editions are also different from print critical editions that have been
+              digitized.<note>Digital scholarly editions cannot be printed without loss of content
+              and functionality, and depend on a digital paradigm in their conception: see Sahle
+                (<ref target="#sahle16" type="bibl">2016</ref>).</note> They must offer features not
+            found in a traditional critical edition, including means of reading, exploring, and
+            analyzing the text.<note>See the state of the art about functionalities, including the
+              distinction between the concepts of <soCalled>scriptons</soCalled> (strings as they
+              appear to the readers) and <soCalled>textons</soCalled> (strings as they exist in the
+              text), described by Pierazzo (<ref target="#pierazzo16a" type="bibl">2016a,
+                34–36</ref>).</note> Document-centered editions and digitized critical editions are
+            thus two models from which any digital critical edition should be distinguished.</p>
+        </div>
+        <div xml:id="features">
+          <head>Features of the Corpus</head>
+          <p>In the edition I am preparing of <title level="m">De plantis</title>, I have determined
+            that the corpus has the following main features: <list rend="ordered">
+              <item>From one glossed manuscript to another, the central text can be variant, with
+                missing, variant, or additional lemmata, which means that the central text should
+                display textual variance. The glosses being fluid, it is not possible to restrict
+                the encoding to the lemmata: the entire Aristotelian text must also be encoded. On
+                the other hand, the purpose is not to redo the <title level="m">Aristoteles
+                  latinus</title>.<note xml:id="note16">Initiated in 1930 under the auspices of the
+                  International Union of Academies, the <title level="m">Aristoteles latinus</title>
+                  project envisions publishing critical editions of all the Latin translations of
+                  Aristotle’s texts, and of the works falsely attributed to him, that circulated in
+                  the Middle Ages. To this end, a catalogue of all manuscripts containing Latin
+                  translations of Aristotle was established: as a result, the three volumes of the
+                    <title level="m">Aristoteles Latinus Codices</title> were published from 1939 to
+                  1961 by a commission directed by G. Lacombe, followed by L. Minio-Paluello (<ref
+                    target="#lacombe39" type="bibl">Lacombe et al. 1939</ref>, <ref
+                    target="#lacombe55" type="bibl">1955</ref>; <ref target="#minio61" type="bibl"
+                    >Minio-Paluello 1961</ref>), now available at <ptr
+                    target="https://hiw.kuleuven.be/dwmc/al/DALE"/>. So far, thirty volumes of
+                  editions of Latin translations have been published. To this enterprise can be
+                  added the parallel project of Aristoteles Semitico-Latinus, which aims to publish
+                  the Syriac, Arabic, and Hebrew translations of Aristotle’s works, of their Latin
+                  translations, and of their medieval commentaries.</note> Only the glossed
+                manuscripts are transcribed and encoded.</item>
+              <item>At a given passage from <title level="m">De plantis</title>, a gloss might be in
+                one manuscript but not another, or may come in different versions. Because I wish to
+                show such variation, the glosses’ variants must be encoded too.</item>
+              <item>A given gloss can be linked to different lemmata from one manuscript to another,
+                or to a lemma not existing in the manuscript, which means that the design of the
+                encoding should take into account the fluidity of the glosses, to reflect accurately
+                the state of the manuscript tradition.</item>
+              <item>One gloss in one manuscript can be two or three in another.</item>
+              <item>One gloss can be interlinear in one manuscript but marginal in another.</item>
+              <item>Glosses in the same manuscript might be written by several hands.</item>
+            </list>
+          </p>
+          <p>These last two characteristics imply that any encoded gloss must allow additional
+            levels of description, beside the text and its variants.</p>
+        </div>
+        <div xml:id="editorialprinciples">
+          <head>Editorial Principles</head>
+          <p>For this corpus, which is far less standardized than the Biblical <term>Glossa
+              ordinaria</term>, stemmatical reconstruction of the text is irrelevant, even if it
+            were possible, as I have already said.<note xml:id="note17">A. Andrée draws the same
+              conclusion about the <term>Glossa ordinaria</term> and the lack of
+                <soCalled>authorial</soCalled> character in this type of text (<ref
+                target="#andree16" type="bibl">2016, 9–10</ref>).</note> Before the digital edition
+            can be published, several steps must be completed, according to a specific
+              methodology.<note>I have described the methodology (<ref target="#kuhry20" type="bibl"
+                >Kuhry 2020</ref>).</note> The manuscript witnesses must be classified according to
+            the glosses’ typology. In the absence of precise dating for the copying of the glosses,
+            a typology can be achieved only after significant samples have been collated for each
+            one. Collected samples should help to identify layers of composition in the glosses’
+            content, and thus to define stages in the development of the glossed corpus in the
+            thirteenth century.<note>An example of an interesting research question that might be
+              answerable: can we identify glosses dating from a pre-Buckfield era? (See <ptr
+                type="crossref" target="#note11"/>.)</note> Then, a base manuscript containing an
+            extended version of the glosses is chosen and the variants of the most significant
+            manuscripts of each type are collated against its text. This comparative activity will
+            enable the creation of a thesaurus of the glosses, each gloss archetype—a gloss in an
+            abstract sense, instantiated in different versions—receiving a unique identifier.</p>
+        </div>
+        <div xml:id="tools">
+          <head>Creating Versatile Tools for Digital Scholarly Editions</head>
+          <p>In her paper presented at the 2015 TEI Conference, M. Burghart (<ref
+              target="#burghart16" type="bibl">2016</ref>) describes three areas in which the
+            digital scholarly editor of medieval texts could need help: detection of human errors in
+            the apparatus, ability to display different versions of the work-in-progress edition
+            (corresponding to the text of different manuscripts), and handling of editions encoded
+            with <gi>rdg</gi> or <gi>lem</gi> elements in the apparatus. Those needs are met by the
+            TEI Critical Apparatus Toolbox, which she created.<note><bibl><author>Marjorie
+                  Burkhart</author> et al., <title level="u">TEI Critical Apparatus Toolbox</title>,
+                accessed June 3, 2021, <ptr target="http://teicat.huma-num.fr/"/>.</bibl></note> I
+            would add another prior and very basic need: finding help to encode the edition. Indeed,
+            the task of encoding is described as the main difficulty confronted by TEI users, partly
+            because of the lack of user-friendly tools (<ref target="#burghart12" type="bibl"
+              >Burghart and Rehbein 2012</ref>). One can find tools to annotate images and
+            transcribe sources,<note>Such tools include Transkribus (from READ-COOP SCE, accessed
+              June 3, 2021, <ptr target="https://transkribus.eu/Transkribus/"/>) and Archetype
+              (previously called the DigiPal framework, now supported by King’s Digital Laboratory,
+              King’s College London, accessed June 3, 2021, <ptr target="http://archetype.ink/"
+              />).</note> but these tools do not enable the scholar to encode variants and the
+            critical apparatus as specified in the TEI Guidelines. They are therefore purely
+            document-centered tools, and we have seen above (see <ptr type="crossref"
+              target="#note13"/>) that there is a general demand for text-oriented digital scholarly
+            editions designed to be critical. Collation of several manuscripts can also produce an
+            automatically encoded critical apparatus using the TEI parallel segmentation method, by
+            means of CollateX or Juxta software, provided one already has the separate
+            transcriptions at one’s disposal.<note>Interedition Development Group, CollateX –
+              Software for Collating Textual Sources, accessed June 4, 2021, <ptr
+                target="https://collatex.net/"/>. For a history of collation tools and especially of
+              the developments leading to CollateX, see Nury and Spadini (<ref target="#nury20"
+                type="bibl">2020</ref>). Juxta is no longer maintained; it has been replaced by two
+              programs both developed by Performant Software Solutions: Faircopy (accessed June 4,
+              2021, <ptr target="https://faircopyeditor.com/"/>), a transcription interface
+              producing TEI encoding, and TextLab (accessed June 4, 2021, <ptr
+                target="https://www.textlab.org/"/>), which seems to be more focused on genetic
+              editing. However, a legacy version of Juxta, accessed June 4, 2021, can be found at
+                <ptr target="https://www.juxtasoftware.org/download/"/>. Roeder (<ref
+                target="#roeder20" type="bibl">2020</ref>) provides a survey of three web-based
+              tools offering automated collation.</note> As such, the result is not a proper
+            critical edition, as no selection of variants has been made to produce a critical text
+            with an apparatus. Critical editors therefore still need a user-friendly tool which
+            allows them to establish the edited text, select variants, and introduce all the
+            necessary critical annotation.</p>
+          <p>As a matter of fact, many scholars are invited by the TEI to encode their research data
+            but they have neither the time nor the opportunity to get proper training in TEI XML
+            encoding. So the second part of the project consists in creating a panel of tools for
+            the encoding of ancient textual sources in TEI XML. These tools will enhance existing
+            software, and not create it from scratch.</p>
+          <p>The tools include <ptr type="software" xml:id="XSLT" target="#XSLT"/><rs
+              type="soft.name" ref="#XSLT">XSLT</rs> stylesheets that convert styled Word or
+            LibreOffice documents to TEI XML.<note>Sample transformations can already be made using
+              OxGarage (accessed June 4, 2021, <ptr target="https://oxgarage.tei-c.org/"/>), and
+                <ptr type="software" xml:id="XSLT" target="#XSLT"/><rs type="soft.name" ref="#XSLT"
+                >XSLT</rs> stylesheets can be found in the TEI Consortium’s GitHub repository,
+              accessed June 4, 2021,<ptr target="https://github.com/TEIC/Stylesheets"/>.</note>
+            Pre-encoding a text in a word processor can be useful, but frequently a deeper level of
+            encoding is needed, which is difficult to reach working only on the text document. So a
+            second category of tools is a series of frameworks or encoding environments made through
+            customization of two widely used XML editors: <list rend="bulleted">
+              <item><ref target="https://www.xmlmind.com/index.html">XMLmind XML Editor</ref>
+                  (XXE),<note>Accessed June 4, 2021, <ptr
+                    target="https://www.xmlmind.com/index.html"/>. Customization of this editor is a
+                  central part of the work of the Document numérique team of Maison de la Recherche
+                  en Sciences Humaines (MRSH) de Caen (see the Métopes workflow, accessed August 14,
+                  2021, <ptr target="http://www.metopes.fr/index.html"/>). XMLmind XML Editor was
+                  used in the team’s collaboration with the Biblissima Equipex (Equipment of
+                  Excellence project funded by the French National Research Agency – ANR), for which
+                  an encoding environment for ancient library catalogues was issued: Digital
+                  environment for scientific editing in XML-TEI of lists of books from ancient
+                  libraries, accessed June 4, 2021, <ptr
+                    target="https://outils.biblissima.fr/fr/outils-edition-xml/"/>.</note> which I
+                used to build a critical edition encoding environment. The encoding environment
+                allows one to display the document in different views thanks to the use of CSS
+                stylesheets, and to automate and speed up the encoding tasks with custom
+                commands.</item>
+              <item><ref target="https://www.oxygenxml.com/">Oxygen XML Editor</ref>,<note>Accessed
+                  June 4, 2021, <ptr target="https://www.oxygenxml.com/"/>.</note> which supports
+                right-to-left scripts, unlike the current version of XXE (however, recent steps have
+                been made in this direction by the developers of XXE). A framework similar to XXE’s
+                was developed for Oxygen’s Author mode, to be used by projects focusing on Hebrew or
+                Arabic sources.<note>Since version 15.1, Oxygen has handled RTL scripts quite
+                  effectively in author mode (but not text mode). See discussions about this issue
+                  on the Epidoc and TEI listservs: <bibl><author>Hugh Cayless</author>, <title
+                      level="u">RTL texts</title>, MARKUP mailing list archives, February 13,
+                      <date>2020</date>, <ptr
+                      target="https://lsv.uky.edu/scripts/wa.exe?A2=MARKUP;a8d5593f.2002"/></bibl>,
+                  and <bibl><author>David J. Birnbaum</author>, <title level="u">Editing Arabic
+                      TEI</title>, TEI-L mailing list archives, February 2, <date>2017</date>, <ptr
+                      target="https://listserv.brown.edu/cgi-bin/wa?A2=TEI-L;8f4291f.1702"/>.</bibl>
+                  Information about directionality is not documented in TEI except in
+                    <att>style</att> and <att>xml:lang</att>, and should be left to CSS:
+                      <bibl><author>Martin Holmes</author>, <title level="u">Calling all Arabic and
+                      Hebrew experts</title>, TEI-L mailing list archives, October 29,
+                      <date>2013</date>, <ptr
+                      target="https://listserv.brown.edu/cgi-bin/wa?A2=TEI-L;1bf8073.1310"/>.</bibl>
+                  The CSS module <title level="m">Writing Modes Level 3</title> describes how to
+                  handle RTL scripts (W3C Recommendation, edited by Elika J. Etemad and Koji Ishii,
+                  December 10, 2019, <ptr
+                    target="https://www.w3.org/TR/2019/REC-css-writing-modes-3-20191210/"
+                />).</note></item>
+            </list>
+          </p>
+          <p>Customized frameworks in existing XML editors presents multiple advantages: <list
+              rend="bulleted">
+              <item>The use of CSS stylesheets makes the appearance of the document being encoded
+                significantly more user-friendly, which helps scholars unfamiliar with TEI encoding
+                  .<note>Some projects have been funded to produce an online TEI-encoded edition,
+                  but the encoding is done by contractors who are usually experts in the scientific
+                  field but are unfamiliar with TEI and XML.</note> Moreover, in both applications,
+                views corresponding to different CSS configurations allow one to highlight groups of
+                elements and attributes in different ways depending upon the work’s progress, thus
+                facilitating the encoding tasks.</item>
+              <item>In both applications, using custom commands and CSS stylesheets calling the
+                commands or combined with CSS extensions enabling advanced encoding features allows
+                the automatization of a great number of tasks, many of which are tiresome and
+                error-prone when done by hand, like stand-off annotation, linking, or
+                indexing.</item>
+              <item>A framework can be adapted very easily to any other scholarly editing project.
+                Each framework can be customized to the structure specified by the project, which is
+                helpful for scholars with limited previous knowledge of XML and TEI, who could be
+                confused by the myriad possibilities of the TEI All schema. Nevertheless, the raw
+                encoding can be verified at any moment by switching to the text mode in Oxygen or to
+                the tree view in XXE.</item>
+            </list>
+          </p>
+          <p>A framework can be configured to offer guidance for the use of elements and attributes,
+            thanks to the use of custom commands and of features of CSS stylesheets like drop-down
+            menus, checkboxes, and pop-ups.</p>
+          <p>For instance, the attribute values of a number of elements can be listed and explained
+            in the <gi>teiHeader</gi> by means of several <gi>valItem</gi> elements grouped in a
+              <gi>valList</gi>. These values are informed by the editor at the beginning of the work
+            and can be completed (but preferably not changed) at a later stage. <figure
+              xml:id="figure2">
+              <graphic url="images/figure2.png" height="765px" width="1268px"/>
+              <head type="legend">In the <gi>encodingDesc</gi> element of the <gi>teiHeader</gi>,
+                defining a list of values for the <att>place</att> attribute of the <gi>note</gi>
+                element (Oxygen framework).</head>
+            </figure>
+          </p>
+          <p>In the Oxygen framework, inside the <gi>text</gi> element, the insertion of tags for
+            which the typology of attribute values has been described in the <gi>teiHeader</gi> (and
+            registered as available in drop-down menus) generates a drop-down menu listing these
+            values, thanks to the use of XPath. <figure xml:id="figure3">
+              <graphic url="images/figure3.png" height="189px" width="657px"/>
+              <head type="legend">In the corpus, choosing one of the defined values for the
+                  <att>place</att> attribute of the <gi>note</gi> element (Oxygen framework).</head>
+            </figure>
+          </p>
+          <p>The same principle is used for references to witnesses in the critical apparatus, by
+            means of the description of witnesses in the <gi>sourceDesc</gi>, and for references to
+            particular hands described in <gi>handNote</gi>, inside a <gi>handDesc</gi>, which is a
+            component of the <gi>msDesc</gi>.</p>
+          <p>That way, the editor can customize the semantic part of the encoding (namely, the
+            attribute values), in a <soCalled>go with the flow</soCalled> mode, that is, after the
+            formalization of the structure. This <soCalled>open</soCalled> characteristic is
+            essential when it comes to adapting the framework to different projects. On the other
+            hand, the frameworks do not prevent the user from inserting unexpected tags or from
+            coming up with different attributes than the ones suggested. Ultimately, a restriction
+            of the schema is desirable, notably for validation purposes (<ref target="#burnard19"
+              type="bibl">Burnard 2019</ref>).</p>
+          <p>The challenge in developing encoding frameworks is not so much technical, as they use
+            features available in each application. Frameworks consist of command configuration and
+            CSS files, sometimes <ptr type="software" xml:id="XSLT" target="#XSLT"/><rs
+              type="soft.name" ref="#XSLT">XSLT</rs> files. They provide an economic, versatile way
+            to provide scholars with customized tools for digital scholarly editing.<note>The
+              Ediarum framework for Oxygen has been developed at the Berlin-Brandenburg Academy of
+              Sciences and Humanities to help scholars create digital editions of historical
+              documents in TEI XML. However, this framework does not enable one to encode variant
+              readings and is therefore not designed for critical editing of medieval sources. See
+              Mertgens (<ref target="#mertgens19" type="bibl">2019</ref>) and the Ediarum website:
+                <ptr
+                target="https://www.bbaw.de/en/bbaw-digital/telota/research-and-software/ediarum"/>.
+              The Caen team Pôle Document numérique has since published a framework for critical
+              editing in TEI Parallel Segmentation based on XMLmind XML Editor software: see <title
+                level="u">Éditer des sources avec apparat critique</title>, accessed June 4, 2021,
+                <ptr target="http://www.unicaen.fr/recherche/mrsh/document_numerique/outils/apparat"
+              />.</note> The challenge is rather about ontology and modeling.<note>I am taking part
+              in a collective effort between scholarly editors and scientific publishing services
+              (in collaboration with IRHT’s publication team, the Caen team, and Ecole nationale des
+              Chartes) to collect and analyze editorial and encoding practices when it comes to
+              ancient sources, in order to model a common core of editorial features and to make
+              encoding and publishing tools more interoperable and complementary.</note></p>
+          <p>Among the difficulties or constraints are thus: <list rend="ordered">
+              <item>
+                <p>the need to offer tools specialized enough to fill the particular needs of each
+                  scholarly edition project, especially in the medieval field, but also generic and
+                  customizable enough to be used by other projects.<note>About tools, E. Pierazzo
+                    expresses the need for sustainability and ability to meet the needs of other
+                    projects, which implies the modeling of the working methods and concepts of a
+                    potentially large community of textual scholars (<ref target="#pierazzo16a"
+                      type="bibl">2016a, 111</ref>).</note> A solution is to identify a core of
+                  basic needs likely common to many projects, and create a library of specialized
+                  commands for each scholar to apply as they like to their own project.<note>This
+                    solution could be compared to T. Andrews’s and E. Pierazzo’s different
+                    conceptions of a <soCalled>third way</soCalled> besides
+                      <soCalled>traditional</soCalled> or <soCalled>manual</soCalled> philology and
+                    use of the computer to satisfy precise needs without involvement from the
+                    scholar (which E. Pierazzo calls <soCalled>computer-assisted
+                      philology</soCalled>). T. Andrews’s idea of a third way involves complete
+                    digital philology actively invested by the scholar in every step of the
+                    editorial task, from transcription to analysis, which eventually produces
+                    unexpected results, thanks to innovative tools and methods crafted by
+                    philologists themselves, and finally to electronic publication (<ref
+                      target="#andrews13" type="bibl">Andrews 2013</ref>; <ref target="#pierazzo16a"
+                      type="bibl">Pierazzo 2016a, 109–16</ref>). E. Pierazzo doubts that
+                    philologists can acquire such a highly technical profile in the near future,
+                    with exceptions. She advocates instead for a <soCalled>bricks
+                      approach</soCalled>: the definition of microtasks common to most text editing
+                    projects and for which individual tools could be built, customized, and combined
+                    in different ways according to the needs of each project (<ref
+                      target="#pierazzo16a" type="bibl">2016a, 109–17</ref>). The approach described
+                    in the present paper is closer to Pierazzo’s view.</note> The publication phase,
+                  whether in print or in digital form, can be supported by existing tools which the
+                  scholar can configure.<note>See, for example, the <soCalled>Print an
+                      edition</soCalled> tool in the TEI Critical Apparatus Toolbox by M. Burghart,
+                    in which the sample <ptr type="software" xml:id="XSLT" target="#XSLT"/><rs
+                      type="soft.name" ref="#XSLT">XSLT</rs> stylesheet to transform TEI XML into
+                    LaTeX, to produce a printable PDF with a traditional critical apparatus, can be
+                    downloaded and modified: <ptr target="http://teicat.huma-num.fr/print.php"/>.
+                    Burghart (<ref target="#burghart16" type="bibl">2016</ref>) provides a survey of
+                    transformation and display tools for scholarly editions encoded with TEI. TEI
+                    Publisher (<ptr target="https://teipublisher.com/index.html"/>) and the Max
+                    display engine (<ptr
+                      target="http://www.unicaen.fr/recherche/mrsh/document_numerique/outils/max"/>)
+                    are good candidates for online publication but the average scholarly editor
+                    probably needs help using and customizing these tools, especially when creating
+                    critical editions.</note></p>
+                <p>The tools described in this paper are meant primarily for my colleagues in
+                  medieval studies. Collaboration over several months has allowed me to collect
+                  information about the precise needs of several digital scholarly edition
+                    projects.<note>Namely, a project aiming to create an electronic critical edition
+                    of a Hebrew dictionary of the thirteenth century and of its translation into
+                    Latin (IRHT-CNRS, <ptr target="https://shorashim.hypotheses.org/"/>); an edition
+                    project about the notebooks of a nineteenth-century blind medievalist (Orléans
+                    University and IRHT-CNRS, <ptr target="https://archat.hypotheses.org/"/>); and a
+                    project dealing with the electronic editing of medieval Latin encyclopedias
+                    (IRHT-CNRS, <ptr target="http://sourcencyme.irht.cnrs.fr/"/>).</note> The
+                  functionality and user-friendliness of the tools can be improved by enhancing the
+                  underlying code in accordance with the needs expressed during this test phase.
+                  Having been tested through use by scholars with little previous knowledge of
+                  digital editing, the tools can be reused by any other project.</p>
+              </item>
+              <item>
+                <p>the need to tailor the tools to the practice of scholars with little or no
+                  previous training in encoding and to anticipate potential issues they might
+                  confront while encoding.</p>
+                <p>Regarding this point, collaboration with my colleagues leading projects has also
+                  allowed me to draw a more precise sketch of their needs and of their behavior when
+                  switching from the creation of a traditional critical edition to that of a digital
+                  one.</p>
+                <p>The tools will be available online as soon as they are tested and stable.
+                  Currently two different frameworks are in testing phases in several projects. One
+                  of these frameworks is for critical editions and one for genetic editions, the
+                  latter being more document-centered. The user base includes all digital scholarly
+                  editors, especially in medieval studies.</p>
+              </item>
+            </list>
+          </p>
+        </div>
+        <div xml:id="problemssolutions">
+          <head>Problems and Solutions</head>
+          <p>I was able to address the constraints imposed by the nature of the glossed corpus
+            thanks to TEI encoding and to the support of frameworks. To test the selected solutions,
+            I have encoded a small part of the text, the prologue of <title level="m">De
+              plantis</title>, as follows: <list rend="bulleted">
+              <item>The <soCalled>parallel segmentation</soCalled><note><ref target="#tei21"
+                    type="bibl">TEI Consortium 2021, 12.2.3</ref>, <ptr
+                    target="https://tei-c.org/Vault/P5/4.2.2/doc/tei-p5-doc/en/html/TC.html#TCAPPS"
+                  />.</note> method has been used to encode the variant readings of the central text
+                and of the glosses.<note>Parallel segmentation is not devoid of issues, mainly the
+                  lack of support for overlapping structures and of transpositions, and for the
+                  expression of critical data, like editorial comments, beside the variant itself:
+                  see Buzzoni (<ref target="#buzzoni17" type="bibl">2017</ref>).</note></item>
+              <item>Text and glosses have been separated into two files. Both are linked to one
+                another via stand-off encoding, where the <att>target</att> attribute on the central
+                text’s lemmata (i.e., the words to which the glosses refer, which are encoded in a
+                  <gi>term</gi> element) points to the <att>xml:id</att> attribute of the gloss (see
+                  <ptr type="crossref" target="#figure4"/>). A complete stand-off approach would be
+                more difficult because the central text is not fixed: it receives more variant
+                readings as new manuscripts of the Oxford gloss are collated.<note>By
+                    <soCalled>complete</soCalled> stand-off, I mean a working scheme in which all
+                  the encoding would be stored outside of the document. One of the goals of
+                  stand-off encoding can be to preserve the text from interpretative marking (see
+                    <ref target="#spadini19" type="bibl">Spadini and Turska 2019</ref>). In this
+                  case I use stand-off encoding only to prevent overlapping structures when applying
+                  several layers of encoding that correspond to different categories of analysis and
+                  interpretation.</note> Under such an approach, tokenization is more complicated,
+                since the target text is constantly moving, and therefore the tokens would be as
+                well. Besides, encoding the glosses in the same file allows one to compare the
+                different versions of a particular gloss while encoding, thanks to the parallel
+                segmentation, and thus to facilitate part of the philological analysis. This
+                arrangement accommodates the fluid nature of the glosses, which cannot be encoded in
+                a fixed point in the text. To anchor a gloss to the text while expressing its
+                fluidity from one manuscript to another, the <gi>term</gi> element is set inside an
+                apparatus entry: in a <gi>rdg</gi> element contained in an <gi>app</gi> element.
+              </item>
+            </list>
+          </p>
+          <p>The consequence of encoding the lemma in a <gi>term</gi> is that the same lesson in two
+            given manuscripts can result in two readings depending whether there is a lemma in one
+            of them or not. This is indeed a problem because it overloads the critical apparatus,
+            because the shifting of the lemma to another word from one manuscript to another is very
+            common, and does not represent a variant reading in a strict sense. When encoding the
+            lemma in a <gi>term</gi> element, which is itself hosted in a <gi>rdg</gi>, actual
+            variant readings are mixed with lemmata, the latter being very numerous.<note>On the
+              prologue of the <title level="m">De plantis</title> collated from seven manuscripts,
+              in which this piece of text barely exceeds one folio, one finds 131 variant locations
+                (<gi>app</gi> elements) holding lemmata, whereas only 50 variant locations do not
+              have lemmata but have actual variant readings.</note> The problem might be solved by
+            moving the lemma information somewhere else, possibly into another type of the
+              <gi>witDetail</gi> element mentioned below, which should be located in the text after
+            the word bearing the lemma quality, as if it were a note. The <gi>witDetail</gi> can
+            have <att>wit</att> and <att>target</att> attributes, which point respectively to the
+            witness in which the word is a lemma, and to the related gloss in the glosses’
+            thesaurus.</p>
+          <p>The framework is particularly helpful when encoding two files that must interlink.
+              <figure xml:id="figure4">
+              <graphic url="images/figure4.png" height="892px" width="1679px"/>
+              <head type="legend">The working interface of the XMLmind framework. The central pane
+                shows the CSS-customized view of the file containing the central text. The left pane
+                shows the—almost—raw code of the same file. The <ident>+</ident> command designed in
+                the CSS to be available on the lemma (element <tag>term type="lemme"</tag>) opens a
+                transformed version of the glosses’ thesaurus and allows one to choose the
+                appropriate gloss archetype toward which the <att>target</att> attribute must point
+                (XMLmind framework).</head>
+            </figure>
+            <list rend="bulleted">
+              <item>In the file containing the glosses (the glosses’ library or thesaurus), each
+                gloss archetype is encoded in an <ident>item</ident> element, inside a first-level
+                apparatus entry containing two readings: the first listing the witnesses not
+                containing the gloss and having a <att>type</att> attribute with value
+                  <val>omission</val> (see <ptr type="crossref" target="#figure5"/>). This feature
+                allows one to see easily, in the framework, a list of the witnesses transmitting the
+                gloss or not. After the second <ident>rdg</ident> element, which contains the
+                gloss’s text with internal variant readings, a <ident>witDetail</ident> element
+                describes the location of the gloss in each witness (marginal or interlinear), by
+                means of <att>n</att>, and to specify, if needed, the hand which copied the gloss,
+                thanks to <att>corresp</att>. The <att>target</att> attribute identifies the
+                  <gi>rdg</gi> at issue, and <att>wit</att> points to the precise
+                witness(es).</item>
+            </list>
+            <figure xml:id="figure5">
+              <graphic url="images/figure5.png" height="750px" width="1860px"/>
+              <head type="legend">Display of the glosses’ thesaurus (XMLmind framework).</head>
+            </figure>
+            <list rend="bulleted">
+              <item><gi>lem</gi> elements are not used because there is no putative original text.
+                Nevertheless, offering a single base text for a gloss archetype is a future
+                possibility. A single reconstructed text seems to be necessary in a paper edition
+                because of layout limitations. But it is also needed in a digital critical edition,
+                which should provide a <quote source="#quoteref1">representative text version with a
+                  canonical work structure</quote> (<ref xml:id="quoteref1" target="#fischer17"
+                  type="bibl">Fischer 2017, S281</ref>), allowing citation and reuse both inside and
+                outside the project. Translations, semantic analysis, inclusion in larger corpora,
+                and so forth all need a canonical version.</item>
+              <item>A future encoding layer will deal with the identification of the sources,
+                probably with stand-off markup pointing to <gi>milestone</gi> elements framing the
+                identified segment and referred to by the <att>target</att> of a <gi>note</gi>. Each
+                  <gi>note</gi> will contain the references to the source of the passage, possibly
+                through <att>source</att> on <gi>author</gi> and <gi>ref</gi>, within a
+                  <gi>bibl</gi>.<note>This encoding scheme has been used on the SourcEncyMe corpus
+                  of medieval Latin encyclopedias: <ptr target="http://sourcencyme.irht.cnrs.fr/"
+                  />.</note></item>
+            </list>
+          </p>
+        </div>
+        <div xml:id="display">
+          <head>Display Possibilities</head>
+          <p>A publication prototype has been created using <ptr type="software" xml:id="XSLT"
+              target="#XSLT"/><rs type="soft.name" ref="#XSLT">XSLT</rs> stylesheets and Javascript
+            to produce interactive HTML pages. The current version allows one to <list
+              rend="bulleted">
+              <item>read the reconstructed text of each manuscript;</item>
+              <item>open each gloss in a pop-up with a click on the lemma (each pop-up can be moved
+                where one likes);</item>
+              <item>show interactive and optional layers of information, like textual variance (by
+                means of a form of critical apparatus), distinction between glossing hands (by means
+                of color), and critical notes.</item>
+            </list>
+          </p>
+          <p>The transition from print to digital form represents a real opportunity for critical
+            editions, with the possibility of offering more, if not all, available data.<note>E.
+              Pierazzo writes about the <soCalled>page paradigm</soCalled> that continues to
+              constrain digital scholarly editions (<ref target="#pierazzo16a" type="bibl">2016a,
+                156</ref>).</note> But the danger of overwhelming the reader with a mass of data is
+            real, as well as of losing the critical criterion which is a feature of scientific
+            editions. A balance must be found between usability / readability and completeness. A
+            selection of configurable (through display options) reading paths such as the ones
+            provided by the digital editions published with the support of the <soCalled>Pôle
+              Document numérique</soCalled> of MRSH Caen may be a solution.<note>See the list of
+              projects at <ptr
+                target="http://www.unicaen.fr/recherche/mrsh/document_numerique/projets"
+            />.</note></p>
+        </div>
+      </div>
+      <div xml:id="conclusion">
+        <head>Conclusion</head>
+        <p>Texts with complex structures allow one to test the limits of the technical possibilities
+          available for historians not trained in computer science. In this paper, I have used the
+          example of a corpus of medieval philosophical glosses to illustrate how TEI XML encoding
+          can provide solutions to issues unsolved by print editions, among which are multiple
+          layers of manuscript transmission, textual variance, and links between the central text
+          and the glosses.</p>
+        <p>I have tried to show that it is possible to build flexible tools for digital scholarly
+          editing, namely building frameworks within existing XML editors. Quick-tech solutions like
+          these are critical to a future that seems to promise ever-decreasing funding in the
+          humanities.</p>
+      </div>
+    </body>
+    <back>
+      <div type="bibliography">
+        <listBibl>
+          <bibl xml:id="andree16"><author>Andrée, Alexander</author>. <date>2016</date>. <title
+              level="a">Editing the Gloss (Later <foreign xml:lang="la">Glossa Ordinaria</foreign>)
+              on the Gospel of John: A Structural Approach.</title> In <title level="m">The Arts of
+              Editing Medieval Greek and Latin: A Casebook</title>, edited by <editor>Elisabet
+              Göransson</editor>, <editor>Gunilla Iversen</editor>, <editor>Barbara
+              Crostini</editor>, <editor>Brian M. Jensen</editor>, <editor>Erika Kihlman</editor>,
+              <editor>Eva Odelman</editor>, and <editor>Denis Searby</editor>, <biblScope
+              unit="page">2–21</biblScope>. <pubPlace>Toronto</pubPlace>: <publisher>Pontifical
+              Institute of Mediaeval Studies</publisher>.</bibl>
+          <bibl xml:id="andrews13"><author>Andrews, Tara L.</author>
+            <date>2013</date>. <title level="a">The Third Way: Philology and Critical Edition in the
+              Digital Age.</title>
+            <title level="j">Variants</title>
+            <biblScope unit="issue">10</biblScope>: <biblScope unit="page">61–76</biblScope>.
+              doi:<idno type="doi">10.7892/boris.43071</idno>.</bibl>
+          <bibl xml:id="burghart16"><author>Burghart, Marjorie</author>. <date>2016</date>. <title
+              level="a">The TEI Critical Apparatus Toolbox: Empowering Textual Scholars through
+              Display, Control, and Comparison Features.</title>
+            <title level="j">Journal of the Text Encoding Initiative</title>
+            <biblScope unit="issue">10</biblScope>. <ptr
+              target="https://journals.openedition.org/jtei/1520"/>; doi:<idno type="doi"
+              >10.4000/jtei.1520</idno>.</bibl>
+          <bibl xml:id="burghart12"><author>Burghart, Marjorie</author>, and <author>Malte
+              Rehbein</author>. <date>2012</date>. <title level="a">The Present and Future of the
+              TEI Community for Manuscript Encoding.</title>
+            <title level="j">Journal of the Text Encoding Initiative</title>
+            <biblScope unit="issue">2</biblScope>. <ptr
+              target="https://journals.openedition.org/jtei/372"/>; doi:<idno type="doi"
+              >10.4000/jtei.372</idno>.</bibl>
+          <bibl xml:id="burnard19"><author>Burnard, Lou</author>. <date>2019</date>. <title
+              level="a">What Is TEI Conformance, and Why Should You Care?</title>
+            <title level="j">Journal of the Text Encoding Initiative</title>
+            <biblScope unit="issue">12</biblScope>. <ptr
+              target="https://journals.openedition.org/jtei/1777"/>; doi:<idno type="doi"
+              >10.4000/jtei.1777</idno>.</bibl>
+          <bibl xml:id="burnett96"><author>Burnett, Charles</author>. <date>1996</date>. <title
+              level="a">The Introduction of Aristotle’s Natural Philosophy in Great Britain: A
+              Preliminary Survey of the Manuscript Evidence.</title> In <title level="m">Aristotle
+              in Britain during the Middle Ages</title>, edited by <editor>John Marenbon</editor>,
+              <biblScope unit="page">21–50</biblScope>. <series>Rencontres de philosophie
+              médiévale</series>
+            <biblScope unit="issue">5</biblScope>. <pubPlace>Turnhout, Belgium</pubPlace>:
+              <publisher>Brepols</publisher>.</bibl>
+          <bibl xml:id="burnett97"><author>Burnett, Charles</author>, and <author>Andrew
+              Mendelsohn</author>. <date>1997</date>. <title level="a">Aristotle and Averroes on
+              Method in the Middle Ages and Renaissance: The <soCalled>Oxford Gloss</soCalled> to
+              the <title level="m">Physics</title> and Pietro d’Afeltro’s <title level="m">Expositio
+                Proemii Averroys</title>.</title> In <title level="m">Method and Order in
+              Renaissance Philosophy of Nature: The Aristotle Commentary Tradition</title>, edited
+            by <editor>Daniel A. Di Liscia</editor>, <editor>Eckhard Kessler</editor>, and
+              <editor>Charlotte Methuen</editor>, <biblScope unit="page">53–111</biblScope>.
+              <pubPlace>Aldershot</pubPlace>: <publisher>Ashgate</publisher>.</bibl>
+          <bibl xml:id="buzzoni17"><author>Buzzoni, Marina</author>. <date>2017</date>. <title
+              level="a">A Protocol for Scholarly Digital Editions? The Italian Point of
+              View.</title> In <title level="m">Digital Scholarly Editing: Theories and
+              Practices</title>, edited by <editor>Matthew James Driscoll</editor> and <editor>Elena
+              Pierazzo</editor>, <biblScope unit="page">59–82</biblScope>. <series>Digital
+              Humanities Series</series>. <pubPlace>Cambridge</pubPlace>: <publisher>Open Book
+              Publishers</publisher>. <ptr target="http://books.openedition.org/obp/3400"/>.</bibl>
+          <bibl xml:id="duval17"><author>Duval, Frédéric</author>. <date>2017</date>. <title
+              level="a">Pour des éditions numériques critiques. L’exemple des textes
+              français.</title>
+            <title level="j">Médiévales</title>
+            <biblScope unit="issue">73</biblScope>: <biblScope unit="page">13–29</biblScope>.
+              doi:<idno type="doi">10.4000/medievales.8165</idno>.</bibl>
+          <bibl xml:id="fischer17"><author>Fischer, Franz</author>. <date>2017</date>. <title
+              level="a">Digital Corpora and Scholarly Editions of Latin Texts: Features and
+              Requirements of Textual Criticism.</title>
+            <title level="j">Speculum</title>
+            <biblScope unit="issue">92 (S1)</biblScope>: <biblScope unit="page">S265–87</biblScope>.
+              doi:<idno type="doi">10.1086/693823</idno>.</bibl>
+          <bibl xml:id="french98"><author>French, Edmund J.</author>
+            <date>1998</date>. <title level="u">Adam of Buckfield and the Early
+              Universities.</title> PhD diss., University of London.</bibl>
+          <bibl xml:id="french97"><author>French, Roger K.</author>
+            <date>1997</date>. <title level="a">Teaching Aristotle in the Medieval English
+              Universities: <title level="m">De Plantis</title> and the Physical <title level="m"
+                >Glossa Ordinaria</title>.</title>
+            <title level="j">Physis: Rivista Internazionale Di Storia Della Scienza</title>
+            <biblScope unit="issue">34</biblScope>: <biblScope unit="page"
+            >225–96</biblScope>.</bibl>
+          <bibl xml:id="galle08"><editor>Galle, Griet</editor>, ed. <date>2008</date>. <title
+              level="a">Edition and Discussion of the Oxford Gloss on <title level="m">De
+                Sensu</title> I.</title>
+            <title level="j">Archives d’ Histoire Doctrinale et Littéraire du Moyen Âge</title>
+            <biblScope unit="issue">75</biblScope>: <biblScope unit="page"
+            >197–281</biblScope>.</bibl>
+          <bibl xml:id="kuhry19"><author>Kuhry, Emmanuelle</author>. <date>2019</date>. <title
+              level="a">The <title level="m">Compilatio de Libris Naturalibus Aristotelis</title>
+                (<title level="m">Compendium Philosophie</title>): Evidence for the Early Reception
+              of the <title level="m">Glossa Anglicana</title> and of Adam of Buckfield’s
+              Commentaries.</title>
+            <title level="j">Recherches de Théologie et Philosophie Médiévales</title>
+            <biblScope unit="volume">86</biblScope> (<biblScope unit="issue">2</biblScope>):
+              <biblScope unit="page">283–313</biblScope>. doi:<idno type="doi"
+              >10.2143/RTPM.86.2.3287114</idno>.</bibl>
+          <bibl xml:id="kuhry20"><author>Kuhry, Emmanuelle</author>. <date>2020</date>. <title
+              level="a">Vers une édition électronique de la glose d’Oxford</title> [Towards an
+            Electronic Edition of the Oxford Gloss]. <title level="j">Humanités numériques</title>
+            <biblScope unit="issue">2</biblScope>. <idno type="doi"
+              >doi.org/10.4000/revuehn.450</idno>.</bibl>
+          <bibl xml:id="lacombe39"><author>Lacombe, Georges</author>, <author>Aleksander
+              Birkenmajer</author>, <author>Marthe Dulong</author>, and <author>Etzio
+              Franceschini</author>. <date>1939</date>. <title level="m">Aristoteles latinus:
+              Codices.</title> Pars prior [vol. 1]. Union académique internationale. Corpus
+            philosophorum Medii Aevi. <pubPlace>Rome</pubPlace>: <publisher>Libreria dello
+              stato</publisher>.</bibl>
+          <bibl xml:id="lacombe55"><author>Lacombe, Georges</author>, <author>Aleksander
+              Birkenmajer</author>, <author>Marthe Dulong</author>, <author>Etzio
+              Franceschini</author>, and <author>Lorenzo Minio-Paluello</author>. <date>1955</date>.
+              <title level="m">Aristoteles latinus: Codices.</title> Pars posterior [vol. 2]. Union
+            académique internationale. Corpus philosophorum Medii Aevi.
+              <pubPlace>Cambridge</pubPlace>: <publisher>Cambridge University
+            Press</publisher>.</bibl>
+          <bibl xml:id="mertgens19"><author>Mertgens, Andreas</author>. <date>2019</date>. <title
+              level="a">Ediarum: A Toolbox for Editors and Developers.</title>
+            <title level="j">RIDE: A Review Journal for Digital Editions and Resources</title>
+            <biblScope unit="issue">11</biblScope>. <ptr
+              target="https://ride.i-d-e.de/issues/issue-11/ediarum/"/>; doi:<idno type="doi"
+              >10.18716/ride.a.11.4</idno>.</bibl>
+          <bibl xml:id="minio61"><editor>Minio-Paluello, Lorenzo</editor>, ed. <date>1961</date>.
+              <title level="m">Aristoteles latinus: Codices.</title> Supplementa altera. Union
+            académique internationale. Corpus philosophorum Medii Aevi. <pubPlace>Bruges</pubPlace>:
+              <publisher>Desclée de Brouwer</publisher>.</bibl>
+          <bibl xml:id="morard17a"><author>Morard, Martin</author>. <date>2017</date>a. <title
+              level="a">Le texte biblique des livres glosés.</title>
+            <title level="m">Sacra Pagina: Gloses et commentaires de la Bible latine au Moyen Âge
+              (blog)</title>. October 1. <ptr target="https://big.hypotheses.org/624"/>.</bibl>
+          <bibl xml:id="morard17b"><author>Morard, Martin</author>. <date>2017</date>b. <title
+              level="a">Quelques définitions.</title>
+            <title level="m">Sacra Pagina: Gloses et commentaires de la Bible latine au Moyen Âge
+              (blog)</title>. November 3. <ptr target="https://big.hypotheses.org/865"/>.</bibl>
+          <bibl xml:id="nury20"><author>Nury, Elisa</author>, and <author>Elena Spadini</author>.
+              <date>2020</date>. <title level="a">From Giant Despair to a New Heaven: The Early
+              Years of Automatic Collation.</title>
+            <title level="j">it – Information Technology</title>
+            <biblScope unit="volume">62</biblScope> (<biblScope unit="issue">2</biblScope>):
+              <biblScope unit="page">61–73</biblScope>. doi:<idno type="doi"
+              >10.1515/itit-2019-0047</idno>.</bibl>
+          <bibl xml:id="pierazzo16a"><author>Pierazzo, Elena</author>. <date>2016</date>a. <title
+              level="m">Digital Scholarly Editing: Theories, Models and Methods</title>.
+              <pubPlace>London</pubPlace>: <publisher>Routledge</publisher>.</bibl>
+          <bibl xml:id="pierazzo16b"><author>Pierazzo, Elena</author>. <date>2016</date>b. <title
+              level="a">Modelling Digital Scholarly Editing: From Plato to Heraclitus.</title> In
+              <title level="m">Digital Scholarly Editing: Theories and Practices</title>, edited by
+              <editor>Matthew James Driscoll</editor> and <editor>Elena Pierazzo</editor>,
+              <biblScope unit="page">41–58</biblScope>. <pubPlace>Cambridge</pubPlace>:
+              <publisher>Open Book Publishers</publisher>. doi:<idno type="doi"
+              >10.11647/OBP.0095.03</idno>.</bibl>
+          <bibl xml:id="robinson13"><author>Robinson, Peter</author>. <date>2013</date>. <title
+              level="a">Towards a Theory of Digital Editions</title>. <title level="j">Variants: The
+              Journal of the European Society for Textual Scholarship</title>
+            <biblScope unit="issue">10</biblScope>: <biblScope unit="page">105–31</biblScope>.
+              doi:<idno type="doi">10.1163/9789401209021_009</idno>.</bibl>
+          <bibl xml:id="roeder20"><author>Roeder, Torsten</author>. <date>2020</date>. <title
+              level="a">Juxta Web Service, LERA, and Variance Viewer. Web Based Collation Tools for
+              TEI.</title>
+            <title level="j">RIDE: A Review Journal for Digital Editions and Resources</title>
+            <biblScope unit="issue">11</biblScope>. <ptr
+              target="https://ride.i-d-e.de/issues/issue-11/web-based-collation-tools/"/>; doi:<idno
+              type="doi">10.18716/ride.a.11.5</idno>.</bibl>
+          <bibl xml:id="sahle16"><author>Sahle, Patrick</author>. <date>2016</date>. <title
+              level="a">What Is a Scholarly Digital Edition?</title> In <title level="m">Digital
+              Scholarly Editing: Theories and Practices</title>, edited by <editor>Matthew James
+              Driscoll</editor> and <editor>Elena Pierazzo</editor>, <biblScope unit="page"
+              >19–39</biblScope>. <pubPlace>Cambridge</pubPlace>: <publisher>Open Book
+              Publishers</publisher>. doi:<idno type="doi">10.11647/OBP.0095.02</idno>.</bibl>
+          <bibl xml:id="siemens16"><author>Siemens, Ray</author>, <author>Constance
+              Crompton</author>, <author>Daniel Powell</author>, and <author>Alyssa
+              Arbuckle</author>, with <author>Maggie Shirley</author> and the <author>Devonshire
+              Manuscript Editorial Group</author>. <date>2016</date>. <title level="a">Building
+                <title level="m">A Social Edition of the Devonshire Manuscript</title></title>. In
+              <title level="m">Digital Scholarly Editing: Theories and Practices</title>, edited by
+              <editor>Matthew James Driscoll</editor> and <editor>Elena Pierazzo</editor>,
+              <biblScope unit="page">137–60</biblScope>. <pubPlace>Cambridge</pubPlace>:
+              <publisher>Open Book Publishers</publisher>. doi:<idno type="doi"
+              >10.11647/OBP.0095.08</idno>.</bibl>
+          <bibl xml:id="spadini19"><author>Spadini, Elena</author>, and <author>Magdalena
+              Turska</author>. <date>2019</date>. <title level="a">XML-TEI Stand-off Markup: One
+              Step Beyond.</title>
+            <title level="j">Digital Philology: A Journal of Medieval Cultures</title>
+            <biblScope unit="volume">8</biblScope> (<biblScope unit="issue">2</biblScope>):
+              <biblScope unit="page">225–39</biblScope>. doi:<idno type="doi"
+              >10.1353/dph.2019.0025</idno>.</bibl>
+          <bibl xml:id="tei21"><orgName>TEI Consortium</orgName>. <date>2021</date>. <title
+              level="m">TEI P5: Guidelines for Electronic Text Encoding and Interchange</title>.
+              <edition>Version 4.2.2</edition>. Last updated April 9. <pubPlace>N.p.</pubPlace>:
+              <publisher>TEI Consortium</publisher>. <ptr
+              target="https://tei-c.org/Vault/P5/4.2.2/doc/tei-p5-doc/en/html/"/>.</bibl>
+          <bibl xml:id="tov20"><author>Tov, Emanuel</author>. <date>2020</date>. <title level="a"
+              >Glosses, Interpolations, and Other Types of Scribal Additions in the Text of the
+              Hebrew Bible.</title> In <title level="m">Language, Theology, and the Bible: Essays in
+              Honour of James Barr</title>, edited by <editor>Samuel E. Balentine</editor> and
+              <editor>John Barton</editor>, <biblScope unit="page">40–66</biblScope>.
+              <pubPlace>Oxford</pubPlace>: <publisher>Clarendon</publisher>. Accessed April 1. <ptr
+              target="https://www.academia.edu/38345587/94._Glosses_Interpolations_and_Other_Types_of_Scribal_Additions_in_the_Text_of_the_Hebrew_Bible_in_Language_Theology_and_the_Bible_Essays_in_Honour_of_James_Barr_ed._S._E._Balentine_and_John_Barton_Oxford_Clarendon_1994_40_66"
+            />.</bibl>
+          <bibl xml:id="venture07"><editor>Ventura, Iolanda</editor>, ed. <date>2007</date>. <title
+              level="m">De Proprietatibus Rerum, Volume VI: Liber XVII</title>. By Bartholomeus
+            Anglicus. De Diversis Artibus 79. <pubPlace>Turnhout, Belgium</pubPlace>:
+              <publisher>Brepols</publisher>.</bibl>
+          <bibl xml:id="wieland98"><author>Wieland, Gernot R.</author>
+            <date>1998</date>. <title level="a">Interpreting the Interpretation: The Polysemy of the
+              Latin Gloss.</title>
+            <title level="j">The Journal of Medieval Latin</title>
+            <biblScope unit="issue">8</biblScope>: <biblScope unit="page">59–71</biblScope>.
+              doi:<idno type="doi">10.1484/J.JML.2.304089</idno>.</bibl>
+        </listBibl>
+      </div>
+    </back>
+  </text>
+</TEI>

@@ -1,0 +1,711 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="main">Why TEI Stand-off Markup Authoring Needs Simplification</title>
+        <author>
+          <name>
+            <forename>Raffaele</forename>
+            <surname>Viglianti</surname>
+          </name>
+          <affiliation>Raffaele Viglianti is a <roleName>research programmer</roleName> at the
+              <orgName>Maryland Institute for Technology in the Humanities (MITH)</orgName> at the
+              <orgName>University of Maryland</orgName> and a current member of the TEI Council.
+            Before MITH he worked at the <orgName>Department of Digital Humanities</orgName> at
+              <orgName>King’s College London</orgName>, where he contributed to several digitization
+            and text encoding projects while also completing a PhD in digital musicology. Raffaele’s
+            research revolves around digital editions and textual scholarship, with a focus on
+            editions of music scores. His work also focuses on the shaping of music performance
+            practice by the performance of a music score from a digital device.</affiliation>
+          <email>rviglian@umd.edu</email>
+        </author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>TEI Consortium</publisher>
+        <date>16/06/2019</date>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by/4.0/">
+            <p>For this publication a Creative Commons Attribution 4.0 International license has
+              been granted by the author(s) who retain full copyright.</p>
+          </licence>
+        </availability>
+      </publicationStmt>
+      <seriesStmt>
+        <title level="j">Journal of the Text Encoding Initiative</title>
+        <editor role="guest">Marjorie Burghart</editor>
+        <editor role="guest">Emmanuelle Morlock</editor>
+        <editor role="chief">John Walsh</editor>
+        <editor role="managing">Anne Baillot</editor>
+        <editor role="technical">Ron Van den Branden</editor>
+        <biblScope unit="issue" n="10">Selected Papers from the 2015 TEI Conference</biblScope>
+      </seriesStmt>
+      <sourceDesc>
+        <p>No source, born digital.</p>
+      </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+      <projectDesc>
+        <p>OpenEdition Journals -centre for open electronic publishing- is the platform for journals
+          in the humanities and social sciences, open to quality periodicals looking to publish
+          full-text articles online.</p>
+      </projectDesc>
+    </encodingDesc>
+    <profileDesc>
+      <langUsage>
+        <language ident="en">en</language>
+      </langUsage>
+      <textClass>
+        <keywords xml:lang="en">
+          <term>stand-off markup</term>
+          <term>textual modeling</term>
+          <term>multiple encoding</term>
+          <term>tools</term>
+        </keywords>
+      </textClass>
+    </profileDesc>
+  </teiHeader>
+  <text>
+    <front>
+      <div type="abstract" xml:id="abstract">
+        <p>Stand-off techniques are well documented in the TEI Guidelines and their use is
+          encouraged. They are not widely adopted, however, except in their simplest forms, because
+          they introduce considerable managerial overhead to a project’s workflow. This article
+          argues that stand-off markup is becoming increasingly relevant to a wider range of TEI
+          projects, partly due to recent developments in the theory of textual modeling that
+          strongly acknowledge the multidimensional nature of text. As a consequence, there is a
+          need to considerably simplify the authoring, management, and processing of stand-off
+          markup; but to what extent is this possible? Can tools make stand-off techniques more
+          approachable without substantially disrupting workflows familiar to TEI encoders? This
+          article focuses on the complexities of stand-off markup authoring through two examples,
+          one from the now completed project <title level="m">Freischütz Digital</title> and one
+          from ongoing development at the Shelley-Godwin Archive. More specifically, these examples
+          present situations in which stand-off has been essential for bridging competing editorial
+          representations of text, an operation that is becoming fundamental in the multidimensional
+          modeling of text. The <title level="m">coreBuilder</title>, an open source web-based
+          visual environment for authoring stand-off markup, was created to aid the encoding
+          workflow for these TEI projects. <title level="m">coreBuilder</title> was awarded the
+          first <emph>Rahtz Prize for TEI Ingenuity</emph> in 2017. The tool is presented here as an
+          example of simplifying the creation of stand-off markup without hiding the XML from the
+          expert encoder.</p>
+      </div>
+    </front>
+    <body>
+      <div xml:id="introduction">
+        <head>Introduction and Background</head>
+        <p>It is now commonly acknowledged that a text can be encoded according to multiple and
+          competing modeling principles, despite the longstanding influence of the OHCO model
+          (Ordered Hierarchy of Content Objects: see <ref xml:id="quoteref1" target="#derose90"
+            type="bibl">DeRose et al. 1990</ref>), which identifies nesting units of writing (such
+          as chapters, sections, and paragraphs) as the representation of <quote source="#quoteref1"
+            >what text really is</quote>. The TEI Guidelines generally follow this principle (with
+          some important recent changes in stance), but provide mechanisms for encoding other
+          textual features as secondary hierarchies, such as syntactic or rhetorical structures, or
+          structures pertaining to physical text-bearing objects such as pages, openings (e.g., a
+          pair of facing pages in a book), or other surfaces.</p>
+        <p>Secondary hierarchies can be encoded in TEI in a few ways, covered in Chapter 20 of the
+          Guidelines <title level="a">Non-hierarchical Structures</title>. A commonplace solution is
+          to use empty elements through the text to indicate the beginning of textual units
+            (<soCalled>milestones</soCalled> in TEI jargon, such as <gi scheme="TEI">pb</gi> for
+          page breaks). When milestones are not sufficient, some inline elements can use pointing
+          mechanisms to connect the starting and ending points of a textual feature. The elements
+            <gi scheme="TEI">addSpan</gi> and <gi scheme="TEI">delSpan</gi>, for example, can be
+          used in conjunction with <gi scheme="TEI">anchor</gi> to identify textual revisions across
+          units of writing such as a paragraphs. Similarly to milestones, their placement indicates
+          the starting point of the added or deleted text.</p>
+        <p>Finally, with stand-off markup one can encode secondary hierarchies by addressing
+          arbitrary portions of an encoded text. To do this, a stand-off element links together one
+          or more elements, or even identifies ranges within text nodes. The TEI Guidelines define a
+          large number of stand-off elements that, arguably, have equivalent importance to elements
+          forming the OHCO-inspired primary hierarchy. Hugh Cayless makes the helpful suggestion of
+          regarding TEI documents as structures consisting of three equally important layers: the
+          text (as in strings of characters), the tree (or the nesting text-containing elements),
+          and the metastructures (forming a graph) that require stand-off markup and pointing
+          mechanisms (<ref type="bibl" target="#cayless13">Cayless 2013 ¶2</ref>).</p>
+        <p>Stand-off techniques are well documented in the TEI Guidelines, but they are not widely
+          adopted, except in their simplest forms. Often TEI projects shy away from stand-off
+          techniques because they introduce considerable managerial overhead: even with the simplest
+          form of stand-off, the linking between elements happens through string identifiers, so
+          encoders need to make sure that the references are correctly entered. Linguistic corpora
+          in TEI are a notable exception because they are particularly dependent on stand-off
+          techniques, as they enable linguistic analysis according to more than one principle (e.g.,
+          morphological, orthographic, syntactic; see <ref type="bibl" target="#banski10">Bański
+            2010</ref>). Often, these stand-off elements are automatically created by tokenization
+          and part-of-speech identification algorithms. When the encoding is done by hand, which is
+          by far the most common way of creating TEI for most projects, stand-off markup becomes a
+          challenge, particularly in order to avoid misspellings and to track changes to
+              identifiers.<note><p>There are non-XML solutions to deal with multiple encoding
+              hierarchies, such as LMNL (Layered Markup and Annotation Language), a data model that
+              can be expressed with a syntax that, unlike XML, allows overlapping elements.
+              Seemingly, stand-off would not be necessary in a TEI document expressed using LMNL:
+                <quote source="#quoteref2">to be unburdened of the chore of assigning and
+                maintaining pointers or references<gap/> comes as a considerable relief: even in a
+                plain text editor, one can simply <emph>tag</emph>, focusing on the tasks of
+                tagging</quote> (<ref type="bibl" target="#piez15" xml:id="quoteref2">Piez
+                2015</ref>). The main obstacle to adopting this kind of approach is ultimately the
+              lack of software support, as XML is supported by a large number of tools and
+              languages. The relief of <quote source="#quoteref2">simply tagging</quote> offered by
+              LMNL is also likely proportional to the number of hierarchies one wants or needs to
+              represent: the proliferation of overlapping elements may burden the readability of the
+              text enough to prompt encoders to move one or more hierarchies
+                <soCalled>away</soCalled> from the text, in some stand-off form.</p></note></p>
+        <p>Typical TEI stand-off elements delimit a portion of text by using pointing mechanisms,
+          with the aim of applying the semantics of the element over a span of text. These elements
+          can be placed within a TEI document, but can also exist in separate TEI documents (what
+          Bański calls <quote source="#quoteref3"><emph>remote</emph> stand-off</quote>; <ref
+            type="bibl" target="#banski10" xml:id="quoteref3">Bański 2010, sec. 4.1</ref>, emphasis
+          added). To give three examples: <list rend="inline ordered">
+            <item>chapter 16 of the TEI Guidelines describes elements and attributes for temporally
+              synchronizing transcriptions of spoken text, or placing textual elements on a
+              timeline;</item>
+            <item>linguistic annotation, as mentioned earlier, chiefly relies on stand-off,
+              supported by elements such as <gi scheme="TEI">interpr</gi> defined in chapter 17;
+              finally,</item>
+            <item>the TEI provides a catchall stand-off structure, the <soCalled>Feature
+                Structures</soCalled> (<gi scheme="TEI">fs</gi>) defined in <ref
+                target="https://www.tei-c.org/Vault/P5/3.5.0/doc/tei-p5-doc/en/html/FS.html">chapter
+                18</ref>, for annotating any kind of textual feature (often linguistic) that is not
+              represented by other TEI means.<note>
+                <p>Some inline elements also use pointing mechanisms to connect the starting and
+                  ending points of a textual feature. The elements <gi scheme="TEI">addSpan</gi> and
+                    <gi scheme="TEI">delSpan</gi>, for example, can be used to identify textual
+                  revisions across units of writing such as a paragraph. Unlike stand-off markup,
+                  however, these elements cannot be extrapolated from the text flow because their
+                  placement indicates the starting and ending point of the encoded
+              text.</p></note></item>
+          </list></p>
+        <p>Beyond these already established, fairly domain-specific TEI patterns, the need for
+          stand-off markup is going to become gradually more pressing in a wider range of TEI
+          projects, provides a technical answer to recent developments in the theory of textual
+          modelling that have been strongly acknowledging the multifaceted nature of text. Patrick
+          Sahle’s theory of pluralistic text (<ref type="bibl" target="#sahle13">Sahle 2013</ref>),
+          notably claims that text can be viewed in different ways, for example as an idea, a work,
+          a linguistic expression, as well as a sign and a material document.<note><p>Sahle
+              organizes these different notions of text as spokes on a wheel, which effectively
+              positions them as supporting components of a whole.</p></note> Elena Pierazzo has
+          proposed a multidimensional model of text, document, and work where each dimension is the
+          function of a reader’s selection of observable features and the context in which they are
+          found (<ref type="bibl" target="#pierazzo15">Pierazzo 2015, 40–54</ref>). Peter Robinson,
+          as a reaction to a recent proliferation of digital editorial projects focusing on single
+          sources, has remarked that editions should <quote source="#quoteref4">illuminate both
+            aspects of the text, both text-as-work and text-as-document</quote> (<ref
+            xml:id="quoteref4" type="bibl" target="#robinson13">Robinson 2013, 123</ref>). Invoking
+          these positions, which one can hardly hope to summarize exhaustively in a few sentences,
+          serves as a reminder that scholarly text encoding is determined by fundamental decisions
+          about one’s idea of text, and that competing views will emerge and require encoding.
+          Indeed, the recent push for a multidimensional modeling of text is already generating
+          projects that attempt to integrate competing representations of the same text.</p>
+        <p>The TEI has recently adopted a set of elements in direct competition with the
+          OHCO-inspired representation of units of writing. The Guidelines chapter <title level="a"
+              ><ref target="https://www.tei-c.org/Vault/P5/3.5.0/doc/tei-p5-doc/en/html/PH.html"
+              >Representation of Primary Sources</ref></title> was substantially expanded in TEI P5
+          version 2.0.0 (in December 2011), following the proposal of a working group focused on
+          genetic editing.<note><p><bibl><title level="u">Preliminary Updates for Genetic Editing in
+                  P5</title>, October 19, <date>2011</date>, <ptr
+                  target="https://tei-c.org/Vault/TC/tcw21.html"/>.</bibl></p></note> The resulting
+          new elements and encoding strategies allow for a document-focused form of encoding, where
+          concepts of page, opening, zone of writing, and lines are of foremost importance. These
+          structures are useful to formalize an encoder’s understanding of how text takes form on a
+          writing surface, as well as tracking an author’s actions on the page to identify textual
+          revisions and the order in which they occurred. This has already sparked a debate on how
+          to coordinate document-focused encoding with the more traditional (in TEI terms)
+          text-focused encoding, often using text duplication or stand-off markup (see <ref
+            type="bibl" target="#bruning13">Brüning, Henzel, and Pravida 2013</ref> and <ref
+            type="bibl" target="#munoz15">Muñoz and Viglianti 2015</ref>).<note><p>The Guidelines of
+              SGML versions of the TEI included elements for encoding volumes, pages, columns, and
+              lines as concurring hierarchies (see <ref
+                target="https://tei-c.org/Vault/GL/P3/TS.htm#TSSA">TEI P3 Guidelines, part 6, chap.
+                31</ref>). This involved a technique known as CONCUR that was unfortunately poorly
+              supported. These elements were removed in TEI P4 in favor of their milestone
+              counterparts (e.g., <gi scheme="TEI">pb</gi>, <gi scheme="TEI">cb</gi>, <gi
+                scheme="TEI">lb</gi>). The new elements introduced in P5 2.0.0, on the other hand,
+              are designed to encode a topographical representation of text—a representation of how
+              it was laid out on a physical surface.</p></note></p>
+        <p>The two case studies that follow will exemplify this tension between competing
+          representations of text and how some balance was achieved with stand-off markup. The first
+          case study describes the digital edition of the libretto of Carl Maria von Weber’s opera
+            <title level="m">Der Freischütz</title> in the context of the now-completed <title
+            level="m">Freischütz Digital</title> project. The need for a stand-off critical
+          apparatus of variants emerged because the encoding of each source included typographical
+          and orthographical detail that made the use of embedded apparatus entries (also known as
+          parallel segmentation) impossible. The second case is a report of work in progress at the
+            <ref target="http://shelleygodwinarchive.org/">Shelley-Godwin Archive</ref> (S-GA), an
+          early adopter of the new document-focused encoding strategies for the representation of
+          primary sources. In the S-GA, units of writing were initially encoded with milestones
+          (empty elements between the units), but this course of action has proven to be
+          unsatisfactory and too complex to maintain, and the project is currently experimenting
+          with remote stand-off markup. Both projects described make use of <title level="m"
+            >coreBuilder</title>, a web application originally designed for the <title level="m"
+            >Freischütz Digital</title> project to facilitate the authoring of stand-off markup in a
+          visual environment. The tool will be presented as an example (as opposed to an outright
+          solution) of making the application of stand-off techniques more approachable in the
+          context of projects dealing with multidimensional representations of text, without
+          substantially disrupting workflows already familiar to TEI encoders.</p>
+      </div>
+      <div xml:id="fdp">
+        <head>The Libretto Edition for the <title level="m">Freischütz Digital</title>
+              Project<note><p>A more detailed overview of the encoding model described in this
+              section is given in <ref type="bibl" target="#viglianti16">Viglianti 2016</ref>, where
+              the need for the model is contextualized in more musicological terms by exploring the
+              relationship between textual and musical sources and its impact on digital editions of
+              operatic works.</p></note></head>
+        <p><title level="m">Freischütz Digital</title> (FreiDi) was a project funded by the
+          Bundesministerium für Bildung und Forschung (Federal Ministry for Education and Research -
+          BMBF) to create a digital critical edition of Carl Maria von Weber’s romantic opera <title
+            level="m">Der Freischütz</title>.<note><p>Accessed April 26, 2019, <ptr
+                target="http://freischuetz-digital.de"/>.</p></note> The project set ambitious
+          goals, including the digitization of all manuscript sources for both the score and the
+          libretto, a new recording, and experimental audio-score alignment features. As a general
+          principle for the digital edition, encoded diplomatic transcriptions were to be provided
+          for all sources. For the musical ones, encoded using the Music Encoding Initiative (MEI)
+          format, a diplomatic transcription meant dealing with source-specific aspects of: <list
+            rend="inline ordered">
+            <item>textual components of music notation, such as performance instructions, dynamics,
+              tempo marks, and lyrics; and</item>
+            <item>music notation symbols and conventions, including the use of brackets, tuplets,
+              and articulation signs</item>
+          </list>. The sources of the libretto, written by Friedrich Kind with some substantial
+          interventions by Weber (see <ref type="bibl" target="#weber07">Weber 2007</ref>), were
+          encoded in TEI <quote source="#quoteref5">with a focus on the dramatic and lyrical
+            structure of the text: the content is organized by scenes and verses; prose texts are
+            distinguished and attributed to each actor; and stage directions and other descriptive
+            text are identified as such. The transcriptions preserve original spelling and emphasis
+            such as italicized and underlined text. Revised, deleted, and added passages are
+            identified and marked up</quote> (<ref xml:id="quoteref5" type="bibl"
+            target="#viglianti16">Viglianti 2016, 735</ref>). Since all sources were transcribed and
+          encoded independently, creating a collation of variants required remote stand-off
+              techniques.<note><p>The model for encoding variation across musical sources is
+              described in <bibl><title level="u">Das <title level="m"
+                  >FreiDi</title>-Datenmodell</title>, Freischütz Digital, July <date>2014</date>,
+                accessed April 26, 2019, <ptr
+                  target="http://www.freischuetz-digital.de/datamodel.html"/>.</bibl></p></note>
+          <title level="m">FreiDi</title>’s approach to sources implemented a pluralistic view of
+          text: the digital model needed to account for both the genetic and codicological
+          dimensions of source-specific details, as well as textual variance and, more generally,
+          the work.</p>
+        <p>The <soCalled>parallel segmentation</soCalled> method for encoding variants described in
+          the TEI Guidelines (<ref
+            target="https://www.tei-c.org/Vault/P5/3.5.0/doc/tei-p5-doc/en/html/TC.html">chapter
+            12</ref>) could not be applied to the TEI-encoded libretto sources of <title level="m"
+            >FreiDi</title> because, according to this method, textual variants are encoded directly
+          in the text at phrase level. The TEI also offers a stand-off method for encoding variants,
+          called <soCalled>double-endpoint attachment</soCalled>, in which variants can be encoded
+          away from the base text by specifying the starting and ending points of the lemma of which
+          they are a variant. This allows encoders to refer to overlapping areas on the base text. <cit>
+            <quote source="#quoteref6">
+              <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true">
+                <l n="1">
+                  <seg xml:id="WBP-so.1.1">Experience</seg> though noon Auctoritee </l>
+                <!-- In another file -->
+                <app from="example.xml#WBP-so.1.1">
+                  <rdg wit="#La">Experiment</rdg>
+                  <rdg wit="#Ra2">Eryment</rdg>
+                </app>
+              </egXML>
+            </quote>
+            <ref xml:id="quoteref6" type="bibl" target="#tei19">TEI Consortium 2019, <ref
+                target="https://www.tei-c.org/Vault/P5/3.5.0/doc/tei-p5-doc/en/html/TC.html#TCAPLN"
+                >chapter 12.2.4</ref></ref>
+          </cit>
+        </p>
+        <p>While more flexible, this method was not ideal for <title level="m">FreiDi</title>’s
+          model because it assumes the existence of a base text, in terms of which the editor
+          records variants from other sources; this makes it impossible to preserve textual aspects
+          of the various sources such as spelling, abbreviations, or emphasis without identifying
+          these aspects as substantial variants themselves. For example, if the character name
+            <mentioned>Agathe</mentioned> were underlined in one source and not in another, one
+          would have to create a new apparatus entry to record such a difference: <egXML
+            xmlns="http://www.tei-c.org/ns/Examples" valid="true">
+            <speaker>
+              <app>
+                <rdg wit="#W1">Agathe</rdg>
+                <rdg wit="#W2"><hi rend="underline">Agathe</hi></rdg>
+              </app>
+            </speaker>
+          </egXML>
+        </p>
+        <p>The solution for <title level="m">FreiDi</title>’s libretto edition involved the creation
+          of a separate apparatus file that encodes textual variance with <gi scheme="TEI">rdg</gi>
+          elements containing pointers to markup in the encoding of the sources. This approach has a
+          lot in common with collation files generated after an alignment step in software such as
+          Juxta and CollateX,<note><p>See, for example, <bibl><title level="a">Textual
+                  Variance</title> on the <title level="u">TEI Wiki</title>: <ptr
+                  target="http://wiki.tei-c.org/index.php/Textual_Variance#Aligner"/>, last modified
+                April 8, <date>2011</date>.</bibl></p></note> but it is designed to operate at more
+          than one level of tokenization, so that statements about variation can be attached to any
+          element in the TEI-encoded sources. To briefly illustrate this model, let us consider the
+          following verses from two libretto sources and the corresponding apparatus file
+              entry.<note><p>This example is adapted from Viglianti (<ref type="bibl"
+                target="#viglianti16">2016, 737–38</ref>).</p></note>
+          <table xml:id="table1">
+            <row role="label" rows="1" cols="1">
+              <cell role="data" rows="1" cols="1"><ident>Source KA-tx15.xml</ident></cell>
+              <cell role="data" rows="1" cols="1"><ident>Source A-pt.xml</ident></cell>
+            </row>
+            <row role="data" rows="1" cols="1">
+              <cell role="data" rows="1" cols="1">
+                <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true">
+                  <l xml:id="KA-tx15_l1">Sie erquicke, </l>
+                  <l xml:id="KA-tx15_l2">Und <w xml:id="KA-tx15_w1">bestricke</w>  </l>
+                  <l xml:id="KA-tx15_l3">Und beglücke,</l>
+                </egXML>
+              </cell>
+              <cell role="data" rows="1" cols="1">
+                <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true">
+                  <l xml:id="A-pt_l1">Sie erquicke, </l>
+                  <l xml:id="A-pt_l2">und beglükke </l>
+                  <l xml:id="A-pt_l3">und <w xml:id="A-pt_w1">bestrikke. </w>
+                  </l>
+                </egXML>
+              </cell>
+            </row>
+            <row role="label" rows="1" cols="1">
+              <cell cols="2" role="data" rows="1">Apparatus file</cell>
+            </row>
+            <row role="data" rows="1" cols="1">
+              <cell cols="2" role="data" rows="1">
+                <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true">
+                  <app>
+                    <rdg wit="#KA-tx15">
+                      <ptr target="KA-tx15.xml#KA-tx15_l2"/>
+                      <ptr target="KA-tx15.xml#KA-tx15_l3"/>
+                    </rdg>
+                    <rdg wit="#A-pt">
+                      <ptr target="A-pt.xml#A-pt_l2"/>
+                      <ptr target="A-pt.xml#A-pt_l3"/>
+                    </rdg>
+                  </app>
+                  <app>
+                    <rdg wit="#KA-tx15">
+                      <ptr target="KA-tx15.xml#KA-tx15_w1"/>
+                    </rdg>
+                    <rdg wit="#A-pt">
+                      <ptr target="A-pt.xml#A-pt_w1"/>
+                    </rdg>
+                  </app>
+                </egXML>
+              </cell>
+            </row>
+          </table>
+        </p>
+        <p>In this example, the apparatus file records two variants: the first identifies the
+          inversion of verses by pointing to <gi scheme="TEI">l</gi> elements, while the second
+          identifies a variant in spelling. Differences in capitalization and punctuation, on the
+          other hand, are not directly targeted or identified as variants. This solution has allowed
+            <title level="m">FreiDi</title> editors to model two competing representations: the one
+          pertaining to variance and the one pertaining to the peculiar features of a specific
+          source.</p>
+      </div>
+      <div xml:id="sga">
+        <head>A New Possible Encoding Strategy for the Shelley-Godwin Archive</head>
+        <p>The Shelley-Godwin Archive (S-GA) began as a virtual reunification project to bring
+          together high-quality digital images of manuscripts of Mary Wollstonecraft, William
+          Godwin, Percy Bysshe Shelley, and Mary Wollstonecraft Shelley. The archive has now
+          completed two phases of development (the latest in February 2016) and its focus has
+          expanded to include semi-diplomatic transcriptions of a growing portion of the archive’s
+          holdings (Muñoz and Viglianti 2015). To encode these transcriptions, the S-GA adopted
+          document-focused encoding strategies for the representation of primary sources introduced
+          in TEI P5 2.0.0. As a result, S-GA TEI files model the <foreign>mise-en-page</foreign> of
+          writing on the manuscripts and include <quote source="#quoteref7">rigorous description of
+            often complicated sets of additions, deletions, and emendations</quote> (<ref
+            xml:id="quoteref7" type="bibl" target="#munoz15">Muñoz and Viglianti 2015</ref>).</p>
+        <p>The editorial team thought it necessary to also represent, as much as possible, units of
+          writing more typical of text-focused TEI encoding, both to provide users of the S-GA with
+          a less noisy <soCalled>reading view</soCalled> as well as to facilitate interchange with
+          other TEI documents.<note><p>See <ref type="bibl" target="#munoz15">Muñoz and Viglianti
+                2015</ref> for a detailed discussion, particularly §6, <title level="a">The Need for
+                Interchange Between Document-Focused and Text-Focused Models</title>.</p></note> As
+          in the <title level="m">FreiDi</title> example above, there is a tension between different
+          and competing views of the text that need to be reconciled. In this case, too, stand-off
+          offers a way forward.</p>
+        <p>Units of writing in S-GA are currently encoded as a secondary hierarchy using <gi
+            scheme="TEI">milestone</gi> and <gi scheme="TEI">anchor</gi> elements that mark the
+          beginning and the end of the unit. The <att>unit</att> attribute is used to indicate the
+          corresponding TEI element: <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true">
+            <milestone unit="tei:p" spanTo="#ap1"/>
+            <!-- document-focused encoding -->
+            <anchor xml:id="ap1"/>
+          </egXML>
+        </p>
+        <p>This method worked well for relatively simple units of writing such as paragraphs,
+          chapters, and headers, and S-GA was able to successfully deploy it for the publication of
+          the <title level="m">Frankenstein</title> manuscripts. While encoding Percy Shelley’s
+            <title level="m">Prometheus Unbound</title> manuscripts, however, some limitations of
+          this approach became apparent. Both poetic and dramatic structures can be encoded in
+          Shelley’s lyrical drama, which made the milestone-based solution too complex to create and
+          maintain. In particular, while milestone <att>unit</att> attributes invoke TEI element
+          names, the secondary hierarchy that they establish cannot be validated as easily and
+          effectively as an explicit hierarchy of text-focused TEI elements.</p>
+        <p>The solution that is currently being developed promotes the text-focused secondary
+          hierarchy back into the <gi scheme="TEI">text</gi> element. Instead of duplicating text
+          content, however, stand-off references are used to include content from the
+          document-focused encoding, which remains the primary form of encoding, as shown in the
+          following example. <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true">
+            <sourceDoc>
+              <!-- . . . -->
+              <zone>
+                <line xml:id="l1">
+                  <del rend="strikethrough">also</del>
+                  <metamark> [</metamark>
+                  <mod>
+                    <del rend="overwritten">w</del>
+                    <add place="intralinear">W</add>
+                  </mod> hen I was about <mod>
+                    <del rend="strikethrough">twelve</del>
+                    <add place="superlinear">fourteen</add>
+                  </mod> years </line>
+                <line xml:id="l2"> old we were at our house near</line>
+              </zone>
+              <!-- . . . -->
+            </sourceDoc>
+            <text>
+
+              <div type="chapter">
+                <p>
+                  <ptr target="#l1" type="includeText"/>
+                  <ptr target="#l2" type="includeText"/>
+                  <!-- . . . -->
+                </p>
+              </div>
+
+            </text>
+          </egXML>
+        </p>
+        <p>This approach will simplify the encoding of more complex textual structures without
+          overcrowding the document-focused hierarchy; validation will also be simpler and more
+          effective. Arguably, the document-focused encoding could similarly include textual content
+          with stand-off elements from a <soCalled>plain</soCalled> text document containing just
+          strings of characters. This approach has been suggested in a number of publications (e.g.,
+            <ref type="bibl" target="#schmidt09">Schmidt and Colomb 2009</ref>), but we are
+          deliberately avoiding it because we argue that plain text is not sufficiently devoid of
+          interpretation or markup. Rather, we designate our document-focused encoding as the
+          primary encoding that other representations can target with stand-off elements.</p>
+        <p>While being more expressive and potentially easier to use than the previous
+          milestone-based model, creating and managing the pointers introduces complications typical
+          of managing stand-off encoding.</p>
+      </div>
+      <div xml:id="corebuilder">
+        <head>Facilitating Stand-off Markup Creation with <title level="m"
+          >coreBuilder</title></head>
+        <p>These two case studies show that stand-off techniques can be effective for encoding text
+          according to a pluralistic, multidimensional modeling approach. They also highlight at
+          least two challenges for the manual creation of stand-off markup: <list
+            rend="inline ordered">
+            <item>entering pointers as string identifiers is error-prone; and</item>
+            <item>copy-pasting identifiers can be a slow process, particularly when there are
+              multiple documents involved, exemplified in the case of the libretto edition in <title
+                level="m">FreiDi</title></item>
+          </list>. Good authoring tools may help produce solid stand-off markup, but tools that are
+          customizable, non-domain-specific, or offering TEI support, are not readily
+              available.<note><p>This was certainly the case when work began on the encoding of the
+              libretto edition in <title level="m">FreiDi</title>, which prompted the creation of
+              the <title level="m">coreBuilder</title> tool discussed in this section. See also <ref
+                type="bibl" target="#pierazzo15">Pierazzo 2015, 121</ref>, for a similar
+              complaint.</p></note></p>
+        <p>The <title level="m">coreBuilder</title> tool was developed to address this
+              gap.<note><p>Accessed April 26, 2019, <ptr
+                target="http://raffazizzi.github.io/coreBuilder"/>.</p></note> Originally developed
+          for <title level="m">FreiDi</title>’s libretto edition (<ref type="bibl"
+            target="#viglianti16">Viglianti 2016, 738–39</ref>), the tool is a web application for
+          creating stand-off markup in a visual environment. Encoders can open XML files from their
+          local machine or from the web,<note><p>XML files can be loaded from the web only if they
+              are in the same domain as the <title level="m">coreBuilder</title>, or if the content
+              providers allow cross-domain requests. This is because of JavaScript’s same-origin
+              policy.</p></note> set the stand-off elements and attributes that the tool should
+          create, and finally click on XML elements with identifiers (<att>xml:id</att>) to create
+          stand-off entries. The tool automatically creates the links using the identifiers, thus
+          reducing human error. The visual interface is designed to eliminate the need for scrolling
+          between different parts of the same file, or moving between different windows while
+          locating target elements and creating the stand-off elements. The stand-off entries are
+          stored in an XML file (or <soCalled>core</soCalled>) that can be downloaded and integrated
+          into a TEI encoding. <figure xml:id="figure1">
+            <graphic url="images/figure1.png" height="719px" width="1268px"/>
+            <head type="legend">A screenshot of <title level="m">coreBuilder</title> version
+              0.9.0.</head>
+          </figure>
+        </p>
+        <p><ptr type="crossref" target="#figure1"/> shows the use of <title level="m"
+            >coreBuilder</title> for creating a stand-off apparatus entry. There are two TEI files
+          opened in the tool, each encoding a different source document of the same work. Users can
+          create stand-off entries by clicking on elements with <att>xml:id</att> attributes, or by
+          selecting text to create XPointer expressions.<note><p>For an overview of the
+              functionalities offered by <title level="m">coreBuilder</title> and how to use them,
+              see the project wiki, last updated August 7, 2016, <ptr
+                target="https://github.com/raffazizzi/coreBuilder/wiki"/>.</p></note> The apparatus
+          entry created in the example identifies a variant with two readings that invert the words
+            <q>bestricke</q> and <q>erquicke</q> in two consecutive verses. The remote stand-off
+          approach allows encoders to preserve differences in punctuation between the two sources
+          without encroaching on the critical apparatus. <figure xml:id="figure2">
+            <graphic url="images/figure2.png" height="811px" width="1255px"/>
+            <head type="legend">A list of stand-off entries ready to be downloaded as XML.</head>
+          </figure>
+        </p>
+        <p>The earliest version of <title level="m">coreBuilder</title> that was used for <title
+            level="m">FreiDi</title> relied exclusively on element identifiers: <title level="m"
+            >FreiDi</title> encoders, therefore, were also tasked with introducing elements such as
+            <gi scheme="TEI">seg</gi> and <gi scheme="TEI">w</gi> to allow the stand-off apparatus
+          to refer to the text at the right point (see example described in <ptr type="crossref"
+            target="#fdp"/>). The latest version of the tool also supports the creation of XPointer
+          expressions by highlighting and selecting ranges of text directly on the XML document.
+          These make it possible to refer to arbitrary ranges of text in a TEI document, as defined
+          in <ref target="https://www.tei-c.org/Vault/P5/3.5.0/doc/tei-p5-doc/en/html/SA.html"
+            >chapter 16</ref> of the Guidelines. The XPointer functionality is adapted from <title
+            level="m"><ref target="https://github.com/hcayless/tei-xpointer.js"
+              >tei-xpointer.js</ref></title>,<note><p>Available at <ptr
+                target="https://github.com/hcayless/tei-xpointer.js"/>.</p></note> a JavaScript
+          library by Hugh Cayless, who also contributed to a general overhaul of the TEI XPointer
+          scheme definition (see <ref type="bibl" target="#cayless13">Cayless 2013</ref>).</p>
+        <p>Using XPointer avoids cluttering TEI documents with unnecessary markup and provides a
+          great level of flexibility and granularity. This approach has one important drawback,
+          however: any small change in the target encoding will likely <soCalled>break</soCalled>
+          the XPointer reference. Consider, for example, correcting the typo in the word
+            <q>exmple</q> to <q>example</q> and consider also that this text is marked up with a <gi
+            scheme="TEI">w</gi> element that is targeted by stand-off markup. Correcting the typo
+          would not require an update of the stand-off entry because it targets the <gi scheme="TEI"
+            >w</gi> element as a whole. If the target were expressed with an XPointer string range,
+          however, the extra <q>a</q> would cause a shift in the character count and introduce an
+          error in the stand-off element that could very well go unnoticed. Practically speaking,
+          even though a tool such as the <title level="m">coreBuilder</title> is able to simplify
+          the creation of stand-off markup, the managerial overhead remains somewhat problematic,
+          particularly when references involve XPointer expressions with string ranges that cross
+          hierarchies.</p>
+        <p>The <title level="m">coreBuilder</title> may not be a complete solution to all the issues
+          related to stand-off markup, but hopefully it can serve as an example of an application
+          for simplifying stand-off markup authoring.<note><p>Suggestions for features and bug
+              reports, as well as developer contributions, are welcome at the <title level="a"
+                >Issues</title> section of the <title level="m">coreBuilder</title> GitHub site,
+              accessed April 26, 2019, <ptr
+                target="https://github.com/raffazizzi/corebuilder/issues"/>.</p></note> The tool
+          provides the following features that we argue are essential for a stand-off markup tool to
+          be useful and effective in a workflow where TEI is created by hand. <list>
+            <item>It provides a visual environment to create references to XML identifiers by
+              pointing and clicking (or equivalent touch-enabled operations).</item>
+            <item>Users are able to set the stand-off elements that they need to create (see <ptr
+                type="crossref" target="#figure3"/>).</item>
+            <item>The XML is not hidden from the user; the tool strives to be useful to TEI encoders
+              at all levels, including experts who may find working with hidden or rendered XML a
+              complication rather than an aid.</item>
+            <item>Users can create TEI XPointer expressions instead of ID references when
+              required.</item>
+          </list>
+          <figure xml:id="figure3">
+            <graphic url="images/figure3.png" height="614px" width="840px"/>
+            <head type="legend">The dialog box where users can set up stand-off elements. The image
+              shows the elements for building a stand-off critical apparatus, one of the preset
+              combinations from which the user can choose.</head>
+          </figure>
+        </p>
+        <p>It is also tempting to argue for a deep integration with the web and a browser-based
+          implementation; however, browsers are not currently the most scalable environment for
+          working with large, or a large number of, XML files. Moreover, desktop XML editors are the
+          most common means of creating TEI documents. Is it reasonable to step out of a desktop
+          application to a browser-based one, and then potentially go back to the desktop? Possibly.
+          There certainly are advantages to working in the browser, including the potential for
+          online collaboration and editing, or even user-generated content production (such as
+          crowdsourcing). Indeed, popular XML editor enterprises, such as Syncro Soft’s Oxygen XML
+          editor, are beginning to create browser-based counterparts of their tool
+              suites.<note><p>Syncro Soft, Oxygen XML Web Author, accessed April 26, 2019, <ptr
+                target="https://www.oxygenxml.com/webauthor/"/>.</p></note></p>
+        <p>Whether browser-based, or part of a desktop application, the complexities surrounding the
+          use of stand-off markup in a TEI project will not be solved by one simple tool; parsing
+          and processing stand-off are also less straightforward than other operations in XML. The
+          main obstacle to greater adoption, however, is likely to be authoring because, unlike
+          other steps, it needs to be done by hand, which is still the expected way of authoring
+          documents in many TEI projects. Solving the problem of creating stand-off markup may
+          simplify and aid projects that already make use of stand-off markup for analysis and
+          annotation, but more importantly it has the potential to lead to a new wave of
+          experimentation in TEI encoding. Modeling texts according to a pluralistic,
+          multidimensional ontology of text is already largely possible with TEI, particularly after
+          the expansion of the <title level="a">Representation of Primary Sources</title> chapter
+          and the introduction of document-focused elements. The limitations on doing so at this
+          point are more practical than conceptual.</p>
+      </div>
+    </body>
+
+    <back>
+      <div type="bibliography">
+        <listBibl>
+          <bibl xml:id="banski10"><author>Bański, Piotr</author>. <date>2010</date>. <title
+              level="a">Why TEI Stand-off Annotation Doesn’t Quite Work: And Why You Might Want to
+              Use It Nevertheless</title>. In <title level="m">Proceedings of Balisage: The Markup
+              Conference</title>, <date>2010</date>, <series>Balisage Series on Markup
+              Technologies</series>, vol. <biblScope unit="volume">5</biblScope>. <ptr
+              target="https://doi.org/10.4242/BalisageVol5.Banski01"/>.</bibl>
+          <bibl xml:id="bruning13"><author>Brüning, Gerrit</author>, <author>Katrin Henzel</author>,
+            and <author>Dietmar Pravida</author>. <date>2013</date>. <title level="a">Multiple
+              Encoding in Genetic Editions: The Case of <soCalled>Faust</soCalled>.</title>
+            <title level="j">Journal of the Text Encoding Initiative</title>
+            <biblScope unit="issue">4</biblScope>. <ptr
+              target="http://journals.openedition.org/jtei/697"/>; doi:<idno type="doi"
+              >10.4000/jtei.697</idno>.</bibl>
+          <bibl xml:id="cayless13"><author>Cayless, Hugh A.</author>
+            <date>2013</date>. <title level="a">Rebooting TEI Pointers</title>. <title level="j"
+              >Journal of the Text Encoding Initiative</title>
+            <biblScope unit="issue">6</biblScope>. <ptr
+              target="http://journals.openedition.org/jtei/907"/>; doi:<idno type="doi"
+              >10.4000/jtei.907</idno>.</bibl>
+          <bibl xml:id="derose90"><author>DeRose, Steven J.</author>, <author>David G.
+              Durand</author>, <author>Elli Mylonas</author>, and <author>Allen H. Renear</author>.
+              <date>1990</date>. <title level="a">What Is Text, Really?</title>
+            <title level="j">Journal of Computing in Higher Education</title>
+            <biblScope unit="volume">1</biblScope>(<biblScope unit="issue">2</biblScope>):
+              <biblScope unit="page">3–26</biblScope>. doi:<idno type="doi"
+              >10.1007/BF02941632</idno>.</bibl>
+          <bibl xml:id="munoz15"><abbr>Muñoz, Trevor</abbr>, and <abbr>Raffaele Viglianti</abbr>.
+              <date>2015</date>. <title level="a">Texts and Documents: New Challenges for TEI
+              Interchange and Lessons from the Shelley-Godwin Archive.</title>
+            <title level="j">Journal of the Text Encoding Initiative</title>
+            <biblScope unit="issue">8</biblScope>. <ptr
+              target="http://journals.openedition.org/jtei/1270"/>; doi:<idno type="doi"
+              >10.4000/jtei.1270</idno>.</bibl>
+          <bibl xml:id="pierazzo15"><author>Pierazzo, Elena</author>. <date>2015</date>. <title
+              level="m">Digital Scholarly Editing: Theories, Models and Methods</title>.
+              <pubPlace>Farnham, Surrey, UK</pubPlace>: <publisher>Ashgate</publisher>.</bibl>
+          <bibl xml:id="piez15"><author>Piez, Wendell</author>. <date>2015</date>. <title level="a"
+              >TEI in LMNL: Implications for Modeling</title>. <title level="j">Journal of the Text
+              Encoding Initiative</title>
+            <biblScope unit="issue">8</biblScope>. <ptr
+              target="http://journals.openedition.org/jtei/1337"/>; doi:<idno type="doi"
+              >10.4000/jtei.1337</idno>.</bibl>
+          <bibl xml:id="robinson13"><author>Robinson, Peter</author>. <date>2013</date>. <title
+              level="a">Towards a Theory of Digital Editions</title>. <title level="j"
+              >Variants</title>
+            <biblScope unit="issue">10</biblScope>:<biblScope unit="page">105–31</biblScope>.</bibl>
+          <bibl xml:id="sahle13"><author>Sahle, Patrick</author>. <date>2013</date>. <title
+              level="m">Digitale Editionsformen. Zum Umgang mit der Überlieferung unter den
+              Bedingungen des Medienwandels. Teil 3: Textbegriffe und Recodierung.</title>
+            <series>Schriften des Instituts für Dokumentologie und Editorik</series>, <biblScope
+              unit="volume">9</biblScope>. <pubPlace>Norderstedt</pubPlace>: <publisher>Books on
+              Demand</publisher>. <ptr
+              target="https://kups.ub.uni-koeln.de/5353/1/DigEditionen_3.pdf"/>.</bibl>
+          <bibl xml:id="schmidt09"><author>Schmidt, Desmond</author>, and <author>Robert
+              Colomb</author>. <date>2009</date>. <title level="a">A Data Structure for Representing
+              Multi-version Texts Online</title>. <title level="j">International Journal of
+              Human-Computer Studies</title>
+            <biblScope unit="volume">67</biblScope>(<biblScope unit="issue">6</biblScope>):
+              <biblScope unit="page">497–514</biblScope>. doi:<idno type="doi"
+              >10.1016/j.ijhcs.2009.02.001</idno>.</bibl>
+          <bibl xml:id="tei19"><orgName>TEI Consortium</orgName>. <date>2019</date>. <title
+              level="m">TEI P5: Guidelines for Electronic Text Encoding and Interchange</title>.
+              <edition>Version 3.5.0</edition>. Last updated January 29. <pubPlace>N.p.</pubPlace>:
+              <publisher>TEI Consortium</publisher>. <ptr
+              target="http://www.tei-c.org/Vault/P5/3.5.0/doc/tei-p5-doc/en/html/"/>.</bibl>
+          <bibl xml:id="viglianti16"><author>Viglianti, Raffaele</author>. <date>2016</date>. <title
+              level="a">Music and Words: Reconciling Libretto and Score Editions in the Digital
+              Medium</title>. In <title level="m">Ei, dem alten Herrn zoll’ ich Achtung gern’:
+              Festschrift für Joachim Veit zum 60. Geburtstag</title>, edited by <editor>Kristina
+              Richts</editor> and <editor>Peter Stadler</editor>, <biblScope unit="page"
+              >727–46</biblScope>. <pubPlace>München</pubPlace>: <publisher>Allitera
+              Verlag</publisher>. doi:<idno type="doi">10.25366/2018.46</idno>.</bibl>
+          <bibl xml:id="weber07"><author>Weber, Carl Maria von</author>. <date>2007</date>. <title
+              level="m">Der Freischütz: Romantische Oper in drei Aufzügen: Kritische
+              Textbuch-Edition</title>. Text by <editor>Friedrich Kind</editor>; edited by
+              <editor>Solveig Schreiter</editor> in collaboration with the
+            Carl-Maria-von-Weber-Gesamtausgabe. <pubPlace>Munich</pubPlace>: <publisher>Allitera
+              Verlag</publisher>.</bibl>
+        </listBibl>
+      </div>
+    </back>
+  </text>
+</TEI>

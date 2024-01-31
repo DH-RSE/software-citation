@@ -1,0 +1,1165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://github.com/DH-RSE/software-citation/raw/main/schema/tei_jtei_annotated.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="https://github.com/DH-RSE/software-citation/raw/main/schema/tei_jtei_annotated.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0"
+   xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+   xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
+   xmlns:xsl="http://www.w3.org/1999/XSL/Transform/FAKE" rend="jTEI">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title type="main">A TEI Customization for Writing TEI Customizations</title>
+            <author>
+               <name>
+                  <forename>Syd</forename>
+                  <surname>Bauman</surname>
+               </name>
+               <affiliation>Syd Bauman is the <roleName>Senior XML Programmer/Analyst</roleName> at
+                     <orgName>the Northeastern University Digital Scholarship Group</orgName>. Syd
+                  has been interested in descriptive markup since the mid-1980s, and in the TEI
+                  since he first thumbed through a copy of TEI P1.1 in 1990. He served as the
+                     <roleName>North American Editor</roleName> of the TEI from 2001 through 2007,
+                  and currently serves on <orgName>the TEI Technical
+                  Council</orgName>.</affiliation>
+               <email>s.bauman@northeastern.edu</email>
+            </author>
+         </titleStmt>
+         <publicationStmt>
+            <publisher>TEI Consortium</publisher>
+            <date>15/11/2019</date>
+            <availability>
+               <licence target="https://creativecommons.org/licenses/by/4.0/">
+                  <p>For this publication a Creative Commons Attribution 4.0 International license
+                     has been granted by the author(s) who retain full copyright.</p>
+               </licence>
+            </availability>
+         </publicationStmt>
+         <seriesStmt>
+            <title level="j">Journal of the Text Encoding Initiative</title>
+            <editor role="guest">Janelle Jenstad</editor>
+            <editor role="guest">Kathryn Tomasek</editor>
+            <editor role="guest">Martin Holmes</editor>
+            <editor role="chief">John Walsh</editor>
+            <editor role="managing">Anne Baillot</editor>
+            <editor role="technical">Ron Van den Branden</editor>
+            <biblScope unit="issue" n="12">Selected Papers from the 2017 TEI Conference</biblScope>
+         </seriesStmt>
+         <sourceDesc>
+            <p>No source, born digital.</p>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <projectDesc>
+            <p>TEI 2017 Conference Abstracts.</p>
+         </projectDesc>
+      </encodingDesc>
+      <profileDesc>
+         <langUsage>
+            <language ident="en">en</language>
+         </langUsage>
+         <textClass>
+            <keywords xml:lang="en">
+               <term>XML</term>
+               <term>schema languages</term>
+               <term>ODD</term>
+               <term>customization</term>
+            </keywords>
+         </textClass>
+      </profileDesc>
+      <revisionDesc>
+         <change when="2023-10-24">Ron Van den Branden fixed some tagging inconsistencies pointed
+            out by the author.</change>
+         <change when="2019-12-12">Martin Holmes entered proofing changes.</change>
+         <change when="2019-11-15">Ron Van den Branden made some technical modifications.</change>
+         <change when="2019-11-15">Amy Tang encoded the file.</change>
+      </revisionDesc>
+   </teiHeader>
+   <text>
+      <front>
+         <div type="abstract" xml:id="abstract">
+            <p>A schema, in general, is intended to be used to check a document for errors before
+               those errors cause problems in processing. However, schemas can also help us write
+               our documents. The TEI ODD language (and the more modern version thereof, Pure ODD),
+               in particular, can be used for two related but distinctly different purposes: 1) to
+                  <emph>create</emph> a markup language, including documentation and schemas; and 2)
+               to <emph>customize</emph> a markup language that was already written in ODD. There
+               are several examples of (1), including the TEI Guidelines, the Music Encoding
+               Initiative, the ISO Feature Structure encoding system, and the W3C
+               Internationalization Tag Set. And there are several well known examples of (2),
+               including TEI Lite, TEI Tite, TEI Simple Print, Comic Book Markup Language, Digital
+               Humanities Quarterly, TEI-in-Libraries, and the markup language for this
+                        journal.<note><p><ref
+                        target="https://www.tei-c.org/guidelines/customization/jtei/"/>.</p></note>
+            </p>
+            <p>Of all these various uses of the TEI ODD language, the most common (by far) is to
+               create a customized TEI for use in a particular project. This is because the TEI
+               Guidelines are not meant to be used out of the box—every TEI project is expected to
+               customize the TEI. For example, in raw (i.e., uncustomized) TEI, the <att>type</att>
+               attribute of <gi>stage</gi> has a robust set of nine suggested values:
+                  <val>business</val>, <val>delivery</val>, <val>entrance</val>, <val>exit</val>,
+                  <val>location</val>, <val>mixed</val>, <val>modifier</val>, <val>novelistic</val>,
+               and <val>setting</val>. But a project may very well wish to expand this list (e.g.,
+               by adding <val>onStage</val>, <val>prop</val>, and <val>remains</val>) and require
+               that encoders use a value from this expanded list. This sort of molding of the TEI to
+               local purposes is done by creating a TEI customization using the TEI ODD
+               language.</p>
+            <p>In this paper I will present a TEI ODD customization of the TEI language that is
+               intended to help a user <emph>write</emph> a TEI ODD customization of the TEI
+               language. It is not intended to check a TEI ODD customization document for errors,
+               and in fact will likely flag things as <soCalled>errors</soCalled> that an ODD
+               processor would find perfectly acceptable. But it does allow a user to more quickly,
+               easily, and accurately write a TEI customization ODD using an XML editor.</p>
+         </div>
+         <div type="acknowledgements" xml:id="acknowledgement">
+            <p>The author would like to thank the <ref target="https://wwp.northeastern.edu">Women
+                  Writers Project</ref> (now part of the <ref target="https://dsg.neu.edu">Digital
+                  Scholarship Group</ref>), which supported most of the development of
+                  <ident>tei_customization</ident>; the students in the WWP customization and data
+               modeling workshops that helped refine it; the TEI Technical Council for their
+               support; Martin Holmes for his assistance in getting it into the TEI oXygen
+               framework; and George Bina (of <ref target="https://www.oxygenxml.com">SyncRO
+                  Soft</ref>) for his suggestions on handling the infamous <soCalled>Conflicting
+                  ID-types</soCalled> problem.</p>
+         </div>
+      </front>
+      <body>
+         <div xml:id="schemas">
+            <head>Schemas</head>
+            <p>A <emph>schema</emph> is a formal declaration of various combinations of XML
+               constructs that are required, permitted, or disallowed in a document. A schema might
+               express, e.g., <q>an <gi>article</gi>
+                  <emph>may</emph> have any number of <gi>citation</gi>s, but each <gi>citation</gi>
+                  <emph>must</emph> have exactly 1 <gi>quotation</gi> followed by exactly 1
+                     <gi>attribution</gi>.</q></p>
+            <div xml:id="schemaLanguages">
+               <head>Schema Languages</head>
+               <p>Schemas are expressed using a <emph>schema language</emph>. Many schema languages
+                  have been developed over the years. However, only a few remain in common use, and
+                  even fewer are pertinent for the validation of TEI documents, and are thus
+                  important here.</p>
+               <p><ptr type="crossref" target="#table1"/> lists some of the schema languages for XML
+                  documents, arranged roughly by family of language. Those that are pertinent and
+                  thus discussed herein are <emph>emphasized</emph>.<table xml:id="table1" cols="4"
+                     rows="7">
+                     <head>Some of the schema languages for XML documents, arranged roughly by
+                        family of language.</head>
+                     <row role="label">
+                        <cell>SGML Document Type Declaration Family</cell>
+                        <cell>W3C Schema Language Family</cell>
+                        <cell>Regular Expression Family</cell>
+                        <cell>Others</cell>
+                     </row>
+                     <row>
+                        <cell>DTD</cell>
+                        <cell>XML-Data</cell>
+                        <cell>RELAX</cell>
+                        <cell>DSD</cell>
+                     </row>
+                     <row>
+                        <cell>XDTD</cell>
+                        <cell>XDR</cell>
+                        <cell>XDUCE</cell>
+                        <cell><emph>Schematron</emph></cell>
+                     </row>
+                     <row>
+                        <cell>DTD++</cell>
+                        <cell>DCD</cell>
+                        <cell>TREX</cell>
+                        <cell>Examplatron</cell>
+                     </row>
+                     <row>
+                        <cell>DTD++ 2.0</cell>
+                        <cell>SOX</cell>
+                        <cell><emph>RELAX NG</emph></cell>
+                        <cell>X-definition</cell>
+                     </row>
+                     <row>
+                        <cell/>
+                        <cell>DDML</cell>
+                        <cell/>
+                        <cell><emph>TEI ODD</emph></cell>
+                     </row>
+                     <row>
+                        <cell/>
+                        <cell>XSD</cell>
+                        <cell/>
+                        <cell/>
+                     </row>
+                  </table> (See, e.g., <ref target="#vanderVlist2002" type="bibl">van der Vlist
+                     2002</ref>.)</p>
+               <p>The schema languages in common use are the three main <emph>closed</emph> or
+                     <emph>grammar-based</emph> languages: DTD, RELAX NG, and the W3C Schema
+                  Language; and the <emph>open</emph> or <emph>rule-based</emph> language:
+                  Schematron.</p>
+               <p>The DTD language is historically extremely important, as it is really the first
+                  significant attempt at application-independent document constraint, and was built
+                  into both SGML of 1986, and its descendant XML a dozen years later (<ref
+                     type="bibl" target="#extensible">Bray, Paoli and Sperberg-McQueen 1998</ref>).
+                  Its creation was a leap forward in text processing. However, it has been
+                  completely eclipsed by more modern languages that are either easier to use, more
+                  expressive, or more flexible, and thus is no longer important in TEI document
+                  preparation.</p>
+               <p>The W3C Schema Language (<ref type="bibl" target="#xmlSchema">W3C 2004</ref>) is
+                  an extremely powerful schema language that is complex and hard to learn. In
+                  addition to expressing a grammar against which an XML instance document (or a
+                  portion thereof) may be tested for validity, it also supports augmentation of
+                  information contained in the XML instance being validated with information that is
+                  in the schema (e.g., default values for attributes that do not appear in the
+                  instance, and datatype information).<note><p>This situation, in which both a
+                        document and its schema are required in order to get the complete
+                        information set from the document, is not unique to the W3C Schema Language.
+                        The linking of a document instance to its schema, a DTD, is a requirement of
+                        SGML. In SGML, and subsequently in XML, the DTD could provide information
+                        that was not explicitly present in the document—in particular default
+                        attribute values and the expansion text of entity references. This can
+                        become a problem when a user either does not have access to the schema, or
+                        has the schema but does not realize that there is additional information in
+                        the schema that processing software will consider part of the document
+                        information.</p></note> It has the advantage of being a recommendation of
+                  the World Wide Web Consortium.</p>
+               <p>RELAX NG is a powerful, clean, and simple schema language that is relatively easy
+                  to learn. It is basically a regular expression language. The
+                     <soCalled>normal</soCalled> regular expression languages most of us are
+                  familiar with operate over the set of strings. RELAX NG operates instead over the
+                  set of XML trees. That is, we are used to thinking of characters as the primitives
+                  used in our regular expressions, and of our regular expressions as matching zero
+                  or more substrings of a document. In RELAX NG the primitives are constructs like
+                  elements and attributes, and our regular expression (schema) either matches the
+                  entire document instance (it is valid) or not (it is invalid).</p>
+               <p>RELAX NG has additional advantages. It was the native schema language underlying
+                  TEI P5 up until the introduction of Pure ODD (see <ref target="#burnard2013"
+                     type="bibl">Burnard 2013</ref>) with version 3.0.0 in January 2016.
+                  Furthermore, it is an ISO standard, grouped with several other XML technologies
+                  (including Schematron).</p>
+               <p>The Schematron language is also clean, simple, and relatively easy to learn;
+                  furthermore it is arguably more powerful than any of the others. However, while it
+                  is very easy to use Schematron for what it was designed to do—namely, to catch
+                  specific problems (like <q>the <att>ref</att> on this <gi>persName</gi> points to
+                     a <gi>biblStruct</gi>, not a <gi>person</gi></q>), it is somewhat more
+                  difficult to use Schematron to govern the structure of an entire document (like
+                     <q>the outermost element is <gi>TEI</gi>, which must have two children
+                        <gi>teiHeader</gi> and <gi>text</gi>; <gi>teiHeader</gi>, in turn, consists
+                     of a <gi>fileDesc</gi> followed by one or more of <gap/></q>). Furthermore, it
+                  is much slower, and (at least for now) editing tools will only tell you that a
+                  document is invalid against a Schematron rule after the invalidity has been
+                  introduced; they would not, for example, give you a pop-up box of only the allowed
+                  values, so that you can avoid creating the invalidity in the first place.</p>
+               <p>However, if the Schematron schema contains a <soCalled>Quick Fix</soCalled> for
+                  the error, software can read it and may be able to perform an automated correction
+                  or prompt the user to perform a correction.<note><p><ptr
+                           target="http://www.schematron-quickfix.com/"/>.</p></note> For example,
+                  the rule <q>every <gi>lg</gi> that contains 5 or more <gi>l</gi>s must have an
+                        <att>xml:id</att></q> could be expressed as shown in <ident>SQF_lg</ident>.
+                  In this case, the oXygen editor will prompt the user to automatically insert an
+                     <att>xml:id</att> to fix this error by selecting a generated contextual menu
+                  item. <figure xml:id="example_code_1">
+                     <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true">
+                        <sch:rule context="tei:lg[ count( descendant::tei:l ) gt 4 ]">
+                           <sch:assert test="@xml:id" sqf:fix="addID"> Sizable groups of metrical
+                              lines should be identified. </sch:assert>
+                           <sqf:fix id="addID">
+                              <sqf:description>
+                                 <sqf:title>Insert an @xml:id attribute</sqf:title>
+                              </sqf:description>
+                              <sqf:add target="xml:id" node-type="attribute" match="."
+                                 select="generate-id(.)"/>
+                           </sqf:fix>
+                        </sch:rule></egXML>
+                     <head type="legend">Schematron rule that includes a method for correction of
+                        the error</head>
+                  </figure></p>
+            </div>
+            <div xml:id="purposeOfaSchema">
+               <head>The Purpose of a Schema</head>
+               <p>In XML document production, and particularly in digital humanities XML document
+                  production, we use schemas for various purposes.</p>
+               <div xml:id="Constraint">
+                  <head>Constraint</head>
+                  <p>Strictly speaking, the primary purpose of a schema is to constrain our data. A
+                     schema serves as a gate-keeper; it divides the world of XML documents into two
+                     piles: those that are valid against it, and those that are not. By rejecting
+                     those files in the <soCalled>not valid</soCalled> file pile, we can spare the
+                     rest of our processing system from needing to deal with errors that can be
+                     quickly and easily detected by an automated process, namely validation.</p>
+                  <p>For example, let’s say we are publishing a large collection of letters from
+                     prisoners, each of which is stamped (by the prison guards) with the day it was
+                     sent. If our schema <emph>requires</emph> that there be a date in a particular
+                     format in a particular place (say, in W3C format on the <att>when</att> of
+                        <tag>correspAction type=&quot;sent&quot;</tag>), then our publication
+                     software does not have to worry about what to do if it finds a letter without a
+                     date when it tries to sort them. The publication software (or, to be more
+                     precise and stop anthropomorphizing code, the computer programmer who writes
+                     the publication software) can depend on the fact that every letter will have a
+                     date in exactly the right spot.</p>
+                  <p>As Wendell Piez points out (<ref target="#piez2001" type="bibl">Piez
+                     2001</ref>), this is exactly analogous to the use of
+                        <soCalled>go/no-go</soCalled> gauge. <figure xml:id="image1">
+                        <graphic url="images/snap_go_no-go_gauge.jpg" width="730px" height="731px"/>
+                        <head type="legend">snap go no-go gauge.</head>
+                     </figure> The <ref target="https://en.wikipedia.org/wiki/Snap_gage">snap
+                        go/no-go gauge</ref> shown has two (adjustable) apertures. The first (shown
+                     on the right) is slightly wider than the second. With this gauge in one hand, a
+                     worker on an assembly line can quickly pick up a cylinder (say, a gun barrel or
+                     a bicycle frame tube) in the other and test to see if it has the correct outer
+                     diameter. If the cylinder slips between both the first and second apertures, it
+                     is too small. If it cannot fit past even the first gap, it is too large. If it
+                     passes the first but not the second, it is the right size. A direct, physical
+                     application of the <ref
+                        target="https://en.wikipedia.org/wiki/Goldilocks_principle">Goldilocks
+                        principle</ref>, as it were. In document production, our documents are the
+                     cylinders, and the schema is the gauge. If a document passes through both
+                     apertures it is invalid because it is missing a required construct (say, a TEI
+                     document without a <gi>fileDesc</gi>). If a document cannot pass through the
+                     first aperture, it is invalid because it has an extraneous construct (say, a
+                     TEI document in which an <gi>lb</gi> element has text content). Only a document
+                     that passes the first gap but not the second may be considered
+                           valid.<note><p>There are, of course, other ways an XML file may be
+                           invalid that do not have analogs in this analogy, e.g., having two
+                           elements that are allowed, but are in the wrong order.</p></note></p>
+                  <p>This strict use of schemas is helpful to us in digital humanities because it
+                     allows us to catch errors in our documents very early in the document creation
+                     process. It is theorized (and there is anecdotal evidence to suggest) that it
+                     is much easier (read <soCalled>cheaper</soCalled>) to catch errors earlier in
+                     the document production assembly line rather than later.<note><p>Again, see
+                              <ref target="#piez2001" type="bibl">Piez, 2001</ref>.</p></note> For
+                     example, in <ptr target="#example_code_2" type="crossref"/> we have an
+                     erroneous TEI encoding of a passage from <title level="m">A summary history of
+                        New-England</title> by Hannah Adams.<figure xml:id="example_code_2">
+                        <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true"><lb/>this
+                           propoſal to the general court. After ſome <lb/>debate, their plan was
+                           accepted, and the company <lb/>proceeded to a new election of officers,
+                           who were <lb/>to repair to and ſettle in <placeName>New-
+                              England</placeName>. <persName>John <lb>Winthrop</lb></persName>, Eſq.
+                           Of <placeName>Groton</placeName>, in <placeName>Suffolk</placeName>, a
+                           gentle¬ <lb break="no"/>man of diſtinguiſhed piety and ability, was
+                           choſen <lb/>governor. </egXML>
+                        <head type="legend">Invalid TEI encoding of a short passage from <title
+                              level="m">A summary history of New-England</title> by Hannah
+                           Adams.</head>
+                     </figure> The error, while perhaps obvious to seasoned TEI encoders, is easy to
+                     miss. However, it is common for software projects to format their TEI documents
+                     for the web to include a rule (like that in Example 3) to simply replace the
+                        <gi>lb</gi> element with a space, in order to ignore original lineation and
+                     re-flow the document content. Such rules often summarily ignore the
+                        <soCalled>contents</soCalled> of the <gi>lb</gi>, because in TEI <gi>lb</gi>
+                     is not allowed to have any content. Thus in many cases the resulting output
+                     will be <eg>… After ſome debate, their plan was accepted, and the company
+                        proceeded to a new election of officers, who were to repair to and ſettle in
+                        New-England. John, Eſq. of Groton, in Suffolk, a gentle¬man of diſtinguiſhed
+                        piety and ability, was choſen governor.</eg> The error, of course, is that
+                     the word <q>Winthrop</q> has been dropped. Since the passage reads reasonably
+                     well without Governor Winthrop’s surname, it could be very hard to catch this
+                     error after the transformation. But validation against a TEI schema would catch
+                     it instantly.</p>
+                  <p>Besides catching individual errors earlier, schemas provide a mechanism to
+                     ensure that members of a set of documents have sufficient similarity to one
+                     another for interchange or even interoperability, <note><p>For a discussion
+                           about which, see <ref type="bibl" target="#bauman2011">Bauman,
+                           2011</ref>.</p></note> and <quote source="#quoteref10"><gap/>it is
+                        standards-based interchangeability, when applied to information objects,
+                        that provides us with the coveted advantages for our data of vendor- and
+                        application-independence, of modular architectures and layered systems,
+                        commodity tool markets, and long-term data stability. (Not that any of these
+                        things become easy to achieve even on a standards basis: but at least with
+                        standard ways of judging correctness, there is some hope for them.)</quote>
+                        (<ref xml:id="quoteref10" target="#piez2001" type="bibl">Piez, 2001</ref>).
+                     The pithy summary for the logic here has been provided by Michael
+                     Sperberg-McQueen: <quote source="#quoteref14">to paraphrase an old Chicago
+                        election adage, constrain your data early and often</quote> (<ref
+                        type="bibl" target="#sperberg-mcQueen1992" xml:id="quoteref14"
+                        >Sperberg-McQueen, 1992</ref>). <figure xml:id="example_code_3">
+                        <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true"><xsl:template
+                              match="tei:lb">
+                              <xsl:if test="not( @break eq 'no' )">
+                                 <xsl:text> </xsl:text>
+                              </xsl:if>
+                           </xsl:template>
+                        </egXML>
+                        <head type="legend"><ptr type="software" xml:id="XSLT" target="#XSLT"/><rs
+                              type="soft.name" ref="#XSLT">XSLT</rs> template that converts an
+                              <gi>lb</gi> into a space.</head>
+                     </figure></p>
+               </div>
+               <div xml:id="Uses">
+                  <head>Uses Other than Constraint</head>
+                  <p>Although schemas are intended for document constraint, there are several
+                        <soCalled>off-label</soCalled> uses for them as well.<note><p>Like a schema,
+                           a pharmaceutical drug has a particular intended purpose. In the United
+                           States, a drug must be approved by the federal government for that
+                           intended purpose before it can be sold for general use. Furthermore, a
+                           drug manufacturer is only allowed to <emph>advertise</emph> the drug for
+                           that intended, approved use. However, a physician is permitted to
+                              <emph>prescribe</emph> that drug for any use she deems fit, so long as
+                           said use is not unsafe or unethical. For example, the medication
+                           memantine is approved for the treatment of Alzheimer’s disease; however
+                           doctors have found that it is also beneficial for the treatment of
+                           obsessive-compulsive disorder. Prescription of a medication that is safe
+                           and ethical, but not approved, is called <emph>off-label</emph>
+                        use.</p></note> Wendell Piez points out (<ref xml:id="quoteref101"
+                        target="#piez2001" type="bibl">Piez, 2001</ref>) that <quote
+                        source="#quoteref101">Sometimes a schema might be more than a
+                           <soCalled>go/no-go gauge</soCalled>, becoming a diagnostic and
+                        investigatory instrument</quote>. That is, we can use a schema and
+                     validation technology to discover things about our data, rather than merely to
+                     divide it into two piles. David Birnbaum presented an early use-case for what
+                     Piez (also in <ref target="#piez2001" type="bibl">Piez, 2001</ref>) later
+                     called <q>mimetic</q> and <q>exploratory</q> markup<note><p>Piez attributes the
+                           term <emph>exploratory</emph> to John Bradley via Geoffrey
+                        Rockwell.</p></note> at the ACH/ALLC ’97 conference in Queens, Ontario; that
+                     paper was later published (<ref type="bibl" target="#birnbaum1999">Birnbaum,
+                        1999</ref>).</p>
+                  <p>Indeed, the TEI Guidelines have recognized this fact since P1 in 1990: <q>it
+                        may be beneficial to define a restrictive set of rules relating to one
+                        particular view or hypothesis about the text—if only as a means of testing
+                        the usefulness of that view or hypothesis</q> (TEI P1–P5)<note><p>Previous
+                           major releases of the TEI Guidelines P1–P3 are available from the <ref
+                              target="https://www.tei-c.org/Vault/Vault-GL.html">TEI Vault</ref>,
+                           but are not available as web pages, so an interested reader would have to
+                           download the source and search for this quotation. It is readily
+                           available in <ref
+                              target="https://www.tei-c.org/Vault/P4/doc/html/SG.html#SG14">P4</ref>
+                           and in the current release of <ref
+                              target="https://www.tei-c.org/Vault/P5/3.3.0/doc/tei-p5-doc/en/html/SG.html#SG14"
+                              >P5</ref> (as of this writing).</p></note> Furthermore, both <ref
+                        target="#quin1996" type="bibl">Liam Quin (1996)</ref> and <ref type="bibl"
+                        target="#birnbaum1999">Birnbaum (1999)</ref> have suggested methods of using
+                     schemas (DTDs in particular) as exploratory or suggestive tools.</p>
+                  <div xml:id="helpLearning">
+                     <head>Help—Learning about the Schema</head>
+                     <p>In addition to the well established tradition of using schemas loosely as a
+                        tool for investigating our data, we often use schemas as a research tool to
+                        investigate our own markup languages. This may sound silly, since the schema
+                        (and its documentation) <emph>define</emph> the markup language. But we are
+                        all immediately familiar with a common demonstration of such an
+                        investigation. Often, a digital humanist faced with an encoding problem will
+                        hypothesize a solution, and then ask the question <q>does my encoding
+                           language support this solution already?</q> For example, during document
+                        analysis of <title level="m">Flatland</title> by A. Square (i.e., Edwin
+                        Abbott Abbott), an encoder wonders how to capture the subtitle (<title
+                           level="m">A Romance of Many Dimensions</title>) separately and to
+                        differentiate it from the main title. She plans to use TEI P5, so her first
+                        thought is <q>Does the TEI <gi>title</gi> element have a <att>type</att>
+                           attribute?</q> So she switches into oXygen, creates a new
+                           <ident>tei_all</ident> document, puts her cursor immediately before the
+                        closing angle bracket of the <gi>title</gi> start-tag<note><p>The TAGC in
+                              SGML nomenclature.</p></note> and types a space. The result (<ptr
+                           target="#image2" type="crossref"/>) immediately tells her that yes, the
+                        TEI <gi>title</gi> element has a <att>type</att> attribute; furthermore, it
+                        tells her that <val>sub</val> for <soCalled>subordinate</soCalled> is one of
+                        the TEI suggested values. <figure xml:id="image2">
+                           <graphic url="images/oXygen_try.png" width="1746px" height="1024px"/>
+                           <head type="legend">Choosing the <att>type</att> attribute from a
+                              drop-down in oXygen</head>
+                        </figure> In this fictional—but completely believable—example the encoder
+                        has used the schema (<ident>tei_all</ident>) through a tool (oXygen) as a
+                        way of finding out about the markup language (TEI). Yes, she could just as
+                        well have read the <ref
+                           target="https://www.tei-c.org/Vault/P5/3.3.0/doc/tei-p5-doc/en/html/ref-title.html"
+                           >documentation</ref> and obtained the same information, but she didn’t
+                        have to; she used the schema as an investigative tool to help her learn
+                        about the markup language.</p>
+                  </div>
+                  <div xml:id="helpWriting">
+                     <head>Help—Writing Documents</head>
+                     <p>In addition to helping us learn about our markup languages, a schema can
+                        help us write our documents. Editing software can read the schema and
+                        restrict the markup or even text that can be entered based on the rules in
+                        the schema and the position of the cursor. <ptr target="#image3"
+                           type="crossref"/> demonstrates oXygen helping an encoder. Here oXygen is
+                        not just answering a common question: is the TEI element for a notes
+                        statement <gi>notesStmt</gi> or <gi>noteStmt</gi>? It is also requiring that
+                        the user enter only one of three elements allowed by the schema (or a
+                        comment, etc.). <figure xml:id="image3">
+                           <graphic url="images/oxygen_notesStmt.png" width="693px" height="271px"/>
+                           <head type="legend">Inserting an element in oXygen</head>
+                        </figure> By using an editor that understands the schema, an encoder can
+                        avoid making common mistakes (like misspelling an element name) at the time
+                        of the original encoding. This is extremely helpful in constraining one’s
+                        data early.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div xml:id="thePurpose">
+            <head>The Purpose of an ODD</head>
+            <p>As explained in ED W 29,<note><p>TEI Working Paper ED W29 (<ref
+                        target="http://www.tei-c.org/Vault/ED/edw29.tar"/>).</p></note> the ODD
+                     system<note><p>Which, oddly, was called <emph>Odd</emph>, not <emph>ODD</emph>,
+                     back then.</p></note> was explicitly created to bring the principles of
+               literate programming to the creation of SGML (now XML) markup languages. The point is
+                  <quote source="#quoteref7">that code and documentation <supplied>should</supplied>
+                  be written and maintained as a single integrated resource, from which both working
+                     <supplied>schemas</supplied> and readable documentation can be
+                  generated</quote> (<ref target="#flanders2010" type="bibl" xml:id="quoteref7"
+                  >Flanders and Bauman, 2010</ref>). That is, the main stated purpose of an ODD is
+               to create a well-documented markup language. However, there is more than one way an
+               ODD can be used in this pursuit.</p>
+            <div xml:id="createAcompleteMarkupLanguage">
+               <head>Create a Complete Markup Language</head>
+               <p>An XML markup language has both a syntactic aspect (the vocabulary of elements and
+                  attributes, and the grammar of how they fit together) and a semantic aspect (what
+                  those elements and attributes mean). The ODD system permits, and outright
+                  encourages, the simultaneous specification of both of these aspects: <list
+                     rend="ordered">
+                     <item>an XML schema using special-purpose formal elements; and</item>
+                     <item>prose definition of the constructs specified in that schema using
+                           <soCalled>normal</soCalled> TEI markup.</item>
+                  </list> Many think of the ODD system as the language used to define the TEI markup
+                  language. Indeed, at its outset, the <soCalled>One document does it all</soCalled>
+                  system was developed in TEI P2 explicitly for the creation of TEI P2 itself (ED W
+                  29), and further iterations of it including the major re-design in XML for P5 (at
+                  one point referred to as <quote source="#quoteref5">Son of ODD</quote> (<ref
+                     target="#burnard2004" type="bibl" xml:id="quoteref5">Burnard and Rahtz
+                     2004</ref>)) and the recent move to Pure ODD (<ref target="#burnard2013"
+                     type="bibl">Burnard, 2013</ref>) are used to define the TEI markup language.
+                  However, ODD was never intended to be only for defining TEI. It was and is
+                  intended to be a general-purpose language for defining markup languages.</p>
+               <p>In fact, several markup languages other than TEI have been defined using ODD.
+                  These include the Music Encoding Initiative,<note><p><ref
+                           target="https://music-encoding.org/"/>.</p></note> the ISO Feature
+                  Structure representation system,<note><p><ref
+                           target="http://www.tei-c.org/Vault/P5/3.6.0/doc/tei-p5-doc/en/html/FS.html"
+                        /> and ISO 24610.</p></note> and the W3C Internationalization Tag
+                           Set.<note><p><ref target="https://www.w3.org/TR/its20/its20.odd"
+                     />.</p></note> Furthermore a version of the Itsy-bitsy teeny-weeny simple
+                  hypertext DTD<note><p><ref
+                           target="https://github.com/NEU-DSG/wwp-public-code-share/tree/master/miscellaneous/itsy_bitsy_teeny_weeny_simple_hypertext"
+                        />.</p></note> has been expressed in ODD as an early proof-of-concept, and a
+                  highly-constrained subset of HTML itself has been re-written in ODD.<note><p><ref
+                           target="http://johnkeats.uvic.ca/documentation/keats.html#oddAndDocumentation"
+                        />.</p></note></p>
+            </div>
+            <div xml:id="customizeAlanguage">
+               <head>Customize a Language</head>
+               <p>The TEI ODD language is also used to <emph>customize</emph> an existing
+                  ODD-defined markup language. Take as an example the fictional language
+                     <soCalled>RHPSML</soCalled>. When creating this system for encoding, the RHPS
+                  project manager decides to use TEI, but then says to herself <q>I need the
+                        <ident>drama</ident> module; I don’t need all this stuff about dictionaries,
+                     linguistics, or manuscripts; I (of course) need to constrain all those
+                        <att>type</att> attributes; but I also need a special new element for
+                     audience participation</q>. She can create such a customized TEI markup
+                  language using the TEI ODD system. To do so she writes a <soCalled>customization
+                     ODD</soCalled> that expresses only the <emph>differences</emph> between
+                        RHPSML<note><p>For those who are wondering, the imaginary project is the
+                        Rocky Horror Picture Show Project, which uses the Rocky Horror Picture Show
+                        Markup Language.</p></note> and uncustomized (<soCalled>vanilla</soCalled>)
+                  TEI P5.</p>
+               <p>Customizations, expressed via customization ODDs, can serve a variety of audiences
+                  ranging from the lone scholar working on the encoding of a single document to
+                  field-wide customizations used by dozens or even hundreds of projects; see for
+                  instance EpiDoc,<note><p><ref target="http://epidoc.sourceforge.net/"
+                     />.</p></note> TEI Tite, Comic Book Markup Language,<note><p><ref
+                           target="http://dcl.slis.indiana.edu/cbml/"/>.</p></note> and the
+                  TEI-in-Libraries Best Practice Guidelines.<note><p><ref
+                           target="https://tei-c.org/extra/teiinlibraries/4.0.0/bptl-driver.html"
+                        />.</p></note> Quite commonly, customizations are used by a single project
+                  for a corpus of related documents. Examples include the <title level="m">Women
+                     Writers Project</title>,<note><p><ref
+                           target="https://wwp.northeastern.edu/wwo/source/schema/wwp-store.html"
+                        />.</p></note> the <title level="m">Digital Archive of Letters</title> in
+                           Flanders,<note><p><ref
+                           target="https://ctb.kantl.be/project/dalf/P5/DALF_P5-p0.1.zip"
+                     />.</p></note>
+                  <title level="j">Digital Humanities Quarterly</title>,<note><p><ref
+                           target="http://www.digitalhumanities.org/dhq/"/>.</p></note>
+                  <title level="m">Deutsches Textarchiv</title>,<note><p><ref
+                           target="http://www.deutschestextarchiv.de/"/>.</p></note> and the
+                  imaginary RHPSP.</p>
+               <p>The TEI Consortium publishes a large set of customizations. These can be loosely
+                  divided into two groups: <soCalled>sample</soCalled> customizations, which are
+                  intended to be actually used by projects or at least provided as useful examples
+                  of complete customizations; and <soCalled>template</soCalled> customizations,
+                  which are provided as little more than shells, which may be used as starting
+                  points for creating complete customizations.</p>
+               <p>sample customizations:<list>
+                     <item>TEI Lite</item>
+                     <item>TEI SimplePrint</item>
+                     <item>jTEI — the markup languge used for this journal</item>
+                     <item>ENRICH</item>
+                  </list></p>
+               <p>templates customizations:<list>
+                     <item>tei_corpus</item>
+                     <item>tei_dictionaries</item>
+                     <item>tei_docs</item>
+                     <item>tei_drama</item>
+                     <item>tei_math</item>
+                     <item>tei_minimal</item>
+                     <item>tei_ms</item>
+                     <item><emph>tei_odds</emph> — which may be used to validate ODDs</item>
+                     <item>tei_speech</item>
+                     <item>tei_svg</item>
+                  </list></p>
+            </div>
+            <div xml:id="useMatrix">
+               <head>Use Matrix</head>
+               <p>As we have just seen, there are two possible purposes for ODD: to create a markup
+                  language, and to customize a language so created. Furthermore we might divide the
+                  world of markup languages that are created and customized using ODD into two broad
+                  categories: TEI and non-TEI. Those two binary axes give us four uses to which ODD
+                  might be put. The language defined by TEI ODD (and minimally represented by the
+                     <ident>tei_odds</ident> schema) needs to be able to handle all four of these
+                  use cases. <table xml:id="table2" cols="3" rows="4">
+                     <head>A use matrix for ODD</head>
+                     <row>
+                        <cell>language→<lb/>purpose↓</cell>
+                        <cell>non-TEI</cell>
+                        <cell>TEI</cell>
+                     </row>
+                     <row>
+                        <cell>create</cell>
+                        <cell><ident>tei_odds</ident></cell>
+                        <cell><ident>tei_odds</ident></cell>
+                     </row>
+                     <row>
+                        <cell>customize</cell>
+                        <cell><ident>tei_odds</ident></cell>
+                        <cell><ident>tei_odds</ident> and <ident>tei_customization</ident></cell>
+                     </row>
+                  </table> However, everyone using TEI is expected to use a customized version of
+                  the complete TEI markup language. For most projects, this means writing a local
+                  customization. Thus I suspect that the lower right corner of that
+                  table—customizing the TEI markup language—is <emph>by far</emph> the most common
+                  use of ODD.</p>
+            </div>
+         </div>
+         <div xml:id="teiCustomization">
+            <head><ident>tei_customization</ident></head>
+            <div xml:id="useCase">
+               <head>Use Case</head>
+               <p>I want help (both for myself and those in my workshops) <emph>writing</emph> TEI
+                  customizations. For example, I don’t want to have to remember if the module that
+                  includes the elements for a personography is <ident>namesdates</ident>,
+                     <ident>namesDates</ident>, or <ident>namesanddates</ident>. I’d like to be able
+                  to just pick the module name (or whatever) from a list. <ident>tei_odds</ident>,
+                  the generic <soCalled>template</soCalled> schema provided by the TEI, necessarily
+                  has to be able to validate documents in all four categories, as shown in <ptr
+                     target="#table2" type="crossref"/>, so it is not very helpful in this regard.
+                  This is because an ODD in either of the non-TEI categories is likely to have
+                  module names that are not from the TEI Guidelines, so that schema cannot restrict
+                  the values of the <att>key</att> of <gi>moduleRef</gi>. But because it is only
+                  addressing (a subset of) those ODDs intended to customize the TEI language,
+                     <ident>tei_customization</ident> can, and does, use a controlled vocabulary for
+                  that attribute and others like it.</p>
+            </div>
+            <div xml:id="whatItDoes">
+               <head>What it Does</head>
+               <p>Like any good schema, the <ident>tei_customization</ident> customization helps you
+                  by limiting the choices available at any point as far as reasonable. XML-aware
+                  tools, in particular XML editors<note><p>Of which my favorites are Emacs/nxml,
+                        Emacs/psgml, and oXygen. But there are dozens of others including jEdit/XML,
+                        and several web-based editors.</p></note> can take advantage of the limited
+                  choices available in the schema by presenting them to the user and objecting if
+                  she enters something other than one of the choices. For example, <ptr
+                     target="#image4" type="crossref"/> shows the oXygen XML editor presenting the
+                  list of limited possibilities allowed as the value of the <att>key</att> attribute
+                  of <gi>moduleRef</gi> (that is, the list of TEI module names). <figure
+                     xml:id="image4">
+                     <graphic url="images/key_of_moduleRef.png" width="529px" height="235px"/>
+                     <head type="legend">oXygen displaying the list of TEI module names as the
+                        controlled vocabulary for the <att>key</att> attribute of
+                        <gi>moduleRef</gi>.</head>
+                  </figure> A user need only select the desired value from the list. Both oXygen and
+                  Emacs/nxml permit the user to enter a value other than one in the list, but then
+                  immediately underline it in red.</p>
+               <p>The constraints <ident>tei_customization</ident> imposes on a customization are
+                  those that its primary author—and to a lesser extent the TEI Technical Council and
+                  TEI community at large—think are probably helpful for <emph>writing</emph> a
+                  customization. The important point here is that <ident>tei_customization</ident>
+                  is <emph>not</emph> intended as an arbiter of what is a valid TEI ODD or not. That
+                  is, unlike most schemas, <ident>tei_customization</ident> is not interested in the
+                  division of the world of XML documents into two sets of documents (valid and
+                  invalid), because a file invalid against this schema may be a perfectly reasonable
+                  ODD, even a reasonable TEI customization ODD.</p>
+               <p>For example, <ident>tei_customization</ident> does not include the TEI
+                     <gi>gap</gi> element. Any use of <gi>gap</gi> will be considered invalid by
+                     <ident>tei_customization.rng</ident>. But TEI does allow the <gi>gap</gi>
+                  element in an ODD. And it is possible to come up with a plausible, if not likely,
+                  scenario in which use of <gi>gap</gi> might be useful. But
+                     <ident>tei_customization</ident> takes the view that it is so unlikely that
+                     <gi>gap</gi> would be used in a customization ODD that its occurrence would be
+                  a mistake, or at least that the cost of having one more element name in the pop-up
+                  list of possible elements outweighs the benefit of its being valid.</p>
+            </div>
+            <div xml:id="howItDoesit">
+               <head>How it Does it</head>
+               <p>Like any TEI customization (including <ident>tei_all</ident>), the
+                     <ident>tei_customization</ident> customization has both a closed or
+                  grammar-based component expressed in RELAX NG<note><p>Which can also be expressed
+                        in the W3C Schema language or as a DTD if for some reason RELAX NG is not
+                        available to the end user.</p></note> and an open or rule-based component
+                  expressed in ISO Schematron.</p>
+               <p>The grammar-based component is used whenever the constraint can be expressed
+                  directly in ODD. That is, when the constraint depends on nothing but the element
+                  type, or the attribute name and element type.<note><p>Unlike RELAX NG, ODD cannot
+                        (yet) express the more complex <soCalled>co-occurrence
+                           constraints</soCalled>, such as <q>if the <att>key</att> is
+                              <val>core</val>, then the list of possible values of either
+                              <att>include</att> or <att>except</att> is <emph>this</emph>; but if
+                           the <att>key</att> is <val>header</val>, then the list of possible values
+                           of either <att>include</att> or <att>except</att> is
+                           <emph>that</emph></q>.</p></note> For example, the constraint that the
+                     <att>key</att> attribute of <gi>moduleRef</gi> element should be one of the 21
+                  TEI module identifiers depends on nothing other than the element type
+                     (<gi>moduleRef</gi>) and attribute name (<att>key</att>). Other constraints,
+                  those that depend on more conditions than just the element type or attribute name
+                  and element type, are expressed in ISO Schematron. For example, the constraint
+                  that there should only be one <gi>moduleRef</gi> with any particular one of those
+                  21 possible values depends on more than the element type and the attribute name,
+                  it depends on the values of the <att>key</att> attributes of other occurrences of
+                  the element type (<gi>moduleRef</gi>).</p>
+               <p>It is worth noting that the expression of these constraints can be quite
+                  cumbersome. The worst offender is the definition for the <att>ident</att>
+                  attribute of <gi>elementSpec</gi>, which comprises over 3800 elements and
+                  attributes. See <ptr type="crossref" target="#example_code_4"/>. <figure
+                     xml:id="example_code_4">
+                     <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true"><attDef
+                           ident="ident" mode="replace" usage="req">
+                           <datatype minOccurs="1" maxOccurs="1">
+                              <dataRef key="teidata.enumerated"/>
+                           </datatype>
+                           <valList type="semi">
+                              <valItem ident="TEI">
+                                 <gloss versionDate="2005-12-24" xml:lang="en">TEI document</gloss>
+                                 <desc xml:lang="en" versionDate="2018-02-16">module:
+                                    textstructure</desc>
+                              </valItem>
+                              <valItem ident="ab">
+                                 <gloss versionDate="2005-01-14" xml:lang="en">anonymous
+                                    block</gloss>
+                                 <desc xml:lang="en" versionDate="2018-02-16">module: linking</desc>
+                              </valItem>
+                              <valItem ident="abbr">
+                                 <gloss versionDate="2005-01-14" xml:lang="en">abbreviation</gloss>
+                                 <desc xml:lang="en" versionDate="2018-02-16">module: core</desc>
+                              </valItem>
+                              <!-- … "abstract" through "writing" (567 <valItem>s) removed for journal article … -->
+                              <valItem ident="xenoData">
+                                 <gloss versionDate="2015-05-30" xml:lang="en">non-TEI
+                                    metadata</gloss>
+                                 <desc xml:lang="en" versionDate="2018-02-16">module: header</desc>
+                              </valItem>
+                              <valItem ident="xr">
+                                 <gloss versionDate="2005-01-14" xml:lang="en">cross-reference
+                                    phrase</gloss>
+                                 <desc xml:lang="en" versionDate="2018-02-16">module:
+                                    dictionaries</desc>
+                              </valItem>
+                              <valItem ident="zone">
+                                 <desc xml:lang="en" versionDate="2018-02-16">module: transcr</desc>
+                              </valItem>
+                           </valList>
+                        </attDef>
+                     </egXML>
+                     <head type="legend">Excerpt of the definition of <att>ident</att> of
+                           <gi>elementSpec</gi> from <ident>tei_customization</ident>.</head>
+                  </figure>
+               </p>
+            </div>
+            <div xml:id="howItIsCreated">
+               <head>How it is Created</head>
+               <p>There are two obvious major problems for maintaining an ODD like
+                     <ident>tei_customization.odd</ident>. First, the aforementioned size of the
+                  lists involved would make hand-editing annoying, if not outright error-prone. But
+                  more importantly, TEI P5 is (deliberately) a moving target. The TEI Consortium
+                  issues updates roughly twice a year. New elements, attributes, and classes may be
+                  added, lists of possible attribute values change, occasionally an element or
+                  attribute is even removed, etc. Every time one of these changes is made, several
+                  places in <ident>tei_customization</ident> would need to be changed. For example,
+                  if the <gi>teiCorpus</gi> element were removed from TEI P5, seven different places
+                  in <ident>tei_customization.odd</ident> would need to be updated: it would have to
+                  be removed from <list rend="ordered">
+                     <item>the list of possible values for <att>start</att> of
+                        <gi>schemaSpec</gi>,</item>
+                     <item>the list of possible values for <att>include</att> of <gi>moduleRef</gi>
+                        (grammar-based, lists all possible values),</item>
+                     <item>the list of possible values for <att>include</att> of <tag>moduleRef
+                           key=&quot;core&quot;</tag> (rule-based, lists only values from the
+                           <ident>core</ident> module),</item>
+                     <item>the list of possible values for <att>except</att> of <gi>moduleRef</gi>
+                        (grammar-based, lists all possible values),</item>
+                     <item>the list of possible values for <att>except</att> of <tag>moduleRef
+                           key=&quot;core&quot;</tag> (rule-based, lists only values from the
+                           <ident>core</ident> module),</item>
+                     <item>the list of possible values for <att>key</att> of <gi>elementRef</gi>,
+                        and</item>
+                     <item>the list of possible values for <att>ident</att> of
+                        <gi>elementSpec</gi>.</item>
+                  </list> Furthermore, the value <val>teiCorpus</val> appears in the value of the
+                     <att>except</att> attribute of the <tag>moduleRef key=&quot;core&quot;</tag> in
+                  the <ident>tei_customization.odd</ident> (as opposed to the <gi>moduleRef</gi> it
+                  is defining) — this one should be removed, too, but since current ODD processors
+                  would ignore it, would not cause a problem if it were left.</p>
+               <p>Either way, in order to avoid this potential maintenance nightmare,
+                     <ident>tei_customization.odd</ident> is not a static file, but rather is
+                  generated by running an <ptr type="software" xml:id="XSLT" target="#XSLT"/><rs
+                     type="soft.name" ref="#XSLT">XSLT</rs> program that reads as its input the
+                  source to TEI P5<note><p>Remember, the TEI Guidelines are written in TEI. The
+                        source to all of P5 is a single TEI document, although for convenience it is
+                        split into well over 850 separate files.</p></note> and writes
+                     <ident>tei_customization.odd</ident> as its output. Running this program is one
+                  of the steps in the <soCalled>build</soCalled> process for creating a new set of
+                  TEI P5 generated outputs.<note><p>These outputs include schemas in RELAX NG and
+                        ISO Schematron, as well as in W3C Schema language and DTD; documentation in
+                        HTML, ePUB, and PDF formats; and a set of <soCalled>exemplars</soCalled>,
+                        one of which is <ident>tei_customization</ident>. Other well-known exemplars
+                        include <ident>tei_lite</ident>, <ident>tei_tite</ident>, and
+                           <ident>tei_simplePrint</ident>.</p></note></p>
+            </div>
+            <div xml:id="whatItdoesNot">
+               <head>What it Does Not (Yet) Do</head>
+               <div xml:id="processingModel">
+                  <head>Processing Model</head>
+                  <p>An ODD file may describe not only the syntax and semantics of conforming
+                     document instances, but also an intended processing of them. This intended
+                     processing is described in mildly abstract terms by a small set of new ODD
+                     elements introduced in TEI P5 release 3.0.0. This capability, known as the
+                        <soCalled>Processing Model</soCalled>, is not yet covered by
+                        <ident>tei_customization</ident>, and therefore is summarily ignored in the
+                     rest of this paper. This does not mean the TEI Council considers this an
+                     appropriate state of affairs—we can expect a future release of
+                        <ident>tei_customization</ident> to include processing model elements.</p>
+               </div>
+               <div xml:id="deprecation">
+                  <head>Deprecation</head>
+                  <p>At times the TEI Council decides to change the recommendation for an encoding
+                     practice. This typically consists of two steps: removing support for the
+                     practice as it stands, and adding support for the new method of recommended
+                     encoding. Rather than enacting both changes to the schema at once, practical
+                     support for the new method will be added to the schema first, and then several
+                     releases later support for the old practice will be removed. This gives users
+                     who wish to use the most recent version of the TEI Guidelines a period of time,
+                     typically two years, to switch from the old practice to the new.</p>
+                  <p>During the period between addition of the new practice and outright removal of
+                     the old practice, the old practice is <emph>deprecated</emph>.<note><p><quote
+                              source="#quoteref00">Obsolescent; said of a construct in a computing
+                              language considered old, and planned to be phased out, but still
+                              available for use</quote> (<ref target="#deprecated2008" type="bibl"
+                              xml:id="quoteref00">Wiktionary, 2018-11-15</ref>).</p></note> It is
+                     not flagged as an invalid practice, but it will be flagged in the TEI technical
+                     documentation as being phased out, and its use will generate a warning message,
+                     typically advising the user that it has been superseded by the new
+                     practice.</p>
+                  <p>This deprecation can take place in one of two ways: automatically or manually.
+                     Automatic deprecation can be used when the practice being deprecated is
+                     directly represented in the TEI with an element that is a member of <ref
+                        target="https://www.tei-c.org/Vault/P5/3.3.0/doc/tei-p5-doc/en/html/ref-att.deprecated.html"
+                           ><ident>att.deprecated</ident></ref>. If this is the case, automatic
+                     deprecation can be accomplished simply by placing a <att>validUntil</att>
+                     attribute on the element that defines the construct to be deprecated. The value
+                     of this attribute is a date which represents the earliest date on which the
+                     feature will be removed. ODD processing software, including the routines that
+                     build the TEI Guidelines from its source, will flag as deprecated any
+                     constructs with a <att>validUntil</att> that is in the future, and actually
+                     ignore any that have a <att>validUntil</att> that is in the past.</p>
+                  <p>Manual deprecation is used when the practice being removed is not so simple as
+                     to be represented in the TEI source by a single element that is a member of
+                        <ident>att.deprecated</ident>, e.g., changing the content model of an
+                     element, rather than removing it entirely. In these cases a hand written
+                     constraint is added to the TEI to give users a warning that the old practice
+                     will be removed in the future.</p>
+                  <p>Currently the <ident>TEI-to-tei_customization.xslt</ident> program does nothing
+                     special with deprecated constructs, whether automatically or manually
+                     deprecated. That is, it ignores <att>validUntil</att> attributes, thus
+                     including names of deprecated constructs in the list of attribute values that
+                     populate the pop-up lists when using <ident>tei_customization</ident> schema to
+                     write an ODD.</p>
+                  <p>However, it would be a reasonable enhancement for
+                        <ident>TEI-to-tei_customization.xslt</ident> to handle automatically
+                     deprecated constructs more intelligently. The TEI Technical Council has not yet
+                     decided, however, what that handling would be. It would probably be reasonable
+                     for <ident>TEI-to-tei_customization.xslt</ident> to either <list>
+                        <item>ignore constructs whose <att>validUntil</att> is in the past;</item>
+                        <item>ignore constructs that have a <att>validUntil</att> whether or not it
+                           is the past;</item>
+                        <item>ignore constructs whose <att>validUntil</att> is in the past, and,
+                           where possible, add a warning to the description of values representing
+                           constructs whose <att>validUntil</att> is in the future; or</item>
+                        <item>stop processing and raise an error when there is a
+                              <att>validUntil</att> that is in the past.</item>
+                     </list> Handling manually deprecated constructs is another matter. To do so
+                        <ident>TEI-to-tei_customization.xslt</ident> would need to be able to parse,
+                     understand, and act on the Schematron code in one or more <gi>constraint</gi>
+                     elements. Thus it is probably prohibitively difficult, and there are no plans
+                     to do so at this time.</p>
+               </div>
+            </div>
+            <div xml:id="howToGetIt">
+               <head>How to Get it and Use it</head>
+               <p>The <ptr type="software" xml:id="XSLT" target="#XSLT"/><rs type="soft.name"
+                     ref="#XSLT">XSLT</rs> program used to generate
+                     <ident>tei_customization.odd</ident> can be found in the <ref
+                     target="https://github.com/TEIC/TEI/tree/dev/P5/Utilities">TEI <ptr
+                        type="software" xml:id="GitHub" target="#GitHub"/><rs type="soft.name"
+                        ref="#GitHub">GitHub</rs> repository</ref>. It is currently called
+                     <ident>TEI-to-tei_customization.xslt</ident>. The generated
+                     <ident>tei_customization</ident> ODD file and the schemas generated from it can
+                  be found in each release of the TEI from 3.3.0 on.<note><p>For example, the
+                           <ident>tei_customization.odd</ident> file from the 3.3.0 release can be
+                        found at <ref
+                           target="http://www.tei-c.org/Vault/P5/3.3.0/xml/tei/custom/odd/tei_customization.odd"
+                        />; the corresponding RELAX NG schema can be found at <ref
+                           target="http://www.tei-c.org/Vault/P5/3.3.0/xml/tei/custom/schema/relaxng/tei_customization.rnc"
+                        />.</p></note></p>
+               <p>Furthermore, the current version of <ident>tei_customization</ident> is available
+                  from within oXygen as part of the TEI oXygen framework. However, the RELAX NG
+                  schema (tei_customization.rng or tei_customization.rnc) has the behavior discussed
+                  in <ptr target="#appendix1" type="crossref"/>. While this is not a bug or broken
+                  in any way, it is likely to be confusing and problematic for most users of oXygen.
+                  The TEI_Council is interested in finding a way around this difficulty.</p>
+            </div>
+         </div>
+         <div xml:id="refining">
+            <head>Refining Purpose</head>
+            <p>A customization can readily be categorized into one of four groups: restriction,
+               isomorphism, extension, or transmogrification. (For an explanation of these terms,
+               further details, and diagrams see <ref target="#bauman2004" type="bibl">Bauman and
+                  Flanders, 2004</ref>.) A customization may also produce a completely disjoint
+               markup language, but such a case is more of a replacement than a customization, and
+               thus will not be considered here<note><p>And I have never seen one <soCalled>in the
+                        wild</soCalled>—the only one I have seen was deliberately designed to test
+                     the ODD system.</p></note> Furthermore isomorphisms (because although they do
+               not change the structure of conforming documents, they do change the names of XML
+               constructs) and transmogrifications (because they include extensions) are, for our
+               purposes, extensions.</p>
+            <p>Thus, for our purposes, a customization can fall into one of two major categories: <list>
+                  <item>a strict subsetting customization, which defines a language for which every
+                     document instance that is valid against the customized schema is also valid
+                     against <ident>tei_all</ident>; or </item>
+                  <item>something else, which we will call an extension.</item>
+               </list> Using this somewhat simplified view, the TEI ODD language can be used for
+               three purposes: to <emph>create</emph> a markup language, to subset a markup language
+               so created, or to extend a markup language so created.</p>
+            <p>Remembering the broad division of markup languages into TEI and non-TEI, the use
+               matrix described above (<ptr target="#Uses" type="crossref"/>) becomes a 2 by 3
+               (instead of 2 by 2) matrix. In <ptr target="#table3" type="crossref"/> the content of
+               each of the 6 cells expresses whether or not it is useful to use
+                  <ident>tei_customization</ident> for that purpose and category of markup language.
+                  <table xml:id="table3" cols="3" rows="5">
+                  <head>A use matrix for <ident>tei_customization</ident>.</head>
+                  <row>
+                     <cell>language→<lb/> purpose↓</cell>
+                     <cell>non-TEI</cell>
+                     <cell>TEI</cell>
+                  </row>
+                  <row>
+                     <cell>create</cell>
+                     <cell>no</cell>
+                     <cell>no: 7000+ errors<note><p>Validating the source of TEI P5 against
+                                 <ident>tei_customization</ident> was a mildly amusing, if somewhat
+                              pointless, activity. The vast majority of the 7000+ errors were caused
+                              by multiple occurrences of sibling <gi>desc</gi> (~4000) and
+                                 <gi>gloss</gi> (over 1500) elements to support internationalization
+                              of the TEI Guidelines. Because internationalization of a customization
+                              seems quite rare, <ident>tei_customization</ident> deliberately
+                              restricts glosses and descriptions to one each. The next most frequent
+                              were occurrences of <att>rend</att> or <att>style</att> (just over
+                              700), and occurrences of <gi>classes</gi> without the <att>mode</att>
+                              attribute (just over 650).</p></note></cell>
+                  </row>
+                  <row>
+                     <cell>extend</cell>
+                     <cell>no</cell>
+                     <cell>maybe: errors on names of newly created constructs</cell>
+                  </row>
+                  <row>
+                     <cell>subset</cell>
+                     <cell>no</cell>
+                     <cell><emph>yes!</emph></cell>
+                  </row>
+               </table> Although it is not strictly true, it may be useful to think of
+                  <ident>tei_customization</ident> as intended for strict subset customizations.
+               This is because definitionally use of any non-TEI names in, say, the <att>ident</att>
+               of <gi>schemaSpec</gi> will cause a validation error against it, even though such a
+               use is perfectly valid against <ident>tei_odds</ident>, and is a very appropriate and
+               reasonable thing to do in a TEI customization ODD. Remember,
+                  <ident>tei_customization</ident> does not differentiate proper ODD customizations
+               from improper ones; <ident>tei_customization</ident> makes it easier to
+                  <emph>write</emph> a TEI customization ODD.</p>
+         </div>
+      </body>
+      <back>
+         <div type="bibliography">
+            <listBibl>
+               <bibl xml:id="bauman2004"><author>Bauman, Syd</author> and <author>Flanders,
+                     Julia</author>. <date>2004</date>. <title level="a">Odd Customizations</title>.
+                  Presented at Extreme Markup Languages 2004, Montréal, QC, Canada, <date>August
+                     2004</date>. <ref
+                     target="http://conferences.idealliance.org/extreme/html/2004/Bauman01/EML2004Bauman01.html"
+                  />.</bibl>
+               <bibl xml:id="bauman2011"><author>Bauman, Syd</author>. <date>2011</date>. <title
+                     level="a">Interchange vs. Interoperability</title>. Presented at Balisage: The
+                  Markup Conference 2011, Montréal, Canada, 2–5 August 2011. In <title level="j"
+                     >Proceedings of Balisage: The Markup Conference 2011</title>. Balisage Series
+                  on Markup Technologies, <biblScope unit="volume">7</biblScope>. <ref
+                     target="https://doi.org/10.4242/BalisageVol7.Bauman01"/>.</bibl>
+               <bibl xml:id="birnbaum1999"><author>Birnbaum, David</author> and <author>Mundie,
+                     David A</author>. <date>1999</date>. <title level="a">The Problem of Anomalous
+                     Data: A Transformational Approach</title>. In <title level="j">Markup
+                     Languages: Theory and Practice</title>, <biblScope unit="volume">1</biblScope>.
+                     <biblScope unit="issue">4</biblScope>(Fall 1999): <biblScope unit="page"
+                     >1–19</biblScope>. 1099–6622.</bibl>
+               <bibl xml:id="burnard2013"><author>Burnard, Lou</author>. <date>2013</date>. <title
+                     level="a">Resolving the Durand Conundrum</title>. <title level="j">Journal of
+                     the Text Encoding Initiative</title>, <biblScope unit="issue">6</biblScope>.
+                     <ref target="https://journals.openedition.org/jtei/842"/>. DOI: <idno
+                     type="DOI">10.4000/jtei.842</idno>.</bibl>
+               <bibl xml:id="burnard2004"><author>Burnard, Lou</author> and <author>Rahtz,
+                     Sebastian</author>. <date>2004</date>. <title level="a">RelaxNG with Son of
+                     ODD</title>. Presented at Extreme Markup Languages 2004, Montréal, QC, Canada,
+                  August 2004. <ref
+                     target="http://conferences.idealliance.org/extreme/html/2004/Burnard01/EML2004Burnard01.html"
+                  />; also <ref
+                     target="http://projects.oucs.ox.ac.uk/teiweb/Talks/extreme2004/paper.htm"
+                  />.</bibl>
+               <bibl xml:id="deprecated2008"><title level="a">deprecated</title>. <title level="m"
+                     >Wiktionary</title>. <ref target="https://en.wiktionary.org/wiki/deprecated"
+                  />.</bibl>
+               <bibl xml:id="extensible"><editor>Tim Bray</editor>, <editor>Jean Paoli</editor>, and
+                     <editor>C. M. Sperberg-McQueen</editor>. <date>1998</date>. <title level="a"
+                     >Extensible Markup Language (XML) 1.0</title>. <publisher>World Wide Web
+                     Consortium (W3C)</publisher>. <ref
+                     target="http://www.w3.org/TR/1998/REC-xml-19980210"/>.</bibl>
+               <bibl xml:id="flanders2010"><author>Flanders, Julia</author> and <author>Bauman,
+                     Syd</author>. <date>2010</date>. <title level="a">Using ODD for Multi-purpose
+                     TEI Documentation</title>. Presented at Digital Humanities 2010, London, UK,
+                  7–10 July 2010. <ref
+                     target="http://dh2010.cch.kcl.ac.uk/academic-programme/abstracts/papers/pdf/ab-750.pdf"
+                     >Abstract</ref>.</bibl>
+               <!--  Not referenced in the text.  -->
+               <!--<bibl xml:id="goldfarb1990"><author>Goldfarb, Charles F.</author>
+                  <title level="m">The SGML Handbook</title>, edited by <editor>Rubinsky,
+                     Yuri</editor>. <pubPlace>Oxford</pubPlace>: <publisher>Clarendon
+                     Press</publisher>, <date>1990</date>.</bibl>-->
+               <!--  Not referenced in the text.  -->
+               <!--<bibl xml:id="iso2008"><title level="a">ISO/IEC 19757–2:2008: Information technology
+                     – Document Schema Definition Language (DSDL) – Part 2: Regular-grammar-based
+                     validation – RELAX NG ISO/IEC JTC 1/SC 34</title>. <publisher>International
+                     Organization for Standardization</publisher>, <date>2003</date>, revised
+                     <date>2008</date>. See also the <ref target="https://relaxng.org">language home
+                     page</ref>; to purchase the standard see <ref
+                     target="https://www.iso.org/standard/52348.html">the ISO website</ref>.</bibl>-->
+               <bibl xml:id="piez2001"><author>Piez, Wendell</author>. <title level="a">Beyond the
+                        <soCalled>descriptive vs. procedural</soCalled> distinction</title>. In
+                     <title level="j">Proceedings of Extreme Markup Languages 2001</title>, <ref
+                     target="http://conferences.idealliance.org/extreme/html/2001/Piez01/EML2001Piez01.html#t1-1"
+                  />. Or see instead <ref
+                     target="http://piez.org/wendell/papers/beyonddistinction.pdf">the author’s
+                     PDF</ref>.</bibl>
+               <bibl xml:id="quin1996"><author>Quin, Liam</author>. <title level="a">Suggestive
+                     Markup: Explicit Relationships in Descriptive and Prescriptive DTDs</title>.
+                  Presented at SGML ’96, Boston, MA, USA, <date>December 1996</date>. <ref
+                     target="http://www.holoweb.net/liam/papers/1996-sgml96-SuggestiveMarkup/"
+                  />.</bibl>
+               <bibl xml:id="relax2001"><title level="m">RELAX NG DTD Compatibility</title>.
+                     <editor>James Clark</editor> and <editor>MURATA Makoto</editor>, eds.
+                     <date>2001</date>. <publisher>OASIS</publisher>. <ref
+                     target="http://relaxng.org/compatibility-20011203.html"/>.</bibl>
+               <!--  Not referenced in the text.  -->
+               <!--<bibl xml:id="sperberg-mcQueen1991"><author>Sperberg-McQueen, C. Michael</author> and
+                     <author>Burnard, Lou</author>. <date>1991</date>. <title level="a">One Document
+                     Does It All: Documentation for an ODD system for tag set construction</title>.
+                  TEI ED W 29, <ref target="http://www.tei-c.org/Vault/ED/edw29.sgm"/>.</bibl>-->
+               <bibl xml:id="sperberg-mcQueen1992"><author>Sperberg-McQueen, C. Michael</author>.
+                     <title level="a">Back to the Frontiers and Edges</title>. Closing remarks at
+                  SGML ’92,Danvers, MA, USA, <date>29 October 1992</date>.</bibl>
+               <bibl xml:id="vanderVlist2002"><author>van der Vlist, Eric</author>.
+                     <date>2002</date>. <title level="m">XML Schema</title>. O’Reilly &amp;
+                  Associates, <date>2002</date>. <ref
+                     target="https://docstore.mik.ua/orelly/xml/schema/appa_03.htm"/>.</bibl>
+               <bibl xml:id="xmlSchema"><title level="m">XML Schema</title>. <date>2004</date>.
+                     <publisher>World Wide Web Consortium (W3C)</publisher>. <ref
+                     target="https://www.w3.org/TR/xmlschema-0/"/>, <ref
+                     target="https://www.w3.org/TR/xmlschema-1/"/>, and <ref
+                     target="https://www.w3.org/TR/xmlschema-2/"/>.</bibl>
+            </listBibl>
+         </div>
+         <div type="appendix" xml:id="appendix1">
+            <head>Technical Problem: Conflicting ID-Types</head>
+            <p>There are several features of XML that DTDs support but RELAX NG does not. This lack
+               of support is deliberate: the designers of RELAX NG felt that a clean separation
+               between validation and other functions is important. One feature that RELAX NG does
+               not natively support is ID/IDREF checking. The ID/IDREF mechanism allows an encoder
+               to point from one XML element (<gi>A</gi>) to another in the same document
+                  (<gi>B</gi>) by putting the same value on an attribute declared as type IDREF (or
+               as one of the space-separated tokens in the value of an attribute declared as type
+               IDREFS) on <gi>A</gi> as an attribute declared as type ID on <gi>B</gi>. TEI P5 does
+               not use this feature at all; there are no attributes in P5 declared as type IDREF or
+                     IDREFS.<note><p>P1 to P4 made extensive use of ID/IDREF, but P5 uses URIs
+                     instead.</p></note> To support this feature a validator has to place various
+               constraints on the values of those attributes declared as ID or IDREF (or IDREFS):
+                  <list rend="ordered">
+                  <item>The value of each ID attribute is an NCName.</item>
+                  <item>The value of each ID must be unique (on any ID attribute in the given
+                     document).</item>
+                  <item>The value of each IDREF attribute (or each space-separated token of each
+                     IDREFS attribute) must match the value of an ID attribute somewhere in the
+                     document.</item>
+               </list> The philosophy RELAX NG follows is that constraints #2 and #3 are outside its
+               scope. One short explanation for why, above and beyond the desire for a clean
+               separation of validation proper from other functionality, is that it is impossible,
+               or at least very difficult, to support ID/IDREF without requiring an unambiguous
+               relationship between each instance element or attribute and its declaration in the
+               schema. This unambiguous relationship is required in DTDs, but may not be available
+               when validating against a RELAX NG schema. That is, a RELAX NG schema may have
+               multiple patterns that match <gi>B</gi>, and it is not always possible to tell which
+               pattern matched a particular <gi>B</gi> in the document instance. For more
+               information see the DTD Compatibility specification (<ref type="bibl"
+                  target="#relax2001">Clark and Murata, 2001</ref>).</p>
+            <p>RELAX NG provides a DTD compatibility mode which, in addition to other things, turns
+               on validation of (2) and (3). But in order to make this work, the schema designer has
+               to be careful not to have two patterns that could match a particular element and
+               attribute combination where the attribute is declared as an ID in one pattern and as
+               something else in another. When this happens an error is reported in the schema
+               itself, and no validation of the document instance takes place.<note><p>The error
+                     reported by <ident>jing</ident>, which is the RELAX NG validator used by
+                     oXygen, starts with <q>error: conflicting ID-types for attribute<gap/></q>
+                     hence the name of this section.</p></note></p>
+            <p>TEI P5 goes to great lengths to ensure that the vanilla <ident>tei_all.rng</ident>
+               schema does not have any such cases of ambiguity: when using a vanilla
+                  <ident>tei_all.rng</ident> schema, every instance element is matched by one and
+               only one pattern. But <ident>tei_customization</ident> does not have this limitation.
+               Thus if a user attempts to validate a document against
+                  <ident>tei_customization</ident> with DTD compatibility mode turned on, she will
+               get the <q>conflicting ID-types for attribute<gap/></q> error, and her document will
+               not be tested for validity.</p>
+            <p>There is one and only one attribute in the entire TEI scheme that is declared as type
+               ID, namely <att>xml:id</att>. And (as mentioned above), there are no attributes in
+               the TEI scheme of type IDREF nor IDREFS. So it would be very reasonable to think
+               that, for TEI, this is a non-problem: just don’t use DTD compatibility
+                     mode.<note><p>And in fact, that is what this author thinks is the best
+                     approach.</p></note> However, there are two arguments against this idea, the
+               first is very minor, but the second one is serious enough that it is likely to trip
+               up users of <ident>tei_customization</ident> in the oXygen framework.</p>
+            <p>The first argument against just turning off DTD compatibility mode is that it means
+               losing the other features this mode provides, too. But the main feature other than
+               ID/IDREF checking that DTD compatibility mode provides is default attribute values,
+               which most TEI users (including most, if not all, of TEI Council) do not like or
+               want, anyway.</p>
+            <p>The second is that ID/IDREF checking is on by default in oXygen. While turning it off
+               is not particularly difficult,<note><p>Uncheck the <soCalled>Check
+                        ID/IDREF</soCalled> box in the <code>Options &gt; Preferences &gt; XML &gt;
+                        XML Parser &gt; RELAX NG</code> pane.</p></note> there does not seem to be
+               any obvious, easy, eye-catching way to inform a user who wants to write a
+               customization that she has to do this. The consequences of failing to turn it off are
+               severe, though: although completion pop-up boxes still work, validation (both
+               automatic validation as you type and static validation, for example ⌘-⇧-V) completely
+               stops working. Furthermore, oXygen leaves this feature on by default for a reason.
+               Even though ID/IDREF checking itself is of almost no use to a user working with TEI
+               P5 documents,<note><p>Because P5 does not use the ID/IDREF mechanism, the only one of
+                     the three added constraints that is useful is (2), that the value of
+                        <att>xml:id</att> is unique. This can easily be tested by other means. For
+                     proof-of-concept tests in Schematron, see <ref
+                        target="https://wiki.tei-c.org/index.php/Xmlid_uniqueness.sch"><ident>Xmlid
+                           uniqueness.sch</ident></ref> on the TEI wiki.</p></note> use of this
+               feature is how oXygen goes about providing content completion pop-ups for URL
+               attributes (like <att>target</att>, <att>who</att>, <att>next</att>, and
+                  <att>prev</att>). And that is a very well-loved feature of oXygen. There are
+               several possible solutions to this problem, each of which has its drawbacks. The TEI
+               Council will hopefully implement one of them soon, making use of
+                  <ident>tei_customization</ident> from the oXygen framework much less
+               problematic.</p>
+         </div>
+      </back>
+   </text>
+</TEI>

@@ -1,0 +1,1304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://github.com/DH-RSE/software-citation/raw/main/schema/tei_jtei_annotated.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="https://github.com/DH-RSE/software-citation/raw/main/schema/tei_jtei_annotated.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="main">Materiality of TEI Encoding and Decoding</title>
+        <title type="sub">An Analysis of the Western European Union Archives on Armament
+          Policy</title>
+        <author>
+          <name>
+            <forename>Florentina</forename>
+            <surname>Armaselu</surname>
+          </name>
+          <affiliation>Florentina Armaselu is involved in text and technologies research at the
+              <orgName>University of Luxembourg</orgName>. She obtained a PhD in comparative
+            literature (2010) and a MSc in computational linguistics (2003) at the University of
+            Montreal, Canada. Her current research focuses on digital editions, text encoding and
+            text analysis.</affiliation>
+          <email>florentina.armaselu@uni.lu</email>
+        </author>
+        <author>
+          <name>
+            <forename>Verónica</forename>
+            <surname>Martins</surname>
+          </name>
+          <affiliation>Verónica Martins specialized in European Studies and her current research
+            focuses on the Mediterranean region and security questions, mainly counter-terrorism.
+            She attended the College of Europe where she got a MA in European Studies. In 2012, she
+            obtained her PhD in Political Science, Europe specialisation, in a joint international
+            supervision in Sciences-Po Paris and University of Minho. She worked as a researcher at
+            the Centre Virtuel de la Connaissance sur l’Europe on a project on Franco-British
+            relations within the Western European Union.</affiliation>
+          <email>martinsveronica@yahoo.fr</email>
+        </author>
+        <author>
+          <name>
+            <forename>Catherine</forename>
+            <forename>Emma</forename>
+            <surname>Jones</surname>
+          </name>
+          <affiliation>Dr Catherine (Kate) Jones is interested in the development of useful and
+            usable systems and data analysis to form meaningful narratives. She is based at the
+              <orgName>University of Luxembourg</orgName>. She studied for an MSc in Geographical
+            Information Systems at University College London in 2002 and went on to complete a
+            Knowledge Transfer Partnership, PhD and Post Doc at the same university, with a focus on
+            interdisciplinary research and mapping technologies. </affiliation>
+          <email>catherine.jones@uni.lu</email>
+        </author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>TEI Consortium</publisher>
+        <date>19/09/2016</date>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by/4.0/">
+            <p>For this publication a Creative Commons Attribution 4.0 International license has
+              been granted by the author(s) who retain full copyright.</p>
+          </licence>
+        </availability>
+      </publicationStmt>
+      <seriesStmt>
+        <title level="j">Journal of the Text Encoding Initiative</title>
+        <editor role="guest">Martin Müller</editor>
+        <editor role="chief">John Walsh</editor>
+        <editor role="managing">Anne Baillot</editor>
+        <editor role="technical" xml:id="RvdB">Ron Van den Branden</editor>
+        <biblScope unit="issue" n="9">Selected Papers from the 2014 TEI Conference; TEI and
+          Materiality</biblScope>
+      </seriesStmt>
+      <sourceDesc>
+        <p>No source, born digital.</p>
+      </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+      <projectDesc>
+        <p>Revues.org -centre for open electronic publishing- is the platform for journals in the
+          humanities and social sciences, open to quality periodicals looking to publish full-text
+          articles online.</p>
+      </projectDesc>
+    </encodingDesc>
+    <profileDesc>
+      <langUsage>
+        <language ident="en">en</language>
+      </langUsage>
+      <textClass>
+        <keywords xml:lang="en">
+          <term>WEU and armament digital edition</term>
+          <term>text encoding</term>
+          <term>text analysis</term>
+          <term>digital hermeneutics</term>
+          <term>materiality</term>
+        </keywords>
+      </textClass>
+    </profileDesc>
+    <revisionDesc>
+      <change when="2018-01-12" who="#RvdB">technical editor applied changes per author request from
+        email dated <date>2017-07-24</date></change>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <front>
+      <div type="abstract" xml:id="abstract">
+        <p>By combining traditional historical enquiry with TEI XML encoding and decoding in a
+          corpus analysis phase, the project aims at addressing research questions mainly related to
+          the French and British positions on the topics of armament design and production and of
+          armament control within the Western European Union (WEU) from 1954 to 1982. The paper
+          focuses on the annotation of speakers (different countries and institutional
+          representatives) and their discourse in a selection of institutional documents (minutes,
+          notes, studies, memoranda) (encoding phase) and the identification of linguistic patterns
+          on armament issues in their discourse, as well as the interpretation of results (decoding
+          phase).</p>
+        <p>From a larger perspective, the study considers the TEI encoding as adding to the original
+          text a <soCalled>material</soCalled> layer that further supports both machine and human
+          interpretation (decoding). In this sense, this study may move closer to the concept of
+            <soCalled>material hermeneutics</soCalled>, by understanding code, and digital
+          technology in general, as an instrument we can use in hermeneutic ways to produce
+          knowledge.</p>
+      </div>
+      <div type="corrections">
+        <p>This paper was revised on <date>2017-08-31</date> to include a missing reference:
+            <q>(Heiden 2010)</q>. The previous version is archived at <ptr
+            target="https://journals.openedition.org/jtei/1733"/>.</p>
+      </div>
+    </front>
+    <body>
+      <div xml:id="materiality">
+        <head>On the Materiality of TEI Encoding and Decoding</head>
+        <p>As Manoff (<ref type="bibl" xml:id="quoteref1" target="#manoff06">2006, 311</ref>) points
+          out, the study of <quote source="#quoteref1">material aspects of digital objects</quote>
+          may foster new concepts and theories explaining how these properties <quote
+            source="#quoteref1">alter our ways of creating and consuming information</quote>.
+          Through the lens of the history of the book, materiality may be related to things like
+            <quote source="#quoteref1">typography, binding, illustration, and paper</quote>. In the
+          world of digital artifacts, this can bring to light a <quote source="#quoteref2">whole new
+            range of physical objects and processes, including platforms, interfaces, standards, and
+            coding</quote> (<ref type="bibl" xml:id="quoteref2" target="#manoff06">312</ref>). From
+          an editorial perspective, McGann (<ref xml:id="quoteref3" target="#mcgann01" type="bibl"
+            >2001, 78</ref>) argues that a particular edition may draw attention to the <quote
+            source="#quoteref3">dynamic engagement between text and its vehicular (material)
+            form</quote> and in this respect, digital textuality differs from paper-based text as it
+          can be designed for <quote source="#quoteref4">complex, interactive
+            transformations</quote> (<ref type="bibl" xml:id="quoteref4" target="#mcgann01"
+          >81</ref>). Referring to the transition from print, Hayles (<ref type="bibl"
+            xml:id="quoteref5" target="#hayles05">2005, 1</ref>) assumes that the <quote
+            source="#quoteref5">transformation of a printed document into an electronic text is a
+            form of translation—<soCalled>media translation</soCalled></quote> that implies an
+            <quote source="#quoteref5">act of interpretation</quote>, an edition representing an
+          instantiation of a work in a <quote source="#quoteref5">physical form</quote>. In
+          particular, relating the process of text encoding to hermeneutics, <quote
+            source="#quoteref6">the art or science of interpretation</quote>, Burnard (<ref
+            type="bibl" xml:id="quoteref6" target="#burnard98">1998, section 3</ref>) suggests that
+          the <quote source="#quoteref6">markup maps a (human) interpretation of the text into a set
+            of codes on which computer processing can be performed</quote>. Moreover, he sees this
+          process as part of a decoding–encoding succession, the former implying <quote
+            source="#quoteref7">a selection from the many features implicit in the reading of a
+            text, and their re-encoding in explicit and unambiguous terms</quote>. (<ref type="bibl"
+            xml:id="quoteref7" target="#burnard98">section 2</ref>)</p>
+        <p>This article proposes a new perspective as a new link in the chain,
+          decoding-encoding-decoding, by considering the aspects involved in the digitization, TEI
+          XML encoding, and corpus analysis of a collection of documents from the Western European
+          Union (WEU) paper archives specifically intended for web publication. Placing our approach
+          at the crossroad of digital scholarly editing and digital philology (<ref
+            target="#pierazzo14" type="bibl">Pierazzo 2014</ref>; <ref target="#andrews13"
+            type="bibl">Andrews 2013</ref>), as well as digital hermeneutics (<ref
+            target="#capurro10" type="bibl">Capurro 2010</ref>), we will focus on the TEI encoding
+          as an addition to the original text, a <soCalled>material</soCalled> layer that further
+          supports both machine and human interpretation. This type of materiality is actually
+          related to the intrinsic performative quality of the code (either as markup or as part of
+          a computer program), designed to be interpreted by the machine and to determine processing
+          sequences and output that can become an object for further analysis. In this sense, we may
+          move closer to Ihde’s (<ref target="#ihde03" type="bibl">2003</ref>) concept of
+            <soCalled>material hermeneutics</soCalled> by understanding code, and digital technology
+          in general, as an <soCalled>instrument</soCalled> we can use in <soCalled>hermeneutic
+            ways</soCalled> to produce knowledge.</p>
+        <p>In this context, by combining scholarly editing and hermeneutic perspectives, the paper
+          discusses aspects related to building a digital edition of historical documents, the
+          interpretation of documents (<term>decoding</term>) on which the XML-TEI annotation is
+          based (<term>encoding</term>), as well as the elements and methods subsequently considered
+          for corpus analysis in order to support interpretation of discursive phenomena
+            (<emph>decoding</emph>). <ptr type="crossref" target="#description"/> describes the
+          collection that forms the focus of the study, with reference to the original paper
+          archives and the transformation into electronic form. <ptr type="crossref"
+            target="#encoding"/> presents a selection of encoded samples and the rationale behind
+          the encoding, from the perspective of its further usage in the decoding process. In <ptr
+            type="crossref" target="#decoding"/>, we detail this process placing emphasis on the
+          importing of the encoded data into the corpus analysis platform, the different types of
+          analysis performed, and a discussion of results. <ptr type="crossref" target="#conclusion"
+          /> concludes the paper with a review of both the benefits and limitations of the applied
+          methods and the materiality underlying the encoding–decoding mechanism.</p>
+      </div>
+      <div xml:id="description">
+        <head>Description of the Collection</head>
+        <p>The corpus (WEU-Diplo) chosen for TEI encoding represents a selection from the Archives
+          nationales de Luxembourg<note>The exploitation of the WEU archives follows the decision
+            C(11)05-Final of May 10, 2011, by the Permanent Council of the Western European Union,
+            which appointed ANLux—the Archives nationales de Luxembourg—as the official depository
+            of the WEU archives and gave the CVCE (<ptr target="http://cvce.eu/"/>), a research and
+            documentary center in European Integration Studies, the task of scientifically
+            exploiting these holdings, including their publication in any form.</note> of
+          institutional documents concerning armament production and standardization, and armament
+          control within the WEU,<note>The WEU was created on the October 23, 1954, with the signing
+            of the <soCalled>Modified Brussels Treaty</soCalled> by France, Belgium, Luxembourg, the
+            Netherlands, the United Kingdom—all five previously members of the Western Union created
+            in 1948—and the Federal Republic of Germany invited to join the new organization. It
+            became the first European Defence Organisation and its missions covered the settling of
+            the problem of the Saar, the monitoring of German rearmament, and the promotion of the
+            defense of Western Europe. The Treaty of Brussels contained a mutual defense clause in
+            Article V. For more information, please consult <ptr
+              target="http://www.cvce.eu/en/recherche/unit-content/-/unit/72d9869d-ff72-493e-a0e3-bedb3e671faa/1c06c877-402b-45d1-a126-792e99cf3fc3"
+            />.</note> from 1954 to 1982. TEI XML has been considered an appropriate format both for
+          building a scholarly online edition and for enabling corpus analysis. The general workflow
+          was conceived with the aim of (partial) re-usability, albeit with some project-specific
+          adaptations and readjustment, in order to support a variety of projects and document types
+          in European integration history (primary/secondary sources: text, image, audio, video, and
+          their transcriptions). As a matter of principle, an alternation of manual and automatic
+          sequential processing has been applied to the corpus in such a way that, independently of
+          the manual interventions, no information should be lost if it is needed to regenerate a
+          certain state of the corpus in subsequent automatic phases (e.g., via XSLT).</p>
+        <p>The first criterion for the selection of the documents was their relevance to a specific
+          research question: what were the French and British positions on the major defense and
+          security matters within WEU and, as subsidiary questions, the identification of the main
+          defense and security matters discussed within the Council of the WEU and the importance
+          placed on the WEU by the two member states, France and the United Kingdom, in their
+          diplomatic strategy between 1954 and 1982.<note>Eric Rémacle referred to the <quote
+              source="#quoteref8">instrumentalisation</quote> of WEU by these two countries, which
+            he identified as <quote source="#quoteref8">successive leader states</quote> within the
+            organization. See <ref type="bibl" xml:id="quoteref8" target="#remacle09">Rémacle 2009,
+              197</ref>.</note> The choice of this case study was influenced by the fact that these
+          two states played a key role in the birth, development, and organization of the WEU, as
+          evidenced in the primary and secondary sources consulted. The idea was that by analyzing
+          these issues we can also shed light on the organization’s contributions to European
+          defense under the leadership (or lack thereof) of France and the UK.</p>
+        <p>Other criteria influencing document selection were to obtain a balance among control,
+          standardization, and production, together with a balanced number of documents across the
+          decades, as well as taking into account that some documents are a logical follow-up of
+          others (e.g., documents mentioning recommendations). Another criterion for selection, of
+          secondary importance, was the actual form of the documents, since the research was also
+          intended to evaluate the accuracy of OCR (optical character recognition) processing for
+          different types of layout (title or content page), paper quality, and legibility of
+          typewritten or handwritten characters and of particular markings as stamps.</p>
+        <p>The selected sample contained 127 documents, 60 in English and 67 in French. For the
+          first phase of the project, 55 documents in French were retained (a total of 290 pages)
+          because of their importance for subsequent corpus analysis<note>Related to the specific
+            research question, that is, the study of linguistic patterns in the discourse of
+            different country/institutional representatives as described in <ptr type="crossref"
+              target="#decoding"/>.</note> and publication. The majority of the documents were notes
+          from the Secretary-General or Secrétaire Général (46, of which 37 were encoded because of
+          their relevance to the research question), followed by minutes of meetings of the WEU
+          Council or the Standing Armaments Committee (SAC) or of the working party on production
+          and standardization of armament of the Interim Commission (15, all of which have been
+          encoded). The sample also included 2 memoranda (both encoded) and 2 studies (1 of which
+          has been encoded).</p>
+        <p>The linguistic aspect was also considered. Although, given the availability of time and
+          resources, the French version was prioritized for encoding (the English processing being
+          planned for a later stage), in general, the chosen documents existed in both French and
+          English versions, and when not mentioned as original language, the French documents were
+          exact translations of the English ones or had the same status, since the documents were
+          produced in both languages. The provider of the translations was the WEU itself (its daily
+          work being undertaken in both languages) and, therefore, a source of official
+          translations.</p>
+        <p>From the 55 French documents selected for encoding, 5 had no English equivalent (3 notes,
+          1 study, and 1 memorandum); the remainder (all the meeting minutes and remaining
+          categories) were available in both languages. More precisely, there were 16 documents
+          mentioning the original was in French (of which 1 had no English equivalent), 12 with the
+          original indicated as being in English, 10 mentioning the original both in French and
+          English, 11 with no indication of the original language but a comparison between the
+          French and English documents showed a similar structure and content, 4 available only in
+          French bearing no indication of the original language, and 2 with an ambiguous marker (1
+          indicating French and English as original in the French version while the corresponding
+          English document mentioned English as the original language, the other bearing no mention
+          of the original in the French version but indicating English as the original in the
+          corresponding English document).</p>
+        <div xml:id="paperarchive">
+          <head>The Paper Archive</head>
+          <p>As a general rule, documents from the Secretary-General all exist in both French and
+            English. In the nearly 400 folders consulted, there were very few exceptions; only
+            occasionally were documents published in just one language. The French version was
+            printed on blue paper and the English on white paper. Internal documents or notes from
+            the Agency for the Control of Armaments (ACA) were only published in French, on very
+            thin (<soCalled>tracing</soCalled>) paper. The notes and minutes were formal documents
+            distributed to all the delegations of the Member States.</p>
+          <p>The research aim was to gather a set of representative documents that expressed the
+            French and British positions within the WEU’s different bodies, on different topics—the
+            exploration of the design, production, and control of armament being only one of them.
+            For this purpose, we used the WEU’s collection database, held in the Archives nationales
+            de Luxembourg, and consulted several sections and collections including: <list
+              rend="ordered inline">
+              <item>Interim Period;</item>
+              <item>Brussels Treaty Organisation (BTO);</item>
+              <item>1954–87 within the Secretariat-General/Council’s archives;</item>
+              <item>Armament Bodies—Agency for the Control of Armaments (ACA) and Standing Armaments
+                Committee (SAC)</item>
+            </list>. Other collections such as those relating to the military bodies or WEU
+            operations were considered too recent to be consulted or still held a classified status.
+            The documents were selected primarily based on their themes, strictly following the
+            thirty-year rule. Each collection, comprised of several folders, with a
+              <soCalled>fiche</soCalled> indicating the name of the section and collection, title of
+            the folder, security classification such as WEU or NATO (NATO classified documents were
+            not available), the period of time covered in the folder, the reference, and either
+            keywords or a small summary of the main questions, although sometimes this was quite
+            general. Once the folders or boxes were located in the WEU collection, they were
+            consulted <foreign xml:lang="la">in situ</foreign> and a selection of several documents
+            was made according to the general theme <mentioned>armament</mentioned>. Before the
+            digitization, a closer reading and final selection was performed.</p>
+        </div>
+        <div xml:id="papertoelectronic">
+          <head>Paper to Electronic Text</head>
+          <p>The initial documents were typewritten materials from the WEU archives. The
+            transformation into electronic text necessitated the use of document scanning, OCR,
+            manual post-processing error correction, conversion of the resulting styled Microsoft
+            Word files to TEI XML P5 via <ref target="http://www.tei-c.org/oxgarage/"
+                >OxGarage</ref>,<note><ptr target="http://www.tei-c.org/oxgarage/"/>.</note> and
+            further XSLT transformation and enrichment using the oXygen XML Editor and GATE (General
+            Architecture for Text Engineering) for NER (Named Entity Recognition). To prepare the
+            digital documents for publication on the Web, further processing was carried out, to
+            facilitate visualization and navigation in the browser at the document and collection
+            level.</p>
+          <p>Next we identified, for each document, principal metadata and semantic elements
+            necessary for encoding, as well as the form of encoding required for the computational
+            linguistic analysis in order to answer the main research question. The metadata included
+            elements such as <list rend="inline ordered">
+              <item>the author of the document: for the majority of documents the author is a
+                collective entity (institution), except for rare cases—internal documents—where the
+                author is an individual;</item>
+              <item>the date on which the document was distributed or produced, such as the date of
+                the meeting;</item>
+              <item>the location (generally London, where the Council’s Secretariat-General was
+                located, or Paris, home of the ACA and SAC headquarters);</item>
+              <item>the title;</item>
+              <item>the version (whether or not it is a final version);</item>
+              <item>the language of the document with the mention of the original, when
+                present;</item>
+              <item>the classification: most of the documents were classified as
+                  <term>confidential</term>, <term>secret</term>, or even <term>top secret</term>,
+                according to the degree of sensitivity of the information</item>
+            </list>. Likewise, documents of this type also had a copy number (element 8), since they
+            often contained military and strategic information and were only distributed to a
+            limited (sometimes very small) number of people, generally officials at national or
+            institutional level. The organization had its own system of codes (references) for each
+            document, which varied depending on the institution or the type of document.<note>For
+              example, CR(58)8 = CR (for <foreign xml:lang="fr">compte-rendu</foreign>, or minutes,
+              of a Council meeting), the year in brackets, then the document number; PWG/CR/4 = PWG
+              (we think that PWG stands for Production Working Group), CR (for <foreign
+                xml:lang="fr">compte-rendu</foreign>) and the number of the meeting (the fourth
+              meeting); C(80)40—we have noticed that the letter C was generally used for the final
+              version of the reply to a recommendation or written question, followed by the date in
+              brackets, although the meaning of the second number is not clear. The letters WPM
+              followed by a number in brackets were used for the various versions of replies to
+              recommendations and/or written questions, but we think that the date was not indicated
+              in brackets during the early years of WEU’s activity, until the end of the 1960s or
+              the early 1970s; if a draft was amended by a working group, the version number was
+              added after a solidus, e.g., WPM(77)25/1.</note> The document reference (element 9)
+            only partially identifies a document, since the same code was sometimes used for several
+            documents, particularly for minutes of meetings which were divided into thematic
+            sections and incorporated into different folders. The folder code (element 10) is
+            therefore an important means of identifying the theme and even the institution within
+            the WEU.<note>Examples of file codes: CPA-043; ACA-200; 421.00; 200.400.11 vol
+              1/1.</note>
+          </p>
+          <p>In order to address the research question, the main aim of the TEI XML encoding was to
+            identify the speakers (element 11) in the various documents and the views (element 12)
+            that can be attributed to them, whether directly or indirectly.<note>Speakers frequently
+              referred to statements by other people from the same or another delegation.</note> The
+            representatives (ministers, parliamentarians, ambassadors, and experts) from France and
+            the United Kingdom were systematically identified, and, depending on their relevance to
+            the research, the contributions of the German representatives were also encoded. Some
+            examples of British speakers’ names are Christopher Steel, Samuel Hood, and Selwyn
+            Lloyd; French speakers’ names included Alexandre Parodi, Jean Chauvel, and Geoffroy
+            Chodron de Courcel.</p>
+          <p>A generic nomenclature was developed to maintain consistency among the various speakers
+            and to deal with cases when the speaker was not named: <ident>repres_fr</ident> (French
+            representative), <ident>repres_uk</ident> (United Kingdom representative),
+              <ident>repres_frg</ident> (German representative), <ident>repres_frg_fr_it</ident>
+            (contribution on behalf of the German, French, and Italian representatives),
+              <ident>repres_deleg_fr</ident> (French delegation), <ident>repres_deleg_uk</ident>
+            (United Kingdom delegation),<note>The terms <soCalled>delegate</soCalled> and
+                <soCalled>representative</soCalled> were used to distinguish the collective
+              discourse of a country (for instance, in the answer to a recommendation) from the
+              discourse of an individual (in a Council’s meeting for instance), although the
+              individual was also speaking for a country.</note>
+            <ident>repres_cons_weu</ident> (representative of the WEU Council),
+              <ident>repres_assb_weu</ident> (representative of the WEU Assembly),
+              <ident>repres_aca</ident> (representative of the Agency for the Control of Armaments),
+              <ident>respres_sac</ident> (representative of the Standing Armaments Committee) (see
+              <ptr type="crossref" target="#example1"/>).</p>
+          <p>A semi-automatic NER processing involved the identification of other elements (13) in
+            the texts, intended to be considered as whole units in the analysis, such as dates and
+            the names of places, people, office positions, organizations, and bodies
+              (<mentioned>Western European Union</mentioned>, the <mentioned>North Atlantic Treaty
+              Organisation</mentioned>, the <mentioned>Standing Armaments Committee</mentioned>, and
+            the <mentioned>Agency for the Control of Armaments</mentioned>), the event to which the
+            document refers, as well as any other events mentioned.<note>Other meetings were often
+              mentioned, such as a previous or forthcoming ministerial meeting or a meeting of the
+              North Atlantic Council.</note> Finally, a series of <soCalled>products</soCalled>
+            associated with armament were also encoded, for example <mentioned>Mirage</mentioned>,
+              <mentioned>short-haul transport aircraft</mentioned>, <mentioned>light
+              tank</mentioned>, <mentioned>Pluton</mentioned>, etc.</p>
+        </div>
+      </div>
+      <div xml:id="encoding">
+        <head>Encoding</head>
+        <p>Although other types of elements were annotated in the corpus (metadata, e.g., title,
+          author, availability date, origin place, and confidentiality status; and structure, e.g.,
+          headers, footers, sections, paragraphs, and line breaks), the paper will focus on the
+          content-related encoding—that is, speakers and their discourse—along with the
+          above-mentioned categories of named entities, considered from the perspective of the
+          subsequent decoding phase (analysis and interpretation). The TEI P5
+                specifications<note><bibl><orgName>TEI Consortium</orgName>. <date>2015</date>. TEI
+              Guidelines <edition>Version 2.8.0</edition>. Last updated on April 6. <ptr
+                target="http://www.tei-c.org/Vault/P5/2.8.0/doc/tei-p5-doc/en/html/"
+            />.</bibl></note> were applied, with no need for adding new classes, elements, or
+          attributes.</p>
+        <div xml:id="participants">
+          <head>Participants</head>
+          <p>The identification of the agents responsible for the production of texts represents an
+            important step in the analysis of institutional discourse, irrespective of the level of
+            this analysis (<ref type="bibl" target="#thornborrow02">Thornborrow 2002</ref>; <ref
+              type="bibl" target="#philips04">Phillips, Lawrence, and Hardy 2004</ref>; <ref
+              type="bibl" target="#nikander08">Nikander 2008</ref>; <ref type="bibl"
+              target="#vandijk93">Van Dijk 1993</ref>). Certain types of documents in the WEU-Diplo
+            corpus (usually minutes) explicitly provided indications about the speakers and their
+            position (<q><foreign xml:lang="fr">Etaient présents: République Fédérale d’Allemagne:
+                Prof. Dr. L. ERHARD; Belgique: M. A. de STAERCKE <gap/></foreign></q>).<note>En.
+                <q>PRESENT: Prof. Dr. L. ERHARD: Federal Republic of Germany; M. A. de STAERCKE:
+                Belgium.<gap/></q> Union de l’Europe occidentale. Commission intérimaire. Groupe de
+              travail sur la production et la standardisation des armements. Troisième séance
+              plénière tenue au Palais de Chaillot le 21 janvier 1955 à 15 heures 30. Paris:
+              22.01.1955. PWG/CR/2. Pp. 1–3; Annexe A; Annexe B. Archives nationales de Luxembourg
+              (ANLux). <ptr target="http://anlux.lu/"/>. Western European Union Archives. Armament
+              Bodies. CPA/SAC. Comité permanent des armements. File CPA-033. Volume 1/1.</note> For
+            other cases, external knowledge or prior research was needed in order to be able to
+            assign a role to the speaker (<q><foreign xml:lang="fr">M. Selwyn LLOYD déclare que
+                <gap/></foreign></q><note>En. <q>Mr. Selwyn LLOYD considered that<gap/>.</q> Conseil
+              de l’Union de l’Europe occidentale. Extract from minutes of the 108th meeting
+              Ministers of WEU Council held on 5 March 1958. Rome. II. Echanges de vues sur la
+              coopération en matière de recherche, développement et production d’armements. CR
+              (58)8. Pp. 5–9. Archives nationales de Luxembourg (ANLux). <ptr
+                target="http://www.anlux.lu"/>. Western European Union Archives. Secretariat
+              General/Council’s Archives. 1954–1987. Subject dealt with by various WEU ORGANS. Year:
+              1958, 01/06/1957–30/04/1958. File 442.00. Volume 1/4.</note> as a UK representative)
+            or to identify the contributors to the discourse (the France representative, Geoffroy
+            Chodron de Courcel, and the ACA representative).<note xml:id="note14">Agence pour le
+              contrôle des armements. Note. 04.1966. 6 p. Archives nationales de Luxembourg (ANLux).
+                <ptr target="http://anlux.lu/"/>. Western European Union Archives. Armament Bodies.
+              ACA. Agency for the Control of Armaments. Year: 1957, 01/01/1957–31/12/1963. File
+              ACA-035. Volume 1/1.</note></p>
+          <figure xml:id="example1">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <particDesc>
+                <p>Liste des représentants des pays/organisations.<list xml:id="repres_list">
+                    <item xml:id="repres_fr">Représentant(s) de la France</item>
+                    <item xml:id="repres_uk">Représentant(s) du Royaume-Uni</item>
+                    <item xml:id="repres_frg">Représentant(s) de la République Fédérale
+                      d&apos;Allemagne</item>
+                    <item xml:id="repres_frg_fr_it">Représentant(s) de la République Fédérale
+                      d&apos;Allemagne, de la France et de l&apos;Italie</item>
+                    <item xml:id="repres_fr_uk">Représentant(s) de la France et du
+                      Royaume-Uni</item>
+                    <item xml:id="repres_deleg_fr">Représentant(s) de la délégation française</item>
+                    <item xml:id="repres_deleg_uk">Représentant(s) de la délégation
+                      britannique</item>
+                    <item xml:id="repres_deleg_fr_be">Représentant(s) des délégations française et
+                      belge</item>
+                    <item xml:id="repres_deleg_fr_uk">Représentant(s) des délégations française et
+                      britannique</item>
+                    <item xml:id="repres_cons_weu">Représentant(s) du Conseil de l'U.E.O. (Union de
+                      l'Europe occidentale)</item>
+                    <item xml:id="repres_sac">Représentant(s) du C.P.A. (Comité permanent des
+                      armements)</item>
+                    <item xml:id="repres_wpbt">Représentant(s) du G.T.P.B. (Groupe de travail sur le
+                      Pacte de Bruxelles)</item>
+                    <item xml:id="repres_aca">Représentant(s) de l'A.C.A. (Agence pour le contrôle
+                      des armements)</item>
+                    <item xml:id="repres_assb_weu">Représentant(s) de l'Assemblée de l'U.E.O. (Union
+                      de l'Europe occidentale)</item>
+                  </list></p>
+              </particDesc>
+            </egXML>
+            <head type="legend">Generic list of participants. WEU-Diplo: CR/58/8</head>
+          </figure>
+          <p>The encoding of the participants (considered of interest for the research question)
+            required two types of annotations:</p>
+          <list rend="bulleted">
+            <item>a mandatory, generic label identifying the participant as an institutional or
+              country representative;</item>
+            <item>an identifier (unique for the corpus) provided only when it was possible to refer
+              to a particular person.</item>
+          </list>
+          <p>Since the conversion to TEI XML and the semantic enrichment of the corpus supposed both
+            automatic transformation (via XSLT) and manual annotations, in a preliminary form for
+            all of the documents, we generated a list of all generic labels for the
+            country/institution representatives (<gi>profileDesc</gi> section of the
+              <gi>teiHeader</gi>) (<ptr type="crossref" target="#example1"/>).</p>
+          <p>Then the list was manually customized according to the particularity of each document
+            and the specific <soCalled>actors</soCalled> involved in the production of the text.
+              <ptr type="crossref" target="#example2"/> illustrates a case where only three
+            representatives were retained and further details were provided on their identity. For
+            other situations, the generic label was enough (when the identity was not required or
+            not available).</p>
+        </div>
+        <div xml:id="discourse">
+          <head>Discourse</head>
+          <p>In order to be able to analyze the discourse of different participants within the WEU’s
+            policy on armament issues, we have applied a <soCalled>kaleidoscopic</soCalled> approach
+            to the corpus. More precisely, discrete fragments were identified and manually annotated
+            inside each document, with reference to the speaker and his or her role as an
+            institution or country representative manifested in the text (<ptr type="crossref"
+              target="#example2"/>).</p>
+          <figure xml:id="example2">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <particDesc>
+                <p>Liste des représentants des pays/organisations.<list xml:id="repres_list">
+                    <item xml:id="repres_fr">Représentant(s) de la France <name type="person"
+                        xml:id="faure">Maurice Faure</name></item>
+                    <item xml:id="repres_uk">Représentant(s) du Royaume-Uni <name type="person"
+                        xml:id="lloyd">Selwyn Lloyd</name></item>
+                    <item xml:id="repres_frg">Représentant(s) de la République Fédérale
+                      d&apos;Allemagne <name type="person" xml:id="von_brentano">Heinrich von
+                        Brentano</name></item>
+                  </list></p>
+              </particDesc>
+            </egXML>
+            <head type="legend">Customized list of participants. WEU-Diplo: CR/58/8</head>
+          </figure>
+          <p>Given its flexibility of use (either inside a paragraph or encompassing several
+            paragraphs), the <gi>said</gi> tag was chosen for delimiting the different pieces of
+            discourse corresponding to a particular agent (<ptr type="crossref" target="#example3"
+            />). The choice also facilitated assembling these pieces of information for analysis in
+            the decoding phase (<ptr type="crossref" target="#decoding"/>).</p>
+          <figure xml:id="example3">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <p><name type="person">M. Faure</name> souligne avec force que <said direct="false"
+                  ana="#oral_disc" who="#faure" corresp="#repres_fr">le succès de
+                  l&apos;entreprise<lb/>dépend de la volonté politique des gouvernements d'assurer
+                  une<lb/>coopération effective. Les propositions de <name type="person">M. von
+                    Brentano</name><w>cons<lb rendition="#hyphen_before" break="no"/>tituant</w> un
+                  pas important dans cette direction et il s'y rallie.</said></p>
+            </egXML>
+            <head type="legend">Excerpt from a discourse (oral). WEU-Diplo: CR/58/8</head>
+          </figure>
+          <p>The <att>corresp</att> and <att>who</att> attributes were used in order to link the
+            marked-up fragment with its producer defined in the <gi>particDesc</gi> unit. Additional
+            attributes (<att>ana</att> and <att>direct</att>) were needed to differentiate
+            situations referring either to transcribed <term>oral</term> (direct or indirect speech)
+            or to what we considered <term>written</term> discourse, such as the text of notes (<ptr
+              type="crossref" target="#example4"/>) or studies usually resulting from internal
+            meetings or discussions among institutional bodies (sometimes including
+              <soCalled>narrative</soCalled> prose<note><ptr type="crossref" target="#example4"/>,
+              En. <q>One year after, under analogous conditions, Minister LUNS had to assess as a
+                president a position along the same lines <gap/>.</q> (Our translation, document for
+              which we could not find an English equivalent in the WEU archives.)</note> or
+            arguments not necessarily coming from an oral account), and then circulated for further
+            discussion/approval within the WEU.</p>
+          <figure xml:id="example4">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <said ana="#written_disc" corresp="#repres_aca">
+                <p>Un an après, dans des conditions analogues, le <name type="person"
+                    >Ministre<lb/>LUNS</name> était amené à prendre comme président une position
+                  dans<lb/>le même sens.</p>[…] </said>
+            </egXML>
+            <head type="legend">Excerpt from a discourse (written). WEU-Diplo: Note<note>See <ptr
+                  type="crossref" target="#note14"/> for the document reference. The ellipsis
+                indicates missing paragraphs, omitted here for concision.</note>
+            </head>
+          </figure>
+          <p>A particular occurrence of <soCalled>discourse within a discourse</soCalled> is
+            presented below (<ptr type="crossref" target="#example5"/>): a direct citation of the
+            oral intervention of a WEU Council representative, M. Heath, from a previous meeting of
+            the WEU Assembly, within the written account of the ACA.<note>Distinguished via the
+              values of the <att>ana</att> attribute, as related to written versus oral
+              discourse.</note></p>
+          <figure xml:id="example5">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <said ana="#written_disc" corresp="#repres_aca"> […] <p>La réponse de <name
+                    type="person">M. HEATH</name> était : <said direct="true" ana="#oral_disc"
+                    who="#heath" corresp="#repres_cons_weu">&quot;Nous ne sommes<lb/>pas
+                    juridiquement tenus d'autoriser l'inspection de ces dépôts,<lb/>car ils ont été
+                    constitués dans le cadre de l&apos;<name type="org">OTAN</name>, et
+                    sont<lb/>donc, strictement parlant, uniquement soumis à l’inspection
+                    de<lb/>cette organisation.&quot;</said>[…].</p>[…]</said>
+            </egXML>
+            <head type="legend">Excerpt from a discourse within a discourse. WEU-Diplo:
+                Note<note>Agence pour le contrôle des armements. Division III. Note à l’intention du
+                Directeur de l’ACA. Contrôle sur place des armes atomiques se trouvant dans des
+                dépôts britanniques sur le continent européen. 22 juin 1962. Archives nationales de
+                Luxembourg (ANLux). <ptr target="http://anlux.lu/"/>. Western European Union
+                Archives. Armament Bodies. ACA. Agency for the Control of Armaments. Year: 1957,
+                01/01/1957–31/12/1978. File ACA-218. Volume 1/1. The ellipsis indicates missing
+                paragraphs or fragments, omitted here for concision. As far as the intervention of
+                Mr. Heath is concerned, it is not specified anywhere that he was actually speaking
+                English, but since it was a working language, it seems logical that he was
+                expressing himself in his native language. Thus, this could be a translation, most
+                probably from an internal translation service.</note></head>
+          </figure>
+        </div>
+        <div xml:id="ne">
+          <head>Named Entities (NE)</head>
+          <p>The project also included the identification and annotation in the text of named
+            entities intended for later use (such as indexing and linking to an authorities list) or
+            as a prerequisite of the corpus analysis phase. This identification and annotation
+            allows multiword expressions to be counted as single units of a given type (e.g.,
+            organization) in the analysis, rather than as separate words (for instance, <mentioned
+              xml:lang="fr">Union de l’Europe Occidentale</mentioned> instead of <mentioned
+              xml:lang="fr">Union, de, l’, Europe, Occidentale</mentioned>).</p>
+          <p>The NER task involved a semi-automatic approach using <ref target="https://gate.ac.uk/"
+              >GATE</ref> (French NE, Gazetteer, and Gazetteer List Collector plugins)<note><ptr
+                target="https://gate.ac.uk/"/>.</note> for the detection of seven classes of
+            entities: persons, places, organizations, events, dates, products, and functions
+            (official positions). Manual corrections were applied, when necessary, in a
+            post-processing phase. Since the GATE XML output format was different from TEI, an XSLT
+            dedicated stylesheet was created for the transformation of the GATE tags (such as
+              <gi>Person</gi>, <gi>Location</gi>, <gi>Organization</gi>, and <gi>Date</gi>) into
+            corresponding TEI tags (<gi>name</gi> with the attribute <att>type</att>, and
+              <gi>date</gi>, respectively). A few examples of <tag>name
+              type=&quot;person&quot;</tag>, <tag>name type="org"</tag> are presented in the
+            previous examples. Further transformation was necessary during the importing of the
+            annotated corpus into the software for textual analysis (see <ptr type="crossref"
+              target="#importing"/>).</p>
+        </div>
+      </div>
+      <div xml:id="decoding">
+        <head>Decoding</head>
+        <p>The so called <soCalled>decoding</soCalled> phase, for corpus analysis and
+          interpretation, consisted of importing and processing the TEI XML annotated documents
+          within a specialized platform, <ref target="http://textometrie.ens-lyon.fr/?lang=en"><ptr
+              type="software" xml:id="TXM" target="#TXM"/><rs type="soft.name" ref="#TXM"
+            >TXM</rs></ref> (<ref type="bibl" target="#heiden10">Heiden 2010</ref>),<note><ptr
+              target="http://textometrie.ens-lyon.fr/?lang=en"/>.</note> that allows the analysis of
+          a large body of texts by means of lexicometrical and statistical methods. The previous
+          encoding served as a basis for discerning or grouping together different types of semantic
+          or structural elements needed for analysis.</p>
+        <div xml:id="importing">
+          <head>Importing</head>
+          <p>Since <ptr type="software" xml:id="TXM" target="#TXM"/><rs type="soft.name" ref="#TXM"
+              >TXM</rs> supports XSLT transformation at the moment of import (XML/w+CSV option), an
+            XSLT stylesheet was created to accommodate particular formats or conversions required by
+            the software. Therefore, it was not necessary to store different versions of the corpus,
+            one for <ptr type="software" xml:id="TXM" target="#TXM"/><rs type="soft.name" ref="#TXM"
+              >TXM</rs> analysis, the other for Web publication.</p>
+          <p>First, a lowercase conversion<note>All the examples of analysis presented in the paper
+              will consequently be displayed in lowercase.</note> was provided for consistency
+            reasons relating to the varying ways of capitalizing (e.g., <mentioned>Comité militaire
+              de standardisation</mentioned>, <mentioned>Comité militaire de
+              Standardisation</mentioned>, <mentioned>Comité Militaire de
+              Standardisation</mentioned>). Second, for the named entities to be interpreted as a
+            whole instead of as separate units, a supplementary conversion was needed, all the
+              <gi>name</gi> tags being converted to <gi>w</gi> tags each denoting a
+              <soCalled>word</soCalled> of a given type (e.g., person or organization). The special
+            case of hyphenated words where the hyphen appears at a line break (see <ptr
+              type="crossref" target="#example3"/>) had to be considered in an earlier
+            transformation, before import, so that the whole word and not its parts could be counted
+            in the analysis (in the example, <mentioned>constituant</mentioned> instead of
+              <mentioned>cons</mentioned> and <mentioned>tituant</mentioned> as the software would
+            treat it without a <gi>w</gi> tag).</p>
+          <p>Part-of-speech tagging via the TreeTagger module integrated into <ptr type="software"
+              xml:id="TXM" target="#TXM"/><rs type="soft.name" ref="#TXM">TXM</rs> was also applied
+            to the corpus at import in order to allow lemma and part-of-speech statistics and
+            queries.</p>
+        </div>
+        <div xml:id="analysis">
+          <head>Analysis</head>
+          <p>The annotated corpus (only the content inside <gi>text</gi> tags, without metadata)
+            contained 6,512 items (unique words) with 76,558 occurrences in the text.<note>A
+              subcorpus based on the <code>@lang=&quot;fr&quot;</code> property (an attribute of the
+                <gi>text</gi> element) was created in <ptr type="software" xml:id="TXM"
+                target="#TXM"/><rs type="soft.name" ref="#TXM">TXM</rs> for the analysis of the
+              documents’ content, excluding the data from the <gi>teiHeader</gi>. The whole corpus
+                (<gi>teiHeader</gi> included) comprised 7,015 items and 105,897
+            occurrences.</note></p>
+          <div xml:id="partitioning">
+            <head>Partitioning</head>
+            <p>Given the identification and annotation of different semantic and structural elements
+              in the encoding phase, <ptr type="software" xml:id="TXM" target="#TXM"/><rs
+                type="soft.name" ref="#TXM">TXM</rs> allows the creation of partitions (<ref
+                type="bibl" target="#textometrie14">Textométrie 2014, section Construire une
+                partition</ref>) by selecting a <term>Structure</term> unit and a corresponding
+                <term>Property</term> (i.e., an XML element and one of its attributes) from the list
+              of structural units and properties recognized by the software for the imported
+              corpus.</p>
+            <p>For instance, as fragments of discourse spread throughout the documents were assigned
+              to particular countries or institution representatives (<ptr type="crossref"
+                target="#discourse"/>), a partition was created based on the <gi>said</gi> element
+              and its <att>corresp</att> attribute. <ptr type="crossref" target="#figure1"/> shows
+              the dimensions of the <mentioned>representatives’ discourse</mentioned> partition, in
+              number of words (occurrences). One can observe that for the selection of documents,
+              there is a <soCalled>dominance</soCalled> of the French (14,338 occurrences) and WEU
+              Council (11,276 occurrences) representatives’ discourse, the categories with the
+              lowest size being those corresponding to the French-English delegation (185) and WEU
+              Assembly (72).</p>
+            <p>Other types of partitions were also created and analyzed: by
+                <mentioned>speaker</mentioned>, based on the <gi>said</gi> element and its
+                <att>who</att> attribute, with dimensions varying from 41 (Brindeau) to 6,141
+              occurrences (Parodi); by <mentioned>type of discourse</mentioned>, using <gi>said</gi>
+              and <att>ana</att>, and counting 22,780 occurrences of oral discourse versus 32,355
+              occurrences of written dicourse; and by <mentioned>subtype of institutional
+                documents</mentioned>, taking into account the <gi>text</gi> element and its
+                <att>subtype</att> attribute, with occurrences numbering between 2,684 for the study
+              category and 38,565 for the minutes.</p>
+            <figure xml:id="figure1">
+              <graphic url="images/figure1.jpg" height="595px" width="1280px"/>
+              <head type="legend">Dimensions of the <mentioned>said_corresp</mentioned>
+                partition</head>
+            </figure>
+          </div>
+          <div xml:id="specificities">
+            <head>Specificities</head>
+            <p>The use of the <term>Specificities</term> feature (<ref type="bibl"
+                target="#textometrie14">Textométrie 2014, section Spécificités</ref>) allows a
+              comparison of the vocabularies: what is <soCalled>specific</soCalled> (either as
+                <soCalled>overuse</soCalled> or <soCalled>deficit</soCalled>) in a part of a
+              partition, as compared with the parent corpus and a certain threshold.<note>In <ptr
+                  type="software" xml:id="TXM" target="#TXM"/><rs type="soft.name" ref="#TXM"
+                  >TXM</rs>, it is called the <term>banality threshold</term>, fixed by default at
+                the value of +/- 2.0 for positive and negative specificities scores, respectively.
+                In <ptr type="crossref" target="#figure3"/>, the banality thresholds are rendered by
+                (red) horizontal lines.</note> The feature is based on a probabilistic model (<ref
+                type="bibl" target="#lafon80">Lafon 1980</ref>) used in <ptr type="software"
+                xml:id="TXM" target="#TXM"/><rs type="soft.name" ref="#TXM">TXM</rs> to compute a
+              log10 specificity score of a word property (e.g., word form, lemma, or part of speech)
+              for a given part. In the analysis of the WEU-Diplo corpus, it was assumed that the
+              specificity score may draw attention to forms <soCalled>specific</soCalled> to the
+              discourse of different country/institutional representatives as compared with the
+              whole. <ptr type="crossref" target="#figure2"/> shows an extract from the
+              specificities table computed for the <mentioned>lemma</mentioned> property and the
+                <mentioned>said_corresp</mentioned> partition, sorted by increasing order of the
+              specificity score corresponding to the <mentioned>respres_aca</mentioned> part.</p>
+            <figure xml:id="figure2">
+              <graphic url="images/figure2.jpg" height="187px" width="919px"/>
+              <head type="legend">Specificities table extract (lemma,
+                  <mentioned>said_corresp</mentioned>) sorted by increasing scores for
+                  <mentioned>repres_aca</mentioned></head>
+            </figure>
+            <p>Each line in the table corresponds to a value of the chosen property (lemma or a
+              group of lemmas) displayed in the <mentioned>Units</mentioned> column. The second
+              column indicates the frequencies or number of occurrences of the property values in
+              the corpus (with a total T). The other columns contain the number of occurrences of
+              the property values in a part (cumulated by t) and are followed by a corresponding
+              logarithmic score of specificity that can be positive or negative. The table may be
+              sorted in increasing or decreasing order, according to a given column. In the case of
+              an increasing score (as presented in the figure for
+              <mentioned>repres_aca</mentioned>), the first property values displayed (e.g.,
+                <mentioned xml:lang="fr">matériel, industrie(l)</mentioned>)<note>En.
+                  <mentioned>material, industry-industrial</mentioned>.</note> indicate a deficit in
+              use as compared to the whole corpus and the last ones displayed indicate an overuse,
+              while the values with scores around 0 (inside a certain interval) are considered
+                <soCalled>trivial</soCalled> (i.e., the specificity measure may not be pertinent for
+              them).</p>
+            <p>Before creating a specificities table, a set of basic operations (merge, delete,
+              export, import) are allowed via the <mentioned>Lexical Table</mentioned> feature (<ref
+                type="bibl" target="#textometrie14">Textométrie 2014, section Table lexicale</ref>).
+              The groups of units presented in <ptr type="crossref" target="#figure2 #figure3"/>
+              were created using <mentioned>Lexical Table</mentioned> and the <mentioned>Merge
+                Lines</mentioned> feature, in order to merge units considered to be close from a
+              semantic point of view in the context, like, for instance,
+                <mentioned>harmonisation/harmoniser</mentioned>-<mentioned>norme/normalisation</mentioned>-<mentioned>règle/règlement</mentioned>-<mentioned>standard/standardisation/standardiser</mentioned>).<note>En.
+                  <mentioned>harmonization/harmonize</mentioned>-<mentioned>norm/normalization</mentioned>-<mentioned>rule/regulation</mentioned>-<mentioned>standard/standardization/standardize</mentioned>.</note></p>
+            <div xml:id="graphical">
+              <head>Graphical Representation</head>
+              <p>From a lexical table, a specificities table can be generated, as well as the
+                corresponding diagram for a number of selected units, as shown in <ptr
+                  type="crossref" target="#figure3"/>.</p>
+              <p>According to the diagram, the ACA representative’s vocabulary is characterized by a
+                high positive specificity score for the groups
+                  <mentioned>control-inspection-verification</mentioned> and
+                  <mentioned>limitation-restriction</mentioned>, and by negative specificity scores
+                for the groups <mentioned>fabrication-production</mentioned>,
+                  <mentioned>harmonization-normalization</mentioned>.</p>
+              <figure xml:id="figure3">
+                <graphic url="images/figure3.jpg" height="469px" width="641px"/>
+                <head type="legend">Specificities diagram (lemma,
+                    <mentioned>said_corresp</mentioned> partition). Selection:
+                    <mentioned>armament-control-
+                  production-standardization-limitation</mentioned>.</head>
+              </figure>
+              <p>The result is not very surprising given the role of the ACA: it was created to
+                control the stocks of armament of its member states on the European continent (and
+                less related to production/standardization). The negative specificity for <mentioned
+                  xml:lang="fr">arme(ment)-abc-atomique-nucléaire</mentioned><note>En.
+                    <mentioned>abc/atomic/nuclear arms/armament.</mentioned></note> in the
+                  <ident>repres_uk</ident>’s discourse is not surprising either, considering that
+                the United Kingdom, although interested in the topic, was not primarily concerned
+                with this issue. Likewise, expected results are revealed for the positive
+                specificity scores for <mentioned>fabrication-production</mentioned> and
+                  <mentioned>harmonization-normalization</mentioned> and the negative specificity
+                scores for <mentioned>control-inspection-verification</mentioned> in the
+                  <ident>repres_fr</ident>’s discourse. The former are most probably linked to the
+                selection of documents and, in particular, to the French memorandum presenting the
+                armament agency which focuses on <mentioned>fabrication-production</mentioned> and
+                  <mentioned>harmonization-normalization</mentioned> (PWG/A/2).<note>See <ptr
+                    type="crossref" target="#note41"/> for the document reference.</note>
+                Experiments excluding this document<note>The size of the <ident>repres_fr</ident>
+                  part in <ident>said_corresp</ident> partition decreased from 14,338 to 10,269
+                  words after excluding PWG/A/2.</note> from the corpus analysis have confirmed the
+                hypothesis (with scores for <mentioned>fabrication</mentioned> and
+                  <mentioned>harmonization</mentioned> groups being lowered to the positive banality
+                area). However, the negative specificity score for the
+                  <mentioned>control</mentioned> group in <ident>repres_fr</ident>’s discourse
+                  persisted<note>In fact, it increased slightly, from -4.5257 (7 out of a total of
+                  85 occurrences in the whole corpus) to -4.7338 (3 out of 81 occurrences).</note>
+                after the exclusion of the document from the analysis and may be associated either
+                with the assertion of France’s resistance to submitting its stocks to the ACA’s
+                controls or with an underrepresentation of the <mentioned>control</mentioned> topic
+                in the selection of documents.</p>
+            </div>
+            <div xml:id="tables">
+              <head>Synthesis Tables</head>
+              <p>A more general, comparative analysis can be provided for the positive and negative
+                specific forms appearing in the representatives’ discourse, as inspired by the
+                synthesis tables proposed by Bergounioux et al. (<ref type="bibl"
+                  target="#bergounioux81">1981</ref>) and Bonnafous (<ref type="bibl"
+                  target="#bonnafous81">1981</ref>). <ptr type="crossref" target="#table1"/>
+                synthesizes the results for seven participants, a selection of shared lemmas or
+                groups considered of interest for the study, and a set of specificities scores (in
+                brackets) above and under the positive and negative banality thresholds.</p>
+              <table xml:id="table1">
+                <head>Comparative view of specificities scores. Selection:
+                    <ident>said_corresp</ident> partition</head>
+                <row role="label" rows="1" cols="1">
+                  <cell rows="1" cols="1">Representative/lemmas</cell>
+                  <cell rows="1" cols="1"><ident>repres_​aca</ident></cell>
+                  <cell rows="1" cols="1"><ident>repres_​cons_​weu</ident></cell>
+                  <cell rows="1" cols="1"><ident>repres_​sac</ident></cell>
+                  <cell rows="1" cols="1"><ident>repres_​deleg_​fr</ident></cell>
+                  <cell rows="1" cols="1"><ident>repres_​deleg_​uk</ident></cell>
+                  <cell rows="1" cols="1"><ident>repres_​fr</ident></cell>
+                  <cell rows="1" cols="1"><ident>repres_​uk</ident></cell>
+                </row>
+                <row role="data" rows="1" cols="1">
+                  <cell rows="1" cols="1"><mentioned xml:lang="fr">améri(cain)(que du
+                      nord)-états-unis</mentioned></cell>
+                  <cell rows="1" cols="1"> </cell>
+                  <cell rows="1" cols="1"> </cell>
+                  <cell rows="1" cols="1">+ (2.3)</cell>
+                  <cell rows="1" cols="1"> </cell>
+                  <cell rows="1" cols="1"> </cell>
+                  <cell rows="1" cols="1">- (3.6)</cell>
+                  <cell rows="1" cols="1"> </cell>
+                </row>
+                <row role="data" rows="1" cols="1">
+                  <cell rows="1" cols="1"><mentioned xml:lang="fr">anglais-britannique-
+                      grande-bretagne - royaume-uni</mentioned></cell>
+                  <cell rows="1" cols="1"> </cell>
+                  <cell rows="1" cols="1">- (4.3)</cell>
+                  <cell rows="1" cols="1">+ (5.9)</cell>
+                  <cell rows="1" cols="1"> </cell>
+                  <cell rows="1" cols="1"> </cell>
+                  <cell rows="1" cols="1">- (5.0)</cell>
+                  <cell rows="1" cols="1">+ (3.7)</cell>
+                </row>
+                <row role="data" rows="1" cols="1">
+                  <cell rows="1" cols="1"><mentioned xml:lang="fr"
+                      >continent_europeen-europ(e)(éen)(e occidentale)</mentioned></cell>
+                  <cell rows="1" cols="1">- (2.1)</cell>
+                  <cell rows="1" cols="1">+ (2.7)</cell>
+                  <cell rows="1" cols="1">- (2.8)</cell>
+                  <cell rows="1" cols="1">+ (8.9)</cell>
+                  <cell rows="1" cols="1">- (2.4)</cell>
+                  <cell rows="1" cols="1"> </cell>
+                  <cell rows="1" cols="1"> </cell>
+                </row>
+                <row role="data" rows="1" cols="1">
+                  <cell rows="1" cols="1"><mentioned xml:lang="fr">contrôl(able)(e)(er)-inspection -
+                      verifi(cation)(er)</mentioned></cell>
+                  <cell rows="1" cols="1">+ (31.4)</cell>
+                  <cell rows="1" cols="1"> </cell>
+                  <cell rows="1" cols="1">- (3.0)</cell>
+                  <cell rows="1" cols="1"> </cell>
+                  <cell rows="1" cols="1"> </cell>
+                  <cell rows="1" cols="1">- (4.5)</cell>
+                  <cell rows="1" cols="1">- (4.6)</cell>
+                </row>
+                <row role="data" rows="1" cols="1">
+                  <cell rows="1" cols="1"><mentioned xml:lang="fr"
+                    >coopér(ation)(er)</mentioned></cell>
+                  <cell rows="1" cols="1">- (6.1)</cell>
+                  <cell rows="1" cols="1">+ (11.1)</cell>
+                  <cell rows="1" cols="1"> </cell>
+                  <cell rows="1" cols="1">+ (2.6)</cell>
+                  <cell rows="1" cols="1"> </cell>
+                  <cell rows="1" cols="1">- (5.8)</cell>
+                  <cell rows="1" cols="1"> </cell>
+                </row>
+                <row role="data" rows="1" cols="1">
+                  <cell rows="1" cols="1"><mentioned>finabel</mentioned></cell>
+                  <cell rows="1" cols="1"> </cell>
+                  <cell rows="1" cols="1">- (3.2)</cell>
+                  <cell rows="1" cols="1">+ (32.5)</cell>
+                  <cell rows="1" cols="1"> </cell>
+                  <cell rows="1" cols="1">- (2.4)</cell>
+                  <cell rows="1" cols="1">- (2.8)</cell>
+                  <cell rows="1" cols="1"> </cell>
+                </row>
+                <row role="data" rows="1" cols="1">
+                  <cell rows="1" cols="1"><mentioned>g.e.i.p.</mentioned></cell>
+                  <cell rows="1" cols="1">- (2.1)</cell>
+                  <cell rows="1" cols="1">+ (14.0)</cell>
+                  <cell rows="1" cols="1"> </cell>
+                  <cell rows="1" cols="1">+ (3.5)</cell>
+                  <cell rows="1" cols="1">- (2.6)</cell>
+                  <cell rows="1" cols="1">- (6.0)</cell>
+                  <cell rows="1" cols="1">- (2.5)</cell>
+                </row>
+                <row role="data" rows="1" cols="1">
+                  <cell rows="1" cols="1"><mentioned xml:lang="fr">harmonis(ation)(er) -
+                      norm(e)(alisation) - règle(ment) - standard(isation)(iser)</mentioned></cell>
+                  <cell rows="1" cols="1">- (5.6)</cell>
+                  <cell rows="1" cols="1"> </cell>
+                  <cell rows="1" cols="1">- (2.7)</cell>
+                  <cell rows="1" cols="1"> </cell>
+                  <cell rows="1" cols="1"> </cell>
+                  <cell rows="1" cols="1">+ (5.0)</cell>
+                  <cell rows="1" cols="1"> </cell>
+                </row>
+              </table>
+              <p>The high positive specificity score for <mentioned xml:lang="fr"
+                  >coopération/coopérer</mentioned><note>En.
+                    <mentioned>cooperation/cooperate</mentioned>.</note> in the
+                  <ident>repres_cons_weu</ident>’s discourse can be explained by the role of arbiter
+                and conciliator of the WEU Council, which was intended to promote cooperation among
+                its members in all the domains. A closer look at the contexts where this group
+                appears shows recurrent, general patterns like <mentioned xml:lang="fr">coopération
+                  en matière d’armements</mentioned>, <mentioned xml:lang="fr">coopération des pays
+                  européens en matière d’armements</mentioned>, and <mentioned xml:lang="fr"
+                  >cooperation européenne en matière d’armements</mentioned><note>En.
+                    <mentioned>cooperation on armament matters, cooperation on armament matters
+                    among European countries, European cooperation on armament
+                  matters.</mentioned></note> occurring both in the <ident>repres_cons_weu</ident>
+                and <ident>repres_deleg_fr</ident>’s discourse (which also displays a positive score
+                but with a lower value) or more specific occurrences, such as <mentioned
+                  xml:lang="fr">coopération intergouvernementale en matière de recherche,
+                  coopération intergouvernementale en matière d’études</mentioned><note>En.
+                    <mentioned>intergovernmental cooperation on research matters, intergovernmental
+                    cooperation on study matters.</mentioned></note>
+                (<ident>repres_cons_weu</ident>), <mentioned xml:lang="fr">coopération en matière de
+                  missiles</mentioned>, or <mentioned xml:lang="fr">coopération européenne dans le
+                  domaine aéronautique</mentioned><note>En. <mentioned>cooperation on missiles
+                    matters, European cooperation in the aeronautic field.</mentioned></note>
+                  (<ident>repres_deleg_fr</ident>).</p>
+              <p>The highest positive score in the table (<mentioned>finabel</mentioned> for
+                  <ident>repres_sac</ident>) may be explained by the frequent mentions of the
+                organization during the meetings of the SAC (acting as a link between it and the
+                United Kingdom, not a member of Finabel),<note>Finabel is a Land forces organization
+                  created in 1953 with five initial members: France, Italy, Belgium, Luxembourg, and
+                  the Netherlands. Germany became a member in 1956.</note> as well as by the
+                adherence of Great Britain to this organization referred to in the
+                  <ident>repres_sac</ident>’s discourse (see also <ptr type="crossref"
+                  target="#queries"/>). The second highest positive and negative scores
+                  (<mentioned>g.e.i.p.</mentioned>:<note><foreign xml:lang="fr">Groupe européen
+                    indépendant de programme</foreign>. En. <mentioned>Independent European
+                    Programme Group</mentioned> (IEPG).</note> for <ident>repres_cons_weu</ident>
+                and <ident>repres_fr</ident>, respectively) are less clear but one can observe that
+                the term tends to co-occur with the name of another organization
+                  (<mentioned>c.d.n.a.</mentioned>)<note><foreign xml:lang="fr">Conférence des
+                    directeurs nationaux des armements</foreign>. En. <mentioned>Conference of
+                    National Armaments Directors</mentioned> (CNAD).</note> in the
+                  <ident>repres_cons_weu</ident>’s discourse, while being completely absent (0
+                occurrences) from the French representatives’ discourse. The main reason seems to be
+                the substance of the discussions linked to the competences of different
+                organizations about standardization. Further examination is also needed to interpret
+                the deficit of the group <mentioned>control-inspection-verification</mentioned>
+                reflected by negative specificity scores for <ident>repres_uk</ident> and
+                  <ident>repres_fr</ident> (0 and 7 occurrences, respectively, out of a total of 85)
+                that can be determined, as already mentioned, by the selection of documents,
+                potentially more centered on the production and standardization of armaments than on
+                their control.</p>
+            </div>
+            <div xml:id="lexicalprofile">
+              <head>Lexical Profile</head>
+              <p>Another type of analysis resulting from the encoding was an exploration of the
+                combination of lemma and part-of-speech (POS) tagging and specificity measures,
+                which may be related to the so-called <soCalled>lexical profile</soCalled> (<ref
+                  type="bibl" target="#guyard81">Guyard 1981</ref>) of a participant in the
+                institutional discourse. It consists of a list of relevant lemmas (with positive
+                specificities above the banality threshold) and corresponding to certain parts of
+                speech. <ptr type="crossref" target="#table2"/> illustrates this type of profile for
+                two representatives (France, United Kingdom) as individuals and three categories of
+                POS (noun, adjective, and verb), obtained by taking into account specificity scores
+                for the <ident>said_who</ident> partition.</p>
+              <table xml:id="table2">
+                <head>Lexical profiles. Selection (lemmas, <ident>said_who</ident> partition)</head>
+                <row role="label" rows="1" cols="1">
+                  <cell rows="1" cols="1">Part of speech / Name, occurrences</cell>
+                  <cell rows="1" cols="1">Noun</cell>
+                  <cell rows="1" cols="1">Adjective</cell>
+                  <cell rows="1" cols="1">Verb</cell>
+                </row>
+                <row role="data" rows="1" cols="1">
+                  <cell rows="1" cols="1">Chauvel (FR) (1072)</cell>
+                  <cell rows="1" cols="1"><mentioned xml:lang="fr">arme, accord_d’exécution,
+                      recensement, mise, choix</mentioned></cell>
+                  <cell rows="1" cols="1"><mentioned xml:lang="fr">commun, équitable, régional,
+                      secret</mentioned></cell>
+                  <cell rows="1" cols="1"><mentioned xml:lang="fr">procéder</mentioned></cell>
+                </row>
+                <row role="data" rows="1" cols="1">
+                  <cell rows="1" cols="1">Lloyd (UK) (845)</cell>
+                  <cell rows="1" cols="1"><mentioned xml:lang="fr">pays, discussion, arrangement,
+                      gouvernement_britannique, coopération</mentioned>
+                  </cell>
+                  <cell rows="1" cols="1"><mentioned xml:lang="fr">bilatéral, déterminé,
+                      multilatéral, analogue, final</mentioned></cell>
+                  <cell rows="1" cols="1"><mentioned xml:lang="fr">engager,
+                    associer</mentioned></cell>
+                </row>
+              </table>
+              <p>For the adjectives, we can point out an opposition on the axis <mentioned
+                  xml:lang="fr">commun</mentioned> versus <mentioned xml:lang="fr">bilatéral,
+                  multilatéral</mentioned><note>En. <mentioned>common, joint, mutual</mentioned>
+                  versus <mentioned>bilateral, multilateral.</mentioned></note> manifested in
+                contexts such as <mentioned xml:lang="fr">programme (régional), intérêt, défense,
+                  études, fonds commun(e)(s)</mentioned><note>En. <mentioned>joint regional
+                    programme, common interest, common defence, common studies, mutual
+                    funds.</mentioned></note> (Chauvel) versus <mentioned xml:lang="fr">base,
+                  discussion, arrangements, comités directeurs
+                  bilatéra(l)(le)(ux)</mentioned><note>En. <mentioned>bilateral basis, bilateral
+                    discussion, bilateral arrangements, bilateral steering
+                  committees.</mentioned></note> (Lloyd). The first profile is probably less clearly
+                defined, but for the second one, the association of the lemmas provided for all
+                three categories seems to convey a certain sense of action towards cooperation and
+                dialogue.</p>
+              <p>Similar specificities-based analyses (not described here in detail) were performed
+                for other categories of word properties: POS, for instance, which indicates a high
+                positive specificity score (17.95) for the conditional verbal form in the
+                  <ident>repres_fr</ident> discourse (<ident>said_corresp</ident> partition); or
+                other partitions, such as <ident>said_ana</ident> or <ident>text_subtype</ident>,
+                that take into account the type of annotated discourse (oral/written) or the subtype
+                of the document (minutes, note, study, or memorandum).</p>
+            </div>
+            <div xml:id="queries">
+              <head>Queries, Concordances, and Co-occurrences</head>
+              <p>The analysis of specificities was combined with other methods, both of a
+                quantitative and qualitative nature, for examining the documents, for instance, by
+                querying for specific word properties (lemmas, word forms, POS, or combinations of
+                these elements) and by means of the concordances and co-occurrences features (<ref
+                  type="bibl" target="#textometrie14">Textométrie 2014, sections Construire une
+                  concordance, Cooccurrences, Lexique et Index</ref>). <ptr type="crossref"
+                  target="#figure4"/> presents the results of a query for <q>finabel</q> and the
+                corresponding list of concordances that displays a left and right context, the file,
+                and the representative’s discourse containing the word (i.e.,
+                  <ident>repres_sac</ident> with the highest positive specificity score for this
+                unit, as shown in <ptr type="crossref" target="#table1"/>).</p>
+              <figure xml:id="figure4">
+                <graphic url="images/figure4.jpg" height="327px" width="1041px"/>
+                <head type="legend">Concordances. Extract (<q>finabel</q>,
+                    <ident>said_corresp</ident> partition)</head>
+              </figure>
+              <p>A double click on a line in the concordances list provides a highlighted document
+                view, as illustrated in <ptr type="crossref" target="#figure5"/>.</p>
+              <figure xml:id="figure5">
+                <graphic url="images/figure5.jpg" height="258px" width="1044px"/>
+                <head type="legend">Document view with highlighted items. Extract. WEU-Diplo:
+                    SAC/72/R-108<note>Compte rendu de la 108ème Réunion du Comité Permanent des
+                    Armements, tenue à Paris, le 29 septembre 1972. Union de l’Europe occidentale.
+                    Comité permanent des armements. Compte-rendu de la 108ème réunion du Comité
+                    permanent des armements tenue à Paris le 29 septembre 1972. Paris: 18.10.1972.
+                    SAC (72)R/108. pp.[s.p]; 3–4; annexe; pp.1–5. Archives nationales de Luxembourg
+                    (ANLux). http://www.anlux.lu. Western European Union Archives.
+                    Secretariat-General/Council’s Archives. 1954–1987. Organs of the Western
+                    European Union. Year: 1967, 16/03/1956–30/04/1967. File 250.10. Volume
+                    2/2.</note>
+                </head>
+              </figure>
+              <p>Co-occurrences may also be displayed and sorted according to the frequency,
+                co-frequency, specificity score, or the mean distance between the keyword and the
+                co-occurrent, as in the example presented in <ptr type="crossref" target="#figure6"
+                />. Some of the co-occurents can be observed in the document view as well, <ptr
+                  type="crossref" target="#figure5"/> above.</p>
+              <figure xml:id="figure6">
+                <graphic url="images/figure6.jpg" height="440px" width="1035px"/>
+                <head type="legend">Co-occurents of <mentioned>finabel</mentioned> sorted by mean
+                  distance. Extract (<ident>said_corresp</ident> partition)</head>
+              </figure>
+              <p>As illustrated in the previous section and in <ptr type="crossref"
+                  target="#figure4 #figure5 #figure6"/>, Great Britain and Finabel often co-occur in
+                the discourse. This is probably <list rend="inline ordered">
+                  <item>because of the particular attention of the SAC to informing the British
+                    representatives about the activities of the organization and</item>
+                  <item>because the adherence of the United Kingdom to Finabel and its consequences
+                    is often brought into discussion</item>
+                </list>.</p>
+              <p>In order to avoid misinterpreting the specificities or to confirm some of the
+                hypotheses suggested by this method, we often needed to combine it with
+                co-occurrences, concordances, and visualization of the document. Therefore,
+                co-occurrences can provide a quantitative perspective on the co-presence of some
+                words, lemmas, or entities in the context of a given target, which in combination
+                with concordances and document visualization may support qualitative analysis and
+                interpretation.</p>
+            </div>
+          </div>
+          <div xml:id="discussion">
+            <head>Results Discussion</head>
+            <p>The TEI XML encoding and <ptr type="software" xml:id="TXM" target="#TXM"/><rs
+                type="soft.name" ref="#TXM">TXM</rs> analysis related to the research questions on
+              arms design, production, and control within the WEU have enabled a set of more or less
+              predictable results, the latter needing further examination. Among the former, we can
+              mention those referring to the SAC and ACA roles. Arms production and control was a
+              major part of WEU’s work, despite its somewhat mixed record in this area. Protocol IV
+              of the Modified Brussels Treaty established the ACA, while after advocating the
+              establishment of an armaments agency in its memorandum of January 3, 1955,<note
+                xml:id="note41">Western European Union. Interim Commission. Working Party on
+                Production and Standardisation of Armaments. <title level="m">Secretary General’s
+                  note</title>. Paris: 17.01.1955. PWG/A/2.18 p. Archives nationales de Luxembourg
+                (ANLux). <ptr target="http://anlux.lu/"/>. Western European Union Archives. Armament
+                Bodies. CPA/SAC. Comité permanent des armements. File CPA-032. Volume 1/1; <ref
+                  type="bibl" target="#delhauteur91">Delhauteur 1991</ref>, p. 6.</note> France
+              proposed the setting up of the SAC during a meeting of the working party on production
+              and standardization of armaments, on the basis of Article VIII(2) of the Modified
+              Brussels Treaty. The SAC was subsequently created on May 7, 1955. Although the United
+              Kingdom never opposed the SAC’s activities, it actively attempted to restrict its
+              role, both because of its resistance to any notion of supranationality<note>Western
+                European Union. Interim Commission. Working Party on Production and Standardisation
+                of Armaments. Statements made by the delegations at the first and second sessions of
+                the Working Group. Paris: 21.01.1955. PWG/A/6. Annex A and Annex F. Archives
+                nationales de Luxembourg (ANLux). <ptr target="http://anlux.lu/"/>. Western European
+                Union Archives. Armament Bodies. CPA/SAC. Comité permanent des armements. File
+                CPA-032. Volume 1/1.</note> and because it was convinced that NATO and the
+              organizations related to it were more effective and better positioned to achieve
+              standardization in the field of armaments.<note>The National Archives of the UK (TNA).
+                Foreign Office, Western Organisations and Co-ordination Department and Foreign and
+                Commonwealth Office, Western Organisations Department: Registered Files (W and WD
+                Series). Western European Union (WEU). Future of Standing Armaments Committee of
+                Western European Union. 01/01/1975–31/12/1975, FCO 41/1749 (Former <ptr
+                  type="software" xml:id="Reference" target="#Reference"/><rs type="soft.name"
+                  ref="#Reference">Reference</rs> Dep: WDU 11/1 PART B).</note> The interpretation
+              of the less predictable results is not straightforward, since they may have been
+              determined by an under- or overrepresentation of certain elements in the discourse,
+              based on the selection of documents. The same could be said about the negative
+              specificity score for the <mentioned>control</mentioned> group in
+                <ident>repres_fr</ident>’s, but this finding is also likely to be associated with
+              the assertion of France’s resistance to submitting its nuclear stocks to the ACA’s
+              controls and the need to avoid making statements on the subject. Since the size of the
+              corpus was relatively small, and not all the information for the documents on the
+              selected topic and their types in the WEU archive was available, extrapolations about
+              the <ptr type="software" xml:id="TXM" target="#TXM"/><rs type="soft.name" ref="#TXM"
+                >TXM</rs> probabilistic model and the observed linguistic patterns at a larger scale
+              than the pilot sample should be avoided at this stage.</p>
+            <p>The TEI XML combined with the <ptr type="software" xml:id="TXM" target="#TXM"/><rs
+                type="soft.name" ref="#TXM">TXM</rs> analysis tools can also reveal inconsistencies
+              which may draw attention to the need for further encoding and testing additional
+              documents. On the other hand, it is also important to take into consideration how far
+              (or how well) the researcher/user knows the content of the documents, as a lack of
+              context can sometimes lead to misinterpretation.</p>
+          </div>
+        </div>
+      </div>
+      <div xml:id="conclusion">
+        <head>Conclusion</head>
+        <p>The goal of the pilot project has been to address research questions mainly related to
+          the French and British positions on the topic of arms design, production, and control
+          within the WEU from 1954 to 1982. In particular, we were interested in combining
+          traditional, historical inquiry with TEI XML encoding and decoding in a corpus analysis
+          phase for the identification and interpretation of linguistic patterns in the discourse of
+          different countries and institutional representatives on armaments issues.</p>
+        <p>Given the small scale of the corpus used in the project and the fact that it may not be a
+          sufficiently representative sample means that a generalization of the results should not
+          be performed without extended testing on an additional set of documents, conducting
+          further evaluation of the probabilistic model and an estimation of the sample as compared
+          to the collection from which it was extracted. From a methodological perspective, however,
+          the TEI XML encoding and decoding experiments have proved that the approach can assist
+          qualitative and quantitative methods for the study of historical and discursive phenomena
+          in a collection of institutional documents and a chosen theme. More precisely, the
+          encoding may be quite helpful for researchers, even if they have no previous knowledge of
+          the content of the documents. That is to say, if meaningful thresholds for analysis are
+          set, one can find out the main topic of the documents, and the tags may help in
+          discovering who the speakers are and the main <soCalled>orientation</soCalled> of their
+          speech (i.e., their position) in terms of what is specific to their discourse. However, in
+          order to enhance the reading of the specificities, combination with other methods, such as
+          concordances, co-occurrences, and document visualization, is required.</p>
+        <p>Going back to the initial idea of considering a new link in the decoding–encoding chain
+          suggested by Burnard, we see the TEI <term>encoding</term> as adding a
+            <soCalled>material</soCalled> layer to the original text, which further supports both
+          machine and human interpretation (<term>decoding</term>). In a larger sense, despite the
+          inherent bias and limitations related to the selection and the number of documents used in
+          the study, we have attempted to prove the <soCalled>materiality</soCalled> of the TEI
+          encoding and decoding as a basis for hermeneutic inquiry in the quest for producing
+          knowledge via digital <soCalled>instruments</soCalled>, as <ref type="bibl"
+            target="#capurro10">Capurro</ref> and <ref type="bibl" target="#ihde03">Idhe</ref> have
+          previously stated in their accounts on a digital and material hermeneutics.</p>
+      </div>
+    </body>
+    <back>
+      <div type="bibliography">
+        <listBibl>
+          <bibl xml:id="andrews13"><author>Andrews, Tara</author>. <date>2013</date>. <title
+              level="a">The Third Way: Philology and Critical Edition in the Digital Age.</title>
+            <title level="j">Variants: The Journal of the European Society for Textual
+              Scholarship</title>
+            <biblScope unit="issue">10</biblScope>: <biblScope unit="page">61–76</biblScope>.</bibl>
+          <bibl xml:id="bergounioux81"><author>Bergounioux, Alain</author>, <author>Michel
+              Launay</author>, <author>Josette Lefvre</author>, <author>René Mouriaux</author>, and
+              <author>Jean-Pierre Sueur</author>. <date>1981</date>. <title level="a">Le vocabulaire
+              des confédérations syndicales ouvrières: une analyse des spécificités.</title>
+            <title level="j">Mots</title>
+            <biblScope unit="issue">2</biblScope>: <biblScope unit="page">139–56</biblScope>.
+              doi:<idno type="doi">10.3406/mots.1981.1025</idno>.</bibl>
+          <bibl xml:id="bonnafous81"><author>Bonnafous, Simone</author>. <date>1981</date>. <title
+              level="a">Le vocabulaire spécifique des motions Mitterrand, Rocard et CERES au congrès
+              de Metz (1979).</title>
+            <title level="j">Mots</title>
+            <biblScope unit="issue">3</biblScope>: <biblScope unit="page">79–94</biblScope>.
+              doi:<idno type="doi">10.3406/mots.1981.1040</idno>.</bibl>
+          <bibl xml:id="burnard98"><author>Burnard, Lou</author>. <date>1998</date>. <title
+              level="u">On the hermeneutic implications of text encoding</title>. Accessed March 6,
+            2016. <ptr target="http://users.ox.ac.uk/~lou/wip/herman.htm"/>.</bibl>
+          <bibl xml:id="capurro10"><author>Capurro, Rafael</author>. <date>2010</date>. <title
+              level="a">Digital Hermeneutics: An Outline.</title> In <title level="j">AI &amp;
+              Society</title>
+            <biblScope unit="volume">25</biblScope>(<biblScope unit="issue">1</biblScope>):
+              <biblScope unit="page">35–42</biblScope>. Accessed March 6, 2016. <ptr
+              target="http://www.capurro.de/digitalhermeneutics.html"/>. doi:<idno type="doi"
+              >10.1007/s00146-009-0255-9</idno>.</bibl>
+          <bibl xml:id="delhauteur91"><author>Delhauteur, Dominique</author>. <date>1991</date>.
+              <title level="a">Les activités du Conseil de l’UEO en matière de coopération dans le
+              domaine des armements.</title> In dossier <title level="u">notes et documents</title>
+            no. 160. Brussels: GRIP (Groupe de recherche et d’information sur la paix et la
+            securite). <ptr target="http://www.grip.org/fr/node/1014"/>.</bibl>
+          <bibl xml:id="guyard81"><author>Guyard, Marie-Renée</author>. <date>1981</date>. <title
+              level="a">Spécificités d’auteurs dans <title level="m">Le Surréalisme au service de la
+                Révolution</title></title>. <title level="j">Mots</title>
+            <biblScope unit="issue">2</biblScope>: <biblScope unit="page">95–122</biblScope>.
+              doi:<idno type="doi">10.3406/mots.1981.1023</idno>.</bibl>
+          <bibl xml:id="hayles05"><author>Hayles, Katherine</author>. <date>2005</date>. <title
+              level="m">My Mother Was a Computer: Digital Subjects and Literary Texts.</title>
+            <pubPlace>Chicago</pubPlace>: <publisher>University of Chicago Press</publisher>.
+            Excerpt: <ptr target="http://www.press.uchicago.edu/Misc/Chicago/321487.html"/>.</bibl>
+          <bibl xml:id="heiden10"><author>Heiden, Serge</author>. <date>2010</date>. <title
+              level="a">The <ptr type="software" xml:id="TXM" target="#TXM"/><rs type="soft.name"
+                ref="#TXM">TXM</rs> Platform: Building Open-Source Textual Analysis Software
+              Compatible with the TEI Encoding Scheme</title>. In <title level="m">Proceedings of
+              the 24th Pacific Asia Conference on Language, Information and Computation</title>,
+            edited by <editor>Ryo Otoguro</editor>, <editor>Kiyoshi Ishikawa</editor>,
+              <editor>Hiroshi Umemoto</editor>, <editor>Kei Yoshimoto</editor>, and <editor>Yasunari
+              Harada</editor>, <biblScope unit="page">389–398</biblScope>.
+              <pubPlace>Tokyo</pubPlace>: <publisher>Institute for Digital Enhancement of Cognitive
+              Development, Waseda University</publisher>. Accessed July 24, 2017. <ptr
+              target="http://halshs.archives-ouvertes.fr/halshs-00549764/en"/>.</bibl>
+          <bibl xml:id="ihde03"><author>Ihde, Don</author>. <date>2003</date>. <title level="u">More
+              Material Hermeneutics.</title> Paper presented at the meeting on <title level="u"
+              >Hermeneutics and Science</title>, Tihany, Hungary, June 7 - 11, 2003. Accessed March
+            6, 2016. <ptr
+              target="http://humanitieslab.stanford.edu/23/admin/download.html?attachid=178178"
+            />.</bibl>
+          <bibl xml:id="lafon80"><author>Lafon, Pierre</author>. <date>1980</date>. <title level="a"
+              >Sur la variabilité de la fréquence des formes dans un corpus.</title>
+            <title level="j">Mots</title>
+            <biblScope unit="issue">1</biblScope>: <biblScope unit="page">127–65</biblScope>.
+              doi:<idno type="doi">10.3406/mots.1980.1008</idno>.</bibl>
+          <bibl xml:id="manoff06"><author>Manoff, Marlene</author>. <date>2006</date>. <title
+              level="a">The Materiality of Digital Collections: Theoretical and Historical
+              Perspectives.</title>
+            <title level="j">portal: Libraries and the Academy</title>
+            <biblScope unit="volume">6</biblScope>(<biblScope unit="issue">3</biblScope>):
+              <biblScope unit="page">311–25</biblScope>. doi:<idno type="doi"
+              >10.1353/pla.2006.0042</idno>.</bibl>
+          <bibl xml:id="mcgann01"><author>McGann, Jerome</author>. <date>2001</date>. <title
+              level="m">Radiant Textuality</title>. <pubPlace>New York</pubPlace>:
+              <publisher>Palgrave</publisher>.</bibl>
+          <bibl xml:id="nikander08"><author>Nikander, Pirjo</author>. <date>2008</date>. <title
+              level="a">Constructionism and Discourse Analysis.</title> In <title level="m">Handbook
+              of Constructionist Research</title>, edited by <editor>James A. Holstein</editor> and
+              <editor>Jaber F. Gubrium</editor>, <biblScope unit="page">413–28</biblScope>.
+              <pubPlace>New York</pubPlace>: <publisher>The Guilford Press</publisher>. Accessed
+            March 6, 2016. <ptr
+              target="http://www.helsinki.fi/sosiaalipsykologia/arkisto/Nikander%20ch21%202008.pdf"
+            />.</bibl>
+          <bibl xml:id="philips04"><author>Phillips, Nelson</author>, <author>Thomas B.
+              Lawrence</author>, and <author>Cynthia Hardy</author>. <date>2004</date>. <title
+              level="a">Discourse and Institutions.</title>
+            <title level="j">Academy of Management Review</title>
+            <biblScope unit="volume">29</biblScope>(<biblScope unit="issue">4</biblScope>):
+              <biblScope unit="page">635–52</biblScope>. doi:<idno type="doi"
+              >10.5465/AMR.2004.14497617</idno>.</bibl>
+          <bibl xml:id="pierazzo14"><author>Pierazzo, Elena</author>. <date>2014</date>. <title
+              level="m">Digital Scholarly Editing: Theories, Models and Methods</title>.
+              <pubPlace>Surrey, England</pubPlace>: <publisher>Ashgate</publisher>; <publisher>HAL
+              open archive</publisher>, &lt;hal-01182162&gt;. Accessed March 6, 2016. <ptr
+              target="http://hal.univ-grenoble-alpes.fr/hal-01182162/document"/>.</bibl>
+          <bibl xml:id="remacle09"><author>Rémacle, Eric</author>. <date>2009</date>. <title
+              level="a">L’Union (de l’Europe) occidentale durant la guerre froide
+              (1948–1989).</title> In <title level="m">L’Amérique, l’Europe, l’Afrique (1945–1973)
+              [America, Europe, Africa (1945–1973]</title>, edited by <editor>Eric Rémacle</editor>
+            and <editor>Pascaline Winand</editor>, <biblScope unit="page">187–234</biblScope>.
+              <pubPlace>Brussels</pubPlace>: <publisher>PIE-Peter-Lang</publisher>.</bibl>
+          <bibl xml:id="textometrie14"><orgName>Textométrie</orgName>. <date>2014</date>. <title
+              level="m">Manuel de <ptr type="software" xml:id="TXM" target="#TXM"/><rs
+                type="soft.name" ref="#TXM">TXM</rs></title>, Version 0.7. Accessed March 6, 2016.
+              <ptr target="http://textometrie.ens-lyon.fr/spip.php?rubrique64"/>.</bibl>
+          <bibl xml:id="thornborrow02"><author>Thornborrow, Joanna Sarah</author>. <date>2002</date>
+            <title level="m">Power Talk: Language and Interaction in Institutional
+              Discourse.</title>
+            <pubPlace>Harlow</pubPlace>: <publisher>Longman</publisher>.</bibl>
+          <bibl xml:id="vandijk93"><author>Van Dijk, Teun A.</author>
+            <date>1993</date>. <title level="a">Principles of critical discourse analysis.</title>
+            <title level="j">Discourse &amp; Society</title>
+            <biblScope unit="volume">4</biblScope>(<biblScope unit="issue">2</biblScope>):
+              <biblScope unit="page">249–83</biblScope>. Accessed March 6, 2016. <ptr
+              target="http://www.discourses.org/OldArticles/Principles%20of%20critical%20discourse%20analysis.pdf"
+            />.</bibl>
+        </listBibl>
+      </div>
+    </back>
+  </text>
+</TEI>

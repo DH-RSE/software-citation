@@ -1,0 +1,971 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://github.com/DH-RSE/software-citation/raw/main/schema/tei_jtei_annotated.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="https://github.com/DH-RSE/software-citation/raw/main/schema/tei_jtei_annotated.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<!-- [RvdB] general remarks:
+  -are the escaped XPath characters in the URL identifiers intentional? Wouldn't it be nicer to use unescaped XPath characters: "http://data.perseus.org/citations/urn:cts:greekLit:tlg0008.tlg001.perseus-grc1:3.6@0Ἴστρος[1]-συκοφάνται[1]"
+   instead of
+"http://data.perseus.org/citations/urn:cts:greekLit:tlg0008.tlg001.perseus-grc1:3.6%40Ἴστρος%5B1%5D-συκοφάνται%5B1%5D"
+-->
+<TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="main">The Linked Fragment: TEI and the Encoding of Text Reuses of Lost
+          Authors</title>
+        <author>
+          <name><forename>Monica</forename>
+            <surname>Berti</surname></name>
+          <affiliation>Monica Berti is <roleName>Assistant Professor at the Humboldt Chair of
+              Digital Humanities</roleName> at the <orgName>University of Leipzig</orgName>, where
+            she teaches courses on digital philology. Since 2008 she has been working with the
+            Perseus Digital Library at <orgName>Tufts University</orgName>, where she has been
+              <roleName>visiting professor in the Department of Classics</roleName>. Her current
+            research work is focused on representing quotations and text reuses of ancient lost
+            works.</affiliation>
+          <email>monica.berti@uni-leipzig.de</email>
+        </author>
+        <author>
+          <name><forename>Bridget</forename>
+            <surname>Almas</surname></name>
+          <affiliation>Bridget Almas is the <roleName>lead software developer for the Perseus
+              Digital Library</roleName> at <orgName>Tufts University</orgName>. She has been
+            working in software development since 1994, and for Perseus since 2010. She also
+            currently serves as a member of the Technical Advisory Board of the Research Data
+            Alliance.</affiliation>
+          <email>bridget.almas@tufts.edu</email>
+        </author>
+        <author>
+          <name><forename>David</forename>
+            <surname>Dubin</surname>
+          </name>
+          <affiliation>David Dubin is a <roleName>research associate professor</roleName> at the
+              <orgName>University of Illinois</orgName> Graduate School of Library and Information
+            Science. His research areas are the foundations of information representation and
+            description, and issues of expression and encoding in documents and digital information
+            resources.</affiliation>
+          <email>ddubin@illinois.edu</email>
+        </author>
+        <author>
+          <name><forename>Greta</forename>
+            <surname>Franzini</surname></name>
+          <affiliation>Greta Franzini completed her Classics BA and Digital Humanities MA degrees at
+            King’s College London. Greta is currently doing a PhD at the UCL Centre for Digital
+            Humanities, where she conducts research in the fields of Classical Philology, Manuscript
+            Studies and Literary Criticism. She is also currently working as a
+              <roleName>Researcher</roleName> at the <orgName>Göttingen Centre for Digital
+              Humanities</orgName>. Previously, she worked as a Research Associate at the Humboldt
+            Chair of Digital Humanities at the University of Leipzig.</affiliation>
+          <email>gfranzini@gcdh.de</email>
+        </author>
+        <author>
+          <name><forename>Simona</forename>
+            <surname>Stoyanova</surname></name>
+          <affiliation>Simona Stoyanova is a classicist who specializes in epigraphy, and a digital
+            humanist. She works as a <roleName>research associate for the Open Philology
+              Project</roleName> at the <orgName>University of Leipzig</orgName>. She is also a PhD
+            candidate in Digital Classics at King’s College London. Her research is focused on the
+            Greek and Latin epigraphic traditions in the mixed-language population of the province
+            of Thrace, with particular interest on palaeographical issues and their possible
+            investigation through the DigiPal framework.</affiliation>
+          <email>simona.stoyanova@informatik.uni-leipzig.de</email>
+        </author>
+        <author>
+          <name><forename>Gregory R.</forename>
+            <surname>Crane</surname></name>
+          <affiliation>Gregory R. Crane is the <roleName>editor-in-chief of the Perseus
+              Project</roleName> at <orgName>Tufts University</orgName>, where he is
+              <roleName>professor of Classics</roleName> and holds the Winnick Family Chair of
+            Technology and Entrepreneurship. He is also <roleName>Alexander von Humboldt Professor
+              of Digital Humanities</roleName> at the <orgName>University of
+            Leipzig</orgName>.</affiliation>
+          <email>gregory.crane@tufts.edu</email>
+        </author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>TEI Consortium</publisher>
+        <date>09/06/2015</date>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by/4.0/">
+            <p>For this publication a Creative Commons Attribution 4.0 International license has
+              been granted by the author(s) who retain full copyright.</p>
+          </licence>
+        </availability>
+      </publicationStmt>
+      <seriesStmt>
+        <title level="j">Journal of the Text Encoding Initiative</title>
+        <editor role="guest">Arianna Ciula</editor>
+        <editor role="guest">Fabio Ciotti</editor>
+        <editor role="chief">John Walsh</editor>
+        <editor role="managing">Martin Holmes</editor>
+        <editor role="technical">Ron Van den Branden</editor>
+        <biblScope unit="issue" n="8">Selected Papers from the 2013 TEI Conference</biblScope>
+      </seriesStmt>
+      <sourceDesc>
+        <p>No source, born digital.</p>
+      </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+      <projectDesc>
+        <p>Revues.org -centre for open electronic publishing- is the platform for journals in the
+          humanities and social sciences, open to quality periodicals looking to publish full-text
+          articles online.</p>
+      </projectDesc>
+    </encodingDesc>
+    <profileDesc>
+      <langUsage>
+        <language ident="en">en</language>
+      </langUsage>
+      <textClass>
+        <keywords xml:lang="en">
+          <term>fragmentary text</term>
+          <term>digital edition</term>
+          <term>Classics</term>
+          <term>CTS</term>
+          <term>SAM</term>
+          <term>PROV</term>
+          <term>EpiDoc</term>
+        </keywords>
+      </textClass>
+    </profileDesc>
+  </teiHeader>
+  <text>
+    <front>
+      <div type="abstract" xml:id="abstract">
+        <p>This paper presents a joint project of the Humboldt Chair of Digital Humanities at the
+          University of Leipzig, the Perseus Digital Library at Tufts University, and the Harvard
+          Center for Hellenic Studies to produce a new open series of Greek and Latin fragmentary
+          authors. Such authors are lost and their works are preserved only thanks to quotations and
+          text reuses in later texts. The project is undertaking two tasks: <list
+            rend="inline ordered">
+            <item>the digitization of paper editions of fragmentary works with links to the source
+              texts from which the fragments have been extracted;</item>
+            <item>the production of born-digital editions of fragmentary works</item>
+          </list>. The ultimate goals are the creation of open, linked, machine-actionable texts for
+          the study and advancement of the field of Classical textual fragmentary heritage and the
+          development of a collaborative environment for crowdsourced annotations. These goals are
+          being achieved by implementing the Perseids Platform and by encoding the <title level="m"
+            >Fragmenta Historicorum Graecorum</title>, one of the most important and comprehensive
+          collections of fragmentary authors.</p>
+      </div>
+    </front>
+    <body>
+      <div xml:id="intro">
+        <head>Introduction</head>
+        <p>This paper presents the research work of the Humboldt Chair of Digital Humanities at the
+          University of Leipzig to establish a new <ref
+            target="http://www.dh.uni-leipzig.de/wo/projects/open-greek-and-latin-project/the-leipzig-open-fragmentary-texts-series-lofts/"
+            >Leipzig Open Fragmentary Texts Series</ref> (LOFTS).<note><ptr
+              target="http://www.dh.uni-leipzig.de/wo/projects/open-greek-and-latin-project/the-leipzig-open-fragmentary-texts-series-lofts/"
+            />.</note> The project is developed in conjunction with the Perseus Digital Library at
+          Tufts University and the Harvard University Center for Hellenic Studies. LOFTS produces
+          open editions of ancient classical works that survive through quotations and text reuses
+          in later texts (i.e., textual fragments). These fragments include many formats that range
+          from quotations to allusions and translations, which are only a shadowy image of the
+          original depending on their distance from a literal citation (for a definition of
+          fragmentary texts, see <ref type="bibl" target="#berti12">Berti 2012</ref> and <ref
+            type="bibl" target="#berti13">Berti 2013</ref>). Generations of scholars have looked for
+          information about lost authors and have created huge print collections of fragmentary
+          works that cover almost every literary genre in prose and verse, allowing for the
+          rediscovery of authors otherwise lost and forgotten (<ref type="bibl" target="#most97"
+            >Most 1997</ref>). As far as Greek literature from the eighth century BCE to the third
+          century CE is concerned, we know that the works of about sixty percent of known authors
+          are preserved only in textual fragments, thus showing the importance of this form of
+          evidence (<ref type="bibl" target="#berti09">Berti et al. 2009</ref>).</p>
+        <p>Print editions of fragmentary works are indexed collections of excerpts extracted from
+          their contexts and from the textual data about those contexts. Editions of fragmentary
+          works are fundamentally hypertexts and the goal of this project is to produce a dynamic
+          infrastructure for a full representation of the complex relationships between sources,
+          quotations, and annotations about them. In a digital edition, fragments are linked
+          directly to the source text from which they are drawn and can be accurately aligned to
+          multiple editions (<ref type="bibl" target="#berti09">Berti et al. 2009</ref>).
+          Accordingly, digital fragments are contextualized annotations about reused authors and
+          works. As new versions of, or scholarship on, the source texts emerge in a standard,
+          machine-actionable form, these new findings are automatically linked to the digital
+          fragments. Such a representation allows us to go beyond the limits of print collections of
+          fragmentary authors, where quotations and text reuses are snippets of text completely
+          isolated from their original context. Fragmentary texts also include quotations and reuses
+          of surviving sources (e.g., Herodotus quoted by Athenaeus). In these cases it is possible
+          to compare the original text with its reuses and, therefore, to produce different textual
+          alignments that help scholars to infer the quotation habits of ancient authors.</p>
+        <p>The first step for rethinking the significance of text reuses of lost works is to
+          represent them inside their preserving context. This entails the selection of the string
+          of words that belong to the portion of text classifiable as reuse and to encode all those
+          elements that signal the presence of the text reuse itself (i.e., named entities such as
+          the onomastics of reused authors, titles of reused works and descriptions of their
+          content, <term>verba dicendi</term>, syntax, etc.). The second step is to encode all the
+          information pertaining to other sources that reuse the same original text with different
+          words or a different syntax (witnesses), or that deal with the same topic of the text
+          reuse (parallel texts), as well as alternative editions and translations of both the
+          source and the derived texts (<ref type="bibl" target="#almas13b">Almas and Berti
+            2013</ref>).</p>
+        <p>LOFTS has two main objectives: <list rend="inline ordered">
+            <item>to digitize paper editions of fragmentary works and link them to source texts,
+              and</item>
+            <item>to produce born-digital editions of fragmentary works</item>
+          </list>. In order to achieve these goals, LOFTS is implementing a Fragmentary Texts Editor
+          within the Perseids Platform<note>For a prototype interface, see <ptr
+              target="http://perseids.org/sites/berti_demo/"/>.</note> (<ref type="bibl"
+            target="#almas13b">Almas and Berti 2013</ref>) and is producing a digital edition of the
+            <title level="m">Fragmenta Historicorum Graecorum</title> edited by Karl Müller in the
+          nineteenth century (<ref type="bibl" target="#müller85">Müller 1878–85</ref>; DFHG
+            Project).<note>On this project, see below, <ptr type="crossref" target="#DFHG"/>.</note>
+          Alongside the DFHG project, LOFTS is working on two other subprojects: <list
+            rend="inline ordered">
+            <item>the <ref
+                target="http://www.dh.uni-leipzig.de/wo/projects/open-greek-and-latin-project/digital-athenaeus/"
+                >Digital Athenaeus</ref>, whose goal is to produce a digital edition of the <title
+                level="m">Deipnosophists</title>, with a complete survey of quotations of both lost
+              and surviving sources preserved by Athenaeus of Naucratis;<note>Digital Athenaeus,
+                Universität Leipzig, <ptr
+                  target="http://www.dh.uni-leipzig.de/wo/projects/open-greek-and-latin-project/digital-athenaeus/"
+                />.</note> and</item>
+            <item>the <ref
+                target="http://www.dh.uni-leipzig.de/wo/projects/open-greek-and-latin-project/digital-marmor-parium/"
+                >Digital Marmor Parium</ref>, which seeks to create a digital edition of the
+              so-called Parian Marble, a Hellenistic chronicle on marble from the Greek island of
+                Paros<note>Digital Marmor Parium, Universität Leipzig, <ptr
+                  target="http://www.dh.uni-leipzig.de/wo/projects/open-greek-and-latin-project/digital-marmor-parium/"
+                />.</note></item>
+          </list>. The latter is the work of a fragmentary author whose name is lost and the project
+          serves as a test case to build a model that works with both fragmentary texts and physical
+          fragments of ancient works such as inscriptions and papyri (<ref type="bibl"
+            target="#berti14">Berti and Stoyanova 2014</ref>).</p>
+        <p>The present paper is divided into two parts. The first part (<ptr type="crossref"
+            target="#perseids"/>) describes the implementation of a fragmentary texts editor within
+          Perseids, the editorial platform developed by the Perseus Project for collaborative
+          annotation of classical source documents. Perseids facilitates the annotation of text
+          reuses, the production of syntactic annotations, the alignment of multiple texts, and the
+          production of digital commentaries on fragmentary works. This section also elaborates on
+          the complex nature of fragmentary texts and how different technologies need to be combined
+          to reach our goals.</p>
+        <p>The second part (<ptr type="crossref" target="#DFHG"/>) describes the Digital Fragmenta
+          Historicorum Graecorum, a synergetic effort which is currently encoding print collections
+          of fragmentary texts and creating a directory of fragmentary authors which feeds into the
+          Perseus catalog.</p>
+      </div>
+      <div xml:id="perseids">
+        <head>Perseids Platform</head>
+        <p>The <ref target="http://perseids.org/">Perseids Platform</ref> supports collaborative
+          editing, annotation, and publication of born-digital editions of source documents in the
+              classics.<note><ptr target="http://perseids.org/"/>.</note> Perseids is not one single
+          application but an integrated environment built from a loose coupling of heterogeneous
+          tools and services from a variety of sources. The development of the Perseids platform was
+          inspired and motivated by the work of several pre-existing projects: the <ref
+            target="http://www.library.tufts.edu/tisch/ematlocalstorage/miscellany_collection/home.html"
+            >Tufts Miscellany Collection</ref> at Tufts University,<note><ptr
+              target="http://www.library.tufts.edu/tisch/ematlocalstorage/miscellany_collection/home.html"
+            />.</note> the <ref target="http://www.homermultitext.org/">Homer Multitext
+            Project</ref> at the Harvard’s Center for Hellenic Studies,<note><ptr
+              target="http://www.homermultitext.org/"/>.</note> and the <ref
+            target="http://www.papyri.info/">Papyri.info</ref> project<note><ptr
+              target="http://www.papyri.info/"/>.</note> (<ref type="bibl" target="#almas13">Almas
+            and Beaulieu 2013</ref>). The Son of SUDA Online (SoSOL) application sits at the core of
+          the Perseids platform. SoSOL is a <ref target="http://rubyonrails.org/">Ruby on
+            Rails</ref><note><ptr target="http://rubyonrails.org/"/>.</note> application, originally
+          developed by the Papyri.info project, that serves as front end for a <ref
+            target="http://git-scm.com/">Git</ref><note><ptr target="http://git-scm.com/"/>.</note>
+          repository of documents, metadata, and annotations. It includes a workflow engine that
+          enables documents and data of different types to pass through flexible review and approval
+          processes. The SoSOL application includes user interfaces for editing XML documents,
+          metadata, and annotations. While it does not include a full-featured XML editor, it
+          supports alternative text-based input of XML markup, and can enforce XML schema validation
+          rules on the documents being edited.</p>
+        <p>A key goal behind the initial development of the platform was to enable original
+          undergraduate research in the field of Classics.<note>This work was supported by grants
+            from Tufts University, the National Endowment for the Humanities (grant
+              <idno>HD-51548-12</idno>), and the Institute from Museum and Library Services. Funding
+            from the Mellon Foundation is now allowing us to expand the platform to support
+            classroom-based collaboration on digital editions, beginning-to-end scholarly workflows,
+            and the development of dynamic syllabi using the resources managed by the
+            platform.</note> The workflows related to the encoding of text reuses and lost authors
+          represent core use cases for the current phase of work on the platform (<ref type="bibl"
+            target="#almas13b">Almas and Berti 2013</ref>).<note>For the prototype functionality
+            used by students of the Digital Philology course at the University of Leipzig in the
+            fall of 2013, see <ptr
+              target="http://sites.tufts.edu/perseids/workflows/fragmentary-author-workflows/fragmentary-text-prototype-fall-2013/"
+            />.</note> In developing features of the Perseids Platform to support these workflows,
+          we are focusing first and foremost on the data. We expect that techniques for visually
+          representing digital editions will change rapidly with technology. So, while our work
+          includes prototype representations of digital editions suitable for publication on the
+          web, our first priority is to enable scholars to create data about the authors, texts and
+          related commentaries, annotations, links, and translations in a way that encourages and
+          facilitates their preservation and reuse. We have identified the following core
+          requirements to meet this goal: <list rend="bulleted">
+            <item>The ability to represent the texts themselves, links between them, and annotations
+              and commentaries on them, in semantically and structurally meaningful ways that adhere
+              to well-accepted and documented standard formats.</item>
+            <item>Stable and resolvable identifiers for all relevant data points, including: <list
+                rend="bulleted">
+                <item>the lost authors and their works</item>
+                <item>the authors and extant texts that preserve quotations and text reuses of the
+                  lost works</item>
+                <item>different editions and translations of the lost and extant texts</item>
+                <item>named entities (e.g., persons, places, and events) mentioned within the
+                  texts</item>
+                <item>commentaries and annotations on the texts, from ancient times through the
+                  present</item>
+              </list>
+            </item>
+            <item>The ability to group any of the data points into collections representing
+              different contextual views of the data.</item>
+            <item>The ability to accurately represent provenance information for data and
+              workflows.</item>
+          </list>
+        </p>
+        <div xml:id="dataformats">
+          <head>Data Formats</head>
+          <div xml:id="texts">
+            <head>Texts</head>
+            <p>We use TEI encoding to represent the source texts and textual fragments preserved
+              within them.<note>The texts will adhere to the EpiDoc subset of the TEI standard, as
+                discussed further below.</note> TEI provides the markup syntax and vocabulary needed
+              to produce XML that enables citable passages of text to be unambiguously identified
+              and linked to <emph>within their preserving context</emph>, a key requirement of the
+              representation of text reuses as discussed above. For example, the following excerpt
+              from Athenaeus’ <title level="m">Deipnosophists</title> 3.6 uses the TEI <gi>div</gi>
+              element to demarcate the book and chapter: <egXML
+                xmlns="http://www.tei-c.org/ns/Examples">
+                <div type="textpart" subtype="book" n="3"> ... <div type="textpart"
+                    subtype="chapter" n="6">
+                    <p> ...Ἴστρος δ᾽ ἐν τοῖς Ἀττικοῖς οὐδ᾽ ἐξάγεσθαί φησι τῆς Ἀττικῆς τὰς ἀπ᾽ αὐτῶν
+                      γινομένας ἰσχάδας, ἵνα μόνοι ἀπολαύοιεν οἱ κατοικοῦντες: καὶ ἐπεὶ πολλοὶ
+                      ἐνεφανίζοντο διακλέπτοντες, οἱ τούτους μηνύοντες τοῖς δικασταῖς ἐκλήθησαν τότε
+                      πρῶτον συκοφάνται. ... </p>
+                  </div>
+                </div>
+              </egXML>
+            </p>
+          </div>
+          <div xml:id="identifiers">
+            <head>Identifiers</head>
+            <p>The CITE Architecture developed by the <ref
+                target="http://www.homermultitext.org/hmt-doc/cite/index.html">Homer Multitext
+                Project</ref><note>Documentation: <ptr
+                  target="http://www.homermultitext.org/hmt-doc/cite/index.html"/>.</note> provides
+              us with a standard identifier syntax for texts, passages, and related objects and with
+              APIs for services which can retrieve objects identified via these protocols. CITE
+              defines Canonical Text Services (CTS) URNs for creating semantically meaningful unique
+              identifiers for texts and passages within texts. CITE also defines an alternate URN
+              syntax for data objects that are not citable text notes, such as images, annotations,
+              and the lost texts themselves. As URNs, these identifiers are not web-resolvable on
+              their own. By combining them with a URL prefix and deploying CTS and CITE services to
+              serve the identified resources at those addresses, we have resolvable, stable
+              identifiers for our texts, data objects, and annotations (<ref type="bibl"
+                target="#smith12">Smith and Blackwell 2012</ref>). One of our key motivations for
+              using CTS URNs is that they give us a robust means of targeting annotations at
+              specific substrings of text within a canonical work. The pointers to the text are
+              specific to the location of these strings within their canonical citation structure,
+              and not to the XML markup of any particular digital edition of the text. Further, the
+              URN syntax degrades gracefully to allow us to reference either the notional work or a
+              very specific edition of that work. Our goal in using this syntax, together with RDF
+              and stand-off markup techniques as discussed below, is to enable the assertions we are
+              making to stand on their own as data, independent of the encoding techniques used to
+              digitize the text.</p>
+            <p>For example, the following set of identifiers might be used to represent a reuse of a
+              lost work of Istros at book 3, chapter 6 in Athenaeus’ <title level="m"
+                >Deipnosophists</title> (<ref type="bibl" target="#almas13b">Almas and Berti
+                2013</ref>):
+                <eg>urn:cts:greekLit:tlg0008.tlg001.perseus-grc1:3.6@Ἴστρος%5B1%5D-συκοφάνται%5B1%5D</eg>
+            </p>
+            <p>This is a CTS URN for a subset of passage <ident>3.6</ident> in the
+                <ident>perseus-grc1</ident> edition of the work identified by <ident>tlg001</ident>
+              in the group of texts associated with Athenaeus, identified by <ident>tlg0008</ident>.
+              The URN further specifies a string of text in that passage, starting at the first
+              instance of the word <mentioned>Ἴστρος</mentioned> and ending at the first instance of
+              the word <mentioned>συκοφάνται</mentioned>.</p>
+            <p>
+              <eg>urn:cite:perseus:lci.2</eg> is a CITE URN identifier for the instance of lost text
+              being reused. This URN identifies an object whose name <ident>2</ident> is unique
+              within the Perseus Collection of Lost Content Items (<ident>lci</ident>). Every item
+              in this collection points to a specific text reuse of a lost author as it is
+              represented in a modern edition (see below for further discussion of CITE
+              Collections).</p>
+            <p>These URNs represent distinct technology-independent identifiers for the two cited
+              objects, and by prefixing them with the <ident>http://data.perseus.org</ident> URL
+              prefix (representing the web address at which they can be resolved) we create stable
+              web identifiers for them, making them compatible with linked data best
+                  practices:<note><title level="a">Perseus Stable URIs</title>, Perseus Digital
+                Library Updates, <ptr
+                  target="http://sites.tufts.edu/perseusupdates/beta-features/perseus-stable-uris/"
+                />.</note>
+              <list rend="simple">
+                <item><code>http://data.perseus.org/citations/urn:cts:greekLit:tlg0008.tlg001.perseus-grc1:3.6%40Ἴστρος%5B1%5D-συκοφάνται%5B1%5D</code><note>At
+                    the time of this writing, complete implementation of the CTS standard for
+                    resolution of passage subreferences at the <ident>data.perseus.org</ident>
+                    address is still pending.</note></item>
+                <item><code>http://data.perseus.org/collections/urn:cite:perseus:lci.2</code></item>
+              </list>
+            </p>
+            <p>The RDF data model also gives us more precision than XML with respect to targets of
+              annotations and subjects of assertions. A human reader can usually tell from context
+              whether an assertion concerns the wording of a sentence, the writing of a sentence as
+              an event, the author of a sentence, or another scholar’s assertion about the sentence.
+              XML has no standardized semantics, and interpretations of relationships among elements
+              and attributes are often underspecified in XML vocabularies (<ref type="bibl"
+                target="#renear02">Renear et al. 2002</ref>). In RDF, subject, predicate, and object
+              roles in a statement are explicit at the data structure level. Distinctions among
+              domain entities (such as author vs. authorship event, or morpheme vs. sentence) are
+              encoded as a class identity for the resource.</p>
+          </div>
+          <div xml:id="annotations">
+            <head>Annotations</head>
+            <p>The term <soCalled>Annotations</soCalled> covers a potentially wide variety of data
+              types. We can have simple annotations in the form of typed links between data points,
+              such as: a textual fragment and a proposed author of that fragment; detailed textual
+              commentaries making an assertion about a text; a complex morphosyntactic analysis of a
+              section of text; an alignment between editions or translations of a text. The Open
+              Annotation (OA) data model <q>specifies an interoperable framework for creating
+                associations between related resources, annotations, using a methodology that
+                conforms to the Architecture of the World Wide Web</q>.<note>Open Annotation Data
+                Model, February 8, 2013, <ptr
+                  target="http://www.openannotation.org/spec/core/20130208/index.html"/>.</note> The
+              OA model enables us to serialize every annotation in its most simple form, as a link
+              between one or more <term>target</term> items being annotated, and one or more
+                <term>bodies</term> representing the contents of the annotation. OA also gives us a
+              standard vocabulary for categorizing the motivation for the annotations. URIs are used
+              to specify both the target and the body of the annotation. We use the OA data model
+              both as the primary representation of an annotation, in cases where the annotations
+              are created by linking two identifiers (such as a link between a passage in a text and
+              an identifier for a named entity or event), and also as a serialization method for
+              more complex annotations, where the annotation process involves the creation of
+              complex documents as the annotation bodies which we can then reference by their URI
+              identifiers. In the latter case, we use a variety of standard formats for the actual
+              annotation bodies, including: <list rend="bulleted">
+                <item>The <ref
+                    target="http://nlp.perseus.tufts.edu/syntax/treebank/agdt/1.7/data/treebank-1.5.xsd"
+                    >Perseus Ancient Greek and Latin Treebank Schema</ref><note><ptr
+                      target="http://nlp.perseus.tufts.edu/syntax/treebank/agdt/1.7/data/treebank-1.5.xsd"
+                    />.</note> for morphosyntactic analyses.</item>
+                <item>The <ref
+                    target="https://svn.code.sf.net/p/alpheios/code/xml_ctl_files/schemas/trunk/aligned-text.xsd"
+                    >Alpheios Translation Alignment Schema</ref><note><ptr
+                      target="https://svn.code.sf.net/p/alpheios/code/xml_ctl_files/schemas/trunk/aligned-text.xsd"
+                    />.</note> for text alignments.</item>
+                <item><ref target="http://daringfireball.net/projects/markdown/syntax">Markdown
+                    Syntax</ref><note><bibl><author>John Gruber</author>, <title level="a">Markdown:
+                        Syntax</title>, <ptr
+                        target="http://daringfireball.net/projects/markdown/syntax"/>.</bibl></note>
+                  for short textual commentaries.</item>
+                <item>TEI XML for primary and secondary source texts.</item>
+              </list>
+            </p>
+            <p>The annotation representing the assertion (discussed above) that text at Athen.,
+                <title level="m">Deipn</title>. 3.6 describes a reuse of a lost work of Istros
+              identified by <ident>urn:cite:perseus:lci.2</ident>, serialized in OA using the
+                JSON-LD<note>JSON for Linking Data, <ptr target="http://json-ld.org/"/>.</note>
+              format, might be formalized as follows (<ref type="bibl" target="#almas13b">Almas and
+                Berti 2013</ref>): <!-- [RvdB] 
+                    -corrected "http://data.perseus.org.org" to "http://data.perseus.org" for "hasTarget"
+                -->
+              <eg> { "@context": "http://www.w3.org/ns/oa-context-20130208.json", "@id":
+                "http://perseids.org/annotations/urn:cite:perseus:annsimp.2.1", "@type":
+                "oa:Annotation", "annotatedAt": "2013-03-05T07:57:00", "annotatedBy": { "@id":
+                "http://data.perseus.org/sosol/users/Monica Berti", "@type": "foaf:Person", "name":
+                "Monica Berti" }, "hasBody":
+                "http://data.perseus.org/collections/urn:cite:perseus:lci.2", "hasTarget":
+                "http://data.perseus.org/citations/urn:cts:greekLit:tlg0008.tlg001.perseus-grc1:3.6%40Ἴστρος%5B1%5D-συκοφάνται%5B1%5D",
+                "oa:motivatedBy":"oa:linking" } </eg>
+            </p>
+            <p><ptr type="crossref" target="#figure1"/> shows a possible visual representation of
+              the same annotation: <figure xml:id="figure1">
+                <graphic url="images/jtei-088-almas_figure_01.png" width="935px" height="430px"/>
+                <head type="legend">Visual representation of an OA annotation of a text reuse in
+                  Athen., <title level="m">Deipn</title>. 3.6</head>
+              </figure>
+            </p>
+          </div>
+        </div>
+        <div xml:id="collections">
+          <head>Collections</head>
+          <p>We need to be able to organize text reuses into various types of collections of data,
+            including those represented in a given traditional print edition which comprises: reuses
+            from one or many authors; all text reuses attributed to a specific author; all text
+            reuses quoted by a specific author; all text reuses referencing a specific topic; all
+            text reuses attributed to a specific time period. CITE Collection Services define a
+            protocol for identifying and retrieving digital representations of objects identified by
+            CITE URNs. CITE URNs uniquely identify objects in a set of objects of a similar kind:
+            for example, images, manuscripts, and entries in commentaries. (CITE stands for
+            Collections, Indices, Texts, and Extensions.) Examples of CITE collections used to
+            support the encoding of text reuses for our project include the abstract lost text
+            entities themselves, digital images of manuscripts of the extant source texts that quote
+            those lost texts, commentaries on instances of text reuse, and linguistic annotations of
+            the quoted text.</p>
+        </div>
+        <div xml:id="provenance">
+          <head>Provenance</head>
+          <p>Scholars produce data through a variety of activities, observations, and other events.
+            Some data is created, other data discovered. The <emph>provenance</emph> of a digital
+            object is an account of its origin and change over time. Documenting and preserving data
+            provenance in a structured, machine-readable format enables us to more precisely track
+            and document shared resources, ultimately improving data quality and encouraging further
+            sharing. Specifically, we intend our retrieval, editorial annotation, and communication
+            tools to create records of the research transactions in which they are used. These
+            records are expressed in RDF vocabularies that are based on abstract provenance
+            models.</p>
+          <p>According to Groth et al. (<ref type="bibl" target="#groth06">2006</ref>), two key
+            principles for provenance data are that <list rend="inline ordered">
+              <item>actors must only record propositions that they know to be true, through
+                statements of what they observe; and</item>
+              <item>each statement of provenance must be attributable to a particular actor.</item>
+            </list></p>
+          <p>In our use case, we need to be able to <list rend="inline ordered">
+              <item>reference ancient data that can be identified but that did not literally come
+                into existence as the result of any modern computational interaction (and which may
+                in fact no longer be extant in any preserved source); and</item>
+              <item>identify the role a data item, such as an ancient scholarly assertion, plays as
+                the vehicle for the modern scholarly claims.</item>
+            </list> A third requirement, which results from the second, is that we need to be able
+            to represent the assertions of the ancient scholars, on which our modern assertions
+            depend, in a format that can be included computationally in a common data set with the
+            modern claims.</p>
+          <p>Although our usual workflow discourse describes domain entities coming into existence
+            and undergoing genuine change, that understanding poses problems for tracking identity
+            and other semantic relationships. For example, if a text is enriched by adding TEI
+            markup, what exactly is preserved in the derivation of the newer version from the older?
+            On what basis do we identify the same original work in each reuse despite the
+            superficial differences between them? And how do we represent assertions concerning
+            works that have no physical exemplars? Our solution to dilemmas like these is to employ
+            complementary data provenance models: one with a transformational view and another with
+            a semiotic view of the same research events.</p>
+          <p>The W3 Consortium’s <ref target="http://www.w3.org/TR/prov-dm/">PROV</ref> is a
+            specification for expressing provenance records with descriptions of the entities and
+            activities involved in producing and delivering or otherwise influencing a given digital
+              object.<note>PROV-DM: The PROV Data Model, W3C Recommendation, April 30, 2013, <ptr
+                target="http://www.w3.org/TR/prov-dm/"/>.</note> A PROV <term>activity</term> is an
+            event through which entities come into existence and/or change to become new entities.
+            Activities are dynamic aspects of the world, such as actions and processes. For example,
+            a PROV account of the OA annotation shown in the previous section would document its
+            coming into existence at a particular time through a researcher’s use of annotation
+            software.</p>
+          <p>In contrast to PROV, the Systematic Assertion Model (SAM) treats events in scholarship
+            as linguistic acts (<ref type="bibl" target="#wickett12">Wickett et al. 2012</ref>). SAM
+            is concerned not with mutable data structures that change from one form to another, but
+            with unchanging abstract objects that come to stand in new contingent relationships
+            during a project. A SAM account of the OA annotation, for example, would be concerned
+            with its role as a vehicle for the scholar’s claim of a proposition’s truth (that is,
+            the proposition that Athen., <title level="m">Deipn</title>. 3.6, quotes LCI 2). A SAM
+            description links an annotation expression to the act of annotation, the claim advanced
+            at that time and place, the annotator’s justification for the claim, and to interpretive
+            contexts necessary for understanding the annotation. In the present example these
+            contexts would include the OA vocabulary and the JSON-LD serialization syntax.</p>
+          <p>SAM’s formal account of research data and its content supplies contextual information
+            that PROV lacks, but PROV can record functional relationships that SAM hides: because
+            SAM’s abstract symbol structures and propositions are immutable, their roles in a
+            project are incompletely specified without the PROV view of their use as inputs and
+            outputs to activities.</p>
+          <p>In the scenario discussed in this paper, a scholar wants to annotate what she thinks is
+            a reuse of a lost text attributed to Istros in an extant source text by Plutarch (<title
+              level="m">Sol</title>. 24.1), where Istros is not named.<note>To substantiate her
+              argument, the scholar must also identify corroborating material, including instances
+              of Istros’ text in other primary sources—in this example that of Athenaeus, <title
+                level="m">Deipn</title>. 3.6, who does name Istros as the source.</note> The
+            scholar, using the Perseids annotation tools to produce a concrete representation of
+            this assertion, <emph>indicates</emph> the text that represents the reuse. An example of
+            an RDF triple documenting this action—the selection of the string starting with the
+            first instance of <mentioned>ἐξαγωγὴ </mentioned>to the first instance of
+              <mentioned>συκοφαντεῖν</mentioned> according to the SAM data model—is: <eg>
+              &lt;system:actions/berti/textsel1> sam:indicates [ xsd:string
+              "ἐξαγωγὴ1,συκοφαντεῖν1"]; event:agent &lt;perseids:users/berti>; event:time
+              [xsd:dateTime "2013-05-20T09:01:00"]; a sam:Indication. </eg>
+          </p>
+          <p>Although we could represent this action as an <term>activity</term> involving the
+            scholar’s physical interaction with the system, we would lose the significance of the
+            linguistic force behind the scholar’s identification of the text.</p>
+          <p>In reaction to her selection of text, the system computes a URI identifier for that
+            text. This event can be represented as a SAM <term>computation</term>, but in order to
+            represent the fact that the URI <emph>came into being</emph> as a result of a
+            user-system interaction, it is also appropriate to describe this as a PROV
+              <term>activity</term> that was <hi rend="italic">informed by</hi> the scholar’s
+            previous action of selecting a string of text (<ref type="bibl" target="#almas13c">Almas
+              et al. 2013</ref>): <eg> &lt;system:urncompute1&gt; sam:indicates
+              &lt;data:citations/urn:cts:greekLit:tlg0007.tlg007.perseus-grc1:24.1%40ἐξαγωγὴ%5B1%5D-συκοφαντεῖν%5B1%5D&gt;;
+              event:agent &lt;system:installation1&gt;; event:time [xsd:dateTime
+              &quot;2013-05-20T09:01:01&quot;]; a sam:Computation, prov:Activity; prov:wasInformedBy
+              &lt;system:actions/berti/textsel1&gt;. </eg>
+          </p>
+        </div>
+        <div xml:id="dissemination">
+          <head>Dissemination and Presentation</head>
+          <p>As discussed above, our primary focus thus far has been on capturing the data about the
+            authors, texts and related commentaries, annotations, links, and translations in a way
+            that is accurate and also encourages and facilitates its preservation and reuse. Visual
+            representation of the data is one type of reuse, and the data format selections have
+            been made with the need to support disseminations for online presentation in mind. The
+            JSON-LD syntax recommended by OA allows us to easily build a dynamic display interface
+            in Javascript which navigates the JSON-LD data object and retrieves the datasets
+            identified as the targets and bodies of the annotations at their addressable URIs, as
+            served by supporting CTS and CITE services. Our <ref
+              target="http://perseids.org/sites/berti_demo/index.html">prototype
+                interface</ref><note><ptr target="http://perseids.org/sites/berti_demo/index.html"/>
+              (source code at <ptr target="https://github.com/PerseusDL/lci-demo"/>).</note>
+            provides a demonstration of one possible approach to a digital representation of text
+            reuse data. Similarly, although we hope eventually to be able to represent the rich
+            provenance metadata discussed above in the visual representation of our digital
+            editions, we are above all concerned with capturing the data in a way that ensures they
+            can be preserved and serve as the basis for further research.</p>
+        </div>
+      </div>
+      <div xml:id="DFHG">
+        <head>The Digital Fragmenta Historicorum Graecorum (DFHG) Project</head>
+        <p>As mentioned before, one of the goals of LOFTS is to digitize paper editions of
+          fragmentary works and link them to the source texts from which the fragments have been
+          excerpted. Such a work aims both at preserving a philological heritage and at providing a
+          methodological foundation for implementing a new generation of born-digital editions of
+          fragmentary texts. Accordingly, LOFTS is encoding the <title level="m">Fragmenta
+            Historicorum Graecorum</title> (<title level="m">FHG</title>), which is one of the most
+          important collections of textual fragments of Classical authors.</p>
+        <div xml:id="FHG">
+          <head>The <title level="m">FHG</title> Texts</head>
+          <p>The five volumes of the <title level="m">FHG</title> edited by Karl Müller (1878–85)
+            comprise the first big collection of fragments of Greek historians’ work ever realized.
+            The work collects excerpts from textual sources pertaining to more than six hundred
+            fragmentary authors. Excluding the first volume, these authors are chronologically
+            distributed and range from the sixth century BCE to the seventh century CE. Under each
+            author the fragments are numbered sequentially and arranged according to works and book
+            numbers (when such information is available), and every fragment is translated into
+            Latin. The first volume also includes the text of the inscription of the <title
+              level="m">Marmor Parium</title> with a Latin translation, a chronological table, and a
+            commentary, and the Greek text of the Rosetta Stone with a French literal translation,
+            as well as a critical, historical, and archaeological commentary. The fifth volume
+            includes fragments of the writings of Greek and Syriac historians preserved in Armenian
+            sources.</p>
+          <p>The basic structure of the <title level="m">FHG</title> has introductions to the
+            volumes with discussions of the content, citations of sources, and references to
+            bibliographical records. Sometimes short introductions precede the fragments of the
+            fragmentary authors with biographical information and related textual evidence. The
+            Greek fragments are arranged into two columns and the Latin translations are printed at
+            the bottom of the page below a horizontal line. The <title level="m">FHG</title> does
+            not include a critical apparatus for the Greek text.</p>
+        </div>
+        <div xml:id="project">
+          <head>The DFHG Project</head>
+          <p>LOFTS is producing the first digital edition of the <title level="m">FHG</title> as a
+            means of providing an open, linked, machine-actionable text for the study and
+            advancement of Greek fragmentary literature.<note>Digital Fragmenta Historicorum
+              Graecorum (DFHG) Project, Universität Leipzig, <ptr
+                target="http://www.dh.uni-leipzig.de/wo/projects/open-greek-and-latin-project/digital-fragmenta-historicorum-graecorum-dfhg-project/"
+              />.</note> The text is encoded in accordance with the latest TEI <ref
+              target="http://sourceforge.net/p/epidoc/wiki/Home/">EpiDoc
+              standards</ref>.<note>EpiDoc: Epigraphic Documents in TEI XML, <ptr
+                target="http://sourceforge.net/p/epidoc/wiki/Home/"/>.</note> The decision to adopt
+            the EpiDoc subset was dictated by two factors: <list rend="inline ordered">
+              <item>EpiDoc markup lends itself well to ancient texts, be these papyri, inscriptions,
+                manuscripts, or editions, allowing for various levels of detail;</item>
+              <item>encoding in EpiDoc ensures compatibility with existing papyrological and
+                epigraphic resources, with the <ref target="http://www.eagle-network.eu/"
+                  >EAGLE-Europeana network</ref>,<note><ptr target="http://www.eagle-network.eu/"
+                  />.</note> and with the forthcoming EpiDoc-compliant Perseus 5.0
+                <!-- [RvdB]: 'database'? -->databank.</item>
+            </list></p>
+          <p>The Leipzig Humboldt Chair and Perseus Digital Library partnership entails a synergetic
+            effort not only to enrich the <ref target="http://catalog.perseus.org/">Perseus
+              Catalog</ref><note><ptr target="http://catalog.perseus.org/"/>.</note> but also to
+            provide new testing material for the continuous development of the Perseids Platform,
+            where the first EpiDoc version of the <title level="m">FHG</title> will be placed for
+            further annotation. This undertaking is proving to be invaluable not only for the growth
+            of partner resources but also for the development of the EpiDoc schema
+              itself.<note>There is little room or intention in this article to elaborate further on
+              the topic. Let it suffice to say this endeavor has contributed to the new release of
+              the schema (published in February 2014) which now allows, among other additions, the
+              following: <list rend="inline ordered">
+                <item>the <att>rend</att> attribute of <gi>hi</gi> can now have <val>stacked</val>
+                  as a value to encode stacked symbols or characters (such features are often found
+                  in manuscripts);</item>
+                <item>the <gi>anchor</gi> element is no longer omitted.</item>
+              </list> All this has been explained in version 8.20 of the EpiDoc Guidelines
+                  (<bibl><author>Tom Elliott</author>, <author>Gabriel Bodard</author>, <author>Elli
+                  Mylonas</author>, <author>Simona Stoyanova</author>, <author>Charlotte
+                  Tupman</author>, <author>Scott Vanderbilt</author>, et al., <title level="m"
+                  >EpiDoc Guidelines: Ancient Documents in TEI XML</title>, <date>December 4,
+                  2014</date>, <ptr target="http://www.stoa.org/epidoc/gl/latest/"
+            /></bibl>).</note></p>
+          <p>The project team is also working on the text of the so-called <title level="m">Marmor
+              Parium</title> (<title level="m">IG</title> 12.5.444), which is a fragmentary
+            inscription from the island of Paros that preserves a Hellenistic chronicle from the
+            reign of Cecrops (1581/1580 BCE) to the archonship of Euctemon (299/298 BCE).<note><ptr
+                target="http://www.dh.uni-leipzig.de/wo/projects/open-greek-and-latin-project/digital-marmor-parium/"
+              /></note> The epigraphical text was edited in the first volume of the <title level="m"
+              >FHG</title> because of its historiographical value (Müller 1878–85, 1:533–90). The
+            author of the text is unknown, but the content reflects his choices and it consists of a
+            list of historical events mainly based on the Athenian history. In this respect, this
+            evidence is a perfect example of a fragmentary author, whose work is preserved not
+            through quotations in later texts, but in a fragmented original form. The text of the
+            inscription is also being encoded in EpiDoc. An important part of the project is the
+            identification of named entities mentioned in the inscription (such as names of kings
+            and magistrates, personal names, and place names). The <ref
+              target="http://pleiades.stoa.org/">Pleiades gazetteer</ref> has been referenced for
+            the place names.<note><ptr target="http://pleiades.stoa.org/"/>.</note> The
+            identification of individuals will make use of and feed into the <ref
+              target="http://snapdrgn.net/">Standards for Networking Ancient Prosopographies project
+              (SNAP)</ref>.<note><ptr target="http://snapdrgn.net/"/>.</note> The team is also
+            producing a visualization of the chronology preserved by the <title level="m">Marmor
+              Parium</title> with the open source tool <ref target="http://timeline.knightlab.com/"
+              >TimelineJS</ref>, which allows the comparison of the text not only with other ancient
+            chronologies but also with different chronological interpretations of the content of the
+            inscription made by modern scholars (<ref type="bibl" target="#berti14">Berti and
+              Stoyanova 2014</ref>).<note><ptr target="http://timeline.knightlab.com/"/>.</note>
+          </p>
+        </div>
+        <div xml:id="EpiDoc">
+          <head>The EpiDoc Guidelines and Encoding Process</head>
+          <p>The digital text of the <title level="m">FHG</title> was obtained by feeding the volume
+            scans available at the Internet Archive<note><ptr
+                target="https://archive.org/details/fragmentahistori01mueluoft"/>.</note> to an
+            Optical Character Recognition (OCR) engine, which transformed the printed text into
+            digital form. The error-laden Greek output was corrected semi-automatically and stored
+            in text files. Any remaining errors are manually rectified during the encoding
+            process.</p>
+          <p>LOFTS has drawn up an EpiDoc template that is compatible with the Perseus Digital
+            Library corpus and applicable to all types of texts produced by the University of
+            Leipzig <ref
+              target="http://www.dh.uni-leipzig.de/wo/projects/open-greek-and-latin-project/">Open
+              Greek and Latin (OGL) Project</ref>, which is producing a comprehensive open
+            collection of Classical sources.<note><ptr
+                target="http://www.dh.uni-leipzig.de/wo/projects/open-greek-and-latin-project/"
+              />.</note> The template covers basic layout and citation structures with room for
+            alteration and improvement and it is integrated with encoding guidelines, produced not
+            only to document the LOFTS editorial choices but also to help external individuals
+            contribute to the encoding process. The project production line consists of two stages:
+              <list rend="inline ordered">
+              <item>the encoding process is implemented by LOFTS and tackles layout, citation
+                elements, and philological issues;</item>
+              <item>the initial editorial endeavor and the guidelines are made available for
+                crowdsourcing, where contributors are encouraged to further tag the EpiDoc files
+                with information regarding places, personal names, and any other relevant
+                entities.</item>
+            </list></p>
+          <div xml:id="stage1">
+            <head>Stage One: First Level of Encoding by LOFTS</head>
+            <p>The editorial team of LOFTS creates one XML file per fragmentary author. Every file
+              contains a <gi>teiHeader</gi> with specific information about the author, volume, or
+              book in question. As for the <gi>text</gi>, Müller’s layout is not kept since the
+              Greek text is separated from its Latin translation. The structure within <gi>text</gi>
+              reflects the structure of each volume, using the <tag>div type="textpart"</tag> with
+              different <att>subtype</att> values, whenever needed. Müller’s Latin translations of
+              the fragments are encoded in a separate XML file to facilitate text alignment.</p>
+            <p>For example, fragment 6 of Ion of Chios will be encoded as follows (<ptr
+                type="crossref" target="#figure2 #figure3 #figure4"/>): <figure xml:id="figure2">
+                <graphic url="images/jtei-088-almas_figure_02.png" height="635px" width="457px"/>
+                <head type="legend">Page image from FHG 2:48: Greek text of fragment 6 (outlined in
+                  red) and Latin translation (outlined in yellow)</head>
+              </figure>
+            </p>
+            <figure xml:id="figure3">
+              <graphic url="images/jtei-088-almas_figure_03.png" width="782px" height="129px"/>
+              <head type="legend">Image from the XML file for the Greek translation</head>
+            </figure>
+            <figure xml:id="figure4">
+              <graphic url="images/jtei-088-almas_figure_04.png" width="782px" height="79px"/>
+              <head type="legend">Image from the XML file for the Latin translation</head>
+            </figure>
+            <p>While retaining the same number (6), the Greek is encoded in a <gi>cit</gi> and the
+              Latin translation in a <gi>p</gi>. The <gi>cit</gi> is broken down into <gi>bibl</gi>,
+              which contains the source <gi>author</gi> (Plutarch) and work, and a <gi>quote</gi>,
+              containing the Greek text. Whenever there is a note, the <gi>note</gi> element is also
+              placed within <gi>cit</gi>. Any information that does not strictly pertain to the
+              fragment is encoded in a <gi>p</gi>. This initial editorial stage also involves
+              replacing special characters, such as the <mentioned>æ</mentioned> diphthong, with
+              their Unicode entities (see the Latin translation, where <mentioned>æ</mentioned> is
+              displayed as <code>&amp;#230;</code>) in order to avoid font and potential display
+              issues and confusion between graphically similar but semantically different characters
+              (e.g., capital Latin c and Greek capital lunate sigma). Numbers, including ordinal,
+              are also tagged. Footnotes are given arabic numbers (Müller uses asterisks) for
+              clarity.</p>
+            <p>An <ref target="http://www.w3.org/TR/xslt">XSL transformation</ref><note><ptr
+                  target="http://www.w3.org/TR/xslt"/>.</note> is used to help the encoder better
+              visualize the marked-up text and links the main body to the footnotes. All references
+              to other works (often abbreviated by Müller) are tagged as <gi>bibl</gi> and will
+              eventually point to a master bibliography file. Work titles appearing in the Greek and
+              Latin texts are wrapped in a <gi>title</gi> element. Where we have both the Greek and
+              the Latin titles of a work, the two titles are enclosed in another <gi>title</gi> tag:
+                <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <title><title xml:lang="grc">Περὶ τελετῶν</title> sive <title type="alt"
+                    xml:lang="la">De mysteriis</title></title>
+              </egXML>
+            </p>
+            <p>The <title level="m">FHG</title> does not include a critical apparatus, but sometimes
+              Müller signals variant readings in the text, and these are tagged as <gi>rdg</gi>
+              elements inside an <gi>app</gi>
+              <emph>within</emph> the main text. Personal names are simply tagged as
+                <gi>persName</gi>. Names often carry additional information, such as patronymics and
+              epithets or clues about an individual’s profession. Encoding such specificity is not a
+              stage one priority but a stage two expectation.</p>
+            <p>Another problematic feature when working with editions of fragmentary works is how to
+              encode specific editorial decisions concerning the attribution of a quotation or a
+              text reuse to an author whose original works are lost. Müller sometimes adds different
+              marks (parentheses, square brackets, or question marks) to the fragment number in
+              order to signal uncertainty about the attribution of that fragment.<note>See, for
+                example, <ref type="bibl" target="#müller85">Müller 1878–85</ref>, 1:1, frr. 5 and
+                7; 1:56, fr. 83; 2:29, fr. 2.</note> In these cases the uncertainty is encoded using
+              the <att>ana</att> attribute to the <gi>cit</gi> element, with one of the following
+              values: <val>#dubia</val>, <val>#incerta</val>, and <val>#anonyma</val>. These values
+              are defined in the <gi>classDecl</gi> element in <gi>encodingDesc</gi> in the header.
+              The reason for this choice depends on the fact that when the project was started not
+              all relevant elements had the <att>cert</att> attribute. Even if they did, Müller
+              reasons for marking something as uncertain vary a lot, and he is also inconsistent in
+              his use of these sigla. The use of the <gi>certainty</gi> element also proved
+              problematic, because of this inconsistency, since it was at times difficult to
+              determine whether the uncertainty was the content of the citation, the attribution to
+              an author, or the extent of the quotation. So it was decided to roughly map Müller’s
+              three sigla to what seemed the most frequent and probable uncertainty categories
+              across the collection, and rather than have <att>cert</att> or <gi>certainty</gi>
+              sometimes in <gi>cit</gi> sometimes in <gi>bibl</gi> sometimes in <gi>quote</gi>, to
+              have three different values of the <att>ana</att> attribute in <gi>cit</gi>.</p>
+          </div>
+          <div xml:id="stage2">
+            <head>Stage Two: Crowdsourced Annotation</head>
+            <p>Once complete, these basic XML files are deposited in the Perseids Platform for
+              further annotation by third parties. While still in testing mode, this second stage
+              encourages annotators to tag any additional information, including—but not limited
+              to—the following: <list rend="bulleted">
+                <item>Names (person).<note>For example, Κάδμος Ἀρχελάου Μιλήσιος, where we have the
+                    name of the author (Κάδμος), the name of the father (Ἀρχελάου), and the ethnicon
+                    (Μιλήσιος). Further details on, and matching of, name components will be part of
+                    a later, spin-off prosopography project.</note></item>
+                <item>Names (place).<note>GeoNames geographical database, <ptr
+                      target="http://www.geonames.org/"/>.</note></item>
+                <item>Bibliographic references: expansion of bibliographic references and linking to
+                  bibliography file.</item>
+                <item>Numbers.</item>
+                <item>Titles within Greek and Latin text.</item>
+                <item>Stage 2 encoding of the Latin translations (after initial encoding at stage
+                  one).</item>
+              </list>
+            </p>
+            <p>The editorial board provides the final review for each file. EpiDoc-encoded DFHG
+              files are being progressively added to the <ref
+                target="https://github.com/OpenGreekAndLatin/dfhg-dev/wiki">DFHG <ptr
+                  type="software" xml:id="GitHub" target="#GitHub"/><rs type="soft.name"
+                  ref="#GitHub">GitHub</rs> repository</ref><note><ptr
+                  target="https://github.com/OpenGreekAndLatin/dfhg-dev/wiki"/>.</note> for everyone
+              to download, improve, and share in accordance with our <ref
+                target="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0 International
+                License</ref>.<note><ptr target="https://creativecommons.org/licenses/by-sa/4.0/"
+                />.</note></p>
+          </div>
+        </div>
+      </div>
+      <div xml:id="conclusions">
+        <head> Conclusions</head>
+        <p>The Leipzig Open Fragmentary Texts Series (LOFTS) aims not only at producing an open
+          series of Greek and Latin fragmentary authors, but also at building a model for
+          representing quotations and text reuses of lost works in a digital environment. In order
+          to achieve these goals, different technologies are being used and implemented beyond the
+          TEI XML standard. The final outcome is the production of dynamic excerpts from source
+          texts. In the case of digitized print editions of fragmentary works, this means linking
+          the fragments directly to the source text and annotating their metadata within it. In the
+          case of new-born digital editions of fragmentary texts, fragments become multilayered
+          annotations of information concerning fragmentary authors and reuses of their lost works.
+          These dynamic excerpts contribute to the production of a real
+            <soCalled>multitext</soCalled>, where each version of the same text embodies a different
+          step in its transmission and a reconstruction of philological conjectures (on the concept
+          of multitext see <ref type="bibl" target="#blackwell09">Blackwell and Crane 2009</ref>).
+          The ultimate goals are the creation of open, linked, machine-actionable texts for the
+          study of textual reuses of Classical works and the development of a collaborative
+          environment for crowdsourced annotations that involve both scholars and students.</p>
+      </div>
+    </body>
+    <back>
+      <div type="bibliography">
+        <listBibl>
+          <bibl xml:id="almas13"><author>Almas, Bridget</author>, and <author>Marie-Claire
+              Beaulieu</author>. <date>2013</date>. <title level="a">Developing a New Integrated
+              Editing Platform for Source Documents in Classics</title>. <title level="j">Literary
+              &amp; Linguistic Computing</title>
+            <biblScope unit="volume">28</biblScope>(<biblScope unit="issue">4</biblScope>):
+              <biblScope unit="page">493–503</biblScope>. doi:<idno type="doi"
+              >10.1093/llc/fqt046</idno>.</bibl>
+          <bibl xml:id="almas13b"><author>Almas, Bridget</author>, and <author>Monica
+            Berti</author>. <date>2013</date>. <title level="a">Perseids Collaborative Platform for
+              Annotating Text Re-uses of Fragmentary Authors</title>. In <title level="m">DH-Case
+              2013. Proceedings of the 1st International Workshop on Collaborative Annotations in
+              Shared Environments: Metadata, Vocabularies and Techniques in the Digital
+              Humanities</title>, edited by <editor>Francesca Tomasi</editor> and <editor>Fabio
+              Vitali</editor>, article no. 7. <pubPlace>New York, NY</pubPlace>: <publisher>ACM
+              Digital Library</publisher>. doi:<idno type="doi"
+            >10.1145/2517978.2517986</idno>.</bibl>
+          <bibl xml:id="almas13c"><author>Almas, Bridget</author>, <author>Monica Berti</author>,
+              <author>Sayeed Choudhury</author>, <author>David Dubin</author>, <author>Megan
+              Senseney</author>, and <author>Karen M. Wickett</author>. <date>2013</date>. <title
+              level="u">Representing Humanities Research Data Using Complementary Provenance
+              Models</title>. Poster presented at Building Global Partnerships—RDA Second Plenary
+            Meeting, Washington, DC, September 16–18, 2013.</bibl>
+          <bibl xml:id="berti12"><author>Berti, Monica</author>. <date>2012</date>. <title level="a"
+              >Citazioni e dinamiche testuali. L’intertestualità e la storiografia greca
+              frammentaria</title>. In <title level="m">Tradizione e Trasmissione degli Storici
+              Greci Frammentari II. Atti del Terzo Workshop Internazionale. Roma, 24–26 febbraio
+              2011</title>, edited by <editor>Virgilio Costa</editor>, <biblScope unit="page"
+              >439–58</biblScope>. <pubPlace>Tivoli</pubPlace>: <publisher>Edizioni
+              Tored</publisher>. <ptr
+              target="http://www.monicaberti.com/wp-content/uploads/2014/08/CitazioniDinamicheTestuali.pdf"
+            />.</bibl>
+          <bibl xml:id="berti13"><author>Berti, Monica</author>. <date>2013</date>. <title level="a"
+              >Collecting Quotations by Topic: Degrees of Preservation and Transtextual Relations
+              among Genres</title>. <title level="j">Ancient Society</title>
+            <biblScope unit="issue">43</biblScope>: <biblScope unit="page">269–88</biblScope>. <ptr
+              target="http://poj.peeters-leuven.be/content.php?url=article&amp;id=2992614&amp;journal_code=AS"
+            />. doi: <idno type="doi">10.2143/AS.43.0.2992614</idno>.</bibl>
+          <bibl xml:id="berti14"><author>Berti, Monica</author>, and <author>Simona
+              Stoyanova</author>. <date>2014</date>. <title level="a">Digital Marmor Parium. For a
+              Digital Edition of a Greek Chronicle</title>. In <title level="m">Information
+              Technologies for Epigraphy and Cultural Heritage. Proceedings of the First EAGLE
+              International Conference</title>, edited by <editor>Silvia Orlandi</editor>,
+              <editor>Raffaella Santucci</editor>, <editor>Vittore Casarosa</editor>, <editor>Pietro
+              Maria Liuzzo</editor>, <biblScope unit="page">319–24</biblScope>.
+              <pubPlace>Roma</pubPlace>: <publisher>Sapienza Università Editrice</publisher>. <ptr
+              target="http://www.eagle-network.eu/wp-content/uploads/2015/01/Paris-Conference-Proceedings.pdf"
+            />.</bibl>
+          <bibl xml:id="berti09"><author>Berti, Monica</author>, <author>Matteo Romanello</author>,
+              <author>Alison Babeu</author>, and <author>Gregory R. Crane</author>.
+              <date>2009</date>. <title level="a">Collecting Fragmentary Authors in a Digital
+              Library</title>. In <title level="m">JCDL ’09: Proceedings of the 9th ACM/IEEE-CS
+              Joint Conference on Digital Libraries</title>, <biblScope unit="page"
+              >259–62</biblScope>. <pubPlace>New York, NY</pubPlace>: <publisher>ACM Digital
+              Library</publisher>. doi:<idno type="doi">10.1145/1555400.1555442</idno>.</bibl>
+          <bibl xml:id="blackwell09"><author>Blackwell, Christopher</author>, and <author>Gregory R.
+              Crane</author>. <date>2009</date>. <title level="a">Conclusion: Cyberinfrastructure,
+              the Scaife Digital Library and Classics in a Digital Age</title>. <title level="j"
+              >Digital Humanities Quarterly</title>
+            <biblScope unit="volume">3</biblScope>(<biblScope unit="issue">1</biblScope>). <ptr
+              target="http://www.digitalhumanities.org/dhq/vol/3/1/000035/000035.html"/>.</bibl>
+          <bibl xml:id="groth06"><author>Groth, Paul</author>, <author>Simon Miles</author>, and
+              <author>Steve Munroe</author>. <date>2006</date>. <title level="a">Principles of High
+              Quality Documentation for Provenance: A Philosophical Discussion</title>. <title
+              level="m">Lectures Notes in Computer Science</title>
+            <biblScope unit="issue">4145</biblScope>: <biblScope unit="page">278–86</biblScope>.
+              doi:<idno type="doi">10.1007/11890850_28</idno>.</bibl>
+          <bibl xml:id="most97"><editor>Most, Glenn W.</editor>, ed. <date>1997</date>. <title
+              level="m">Collecting Fragments. Fragmente sammeln</title>.
+              <pubPlace>Göttingen</pubPlace>: <publisher>Vandenhoeck &amp;
+            Ruprecht</publisher>.</bibl>
+          <bibl xml:id="müller85"><editor>Müller, Karl</editor>, ed. <date>1878–85</date>. <title
+              level="m">Fragmenta Historicorum Graecorum.</title> 5 vols.
+            <pubPlace>Paris</pubPlace>: <publisher>A. F. Didot</publisher>.</bibl>
+          <bibl xml:id="renear02"><author>Renear, Allen</author>, <author>David Dubin</author>, and
+              <author>C. M. Sperberg-McQueen</author>. <date>2002</date>. <title level="a">Towards a
+              Semantics for XML Markup</title>. <title level="m">DocEng ’02: Proceedings of the 2002
+              ACM Symposium on Document Engineering</title>, <biblScope unit="page"
+              >119–26</biblScope>. <pubPlace>New York, NY</pubPlace>: <publisher>ACM Digital
+              Library</publisher>. doi:<idno type="doi">10.1145/585058.585081</idno>.</bibl>
+          <bibl xml:id="smith12"><author>Smith, D. Neel</author>, and <author>Christopher W.
+              Blackwell</author>. <date>2012</date>. <title level="a">Four URLs, Limitless Apps:
+              Separation of Concerns in the <title level="m">Homer Multitext</title>
+              Architecture</title>. In <title level="m">Donum natalicium digitaliter confectum
+              Gregorio Nagy septuagenario a discipulis collegis familiaribus oblatum: A Virtual
+              Birthday Gift Presented to Gregory Nagy on Turning Seventy by His Students,
+              Colleagues, and Friends</title>. <pubPlace>Cambridge, MA</pubPlace>: <publisher>Center
+              for Hellenic Studies, Harvard University</publisher>. <ptr
+              target="http://chs.harvard.edu/wa/pageR?tn=ArticleWrapper&amp;bdc=12&amp;mn=4846"
+            />.</bibl>
+          <bibl xml:id="wickett12"><author>Wickett, Karen M.</author>, <author>Andrea
+              Thomer</author>, <author>Simone Sacchi</author>, <author>Karen S. Baker</author>, and
+              <author>David Dubin</author>. <date>2012</date>. <title level="u">What Dataset
+              Descriptions Actually Describe: Using the Systematic Assertion Model to Connect Theory
+              and Practice</title>. Poster presented at the 2012 ASIS&amp;T Research Data Access and
+            Preservation Summit, New Orleans, March 22–23. <ptr
+              target="http://hdl.handle.net/2142/30470"/>.</bibl>
+        </listBibl>
+      </div>
+    </back>
+  </text>
+</TEI>

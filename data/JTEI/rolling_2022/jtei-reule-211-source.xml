@@ -1,0 +1,1467 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?><!-- $Id: jtei-reule-211-source.xml 1082 2022-01-31 08:32:29Z pietro.liuzzo $ -->
+<TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title type="main">Encoding the Ethiopic Miracles of Mary</title>
+            <author>
+               <name>
+                  <forename>Dorothea</forename>
+                  <surname>Reule</surname>
+               </name>
+               <affiliation>Dorothea Reule has been a member of the project <title level="u"
+                     >Schriftkultur des christlichen Äthiopiens und Eritreas: Eine digitale
+                     Forschungsumgebung</title> since 2016. Her work therein focuses mainly on the
+                  encoding of historical catalogues of Ethiopic manuscripts. She is also a doctoral
+                  candidate in Semitic Languages at Philipps-Universität Marburg, preparing a thesis
+                  on the textual history of the Geez Synaxarion.</affiliation>
+               <email>dorothea.reule@uni-hamburg.de</email>
+            </author>
+         </titleStmt>
+         <publicationStmt>
+            <publisher>TEI Consortium</publisher>
+            <date>22/01/2022</date>
+            <availability>
+               <licence target="https://creativecommons.org/licenses/by/4.0/">
+                  <p>For this publication a Creative Commons Attribution 4.0 International license
+                     has been granted by the author(s) who retain full copyright.</p>
+               </licence>
+            </availability>
+         </publicationStmt>
+         <seriesStmt>
+            <title level="j">Journal of the Text Encoding Initiative</title>
+            <editor>Tanja Wissik</editor>
+            <editor>Joel Kalvesmaki</editor>
+            <editor>Pietro Maria Liuzzo</editor>
+            <editor>Tiago Sousa Garcia</editor>
+            <editor role="technical">Ron Van den Branden</editor>
+            <biblScope unit="issue" n="rolling">Open Issue</biblScope>
+         </seriesStmt>
+         <sourceDesc>
+            <p>No source, born digital.</p>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <projectDesc>
+            <p>OpenEdition Journals -centre for open electronic publishing- is the platform for
+               journals in the humanities and social sciences, open to quality periodicals looking
+               to publish full-text articles online.</p>
+         </projectDesc>
+      </encodingDesc>
+      <profileDesc>
+         <langUsage>
+            <language ident="en">en</language>
+         </langUsage>
+         <textClass>
+            <keywords xml:lang="en">
+               <term>Ethiopic literature</term>
+               <term>research environment</term>
+               <term>catalogue</term>
+               <term>manuscripts</term>
+               <term>Ethiopian studies</term>
+               <term>Eritrean studies</term>
+               <term>Miracles of Mary</term>
+            </keywords>
+         </textClass>
+      </profileDesc>
+      <revisionDesc>
+         <change/>
+      </revisionDesc>
+   </teiHeader>
+   <text>
+      <front>
+         <div type="abstract" xml:id="abstract">
+            <p>This article will illustrate the challenges of digitizing of historical manuscript
+               catalogues, taking as an example the widespread and complex work of the <title
+                  level="a">Miracles of Mary</title>. This work is typically composed of framing
+               texts and miracle texts proper, often accompanied by miniatures, and it circulates in
+               collections of varying standardization. A flexible encoding system with different
+               identifiers for textual units and art themes has been developed, answering the most
+               common challenges of encoding the Ethiopic literary tradition, improving the
+               cataloguing.</p>
+         </div>
+         <div type="acknowledgements">
+            <p>I am very grateful to Eliana Dal Sasso, Pietro Maria Liuzzo and Nafisa Valieva for
+               their valuable comments on preliminary versions of this article.</p>
+         </div>
+      </front>
+      <body>
+         <div xml:id="intro">
+            <head>Introduction</head>
+            <p>This article addresses the encoding of an Ethiopic text known as the <title level="a"
+                  >Miracles of Mary</title> (<foreign>Taʾamməra Māryām</foreign>) for the project
+                  <title level="a">Beta maṣāḥəft: Manuscripts of Ethiopia and Eritrea</title>.<note>
+                  <p>The project, officially <foreign>Schriftkultur des christlichen Äthiopiens und
+                        Eritreas: Eine multimediale Forschungsumgebung</foreign>, in the following
+                     Beta maṣāḥəft, is funded within the framework of the Academies’ Programme
+                     (coordinated by the Union of the German Academies of Sciences and Humanities)
+                     under the purview of the Akademie der Wissenschaften in Hamburg for 2016–2040.
+                     It is headed by Prof. Alessandro Bausi and coordinated by Eugenia Sokolinski,
+                     the technical lead 2016–2022 was Pietro Maria Liuzzo. The former and current
+                     research fellows are Daria Elagina, Denis Nosnitsin, Dorothea Reule, Solomon
+                     Gebreyes, and Massimo Villa.</p>
+               </note> The <title level="a">Miracles of Mary</title> is a fluid collection of
+               stories, each of which recounts a miraculous deed said to be performed by the Virgin
+               Mary. Most versions of the <title>Miracles of Mary</title> are preceded by various
+               introductory texts. The work has been transmitted in multiple-text or composite
+               manuscripts, some of which place thematically related texts before or after.
+               Individual miracle texts are attested outside of the collection. The large number of
+               manuscripts, unknown but numbering at least several hundred, show that the stories
+               were widespread.<note>
+                  <p>See Balicka-Witakowska and Bausi (<ref type="bibl" target="#BalickaBausi2010"
+                        >2010, 792–93</ref>). Some of the quantitative research opportunities
+                     presented by the large amount both of manuscripts and of miracle texts are
+                     formulated in the <ref target="https://pemm.princeton.edu/research-questions/"
+                        >research questions</ref> of the PEMM project.</p>
+               </note> The earliest manuscript dates to the reign of King Dāwit I (r. 1380–1413)
+                  (<ref type="bibl" target="#BalickaBausi2010">Balicka-Witakowska and Bausi
+                  2010</ref>; <ref type="bibl" target="#Kropp2017">Kropp 2017, 65–66</ref>), and the
+               text continues to be copied, as manuscript culture in Ethiopia is still alive.
+               Despite the variable manuscript tradition, recurring patterns can be recognized.<note>
+                  <p>As usual for the history of Ethiopian and Eritrean studies, editions and
+                     translations were preceded by thorough catalogue descriptions of the related
+                     work, see in particular Zotenberg (<ref target="#Zotenberg1877" type="bibl"
+                        >1877, 62–71</ref>). An early edition and translation still regarded as a
+                     reference is Budge (<ref type="bibl" target="#Budge1900">1900</ref>). For an
+                     overview of the research in Ethiopian and Eritrean Studies carried out on the
+                        <title level="a">Miracles of Mary</title>, see Balicka-Witakowska and Bausi
+                        (<ref target="#BalickaBausi2010" type="bibl">2010</ref>). Cerulli (<ref
+                        target="#Cerulli1943" type="bibl">1943</ref>), while intended as a
+                     preparatory work, remains the most comprehensive study to date. Alessandro
+                     Bausi has studied the case of the <title level="a">Miracles of Mary</title> as
+                     an example for a corpus-organizer (<ref target="#Bausi2016" type="bibl">2016,
+                        121–26</ref>) and as a paradigmatic work of interaction and adaptation
+                     between Ethiopia and the Christian Orient (<ref target="#Bausi2020" type="bibl"
+                        >2020, 238–39</ref>).</p>
+                  <p>This current interest is also well illustrated by the recent <ref
+                        target="https://pemm.princeton.edu/">Princeton Ethiopian Miracles of Mary
+                        Project (PEMM)</ref>, led by Wendy Belcher, that investigates the corpus and
+                     particularly the miracle of the cannibal of Qəmr, from a literary studies’
+                     perspective. Interaction with this project has been very fruitful for our
+                     encoding, and I am very grateful in particular to Wendy Belcher and Evgeniia
+                     Lambrinaki for our exchanges on this subject.</p>
+               </note> Three manuscripts have been chosen to illustrate the variety: <list>
+                  <item>[A] <ref target="https://betamasaheft.eu/BLorient651">London, British
+                        Library, BL Oriental 651</ref> (sixteenth century),<note>
+                        <p>See Dorothea Reule, <title level="a">London, British Library, BL Oriental
+                              651</title>, <title level="j">Die Schriftkultur des christlichen
+                              Äthiopiens und Eritreas: Eine multimediale Forschungsumgebung / Beta
+                              maṣāḥǝft</title>, edited by Alessandro Bausi, accessed January 27,
+                           2022, <ptr target="https://betamasaheft.eu/BLorient651"/>.</p>
+                     </note></item>
+                  <item>[B] <ref target="https://betamasaheft.eu/BLadd16192">London, British
+                        Library, BL Add. 16,192</ref> (composite manuscript consisting of
+                     codicological units dating from between the fourteenth and the nineteenth century),<note>
+                        <p>See Massimo Villa, Dorothea Reule, Eugenia Sokolinski, <title level="a"
+                              >London, British Library, BL Add. 16,192</title>, <title level="j">Die
+                              Schriftkultur des christlichen Äthiopiens und Eritreas: Eine
+                              multimediale Forschungsumgebung / Beta maṣāḥǝft</title>, edited by
+                           Alessandro Bausi, accessed January 27, 2022,<ptr
+                              target="https://betamasaheft.eu/BLadd16192"/>.</p>
+                     </note> and</item>
+                  <item>[C] <ref target="https://betamasaheft.eu/BAVet8">Vatican City, Biblioteca
+                        Apostolica Vaticana, Aeth. 8</ref> (sixteenth century).<note>
+                        <p>See Massimo Villa, <title level="a">Vatican City, Biblioteca Apostolica
+                              Vaticana, Aeth. 8</title>, <title level="j">Die Schriftkultur des
+                              christlichen Äthiopiens und Eritreas: Eine multimediale
+                              Forschungsumgebung / Beta maṣāḥǝft</title>, edited by Alessandro
+                           Bausi, accessed January 27, 2022, <ptr
+                              target="https://betamasaheft.eu/BAVet8"/>.</p>
+                     </note></item>
+               </list>
+            </p>
+            <p>All three manuscripts contain miracles of Mary together with other texts, all are
+               multiple text manuscripts, and B is a composite manuscript. In addition to the
+               miracles, two of the manuscripts, A and B, contain introductory texts pertaining to
+               the collection of the <title>Miracles of Mary</title>. These introductory texts are
+               partly identical in both manuscripts. However, despite these commonalities, the three
+               manuscripts feature significant variation. The number and identity of miracles in
+               each manuscript is vastly different. A contains the so-called <title>ʾAkko-nu bǝʾsi
+                  collection</title>, a fixed sequence of 33 miracles (30 in this manuscript), each
+               followed by a hymn stanza (see below, <ptr target="#Collections" type="crossref"/>).
+               B contains 72 different miracles, whose sequence has also been attested, with minor
+               variation, in other manuscripts, for instance EMML 3536 (fifteenth century) (<ref
+                  target="#Getatchew1985" type="bibl">Getatchew Haile 1985</ref>). C contains eight
+               miracles also partly attested in the other two manuscripts, but in a different order.
+               The introductory texts in A and B are ordered differently, while C contains none of
+               these texts, and a colophon has been used to introduce the miracles. Lastly, the
+               remaining texts in the manuscripts A, B, and C are all different.<note>
+                  <p>See also <ptr target="#Example2" type="crossref"/>.</p>
+               </note></p>
+            <p>Beta maṣāḥəft encodes historical catalogues and undertakes new cataloguing endeavors
+               to promote the study of the Ethiopian and Eritrean manuscript culture.<note>
+                  <p>The Ethiopian and Eritrean highlands, located in the territories of the modern
+                     states of Ethiopia and Eritrea, formed one continuous cultural space throughout
+                     most of their history. For the sake of readability, this region will be
+                     referred to as <q>Ethiopia(n)</q> in the following. The catalogue encoding is
+                     being carried out by all past and present project members and external
+                     collaborators: Ashlee Benson, Augustine Dickinson, Daria Elagina, Marcin
+                     Krawcuk, Ralph Lee, Denis Nosnitsin, Dorothea Reule, Eugenia Sokolinski,
+                     Solomon Gebreyes, and Massimo Villa. See the project note Reule (<ref
+                        target="#Reule2018" type="bibl">2018</ref>). A more in-depth presentation of
+                     the project’s encoding is given in Liuzzo (<ref target="#Liuzzo2017"
+                        type="bibl">2017</ref>).</p></note> All encoding decisions are taken to
+               improve both these types of cataloguing work. As a result, encoding strategies for
+               the <title level="a">Miracles of Mary</title> have to be precise but flexible: they
+               must apply to in-depth cataloguing of a manuscript containing the <title level="a"
+                  >Miracles of Mary</title>, offering solutions for describing all of its aspects
+               that may be of interest to scholars of various backgrounds, and succeed equally well
+               in encoding previously published descriptions, which might deviate considerably from
+               current cataloguing standards. The encoding results must be accessible and usable for
+               scholars of any level of digital competence.</p>
+            <p>Two significant works for the encoding were Cerulli’s <title level="m">Il libro
+                  etiopico dei Miracoli di Maria e le sue fonti nelle letterature del Medio Evo
+                     <emph>latino</emph></title> (<ref target="#Cerulli1943" type="bibl">Cerulli
+                  1943</ref>) and the unpublished miracle handlist compiled by William Macomber in
+               his function as cataloguer for the EMML project,<note>
+                  <p><ptr target="https://hmml.org/about/global-operations/ethiopia/"/>.</p>
+               </note> and made available to the project by Alessandro Bausi (<ref
+                  target="#Macomber" type="bibl">Macomber n.d.</ref>). This handlist contains 643
+               single miracle texts, often identifying distinct recensions, each listed with a
+               summarizing title, manuscript witnesses, and one or more incipits.</p>
+            <p>Encoding the information contained in these two works as TEI allows us to: <list
+                  rend="bulleted">
+                  <item>group and connect them in the digital research environment, where they can
+                     easily be accessed and queried,</item>
+                  <item>aid the identification of textual units, their delimitations and recensions
+                     by assigning stable identifiers, for internal and external use,</item>
+                  <item>facilitate further philological and codicological research on the
+                     collection, particularly on its formation and evolution across time and
+                     space.</item>
+               </list></p>
+            <p>To achieve these aims, the encoding must:<list rend="bulleted">
+                  <item>allow for a variable level of detail,</item>
+                  <item>be transparent and flexible, allowing revisions and corrections reflecting
+                     changes in the scholars’ understanding of the textual units and their
+                     relationships,</item>
+                  <item>make the most out of the vagueness of existing descriptions.</item>
+               </list>Based on this encoding applications may allow interested scholars to find
+               references to miracle texts and other texts of the Miracles of Mary, as well as their
+               placement in manuscripts.</p>
+            <p>Several challenges originating in the peculiarities of historical catalogue
+               descriptions became apparent during the encoding of the <title level="a">Miracles of
+                  Mary</title>:<note>
+                  <p>While the challenges listed here result, from the modern point of view, mainly
+                     from shortcomings of the historical catalogues, it must not be forgotten that
+                     these catalogues were pioneering works in the study of Ethiopic literature, and
+                     their level of scholarship remains often unattained today.</p>
+               </note>
+               <list rend="bulleted">
+                  <item>insufficient identification of miracle texts, framing texts, and the entire
+                     collection,</item>
+                  <item>inconsistent descriptions with varying depth within one catalogue or even
+                     one manuscript description,</item>
+                  <item>lack of codicological awareness and a limited understanding of the
+                     manuscripts’ stratigraphy, which is crucial when studying the genesis of such
+                     an evolving collection.</item>
+               </list> These limitations hinder the identification and delimitation of collections
+               and their constituting textual units, which presupposes thorough philological,
+               codicological, and stratigraphical analysis.</p>
+            <p>These problems are less pronounced when describing a manuscript to which one has
+               access, either because images are available to improve on the existing catalogue
+               description or because the manuscript is described for the first time based on good
+               images or on the artefact itself. However, such descriptions have their own challenges.<note>
+                  <p>That the cataloguing of manuscripts containing the <title level="a">Miracles of
+                        Mary</title> is far from trivial has been demonstrated in Bausi (<ref
+                        target="#Bausi2016" type="bibl">2016, 123–24</ref>).</p>
+               </note> In many manuscripts, the collection of the <title level="a">Miracles of
+                  Mary</title> can be very long, raising questions about the depth of the
+               description, which might be answered differently by different cataloguers. The
+               absence of a critical edition or a study identifying the recensions of the
+               constituent texts of the collections remains problematic.</p>
+            <p>All the challenges noted above for the <title level="a">Miracles of Mary</title> are
+               common throughout the Ethiopic literary and manuscript tradition. Producing a
+               practical solution for this text will provide a template for future work in other texts.<note>
+                  <p>For a presentation of the complex constitution and evolution of Ethiopic
+                     multiple-text manuscripts, see Bausi (<ref target="#Bausi2016" type="bibl"
+                        >2016</ref>), which includes the example of the <title level="a">Miracles of
+                        Mary</title>.</p>
+               </note></p>
+         </div>
+         <div xml:id="Miracles">
+            <head>The <title level="a">Miracles of Mary</title></head>
+            <p>Texts narrating miracles performed by a saint during or after their lifetime are a
+               classical hagiographical genre, widely attested throughout all Christian literary traditions.<note>
+                  <p>For an overview of the genre’s origins and early development, see for example
+                     Efthymiadis (<ref target="#Efthymiadis2014" type="bibl">2014</ref>).</p>
+               </note> Though not as common as lives or <soCalled>Vitae</soCalled> of saints
+                  (<foreign>gadlāt</foreign>), miracles (<foreign>taʾammər</foreign>) stories or
+               collections of miracles ascribed to particular saints are a significant part of the
+               Ethiopic hagiographic corpus.<note>
+                  <p>For a recent overview of the Ethiopic hagiographic genre, see Brita (<ref
+                        target="#Brita2020" type="bibl">2020, 261–81</ref>). The same contribution
+                     also includes an outline of the history of the <title level="a">Miracles of
+                        Mary</title> as an outstanding example of a translated work that shaped
+                     Ethiopic culture (<ref target="#Brita2020" type="bibl">Brita 2020,
+                     254–55</ref>). For a short presentation of the development and content of the
+                     genre of <foreign>taʾammǝr</foreign>, see Nosnitsin (<ref
+                        target="#Nosnitsin2010" type="bibl">2020</ref>).</p>
+               </note> Most miracle texts are relatively short and self-contained, designed to fit
+               easily within the broader context of a saint’s hagiographic dossier, appealing both
+               for their storytelling and spiritual purpose. In most manuscripts, miracle texts
+               appear after the <soCalled>Vitae</soCalled>, but can also occur within other
+               collections. The <title level="a">Miracles of Mary</title> is the most famous of
+               several miracle collections that circulated in Ethiopic literature. As noted above,
+               single miracle texts from the <title>Miracles of Mary</title> circulated in
+               manuscripts containing other works, often as <q>guest texts</q>.<note>
+                  <p>Defined by Gumbert (<ref xml:id="q1" target="#Gumbert2004" type="bibl">2004,
+                        42</ref>) as <quote source="#q1">a text which has been added as an
+                        enrichment, into an existing codicological unit</quote>.</p>
+               </note> This variety is one of the factors contributing to the complexity of their
+               encoding.</p>
+            <p>The historical nucleus of the <title>Miracles of Mary</title> began in
+               twelfth-century France. We know of versions in vernacular European languages (<ref
+                  target="#Cerulli1943" type="bibl">Cerulli 1943, 7–15</ref>), and a translation
+               into Arabic in the thirteenth century (<ref target="#Cerulli1943" type="bibl">Cerulli
+                  1943, 531–35</ref>; <ref target="#Kropp2017" type="bibl">Kropp 2017, 61–64</ref>).
+               New miracle narratives were added continuously in all versions, forming the
+               collection into an outstanding example of cultural transmission and adaptation.
+               Scholarly consensus dates the translation of the <title level="a">Miracles of
+                  Mary</title> into Ethiopic to the end of the fourteenth century from an Arabic
+               intermediate witness.<note>
+                  <p>It should be noted that this Arabic Vorlage consisted exclusively of miracles
+                     of European origin, while the numerous Ethiopic miracles set in Egypt and the
+                     Levant must have other sources (<ref target="#Cerulli1943" type="bibl">Cerulli
+                        1943, 148–57; 530–31</ref>).</p>
+               </note> The reception of the <title level="a">Miracles of Mary</title> in Ethiopia
+               has to be set against the background of theological developments which took place in
+               the fifteenth and sixteenth century within the Ethiopian court and church (<ref
+                  target="#GetatchewNosnitsin2007" type="bibl">Getatchew and Nosnitsin 2007</ref>).
+               During this time, the corpus of the Ethiopic <title level="a">Miracles of
+                  Mary</title> increased considerably and incorporated accounts of Mary’s miraculous
+               interventions in the course of Ethiopian history. Texts of the <title level="a"
+                  >Miracles of Mary</title> were also read during the liturgy and in so doing
+               obtained high cultural and identity forming value (<ref
+                  target="#FritschHabtemichael2020" type="bibl">Fritsch and Habtemichael 2020,
+                  187</ref>).</p>
+            <p>The oldest known manuscripts of the <title level="a">Miracles of Mary</title> are
+               those kept at the churches of ʾAmbā Gǝšen and Beta Ləḥem in Ethiopia, and date from
+               the time of King Dāwit I (r. 1380–1413) (<ref target="#BalickaBausi2010" type="bibl"
+                  >Balicka-Witakowska and Bausi 2010</ref>; <ref target="#Kropp2017" type="bibl"
+                  >Kropp 2017, 65–66</ref>).<note>
+                  <p>Hundreds of manuscripts containing the <title level="a">Miracles of
+                        Mary</title> are now available to scholars digitally or in libraries; see
+                     Balicka-Witakowska and Bausi (<ref target="#BalickaBausi2010" type="bibl">2010,
+                        792–93</ref>).</p>
+               </note></p>
+         </div>
+         <div xml:id="MiraclesEncoding">
+            <head>Encoding the <title level="a">Miracles of Mary</title></head>
+            <p>Describing this complex collection in a catalogue is a challenge. Ms London, British
+               Library, BL Orient. 650, the first manuscript of the <title level="a">Miracles of
+                  Mary</title> described in Wright (<ref target="#Wright1877" type="bibl">1877,
+                  46</ref>), is an excellent example of the catalogue’s narrative style, its varying
+               level of depth in the identification of textual units, and its codicological
+                  shortcomings:<figure xml:id="Example1">
+                  <graphic url="img/Wright.jpg" width="980px" height="1277px"/>
+                  <head type="legend">Excerpt of the description of the content of MS London,
+                     British Library, BL Orient. 650 in Wright (<ref target="#Wright1877"
+                        type="bibl">1877, 46</ref>).</head>
+               </figure>
+            </p>
+            <p>The description states the number of miracle texts attested in this manuscript and
+               their location in relation to the other texts the manuscript contains, the exact
+               identification of one miracle text and of a further text included in the collection,
+               and quotes the colophon.<note>Whether this text actually constitutes a colophon may
+                  be disputed, see, accessed January 27, 2022, <ptr
+                     target="https://betamasaheft.eu/Guidelines/?id=colophon"/>.</note> While
+               allowing researchers to discover whether the manuscript is relevant for their work,
+               the description suffers from the typical shortcomings of its period. Why has only the
+               last miracle text been identified? What is meant by <q>appended</q>? Are the miracle
+               texts included after the colophon written by the same hand as those before it? These
+               questions, which must remain open until consultation of the manuscript or its
+               digitization, are related to the manuscript’s stratigraphy, whose reconstruction
+               based on this description must remain rudimentary.</p>
+            <p>TEI encoding methods for literary works (<ptr target="#Works" type="crossref"/>) and
+               art themes (<ptr target="#Art" type="crossref"/>) allow us to encode Wright’s and
+               similar catalogue descriptions, and scholars can adapt it to modern descriptions. The
+               system is presented below and illustrated by the encoded version of this catalogue
+               entry.</p>
+            <div xml:id="Works">
+               <head>Literary works</head>
+               <p>Beta maṣāḥǝft considers as works all texts with <quote
+                     source="#quoteref1 #quoteref2">a fixed content occurring in a fixed sequence
+                     which can circulate independently</quote> (<ref xml:id="quoteref1"
+                     target="#Villa2018" type="bibl">Villa 2018, 143</ref>; <ref xml:id="quoteref2"
+                     target="#Liuzzo2019" type="bibl">Liuzzo 2019, 79–81</ref>). A TEI file is
+                  created for each work. In each work TEI file, an <att>xml:id</att> with a semantic
+                  value is assigned to the root <gi>TEI</gi> element.<note>
+                     <p>This value is referred to in the following as the TEI file’s <q>ID</q>. On
+                        the criteria for the construction of these project-specific IDs, see Villa
+                           (<ref target="#Villa2018" type="bibl">2018, 143</ref>).</p>
+                  </note> Within this type of TEI file each <code>div[@type]</code> in the
+                     <tag>text</tag> can be assigned an <att>xml:id</att>, to represent the work’s
+                  subdivisions. While this is not a special practice, retaining the structure of
+                     <tag type="start">div type="textpart"</tag>s even without textual content
+                  allows precise references to the value of the <tag type="start">div
+                     type="textpart"</tag>s <att>xml:id</att>s from other TEI files within the
+                  project, which increases the homogeneity and precision of cataloguing. The text of
+                  one or more parts of a work encoded as a <tag type="start">div
+                     type="textpart"</tag>s may also be attested elsewhere. For example one of the
+                  introductory texts preceding the miracle texts in manuscripts of the
+                     <title>Miracles of Mary</title> contains a commemoration of Mary receiving the
+                  Covenant of Mercy for the 16th <foreign>Yakkātit</foreign>. The Ethiopic
+                     <title>Synaxarion</title>, a collection of daily commemorative texts, also
+                  contains the same commemoration. In this case, a TEI file for this commemoration
+                  has been created: <ref target="https://betamasaheft.eu/LIT5050Mary16Yakkatit "
+                           ><title><foreign>Sǝnkǝssār</foreign> Commemoration of Mary for the 16th
+                           <foreign>Yakkātit</foreign></title> (CAe 5050)</ref>.<note><p>Accessed
+                        January 23, 2022, <ptr
+                           target="https://betamasaheft.eu/LIT5050Mary16Yakkatit "/>. The numerical
+                        part of work TEI files’ ID becomes the Clavis Aethiopica (CAe) reference
+                        number, used to refer to the textual unit. The CAe developed by Beta
+                        maṣāḥǝft sets out to become a comprehensive repertory of the Ethiopic
+                        written tradition, identifying all texts with an alphanumeric string and
+                        providing bibliography for them. Its aims and background are referred to in
+                        Liuzzo (<ref type="bibl" target="#Liuzzo2019">2019, xxiii</ref>).</p>
+                  </note> This identifier, LIT5050Mary16Yakkatit, is referred to in the
+                     <title>Synaxarion</title> TEI file, <tag type="start">div type="textpart"
+                     subtype="commemoration" xml:id="Yakk16KidanaM"
+                     corresp="LIT5050Mary16Yakkatit"</tag>.</p>
+               <p>In accordance with these principles, several TEI files have been created for the
+                     <title>Miracles of Mary</title>. Typically attestation of the <title>Miracles
+                     of Mary</title> is as a collection of several miracle texts, usually
+                  accompanied by framing texts. While fixed sequences of miracle texts exist, this
+                  collection often exhibits variation in the miracle texts and their number. <ptr
+                     target="#Example2" type="crossref"/> comparing the three example manuscripts
+                  above, which contain the collection, shows the variance in the beginning of the
+                     <title>Miracles of Mary</title> as it becomes clear when the different parts of
+                  the collection have been identified. <figure xml:id="Example2">
+                     <graphic url="img/MiracleCompare1new.jpg" width="969px" height="673px"/>
+                     <head type="legend">Comparison of three manuscripts showing the different
+                        beginning of the collection. Accessed January 27, 2022, <ptr
+                           target="https://betamasaheft.eu/compareSelected?mss=BLorient651,BAVet8,BLadd16192"
+                        />.</head>
+                  </figure> Individual miracle texts can also be attested outside of the collection
+                  as guest texts added to manuscripts with a different main content. <ptr
+                     target="#Example3" type="crossref"/> shows a comparison of <ref
+                     target="https://betamasaheft.eu/LIT3622Miracle"><title level="m">Miracle of
+                        Mary: Homily on a potter from Syria</title> (CAe
+                        3622)</ref>,<note><p>Accessed January 27, 2022 <ptr
+                           target="https://betamasaheft.eu/LIT3622Miracle"/>.</p></note> in this
+                  case focusing on an individual story rather than on the collection, and showing
+                  the same miracle text, respectively, as part of a collection of the
+                     <title>Miracles of Mary</title>, as one item in a composite multiple-text
+                  manuscript, and as a guest text in the third. <figure xml:id="Example3">
+                     <graphic url="img/MiracleCompare2.jpg" width="626px" height="972px"/>
+                     <head type="legend">Comparison of <title level="m">Miracle of Mary: Homily on a
+                           potter from Syria</title> (CAe 3622). Accessed January 27, 2022, <ptr
+                           target="https://betamasaheft.eu/compare?workid=LIT3622Miracle"/>.</head>
+                  </figure>
+               </p>
+               <div xml:id="Collections">
+                  <head>Collections</head>
+                  <p>Two TEI files have been created for the collection of the <title>Miracles of
+                        Mary</title>: <ref target="https://betamasaheft.eu/LIT2384Taamme">Miracles
+                        of Mary (CAe 2384, ID: LIT2384Taamme)</ref><note><p>Accessed January 27,
+                           2022 <ptr target="https://betamasaheft.eu/LIT2384Taamme"/>.</p></note>
+                     for collections of the <title>Miracles of Mary</title> declared as such and
+                     containing in addition to the miracle texts also framing texts, and <ref
+                        target="https://betamasaheft.eu/LIT3585Taamme">Miracles of Mary (CAe 3585,
+                        ID: LIT3585Taamme)</ref><note><p>Accessed January 27, 2022 <ptr
+                              target="https://betamasaheft.eu/LIT3585Taamme"/>.</p></note> for a
+                     collection of more than one miracle of Mary without framing texts. The
+                     existence of these two TEI files acknowledges the essential difference between
+                     the <title level="a">Miracles of Mary</title> as a self-contained collection
+                     and often smaller groups of Miracles of Mary. These groups of miracles
+                     constitute a different category both from the collection proper and single
+                     miracle texts. This system is also particularly useful when working within the
+                     limits of historical catalogue descriptions. These two TEI files do not contain
+                     a structure of <tag type="start">div type="textpart"</tag>s with reference to
+                     individual miracle IDs in <tag type="start">div type="edition"</tag>s. This
+                     system allows their use in identifying any collection of the <title>Miracles of
+                        Mary</title> in a manuscript without knowing which miracle texts it contains
+                     and in which order. The IDs of the individual miracle texts attested in the
+                     manuscripts in question will be stated in the respective manuscript
+                     descriptions only (<ptr type="crossref" target="#Example21"/>, <ptr
+                        target="#Manuscripts" type="crossref"/>). This method also allows the use of
+                     both collection IDs in the encoding of catalogue descriptions which do not
+                     specify the identity and number of miracle texts contained in a manuscript.</p>
+                  <figure xml:id="Example21">
+                     <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                        <msItem xml:id="ms_i1">
+                           <locus from="3ra" to="121va">Fols 3ra–121va</locus>
+                           <title ref="https://betamasaheft.eu/LIT2384Taamme">Taʾāmmǝra Māryām
+                              "Miracles of Mary"</title>
+                           <textLang mainLang="gez"/>
+                           <!--    -->
+                        </msItem>
+                     </egXML>
+                     <head type="legend">Example attestation of <ref
+                           target="https://betamasaheft.eu/LIT2384Taamme">LIT2384Taamme</ref> in a
+                        manuscript description.<note>
+                           <p>Accessed January 27, 2022 <ptr
+                                 target="https://betamasaheft.eu/LIT2384Taamme"/>.</p>
+                        </note></head>
+                  </figure>
+                  <p>The scope of these TEI files and the use of their IDs within the digital
+                     research environment are stated in <gi>abstract</gi><note>
+                        <p>The content of <gi>abstract</gi> is among the first, and often only,
+                           parts of the TEI files accessed by many users of the web application. It
+                           has therefore proven crucial that all data identifying and distinguishing
+                           this TEI file be offered here.</p>
+                     </note> (<ptr type="crossref" target="#Example4"/>)<note>
+                        <p>All examples follow the style guidelines of Beta maṣāḥəft.</p>
+                     </note> and <gi>listRelation</gi> (<ptr type="crossref" target="#Example5"/>).
+                        <figure xml:id="Example4">
+                        <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                           <abstract>
+                              <p> The collection of the Miracles of Mary is one of the most popular
+                                 works of Gǝʿǝz literature. It circulates as collections of varying
+                                 constitution, of which the <ref type="work"
+                                    corresp="https://betamasaheft.eu/LIT5673AkkonuColl">Miracles of
+                                    Mary: ʾAkko-nu bǝʾsi collection</ref> is the most standardised
+                                 one. In the unpublished list compiled by William Macomber,
+                                 <!--...-->
+                              </p>
+                              <p> This record refers to any collection of the Miracles of Mary
+                                 declared as such and containing in addition to the miracles also
+                                 introductory texts such as the <ref type="work"
+                                    corresp="https://betamasaheft.eu/LIT1968Mashaf">መጽሐፈ፡ ሥርዓት፡
+                                    ዘወጽአ፡ እመንበረ፡ ማርቆስ፡ ሐዋርያ፡ እመካነ፡ መዓልቃ፡ </ref>. For groups of
+                                 miracles of Mary without introductory texts, see <ref type="work"
+                                    corresp="https://betamasaheft.eu/LIT3585Taamme">ተአምረ፡
+                                    ማርያም፡</ref>, for the so-called <foreign xml:lang="gez">ʾAkko-nu
+                                    bǝʾsi</foreign> collection of 33 miracles, see <ref type="work"
+                                    corresp="https://betamasaheft.eu/LIT5673AkkonuColl">Miracles of
+                                    Mary: ʾAkko-nu bǝʾsi collection</ref> . </p>
+                           </abstract>
+                        </egXML>
+                        <head type="legend"><gi>abstract</gi> of <ref
+                              target="https://betamasaheft.eu/LIT2384Taamme">LIT2384Taamme</ref>.<note>
+                              <p>Accessed January 27, 2022 <ptr
+                                    target="https://betamasaheft.eu/LIT2384Taamme"
+                           />.</p></note></head>
+                     </figure>
+                     <figure xml:id="Example5">
+                        <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                           <listRelation>
+                              <relation name="ecrm:P129_is_about"
+                                 ref="http://erlangen-crm.org/current/P129_http://erlangen-crm.org/current/is_http://erlangen-crm.org/current/about"
+                                 active="https://betamasaheft.eu/LIT2384Taamme"
+                                 passive="https://betamasaheft.eu/PRS6819Mary"/>
+                              <relation name="saws:contains"
+                                 ref="http://purl.org/saws/ontology#contains"
+                                 active="https://betamasaheft.eu/LIT2384Taamme"
+                                 passive="https://betamasaheft.eu/LIT3584Intro">
+                                 <desc>
+                                    <ref type="work" corresp="https://betamasaheft.eu/LIT3584Intro"
+                                       >Introductive exhortation to the Taʾammǝra Māryām</ref> is
+                                    one of several introductory texts attested in varying sequence
+                                    in manuscripts containing the <ref type="work"
+                                       corresp="https://betamasaheft.eu/LIT2384Taamme">ተአምረ፡
+                                       ማርያም፡</ref>. </desc>
+                              </relation>
+                              <relation name="saws:contains"
+                                 ref="http://purl.org/saws/ontology#contains"
+                                 active="https://betamasaheft.eu/LIT2384Taamme"
+                                 passive="https://betamasaheft.eu/LIT1968Mashaf">
+                                 <desc>
+                                    <ref type="work" corresp="https://betamasaheft.eu/LIT1968Mashaf"
+                                       >መጽሐፈ፡ ሥርዓት፡ ዘወጽአ፡ እመንበረ፡ ማርቆስ፡ ሐዋርያ፡ እመካነ፡ መዓልቃ፡ </ref> is
+                                    one of several introductory texts attested in varying sequence
+                                    in manuscripts containing the <ref type="work"
+                                       corresp="https://betamasaheft.eu/LIT2384Taamme">ተአምረ፡
+                                       ማርያም፡</ref>. </desc>
+                              </relation>
+                              <relation name="saws:contains"
+                                 ref="http://purl.org/saws/ontology#contains"
+                                 active="https://betamasaheft.eu/LIT2384Taamme"
+                                 passive="https://betamasaheft.eu/LIT3585Taamme">
+                                 <desc> Typically, the <ref type="work"
+                                       corresp="https://betamasaheft.eu/LIT2384Taamme">ተአምረ፡
+                                       ማርያም፡</ref> contains a varying number of miracles. </desc>
+                              </relation>
+                           </listRelation>
+                        </egXML>
+                        <head type="legend"><gi>listRelation</gi> of <ref
+                              target="https://betamasaheft.eu/LIT2384Taamme">LIT2384Taamme</ref>.<note>
+                              <p>Accessed January 27, 2022 <ptr
+                                    target="https://betamasaheft.eu/LIT2384Taamme"
+                           />.</p></note></head>
+                     </figure>
+                  </p>
+                  <p>A TEI file has also been created for the so-called <title><foreign>ʾAkko-nu
+                           bəʾsi</foreign> collection</title> of <title>Miracles of Mary</title>:
+                        <ref target="https://betamasaheft.eu/LIT5673AkkonuColl"><title>Miracles of
+                           Mary: <foreign>ʾAkko-nu bǝʾsi</foreign> collection</title> (CAe 5673, ID:
+                        LIT5673AkkonuColl)</ref>.<note>
+                        <p>Accessed January 27, 2022 <ptr
+                              target="https://betamasaheft.eu/LIT5673AkkonuColl"/>.</p></note> This
+                     collection is composed typically of introductory texts and a sequence of 33
+                     miracle texts. Each miracle is followed by a stanza of the hymn
+                           <title><foreign>ʾAkko-nu bəʾsi</foreign></title>, which is also attested
+                     in continuous form outside of the <title>Miracles of Mary</title>: <ref
+                        target="https://betamasaheft.eu/LIT4274AkkonuB"><title><foreign>ʾAkko-nu
+                              bǝʾsi</foreign></title> (CAe 4274, ID: LIT4274AkkonuB)</ref> (<ref
+                        target="#Grohmann1919" type="bibl">Grohmann 1919, 322–83</ref>).<note>
+                        <p>Accessed January 27, 2022 <ptr
+                              target="https://betamasaheft.eu/LIT4274AkkonuB"/>.</p></note> The
+                     stanzas are all thematically related to the miracle texts they follow.
+                     Typically, each miracle text is also followed by a miniature. As <ptr
+                        target="#Example6 #Example7" type="crossref"/> illustrate, these miniatures
+                     are as fixed in their content as the text and vary only in style (<ref
+                        target="#Balicka2010" type="bibl">Balicka-Witakowska 2010, 794</ref>; <ref
+                        target="#Annequin1972" type="bibl">Annequin 1972</ref>): <figure
+                        xml:id="Example6">
+                        <graphic url="img/Miniature1.jpg" width="1915px" height="2253px"/>
+                        <head type="legend">Miniature illustrating <ref
+                              target="https://betamasaheft.eu/LIT3593Miracle"><title>Miracle of
+                                 Mary: Miracle of the young girl called Mary, from Dafrā</title>
+                              (CAe 3593)</ref><note><p>Accessed January 27, 2022 <ptr
+                                    target="https://betamasaheft.eu/LIT3593Miracle"/>.</p></note> on
+                           f. 31v of MS <ref target="https://betamasaheft.eu/ESdd001"
+                                 ><title>Bǝḥerāwi Kǝllǝlāwi Mangǝśti Tǝgrāy, Dabra Dāmmo ʾAbuna
+                                 ʾAragāwi, DD-001</title></ref> (digitized by the Ethio-SPaRe
+                                 project),<note><p>See Susanne Hummel, Denis Nosnitsin, Pietro Maria
+                                 Liuzzo, Eugenia Sokolinski, <title level="a">Bǝḥerāwi Kǝllǝlāwi
+                                    Mangǝśti Tǝgrāy, Dabra Dāmmo ʾAbuna ʾAragāwi, DD-001</title>,
+                                    <title level="j">Die Schriftkultur des christlichen Äthiopiens
+                                    und Eritreas: Eine multimediale Forschungsumgebung / Beta
+                                    maṣāḥǝft</title>, edited by Alessandro Bausi, accessed January
+                                 27, 2022, <ptr target="https://betamasaheft.eu/ESdd001"
+                              />.</p></note>
+                           <title>Miracles of Mary</title> (1632–1664), Catalogued by Susanne
+                           Hummel, image accessed on 11 November 2020. Used with permission.</head>
+                     </figure>
+                     <figure xml:id="Example7">
+                        <graphic url="img/Miniature2.jpg" width="1280px" height="578px"/>
+                        <head type="legend">Miniature illustrating <ref
+                              target="https://betamasaheft.eu/LIT3593Miracle"><title>Miracle of
+                                 Mary: Miracle of the young girl called Mary, from Dafrā</title>
+                              (CAe 3593)</ref><note><p>Accessed January 27, 2022 <ptr
+                                    target="https://betamasaheft.eu/LIT3593Miracle"/>.</p></note> on
+                           f. 59r of <ref target="https://betamasaheft.eu/BLorient641">MS
+                                 <title>London, British Library, BL Oriental
+                                 641</title></ref>,<note><p>Dorothea Reule, <title level="a">London,
+                                    British Library, BL Oriental 641</title>, <title level="j">Die
+                                    Schriftkultur des christlichen Äthiopiens und Eritreas: Eine
+                                    multimediale Forschungsumgebung / Beta maṣāḥǝft</title>, edited
+                                 by Alessandro Bausi, accessed January 27, 2022, <ptr
+                                    target="https://betamasaheft.eu/BLorient641"/>.</p></note>
+                           <title>Miracles of Mary</title> (seventeenth century), image accessed on
+                           11 November 2020. © British Library Board. Used with permission.
+                           (permission given by British Library on 28.02.2021)</head>
+                     </figure>
+                  </p>
+                  <p>To represent this structure, the TEI file LIT5673AkkonuColl contains a
+                     structure of nested <gi>div</gi>s for all introductory texts and each unit of
+                     miracle text, stanza and miniature (<ptr target="#Example8" type="crossref"/>).
+                     Decorative elements such as miniatures are generally not referred to in TEI
+                     files for literary works, which as a general rule only deal with texts.
+                     Typically, miniatures would be described in the <gi>decoDesc</gi> of the
+                     manuscript TEI files, and, within the project, a TEI file would also be created
+                     for typical motifs of Ethiopic manuscript decorations.<note>For the use of art
+                        themes, see below <ptr target="#Art" type="crossref"/>.</note> An exception
+                     has been made for the miniatures that form part of the <title><foreign>ʾAkko-nu
+                           bəʾsi</foreign> collection</title> due to their standardized inclusion in
+                     the work and rendering. Therefore, the IDs for each miniature’s art theme are
+                     referred to in analogy to the IDs of the work TEI files of the miracle texts
+                     and <title><foreign>ʾAkko-nu bəʾsi</foreign></title> stanzas.</p>
+                  <figure xml:id="Example8">
+                     <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                        <div type="textpart" xml:id="AkkColl11">
+                           <label>Miracle of Juliana and Barbara from Bethlehem</label>
+                           <div type="textpart" xml:id="AkkMir11"
+                              corresp="https://betamasaheft.eu/LIT3597Miracle">
+                              <label>Miracle</label>
+                           </div>
+                           <div type="textpart" xml:id="AkkSta11"
+                              corresp="https://betamasaheft.eu/LIT4274AkkonuB#Stanza11">
+                              <label>ʾAkko-nu bǝʾsi stanza</label>
+                           </div>
+                           <div type="textpart" xml:id="AkkMin11"
+                              corresp="https://betamasaheft.eu/AT1118MMYolyana">
+                              <label>Miniature</label>
+                           </div>
+                        </div>
+                     </egXML>
+                     <head type="legend">Structure of the subdivisions in <ref
+                           target="https://betamasaheft.eu/LIT5673AkkonuCol">LIT5673AkkonuColl</ref>
+                        illustrated with the eleventh miracle of the collection.<note>
+                           <p>Accessed 27 January, 2022 <ptr
+                                 target="https://betamasaheft.eu/LIT5673AkkonuCol"/>.</p>
+                        </note></head>
+                  </figure>
+               </div>
+               <div xml:id="MiracleRecords">
+                  <head>Miracle Texts</head>
+                  <p>A work TEI file was created for all known texts included in any of the
+                     collections of the miracles of Mary. Though not all miracle texts are yet
+                     attested independently, the significant variation in their attestation and
+                     their potential independence of circulation make this the best option. The
+                     titles, incipits and manuscript attestations given for miracle texts listed in
+                        <ref target="#Macomber" type="bibl">Macomber (n.d.)</ref> were each encoded
+                     in a dedicated TEI file.</p>
+                  <p>Each TEI file for a miracle of Mary contains the title given to the miracle by
+                        <ref target="#Macomber" type="bibl">Macomber (n.d.)</ref>, as well as any
+                     titles given to this miracle in the literature (<ptr target="#Example9"
+                        type="crossref"/>). One of the highest priorities of <title level="s">Beta
+                        maṣāḥəft</title> is for its encoded data to be findable and usable for all
+                     users of the web application. The inclusion and indexing of (ideally) all
+                     titles used to refer to a miracle text contributes to this goal. <figure
+                        xml:id="Example9">
+                        <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                           <title xml:id="t1" xml:lang="en">Miracle of Mary: Miracle of the girl
+                              called Mary, from Dafrā</title>
+                           <title xml:id="t2" xml:lang="en">Māryām from Dǝfrā, a child who wanted to
+                              receive Communion, but was shut up in the house when her family went
+                              to church</title>
+                        </egXML>
+                        <head type="legend">Titles of the miracle TEI file <ref
+                              target="https://betamasaheft.eu/LIT3593Miracle">LIT3593Miracle</ref>.<note>
+                              <p>Accessed 27 January, 2022 <ptr
+                                    target="https://betamasaheft.eu/LIT3593Miracle"/>.</p>
+                           </note></head>
+                     </figure>
+                  </p>
+                  <p>More information on the miracle text’s content may be given in a summarized
+                     form in <gi>abstract</gi> (<ptr target="#Example10" type="crossref"/>). This
+                     information is beneficial in newly described miracle texts, which are not
+                     included in <ref target="#Macomber" type="bibl">Macomber (n.d.)</ref>.<note>
+                        <p>The identification of not-yet-described miracle texts, as well as the
+                           distinction of recensions and corrections of previous identifications,
+                           are and will be common events as more and more manuscripts have been
+                           described thoroughly. This has become particularly apparent through
+                           cooperation with the PEMM project, to whose members we are very grateful
+                           for their indicating several new identifications and corrections.</p>
+                     </note>
+                     <figure xml:id="Example10">
+                        <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                           <abstract>
+                              <p>A young, devout man is sent together with a companion by his father
+                                 to another city during the rainy season. As they are surrounded by
+                                 the flood, he prays to God and St Mary to deliver them.
+                                 Miraculously, they find no rain anymore. They arrive at the city
+                                 they were sent to, and, on their return, see many soldiers. Again,
+                                 the young man prays for deliverance, and in the very last moment,
+                                 the soldier, who is about to rob them, repents and goes on his way
+                                 without damaging them.</p>
+                           </abstract>
+                        </egXML>
+                        <head type="legend"><gi>abstract</gi> of the miracle <ref
+                              target="https://betamasaheft.eu/LIT5907MMRain">LIT5907MMRain</ref>,<note>
+                              <p>Accessed 27 January, 2022 <ptr
+                                    target="https://betamasaheft.eu/LIT5907MMRain"/>.</p>
+                           </note> identified in the cataloguing of MS London, British Library, BL
+                           Oriental 652.</head>
+                     </figure>
+                  </p>
+                  <p>Each miracle TEI file contains a <gi>listRelation</gi> with at least one
+                        <gi>relation</gi>,<note>
+                        <p>For the use of relations, see, accessed 27 January, 2022 <ptr
+                              target="https://betamasaheft.eu/Guidelines/?id=relations"/>, where all
+                           used values are listed, and Liuzzo (<ref target="#Liuzzo2019" type="bibl"
+                              >2019, 208–11</ref>) for a conceptual overview.</p>
+                     </note> between the concerned TEI file and the collection ID LIT2384Taamme
+                        (<ptr type="crossref" target="#Example11"/>): by connecting the TEI files
+                     LIT5108MiracleYohannes and LIT2384Taamme with <val>saws:formsPartOf</val>, this
+                     relation states that the former forms a part of the latter and links all
+                     miracles of Mary to the collection LIT2384Taamme, making them easily findable.
+                     More relations, such as with mentioned persons, literary works or other
+                     entities, or versions of the same miracle text, are possible. In <ptr
+                        target="#Example11" type="crossref"/>, the relation
+                        <val>ecrm:P129_is_about</val> connects the TEI file <ref
+                        target="https://betamasaheft.eu/LIT5108MiracleYohannes"><title>Miracle of
+                           Mary: Yoḥannǝs finds a copy of the Acts of St Juliana and St Barbara that
+                           he had lost</title> (CAe 5108, ID
+                        LIT5108MiracleYohannes)</ref><note>Accessed January 27, 2022 <ptr
+                           target="https://betamasaheft.eu/LIT5108MiracleYohannes"/>.</note> with
+                     entities mentioned in this miracle text, TEI files for persons PRS5789Juliana
+                     and PRS2497Barbara, and the work TEI file LIT4509GadlaBarb. The relation
+                        <val>lawd:hasAttestation</val> is used to connect the work with manuscripts
+                     containing it and is equivalent to <ptr target="#Example21" type="crossref"/>
+                     allowing the editor not to have to intervene in the cataloguing directly.<note>
+                        <p>This information has been encoded from <ref target="#Macomber"
+                              type="bibl">Macomber (n.d.)</ref>. Encoding the presence of the
+                           miracle text in all concerned TEI files for manuscripts would be
+                           preferable, but this must await a further stage of the work process.</p>
+                     </note>
+                     <figure xml:id="Example11">
+                        <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                           <relation name="ecrm:P129_is_about"
+                              ref="http://erlangen-crm.org/current/P129_http://erlangen-crm.org/current/is_http://erlangen-crm.org/current/about"
+                              active="https://betamasaheft.eu/LIT5108MiracleYohannes"
+                              passive="https://betamasaheft.eu/PRS5789Juliana"/>
+                           <relation name="ecrm:P129_is_about"
+                              ref="http://erlangen-crm.org/current/P129_http://erlangen-crm.org/current/is_http://erlangen-crm.org/current/about"
+                              active="https://betamasaheft.eu/LIT5108MiracleYohannes"
+                              passive="https://betamasaheft.eu/PRS2497Barbara"/>
+                           <relation name="ecrm:P129_is_about"
+                              ref="http://erlangen-crm.org/current/P129_http://erlangen-crm.org/current/is_http://erlangen-crm.org/current/about"
+                              active="https://betamasaheft.eu/LIT5108MiracleYohannes"
+                              passive="https://betamasaheft.eu/LIT4509GadlaBarb"/>
+                           <relation name="saws:formsPartOf"
+                              ref="http://purl.org/saws/ontology#formsPartOf"
+                              active="https://betamasaheft.eu/LIT5108MiracleYohannes"
+                              passive="https://betamasaheft.eu/LIT2384Taamme"/>
+                           <relation name="lawd:hasAttestation"
+                              ref="http://lawd.info/ontology/hasAttestation"
+                              active="https://betamasaheft.eu/LIT5108MiracleYohannes"
+                              passive="https://betamasaheft.eu/EMML6938">
+                              <desc>
+                                 <locus corresp="EMML6938" target="#45r">f. 45r </locus>
+                              </desc>
+                           </relation>
+                        </egXML>
+                        <head type="legend"><gi>relation</gi>s of the miracle TEI file <ref
+                              target="LIT5108MiracleYohannes">LIT5108MiracleYohannes</ref>.<note>
+                              <p>Accessed 27 January, 2022 <ptr
+                                    target="https://betamasaheft.eu/LIT5108MiracleYohannes"/>.</p>
+                           </note></head>
+                     </figure>
+                  </p>
+                  <p>The incipits given in <ref target="#Macomber" type="bibl">Macomber (n.d.)</ref>
+                     could be partly included in the work TEI files (<ptr target="#Example12"
+                        type="crossref"/>).<note>
+                        <p>This work has been carried out by Angela Müller. Please note however that
+                           the PEMM project’s <ref target="https://pemm.cdh.princeton.edu/">incipit
+                              tool</ref> is now available, which was not the case at the beginning
+                           of our work.</p>
+                     </note> They contribute to the growing corpus of Ethiopic text available in the
+                     digital research environment.</p>
+                  <figure xml:id="Example12">
+                     <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                        <div type="textpart" subtype="incipit" xml:lang="gez">
+                           <note> This incipit is taken from <ref type="mss"
+                                 corresp="https://betamasaheft.eu/EMML6938">Collegeville, Hill
+                                 Museum and Manuscript Library, MS EMML no. 6938</ref>. </note>
+                           <ab> ስምዑ፡ አበውየ፡ ወአኃውየ፡ ዘንተ፡ ነገረ፡ ዘኮነ፡ በእንተ፡ እግዝእትነ፡ <gap
+                                 reason="ellipsis" resp="PRS6437Macomber"/> እመ፡ ምሕረት፡ በአማን፡ መሐሪት፡
+                              ወመስተፍሥሒት፡ ወመናዝዚት፡ ለዘሰአለ፡ ኀቤሃ፡ በጥቡዕ፡ ልብ፡ ወበጽኑዕ፡ ሃይማኖት። ወኮነ፡ እንዘ፡ ሀሎኩ፡
+                              አነ፡ ነዳይ፡ ዮሐንስ፡ እስቁፍ፡ በገዳመ፡ አስቄጥስ፡ ነገሩኒ፡ ሰብእ፡ መሃይምናን፡ ኄራን፡ ከመ፡ ሀሎ፡ አሐዱ፡
+                              ብእሲ፡ ፈራሄ፡ እግዚአብሔር፡ ወያፈቅራ፡ ለእግዝእትነ፡ <gap reason="ellipsis"
+                                 resp="PRS6437Macomber"/>
+                              <supplied resp="PRS6437Macomber" reason="omitted">ወ</supplied> ሀገሩሰ፡
+                              ድፍራ። </ab>
+                        </div>
+                     </egXML>
+                     <head type="legend">Incipit of the miracle TEI file <ref
+                           target="https://betamasaheft.eu/LIT3593Miracle">LIT3593Miracle</ref>.<note>
+                           <p>Accessed 27 January, 2022 <ptr
+                                 target="https://betamasaheft.eu/LIT3593Miracle"/>.</p>
+                        </note></head>
+                  </figure>
+                  <p>Building upon these minimal requirements, each TEI file can be expanded as much
+                     as desired in adherence to the <ref
+                        target="https://betamasaheft.eu/Guidelines/?id=schemaView">Beta maṣāḥəft
+                        customization of the TEI Guidelines</ref>.<note>
+                        <p>Accessed 27 January, 2022 <ptr
+                              target="https://betamasaheft.eu/Guidelines/?id=schemaView"/>.</p>
+                     </note> Desiderata are, for instance, the inclusion of explicits, which would
+                     contribute considerably to the identification of recensions, more
+                        <gi>relation</gi>s with persons and places, and more extended summaries.</p>
+                  <p>Already in the earliest editions of the <title>Miracles of Mary</title>, the
+                     existence of several recensions of the same miracle story was noted.<note>
+                        <p>See for example Budge (<ref target="#Budge1923" type="bibl">1923,
+                              208–13</ref>) for two recensions of a miracle of the monk who blew a
+                           horn. Macomber (<ref target="#Macomber" type="bibl">n.d.</ref>) also
+                           distinguishes numerous recensions.</p>
+                     </note> It is clear that only one TEI file per miracle text would be
+                     insufficient to distinguish recensions and catalogue manuscripts as precisely
+                     as possible. In such cases, one TEI file has been created for each recension.
+                     Additionally, one TEI file has been created for use when the recension cannot
+                     be determined, for instance, when the miracle text has been listed in a
+                     catalogue with only a generic title. This strategy has the necessary
+                     flexibility for future adaptation: whenever new recensions of a miracle text
+                     are identified, TEI files can be created for them. The relationship between a
+                        <soCalled>general</soCalled> TEI file and the individual work TEI files
+                     which are recensions of it is expressed in a paragraph form in the files’
+                        <gi>abstract</gi>s (<ptr target="#Example13" type="crossref"/>) and through
+                        <gi>relation</gi>s (<ptr target="#Example14" type="crossref"/>).</p>
+                  <figure xml:id="Example13">
+                     <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                        <abstract>
+                           <p> This miracle exists in at least two recensions: <ref type="work"
+                                 corresp="https://betamasaheft.eu/LIT5017MiracleSophiaConfessor"
+                                 >Miracle of Mary: Miracle of Sophia who distributed all her jewelry
+                                 to the poor, and her husband who did not let her go to the
+                                 church</ref> names the noblewoman as Sophia, while she remains
+                              unnamed in <ref type="work"
+                                 corresp="https://betamasaheft.eu/LIT3916Miracle">Miracle of Mary:
+                                 How a wealthy lady who dressed in mean attire to give alms was
+                                 carried to Church by the Virgin Mary</ref> . This is the general ID
+                              to be used in cases where the recension cannot be identified. </p>
+                        </abstract>
+                     </egXML>
+                     <head type="legend">Abstract of the general work TEI file <ref
+                           target="https://betamasaheft.eu/LIT6033MMLadyGen">LIT6033MMLadyGen</ref>.<note>
+                           <p>Accessed January 27, 2022 <ptr
+                                 target="https://betamasaheft.eu/LIT6033MMLadyGen"/>.</p>
+                        </note></head>
+                  </figure>
+                  <figure xml:id="Example14">
+                     <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                        <listRelation>
+                           <relation name="saws:isVersionOf"
+                              ref="http://purl.org/saws/ontology#isVersionOf"
+                              active="https://betamasaheft.eu/LIT5017MiracleSophiaConfessor"
+                              passive="https://betamasaheft.eu/LIT6033MMLadyGen"/>
+                           <relation name="saws:isRelatedTo"
+                              ref="http://purl.org/saws/ontology#isRelatedTo"
+                              active="https://betamasaheft.eu/LIT5017MiracleSophiaConfessor"
+                              passive="https://betamasaheft.eu/LIT3916Miracle">
+                              <desc>This miracle seems to be very close or nearly identical to the
+                                 one edited E.W. Budge, but contains the name of the person (Sophia)
+                                 and the geographical location presented here as an island in the
+                                 “Northern Sea”.</desc>
+                           </relation>
+                           <relation name="saws:formsPartOf"
+                              ref="http://purl.org/saws/ontology#formsPartOf"
+                              active="https://betamasaheft.eu/LIT5017MiracleSophiaConfessor"
+                              passive="https://betamasaheft.eu/LIT2384Taamme"/>
+                        </listRelation>
+                     </egXML>
+                     <head type="legend">Relations of its version <ref
+                           target="https://betamasaheft.eu/LIT5017MiracleSophiaConfessor"
+                           >LIT5017MiracleSophiaConfessor</ref>.<note>
+                           <p>Accessed January 27, 2022 <ptr
+                                 target="https://betamasaheft.eu/LIT5017MiracleSophiaConfessor"
+                              />.</p>
+                        </note></head>
+                  </figure>
+                  <p>In the encoding of catalogues, another requirement is to state the presence of
+                     a Miracle of Mary in which the content has not been identified by the
+                     cataloguer. A TEI file for a single, unidentified miracle text was created to
+                     answer this: <ref target="https://betamasaheft.eu/LIT3993Miracle"
+                           ><title>Miracle of Mary: unidentified miracle</title> (CAe 3993, ID:
+                        LIT3993Miracle)</ref>.<note>Accessed January 27, 2022 <ptr
+                           target="https://betamasaheft.eu/LIT3993Miracle"/>.</note> This ID can be
+                     updated with the ID of the exact miracle text in question whenever a project
+                     collaborator has access to the manuscript and updates the description.</p>
+                  <p>Many miracle texts have been composed in cycles of individual miracles centered
+                     around the same protagonist, locality, or event.<note>
+                        <p>For the use of the term <term>cycle</term> and its limitations, see
+                           Cerulli (<ref target="#Cerulli1943" type="bibl">1943, 158</ref>).</p>
+                     </note> Different <gi>relation</gi>s have been used between them and other
+                     entities such as person TEI files to group these miracle texts. <ptr
+                        target="#Example15" type="crossref"/> shows the <gi>relation</gi>s of the
+                     work TEI file <ref target="https://betamasaheft.eu/LIT5202MiracleBasilIcon"
+                           ><title>Miracle of Mary: St Basil finds the buried icon of St
+                           Mary</title> (CAe 5202, ID: LIT5202MiracleBasilIcon)</ref>,<note>Accessed
+                        January 27, 2022 <ptr
+                           target="https://betamasaheft.eu/LIT5202MiracleBasilIcon"/>.</note> which
+                     is one in a group of miracle texts narrating apparitions of Mary to Basil of
+                     Caesarea. Apart from the <gi>relation</gi>
+                     <val>saws:formsPartOf</val> with the collection ID LIT2384Taamme, this miracle
+                     TEI file is linked to the protagonist with <val>ecrm:P129_is_about</val> and to
+                     all other miracle TEI files of this cycle with <val>saws:isRelatedTo</val> or
+                        <val>saws:follows</val>. <figure xml:id="Example15">
+                        <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                           <listRelation>
+                              <relation name="saws:formsPartOf"
+                                 ref="http://purl.org/saws/ontology#formsPartOf"
+                                 active="https://betamasaheft.eu/LIT5202MiracleBasilIcon"
+                                 passive="https://betamasaheft.eu/LIT2384Taamme"/>
+                              <relation name="ecrm:P129_is_about"
+                                 ref="http://erlangen-crm.org/current/P129_http://erlangen-crm.org/current/is_http://erlangen-crm.org/current/about"
+                                 active="https://betamasaheft.eu/LIT5202MiracleBasilIcon"
+                                 passive="https://betamasaheft.eu/PRS2546Basilth"/>
+                              <relation name="saws:isRelatedTo"
+                                 ref="http://purl.org/saws/ontology#isRelatedTo"
+                                 active="https://betamasaheft.eu/LIT5202MiracleBasilIcon"
+                                 passive="https://betamasaheft.eu/LIT3686Miracle"/>
+                              <!--...-->
+                              <relation name="saws:follows"
+                                 ref="http://purl.org/saws/ontology#follows"
+                                 active="https://betamasaheft.eu/LIT5202MiracleBasilIcon"
+                                 passive="https://betamasaheft.eu/LIT3686Miracle"/>
+                           </listRelation>
+                        </egXML>
+                        <head type="legend"><gi>relation</gi>s linking <ref
+                              target="https://betamasaheft.eu/LIT5202MiracleBasilIco"
+                              >LIT5202MiracleBasilIcon</ref><note>
+                              <p>Accessed January 27, 2022 <ptr
+                                    target="https://betamasaheft.eu/LIT5202MiracleBasilIco"/>.</p>
+                           </note> to the collection ID of the <title>Miracles of Mary</title>,
+                           LIT2384Taamme, its protagonist, and other miracle TEI files of the same
+                           cycle.</head>
+                     </figure>
+                  </p>
+                  <p>This information has also been summarized in paragraph form in
+                        <gi>abstract</gi> (<ptr target="#Example16" type="crossref"/>). Though this
+                     may be considered redundant, many users prefer descriptive information to other
+                     formats and thus can access the data more effectively. <figure
+                        xml:id="Example16">
+                        <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                           <abstract>
+                              <p> This miracle can also occur divided into two distinct miracles,
+                                    <ref type="work"
+                                    corresp="https://betamasaheft.eu/LIT5649MMStephanites1">Miracle
+                                    of Mary: The judgment of the court of Zarʿa Yāʿqob against the
+                                    Stephanites (part 1)</ref> and <ref type="work"
+                                    corresp="https://betamasaheft.eu/LIT5650MMStephanites2">Miracle
+                                    of Mary: The judgment of the court of Zarʿa Yāʿqob against the
+                                    Stephanites (part 2)</ref>. There are apparently several
+                                 recensions of the first part of the miracle, ending either in the
+                                 stoning or repentance of the heretics. </p>
+                           </abstract>
+                        </egXML>
+                        <head type="legend"><gi>abstract</gi> of <ref
+                              target="https://betamasaheft.eu/LIT5248MiracleStephanites"
+                              >LIT5248MiracleStephanites</ref>.<note>
+                              <p>Accessed January 27, 2022 <ptr
+                                    target="https://betamasaheft.eu/LIT5248MiracleStephanites"
+                                 />.</p>
+                           </note></head>
+                     </figure>
+                  </p>
+                  <p>Encoding the <title>Miracles of Mary</title> in a flexible, potentially
+                     hierarchical system consisting of IDs for different collections, units of
+                     miracle texts with accompanying items, and single (miracle) texts allows the
+                     precise encoding of all possible forms under which these texts are attested in
+                     manuscripts. This method opens many possibilities for researching these forms
+                     synchronically and diachronically.</p>
+               </div>
+            </div>
+            <div xml:id="Art">
+               <head>Art Themes</head>
+               <p>The importance of miniatures in collections of the Miracles of Mary, particularly
+                  in the <title><foreign><foreign>ʾAkko-nu bəʾsi</foreign>
+                     collection</foreign></title>, has been already noted above (<ptr
+                     target="#Collections" type="crossref"/>). The encoding of these miniatures
+                  follows the <ref target="https://betamasaheft.eu/Guidelines/?id=artThemes"
+                     >guidelines for creating art theme TEI files</ref><note>
+                     <p>Accessed January 27, 2022 <ptr
+                           target="https://betamasaheft.eu/Guidelines/?id=artThemes"/>.</p>
+                  </note> and the <ref
+                     target="https://betamasaheft.eu/Guidelines/?id=decorationDescription"
+                     >description of decoration in manuscript TEI files</ref>.<note>
+                     <p>Accessed January 27, 2022 <ptr
+                           target="https://betamasaheft.eu/Guidelines/?id=decorationDescription"
+                        />.</p>
+                  </note> Art theme TEI files are created for recurring motifs of Ethiopic art. The
+                  individual articulation of the miniatures is then described in the
+                     <gi>decoDesc</gi> of the manuscript TEI files. Such art theme TEI files have
+                  been created for each of the fixed set of 33 miniatures which follow the miracle
+                  texts and hymn stanzas of the <title><foreign>ʾAkko-nu bəʾsi</foreign>
+                     collection</title>.<note>
+                     <p>I am very grateful to Jacopo Gnisci for his advice in the creation of these
+                        TEI files, and his revision of them.</p>
+                  </note> These art theme IDs are referred to in the work ID of the
+                        <title><foreign>ʾAkko-nu bəʾsi collection</foreign></title><note>
+                     <p>See above <ptr target="#Collections" type="crossref"/>.</p>
+                  </note> and in the corresponding <gi>decoNote</gi>s in the manuscript TEI files.
+                  Art theme TEI files contain an unambiguous title (<ptr target="#Example17"
+                     type="crossref"/>), an abstract describing the typical content of this art
+                  theme (<ptr target="#Example18" type="crossref"/>), and a relation to the miracle
+                  TEI file this art theme illustrates (<ptr target="#Example19" type="crossref"
+                  />).</p>
+               <figure xml:id="Example17">
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                     <title>Miracle of Mary: Elizabeth, the blind daughter of Abraham and Gerā
+                        ʾAnǝśt of Badǝrmān</title>
+                  </egXML>
+                  <head type="legend"><gi>title</gi> of the Miracle of Mary art theme <ref
+                        target="https://betamasaheft.eu/AT1123MMElsabet">AT1123MMElsabet</ref>.<note>
+                        <p>Accessed January 27, 2022 <ptr
+                              target="https://betamasaheft.eu/AT1123MMElsabet"/>.</p>
+                     </note></head>
+               </figure>
+               <figure xml:id="Example18">
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                     <abstract>
+                        <p> A miniature illustrating <ref type="work"
+                              corresp="https://betamasaheft.eu/LIT3602Miracle">Miracle of Mary:
+                              Miracle of Abraham, his wife Gerā and their blind daughter Elisabeth
+                              from Badramān</ref>, typically with as a sequence of three
+                           episodes/events, showing: first, the woman and her blind daughter
+                           standing praying before the icon of the <ref type="authFile"
+                              corresp="https://betamasaheft.eu/AT1031VirginAndChild"/>; second, both
+                           lying asleep before <persName ref="https://betamasaheft.eu/PRS6819Mary"
+                              >Mary</persName>, who wakes up the girl; third, the girl standing
+                           before the icon of <persName ref="https://betamasaheft.eu/PRS6819Mary"
+                              >Mary</persName>, who takes out her breast and drops her milk into the
+                           girl's eyes. </p>
+                     </abstract>
+                  </egXML>
+                  <head type="legend"><gi>abstract</gi> of the Miracle of Mary art theme <ref
+                        target="https://betamasaheft.eu/AT1123MMElsabet">AT1123MMElsabet</ref>.<note>
+                        <p>Accessed January 27, 2022 <ptr
+                              target="https://betamasaheft.eu/AT1123MMElsabet"/>.</p>
+                     </note></head>
+               </figure>
+               <figure xml:id="Example19">
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                     <listRelation>
+                        <relation name="ecrm:P129_is_about"
+                           ref="http://erlangen-crm.org/current/P129_http://erlangen-crm.org/current/is_http://erlangen-crm.org/current/about"
+                           active="https://betamasaheft.eu/AT1123MMElsabet"
+                           passive="https://betamasaheft.eu/LIT3602Miracle"/>
+                     </listRelation>
+                  </egXML>
+                  <head type="legend"><gi>relation</gi> of the Miracle of Mary art theme <ref
+                        target="https://betamasaheft.eu/AT1123MMElsabet">AT1123MMElsabet</ref>.<note>
+                        <p>Accessed January 27, 2022 <ptr
+                              target="https://betamasaheft.eu/AT1123MMElsabet"/>.</p>
+                     </note></head>
+               </figure>
+            </div>
+            <div xml:id="Manuscripts">
+               <head>Manuscripts</head>
+               <p>The system developed for the encoding of work and art theme TEI files of the
+                     <title>Miracles of Mary</title> can now be applied to a manuscript description,
+                  encoding the historical catalogue description given in <ptr
+                     target="#MiraclesEncoding" type="crossref"/>.</p>
+               <p>In encoding historical catalogue descriptions, Beta maṣāḥǝft aims to interlink all
+                  information contained in these TEI files to produce a searchable union catalogue
+                  of the Ethiopian and Eritrean manuscript tradition. At this stage of the work
+                  process, the catalogue descriptions have not necessarily been updated by
+                  consultation of the manuscript. This step may be carried out at a later stage for
+                  chosen manuscripts.</p>
+               <p>The work described by Wright (<ref target="#Wright1877" type="bibl">1877,
+                  46</ref>) (<ptr type="crossref" target="#Example1"/>) can be identified as a
+                  collection of the <title>Miracles of Mary</title> with framing texts (CAe 2384, ID
+                  LIT2384Taamme). We have rendered the structure of textual units within the
+                  collection as described in the catalogue in the following way: <figure
+                     xml:id="Example20">
+                     <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                        <msItem xml:id="ms_i5">
+                           <locus from="18r">ff. 18r- </locus>
+                           <title type="complete" ref="https://betamasaheft.eu/LIT2384Taamme">ተአምረ፡
+                              ማርያም፡</title>
+                           <textLang mainLang="gez"/>
+                           <note> This manuscript contains 51 miracles before <ref target="#coloph1"
+                              /> and four after it. </note>
+                           <msItem xml:id="ms_i5.1">
+                              <locus from="18r">ff. 18r- </locus>
+                              <title type="complete" ref="https://betamasaheft.eu/LIT3585Taamme"
+                                 >ተአምረ፡ ማርያም፡</title>
+                              <textLang mainLang="gez"/>
+                              <note>50 miracles of Mary</note>
+                           </msItem>
+                           <msItem xml:id="ms_i5.2">
+                              <locus from="131r">ff. 131r- </locus>
+                              <title type="complete" ref="https://betamasaheft.eu/LIT3622Miracle"
+                                 >Miracle of Mary: Homily on a potter from Syria</title>
+                              <textLang mainLang="gez"/>
+                           </msItem>
+                           <msItem xml:id="ms_i5.3">
+                              <locus from="134r">ff. 134r- </locus>
+                              <title type="complete" xml:lang="gez">Excerpt from <ref type="work"
+                                    corresp="LIT2713Luke"/>, the dialogue of Mary and the
+                                 angel</title>
+                              <textLang mainLang="gez"/>
+                              <incipit xml:lang="gez">ቃል፡ ዘእምወንጌለ፡ ሉቃስ፡ ውዳሴ፡</incipit>
+                           </msItem>
+                           <colophon xml:id="coloph1">
+                              <locus target="#135v">f. 135v </locus>
+                              <note> The colophon states that this manuscript was written for
+                                    <persName ref="https://betamasaheft.eu/PRS10626ZaraY">Zarʾa
+                                    Yāʿqob</persName> , who donated it to a church of Mary. </note>
+                              ዘንተ፡ ተአምረ፡ ማርያም፡ ዘአጽሐፈ፡ ንጉሥነ፡ <persName
+                                 ref="https://betamasaheft.eu/PRS10626ZaraY" role="patron">ዘርአ፡
+                                 ያዕቆብ፡</persName> ወዘወሀበሂ፡ ከመ፡ ይኩን፡ ለማርያም፡ ወኢያውፅኡ፡ እምኔሃ፡ እስከ፡ ለዓለም፡
+                              ዘእንበለ፡ ለአንብቦ፡ ዘንተ፡ መጽሐፈ፡ ለእመ፡ አውፅኡ፡ ውጉዛነ፡ ለይኩኑ፡ በአፈ፡ አብ፡ ወወልድ፡ ወመንፈስ፡
+                              ቅዱስ፡ እስከ፡ ለዓለም፡ አሜን። </colophon>
+                           <msItem xml:id="ms_i5.4">
+                              <locus from="136r">ff. 136r- </locus>
+                              <title type="complete" ref="https://betamasaheft.eu/LIT3993Miracle"
+                                 >Miracle of Mary: unidentified miracle</title>
+                              <textLang mainLang="gez"/>
+                           </msItem>
+                           <msItem xml:id="ms_i5.5">
+                              <title type="complete" ref="https://betamasaheft.eu/LIT3993Miracle"
+                                 >Miracle of Mary: unidentified miracle</title>
+                              <textLang mainLang="gez"/>
+                           </msItem>
+                           <msItem xml:id="ms_i5.6">
+                              <title type="complete" ref="https://betamasaheft.eu/LIT3993Miracle"
+                                 >Miracle of Mary: unidentified miracle</title>
+                              <textLang mainLang="gez"/>
+                           </msItem>
+                           <msItem xml:id="ms_i5.7">
+                              <title type="complete" ref="https://betamasaheft.eu/LIT3993Miracle"
+                                 >Miracle of Mary: unidentified miracle</title>
+                              <textLang mainLang="gez"/>
+                           </msItem>
+                        </msItem>
+                     </egXML>
+                     <head type="legend">Encoding of the description of <ref
+                           target="https://betamasaheft.eu/BLorient650">MS London, British Library,
+                           BL Orient. 650.</ref><note>
+                           <p>Accessed January 27, 2022 <ptr
+                                 target="https://betamasaheft.eu/BLorient650"/>.</p>
+                        </note></head>
+                  </figure>
+               </p>
+               <p>For the first unidentified group of miracle texts, the ID LIT3585Taamme is
+                  appropriate. The information on the number of miracle texts has been provided in a
+                  paragraph form in <gi>note</gi>. Theoretically, 50 child <gi>msItem</gi>s of <tag
+                     type="start">msItem xml:id="ms_i5"</tag> with the ID for a single unidentified
+                  miracle, LIT3993Miracle, would also be possible, but would render the TEI file
+                  cumbersome to read and offer no additional information. The miracle text
+                  identified descriptively in the catalogue has been identified here with its ID,
+                     <ref target="https://betamasaheft.eu/LIT3622Miracle"><title>Miracle of Mary:
+                        Homily on a potter from Syria</title> (CAe 3622, ID
+                        LIT3622Miracle)</ref>.<note><p>Accessed January 27, 2022 <ptr
+                           target="https://betamasaheft.eu/LIT3622Miracle"/>.</p></note> The
+                  following text, identified in the catalogue as the dialogue of Mary and the Angel,
+                  has been identified descriptively with reference to the Gospel of Luke. The
+                  colophon has been encoded in <gi>colophon</gi>. The four miracle texts following
+                  it have been encoded as single <gi>msItem</gi>s, identified as <title>Miracle of
+                     Mary: unidentified miracle</title> (CAe 3993, ID LIT3993Miracle). This encoding
+                  outside of <val>ms_i5.1</val>, the collection LIT3585Taamme, reflects their
+                  unresolved stratigraphical status.</p>
+               <p>Several textual units are then listed in the catalogue as prefixed to the above.
+                  They possibly constitute one or more separate units of production. As the
+                  information provided in the catalogue is too scarce to reconstruct the
+                  manuscript’s strata, the decision was made to not offer a hypothesis by a division
+                  into <gi>msPart</gi>s, and the uncertainty in this regard has been stated
+                  explicitly in a <gi>note</gi> in the first <gi>msItem</gi>. <figure
+                     xml:id="Example22">
+                     <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                        <note>The catalogue description does not allow for the correct
+                           identification of this manuscript’s codicological units. It is possibly a
+                           composite manuscript, but treated here in a simple manuscript description
+                           until examination to avoid wrong delimitations of units.</note>
+                     </egXML>
+                     <head type="legend">Use of <tag>note</tag> in the manuscript
+                        description.</head>
+                  </figure>
+               </p>
+               <p>A revision of the TEI file following consultation of the (digital) manuscript
+                  would be desirable.<note><p>Such a revision would now also be possible, as the
+                        digital manuscript has been made available by the British Library. Updates
+                        to the description given here may appear in the future at <ptr
+                           target="https://betamasaheft.eu/manuscripts/BLorient650/main"
+                     />.</p></note> This revision would probably allow us to identify units of
+                  production and split the description into the appropriate number of
+                     <gi>msPart</gi>s. While awaiting this update, the current encoding reflects all
+                  detail given in the catalogue and states open questions clearly.</p>
+            </div>
+         </div>
+         <div xml:id="Conclusion">
+            <head>Conclusions</head>
+            <p>A flexible system of encoding the <title>Miracles of Mary</title> was developed by
+               the creation of different level IDs for miracle texts and their collections. This
+               system allows all levels of depth of cataloguing—from stating a particular work is
+               present in a manuscript to describing each sub-part of a collection in detail. It has
+               proved efficient for Beta maṣāḥǝft. Here, it accommodates the encoding of historical
+               catalogues and new manuscript descriptions, both of which benefit from such
+               flexibility. A historical catalogue may list all miracle texts of the <title>Miracles
+                  of Mary</title> while only mentioning introductory texts in passing. One
+               cataloguing project may produce an inventory, another a full catalogue.</p>
+            <p>This project is laying the groundwork for further studies of the <title>Miracles of
+                  Mary</title>. The continuing identification of miracle texts and their recensions
+               and immediate clarification of these through the creation of TEI work files and
+               relations between them will benefit future philological research on the
+                  <title>Miracles of Mary</title>. All insights are immediately available to the
+               interested community on Beta maṣāḥǝft.</p>
+            <p>Even in the first steps of developing a consistent encoding system for the
+                  <title>Miracles of Mary</title>, it has become abundantly clear that consistent
+               and thorough encoding encourages best practices in cataloguing. The creation and
+               interlinking of IDs for manuscripts, works, and other entities make it much easier to
+               find similar manuscripts to the one catalogued. This approach improves the quality of
+               catalogue descriptions. The same is true for identifying miracle recensions, which in
+               the absence of a critical edition cannot be established by studying only one
+               manuscript. Building upon Macomber’s work and in cooperation with many scholars
+               working in the digital research environment, new recensions are continually
+               identified. Much deeper encoding of this work would be possible, for instance,
+               through narrative unit IDs connecting miracle texts and other works.<note>
+                  <p>For the use of narrative unit IDs, see Liuzzo (<ref target="#Liuzzo2019"
+                        type="bibl">2019, 83</ref>) and Villa (<ref target="#Villa2018" type="bibl"
+                        >2018, 147–48</ref>).</p>
+               </note> This enhancement must remain the focus of dedicated further research efforts.
+               We hope that this work is one step towards a better understanding of the textual
+               history of the <title>Miracles of Mary</title> within the Ethiopian tradition and
+               will enable further codicological and philological study.</p>
+         </div>
+      </body>
+      <back>
+         <div type="bibliography">
+            <listBibl>
+               <bibl xml:id="Annequin1972">
+                  <author>Annequin, Guy</author>. <date>1972</date>. <title level="a">L’illustration
+                     des Ta’amra Maryam de 1630 à 1730. Quelques remarques sur le premier style de
+                     Gondar</title>. <title level="j">Annales d’Éthiopie</title>
+                  <biblScope unit="volume">9</biblScope>: <biblScope unit="page"
+                  >193–219</biblScope>. <ptr
+                     target="https://www.persee.fr/doc/ethio_0066-2127_1972_num_9_1_898"/> .</bibl>
+               <bibl xml:id="Balicka2010">
+                  <author>Balicka-Witakowska, Ewa</author>. <date>2010</date>. <title level="a"
+                     >Täʾammǝrä Maryam in Art</title>. In <title level="m">Encyclopaedia
+                     Aethiopica</title>, edited by <editor>Siegbert Uhlig</editor> and
+                     <editor>Alessandro Bausi</editor>, <biblScope unit="volume">IV</biblScope>:
+                     <biblScope unit="page">789b–95</biblScope>. <pubPlace>Wiesbaden</pubPlace>:
+                     <publisher>Harrassowitz Verlag</publisher>.</bibl>
+               <bibl xml:id="BalickaBausi2010">
+                  <author>Balicka-Witakowska, Ewa</author>, and <author>Alessandro Bausi</author>.
+                     <date>2010</date>. <title level="a">Täʾammǝrä Maryam</title>. In <title
+                     level="m">Encyclopaedia Aethiopica</title>, edited by <editor>Siegbert
+                     Uhlig</editor> and <editor>Alessandro Bausi</editor>, <biblScope unit="volume"
+                     >IV</biblScope>: <biblScope unit="page">789b–93</biblScope>.
+                     <pubPlace>Wiesbaden</pubPlace>: <publisher>Harrassowitz
+                  Verlag</publisher>.</bibl>
+               <bibl xml:id="Bausi2016">
+                  <author>Bausi, Alessandro</author>. <date>2016</date>. <title level="a">Composite
+                     and Multiple Text Manuscripts: The Ethiopian Evidence</title>. In <title
+                     level="m">One-Volume Libraries: Composite and Multiple Text
+                  Manuscripts</title>, edited by <editor>Michael Friedrich</editor> and
+                     <editor>Cosima Schwarke</editor>, <biblScope unit="page">111–53</biblScope>.
+                     <title level="s">Studies in Manuscript Cultures</title>
+                  <biblScope unit="volume">9</biblScope>. <pubPlace>Berlin - New York</pubPlace>:
+                     <publisher>De Gruyter</publisher>. <ptr
+                     target="https://www.degruyter.com/downloadpdf/books/9783110496956/9783110496956-005/9783110496956-005.pdf"
+                  />.</bibl>
+               <bibl xml:id="Bausi2020">
+                  <author>Bausi, Alessandro</author>. <date>2020</date>. <title level="a">Ethiopia
+                     and the Christian Ecumene: Cultural Transmission, Translation, and
+                     Reception</title>. In <title level="m">A Companion to Medieval Ethiopia and
+                     Eritrea</title>, edited by <editor>Samantha Kelly</editor>, <biblScope
+                     unit="page">217–51</biblScope>. <pubPlace>Leiden</pubPlace>:
+                     <publisher>Brill</publisher>.</bibl>
+               <bibl xml:id="Brita2020">
+                  <author>Brita, Antonella</author>. <date>2020</date>. <title level="a">Genres of
+                     Ethiopian-Eritrean Christian Literature with a Focus on Hagiography</title>. In
+                     <title level="m">A Companion to Medieval Ethiopia and Eritrea</title>, edited
+                  by <editor>Samantha Kelly</editor>, <biblScope unit="page">252–81</biblScope>.
+                     <pubPlace>Leiden</pubPlace>: <publisher>Brill</publisher>.</bibl>
+               <bibl xml:id="Budge1900">
+                  <author>Budge, Ernest Alfred Wallis</author>. <date>1900</date>. <title level="m"
+                     >The Miracles of the Blessed Virgin Mary, and the Life of Ḥannâ (Saint Anne),
+                     and the Magical Prayers of ʾAhĕta Mîkâêl. The Ethiopic Texts edited with
+                     English Translations</title>. <title level="s">Lady Meux Manuscripts</title> 
+                     <biblScope unit="volume">2–5</biblScope>. <pubPlace>London</pubPlace>:
+                     <publisher>W. Griggs</publisher>. <ptr
+                     target="https://digitale-sammlungen.ulb.uni-bonn.de/content/titleinfo/191631"
+                  />.</bibl>
+               <bibl xml:id="Budge1923">
+                  <author>Budge, Ernest Alfred [Thompson] Wallis</author>. <date>1923</date>. <title
+                     level="m">One hundred and Ten Miracles of Our Lady Mary</title>.
+                     <pubPlace>London</pubPlace>: <publisher>Medici Society</publisher>.</bibl>
+               <!--<bibl xml:id="Bulakh2016">
+                  <author>Bulakh, Maria</author>. <date>2016</date>. <title level="a">Some Problems
+                     of Transcribing Geez</title>. In <title level="m">150 Years after Dillmann’s
+                        <title>Lexicon</title>: Perspectives and Challenges of Gǝʿǝz
+                  Studies</title>, edited by <editor>Alessandro Bausi</editor> and <editor>Eugenia
+                     Sokolinski</editor>, <biblScope unit="page">103–37</biblScope>. <title
+                     level="s">Supplement to Aethiopica</title>
+                  <biblScope unit="volume">5</biblScope>. <pubPlace>Wiesbaden</pubPlace>:
+                     <publisher>Harrassowitz Verlag</publisher>. </bibl>-->
+               <bibl xml:id="Cerulli1943">
+                  <author>Cerulli, Enrico</author>. <date>1943</date>. <title level="m">Il libro
+                     etiopico dei Miracoli di Maria e le sue fonti nelle letterature del Medio Evo
+                     latino</title>. <title level="s">Studi orientali pubblicati a cura della Scuola
+                     Orientale</title>
+                  <biblScope unit="volume">1</biblScope>. <pubPlace>Rome</pubPlace>:
+                     <publisher>Dott. Giovanni Bardi</publisher>.</bibl>
+               <bibl xml:id="Efthymiadis2014">
+                  <author>Efthymiadis, Stephanos</author>. <date>2014</date>. <title level="a"
+                     >Collections of Miracles (Fifth-Fifteenth Centuries)</title>. In <title
+                     level="m">The Ashgate Research Companion to Byzantine Hagiography. Volume II:
+                     Genres and Contexts</title>, edited by <editor>Stephanos Efthymiadis</editor>,
+                     <biblScope unit="volume">II</biblScope>: <biblScope unit="page"
+                     >103–42</biblScope>. <pubPlace>Farnham–Burlington, VT</pubPlace>:
+                     <publisher>Ashgate</publisher>.</bibl>
+               <bibl xml:id="FritschHabtemichael2020">
+                  <author>Fritsch, Emmanuel</author>, and <author>Habtemichael Kidane</author>.
+                     <date>2020</date>. <title level="a">The Medieval Ethiopian Orthodox Church and
+                     Its Liturgy</title>. In <title level="m">A Companion to Medieval Ethiopia and
+                     Eritrea</title>, edited by <editor>Samantha Kelly</editor>, <biblScope
+                     unit="page">162–93</biblScope>. <pubPlace>Leiden</pubPlace>:
+                     <publisher>Brill</publisher>.</bibl>
+               <bibl xml:id="Getatchew1985"><author>Getatchew Haile.</author>
+                  <date>1985.</date>
+                  <title level="m">A Catalogue of Ethiopian Manuscripts Microfilmed for the
+                     Ethiopian Manuscript Microfilm Library, Addis Ababa, and for the Hill Monastic
+                     Manuscript Library, Collegeville, VIII: Project Numbers 3001–3500</title>.
+                     <pubPlace>Collegeville, MN</pubPlace>:<publisher>Hill Monastic Manuscript
+                     Library, St. John’s Abbey and University</publisher><ptr
+                     target="https://archive.org/details/EMMLCatalog08"/>.</bibl>
+            </listBibl>
+            <listBibl>
+               <bibl xml:id="GetatchewNosnitsin2007">
+                  <author>Getatchew Haile</author>, and <author>Denis Nosnitsin</author>.
+                     <date>2007</date>. <title level="a">Marian Literature</title>. In <title
+                     level="m">Encyclopaedia Aethiopica</title>, edited by <editor>Siegbert
+                     Uhlig</editor>, <biblScope unit="volume">III</biblScope>
+                  <biblScope unit="page">814a–17</biblScope>. <pubPlace>Wiesbaden</pubPlace>:
+                     <publisher>Harrassowitz Verlag</publisher>.</bibl>
+               <bibl xml:id="Grohmann1919">
+                  <author>Grohmann, Adolf</author>. <date>1919</date>. <title level="m">Aethiopische
+                     Marienhymnen</title>. <title level="s">Abhandlungen der Sächsischen Akademie
+                     der Wissenschaften</title>
+                  <biblScope unit="volume">68, Abhandlungen der philologisch-historischen Klasse der
+                     Sächsischen Akademie der Wissenschaften, 33/4</biblScope>.
+                     <pubPlace>Leipzig</pubPlace>: <publisher>Bei B. G. Teubner</publisher>. <ptr
+                     target="https://digital.slub-dresden.de/werkansicht/dlf/447/9/"/>.</bibl>
+               <bibl xml:id="Gumbert2004">
+                  <author>Gumbert, J. Peter</author>. <date>2004</date>. <title level="a"
+                     >Codicological Units: Towards a Terminology for the Stratigraphy of the
+                     Non-Homogenous Codex</title>. <title level="j">Segno e testo</title>
+                  <biblScope unit="volume">2</biblScope>: <biblScope unit="page"
+                  >17–42</biblScope>.</bibl>
+               <bibl xml:id="Kropp2017">
+                  <author>Kropp, Manfred</author>. <date>2017</date>. <title level="a">Die ältest
+                     bekannten äthiopischen Sammlungen der Marienwunder im Codex Aureus der
+                     Marienkirche von Amba Gǝšen und der Bethlehemkirche bei Däbrä Tabor</title>.
+                     <title level="j">Oriens Christianus</title>
+                  <biblScope unit="volume">100</biblScope>: <biblScope unit="page"
+                     >57–103</biblScope>.</bibl>
+               <bibl xml:id="Liuzzo2017">
+                  <author>Liuzzo, Pietro Maria</author>. <date>2017</date>. <title level="a"
+                     >Encoding and Representation Challenges of the Project Beta Maṣāḥǝft:
+                     Manuscripts of Ethiopia and Eritrea</title>. In <title level="m">Proceedings of
+                     Balisage: The Markup Conference 2017, Washington, DC, August 1–4, 2017</title>.
+                     <title level="s">Balisage Series on Markup Technologies</title>, <biblScope
+                     unit="volume">19</biblScope>. <pubPlace>Washington, D.C.</pubPlace>:
+                     <publisher>Balisage</publisher>. <ptr
+                     target="https://doi.org/10.4242/BalisageVol19.Liuzzo01"/>.</bibl>
+               <bibl xml:id="Liuzzo2019">
+                  <author>Liuzzo, Pietro Maria</author>. <date>2019</date>. <title level="m">Digital
+                     Approaches to Ethiopian and Eritrean Studies</title>. <title level="s"
+                     >Supplement to Aethiopica</title>
+                  <biblScope unit="volume">8</biblScope>. <pubPlace>Wiesbaden</pubPlace>:
+                     <publisher>Harrassowitz Verlag</publisher>. doi:<idno type="DOI"
+                     >10.2307/j.ctvrnfr3q</idno>.</bibl>
+               <bibl xml:id="Macomber">
+                  <author>Macomber, William</author>. <date>n.d.</date>
+                  <title level="u">Miracles of Mary</title>.</bibl>
+               <bibl xml:id="Nosnitsin2010">
+                  <author>Nosnitsin, Denis</author>. <date>2010</date>. <title level="a"
+                     >Täʾammǝr</title>. In <title level="m">Encyclopaedia Aethiopica</title>, edited
+                  by <editor>Siegbert Uhlig</editor> and <editor>Alessandro Bausi</editor>,
+                     <biblScope unit="volume">IV</biblScope>: <biblScope unit="page"
+                     >787a–88</biblScope>. <pubPlace>Wiesbaden</pubPlace>: <publisher>Harrassowitz
+                     Verlag</publisher>.</bibl>
+               <bibl xml:id="Reule2018">
+                  <author>Reule, Dorothea</author>. <date>2018</date>. <title level="a">Beta
+                     Maṣāḥǝft: Manuscripts of Ethiopia and Eritrea</title>. <title level="j"
+                     >Comparative Oriental Manuscript Studies Bulletin</title>
+                  <biblScope unit="volume">4</biblScope> (<biblScope unit="issue">1 = Linking
+                     Manuscripts from the Coptic, Ethiopian and Syriac Domain: Present and Future
+                     Synergy Strategies</biblScope>): <biblScope unit="page">13–28</biblScope>. <ptr
+                     target="https://www.aai.uni-hamburg.de/en/comst/pdf/bulletin4-1/13-28.pdf"
+                  />.</bibl>
+               <bibl xml:id="Villa2018">
+                  <author>Villa, Massimo</author>. <date>2018</date>. <title level="a">Encoding
+                     Strategies and the Ethiopic Literary Heritage: The Physiologus as a Case
+                     Study</title>. <title level="j">Comparative Oriental Manuscript Studies
+                     Bulletin</title>
+                  <biblScope unit="volume">4</biblScope> (<biblScope unit="issue">1 = Linking
+                     Manuscripts from the Coptic, Ethiopian and Syriac Domain: Present and Future
+                     Synergy Strategies</biblScope>): <biblScope unit="page">143–50</biblScope>.
+                     <ptr
+                     target="https://www.aai.uni-hamburg.de/en/comst/pdf/bulletin4-1/143-150.pdf"
+                  />.</bibl>
+               <bibl xml:id="Wright1877">
+                  <author>Wright, William</author>. <date>1877</date>. <title level="m">Catalogue of
+                     the Ethiopic Manuscripts in the British Museum Acquired since the Year
+                     1847</title>. <pubPlace>Piccadilly, Covent Garden–Berlin</pubPlace>:
+                     <publisher>Longmans, Asher</publisher>. <ptr
+                     target="https://reader.digitale-sammlungen.de/de/fs1/object/display/bsb11357511_00005.html"
+                  />.</bibl>
+               <bibl xml:id="Zotenberg1877">
+                  <author>Zotenberg, Hermann</author>. <date>1877</date>. <title level="m">Catalogue
+                     des manuscrits éthiopiens (gheez et amharique) de la Bibliothèque
+                     nationale</title>. <title level="s">Manuscrits Orientaux</title>.
+                     <pubPlace>Paris</pubPlace>: <publisher>Imprimerie nationale</publisher>. <ptr
+                     target="http://menadoc.bibliothek.uni-halle.de/ssg/content/titleinfo/834596"
+                  />.</bibl>
+            </listBibl>
+         </div>
+      </back>
+   </text>
+</TEI>

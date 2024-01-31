@@ -1,0 +1,1318 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?><!-- $Id: jtei-dalsasso-216-source.xml 1094 2022-02-02 09:33:18Z pietro.liuzzo $ -->
+<TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title type="main">Describing Ethiopian Bookbinding in TEI</title>
+            <!-- author information in separate <author> elements per author -->
+            <author>
+               <name>
+                  <forename>Eliana</forename>
+                  <surname>Dal Sasso</surname>
+               </name>
+               <affiliation><!-- a prose description of this author's affiliation, containing <roleName> and <orgName>-->
+                  Eliana Dal Sasso is a <roleName>doctoral researcher</roleName> at <orgName>Hamburg
+                     University</orgName> affiliated with the Cluster of Excellence
+                     <soCalled>Understanding Written Artefact</soCalled> of the <orgName>Centre for
+                     the Study of Manuscript Cultures</orgName> with the project <title level="u"
+                     >Bookbindings as Archival Instruments: Defining, Ordering and Transmitting
+                     Knowledge in Christian Egypt (4th–11th centuries)</title>. She holds an MA in
+                  conservation and restoration of library and archival material. In 2018 she was a
+                  research guest at the Hiob Ludolf Center for Ethiopian and Eritrean Studies for
+                  the study of Ethiopian bookbinding and in 2019 a research fellow at Sapienza
+                  University of Rome for the ERC project <title level="u">PAThs: An Atlas of Coptic
+                     Literature.</title>
+               </affiliation>
+               <email>eliana.dal.sasso@uni-hamburg.de</email>
+            </author>
+         </titleStmt>
+         <publicationStmt>
+            <publisher>TEI Consortium</publisher>
+            <date>22/01/2022</date>
+            <availability>
+               <licence target="https://creativecommons.org/licenses/by/4.0/">
+                  <p>For this publication a Creative Commons Attribution 4.0 International license
+                     has been granted by the author(s) who retain full copyright.</p>
+               </licence>
+            </availability>
+         </publicationStmt>
+         <seriesStmt>
+            <title level="j">Journal of the Text Encoding Initiative</title>
+            <editor>Tanja Wissik</editor>
+            <editor>Joel Kalvesmaki</editor>
+            <editor>Pietro Maria Liuzzo</editor>
+            <editor>Tiago Sousa Garcia</editor>
+            <editor role="technical">Ron Van den Branden</editor>
+            <biblScope unit="issue" n="rolling">Open Issue</biblScope>
+         </seriesStmt>
+         <sourceDesc>
+            <p>No source, born digital.</p>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <projectDesc>
+            <p>OpenEdition Journals -centre for open electronic publishing- is the platform for
+               journals in the humanities and social sciences, open to quality periodicals looking
+               to publish full-text articles online.</p>
+         </projectDesc>
+      </encodingDesc>
+      <profileDesc>
+         <langUsage>
+            <language ident="en">en</language>
+         </langUsage>
+         <textClass>
+            <keywords xml:lang="en">
+               <term>Ethiopian Studies</term>
+               <term>bookbinding</term>
+               <term>manuscripts</term>
+               <term>vocabulary</term>
+               <term> TEI customization</term>
+            </keywords>
+         </textClass>
+      </profileDesc>
+      <revisionDesc>
+         <change><!-- Description of a change to the article; we recommend using @who and @when. --></change>
+      </revisionDesc>
+   </teiHeader>
+   <text>
+      <front>
+         <div type="abstract" xml:id="abstract">
+            <!-- The abstract for the article, in a couple of paragraphs. -->
+            <p>Ethiopian bookbinding is one of the material expressions of the ancient manuscript
+               culture of Ethiopia and Eritrea, which is the research field of the Beta maṣāḥǝft
+               project. Despite the significance of the materials and techniques adopted in
+               bookbinding manufacture for the understanding of the manuscript they enclose, they
+               have never been systematically recorded, until very recently. The present paper
+               introduces the Beta maṣāḥǝft project’s innovative approach to bookbinding
+               descriptions and its customization of the TEI schema to record the small variations
+               of Ethiopian bookbinding elements. Since a standard vocabulary for Ethiopian
+               bookbinding features was lacking, Beta maṣāḥǝft developed a tailored taxonomy to
+               create consistent descriptions. The encoding of the binding occurs in the
+                  <gi>binding</gi> element, within which a <gi>decoNote</gi> element is assigned to
+               each significant bookbinding feature. The descriptions consist partly of free text
+               and partly of markup using keywords enforced by the taxonomy. This paper presents
+               some applications offered by the Beta maṣāḥǝft project that use the recorded
+               bookbinding features, and it shows how the encoding of this large amount of
+               previously ignored data could open new research perspectives on Ethiopian book
+               production.</p>
+         </div>
+         <div type="acknowledgements">
+            <p>The research for this paper was funded by the Deutsche Forschungsgemeinschaft (DFG,
+               German Research Foundation) under Germany’s Excellence Strategy – EXC 2176 <title
+                  level="u">Understanding Written Artefacts: Material, Interaction and Transmission
+                  in Manuscript Cultures</title>, project no. 390893796. The research was conducted
+               within the scope of the Centre for the Study of Manuscript Cultures (CSMC) at
+               Universität Hamburg.</p>
+         </div>
+      </front>
+      <body>
+         <!-- text divisions, each with an @xml:id and <head> -->
+         <div xml:id="roleof">
+            <head>The Role of Bookbinding Studies in Understanding the Manuscript</head>
+            <p>Looking at the codex as an object, one of its most noticeable—if present—yet
+               overlooked attributes is its binding. Bookbindings capture onlookers’ gaze and
+               through their design, they convey specific messages without needing the book to be
+               opened. Paraphrasing Rousseau (<ref type="bibl" target="#rousseau2007">2007,
+               1</ref>), it is possible to note that bindings can inspire religious veneration or
+               aesthetic admiration, or simply manifest the purpose for which the manuscript was
+               created. The information transmitted by the binding varies according to the materials
+               and techniques adopted in the manufacture, which are determined by temporal and local
+               factors. The choice of materials depends on what can be found at a precise moment in
+               the place of production. Techniques, imparted by tradition, evolve across time,
+               taught by one generation to the next, and assume distinctive traits according to the
+               area to which they belong. Hence, the characterization of the materials and
+               techniques helps to locate and date the production of the binding, while their
+               fineness offers clues to the prestige of a manuscript, to its use, and to the context
+               in which it is produced or transformed.<note>For a typological classification of the
+                  transformations a manuscript can undergo, see Andrist, Canart, and Maniaci (<ref
+                     type="bibl" target="#andrist2013">2013, 61–91</ref>). Specifically on bindings,
+                  Pickwoad (<ref type="bibl" target="#pickwoad1995">1995, 213</ref>; <ref
+                     type="bibl" target="#pickwoad2014">2014, 238</ref>) notes how books sold in
+                  temporary retail bindings may be rebound according to the taste and the needs of
+                  the owner. Velios and Pickwoad (<ref type="bibl" target="#velios2019">2019</ref>)
+                  show how the CIDOC CRM ontology (<ptr target="http://www.cidoc-crm.org"/>) can be
+                  used to represent the modifications (variants) of a binding across time. Beta
+                  maṣāḥǝft evaluates implementing this methodology to enrich binding
+                  descriptions.</note> Therefore, to understand the information transmitted through
+               the binding, a careful examination of the materiality of the codex is necessary.</p>
+         </div>
+         <div xml:id="bookbinding">
+            <head>Bookbinding Recording: The State of the Art</head>
+            <p>Despite their significance for the study of the context of production, use, and
+               transformation of the manuscripts they enclose, bindings have never been
+               systematically recorded (<ref type="bibl" target="#pickwoad2012">Pickwoad
+               2012</ref>). This situation was common to all material aspects of the codex until
+               scholars recognized the importance of codicology for a holistic understanding of the
+               manuscript.</p>
+            <p>Yet additional factors delayed the development of bookbinding studies in particular,
+               as, for example, the scarcity of original bindings.<note>The term
+                     <term>original</term> indicates the first binding the manuscript received,
+                  whose manufacture is usually contemporary with the writing.</note> In fact, as a
+               practice, bindings had been thrown away and replaced with new ones when they had
+               deteriorated too much to perform their protective function or simply when their
+               design grew out of fashion. The finely decorated covers escaped this fate more often
+               than the plain ones did, which partly explains why the first studies on bookbindings
+               focused on their aesthetics. Far more common is the case in which the bindings have
+               been preserved thanks to the repairs they underwent through time—which, however, also
+               significantly altered their original structure. To detect the modifications to which
+               a binding had been subjected, distinguishing strata of original and altered elements,
+               a certain familiarity with the methods of creating the codex is required. However,
+               the domain of book technology has been for a long time a prerogative of craftsmen
+               rather than scholars involved in manuscript studies. Therefore, the description of
+               structural elements of bindings, when given, was mostly brief and inconsistent, and
+               so of little use for research purposes. The lack of data regarding bookbinding
+               structures constitutes a further obstacle to the development of research in the
+               field.</p>
+            <p>As interest in the materiality of the codex grew, structural elements of the binding
+               received greater attention and pioneer scholars included them in their observations.
+               The book started to be considered valuable not only for the text it carries, but also
+               for its materiality, which bears witness to historical, economic, technological, and
+               artistic aspects of the context in which it has been produced and used. This
+               awareness led the English bookbinders Roger Powell (1896–1990) and Sydney Morris
+               Cockerell (1906–1987) to develop a new approach to book conservation. The aim was to
+               preserve the original elements as much as possible, balancing the need to use the
+               book with the need to preserve it from further damage. Such a methodology was passed
+               on to the conservators who gathered in Florence after the Arno’s flood in 1966 to
+               repair the damaged books of the Central National Library, thus marking the start of
+               modern conservation practice (<ref type="bibl" target="#campagnolo2020">Campagnolo
+                  2020, 55–60</ref>). The study of bookbinding structures made it possible to to
+               highlight the presence of recurring patterns and to group bindings accordingly, thus
+               identifying macro-areas corresponding to different bookbinding traditions (Coptic,
+               Ethiopic, Islamic, Byzantine, etc.). In this context, Janos A. Szirmai’s work stands
+               as a milestone in the systematization of bookbinding studies (<ref type="bibl"
+                  target="#szirmai1999">Szirmai 1999</ref>).</p>
+            <p>Recently, digital technologies have improved the quality of bookbinding records. In
+               2001, their application in the Saint Catherine’s Project<note>A project by Ligatus
+                  and the University of the Arts London for the conservation and preservation of the
+                  library of the monastery of St. Catherine in Sinai, Egypt. See, accessed January
+                  25, 2022, <ptr target="https://www.ligatus.org.uk/stcatherines/"/>.</note>
+               resulted in the development of a consistent terminology—the Language of Bindings
+                  thesaurus<note>The Language of Bindings (LoB) thesaurus is a reference tool for
+                  the description of historical bookbinding structures created by the Ligatus
+                  Research Unit at the University of the Arts London with the contributions of
+                  international experts in the field of bookbinding studies. LoB is a structured
+                  vocabulary, freely available to the research community, based on the Simple
+                  Knowledge Organization System (SKOS) and published as linked open data (LOD). See,
+                  accessed January 25, 2022, <ptr target="https://www.ligatus.org.uk/lob/"/>.</note>
+                  (<ref type="bibl" target="#velios2014">Velios, Pickwoad, and Martin 2014</ref>;
+                  <ref type="bibl" target="#velios2020">Velios and Pickwoad 2020</ref>)—and a
+               database (<ref type="bibl" target="#velios2005">Velios and Pickwoad 2005</ref>) for
+               the collection and ordering of the surveyed data (<ref type="bibl"
+                  target="#pickwoad2004">Pickwoad 2004</ref>). After creating a relational database,
+               Ligatus developed an XML schema to describe bookbinding structures (<ref type="bibl"
+                  target="#campagnolo2015a">Campagnolo 2015a, 141–145</ref>; <ref type="bibl"
+                  target="#ligatus2007">Ligatus 2007</ref>). The experience strongly encouraged the
+               improvement of efficient documentation systems to obtain consistent descriptions to
+               share with the research community and overcome the long-standing absence of binding
+               descriptions in manuscript catalogs (<ref type="bibl" target="#campagnolo2017"
+                  >Campagnolo 2017</ref>). In this framework, the Beta maṣāḥǝft<note><q><title
+                        level="m">Beta maṣāḥǝft: Manuscripts of Ethiopia and Eritrea (Schriftkultur
+                        des christlichen Äthiopiens und Eritreas: eine multimediale
+                        Forschungsumgebung)</title> is a long-term project headed by Prof.
+                     Alessandro Bausi and funded within the framework of theAcademies’ Programme
+                     (coordinated by the Union of the German Academies of Sciences and Humanities)
+                     under survey of the Akademie der Wissenschaften in Hamburg. The project is
+                     hosted by the Hiob Ludolf Centre for Ethiopian Studies at the University of
+                     Hamburg (HLCEES).</q> See, accessed January 25, 2022, <ptr
+                     target="https://www.betamasaheft.uni-hamburg.de"/> and <ptr
+                     target="https://betamasaheft.eu"/>.</note> project, whose aim is to provide a
+               digital research environment for the exhaustive description of the written heritage
+               of Christian Ethiopia and Eritrea, set up a protocol for bookbinding description.
+               This paper presents how the project customized the TEI schema to encode peculiar
+               features of Ethiopian bookbindings and collect consistent and accurate data useful
+               for future research.</p>
+         </div>
+         <div xml:id="object">
+            <head>The Object of Inquiry: Ethiopian Bookbinding</head>
+            <p>Ethiopic manuscripts were said to be <quote source="#quoteref1">bound in a very
+                  simple codex form, which has in fact remained almost unchanged until the present
+                  day</quote> (<ref xml:id="quoteref1" type="bibl" target="#szirmai1999">Szirmai
+                  1999, 45</ref>), but recent studies have pointed out the existence of some
+               previously unrecorded characteristics (<ref type="bibl" target="#dibella2014">Di
+                  Bella and Sarris 2014</ref>; <ref type="bibl" target="#nosnitsin2016">Nosnitsin
+                  2016</ref>) that would make us reconsider what we know about Ethiopian
+               bookbinding. Indeed, it is not an immutable tradition but the technical and aesthetic
+               variations are limited to detail.</p>
+            <p>An in-depth description of Ethiopian bookbinding<note>Ethiopian bookbinding is a term
+                  deeply rooted in literature and refers to the traditional technique used to bind
+                  Christian Ethiopian and Eritrean manuscripts.</note> features is beyond the scope
+               of this paper.<note>See Bausi et al. (<ref type="bibl" target="#bausi2015">2015,
+                     168–70</ref>), for an overview and further references; details can be found
+                  also in Di Bella and Sarris (<ref type="bibl" target="#dibella2014">2014</ref>);
+                  Winslow (<ref type="bibl" target="#winslow2015">2015, 201–62</ref>); and Nosnitsin
+                     (<ref type="bibl" target="#nosnitsin2016">2016</ref>).</note> Therefore, the
+               general characteristics of Ethiopian binding will be only briefly introduced to
+               highlight, for each structural component, the possible existing variants. This will
+               make it possible to understand the challenge faced by the Beta maṣāḥǝft project in
+               setting up a protocol to encode every binding in detail without renouncing the
+               principle of consistency, and possibly to record enough of those small variations to
+               prove the idea of their relevance.</p>
+            <p>The ancient tradition of bookmaking has been handed down, and is practiced still
+               today, in monastic centers as part of religious education (<ref type="bibl"
+                  target="#bausi2015">Bausi et al. 2015, 168–70</ref>). Traditionally, the quires,
+               after being written and decorated, are sewn together to the boards with a paired
+                  <term>link-stitch</term>.<note>For a detailed explanation of the technique and its
+                  variations with diagrams, see Szirmai (<ref type="bibl" target="#szirmai1999"
+                     >1999, 16–19</ref>).</note> Within this general category Bozzacchi (<ref
+                  target="#bozzacchi2000" type="bibl">2000</ref>, <ref target="#bozzacchi2007"
+                  type="bibl">2007</ref>), in his study on fifty-six Ethiopic codices kept at the
+               Library of the Accademia Nazionale dei Lincei e Corsiniana in Rome, was able to
+               identify and describe twelve different sewing patterns. The variability of the
+               structures depends on the number of sewing stations<note>For the definition of
+                     <term>sewing stations</term> see LoB, accessed January 25, 2022, <ptr
+                     target="http://w3id.org/lob/concept/1579"/>.</note> of the codex (see <ptr
+                  target="#figure1" type="crossref"/>)—and thus on its dimensions—and on how the
+               front board is attached to the first quire. Bozzacchi found that the binder could
+               start sewing either from the center of the first quire or from the upper board. The
+               thread used for sewing can be of animal (see <ptr target="#figure1" type="crossref"
+               />)—probably sinew or gut—or vegetable origin. In recent times the use of synthetic
+               fibers has also been documented (<ref type="bibl" target="#bausi2015">Bausi et al.
+                  2015, 173</ref>).</p>
+            <figure xml:id="figure1">
+               <graphic width="1216px" height="789px" url="media/image1.jpeg"/>
+               <head type="legend">Sewing on four sewing stations with a thread of animal origin
+                     (<ref target="https://betamasaheft.eu/GAet7">Grottaferrata, Exarchic Greek
+                     Abbey of St. Mary of Grottaferrata, Crypt. Aet. 7</ref>)<note>See Eliana Dal
+                     Sasso, <title level="a">Grottaferrata, Exarchic Greek Abbey of St. Mary of
+                        Grottaferrata, Crypt. Aet. 7</title>, in <title level="j">Die Schriftkultur
+                        des christlichen Äthiopiens und Eritreas: Eine multimediale
+                        Forschungsumgebung / Beta maṣāḥǝft</title>, edited by Alessandro Bausi,
+                     accessed January 22, 2022, <ptr
+                        target="https://betamasaheft.eu/manuscripts/GAet7"/>.</note></head>
+            </figure>
+            <p>Ethiopic codices are generally bound in wooden <term>boards</term>. Literature
+               reports that the most-used wood types for producing the boards are <term>Cordia
+                  africana</term>, <term>Olea africana,</term> and cedarwood. However, Mellors and
+               Parsons (<ref type="bibl" target="#mellors2002">2002</ref>) and Mersha Alehegne (<ref
+                  type="bibl" target="#mersha2011">2011</ref>) documented the use of thirteen
+               further wood types. In some cases, the boards are made of stiff leather instead of
+               wood, perhaps hinting at the need to use a less expensive material (<ref type="bibl"
+                  target="#nosnitsin2016">Nosnitsin 2016, 81</ref>).</p>
+            <p>Wooden boards can be left bare or be covered with leather. Commonly the cover extends
+               over the entire board but, as highlighted recently (<ref type="bibl"
+                  target="#bausi2015">Bausi et al. 2015, 172</ref>; <ref type="bibl"
+                  target="#nosnitsin2016">Nosnitsin 2016, 78</ref>), in some cases it covers only
+               the spine and the back edge of the boards. Covering material that exceeds the size of
+               the boards is folded over to form turn-ins.<note>For the definition of
+                     <term>turn-ins</term> see LoB, accessed January 25, 2022, <ptr
+                     target="http://w3id.org/lob/concept/1694"/>.</note> The shape of these turn-ins
+               varies enormously in the ways in which they are trimmed or overlapped. Furthermore,
+               textiles of varying quality can inlay the inner surface of the boards (see <ptr
+                  target="#figure2" type="crossref"/>). A less common feature is the presence in
+               this area of a mirror, the function of which is still not clear. The cover is then
+               often embellished with blind-tooled decoration<note>For the definition of
+                     <term>blind-tooled decoration</term> see LoB, accessed January 25, 2022, <ptr
+                     target="http://w3id.org/lob/concept/2288"/>.</note> using a variety of tools.
+               Despite some authors dedicating part of their research to the study of these tools
+                  (<ref type="bibl" target="#sergew1981">Sergew Hable Selassie 1981</ref>; <ref
+                  type="bibl" target="#tafarra2010">Faqāda Śellāse Tafarrā 2010</ref>; <ref
+                  target="#winslow2015" type="bibl">Winslow 2015</ref>; <ref type="bibl"
+                  target="#tomaszewski2015">Tomaszewski and Gervers 2015</ref>), a comprehensive
+               classification system has not yet been developed. Even less is known about the
+               recurring decorative patterns and layout of the covers.<note>The only study on the
+                  topic, to my knowledge, is that of Pankhurst (<ref type="bibl"
+                     target="#pankhurst1984">1984</ref>). A tentative classification of bookbinding
+                  tools and designs is under preparation by the author for the catalog of the
+                  Ethiopic manuscripts of the Bodleian Library, a project initiated by Jacopo Gnisci
+                  and Dorothea Reule with the cooperation of Eliana Dal Sasso, Solomon Gebreyes
+                  Beyene, Susanne Hummel, and Massimo Villa.</note> In a few cases the boards are
+               covered with metal sides<note>For the definition of <term>metal sides</term> see LoB,
+                  accessed January 25, 2022, <ptr target="http://w3id.org/lob/concept/4488"
+                  />.</note> or bear metal bosses (<ref type="bibl" target="#bausi2015">Bausi et al.
+                  2015, 172</ref>).</p>
+            <figure xml:id="figure2">
+               <graphic width="1216px" height="789px" url="media/image2.jpeg"/>
+               <head type="legend">Textile inlay on the inner upper board and a parchment guard
+                  along the fold of the first quire (Exarchic Greek Abbey of St. Mary of
+                  Grottaferrata, Crypt. Aet. 7)</head>
+            </figure>
+            <p>Usually, <term>endbands</term><note>For the definition of <term>endbands</term> see
+                  LoB, accessed January 25, 2022, <ptr target="http://w3id.org/lob/concept/2370"
+                  />.</note> made of slit-braided leather tongues are added to the leather-covered
+               codices, but a less common type, similar in technique to a Coptic one (<ref
+                  type="bibl" target="#szirmai1999">Szirmai 1999, 39, fig. 3.7a</ref>), has been
+               documented on two manuscripts with bare boards (<ref type="bibl"
+                  target="#dibella2014">Di Bella and Sarris 2014, 293, fig. 27b</ref>).</p>
+            <p>Sources of variance depend on other features, related to:</p>
+            <list>
+               <item>Pastedowns<note>For the definition of <term>pastedowns</term> see LoB, accessed
+                     January 25, 2022, <ptr target="http://w3id.org/lob/concept/1493"/>.</note> and
+                  their position in relation to turn-ins;</item>
+               <item>The spine, such as the presence of a piece of parchment folded around the text
+                  block and sewn with the first and last quire as a sort of spine lining<note>For
+                     the definition of <term>spine linings</term> see LoB, accessed January 25,
+                     2022, <ptr target="http://w3id.org/lob/concept/1619"/>.</note> (<ref
+                     type="bibl" target="#dibella2014">Di Bella and Sarris 2014, 301</ref>). In
+                  particular, the presence of rows of holes close to the head and tail of the quires
+                  is important. This feature can be related to the former presence of endbands or
+                  tackets (<ref type="bibl" target="#bausi2015">Bausi et al.2015, 159</ref>);</item>
+               <item>Fastenings or traces of them (<ref type="bibl" target="#dibella2014">Di Bella
+                     and Sarris 2014, 299</ref>);</item>
+               <item>Parchment guards<note><term>Guards</term> (see LoB, accessed January 25, 2022,
+                        <ptr target="http://w3id.org/lob/concept/1379"/>) either reinforce the folds
+                     of quires (precisely defined in LoB as <term>sewing guards</term>, accessed
+                     January 25, 2022, <ptr target="http://w3id.org/lob/concept/3282"/>) or attach
+                     single leaves to a textblock (precisely defined in LoB as <term>extension
+                        guards</term>, accessed January 25, 2022, <ptr
+                        target="http://w3id.org/lob/concept/1322"/>).</note> (see <ptr
+                     target="#figure2" type="crossref"/>), their position and technique of
+                  attachment to the quire;</item>
+               <item>Bookmark types;</item>
+               <item>The traditional two-part leather slip case (<ref type="bibl"
+                     target="#bausi2015">Bausi et al. 2015, 172</ref>).</item>
+            </list>
+            <div xml:id="taxonomy">
+               <head>A Taxonomy for the Description of Ethiopian Bookbinding Features</head>
+               <p>The first step in the development of consistent descriptions is the use of a
+                  controlled vocabulary. The adoption of a selected terminology avoids the confusion
+                  which arises when different terms are used to describe the same concept.
+                  Therefore, a controlled vocabulary increases the efficiency of the documentary
+                  system by limiting data redundancy. Furthermore, the homogeneous descriptions
+                  created following this method have the great advantage of being easily comparable,
+                  thus making it easier to identify similarities and differences in a group of
+                  items.</p>
+               <p>For this purpose, the terminology used in binding descriptions
+                     (<gi>bindingDesc</gi>)<note>See <ref type="bibl" target="#tei2020">TEI
+                        Consortium 2020</ref>, 10.7.3.1: <title level="a">Binding
+                        Descriptions</title>, accessed January 25, 2022, <ptr
+                        target="https://tei-c.org/Vault/P5/4.1.0/doc/tei-p5-doc/en/html/MS.html#msphbi"
+                     />.</note> in Beta maṣāḥǝft is partly enforced by the schema, customized so to
+                  pick up keywords from a specifically conceived taxonomy. The Beta maṣāḥǝft
+                  taxonomy included in each XML file within the element <gi>taxonomy</gi> contains a
+                  main <gi>category</gi> for binding.</p>
+               <p>The taxonomy is hierarchically structured so that broader <gi>category</gi>
+                  elements corresponding to selected bookbinding features (that is, sewing pattern,
+                  thread material, wood type, board lining, decoration motives, endband type,
+                  guards, and bookmarks) include one or more child <gi>category</gi> elements
+                  corresponding to keywords which describe the possible variants of that feature
+                  (see <ptr target="#example1" type="crossref"/>).</p>
+               <figure xml:id="example1">
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                     <taxonomy xml:id="ethioauthlist">
+                        <category>
+                           <desc>Binding Description</desc>
+                           <category>
+                              <desc>Endband Type</desc>
+                              <category xml:id="slitBraid"
+                                 corresp="https://betamasaheft.eu/authority-files/slitBraid/main">
+                                 <catDesc>Slit-braid</catDesc>
+                              </category>
+                              <category xml:id="linkStitch"
+                                 corresp="https://betamasaheft.eu/authority-files/linkStitch/main">
+                                 <catDesc>Link-stitch</catDesc>
+                              </category>
+                           </category> […] </category>
+                     </taxonomy>
+                  </egXML>
+                  <head type="legend">Part of the taxonomy dedicated to the category <term>Endband
+                        Type</term></head>
+               </figure>
+               <p>Each keyword in the taxonomy corresponds to a file in the authority-files
+                  repository of the project, which is also a TEI file, to accommodate future
+                  information about each of these concepts. Authority files for binding description
+                  reflect the hierarchical structure of the taxonomy. They usually contain just a
+                     <gi>title</gi>, a brief explanation of what the keyword stands for, and the
+                  bibliographic references for the concept. This also makes the concept a published,
+                  versioned, citable entity on the web with a stable identifier.</p>
+               <p>Keywords are indexed in the Beta maṣāḥǝft web application so that the user can
+                  visualize which bookbinding features are taken into consideration in manuscript
+                  records and which keywords are used to describe their possible variants. When
+                  selecting a keyword, the application displays the corresponding authority file,
+                  which also shows all the occurrences of that keyword in the manuscript records
+                  (see <ptr target="#figure3" type="crossref"/>).<note>See Beta maṣāḥǝft, accessed
+                     January 25, 2022, <ptr
+                        target="https://betamasaheft.eu/authority-files/list?keyword=slitBraid"
+                     />.</note></p>
+               <figure xml:id="figure3">
+                  <graphic width="1216px" height="789px" url="media/image3.png"/>
+                  <head type="legend"><term>Slit-braid</term> keyword displayed in the web
+                     application</head>
+               </figure>
+               <p>The keywords are also listed in the ODD<note>ODD stands for <q>One Document Does
+                        it all.</q> It is a TEI file which contains both machine- and human-readable
+                     information about the choices made by the project in the customization of the
+                     standard TEI schema.</note> (see <ptr target="#figure4" type="crossref"/>).</p>
+               <figure xml:id="figure4">
+                  <graphic width="1216px" height="789px" url="media/image4.png"/>
+                  <head type="legend">The values in the Beta maṣāḥǝft ODD as presented in the
+                     Guidelines</head>
+               </figure>
+               <p>Since the aforementioned Language of Bindings thesaurus (LoB) describes in detail
+                  many aspects of ancient book structures, Beta maṣāḥǝft uses it as much as possible
+                  in its controlled vocabulary. When the concept expressed by a keyword can be
+                  related to a LoB one, the authority file is set to provide the link to the LoB URI
+                  as well. The alignment with LoB is done—like other alignments in Beta
+                  maṣāḥǝft—with <gi>relation</gi>. The <att>name</att> attribute permits one to
+                  specify the semantic relationship between Beta maṣāḥǝft and LoB concepts by using
+                  the SKOS<note>The Simple Knowledge Organization System (SKOS) is a <quote
+                        source="#quoteref2">common data model for sharing and linking knowledge
+                        organization systems via the Web</quote> (<ref xml:id="quoteref2"
+                        type="bibl" target="#miles2009">Miles and Bechhofer 2009</ref>).</note>
+                  semantic relation <code>skos:broader</code> or choosing a value from the SKOS
+                  mapping properties <code>skos:exactMatch</code> and <code>skos:broadMatch</code>.
+                  When a Beta maṣāḥǝft concept does not match an exact LoB concept but it is
+                  possible to establish a sematic relation with a more general LoB concept, the
+                  relation <code>skos:broader</code> is used. For example, Beta maṣāḥǝft
+                  distinguishes between various hardwood types which are not defined in LoB (which
+                  lists among the hardwoods only beech and oak). In this case the Beta maṣāḥǝft
+                  concepts declare a semantic hierarchical relation with the more general LoB
+                  concept <term>hardwood</term> by using the relation <code>skos:broader</code> (see
+                     <ptr target="#example3" type="crossref"/>).</p>
+               <figure xml:id="example2">
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                     <listRelation>
+                        <relation name="skos:broader" active="cordiaAfricana"
+                           passive="http://w3id.org/lob/concept/1386"/>
+                     </listRelation>
+                  </egXML>
+                  <head type="legend">Use of <term>skos:broader</term> for the alignment to
+                     LoB</head>
+               </figure>
+               <p>The property <term>skos:broadMatch</term> permits one to match a Beta maṣāḥǝft
+                  concept with an external concept with which there is no exact correspondence. For
+                  example, LoB defines <term>board linings</term> as the pieces of sheet material
+                  adhered to the boards before the book is covered.<note>For the definition of
+                        <term>board linings</term>, see LoB, accessed January 25, 2022, <ptr
+                        target="http://w3id.org/lob/concept/1219"/>.</note> As explained above, a
+                  common board lining in Ethiopian bookbinding tradition is made of textile. Since
+                  the concept <term>textile</term> in Beta maṣāḥǝft specifically refers to the use
+                  of the material as board lining, it has a broad match with the LoB concept
+                     <term>board lining</term>. Nevertheless, it has a semantic exact equivalence
+                  with the LoB concept <term>textile</term>.<note>For the definition of
+                        <term>textile</term> in LoB see, accessed January 25, 2022, <ptr
+                        target="http://w3id.org/lob/concept/2470"/>.</note> The authority file
+                  specifies both relations using a <code>skos:broadMatch</code> with the LoB
+                     <term>board lining</term> and a <code>skos:exactMatch</code> with the LoB
+                     <term>textile</term> (see <ptr target="#example3" type="crossref"/>).</p>
+               <figure xml:id="example3">
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                     <listRelation>
+                        <relation active="textile" passive="http://w3id.org/lob/concept/1219"
+                           name="skos:broadMatch"/>
+                        <relation active="textile" passive="http://w3id.org/lob/concept/2470"
+                           name="skos:exactMatch"/>
+                     </listRelation>
+                  </egXML>
+                  <head type="legend">Use of <code>skos:broadMatch</code> and
+                        <code>skos:exactMatch</code> for the alignment to LoB</head>
+               </figure>
+               <p>In this way the alignment to LoB occurs within the authority files and reflects
+                  directly on each manuscript entry where the file is used. This procedure regards
+                  LoB vocabulary as a semantic resource, without impacting its integrity but instead
+                  improving cooperation and reuse of open data.</p>
+               <p>Nevertheless, a standard terminology to refer to the specific characteristics of
+                  Ethiopian bookbinding tradition was still lacking. Therefore, Beta maṣāḥǝft
+                  developed a tailored terminology to offer accurate research data to the users of
+                  the application as well as to encoders. Thus, keywords—normally chosen from among
+                  the most frequently occurring terms in the bibliography—have been discussed among
+                  Beta maṣāḥǝft team and external contributors in issues opened in the GitHub
+                  repository page of the project. Once the group reached an agreement, the taxonomy
+                  file was edited, an authority file was created, and the ODD was updated. When
+                  necessary, parts of the Guidelines were also edited, although changes to the ODD
+                  are immediately reflected.<note>See Beta maṣāḥǝft, accessed January 25, 2022, <ptr
+                        target="https://betamasaheft.eu/Guidelines/?id=bindingDescription"
+                  />.</note></p>
+            </div>
+            <div xml:id="descriptions">
+               <head>Bookbinding Descriptions in Beta maṣāḥǝft: A Customization of the TEI
+                  Schema</head>
+               <p>Manuscript records in Beta maṣāḥǝft follow the TEI Guidelines for manuscript
+                  description (<ref type="bibl" target="#tei2020">TEI Consortium 2020</ref>).
+                  Therefore, the description of the current binding of the manuscript is located in
+                     <gi>physDesc</gi>, within <gi>bindingDesc</gi>, in the element
+                  <gi>binding</gi>. As stated in the Guidelines,<note><ref type="bibl"
+                        target="#tei2020">TEI Consortium 2020</ref>, Appendix C: Elements,
+                        <gi>binding</gi>, accessed January 25, 2022, <ptr
+                        target="https://tei-c.org/Vault/P5/4.1.0/doc/tei-p5-doc/en/html/ref-binding.html"
+                     />.</note>
+                  <gi>binding</gi> can take <att>notBefore</att>
+                  <att>notAfter</att> and <att>contemporary</att> when it is possible to provide
+                  information on the dating of its manufacture.</p>
+               <p>To produce useful data for scholars, every relevant structural element of the
+                  binding should be described, thus encoded, separately. In this way, the data about
+                  specific features become searchable and retrievable via the web application. Beta
+                  maṣāḥǝft and other projects have developed their own ways of meeting this
+                  requirement as well as solutions to cope with the issue. According to the TEI
+                  Guidelines, the element <gi>binding</gi> may contain <gi>p</gi>, <gi>ab</gi>,
+                     <gi>condition</gi>, and <gi>decoDesc</gi> child elements. It appears that most
+                  manuscript catalogs using TEI listed in the TEI Wiki<note>See, accessed January
+                     25, 2022, <ptr
+                        target="https://wiki.tei-c.org/index.php?title=TEI_manuscript_catalogues"
+                     />.</note> have chosen to encode binding descriptions in one or more <gi>p</gi>
+                  elements, as paragraphs of free text.<note>Examples of bookbinding descriptions in
+                     TEI can be found in <ref type="bibl" target="#tei2020">TEI Consortium
+                        2020</ref>, Example: <gi>binding</gi>, accessed January 25, 2022, <ptr
+                        target="https://tei-c.org/Vault/P5/4.1.0/doc/tei-p5-doc/en/html/examples-binding.html"
+                     />.</note> This is the case, for example, with the projects
+                     Manuscriptorium<note>See Manuscriptorium, accessed January 25, 2022, <ptr
+                        target="http://www.manuscriptorium.com/en"/>.</note> and e-Codices.<note>See
+                     e-Codices, accessed January 25, 2022, <ptr
+                        target="http://www.e-codices.unifr.ch/"/>.</note> The latter does at least
+                  permit filtering the bindings according to their date and isolating the
+                     <term>luxurious bindings</term> (see <ptr target="#example4" type="crossref"
+                  />).</p>
+               <figure xml:id="example4">
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                     <bindingDesc>
+                        <binding notBefore="1646" notAfter="1646">
+                           <p>Der Band wurde im Zuge der neuen <locus from="Vorderseite"
+                                 >Bindung</locus>
+                              <date>1646</date> neu eingefasst mit silbernen Beschlägen versehen,
+                              die dem Landbuch den heutigen Namen gaben. </p>
+                        </binding>
+                     </bindingDesc>
+                  </egXML>
+                  <head type="legend">Binding description in e-Codices (Appenzell, Landesarchiv
+                     Appenzell I. Rh., E.10.02.01.01)<note>Appenzell, Landesarchiv Appenzell I. Rh.,
+                        E.10.02.01.01, accessed January 25, 2022, <ptr
+                           target="http://www.e-codices.unifr.ch/en/description/laai/E-10-02-01-01/Rechtsquellen"
+                        />.</note></head>
+               </figure>
+
+               <p>A similar approach is adopted in the ENRICH<note>European Networking Resources and
+                     Information concerning Cultural Heritage. The documents related to the project
+                     are available at, accessed January 25, 2022, <ptr
+                        target="http://projects.oucs.ox.ac.uk/ENRICH/"/>.</note> Schema on which the
+                  entries in Manuscriptorium are based (<ref type="bibl" target="#driscoll2010"
+                     >Driscoll 2010</ref>). According to the Reference Guide (<ref type="bibl"
+                     target="#burnard2008">Burnard 2008</ref>), the description of the binding is
+                  places in <gi>p</gi> elements and <gi>decoNote</gi> elements are used to describe
+                  its decorative features.</p>
+               <p>Since the FIHRST<note>Union catalog of manuscripts from the Islamicate World: see
+                     accessed January 25, 2022, <ptr target="https://www.fihrist.org.uk"/>.</note>
+                  and SENMAI<note>Union catalog of manuscripts of Shan Buddhist lik lu ṅ manuscripts
+                     in UK and Southeast Asian collections: see accessed January 25, 2022, <ptr
+                        target="https://senmai.bodleian.ox.ac.uk"/>.</note> union catalogs are based
+                  on a customization of the ENRICH schema, they structure the binding description
+                  uniformly. In addition, their ODD<note>See, accessed January 25, 2022, <ptr
+                        target="https://github.com/msDesc/consolidated-tei-schema/blob/231ec69b8e769d6649ae644004bc3affa39198e6/msdesc.odd#L3071"
+                     />.</note> states that the <gi>term</gi> element with <att>type</att> attribute
+                  marks relevant features of the binding and the <att>ref</att> attribute is used to
+                  refer to the appropriate URI in the Ligatus thesaurus. Nevertheless, the link does
+                  not seem to have been implemented in the records. An attempt at further
+                  structuring of binding records appears in the FIHRST description of some
+                  manuscripts in the Wellcome collection in London. Here the description of the
+                  binding is always set in <gi>p</gi> paragraphs, but <gi>seg</gi> elements with
+                     <att>type</att> and <att>subtype</att> attributes permit segmenting the
+                  paragraph and describing bookbinding structural elements separately (see <ptr
+                     target="#example5" type="crossref"/>). Nevertheless, the website does not offer
+                  a dedicated search on bookbinding features.</p>
+               <figure xml:id="example5">
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                     <bindingDesc>
+                        <binding contemporary="true">
+                           <p>
+                              <seg type="structure" subtype="unsupported"/>
+                              <seg type="board">
+                                 <dimensions type="binding" unit="mm">
+                                    <height>355</height>
+                                    <width>246</width>
+                                 </dimensions>
+                                 <material>Paper; </material>
+                              </seg>
+                              <seg type="covers" subtype="unattached">
+                                 <seg type="spine_formation" subtype="flush"/>
+                                 <material facs="#i0001">leather; </material>
+                              </seg>
+                              <seg type="endbands">
+                                 <seg type="primary">
+                                    <seg type="color"> primary endbands natural colour; </seg>
+                                 </seg>
+                                 <seg type="secondary">
+                                    <seg type="color">secondary endbands natural colour; </seg>
+                                 </seg>
+                                 <desc> evidence of endband is visible.</desc>
+                              </seg>
+                           </p>
+                        </binding>
+                     </bindingDesc>
+                  </egXML>
+                  <head type="legend">Binding description in FIHRST (London, Wellcome Trust,
+                     Wellcome Collection, MS Arabic 495)<note>London, Wellcome Trust, Wellcome
+                        Collection, MS Arabic 495, accessed January 25, 2022, <ptr
+                           target="https://github.com/fihristorg/fihrist-mss/blob/master/collections/wellcome%20trust/WMS_Arabic_495.xml"
+                        />.</note></head>
+               </figure>
+               <p>A customization of the TEI schema is also used for manuscript descriptions
+                  exported from Manus Online<note>See Manus OnLine, accessed January 25, 2022, <ptr
+                        target="https://manus.iccu.sbn.it"/>.</note> (MOL), the Italian national
+                  catalog of manuscripts. The binding description is arranged in <gi>p</gi> elements
+                  where <gi>note</gi> child elements with <att>n</att> and <att>type</att>
+                  attributes are added to encode the fields of MOL that do not have a corresponding
+                  tag in the TEI schema (<ref type="bibl" target="#barbero2014">Barbero and
+                     Trasselli 2014</ref>). In this way the boards and cover can be described
+                  separately (see <ptr target="#example6" type="crossref"/>).</p>
+               <figure xml:id="example6">
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                     <bindingDesc>
+                        <p>
+                           <origDate>1801-1900</origDate>
+                           <material n="2Assi">Cartone</material>
+                           <material n="6Coperta">Carta</material>
+                           <note n="33" type="descrmatcoperta">dorso in pergamena</note>
+                        </p>
+                        <condition>
+                           <p> Ha subito interventi di restauro </p>
+                        </condition>
+                     </bindingDesc>
+                  </egXML>
+                  <head type="legend">Binding description in MOL (Arezzo, Biblioteca Città di
+                     Arezzo, Manoscritti, 118)<note>Arezzo, Biblioteca Città di Arezzo, Manoscritti,
+                        118, accessed January 25, 2022, <ptr
+                           target="https://manus.iccu.sbn.it/opac_SchedaScheda.php?ID=49065"
+                        />.</note></head>
+               </figure>
+               <p>The Bibliothèque national de France (BnF) created the website Reliures de la
+                  Bibliothèque nationale de France<note>See BnF, accessed January 25, 2022, <ptr
+                        target="http://reliures.bnf.fr"/>.</note> which offers a selection of
+                  digitized French bindings from BnF’s collection with a detailed description, using
+                  a customization of the TEI schema. As stated in the ODD<note>See accessed January
+                     25, 2022, <ptr target="http://bibnum.bnf.fr/reliure_20161025/index.html"
+                     />.</note> and explained in the manual of use (<ref target="#lebars2016"
+                     type="bibl">Le Bars et al. 2016</ref>),<note>See, accessed January 25, 2022,
+                        <ptr
+                        target="http://bibnum.bnf.fr/reliure_20161025/manuel/bnf_reliure_tei_manuel.html#n2.6"
+                     />.</note> bookbinding descriptions may contain, beyond the elements expected
+                  in the TEI schema, <gi>dimensions</gi>, <gi>index</gi>,
+                  <gi>globalDescription</gi>, and <gi>structure</gi> elements. The last two elements
+                  were created as part of the project to give a summary identification and
+                  information on structural elements of the binding respectively (<ref type="bibl"
+                     target="#campagnolo2015b">Campagnolo 2015b, 98–99</ref>). The <gi>index</gi>
+                  element takes a mandatory <att>indexName</att> attribute with values controlled by
+                  the BnF Binding Scheme which serve to identify categories relative to the type,
+                  the technique, the material, and the place of production of the binding—in a
+                  similar way to the use made by MOL of the <gi>note</gi> element. An exhaustive
+                  description of the binding is based on <gi>decoNote</gi> elements with
+                     <att>type</att> attributes with values that specify the structural element
+                  being described (see <ptr target="#example7" type="crossref"/>).</p>
+               <figure xml:id="example7">
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                     <bindingDesc>
+                        <binding contemporary="true">
+                           <p>
+                              <index indexName="typo_reliure">
+                                 <term>Reliure à décor</term>
+                              </index>
+                              <index indexName="typo_decor">
+                                 <term>Entrelacs géométriques</term>
+                              </index> Reliure en <material>maroquin</material> brun jaspé</p>
+                           <decoNote type="plats"> à décor d’entrelacs géométriques (structure de
+                              losange et rectangle) complété de fers évidés.</decoNote>
+                           <decoNote type="plat_sup">Titre <q>ivvenalis. persivs</q> et ex-libris de
+                              Jean Grolier <q>io. grolierii et amicorvm.</q> dorés respectivement au
+                              centre et au bas du plat supérieur. </decoNote>
+                           <decoNote type="plat_inf">Devise de Jean Grolier<q>portio mea sit in
+                                 terra viventivm</q> dorée au centre du plat inférieur.</decoNote>
+                           <decoNote type="dos">Dos à cinq nerfs, sans décor ; simple filet doré sur
+                              chaque nerf et en encadrement des caissons ; passages de chaînette
+                              marqués de même.</decoNote>
+                           <decoNote type="tranchefiles">Tranchefiles simples unicolores, vert
+                              foncé.</decoNote>
+                           <decoNote type="coupes">Filet doré sur les coupes.</decoNote>
+                           <decoNote type="annexes"/>
+                           <decoNote type="tranches">Tranches dorées.</decoNote>
+                           <decoNote type="contreplats">Contreplats en vélin.</decoNote>
+                           <decoNote type="chasses">Filet doré sur les chasses.</decoNote>
+                           <!-- Description des gardes : gardes blanches ; gardes couleurs (marbrées, gaufrées, peintes, dominotées, etc.) généralement suivies de gardes blanches ; dans tous les cas, spécifier le nombre de gardes (début + fin du volume)-->
+                           <decoNote type="gardes">Gardes en papier et vélin (2+1+2 / 2+1+2) ;
+                              filigrane au pot.<ref>Briquet N° XX</ref>
+                           </decoNote>
+                           <!-- Élément qui inclut aussi bien des remarques sur la couture que les charnières, claies ou modes d'attaches des plats : tous éléments de la structure dont la description est jugée utile à la description et l'identification de la reliure-->
+                           <decoNote type="structure">Defet manuscrit utilisé comme claie au
+                              contreplat inférieur (visible par transparence, sous la contregarde en
+                              vélin).</decoNote>
+                           <condition>Traces de mouillures anciennes plus ou moins importantes au
+                              bas des feuillets, qui n'ont pas affecté la reliure ; éraflure en tête
+                              du plat inférieur.</condition>
+                        </binding>
+                     </bindingDesc>
+                  </egXML>
+                  <head type="legend">Binding description in BnF (Paris, Bibliothèque nationale de
+                     France, Réserve des livres rares, RES P- YC- 1275)<note>Paris, Bibliothèque
+                        nationale de France, Réserve des livres rares, RES P- YC- 1275, accessed
+                        January 25, 2022, <ptr target="http://reliures.bnf.fr/ark:/12148/cdt9x5x4/"
+                        />. The XML is the first example in <ref type="bibl" target="#tei2020">TEI
+                           Consortium 2020</ref>, Example: <gi>adminInfo</gi> (administrative
+                        information), accessed January 25, 2022, <ptr
+                           target="https://www.tei-c.org/Vault/P5/4.1.0/doc/tei-p5-doc/en/html/examples-adminInfo.html"
+                        />.</note></head>
+               </figure>
+
+               <p>What emerges from the inquiry is that the need to encode bookbinding structural
+                  elements separately is growing, but since there is no agreed structure, the
+                  flexibility of the TEI schema permits projects to develop their own alternative
+                  solutions. The technique used is the same: projects have added a <att>type</att>
+                  attribute either to the <gi>decoNote</gi> element or to phrase-level elements
+                  within <gi>p</gi>.</p>
+               <p>Beta maṣāḥǝft has also customized the TEI schema to adapt it to the specific needs
+                  of research on Ethiopian bookbinding. The customization of the protocol for
+                  bookbinding description started with the purpose of hosting the data inherited
+                  from the project Ethio-SPaRe<note>The project Ethio-SPaRe (ERC Starting Grant
+                     240720) was headed by Denis Nosnitsin of the HLCES from December 2009 to May
+                     2015. It was dedicated to the preservation and scientific analysis of
+                     manuscripts located in Ethiopian churches and monasteries, with the focus of
+                     the activities being in the Tegray region in the north of the country.</note>
+                  and has been further developed within the framework of the <title level="u">Torno
+                     Subito 2017</title> initiative.<note>The <title level="u">Torno Subito</title>
+                     program, promoted by Regione Lazio, financed by the Regional Operational
+                     Programme Lazio European Social Fund 2014–2020, aims at increasing the
+                     knowledge and the professional skills of young university students or
+                     graduates. In 2017 the author was granted funding to participate in the
+                     activities of the Hiob Ludolf Centre for Ethiopian and Eritrean Studies and
+                     thus contribute to the development of binding description in the Beta maṣāḥǝft
+                     project. The second part of the project was carried out at the Italian Central
+                     Institute of Cataloging (ICCU) in Rome, within the Manus OnLine project (<ptr
+                        target="https://manus.iccu.sbn.it"/>), for which it was possible for the
+                     first time to include in the online catalog Ethiopic manuscripts with detailed
+                     codicological descriptions (16 mss. from the Exarchic Greek Abbey of St. Mary
+                     of Grottaferrata, 1 ms. from the Angelica Library, 2 mss. from the Casanatense
+                     Library, 5 mss. from the Library of the Accademia Nazionale dei Licei e
+                     Corsiniana, 12 mss. from the Central National Library <title level="u">Vittorio
+                        Emanuele II</title>, 12 mss. from the Giovardiana Library, and 19 mss. from
+                     the Library of the Abbey of Casamari).</note> Despite TEI Guidelines defining
+                  the <gi>decoNote</gi> element as a note describing <quote source="#quoteref3"
+                     >either a decorative component of a manuscript or other object, or a fairly
+                     homogenous class of such components</quote>,<note><ref xml:id="quoteref3"
+                        type="bibl" target="#tei2020">TEI Consortium 2020</ref>, Appendix C:
+                     Elements, <gi>decoNote</gi>, accessed January 25, 2022, <ptr
+                        target="https://www.tei-c.org/Vault/P5/4.1.0/doc/tei-p5-doc/en/html/ref-decoNote.html"
+                     />.</note> Beta maṣāḥǝft, like BnF, decided to use it to describe bookbinding
+                  structural elements, as well as the decorative elements for which it is designed.
+                  The use of <gi>decoNote</gi> elements seemed more appropriate at the semantic
+                  level since the content model macro.specialPara defines them as special paragraphs
+                  which <quote source="#quoteref4">either contain a series of component-level
+                     elements or else have the same structure as a paragraph, containing a series of
+                     phrase-level and inter-level elements</quote>.<note>See the definition of the
+                     content model macro.specialPara at <ref xml:id="quoteref4" type="bibl"
+                        target="#tei2020">TEI Consortium 2020</ref>, Appendix E: Datatypes and Other
+                     Macros, macro.specialPara, accessed January 25, 2022, <ptr
+                        target="https://www.tei-c.org/Vault/P5/4.1.0/doc/tei-p5-doc/en/html/ref-macro.specialPara.html"
+                     />.</note></p>
+               <p>Therefore, <gi>decoNote</gi> elements have been added where the structural element
+                  encoded is specified within a <att>type</att> attribute. The permitted values,
+                  related to the main categories of interest listed above, are: binding material,
+                  boards, cover, sewing stations, endbands, endleaves, spine, fastenings, slip case,
+                  other. The descriptions partly consist of free text and partly are marked up with
+                  keywords introduced by using <gi>term</gi> with a <att>key</att> attribute, and
+                  choosing one of the values prompted by the schema.</p>
+               <p>The <code>decoNote[@type=bindingMaterial"]</code> may contain the child
+                     element<gi>material</gi> to specify the materials the binding is made of, with
+                  a <att>key</att> attribute equal to one of the values of the corresponding
+                  taxonomy from the schema (see <ptr target="#example8" type="crossref"/>).</p>
+               <figure xml:id="example8">
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                     <decoNote xml:id="b2" type="bindingMaterial">
+                        <material key="wood"/>
+                        <material key="textile"/>
+                        <material key="silk"/>
+                     </decoNote>
+                  </egXML>
+                  <head type="legend">Encoding of binding material (Exarchic Greek Abbey of St. Mary
+                     of Grottaferrata, Crypt. Aet. 7)</head>
+               </figure>
+               <p>In the <code>decoNote[@type="Boards"]</code> it is possible to use keywords to
+                  specify the wood type—if known—and to encode the presence of a textile inlay or of
+                  a mirror (see <ptr target="#example9" type="crossref"/>).</p>
+               <figure xml:id="example9">
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                     <decoNote xml:id="b3" type="Boards"> The right board is broken in two halves
+                        which are held together by leather strings. The left board is made from
+                           <term key="cordiaAfricana">Cordia Africana</term> wood while the right
+                        board is made from <term key="ficus">Ficus</term> wood. On the inner part of
+                        the left board is pasted a silk <term key="textile">fabric</term>.
+                     </decoNote>
+                  </egXML>
+                  <head type="legend">Encoding of <term>Boards</term> (Exarchic Greek Abbey of St.
+                     Mary of Grottaferrata, Crypt. Aet. 7)</head>
+               </figure>
+               <p>The cover can be described within the <code>decoNote[@type="Cover"]</code>. The
+                  color of the cover can be recorded using the attribute <att>color</att><note>The
+                     recording of color can be difficult because of discoloration and degradation of
+                     materials over time. As stated in the Ligatus guidelines, the color is recorded
+                     from protected areas, such as the turn-ins. See Pickwoad and Gullick (<ref
+                        type="bibl" target="#pickwoadGullick2004">2004, 12</ref>).</note> Keywords
+                  are used to encode the presence of an additional leather patch and describe the
+                  decoration motifs tooled on the cover. Furthermore, it is possible to specify the
+                  shape of turn-ins (see <ptr target="#example10" type="crossref"/>).</p>
+               <figure xml:id="example10">
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                     <decoNote xml:id="b4" type="Cover"> Light brown leather cover with wide
+                        turn-ins (up to 80 mm) and <term key="additionalLeatherPatch">additional
+                           leather patch</term>. Among the turn-ins is pasted a <term key="textile"
+                        />textile inlay with yellow, red and black vertical lines on a red
+                        background. The blind-tooling decoration of the cover is imprecise and
+                        asymmetrical. The patterns on the front and back cover differ slightly. The
+                        decorative pattern shows a latin cross surrounded by a frame. The cross
+                        occupies almost the entire central panel of the cover and is formed by the
+                        repetition of <term key="XForm">X-Form</term> motifs within <term
+                           key="tripleStraightLine">triple straight lines</term>. The same pattern
+                        builds the outer frame. The extant space of the cover is divided in four
+                        rectangular panels by the cross. Here, triple straight lines cross each
+                        other diagonally. At the corners and intersections are <term
+                           key="doubleCircle">double circles</term>, single or in groups of four. On
+                        the turn-ins the triple straight lines follow the borders and at the
+                        intersections groups of four double circles are found. The spine is not
+                        decorated while double circles are found on the board edges. </decoNote>
+                  </egXML>
+                  <head type="legend">Encoding of <term>Cover</term> (<ref
+                        target="https://betamasaheft.eu/SHOr404">Hamburg, State and University
+                        Library Hamburg Carl von Ossietzky, Cod. Orient. 404</ref>)<note>Eliana Dal
+                        Sasso, <title level="a">Hamburg, State and University Library Hamburg Carl
+                           von Ossietzky, Cod. Orient. 404,</title> in <title level="m">Die
+                           Schriftkultur des christlichen Äthiopiens und Eritreas: Eine multimediale
+                           Forschungsumgebung / Beta maṣāḥǝft</title>, edited by Alessandro Bausi,
+                        accessed Janury 25, 2022, <ptr
+                           target="https://betamasaheft.eu/manuscripts/SHOr404"/>.</note></head>
+               </figure>
+               <p>In the <code>decoNote[@type="Endbands"]</code> it is possible to encode the
+                     <att>color</att> of the leather straps and specify the endband type using
+                  keywords (see <ptr target="#example11" type="crossref"/>).</p>
+               <figure xml:id="example11">
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                     <decoNote xml:id="b5" type="Endbands" color="red white"> Narrow <term
+                           key="slitBraid">slit-braid</term> endbands and are sewn to the text block
+                        using a thread of animal origin. The headband is sewn starting from the
+                        upper board while the tailband is sewn starting from the lower board.
+                     </decoNote>
+                  </egXML>
+                  <head type="legend">Encoding of <term>Endbands</term> (Hamburg, State and
+                     University Library Hamburg Carl von Ossietzky, Cod. Orient. 404)</head>
+               </figure>
+               <p>The <code>decoNote[@type="SewingStations"]</code> requires, by means of a
+                  schematron rule in the ODD, that its attribute be a number as attribute, which has
+                  to be equal to the number of sewing stations (see <ptr target="#example12"
+                     type="crossref"/>).</p>
+               <figure xml:id="example12">
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                     <decoNote xml:id="b6" type="SewingStations">4</decoNote>
+                  </egXML>
+                  <head type="legend">Encoding of <term>Sewing Stations</term> (Hamburg, State and
+                     University Library Hamburg Carl von Ossietzky, Cod. Orient. 404)</head>
+               </figure>
+
+               <p>A further description of the sewing is possible within a general
+                  <gi>decoNote</gi>, where one can encode the sewing pattern with keywords—according
+                  to Bozzacchi’s classification (<ref type="bibl" target="#bozzacchi2007"
+                  >2007</ref>)—and the origin of the sewing thread (see <ptr target="#example13"
+                     type="crossref"/>).</p>
+               <figure xml:id="example13">
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                     <decoNote xml:id="b7"> The sewing is a chain-stitch on four sewing stations
+                        (two pairs). The sewing follows the <term key="patternA">pattern A</term>
+                        defined by G. Bozzacchi. For each sewing station a thread of <term
+                           key="animalThread">animal origin</term> has been used. </decoNote>
+                  </egXML>
+                  <head type="legend">Further encoding of the sewing (Hamburg, State and University
+                     Library Hamburg Carl von Ossietzky, Cod. Orient. 404)</head>
+               </figure>
+               <p>In the <code>decoNote[@type="Endleaves"]</code> the endleaves—if present— are
+                     described.<note>In Ethiopian tradition endleaves are mostly, if not
+                     exclusively, sewn to textblock.</note> It is possible to add the attribute
+                     <att>pastedown</att>, newly defined in the ODD, and chose up to three values to
+                  specify their position in relation to turn-ins. Possible values are <val>L</val>
+                  (left), <val>R</val> (right), <val>OTI</val> (over the turn-ins), <val>UTI</val>
+                  (under the turn-ins) (see <ptr target="#example14" type="crossref"/>).</p>
+               <figure xml:id="example14">
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                     <decoNote xml:id="b11" type="EndLeaves" pastedown="L OTI"> The inner surface of
+                        the front board is covered with paper. Traces of paper are found also on the
+                        external surface. </decoNote>
+                  </egXML>
+                  <head type="legend">Encoding of <term>Endleaves</term> (Hamburg, State and
+                     University Library Hamburg Carl von Ossietzky, Cod. Orient. 405).<note>Eliana
+                        Dal Sasso, ʻHamburg, State and University Library Hamburg Carl von
+                        Ossietzky, Cod. orient. 405ʼ, in <title level="j">Die Schriftkultur des
+                           christlichen Äthiopiens und Eritreas: Eine multimediale
+                           Forschungsumgebung / Beta maṣāḥǝft</title>, edited by Alessandro Bausi
+                        accessed January 25, 2022, <ptr target="https://betamasaheft.eu/SHOr405"
+                        />.</note></head>
+               </figure>
+               <p>Special characteristics of the spine—for example, a series of holes related to the
+                  presence of tackets—can be recorded in the <code>decoNote[@type="Spine"]</code>
+                  (see <ptr target="#example15" type="crossref"/>).</p>
+               <figure xml:id="example15">
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                     <decoNote xml:id="b9" type="Spine"> Small holes are present close to the head
+                        and tail of the quires, probably remains of the tackets. Quires 1, 10 and 11
+                        have additional holes, perhaps traces of a previous sewing or errors
+                        occurred during the preparation of the quires. </decoNote>
+                  </egXML>
+                  <head type="legend">Encoding of <term>Spine</term> (<ref
+                        target="https://betamasaheft.eu/SHOr405">Hamburg, State and University
+                        Library Hamburg Carl von Ossietzky, Cod. Orient. 405</ref>)</head>
+               </figure>
+               <p>Within the <code>decoNote[@type="Fastenings"]</code> it is possible to describe
+                  fastenings or remaining traces of them, while in the
+                     <code>decoNote[@type="SlipCase"]</code> the presence and the shape of the
+                  traditional leather case where the codex is kept may be recorded. Lastly, the
+                     <code>decoNote[@type="Other"]</code> permits, with keywords, encoding features
+                  related to guards—that is, their position in the quire and the technique of
+                  attachment—and bookmarks, namely the bookmark type. Furthermore, it is possible
+                  using <gi>locus</gi> and <att>target</att> to mark where the bookmarks are
+                  found.</p>
+               <p>In order to facilitate the work of the catalogers, guidelines for bindings
+                  descriptions have been prepared<note>Many catalogers are not binding experts, and
+                     the guidelines nevertheless allow them to record features relevant to the study
+                     of bindings.</note> and are openly accessible to the research community (<ref
+                     type="bibl" target="#liuzzo2018">Liuzzo et al. 2018</ref>).</p>
+            </div>
+            <div xml:id="current">
+               <head>Current Applications and Future Research Perspectives</head>
+               <p>Thanks to the flexibility of the TEI it is now possible to accurately describe
+                  bookbinding features and thus gather previously unrecorded data which may enable
+                  in-depth studies of the Ethiopian bookbinding tradition. The data encoded
+                  according to the protocol presented in this paper are structured data that can be
+                  processed and presented in many different ways (<ref type="bibl"
+                     target="#liuzzo2019">Liuzzo 2019, 4</ref>). Thus, the Beta maṣāḥǝft web
+                  application offers the user various options for exploring the data about the
+                  bindings.</p>
+               <p>For example, in the <ref target="https://betamasaheft.eu/bindings">bindings’
+                     index</ref> it is possible to filter among all cataloged manuscripts those
+                  whose binding features have been described.<note>See Beta maṣāḥǝft, accessed
+                     January 25, 2022, <ptr target="https://betamasaheft.eu/bindings"/>.</note> As
+                     <ptr target="#figure5" type="crossref"/> shows, at the moment the research
+                  environment displays several thousands entities, grouped according to their
+                  features. Most of them were described by the Ethio-SPaRe project when the protocol
+                  for binding description was not fully developed. For this reason, some features
+                  are represented more than others in the results. When one selects a feature, the
+                  app displays the shelfmarks of the manuscripts in which its description appears,
+                  and the shelfmarks point directly to the entire manuscript record. The left
+                  sidebar offers several options to further refine the research according to
+                  categories and keywords.</p>
+               <figure xml:id="figure5">
+                  <graphic width="1216px" height="789px" url="media/image5.png"/>
+                  <head type="legend">Binding-filtered search on Beta maṣāḥǝft web
+                     application</head>
+               </figure>
+               <p>From the results of a search a user can explore various aspects related to the
+                  topic of interest—among others bookbinding. A search limited to manuscripts with
+                  available images for a given selection allows the user to examine in detail the
+                  appearance of selected binding features. For example filtering for
+                     <term>manuscripts</term> and the keyword <term>Golden Gospel</term>,<note>See,
+                     accessed January 25, 2022, <ptr
+                        target="https://betamasaheft.eu/newSearch.html?searchType=text&amp;clavistype=&amp;query=&amp;defaultoperator=OR&amp;mode=none&amp;work-types=mss&amp;termkey=GoldenGospel"
+                     /></note> the search will retrieve 13 results. It is possible to refine the
+                  search by limiting it to manuscripts with available images (6 results) and then
+                  filtering for a specific binding material (see <ptr target="#figure6"
+                     type="crossref"/>). Thus, the user can directly inspect how the material is
+                  used in the manuscripts. Alternatively a view of the results as graphics can allow
+                  to directly analyze distributions.</p>
+               <figure xml:id="figure6">
+                  <graphic width="1216px" height="789px" url="media/image6.png"/>
+                  <head type="legend">Faceted search for <term>Golden Gospel</term> with available
+                     images</head>
+               </figure>
+               <p>This view of selected items as charts displays, for a group of items, the
+                  correlation of the encoded bookbinding features with other manuscript data, such
+                  as date and location. In a recent work, Liuzzo introduces this application (<ref
+                     target="#liuzzo2019" type="bibl">Liuzzo 2019, 4–10</ref>) and explains how pie
+                  or column charts in Beta maṣāḥǝft are created using Google Charts,<note>See Google
+                     Charts, accessed January 25, 2022, <ptr
+                        target="https://developers.google.com/chart"/>.</note> providing the tool
+                  with tables of data extracted from the manuscript records. At present, in the web
+                  application, when a group of manuscripts is selected, it is possible to generate
+                  bar charts of how the number of sewing stations, the sewing patterns, the thread
+                  material, and the binding material vary across time—if these features are encoded.
+                  The charts have on the x-axis date ranges and on the y-axis the percentage of
+                  manuscripts with that feature. The date ranges are both arbitrary periods of three
+                  centuries (1200–1499, 1500–1799, and 1800–2099) and periods taken from the
+                  canonical periodization of the project.<note>See PeriodO, accessed January 25,
+                     2022, <ptr target="http://n2t.net/ark:/99152/p03tcss4qvv"/>.</note> Bars are
+                  created grouping the manuscripts by date, looking at <gi>origDate</gi>. If a
+                  manuscript falls within two date ranges, it is counted in both groups. The
+                  percentile value allows one to compare the distribution of a feature across
+                  different periods regardless of the total number of its attestations (<ref
+                     target="#liuzzo2019" type="bibl">Liuzzo 2019, 9</ref>). <ptr target="#figure7"
+                     type="crossref"/> shows, for example, how the sewing patterns—<term>pattern
+                     A</term> and <term>pattern A3</term>—vary according to the dates of nine
+                  manuscripts at the State and University Library Hamburg Carl von Ossietzky.</p>
+               <figure xml:id="figure7">
+                  <graphic width="1216px" height="789px" url="media/image7.png"/>
+                  <head type="legend">Bar chart of sewing patterns by date range for nine
+                     manuscripts at the State and University Library Hamburg Carl von
+                     Ossietzky</head>
+               </figure>
+               <p>Nevertheless, the data charted in <ptr target="#figure7" type="crossref"/> cannot
+                  be taken as representative of the distribution of the sewing patterns in Ethiopian
+                  manuscripts since they refer to a sample of only nine manuscripts. More relevant
+                  for the representation of a phenomenon is the case when the chart analyzes data
+                  from a larger sample. For example, <ptr target="#figure8" type="crossref"/> shows
+                  the distribution of binding material across time for 952 manuscripts encoded by
+                  the Ethio-SPaRe project.</p>
+               <figure xml:id="figure8">
+                  <graphic width="1216px" height="789px" url="media/image8.png"/>
+                  <head type="legend">Bar chart of the binding materials by date range for 952
+                     manuscripts encoded by the Ethio-SPaRe project.</head>
+               </figure>
+               <p> </p>
+               <p>The customization of the TEI schema presented here allows catalogers to record
+                  accurate and consistent descriptions of Ethiopian bookbinding features. The
+                  gathering of this previously unrecorded data offers the opportunity to investigate
+                  the possible relationship between specific material features and the time and
+                  region in which the manuscripts were produced, thus opening completely new
+                  research perspectives in the field of Ethiopian bookbinding studies. Nevertheless,
+                  in order for the data to be effectively representative of the Ethiopian
+                  bookbinding tradition, they must be derived from a large sample of manuscripts.
+                  For this reason, the new protocol for binding description needs to be applied to
+                  an increasing number of manuscripts so that more data can be collected.</p>
+               <p>In this way it will perhaps be possible to answer unresolved questions relating to
+                  the materials and techniques available for bookbinding manufacture and the reasons
+                  behind the choices of specific solutions. This study will permit both to
+                  understand a specific manuscript’s history and also to shed further light on the
+                  development of a craft across time and space.<note>Beta maṣāḥǝft’s bookbinding
+                     description keeps developing and improving, and benefits greatly from
+                     contributions by the research community.</note> Furthermore, the setup of a
+                  good documentation practice, based on standardized terminology and methods, would
+                  allow combining bookbinding records from different projects’ databases, thus
+                  fostering comparative research.<note>For example, the PhD project on Coptic
+                     bookbinding led by the present author, at the Centre for the Study of
+                     Manuscript Cultures of the University of Hamburg, will offer interesting data
+                     for comparison. For an introduction to Coptic bookbinding, see Szirmai (<ref
+                        target="#szirmai1999" type="bibl">1999, 7–43</ref>), and for an overview of
+                     Late Antique binding crafts, see Boudalis (<ref type="bibl"
+                        target="#boudalis2018">2018</ref>).</note> Hence, an agreement on a standard
+                  structure to adopt in binding description in TEI would foster the advance of
+                  bookbinding studies.</p>
+            </div>
+         </div>
+      </body>
+      <back>
+         <div type="bibliography">
+            <!-- the bibliography for the article, organized as a series of <bibl> elements inside <listBibl> -->
+            <listBibl>
+               <bibl xml:id="andrist2013"><author>Andrist, Patrick</author>, <author>Paul
+                     Canart</author>, and <author>Marilena Maniaci</author>. <date>2013</date>.
+                     <title level="m">La syntaxe du codex: Essai de codicologie structurale</title>.
+                  Bibliologia 34. <pubPlace>Turnhout</pubPlace>:
+                  <publisher>Brepols</publisher>.</bibl>
+               <bibl xml:id="barbero2014"><author>Barbero, Giliola</author>, and <author>Francesca
+                     Trasselli</author>. <date>2014</date>. <title level="a">Manus OnLine and the
+                     Text Encoding Initiative Schema.</title>
+                  <title level="j">Journal of the Text Encoding Initiative</title> 8. <ptr
+                     target="http://journals.openedition.org/jtei/1054"/>; doi:<idno type="DOI"
+                     >10.4000/jtei.1054</idno>.</bibl>
+               <bibl xml:id="bausi2015"><author>Bausi, Alessandro</author>, <author>Pier Giorgio
+                     Borbone</author>, <author>Françoise Briquel-Chatonnet</author>, <author>Paola
+                     Buzi</author>, <author>Jost Gippert</author>, <author>Caroline Macé</author>,
+                     <author>Marilena Maniaci</author>, et al. <date>2015</date>. <title level="m"
+                     >Comparative Oriental Manuscript Studies: An Introduction</title>. Edited by
+                     <editor>Alessandro Bausi</editor>, <editor>Pier Giorgio Borbone</editor>,
+                     <editor>Françoise Briquel-Chatonnet</editor>, <editor>Paola Buzi</editor>,
+                     <editor>Jost Gippert</editor>, <editor>Caroline Macé</editor>, <editor>Marilena
+                     Maniaci</editor>, et al. <pubPlace>Hamburg</pubPlace>:
+                     <publisher>COMSt</publisher>. <ptr
+                     target="https://www.aai.uni-hamburg.de/en/comst/publications/handbook.html"
+                  />.</bibl>
+               <bibl xml:id="boudalis2018"><author>Boudalis, Georgios</author>. <date>2018</date>.
+                     <title level="m">The Codex and Crafts in Late Antiquity</title>. <pubPlace>New
+                     York</pubPlace>: <publisher>Bard Graduate</publisher>.</bibl>
+               <bibl xml:id="bozzacchi2000"><author>Bozzacchi, Giampiero</author>.
+                  <date>2000</date>. <title level="m">Censimento Dei Dati Materiali Dei Codici
+                     Etiopici Della Sezione Orientale Della Biblioteca Dell’Accademia Dei Lincei e
+                     Corsiniana.</title> Typewritten. <publisher>Roma</publisher>. </bibl>
+               <bibl xml:id="bozzacchi2007"><author>Bozzacchi, Giampiero</author>.
+                  <date>2007</date>. <title level="m">La Legatura Etiopica.</title>
+                  <title level="s">Beni Culturali: Tutela e Valorizzazione</title> 15 (6).</bibl>
+               <bibl xml:id="burnard2008"><author>Burnard, Lou</author>, ed. <date>2008</date>.
+                     <title level="a">The ENRICH Schema — A Reference Guide.</title>
+                  <ptr
+                     target="http://projects.oucs.ox.ac.uk/ENRICH/Deliverables/referenceManual_en.html"
+                  />.</bibl>
+               <bibl xml:id="campagnolo2015a"><author>Campagnolo, Alberto</author>.
+                     <date>2015</date>a. <title level="a">Bit by Bit: Is the Book as an Object
+                     Entering the Digital World?</title> In <title level="m">I Beni Bibliografici
+                     Nelle Strategie Dei Fondi Europei. Atti Del Convegno. Siracusa, ISISC, 3–4
+                     Dicembre 2015</title>, edited by <editor>Alberto Campagnolo</editor>,
+                     <editor>Lucia Catalano</editor>, <editor>Rosalia C. Giordano</editor>, and
+                     <editor>Gabriele Lo Piccolo</editor>, <biblScope unit="page"
+                  >91–112</biblScope>. <pubPlace>Palermo</pubPlace>: <publisher>Assessorato dei Beni
+                     Culturali e dell’Identità siciliana</publisher>; <publisher>Dipartimento B.C. e
+                     I.S.</publisher></bibl>
+               <bibl xml:id="campagnolo2015b"><author>Campagnolo, Alberto</author>.
+                     <date>2015</date>b. <title level="u">Transforming Structured Descriptions to
+                     Visual Representations: An Automated Visualization of Historical Bookbinding
+                     Structures.</title> PhD diss., <publisher>University of the Arts
+                     London</publisher>. <ptr target="http://ualresearchonline.arts.ac.uk/8749/"
+                  />.</bibl>
+               <bibl xml:id="campagnolo2017"><author>Campagnolo, Alberto</author>.
+                  <date>2017</date>. <title level="a">Bookbinding Information on the Web: Breaking
+                     the Circle, from Pixels to Linked Open Data.</title>
+                  <title level="j">International Information &amp; Library Review</title> 49 (1):
+                     <biblScope unit="page">37–50</biblScope>. doi:<idno type="DOI"
+                     >10.1080/10572317.2017.1270689</idno>.</bibl>
+               <bibl xml:id="campagnolo2020"><author>Campagnolo, Alberto</author>.
+                  <date>2020</date>. <title level="a">Conservation and Digitization: A Difficult
+                     Balance?</title> In <title level="m">Book Conservation and Digitization: The
+                     Challenges of Dialogue and Collaboration</title>, edited by <editor>Alberto
+                     Campagnolo</editor>, <biblScope unit="page">49–82</biblScope>. Collection
+                  Development, Cultural Heritage, and Digital Humanities.
+                  <pubPlace>Leeds</pubPlace>: <publisher>Arc Humanities Press</publisher>.</bibl>
+               <bibl xml:id="dibella2014"><author>Di Bella, Marco</author>, and <author>Nikolas
+                     Sarris</author>. <date>2014</date>. <title level="a">Field Conservation in East
+                     Tigray, Ethiopia.</title> In <title level="m">Care and Conservation of
+                     Manuscripts 14. Proceedings of the Fourteenth International Seminar Held at the
+                     University of Copenhagen 17th-19th October 2012</title>, edited by
+                     <editor>Matthew James Driscoll</editor>, <biblScope unit="page"
+                     >271–307</biblScope>. <pubPlace>Copenhagen</pubPlace>: <publisher>Museum
+                     Tusculanum Press</publisher>.</bibl>
+               <bibl xml:id="driscoll2010"><author>Driscoll, Matthew James</author>.
+                     <date>2010</date>. <title level="a">The ENRICH project: Towards a European
+                     Digital Manuscript Library.</title>
+                  <title level="j">DigItalia</title> 2: <biblScope unit="page">117–22</biblScope>.
+                     <ptr target="http://digitalia.sbn.it/article/view/243"/>.</bibl>
+               <bibl xml:id="tafarra2010"><author>Faqāda Śellāsē Tafarrā</author>. AM 2002 /
+                     <date>2010</date> CE. ጥንታዊ የብራና መጻሕፍት አዘጋጃጀት (<title level="m">Ṭentāwi
+                     yaberānnā</title>
+                  <title level="m">maṣāḥeft azzagāǧāǧat</title>, <title level="m">The ancient manner
+                     of preparing parchment books</title>). <pubPlace>Addis Ababa</pubPlace>:
+                     <publisher>Addis Ababā Yunivarsiti Prēss</publisher>.</bibl>
+               <bibl xml:id="lebars2016"><author>Le Bars, Fabienne</author>, <author>Anna
+                     Markova</author>, <author>Florence Clavaud</author>, and <author>Lauranne
+                     Bertrand</author>. <date>2016</date>. <title level="m">Encodage des reliures
+                     numérisées de la Bibliothèque nationale de France. Manuel et Dictionnaire des
+                     balises</title> (version 3). <ptr
+                     target="http://bibnum.bnf.fr/reliure_20161025/manuel/bnf_reliure_tei_manuel.html#n2.6"
+                  />.</bibl>
+               <bibl xml:id="ligatus2007"><author>Ligatus</author>. <date>2007</date>. <title
+                     level="m">Printed Books Survey Schema (version 1.8). XML.</title>
+                  <pubPlace>London</pubPlace>: <publisher>Ligatus Research Centre</publisher>,
+                     <publisher>CCW Graduate School</publisher>, <publisher>University of the Arts
+                     London</publisher>. <ptr
+                     target="http://www.ligatus.org.uk/stcatherines/sites/ligatus.org.uk.stcatherines/files/basic-1.8_0.xsd"
+                  />.</bibl>
+               <bibl xml:id="liuzzo2019"><author>Liuzzo, Pietro Maria</author>. <date>2019</date>.
+                     <title level="m">Digital Approaches to Ethiopian and Eritrean Studies</title>.
+                     <title level="s">Supplement to Aethiopica</title> 8.
+                     <pubPlace>Wiesbaden</pubPlace>: <publisher>Harrassowitz Verlag</publisher>.
+                     doi:<idno type="DOI">10.2307/j.ctvrnfr3q</idno>.</bibl>
+               <bibl xml:id="liuzzo2018"><author>Liuzzo, Pietro Maria</author>, <author>Dorothea
+                     Reule</author>, <author>Eugenia Sokolinski</author>, <author>Solomon
+                     Gebreyes</author>, <author>Daria Elagina</author>, <author>Denis
+                     Nosnitsin</author>, <author>Eliana Dal Sasso</author>, and <author>Jacopo
+                     Gnisci</author>. <date>2018–</date>. <title level="m">Beta Maṣāḥǝft
+                     Guidelines.</title>
+                  <ptr target="https://betamasaheft.eu/Guidelines/"/>.</bibl>
+               <bibl xml:id="mellors2002"><author>Mellors, John</author>, and <author>Anne
+                     Parsons</author>. <date>2002</date>. <title level="m">Bookmaking in Rural
+                     Ethiopia in the Twenty-First Century: Ethiopian Bookmaking</title>.
+                     <pubPlace>London</pubPlace>: <publisher>New Cross Books</publisher>.</bibl>
+               <bibl xml:id="mersha2011"><author>Mersha Alehegne</author>. <date>2011</date>. <title
+                     level="a">Towards a Glossary of Ethiopian Manuscript Culture and
+                     Practice.</title>
+                  <title level="j">Aethiopica</title> 14: 145–62. doi:<idno type="DOI"
+                     >10.15460/aethiopica.14.1.417</idno>.</bibl>
+               <bibl xml:id="miles2009"><author>Miles, Alistair</author>, and <author>Sean
+                     Bechhofer</author>. <date>2009</date>. <title level="m">SKOS Simple Knowledge
+                     Organization System Reference. W3C Recommendation 18 August 2009.</title> W3C.
+                  Accessed March 31, 2021. <ptr target="https://www.w3.org/TR/skos-reference/"
+                  />.</bibl>
+               <bibl xml:id="nosnitsin2016"><author>Nosnitsin, Denis</author>. <date>2016</date>.
+                     <title level="a">Lesser Known Features of the Ethiopian Codex.</title> In
+                     <title level="m">Movements in Ethiopia, Ethiopia in Movement. Proceedings of
+                     the 18th International Conference of Ethiopian Studies</title>, edited by
+                     <editor>Eloi Ficquet</editor>, <editor>Ahmed Hassen</editor>, and
+                     <editor>Thomas Osmond</editor>, 1:75–90. <pubPlace>Addis Ababa</pubPlace> and
+                     <pubPlace>Los Angeles</pubPlace>: <publisher>CFEE–IES</publisher> and
+                     <publisher>Tsehai Publishers</publisher>.</bibl>
+               <bibl xml:id="pankhurst1984"><author>Pankhurst, Richard</author>. <date>1984</date>.
+                     <title level="m">Ethiopian Manuscript Bindings and Their Decoration.</title>
+                  <publisher>Abbay</publisher>, <biblScope unit="page">205–57</biblScope>.</bibl>
+               <bibl xml:id="pickwoad1995"><author>Pickwoad, Nicholas</author>. <date>1995</date>.
+                     <title level="a">The Interpretation of Bookbinding Structure An Examination of
+                     Sixteenth-Century Bindings in the Ramey Collection in the Pierpont Morgan
+                     Library.</title>
+                  <title level="j">The Library</title>, 6th ser., 17 (3): <biblScope unit="page"
+                     >209–49</biblScope>. doi:<idno type="DOI"
+                  >10.1093/library/s6-17.3.209</idno>.</bibl>
+               <bibl xml:id="pickwoad2004"><author>Pickwoad, Nicholas</author>. <date>2004</date>.
+                     <title level="a">The Condition Survey of the Manuscripts in the Monastery of
+                     Saint Catherine on Mount Sinai.</title>
+                  <title level="j">The Paper Conservator</title> 28 (1): <biblScope unit="page"
+                     >33–61</biblScope>. doi:<idno type="DOI"
+                  >10.1080/03094227.2004.9638640</idno>.</bibl>
+               <bibl xml:id="pickwoad2012"><author>Pickwoad, Nicholas</author>. <date>2012</date>.
+                     <title level="a">An Unused Resource: Bringing the Study of Bookbindings out of
+                     the Ghetto.</title> In <title level="m">Ambassadors of the Book: Competences
+                     and Training for Heritage Librarians</title>, edited by <editor>Raphaële
+                     Mouren</editor>, <biblScope unit="page">83–94</biblScope>. IFLA Publications
+                  160. <pubPlace>Berlin</pubPlace>: <publisher>De Gruyter Saur</publisher>.
+                     doi:<idno type="DOI">10.1515/9783110301502.83</idno>.</bibl>
+               <bibl xml:id="pickwoad2014"><author>Pickwoad, Nicholas</author>. <date>2014</date>.
+                     <title level="a">The Structures and Materials of Commercial Bookbindings in the
+                     Arcadian Library</title>. In <title level="m">The Arcadian Library: Bindings
+                     and Provenance</title>, edited by <editor>Giles Mandelbrote</editor> and
+                     <editor>Willem A. C. de Bruijn</editor>, <biblScope unit="page"
+                     >233–278</biblScope>. Studies in the Arcadian Library 9.
+                     <pubPlace>London</pubPlace>: <publisher>Arcadian Library in association with
+                     Oxford University Press</publisher>.</bibl>
+               <bibl xml:id="pickwoadGullick2004"><author>Pickwoad, Nicholas</author>, and
+                     <author>Michael Gullick</author>. <date>2004</date>. <title level="m"
+                     >Assessment Manual: A Guide to the Survey Forms to Be Used in St Catherine’s
+                     Monastery</title>, <ptr
+                     target="http://www.ligatus.org.uk/sites/default/files/manual20050110.pdf"
+                  />.</bibl>
+               <bibl xml:id="rousseau2007"><author>Rousseau, Philip</author>. <date>2007</date>.
+                     <title level="a">Introduction: From Binding to Burning.</title> In <title
+                     level="m">The Early Christian Book</title>, edited by <editor>William E.
+                     Klingshirn</editor> and <editor>Linda Safran</editor>, <biblScope unit="page"
+                     >1–9</biblScope>. CUA Studies in Early Christianity. <pubPlace>Washington,
+                     DC</pubPlace>:<publisher> Catholic University of America Press</publisher>.
+                     doi:<idno type="DOI">10.2307/j.ctt2853v4.6</idno>.</bibl>
+               <bibl xml:id="sergew1981"><author>Sergew Hable Selassie</author>. <date>1981</date>.
+                     <title level="m">Bookmaking in Ethiopia</title>. <pubPlace>Leiden</pubPlace>:
+                     <publisher>Karstens Drukkers</publisher>.</bibl>
+               <bibl xml:id="szirmai1999"><author>Szirmai, Janos A.</author>
+                  <date>1999</date>. <title level="m">The Archaeology of Medieval
+                     Bookbinding</title>. <pubPlace>Aldershot</pubPlace>:
+                     <publisher>Ashgate</publisher>.</bibl>
+               <bibl xml:id="tei2020"><author>TEI Consortium</author>. <date>2020</date>. <title
+                     level="m">TEI P5: Guidelines for Electronic Text Encoding and
+                     Interchange</title>. Version 4.1.0. Last updated August 19. <ptr
+                     target="https://tei-c.org/Vault/P5/4.1.0/doc/tei-p5-doc/en/html/index.html"
+                  />.</bibl>
+               <bibl xml:id="tomaszewski2015"><author>Tomaszewski, Jacek</author>, and
+                     <author>Michael Gervers</author>. <date>2015</date>. <title level="a"
+                     >Technological Aspects of the Monastic Manuscript Collection at May Wäyni,
+                     Ethiopia.</title> In <title level="m">From Dust to Digital: Ten Years of the
+                     Endangered Archives Programme</title>, edited by <editor>Maja Kominko</editor>,
+                     <biblScope unit="page">89–133</biblScope>. <pubPlace>Cambridge</pubPlace>:
+                     <publisher>Open Book Publishers</publisher>. doi:<idno type="DOI"
+                     >10.11647/OBP.0052.04</idno>.</bibl>
+               <bibl xml:id="velios2005"><author>Velios, Athanasios</author>, and <author>Nicholas
+                     Pickwoad</author>. <date>2005</date>. <title level="a">Current Use and Future
+                     Development of the Database of the St. Catherine’s Library Conservation
+                     Project</title>, <title level="j">The Paper Conservator</title> 29 (1):
+                     <biblScope unit="page">39–53</biblScope>. doi:<idno type="DOI"
+                     >10.1080/03094227.2005.9638486</idno>.</bibl>
+               <bibl xml:id="velios2019"><author>Velios, Athanasios</author>, and <author>Nicholas
+                     Pickwoad</author>. <date>2019</date>. <title level="a">Versioning Materiality:
+                     Documenting Evidence of Past Binding Structures.</title> In <title level="m"
+                     >Versioning Cultural Objects: Digital Approaches</title>, edited by
+                     <editor>Roman Bleier</editor> and <editor>Sean M. Winslow</editor>, <biblScope
+                     unit="page">103–26</biblScope>. Schriften des Instituts für Dokumentologie und
+                  Editorik, Bd. 13. <pubPlace>Nordstedt</pubPlace>:
+                  <publisher>BoD</publisher>.</bibl>
+               <bibl xml:id="velios2020"><author>Velios, Athanasios</author>, and <author>Nicholas
+                     Pickwoad</author>. <date>2020</date>. <title level="a">The Development of the
+                     Language of Bindings Thesaurus.</title> In <title level="m">Book Conservation
+                     and Digitization. The Challenges of Dialogue and Collaboration</title>, edited
+                  by <editor>Alberto Campagnolo</editor>, <biblScope unit="page">157–68</biblScope>.
+                  Collection Development, Cultural Heritage, and Digital Humanities.
+                     <pubPlace>Leeds</pubPlace>: <publisher>Arc Humanities Press</publisher>.</bibl>
+               <bibl xml:id="velios2014"><author>Velios, Athanasios</author>, <author>Nicholas
+                     Pickwood [sic]</author>, and <author> Aurelie Martin</author>.
+                     <date>2014</date>. <title level="a">Multilingual Bookbinding Terms: Complex
+                     Conceptual Issues</title>, <title level="j">Newsletter of the ICOM
+                     CIDOC</title>: <biblScope unit="page">15–20</biblScope>. <ptr
+                     target="https://cidoc.mini.icom.museum/wp-content/uploads/sites/6/2018/12/CIDOC_Newsletter_2014.pdf"
+                  />.</bibl>
+               <bibl xml:id="winslow2015"><author>Winslow, Sean M</author>. <date>2015</date>.
+                     <title level="u">Ethiopian Manuscript Culture: Practices and Contexts.</title>
+                  PhD diss., <publisher>University of Toronto</publisher>
+                  <ptr target="https://tspace.library.utoronto.ca/handle/1807/71392"/>.</bibl>
+            </listBibl>
+         </div>
+      </back>
+   </text>
+</TEI>
