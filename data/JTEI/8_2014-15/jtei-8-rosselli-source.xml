@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://github.com/DH-RSE/software-citation/raw/main/schema/tei_jtei_annotated.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="https://github.com/DH-RSE/software-citation/raw/main/schema/tei_jtei_annotated.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
   <teiHeader>
     <fileDesc>
@@ -155,14 +157,15 @@
                   level="m">Electronic Beowulf</title>, <ptr target="http://ebeowulf.uky.edu/"
                 />.</p></note> in favor of a web-based publication. While this decision was critical
             in that it allowed us to select the most supported and widely-used medium, we soon
-            discovered that it did not make choices any simpler. On the one hand, the XSLT
-            stylesheets provided by TEI are great for HTML rendering, but do not include support for
-            image-related features (such as the text-image linking available thanks to the P5
-            version of the TEI schema) and tools (including zoom in/out, magnifying lens, and hot
-            spots) that represent a significant part of a digital facsimile and/or diplomatic
-            edition; other features, such as an XML search engine, would have to be integrated
-            separately, in any case. On the other hand, there are powerful frameworks based on
-                CMS<note><p>The Omeka framework (<ptr target="http://omeka.org/"/>) supports
+            discovered that it did not make choices any simpler. On the one hand, the <ptr
+              type="software" xml:id="XSLT" target="#XSLT"/><rs type="soft.name" ref="#XSLT"
+              >XSLT</rs> stylesheets provided by TEI are great for HTML rendering, but do not
+            include support for image-related features (such as the text-image linking available
+            thanks to the P5 version of the TEI schema) and tools (including zoom in/out, magnifying
+            lens, and hot spots) that represent a significant part of a digital facsimile and/or
+            diplomatic edition; other features, such as an XML search engine, would have to be
+            integrated separately, in any case. On the other hand, there are powerful frameworks
+            based on CMS<note><p>The Omeka framework (<ptr target="http://omeka.org/"/>) supports
                 publishing TEI documents; see also Drupal (<ptr target="https://drupal.org/"/>‎) and
                 TEICHI (<ptr target="http://www.teichi.org/"/>).</p></note> and other web
                 technologies<note><p>Such as the eXist XML database, <ptr
@@ -229,8 +232,9 @@
             came from work done in similar projects developed within the TEI community, namely <ref
               target="http://dcl.slis.indiana.edu/teibp/">TEI Boilerplate</ref>,<note><p>TEI
                 Boilerplate, <ptr target="http://dcl.slis.indiana.edu/teibp/"/>.</p></note> John A.
-            Walsh’s collection of <ref target="https://github.com/jawalsh/tei2html">XSLT
-              stylesheets</ref>,<note><p><ident>tei2html</ident>, <ptr
+            Walsh’s collection of <ref target="https://github.com/jawalsh/tei2html"><ptr
+                type="software" xml:id="XSLT" target="#XSLT"/><rs type="soft.name" ref="#XSLT"
+                >XSLT</rs> stylesheets</ref>,<note><p><ident>tei2html</ident>, <ptr
                   target="https://github.com/jawalsh/tei2html"/>.</p></note> and Solenne Coutagne’s
             work for the <ref target="https://sites.google.com/site/annebaillot/digitale-edition"
                 ><soCalled>Berliner Intellektuelle 1800–1830</soCalled></ref>
@@ -238,19 +242,21 @@
                   intellektuellen Berlin um 1800</title>, <ptr
                   target="https://sites.google.com/site/annebaillot/digitale-edition"/>.</p></note>
             Through this approach, we achieved two important results: first, usage of EVT is quite
-            simple—the user applies an XSLT stylesheet to their already marked-up file(s), and when
-            the processing is finished they are presented with a web-ready edition; second, the web
-            edition that is produced is based on a client-only architecture and does not require any
-            additional kind of server software, which means that it can be simply copied on a web
-            server to be used at once, or even on a cloud storage service (provided that it is
-            accessible by the general public).</p>
+            simple—the user applies an <ptr type="software" xml:id="XSLT" target="#XSLT"/><rs
+              type="soft.name" ref="#XSLT">XSLT</rs> stylesheet to their already marked-up file(s),
+            and when the processing is finished they are presented with a web-ready edition; second,
+            the web edition that is produced is based on a client-only architecture and does not
+            require any additional kind of server software, which means that it can be simply copied
+            on a web server to be used at once, or even on a cloud storage service (provided that it
+            is accessible by the general public).</p>
           <p>To ensure that it will be working on all the most recent web browsers, and for as long
             as possible on the World Wide Web itself, EVT is built on open and standard web
-            technologies such as HTML, CSS, and JavaScript. Specific features, such as the
-            magnifying lens, are entrusted to jQuery plug-ins, again chosen from the best-supported
-            open-source ones to reduce the risk of future incompatibilities. The general
-            architecture of the software, in any case, is modular, so that any component which may
-            cause trouble or turn out to be not completely up to the task can be replaced
+            technologies such as HTML, CSS, and <ptr type="software" xml:id="JavaScript"
+              target="#JavaScript"/><rs type="soft.name" ref="#JavaScript">JavaScript</rs>. Specific
+            features, such as the magnifying lens, are entrusted to jQuery plug-ins, again chosen
+            from the best-supported open-source ones to reduce the risk of future incompatibilities.
+            The general architecture of the software, in any case, is modular, so that any component
+            which may cause trouble or turn out to be not completely up to the task can be replaced
             easily.</p>
         </div>
         <div xml:id="howitworks">
@@ -258,12 +264,14 @@
           <p>Our ideal goal was to have a simple, very user-friendly drop-in tool, requiring little
             work and/or knowledge of anything beyond XML from the editor. To reach this goal, EVT is
             based on a modular structure where a single stylesheet (<ident>evt_builder.xsl</ident>)
-            starts a chain of XSLT 2.0 transformations calling in turn all the other modules. The
-            latter belong to two general categories: those devoted to building the HTML site, and
-            the XML processing ones, which extract the edition text lying between folios using the
-              <gi>pb</gi> element and format it according to the edition level. All XSLT modules
-            live inside the <ident>builder_pack</ident> folder, in order to have a clean and
-            well-organized directory hierarchy. <figure xml:id="fig1">
+            starts a chain of <ptr type="software" xml:id="XSLT" target="#XSLT"/><rs
+              type="soft.name" ref="#XSLT">XSLT</rs> 2.0 transformations calling in turn all the
+            other modules. The latter belong to two general categories: those devoted to building
+            the HTML site, and the XML processing ones, which extract the edition text lying between
+            folios using the <gi>pb</gi> element and format it according to the edition level. All
+              <ptr type="software" xml:id="XSLT" target="#XSLT"/><rs type="soft.name" ref="#XSLT"
+              >XSLT</rs> modules live inside the <ident>builder_pack</ident> folder, in order to
+            have a clean and well-organized directory hierarchy. <figure xml:id="fig1">
               <graphic url="images/tei-8-rosselli-fig_1.png" width="484px" height="723px"/>
               <head type="legend">The EVT <ident>builder_pack</ident> directory structure.</head>
             </figure>
@@ -278,29 +286,36 @@
                   <ident>evt_builder-conf.xsl</ident>, to specify for example the number of edition
                 levels or presence of images;</item>
               <item>you can then apply the <ident>evt_builder.xsl</ident> stylesheet to your TEI XML
-                document using the Oxygen XML editor or another XSLT 2–compliant engine.</item>
+                document using the Oxygen XML editor or another <ptr type="software" xml:id="XSLT"
+                  target="#XSLT"/><rs type="soft.name" ref="#XSLT">XSLT</rs> 2–compliant
+                engine.</item>
             </list>
             <figure xml:id="fig2">
               <graphic url="images/tei-8-rosselli-fig_2.png" width="485px" height="572px"/>
               <head type="legend">The EVT data directory structure.</head>
             </figure>
           </p>
-          <p>When the XSLT processing is finished, the starting point for the edition is the
-              <ident>index.html</ident> file in the root directory, and all the HTML pages resulting
-            from the transformations will be stored in the <ident>output_data</ident> folder. You
-            can delete everything in this latter folder (and the <ident>index.html</ident> file),
-            modify the configuration options, and start again, and everything will be re-created in
-            the assigned places.</p>
+          <p>When the <ptr type="software" xml:id="XSLT" target="#XSLT"/><rs type="soft.name"
+              ref="#XSLT">XSLT</rs> processing is finished, the starting point for the edition is
+            the <ident>index.html</ident> file in the root directory, and all the HTML pages
+            resulting from the transformations will be stored in the <ident>output_data</ident>
+            folder. You can delete everything in this latter folder (and the
+              <ident>index.html</ident> file), modify the configuration options, and start again,
+            and everything will be re-created in the assigned places.</p>
         </div>
         <div xml:id="stylesheets">
-          <head>The XSLT stylesheets</head>
+          <head>The <ptr type="software" xml:id="XSLT" target="#XSLT"/><rs type="soft.name"
+              ref="#XSLT">XSLT</rs> stylesheets</head>
           <p>The transformation chain has two main purposes: generate the HTML files containing the
             edition and create the home page which will dynamically recall the other HTML files.</p>
-          <p>The EVT builder’s transformation system is composed of a modular collection of XSLT 2.0
-            stylesheets: these modules are designed to permit scholars to freely add their own
-            stylesheets and to manage the different desired levels of the edition without
-            influencing other parts of the system, for instance the generation of the home page.</p>
-          <p>The transformation is performed applying a specific XSLT stylesheet
+          <p>The EVT builder’s transformation system is composed of a modular collection of <ptr
+              type="software" xml:id="XSLT" target="#XSLT"/><rs type="soft.name" ref="#XSLT"
+              >XSLT</rs> 2.0 stylesheets: these modules are designed to permit scholars to freely
+            add their own stylesheets and to manage the different desired levels of the edition
+            without influencing other parts of the system, for instance the generation of the home
+            page.</p>
+          <p>The transformation is performed applying a specific <ptr type="software" xml:id="XSLT"
+              target="#XSLT"/><rs type="soft.name" ref="#XSLT">XSLT</rs> stylesheet
               (<ident>evt_builder.xsl</ident>) which includes links to all the other stylesheets
             that are part of the transformation chain and that will be applied to the TEI XML
             document containing the transcription.</p>
@@ -327,10 +342,10 @@
               <gi>edition</gi> element in the <ident>evt_builder-conf.xsl</ident> file, and they can
             also personalize the edition’s name by changing the content of the <gi>edition</gi>
             element. For example, if they wish to generate a critical level, they are required to
-            add <code>&lt;edition>Critical&lt;/edition></code> to the <ident>edition_array</ident>
-                variable.<note><p>The available edition levels are described in the software
-                documentation. Adding another edition level requires providing the corresponding
-                stylesheet.</p></note></p>
+            add <code>&lt;edition&gt;Critical&lt;/edition&gt;</code> to the
+              <ident>edition_array</ident> variable.<note><p>The available edition levels are
+                described in the software documentation. Adding another edition level requires
+                providing the corresponding stylesheet.</p></note></p>
           <p>Once the XML file is ready and the parameters are set, the EVT builder’s transformation
             system uses a collection of stylesheets to divide the XML file containing the text of
             the transcription into smaller portions, each one corresponding to the content of a
@@ -350,10 +365,12 @@
             transformations or send different parts of a document to different parts of the
             transformation chain. This permits the extraction of different texts for different
             edition levels (diplomatic, diplomatic-interpretative) processing the same XML file, and
-            to save them in the HTML site structure, which is available as a separate XSLT
-            module.</p>
+            to save them in the HTML site structure, which is available as a separate <ptr
+              type="software" xml:id="XSLT" target="#XSLT"/><rs type="soft.name" ref="#XSLT"
+              >XSLT</rs> module.</p>
           <p>The use of modes also allows users to separate template rules for the different
-            transformations of a TEI element and to place them in different XSLT files or in
+            transformations of a TEI element and to place them in different <ptr type="software"
+              xml:id="XSLT" target="#XSLT"/><rs type="soft.name" ref="#XSLT">XSLT</rs> files or in
             different parts of a single stylesheet. So templates such as the following <egXML
               xmlns="http://www.tei-c.org/ns/Examples"><xsl:template match="tei:abbr" mode="dipl"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"/></egXML> and <egXML
@@ -373,9 +390,11 @@
             in order to personally manage the different levels of the desired edition. What is
             required from users is to: <list rend="bulleted">
               <item>personalize the edition generation parameter as shown above;</item>
-              <item>copy their own XSLT files containing the template rules to generate the desired
-                edition levels in the directory that contains the stylesheets used for TEI element
-                transformation (<ident>builder_pack/modules/elements</ident>);</item>
+              <item>copy their own <ptr type="software" xml:id="XSLT" target="#XSLT"/><rs
+                  type="soft.name" ref="#XSLT">XSLT</rs> files containing the template rules to
+                generate the desired edition levels in the directory that contains the stylesheets
+                used for TEI element transformation
+                (<ident>builder_pack/modules/elements</ident>);</item>
               <item>include the new stylesheets in the file used to start the transformation chain
                   (<ident>builder_pack/evt_builder.xsl</ident>);</item>
               <item>associate a mode value to the new edition level transformation;</item>
@@ -469,8 +488,9 @@
               target="http://www.tapor.uvic.ca/~mholmes/image_markup/">Image Markup
                 Tool</ref><note><p>The UVic Image Markup Tool Project, <ptr
                   target="http://www.tapor.uvic.ca/~mholmes/image_markup/"/>.</p></note> software
-            and was implemented in XSLT and CSS; all the other features are achieved by using jQuery
-            plug-ins.</p>
+            and was implemented in <ptr type="software" xml:id="XSLT" target="#XSLT"/><rs
+              type="soft.name" ref="#XSLT">XSLT</rs> and CSS; all the other features are achieved by
+            using jQuery plug-ins.</p>
           <p>In the text frame tool bar you can see three drop-down menus which are useful for
             choosing texts, specific folios, and edition levels, and an icon that triggers the
             search functionality. Again, the editor can modify the <ident>structure.xml</ident> file
@@ -558,8 +578,10 @@
             expected by the user. Essentially, we found that at least two of them were needed in
             order to make a functional search engine: free-text search and keyword highlighting. To
             implement them we looked at existing search engines and plug-ins programmed in the most
-            popular client-side web language: JavaScript. In the end, our search produced two
-            answers: <emph>Tipue Search</emph> and <emph>DOM manipulation</emph>.</p>
+            popular client-side web language: <ptr type="software" xml:id="JavaScript"
+              target="#JavaScript"/><rs type="soft.name" ref="#JavaScript">JavaScript</rs>. In the
+            end, our search produced two answers: <emph>Tipue Search</emph> and <emph>DOM
+              manipulation</emph>.</p>
           <div xml:id="tipue">
             <head>Tipue Search</head>
             <p><ref target="http://www.tipue.com/search/">Tipue search</ref><note><p>Tipue Search,
@@ -568,10 +590,13 @@
               collections of web pages. It can function both offline and online, and it does not
               necessarily require a web server or a server-side programming/query language (such as
               SQL, PHP, or Python) in order to work. While technically a plug-in, its architecture
-              is quite interesting and versatile: Tipue uses a combination of client-side JavaScript
-              for the actual bulk of the work, and JSON (or JavaScript object literal) for storing
-              the content. By accessing the data structure, this engine is able to search for a
-              relevant term and bring back the matches.</p>
+              is quite interesting and versatile: Tipue uses a combination of client-side <ptr
+                type="software" xml:id="JavaScript" target="#JavaScript"/><rs type="soft.name"
+                ref="#JavaScript">JavaScript</rs> for the actual bulk of the work, and JSON (or <ptr
+                type="software" xml:id="JavaScript" target="#JavaScript"/><rs type="soft.name"
+                ref="#JavaScript">JavaScript</rs> object literal) for storing the content. By
+              accessing the data structure, this engine is able to search for a relevant term and
+              bring back the matches.</p>
             <p>Tipue Search operates in three modes: <list rend="bulleted">
                 <item>in <emph>Static mode</emph>, Tipue Search operates without a web server by
                   accessing the contents stored in a specific file
@@ -597,10 +622,11 @@
                   the Vercelli Book.</item>
               </list>
             </p>
-            <p>These files are produced by including two templates in the overall flow of XSLT
-              transformations that extract crucial data from the TEI documents and format them with
-              JSON syntax. The procedure complements well the entire logic of automatic
-              self-generation that characterizes EVT.</p>
+            <p>These files are produced by including two templates in the overall flow of <ptr
+                type="software" xml:id="XSLT" target="#XSLT"/><rs type="soft.name" ref="#XSLT"
+                >XSLT</rs> transformations that extract crucial data from the TEI documents and
+              format them with JSON syntax. The procedure complements well the entire logic of
+              automatic self-generation that characterizes EVT.</p>
             <p>After we managed to extract the correct data structure, we began to include the
               search functionality in EVT. By using the logic behind Tipue JSON mode, we implemented
               a trigger (under the shape of a select tag) that loaded the desired JSON data
@@ -616,16 +642,15 @@
             </figure>
           </div>
           <div xml:id="dom">
-            <head><!-- [RvdB] shouldn't this be "DOM Manipulation" (see end of introduction to §3.2)? -->
-              <!-- [MDH] Clarified it a bit by adding "through DOM Manipulation". -->Keyword
-              Highlighting through DOM Manipulation</head>
+            <head> Keyword Highlighting through DOM Manipulation</head>
             <p>The solution to keyword highlighting was found while searching many plug-ins that
-              deal with this very problem. All these plug-ins use JavaScript and DOM manipulation in
-              order to wrap the HTML text nodes that match the query with a specific tag (a span or
-              a user-defined tag) and a CSS class to manage the style of the highlighting. While
-              this implementation was very simple and self-explanatory, making use of simple
-              recursive functions on relevant HTML nodes has proved to be very difficult to apply to
-              the textual contents handled by EVT.</p>
+              deal with this very problem. All these plug-ins use <ptr type="software"
+                xml:id="JavaScript" target="#JavaScript"/><rs type="soft.name" ref="#JavaScript"
+                >JavaScript</rs> and DOM manipulation in order to wrap the HTML text nodes that
+              match the query with a specific tag (a span or a user-defined tag) and a CSS class to
+              manage the style of the highlighting. While this implementation was very simple and
+              self-explanatory, making use of simple recursive functions on relevant HTML nodes has
+              proved to be very difficult to apply to the textual contents handled by EVT.</p>
             <p>HTML text within EVT is represented as a combination of text nodes and <gi>span</gi>
               elements. These spans are used to define the characteristics of the current selected
               edition. They contain both philological information about the inner workings of the
@@ -636,12 +661,12 @@
             <p>This type of markup would not have constituted a problem if it had wrapped complete
               words, since the plug-ins could recursively explore its content and search for a
               matching term. In certain portions of the text, however, some letters are separated by
-              a span from the rest of the word (for example: <code>&lt;span>H&lt;/span>ello</code>).
-              Since the plug-ins worked on the level of text nodes, a word split by spans would be
-              seen as two different text nodes (for example: <mentioned>H</mentioned> and
-                <mentioned>ello</mentioned>) and could not be matched by the query, making the
-              standard transversal algorithm of the plug-ins impossible to use without any further
-              substantial modifications.</p>
+              a span from the rest of the word (for example:
+                <code>&lt;span&gt;H&lt;/span&gt;ello</code>). Since the plug-ins worked on the level
+              of text nodes, a word split by spans would be seen as two different text nodes (for
+              example: <mentioned>H</mentioned> and <mentioned>ello</mentioned>) and could not be
+              matched by the query, making the standard transversal algorithm of the plug-ins
+              impossible to use without any further substantial modifications.</p>
             <p>To solve this problem we recreated the transversal algorithm entirely, making it more
               intelligent and context-sensitive. In order to do so, we explored the text to be
               highlighted by using a map that kept track of all the spans and text nodes and their
@@ -675,15 +700,16 @@
               information about the image, but is placed inside a <gi>zone</gi> element, which
               defines two-dimensional areas within a <gi>surface</gi>, and is transcribed using one
               or more <gi>line</gi> elements.</p>
-            <p>Originally EVT could not handle this particular encoding method, since the XSLT
-              stylesheets could only process TEI XML documents encoded according to the traditional
-              transcription method. Since we think that this is a concrete need in many cases of
-              study (mainly epigraphical inscriptions, but also manuscripts, at least in some
-              specific cases), we recently added a new feature that will allow EVT to handle texts
-              encoded according to the embedded transcription method. This work was possible due to
-              a small grant awarded by EADH.<note><p>See EADH Small Grant: Call for Proposals, <ptr
-                    target="http://eadh.org/support/eadh-small-grants-call-proposals"
-              />.</p></note></p>
+            <p>Originally EVT could not handle this particular encoding method, since the <ptr
+                type="software" xml:id="XSLT" target="#XSLT"/><rs type="soft.name" ref="#XSLT"
+                >XSLT</rs> stylesheets could only process TEI XML documents encoded according to the
+              traditional transcription method. Since we think that this is a concrete need in many
+              cases of study (mainly epigraphical inscriptions, but also manuscripts, at least in
+              some specific cases), we recently added a new feature that will allow EVT to handle
+              texts encoded according to the embedded transcription method. This work was possible
+              due to a small grant awarded by EADH.<note><p>See EADH Small Grant: Call for
+                  Proposals, <ptr target="http://eadh.org/support/eadh-small-grants-call-proposals"
+                  />.</p></note></p>
           </div>
           <div xml:id="critical">
             <head>Support for Critical Edition</head>
@@ -784,15 +810,21 @@
             function.</p>
           <p>Digital Lightbox has been developed using some of the latest web technologies
             available, such as HTML5, CSS3, the front-end framework <ref
-              target="http://getbootstrap.com/">Bootstrap</ref>,<note><p>Bootstrap, <ptr
-                  target="http://getbootstrap.com/"/>.</p></note> and the JavaScript (ECMAScript 6)
-            programming language, in combination with the <ref target="http://jquery.com/"
-              >jQuery</ref> library.<note><p><ptr target="http://jquery.com/"/>.</p></note> The code
-            architecture has been designed to be modular and easily extensible by other developers
-            or third parties: indeed, it has been released as open source software on
-                GitHub,<note><p>Digital Lightbox, <ptr
-                  target="https://github.com/Gbuomprisco/Digital-Lightbox/"/>.</p></note> and is
-            freely available to be downloaded, edited, and tinkered with.</p>
+              target="http://getbootstrap.com/"><ptr type="software" xml:id="Bootstrap"
+                target="#Bootstrap"/><rs type="soft.name" ref="#Bootstrap"
+                  >Bootstrap</rs></ref>,<note><p><ptr type="software" xml:id="Bootstrap"
+                  target="#Bootstrap"/><rs type="soft.name" ref="#Bootstrap">Bootstrap</rs>, <ptr
+                  target="http://getbootstrap.com/"/>.</p></note> and the <ptr type="software"
+              xml:id="JavaScript" target="#JavaScript"/><rs type="soft.name" ref="#JavaScript"
+              >JavaScript</rs> (ECMAScript 6) programming language, in combination with the <ref
+              target="http://jquery.com/">jQuery</ref> library.<note><p><ptr
+                  target="http://jquery.com/"/>.</p></note> The code architecture has been designed
+            to be modular and easily extensible by other developers or third parties: indeed, it has
+            been released as open source software on <ptr type="software" xml:id="GitHub"
+              target="#GitHub"/><rs type="soft.name" ref="#GitHub">GitHub</rs>,<note><p>Digital
+                Lightbox, <ptr target="https://github.com/Gbuomprisco/Digital-Lightbox/"
+              />.</p></note> and is freely available to be downloaded, edited, and tinkered
+            with.</p>
           <p>The Digital Lightbox represents a perfect complementary feature for the EVT project: a
             graphic-oriented tool to explore, visualize, and analyze digital images of manuscripts.
             While EVT provides a rich and usable interface to browse and study manuscript texts
@@ -825,10 +857,11 @@
                 the Archivio della Pontificia Università Gregoriana.</p></note> The integration of
             EVT with another web framework used in the project, the eXist XML database, will require
             a very important change in how the software works: as mentioned above, everything from
-            XSLT processing to browsing of the resulting website has been done on the client side,
-            but the integration with eXist will require a move to the more complex client-server
-            architecture. A version of EVT based on this architecture would present several
-            advantages, not only the integration of a powerful XML database, but also the
+              <ptr type="software" xml:id="XSLT" target="#XSLT"/><rs type="soft.name" ref="#XSLT"
+              >XSLT</rs> processing to browsing of the resulting website has been done on the client
+            side, but the integration with eXist will require a move to the more complex
+            client-server architecture. A version of EVT based on this architecture would present
+            several advantages, not only the integration of a powerful XML database, but also the
             implementation of a full version of the Digital Lightbox. We will try to make the move
             as painless as possible and to preserve the basic simplicity and flexibility that has
             been a major feature of EVT so far. The client-only version will not be abandoned,
@@ -843,11 +876,12 @@
           to the publishing of TEI-encoded digital editions, this software has grown to the point of
           being a potentially very useful tool for the TEI community: since it requires little
           configuration, and no knowledge of programming languages or web frameworks except for what
-          is needed to apply an XSLT stylesheet, it represents a user-friendly method for producing
-          image-based digital editions. Moreover, its client-only architecture makes it very easy to
-          test the edition-building process (one has only to delete the output folders and start
-          anew) and publish preliminary versions on the web (a shared folder on any cloud-based
-          service such as Dropbox is all that is needed).</p>
+          is needed to apply an <ptr type="software" xml:id="XSLT" target="#XSLT"/><rs
+            type="soft.name" ref="#XSLT">XSLT</rs> stylesheet, it represents a user-friendly method
+          for producing image-based digital editions. Moreover, its client-only architecture makes
+          it very easy to test the edition-building process (one has only to delete the output
+          folders and start anew) and publish preliminary versions on the web (a shared folder on
+          any cloud-based service such as Dropbox is all that is needed).</p>
         <p>While EVT has been under development for 3–4 years, it was thanks to the work and focus
           required by the Digital Vercelli Book release at end of 2013 that we now have a solid
           foundation on which to build new features and refine the existing ones. Some of the future
@@ -878,7 +912,8 @@
           <item>Roberto Rosselli Del Turco</item>
           <label>UI design, HTML programming:</label>
           <item>Roberto Rosselli Del Turco, Julia Kenny, and Raffaele Masotti</item>
-          <label>XSLT framework and graphic plug-ins:</label>
+          <label><ptr type="software" xml:id="XSLT" target="#XSLT"/><rs type="soft.name" ref="#XSLT"
+              >XSLT</rs> framework and graphic plug-ins:</label>
           <item>Julia Kenny and Raffaele Masotti</item>
           <label>XML search engine:</label>
           <item>Jacopo Pugliese</item>

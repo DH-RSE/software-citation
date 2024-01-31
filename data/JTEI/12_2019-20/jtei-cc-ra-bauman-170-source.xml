@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<!-- $Id: jtei-cc-ra-bauman-170-source.xml 1217 2023-10-24 22:09:39Z ron $ -->
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://github.com/DH-RSE/software-citation/raw/main/schema/tei_jtei_annotated.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="https://github.com/DH-RSE/software-citation/raw/main/schema/tei_jtei_annotated.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0"
    xmlns:sch="http://purl.oclc.org/dsdl/schematron"
    xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
@@ -285,12 +285,12 @@
                      prisoners, each of which is stamped (by the prison guards) with the day it was
                      sent. If our schema <emph>requires</emph> that there be a date in a particular
                      format in a particular place (say, in W3C format on the <att>when</att> of
-                        <tag>correspAction type="sent"</tag>), then our publication software does
-                     not have to worry about what to do if it finds a letter without a date when it
-                     tries to sort them. The publication software (or, to be more precise and stop
-                     anthropomorphizing code, the computer programmer who writes the publication
-                     software) can depend on the fact that every letter will have a date in exactly
-                     the right spot.</p>
+                        <tag>correspAction type=&quot;sent&quot;</tag>), then our publication
+                     software does not have to worry about what to do if it finds a letter without a
+                     date when it tries to sort them. The publication software (or, to be more
+                     precise and stop anthropomorphizing code, the computer programmer who writes
+                     the publication software) can depend on the fact that every letter will have a
+                     date in exactly the right spot.</p>
                   <p>As Wendell Piez points out (<ref target="#piez2001" type="bibl">Piez
                      2001</ref>), this is exactly analogous to the use of
                         <soCalled>go/no-go</soCalled> gauge. <figure xml:id="image1">
@@ -375,8 +375,9 @@
                               </xsl:if>
                            </xsl:template>
                         </egXML>
-                        <head type="legend">XSLT template that converts an <gi>lb</gi> into a
-                           space.</head>
+                        <head type="legend"><ptr type="software" xml:id="XSLT" target="#XSLT"/><rs
+                              type="soft.name" ref="#XSLT">XSLT</rs> template that converts an
+                              <gi>lb</gi> into a space.</head>
                      </figure></p>
                </div>
                <div xml:id="Uses">
@@ -773,28 +774,29 @@
                      <item>the list of possible values for <att>include</att> of <gi>moduleRef</gi>
                         (grammar-based, lists all possible values),</item>
                      <item>the list of possible values for <att>include</att> of <tag>moduleRef
-                           key="core"</tag> (rule-based, lists only values from the
+                           key=&quot;core&quot;</tag> (rule-based, lists only values from the
                            <ident>core</ident> module),</item>
                      <item>the list of possible values for <att>except</att> of <gi>moduleRef</gi>
                         (grammar-based, lists all possible values),</item>
                      <item>the list of possible values for <att>except</att> of <tag>moduleRef
-                           key="core"</tag> (rule-based, lists only values from the
+                           key=&quot;core&quot;</tag> (rule-based, lists only values from the
                            <ident>core</ident> module),</item>
                      <item>the list of possible values for <att>key</att> of <gi>elementRef</gi>,
                         and</item>
                      <item>the list of possible values for <att>ident</att> of
                         <gi>elementSpec</gi>.</item>
                   </list> Furthermore, the value <val>teiCorpus</val> appears in the value of the
-                     <att>except</att> attribute of the <tag>moduleRef key="core"</tag> in the
-                     <ident>tei_customization.odd</ident> (as opposed to the <gi>moduleRef</gi> it
+                     <att>except</att> attribute of the <tag>moduleRef key=&quot;core&quot;</tag> in
+                  the <ident>tei_customization.odd</ident> (as opposed to the <gi>moduleRef</gi> it
                   is defining) — this one should be removed, too, but since current ODD processors
                   would ignore it, would not cause a problem if it were left.</p>
                <p>Either way, in order to avoid this potential maintenance nightmare,
                      <ident>tei_customization.odd</ident> is not a static file, but rather is
-                  generated by running an XSLT program that reads as its input the source to TEI
-                        P5<note><p>Remember, the TEI Guidelines are written in TEI. The source to
-                        all of P5 is a single TEI document, although for convenience it is split
-                        into well over 850 separate files.</p></note> and writes
+                  generated by running an <ptr type="software" xml:id="XSLT" target="#XSLT"/><rs
+                     type="soft.name" ref="#XSLT">XSLT</rs> program that reads as its input the
+                  source to TEI P5<note><p>Remember, the TEI Guidelines are written in TEI. The
+                        source to all of P5 is a single TEI document, although for convenience it is
+                        split into well over 850 separate files.</p></note> and writes
                      <ident>tei_customization.odd</ident> as its output. Running this program is one
                   of the steps in the <soCalled>build</soCalled> process for creating a new set of
                   TEI P5 generated outputs.<note><p>These outputs include schemas in RELAX NG and
@@ -884,9 +886,12 @@
             </div>
             <div xml:id="howToGetIt">
                <head>How to Get it and Use it</head>
-               <p>The XSLT program used to generate <ident>tei_customization.odd</ident> can be
-                  found in the <ref target="https://github.com/TEIC/TEI/tree/dev/P5/Utilities">TEI
-                     GitHub repository</ref>. It is currently called
+               <p>The <ptr type="software" xml:id="XSLT" target="#XSLT"/><rs type="soft.name"
+                     ref="#XSLT">XSLT</rs> program used to generate
+                     <ident>tei_customization.odd</ident> can be found in the <ref
+                     target="https://github.com/TEIC/TEI/tree/dev/P5/Utilities">TEI <ptr
+                        type="software" xml:id="GitHub" target="#GitHub"/><rs type="soft.name"
+                        ref="#GitHub">GitHub</rs> repository</ref>. It is currently called
                      <ident>TEI-to-tei_customization.xslt</ident>. The generated
                      <ident>tei_customization</ident> ODD file and the schemas generated from it can
                   be found in each release of the TEI from 3.3.0 on.<note><p>For example, the

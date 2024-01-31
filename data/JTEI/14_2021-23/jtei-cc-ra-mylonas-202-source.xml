@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml"
-	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="https://github.com/DH-RSE/software-citation/raw/main/schema/tei_jtei_annotated.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="https://github.com/DH-RSE/software-citation/raw/main/schema/tei_jtei_annotated.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <!-- $Id: jtei-cc-ra-mylonas-202-source.xml 1158 2023-01-31 08:46:51Z ron $ -->
 <TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI.internal">
   <teiHeader>
@@ -438,13 +437,13 @@
         <p>As the IIP documents are stored in an institutional repository, each file also has a
           persistent identifier (PID) provided by the repository in the form of a URI. The PID is
           not currently referenced in the IIP header metadata, but like the project ID, it can be
-          encoded with <tag>idno type="BDR"</tag>. Some projects have developed workflows that
-          incorporate a repository-generated DOI back into the file, as the file is being deposited
-          into a repository like Zenodo (<ref type="bibl" target="#prag2020">Prag 2020</ref>; <ref
-            type="bibl" target="#wagner">Wagner, n.d.</ref>). There may be other types of files
-          beyond the epigraphic documents that should have unique identifiers: for example, local
-          authority lists if they are external to the documents, or XSL scripts that can be used to
-          process the files. <lb/><lb/>
+          encoded with <tag>idno type=&quot;BDR&quot;</tag>. Some projects have developed workflows
+          that incorporate a repository-generated DOI back into the file, as the file is being
+          deposited into a repository like Zenodo (<ref type="bibl" target="#prag2020">Prag
+            2020</ref>; <ref type="bibl" target="#wagner">Wagner, n.d.</ref>). There may be other
+          types of files beyond the epigraphic documents that should have unique identifiers: for
+          example, local authority lists if they are external to the documents, or XSL scripts that
+          can be used to process the files. <lb/><lb/>
           <hi rendition="#head">FM-F1B: Identifier persistence</hi>
           <lb/> [<ptr
             target="https://github.com/FAIRMetrics/Metrics/blob/master/Distributions/FM_F1B.pdf"/>] </p>
@@ -619,10 +618,12 @@
           ontologies such as <ref target="http://www.cidoc-crm.org/">CIDOC-CRM</ref>, <ref
             target="http://nomisma.org/">Nomisma</ref>, and <ref
             target="http://www.cidoc-crm.org/crmtex/home-8">CRMtex</ref><note>CIDOC (International
-            Committee for Documentation) Conceptual Reference Model, accessed July 4, 2022, <ptr
-              target="http://www.cidoc-crm.org/"/>; Nomisma (knowledge organization system for
-            numismatics), accessed July 4, 2022, <ptr target="http://nomisma.org/"/>; CRMtex model
-            for the study of ancient texts (an extension of CIDOC-CRM), accessed July 4, 2022, <ptr
+            Committee for Documentation) Conceptual <ptr type="software" xml:id="Reference"
+              target="#Reference"/><rs type="soft.name" ref="#Reference">Reference</rs> Model,
+            accessed July 4, 2022, <ptr target="http://www.cidoc-crm.org/"/>; Nomisma (knowledge
+            organization system for numismatics), accessed July 4, 2022, <ptr
+              target="http://nomisma.org/"/>; CRMtex model for the study of ancient texts (an
+            extension of CIDOC-CRM), accessed July 4, 2022, <ptr
               target="http://www.cidoc-crm.org/crmtex/home-8"/>.</note> to describe inscribed
           objects (<ref type="bibl" target="#bodard2021">Bodard et al. 2021</ref>). <lb/><lb/>
           <hi rendition="#head">Reuse</hi>
@@ -665,8 +666,9 @@
           governing body which might provide the certification, and in fact the Guidelines are, as
           indicated in their name, not a standard. However, if the TEI consortium and its members
           recommend how to fulfill the FAIR principles by using the <gi>teiHeader</gi> as discussed
-          for each metric above, and provide XSLT and Schematron files for validation, the output of
-          that file could indicate compliance. As always, it is the responsibility of the encoder
+          for each metric above, and provide <ptr type="software" xml:id="XSLT" target="#XSLT"/><rs
+            type="soft.name" ref="#XSLT">XSLT</rs> and Schematron files for validation, the output
+          of that file could indicate compliance. As always, it is the responsibility of the encoder
           and project to make sure that the metadata are accurate and detailed.</p>
       </div>
       <div xml:id="conclusion">
@@ -678,12 +680,13 @@
           the TEI header can provide much of the information required by the FAIR principles in a
           predictable and machine-readable form. Specifically, the TEI Guidelines and schema
           indicate where and how to encode licensing information, metadata formats, documentation,
-          and identifiers and their presence can be verified using XSLT, XPath, and Schematron.
-          Overall, the affordances of the TEI, best practices of the EpiDoc community, and IIP
-          archival format decisions have resulted in a set of documents that measure up to the
-          requirements of FAIR metrics. Furthermore, the best practices adopted by the IIP project
-          over the course of its development incorporated many FAIR behaviors with little extra
-          effort.</p>
+          and identifiers and their presence can be verified using <ptr type="software"
+            xml:id="XSLT" target="#XSLT"/><rs type="soft.name" ref="#XSLT">XSLT</rs>, XPath, and
+          Schematron. Overall, the affordances of the TEI, best practices of the EpiDoc community,
+          and IIP archival format decisions have resulted in a set of documents that measure up to
+          the requirements of FAIR metrics. Furthermore, the best practices adopted by the IIP
+          project over the course of its development incorporated many FAIR behaviors with little
+          extra effort.</p>
         <p>However, some issues that are unique to TEI encoding, as well as future directions of
           FAIR, indicate areas where the TEI community could do more. Generally, these are formal
           components that have to do primarily with persistence of metadata external to the IIP
@@ -769,7 +772,7 @@
           <row>
             <cell>FM-F1A: Identifier uniqueness</cell>
             <cell>Check for DOI:
-                <lb/><code>/TEI/teiHeader/fileDesc/publicationStmt/idno[@type="DOI"]</code></cell>
+                <lb/><code>/TEI/teiHeader/fileDesc/publicationStmt/idno[@type=&quot;DOI&quot;]</code></cell>
           </row>
           <row>
             <cell>FM-F1B: Identifier persistence</cell>
@@ -786,7 +789,7 @@
             <cell>FM-F3: Metadata clearly and explicitly include the identifier of the data they
               describe</cell>
             <cell>Test for existence of DOI (or other identifiers):
-                <lb/><code>/TEI/teiHeader/fileDesc/publicationStmt/idno[@type="DOI"]</code></cell>
+                <lb/><code>/TEI/teiHeader/fileDesc/publicationStmt/idno[@type=&quot;DOI&quot;]</code></cell>
           </row>
           <row>
             <cell>FM-F4: (Meta)data are registered or indexed in a searchable resource</cell>
@@ -829,7 +832,7 @@
             <cell>FM-R1.2: (Meta)data are associated with detailed provenance</cell>
             <cell><code>/TEI/teiHeader/fileDesc/titleStmt</code>
               <lb/><tag type="pi">xml version="1.0" encoding="UTF-8"</tag>
-              <lb/><code>xmlns="http://www.tei-c.org/ns/1.0"</code>
+              <lb/><code>xmlns=&quot;http://www.tei-c.org/ns/1.0&quot;</code>
               <lb/><code>/TEI/teiHeader/encodingDesc/schemaRef</code></cell>
           </row>
           <row>

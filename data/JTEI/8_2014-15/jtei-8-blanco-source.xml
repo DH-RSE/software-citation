@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml"
-	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://github.com/DH-RSE/software-citation/raw/main/schema/tei_jtei_annotated.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="https://github.com/DH-RSE/software-citation/raw/main/schema/tei_jtei_annotated.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI">
   <teiHeader>
     <fileDesc>
@@ -316,8 +317,8 @@
               <lg type="estrofa" asonancia="consonante" met="8,8" rhyme="+b+a">
                 <note>estos dos versos son de vuelta</note>
                 <l n="40">y pues al niño bend<rhyme label="b">ito</rhyme></l>
-                <l n="41" rhyme="aste">y a nosotros tú sac<rhyme label="a">aste</rhyme>,</l> <lg
-                  type="estribillo" asonancia="consonante" met="8,8,8" rhyme="*a*b*b">
+                <l n="41" rhyme="aste">y a nosotros tú sac<rhyme label="a">aste</rhyme>,</l>
+                <lg type="estribillo" asonancia="consonante" met="8,8,8" rhyme="*a*b*b">
                   <l n="42">Ángel, tú que me mand<rhyme label="a">aste</rhyme></l>
                   <l n="43">de Judea ir a Eg<rhyme label="b">ipto</rhyme>,</l>
                   <l n="44">guíanos con el chiqu<rhyme label="b">ito</rhyme>.</l>
@@ -408,30 +409,41 @@
           RBDMS model, seeing that most of the online repertoires are built on similar systems. The
           problem lay in choosing a combined system to integrate both types of information: E-R
           relational structures and text marked up with XML. We compared two of the most popular E-R
-          database systems: MySQL and Oracle9i XML. Both of them offered the possibility of adding
-          an XMLType data column, thus offering the possibility of introducing hierarchical
-          structures inside the relational model via the provision of XML nesting structures. The
-          combination of both systems offers great advantages, such as the possibility of making
-          combined queries with SQL and XPath languages.<note>The disadvantage of MySQL compared to
-            Oracle is that MySQL does not offer validation for XML fields, as it considers them just
-            as text fields, and there are no added XSD schemas or any kind of transformational
-            stylesheets, like XSLT. TEI code has to be composed and validated outside the database
-            by using XML editors (we use Oxygen), since the MySQL RDBMS exploitation of XML
-            technologies is limited to XPath and can only be recovered through the
-              <ident>extractValue</ident> function of MySQL, which shows important limitations.
-            Oracle Database 9i and 10g, however, are much more powerful in that sense, as they
-            combine their E-R nature with XML technologies, resulting in a much more advanced tool
-            to work with both systems, hierarchical and relational, at the same time.</note></p>
-        <p>This first trial model of ReMetCa, combining the MySQL RDBMS and TEI XML fields, is
-          already working online and can be visited at <ptr target="http://ww.remetca.uned.es"/>. To
-          access the database, it is necessary to log in to <soCalled>Área de trabajo</soCalled> and
-          then into <soCalled>base de datos</soCalled>, using a username and password that can be
-          requested from the same website. Eventually the search screen will be online, free and
+          database systems: <ptr type="software" xml:id="MySQL" target="#MySQL"/><rs
+            type="soft.name" ref="#MySQL">MySQL</rs> and Oracle9i XML. Both of them offered the
+          possibility of adding an XMLType data column, thus offering the possibility of introducing
+          hierarchical structures inside the relational model via the provision of XML nesting
+          structures. The combination of both systems offers great advantages, such as the
+          possibility of making combined queries with <ptr type="software" xml:id="SQL"
+            target="#SQL"/><rs type="soft.name" ref="#SQL">SQL</rs> and XPath languages.<note>The
+            disadvantage of <ptr type="software" xml:id="MySQL" target="#MySQL"/><rs
+              type="soft.name" ref="#MySQL">MySQL</rs> compared to Oracle is that <ptr
+              type="software" xml:id="MySQL" target="#MySQL"/><rs type="soft.name" ref="#MySQL"
+              >MySQL</rs> does not offer validation for XML fields, as it considers them just as
+            text fields, and there are no added XSD schemas or any kind of transformational
+            stylesheets, like <ptr type="software" xml:id="XSLT" target="#XSLT"/><rs
+              type="soft.name" ref="#XSLT">XSLT</rs>. TEI code has to be composed and validated
+            outside the database by using XML editors (we use Oxygen), since the <ptr
+              type="software" xml:id="MySQL" target="#MySQL"/><rs type="soft.name" ref="#MySQL"
+              >MySQL</rs> RDBMS exploitation of XML technologies is limited to XPath and can only be
+            recovered through the <ident>extractValue</ident> function of <ptr type="software"
+              xml:id="MySQL" target="#MySQL"/><rs type="soft.name" ref="#MySQL">MySQL</rs>, which
+            shows important limitations. Oracle Database 9i and 10g, however, are much more powerful
+            in that sense, as they combine their E-R nature with XML technologies, resulting in a
+            much more advanced tool to work with both systems, hierarchical and relational, at the
+            same time.</note></p>
+        <p>This first trial model of ReMetCa, combining the <ptr type="software" xml:id="MySQL"
+            target="#MySQL"/><rs type="soft.name" ref="#MySQL">MySQL</rs> RDBMS and TEI XML fields,
+          is already working online and can be visited at <ptr target="http://ww.remetca.uned.es"/>.
+          To access the database, it is necessary to log in to <soCalled>Área de trabajo</soCalled>
+          and then into <soCalled>base de datos</soCalled>, using a username and password that can
+          be requested from the same website. Eventually the search screen will be online, free and
           open with no password, but not yet, as we are still working on populating the database and
           designing the search engine.</p>
         <p>Oracle databases contain fields defined as <ident>XMLType</ident>, thanks to the XDB
           component. This component is usually installed by default, but its status can be checked
-          by using the following SQL statement: <eg><![CDATA[
+          by using the following <ptr type="software" xml:id="SQL" target="#SQL"/><rs
+            type="soft.name" ref="#SQL">SQL</rs> statement: <eg><![CDATA[
             SQL> select comp_name, status from dba_registry where comp_name=’Oracle XML Database’;
             COMP_NAME
             ----------------------------------------------------------------------------------------------
@@ -443,18 +455,21 @@
         </p>
         <p>In the case of ReMetCa, this <ident>XMLType</ident> field needs to appear only once, in
           the table <ident>Poema</ident>, which contains <gi>lg</gi> elements and their content, as
-          described above. Oracle SQL Developer also allows updates to contents with its unique
-          record view.</p>
+          described above. Oracle <ptr type="software" xml:id="SQL" target="#SQL"/><rs
+            type="soft.name" ref="#SQL">SQL</rs> Developer also allows updates to contents with its
+          unique record view.</p>
         <figure xml:id="figure3">
           <graphic url="images/jtei-8-blanco-figure-03-oracle-editor.png" height="555px"
             width="626px"/>
-          <head type="legend">Oracle SQL Developer</head>
+          <head type="legend">Oracle <ptr type="software" xml:id="SQL" target="#SQL"/><rs
+              type="soft.name" ref="#SQL">SQL</rs> Developer</head>
         </figure>
         <p>Oracle stores XSD schemas into its system, so the XML introduced is validated. To test
           this property, we tried introducing an XSD schema for this <gi>lg</gi> element, adding
           attributes and constraints, and as figure 4 shows, it was perfectly validated. The system
-          also accepts XSLT stylesheets. Oracle registers stylesheets and can apply them to any
-          XMLType field.</p>
+          also accepts <ptr type="software" xml:id="XSLT" target="#XSLT"/><rs type="soft.name"
+            ref="#XSLT">XSLT</rs> stylesheets. Oracle registers stylesheets and can apply them to
+          any XMLType field.</p>
         <figure xml:id="figure4">
           <graphic url="images/jtei-8-blanco-figure-04-oracle-validation.png" height="284px"
             width="608px"/>
@@ -479,10 +494,11 @@
           model to allow interoperability among the different European repertoires based on a common
           ontology.</p>
         <p>Although we have adopted Oracle because of its power to work with XML technologies and
-          TEI, there are other open-source systems like MySQL or PostgreSQL which offer enough
-          functions to implement a mixed system like the one proposed in this paper. Actually, it is
-          predictable that both systems will include similar tools in the future to work with
-          XMLType fields, as XML is becoming more and more widely used.</p>
+          TEI, there are other open-source systems like <ptr type="software" xml:id="MySQL"
+            target="#MySQL"/><rs type="soft.name" ref="#MySQL">MySQL</rs> or PostgreSQL which offer
+          enough functions to implement a mixed system like the one proposed in this paper.
+          Actually, it is predictable that both systems will include similar tools in the future to
+          work with XMLType fields, as XML is becoming more and more widely used.</p>
       </div>
     </body>
     <back>

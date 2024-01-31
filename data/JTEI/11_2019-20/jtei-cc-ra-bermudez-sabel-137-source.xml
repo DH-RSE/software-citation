@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="https://github.com/DH-RSE/software-citation/raw/main/schema/tei_jtei_annotated.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="https://github.com/DH-RSE/software-citation/raw/main/schema/tei_jtei_annotated.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <!-- $Id: jtei-cc-ra-bermudez-sabel-137-source.xml 877 2019-12-19 21:18:04Z ron $ -->
 <TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI">
   <teiHeader>
@@ -109,8 +109,9 @@
           textual variation. <ptr type="crossref" target="#edition"/> offers examples of one of the
           ways in which the variant taxonomy may be linked to the body of the edition.</p>
         <p>Although this paper is TEI-centered, other XML technologies will be mentioned. <ptr
-            type="crossref" target="#validation"/> includes a brief commentary on using XSLT to
-          transform a TEI-conformant definition of constraints into schema rules. However, the
+            type="crossref" target="#validation"/> includes a brief commentary on using <ptr
+            type="software" xml:id="XSLT" target="#XSLT"/><rs type="soft.name" ref="#XSLT">XSLT</rs>
+          to transform a TEI-conformant definition of constraints into schema rules. However, the
           greatest attention to an additional technology is in <ptr type="crossref"
             target="#analyses"/>, which discusses the use of XQuery to retrieve particular
             <foreign>loci critici</foreign> and to deploy quantitative analyses.</p>
@@ -444,9 +445,10 @@
           definition, its typed-feature modeling facilitates the creation of schema constraints. For
           instance, I process my declaration to further constrict my schema so the feature structure
           declaration and its actual application are always synchronized and up to date.<note>I use
-            XSLT to process the feature structure declaration in order to create all required
-            Schematron rules that will constrict the feature library accordingly. I am currently
-            working on creating a more generic validator (see my <ref
+              <ptr type="software" xml:id="XSLT" target="#XSLT"/><rs type="soft.name" ref="#XSLT"
+              >XSLT</rs> to process the feature structure declaration in order to create all
+            required Schematron rules that will constrict the feature library accordingly. I am
+            currently working on creating a more generic validator (see my <ref
               target="https://github.com/HelenaSabel/FS-Validator">Github repository</ref>, <ptr
               target="https://github.com/HelenaSabel/FS-Validator"/>).</note>
           <figure xml:id="example4">
@@ -539,11 +541,18 @@
             >parallel segmentation</ref> method (<ref type="bibl" target="#TEI16">TEI Consortium
             2016, 12.2.3</ref>) seems to be a popular encoding technique for multi-witness editions,
           in terms of both the specific tools that have been created for this method and the number
-          of projects that apply it.<note>Tools include <ref target="http://v-machine.org/"
-              >Versioning Machine</ref>, <ref target="https://collatex.net/">CollateX</ref> (both
-            the Java and Python versions), and <ref target="http://www.juxtasoftware.org/"
-              >Juxta</ref>. For representative projects using the parallel segmentation method see
-              <ref target="http://scholarlyediting.org/2015/editions/lowelledition_wit-Courier.html"
+          of projects that apply it.<note>Tools include <ref target="http://v-machine.org/"><ptr
+                type="software" xml:id="Versioning Machine" target="#Versioning Machine"/><rs
+                type="soft.name" ref="#Versioning Machine">Versioning Machine</rs></ref>, <ref
+              target="https://collatex.net/"><ptr type="software" xml:id="CollateX"
+                target="#CollateX"/><rs type="soft.name" ref="#CollateX">CollateX</rs></ref> (both
+            the <ptr type="software" xml:id="Java" target="#Java"/><rs type="soft.name" ref="#Java"
+              >Java</rs> and <ptr type="software" xml:id="Python" target="#Python"/><rs
+              type="soft.name" ref="#Python">Python</rs> versions), and <ref
+              target="http://www.juxtasoftware.org/"><ptr type="software" xml:id="Juxta"
+                target="#Juxta"/><rs type="soft.name" ref="#Juxta">Juxta</rs></ref>. For
+            representative projects using the parallel segmentation method see <ref
+              target="http://scholarlyediting.org/2015/editions/lowelledition_wit-Courier.html"
               >Satire in Circulation: James editions Russell Lowell’s Letter from a volunteer in
               Saltillo</ref>, <ref target="http://digitalthoreau.org/fluid-text-toc">Walden: A
               Fluid-Text Edition</ref>, or <ref
@@ -632,8 +641,8 @@
           red, and equipollent readings are underlined. The use of colors is complemented with
           tooltips, so there is no information that it is only conveyed through color. If we click
           on any of the variants, we retrieve their more specific descriptions, that is, the
-          contents of <code>f[@name eq "description"]</code>, as shown in <ptr type="crossref"
-            target="#figure2"/>
+          contents of <code>f[@name eq &quot;description&quot;]</code>, as shown in <ptr
+            type="crossref" target="#figure2"/>
           <figure xml:id="figure2">
             <graphic url="images/figure2.png" height="736px" width="663px"/>
             <head type="legend">HTML edition sample</head>

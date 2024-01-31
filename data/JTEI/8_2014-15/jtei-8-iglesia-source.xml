@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml"
-	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="https://github.com/DH-RSE/software-citation/raw/main/schema/tei_jtei_annotated.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="https://github.com/DH-RSE/software-citation/raw/main/schema/tei_jtei_annotated.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI">
   <teiHeader>
     <fileDesc>
@@ -92,12 +92,14 @@
           them online, mostly under free licenses. Scholars all over the world are now able to use
           huge datasets for further research. There are now many digital editions available, but
           only a few tools to analyze them. This article explores how web technologies (XML and
-          related technologies as well as JavaScript) can be used to enrich the forthcoming edition
-          of Theodor Fontane’s notebooks with data-driven visualizations of named entities and how
-          at the same time applications can be built on these visualizations which are reusable for
-          other edition projects in the TEI world. Because of the density and historical scope of
-          references to named entities and the variety of entity types, Fontane’s notebooks lend
-          themselves to advanced methods of semantic analysis.</p>
+          related technologies as well as <ptr type="software" xml:id="JavaScript"
+            target="#JavaScript"/><rs type="soft.name" ref="#JavaScript">JavaScript</rs>) can be
+          used to enrich the forthcoming edition of Theodor Fontane’s notebooks with data-driven
+          visualizations of named entities and how at the same time applications can be built on
+          these visualizations which are reusable for other edition projects in the TEI world.
+          Because of the density and historical scope of references to named entities and the
+          variety of entity types, Fontane’s notebooks lend themselves to advanced methods of
+          semantic analysis.</p>
       </div>
     </front>
     <body>
@@ -180,13 +182,14 @@
           </egXML>
           <head type="legend">Example <gi>rs</gi>.</head>
         </figure>
-        <p>Reference attributes (<att>ref</att>) point to nodes located elsewhere in the TEI
-          dataset. It should be noted that the organization of the TEI dataset and the location of
-          the entity notes therein is of no importance to the reference linking mechanism described
-          here. At the current stage of our project, the TEI code for each of the 67 notebooks is
-          stored in its own TEI document, with the entity indexes stored within each TEI header.
-          However, combining the 67 TEI documents into one large document with the entity
-          information stored in a single header, or placing all entity data in a separate TEI
+        <p><ptr type="software" xml:id="Reference" target="#Reference"/><rs type="soft.name"
+            ref="#Reference">Reference</rs> attributes (<att>ref</att>) point to nodes located
+          elsewhere in the TEI dataset. It should be noted that the organization of the TEI dataset
+          and the location of the entity notes therein is of no importance to the reference linking
+          mechanism described here. At the current stage of our project, the TEI code for each of
+          the 67 notebooks is stored in its own TEI document, with the entity indexes stored within
+          each TEI header. However, combining the 67 TEI documents into one large document with the
+          entity information stored in a single header, or placing all entity data in a separate TEI
           document altogether, would be just as feasible. In the entity data nodes, additional
           information is provided on the entities, such as hyperlinks to authority file records, or
           a classification into <term>person</term> or <term>place</term>.</p>
@@ -297,8 +300,10 @@
               emperors</q> or <q>the Thuringian landgraves</q>. Although the GND does provide
             records for some of these entities, they do not contain much useful information for
             further investigation.</p>
-          <p>The SIMILE Timeline widget consists of an HTML document that uses JavaScript to process
-            an XML file written in a simple XML markup language specific to SIMILE.</p>
+          <p>The SIMILE Timeline widget consists of an HTML document that uses <ptr type="software"
+              xml:id="JavaScript" target="#JavaScript"/><rs type="soft.name" ref="#JavaScript"
+              >JavaScript</rs> to process an XML file written in a simple XML markup language
+            specific to SIMILE.</p>
           <figure xml:id="example3">
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <data>
@@ -308,19 +313,20 @@
             </egXML>
             <head type="legend">Example of <ident>SIMILE XML</ident>.</head>
           </figure>
-          <p>We have written an XSLT stylesheet in order to produce the HTML document and at the
-            same time generate the required XML data from the TEI code of our notebook. During the
-            transformation, this stylesheet picks up the GND identifiers of all person entities in
-            the TEI code and looks up the corresponding GND record online at the German National
-            Library. It then fetches the date of birth and date of death of the persons from the GND
-            RDF/XML record, as well as their normalized names, and uses these names as labels in the
-            timeline. With only 100 lines of code, this XSL document is quite short and simple, but
-            still checks for missing birth or death dates in the GND record to substitute a
-            calculated estimate for the missing value, as we will show below. Person entities for
-            which neither a precise birth date nor death date can be found in the GND are not
-            included in the timeline at all, which is the case for one of the 37 persons referenced
-            in the notebook (the Thuringian king Hermannfrit, whose birth and death dates are
-            provided in a non-standard form as the text string <q>ca. ?–531</q>,<note>Deutsche
+          <p>We have written an <ptr type="software" xml:id="XSLT" target="#XSLT"/><rs
+              type="soft.name" ref="#XSLT">XSLT</rs> stylesheet in order to produce the HTML
+            document and at the same time generate the required XML data from the TEI code of our
+            notebook. During the transformation, this stylesheet picks up the GND identifiers of all
+            person entities in the TEI code and looks up the corresponding GND record online at the
+            German National Library. It then fetches the date of birth and date of death of the
+            persons from the GND RDF/XML record, as well as their normalized names, and uses these
+            names as labels in the timeline. With only 100 lines of code, this XSL document is quite
+            short and simple, but still checks for missing birth or death dates in the GND record to
+            substitute a calculated estimate for the missing value, as we will show below. Person
+            entities for which neither a precise birth date nor death date can be found in the GND
+            are not included in the timeline at all, which is the case for one of the 37 persons
+            referenced in the notebook (the Thuringian king Hermannfrit, whose birth and death dates
+            are provided in a non-standard form as the text string <q>ca. ?–531</q>,<note>Deutsche
               Nationalbibliothek, GND integrated authority file, <ptr
                 target="http://d-nb.info/gnd/119444720"/></note> which is not recognized by the
             stylesheet used).</p>
@@ -350,11 +356,13 @@
             than a notebook, but both contain a sufficient number of references to person entities
             that we can display on a timeline. To narrow the material down, we selected a single
             year’s worth of diary entries, for the year 1835, which is the last complete year within
-            the scope of Godwin’s diaries. The XSLT code to create the timeline has to be adjusted
-            to the Godwin TEI code, though only slightly. The main difference is that birth and
-            death dates are already contained within the <gi>person</gi> elements, and do not need
-            to be retrieved from elsewhere. Again, a filter was applied for missing birth and death
-            dates. Overall, this XSL document is even shorter and simpler at only 75 lines.</p>
+            the scope of Godwin’s diaries. The <ptr type="software" xml:id="XSLT" target="#XSLT"
+              /><rs type="soft.name" ref="#XSLT">XSLT</rs> code to create the timeline has to be
+            adjusted to the Godwin TEI code, though only slightly. The main difference is that birth
+            and death dates are already contained within the <gi>person</gi> elements, and do not
+            need to be retrieved from elsewhere. Again, a filter was applied for missing birth and
+            death dates. Overall, this XSL document is even shorter and simpler at only 75
+            lines.</p>
           <p>The resulting timeline (<ptr type="crossref" target="#figure2"/>) shows us many people
             who were all either alive in 1835, or recently deceased, such as a John Curran. (Godwin
             refers in his diary to the removal of Curran’s body from London to Ireland at the time
@@ -385,17 +393,19 @@
             similarly to the procedure for the personal data described above. Again, the use of
             automatic systems to identify the historical places would not be feasible, as they are
             sometimes referred to in the notebooks by uncommon phrases which require human
-            interpretation to match them to corresponding modern-day identifiers. Another XSLT
-            script is used to transform the TEI dataset to a Keyhole Markup Language (KML) file, the
-            typical input format for geospatial visualization tools. The XSLT resolves the IDs and
-            retrieves the coordinates from the respective database. OSM is able to deliver polygons
-            instead of geographic coordinates from a single URL in the resulting file: for example,
-            for All Saints’ Church in Wittenberg or the Saint Augustine Monastery at Erfurt. Again
-            the transformation is very simple, as the common format for spatial information—KML—is
-            also expressed as XML. This approach tries to provide a possible combination of place
-            names that appear in the neighborhood of <gi>date</gi> elements. The geospatial-temporal
-            visualization tool of our choice is the <ref
-              target="http://geobrowser.de.dariah.eu/embed/?">DARIAH
+            interpretation to match them to corresponding modern-day identifiers. Another <ptr
+              type="software" xml:id="XSLT" target="#XSLT"/><rs type="soft.name" ref="#XSLT"
+              >XSLT</rs> script is used to transform the TEI dataset to a Keyhole Markup Language
+            (KML) file, the typical input format for geospatial visualization tools. The <ptr
+              type="software" xml:id="XSLT" target="#XSLT"/><rs type="soft.name" ref="#XSLT"
+              >XSLT</rs> resolves the IDs and retrieves the coordinates from the respective
+            database. OSM is able to deliver polygons instead of geographic coordinates from a
+            single URL in the resulting file: for example, for All Saints’ Church in Wittenberg or
+            the Saint Augustine Monastery at Erfurt. Again the transformation is very simple, as the
+            common format for spatial information—KML—is also expressed as XML. This approach tries
+            to provide a possible combination of place names that appear in the neighborhood of
+              <gi>date</gi> elements. The geospatial-temporal visualization tool of our choice is
+            the <ref target="http://geobrowser.de.dariah.eu/embed/?">DARIAH
               Geo-Browser</ref>,<note>DARIAH-DE Konsortium, <ptr
                 target="http://geobrowser.de.dariah.eu/embed/?"/>.</note> which offers a timeline
             with a map interface together with different features for selecting data.</p>
@@ -460,31 +470,35 @@
               <ref target="http://prefuse.org/">Prefuse</ref><note>UC Berkeley Visualization Lab,
                 <ptr target="http://prefuse.org/"/>.</note> software library. One of our goals is to
             implement the aggregations within the digital edition, and for this we would like to use
-            web technologies only. The <ref target="http://d3js.org/">D3.js</ref> (Data Driven
-            Documents Javascript library) created by Mike Bostock provides a framework for different
-            visualizations. The <ref target="https://github.com/mbostock/d3/wiki/Gallery">list of
-              examples</ref><note><ptr target="https://github.com/mbostock/d3/wiki/Gallery"
-              />.</note> is a good starting point and gives an introduction to the tool’s
-            functionality. The following implementations are reproductions of the <ref
+            web technologies only. The <ref target="http://d3js.org/"><ptr type="software"
+                xml:id="D3.js" target="#D3.js"/><rs type="soft.name" ref="#D3.js">D3.js</rs></ref>
+            (Data Driven Documents Javascript library) created by Mike Bostock provides a framework
+            for different visualizations. The <ref
+              target="https://github.com/mbostock/d3/wiki/Gallery">list of examples</ref><note><ptr
+                target="https://github.com/mbostock/d3/wiki/Gallery"/>.</note> is a good starting
+            point and gives an introduction to the tool’s functionality. The following
+            implementations are reproductions of the <ref
               target="http://bl.ocks.org/mbostock/4062045">Force-Directed Graph</ref><note><ptr
                 target="http://bl.ocks.org/mbostock/4062045"/>.</note> and the <ref
               target="http://bl.ocks.org/mbostock/7607999">Hierarchical Edge
                 Bundling</ref><note><ptr target="http://bl.ocks.org/mbostock/7607999"/>.</note>
             examples. Again we use an XSL transformation to extract the data from our source.</p>
           <p>The transformation script matches all entities and generates the required documents.
-            The first document is the HTML file, which contains the needed JavaScript and a
-            reference to the external D3.js library. The second is a JSON file, which contains one
-            object per entity and one associated array per object that includes a list of connected
-            entities. The tree-like structure of XML allows the transformation of any document to a
-            network graph by selecting elements that share the same ancestor. The only requirement
-            is that the XML input consists of at least two elements. For example, the
-              <gi>surface</gi> element (which is used in the Fontane TEI data to encode a notebook
-            page) is a common ancestor of the entities. This produces a network of co-occurrences;
-            the (undirected) edges mean that the connected nodes are both descendants of a
-              <gi>surface</gi>; both appear on one page, if the condition is defined to match only
-            the <gi>surface</gi> elements that are direct children of <gi>sourceDoc</gi>, because
-            more than one surface may be part of a single page, for example where there are glued-in
-            newspaper articles.</p>
+            The first document is the HTML file, which contains the needed <ptr type="software"
+              xml:id="JavaScript" target="#JavaScript"/><rs type="soft.name" ref="#JavaScript"
+              >JavaScript</rs> and a reference to the external <ptr type="software" xml:id="D3.js"
+              target="#D3.js"/><rs type="soft.name" ref="#D3.js">D3.js</rs> library. The second is a
+            JSON file, which contains one object per entity and one associated array per object that
+            includes a list of connected entities. The tree-like structure of XML allows the
+            transformation of any document to a network graph by selecting elements that share the
+            same ancestor. The only requirement is that the XML input consists of at least two
+            elements. For example, the <gi>surface</gi> element (which is used in the Fontane TEI
+            data to encode a notebook page) is a common ancestor of the entities. This produces a
+            network of co-occurrences; the (undirected) edges mean that the connected nodes are both
+            descendants of a <gi>surface</gi>; both appear on one page, if the condition is defined
+            to match only the <gi>surface</gi> elements that are direct children of
+              <gi>sourceDoc</gi>, because more than one surface may be part of a single page, for
+            example where there are glued-in newspaper articles.</p>
           <p>As in the Geo-Browser example above, we assume that the proximity of two references to
             entities suggests a semantic connection. Naturally, such a connection may also exist
             between two entity occurrences separated by a page break. Therefore, better criteria for
@@ -512,25 +526,28 @@
             headline is <q>Thüringens Geschichte</q> (History of Thuringia), which is also the topic
             of the following pages. The benefit of the network is that a major topic can be
             identified with a single view.</p>
-          <p>The output of this D3.js application is an SVG graphic which can be further
-            transformed. <gi>svg:title</gi> elements are used to store the node names, which modern
-            browsers should display on mouseover. To get a better overview of the entities in the
-            notebook, the node names should actually be inserted as nodes, but since there is not
-            much space available in the Force-Directed Graph, a different design might be a better
-            choice. The Hierarchical Edge Bundling example (<ptr type="crossref" target="#figure5"
-            />) provides a circular layout with the nodes in alphabetical order on each level of
-            hierarchy. Again, the hierarchy is based on the <gi>surface</gi> element, on which the
-            attribute <att>n</att> determines the level and will be expressed as the first part of
-            the object <term>name</term> within the JSON file. In our case this attribute contains
-            the leaf number with a letter <val>r</val> for recto and <val>v</val> for a verso side
-            and this attribute is transformed in a <ident>html:id</ident>, so we can go back from a
-            single entity to the leaf of its first occurrence by generating a hyperlink with the
-            help of JavaScript. If this part is left out, the objects will be sorted in alphabetical
-            order and the network will contain more edges to link those entities that co-occur on
-            one page. Applying the hierarchy allows these edges to be deleted, because the
-            categorization lets the nodes appear together and a bigger gap between the categories
-            marks the border. This is one of the rare cases in which adding more information to a
-            visualization simplifies and refines the output at the same time.</p>
+          <p>The output of this <ptr type="software" xml:id="D3.js" target="#D3.js"/><rs
+              type="soft.name" ref="#D3.js">D3.js</rs> application is an SVG graphic which can be
+            further transformed. <gi>svg:title</gi> elements are used to store the node names, which
+            modern browsers should display on mouseover. To get a better overview of the entities in
+            the notebook, the node names should actually be inserted as nodes, but since there is
+            not much space available in the Force-Directed Graph, a different design might be a
+            better choice. The Hierarchical Edge Bundling example (<ptr type="crossref"
+              target="#figure5"/>) provides a circular layout with the nodes in alphabetical order
+            on each level of hierarchy. Again, the hierarchy is based on the <gi>surface</gi>
+            element, on which the attribute <att>n</att> determines the level and will be expressed
+            as the first part of the object <term>name</term> within the JSON file. In our case this
+            attribute contains the leaf number with a letter <val>r</val> for recto and <val>v</val>
+            for a verso side and this attribute is transformed in a <ident>html:id</ident>, so we
+            can go back from a single entity to the leaf of its first occurrence by generating a
+            hyperlink with the help of <ptr type="software" xml:id="JavaScript" target="#JavaScript"
+              /><rs type="soft.name" ref="#JavaScript">JavaScript</rs>. If this part is left out,
+            the objects will be sorted in alphabetical order and the network will contain more edges
+            to link those entities that co-occur on one page. Applying the hierarchy allows these
+            edges to be deleted, because the categorization lets the nodes appear together and a
+            bigger gap between the categories marks the border. This is one of the rare cases in
+            which adding more information to a visualization simplifies and refines the output at
+            the same time.</p>
           <p>The result is an interactive graphic in which the appropriate edges are highlighted
             when the cursor is placed over a node. If one selects the node
               <soCalled>Luther</soCalled>, all links and nodes that appear together with a reference
@@ -544,8 +561,9 @@
             inscription on this page at all and it is followed by three blank pages. One possible
             way to integrate this entity into the network might be the use of another apportionment,
             as the fact that two entities are referenced on the same page may be regarded as
-            artificial. Only minor changes would have to be made to the XSLT code to use other
-            divisions of text, such as chapters. As notebooks are not typically organized in
+            artificial. Only minor changes would have to be made to the <ptr type="software"
+              xml:id="XSLT" target="#XSLT"/><rs type="soft.name" ref="#XSLT">XSLT</rs> code to use
+            other divisions of text, such as chapters. As notebooks are not typically organized in
             chapters, we can use paragraphs (encoded with <gi>milestone</gi> here) instead. Instead
             of one specific element, a distinctive number of blank surfaces in series can be
             interpreted as a marker between two sections. Based on this information, we can build a
@@ -577,15 +595,18 @@
         <p>All the example applications we have presented in this article build upon existing tools
           and services. The additional effort required to make them work with the TEI data from the
           forthcoming edition of Theodor Fontane’s notebooks (and from the edition of William
-          Godwin’s Diary) was minimal. The necessary scripting (mainly XSLT) and code customization
-          were easily carried out in addition to our regular work within the Fontane edition
-          project. These efforts were facilitated by a spirit of openness shared by all parties
-          involved: both the D3.js library and the SIMILE Timeline widget are open-source software
-          released under a BSD license; the data sources GND, GeoNames, and OpenStreetMap have
-          permissive licenses—Creative Commons Zero (CC0), Creative Commons Attribution (CC BY), and
-          Open Data Commons Open Database License (ODbL), respectively; and the data from William
-          Godwin’s Diary is released under a Creative Commons Attribution-NonCommercial license (CC
-          BY-NC) and, just as importantly, is offered directly in TEI/XML.</p>
+          Godwin’s Diary) was minimal. The necessary scripting (mainly <ptr type="software"
+            xml:id="XSLT" target="#XSLT"/><rs type="soft.name" ref="#XSLT">XSLT</rs>) and code
+          customization were easily carried out in addition to our regular work within the Fontane
+          edition project. These efforts were facilitated by a spirit of openness shared by all
+          parties involved: both the <ptr type="software" xml:id="D3.js" target="#D3.js"/><rs
+            type="soft.name" ref="#D3.js">D3.js</rs> library and the SIMILE Timeline widget are
+          open-source software released under a BSD license; the data sources GND, GeoNames, and
+          OpenStreetMap have permissive licenses—Creative Commons Zero (CC0), Creative Commons
+          Attribution (CC BY), and Open Data Commons Open Database License (ODbL), respectively; and
+          the data from William Godwin’s Diary is released under a Creative Commons
+          Attribution-NonCommercial license (CC BY-NC) and, just as importantly, is offered directly
+          in TEI/XML.</p>
         <p>The benefits of such an approach are undeniable: it enables researchers who are concerned
           with the meaning within textual material to explore questions that would otherwise be
           difficult and/or tedious to tackle, thus fulfilling the promise of the digital humanities.
@@ -634,8 +655,9 @@
               type="doi">10.1093/llc/fqr020</idno>.</bibl>
           <bibl xml:id="leboeuf13"><author>Le Boeuf, Patrick</author>, <author>Martin
             Doerr</author>, <author>Christian Emil Ore</author>, and <author>Stephen Stead</author>.
-              <date>2013</date>. <title level="m">Definition of the CIDOC Conceptual Reference
-              Model</title>, version 5.1.2 (October). <ptr
+              <date>2013</date>. <title level="m">Definition of the CIDOC Conceptual <ptr
+                type="software" xml:id="Reference" target="#Reference"/><rs type="soft.name"
+                ref="#Reference">Reference</rs> Model</title>, version 5.1.2 (October). <ptr
               target="http://www.cidoc-crm.org/docs/cidoc_crm_version_5.1.2.pdf"/>.</bibl>
           <bibl xml:id="myers10"><editor>Myers, Victoria</editor>, <editor>David
               O’Shaughnessy</editor>, and <editor>Mark Philp</editor>, eds. <date>2010</date>.

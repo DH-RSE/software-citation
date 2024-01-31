@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml"
-	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://github.com/DH-RSE/software-citation/raw/main/schema/tei_jtei_annotated.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="https://github.com/DH-RSE/software-citation/raw/main/schema/tei_jtei_annotated.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <!-- $Id: jtei-rioriande-torresallen-250-source.xml 1213 2023-07-31 19:56:49Z pietro.liuzzo $-->
 <TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI" xml:lang="es">
    <teiHeader>
@@ -455,14 +456,17 @@
                <p>A continuación, preguntamos a los participantes por las tecnologías utilizadas en
                   sus proyectos, proponiéndoles respuestas múltiples que incluían: 1.
                   Personalizaciones de los módulos TEI, 2. Utilización de esquemas (ODD, RelaxNG,
-                  etc.), 3. Bases de datos XML, 4. Bases de datos relacionales (MySQL, PostgreSQL,
-                  etc.), 5. Transformaciones XSLT, 6. Transformaciones XQuery, 7. Vocabularios
-                  controlados o tesauros, 8. Tecnologías sobre Sistemas de Información Geográfica
-                  (SIG), 9. Tecnologías de la información y la comunicación, 9. Tecnologías sobre
-                  Procesamiento del Lenguaje Natural (PLN), 10. Tecnologías sobre web semántica, 11.
-                  Visualización de datos, 12. Otros. El objetivo detrás de algunas de las opciones
-                  que dimos era confirmar si la comunidad de uso de la TEI en español era de hecho
-                  consciente de las mejores prácticas ya en uso a nivel internacional.</p>
+                  etc.), 3. Bases de datos XML, 4. Bases de datos relacionales (<ptr type="software"
+                     xml:id="MySQL" target="#MySQL"/><rs type="soft.name" ref="#MySQL">MySQL</rs>,
+                  PostgreSQL, etc.), 5. Transformaciones <ptr type="software" xml:id="XSLT"
+                     target="#XSLT"/><rs type="soft.name" ref="#XSLT">XSLT</rs>, 6. Transformaciones
+                  XQuery, 7. Vocabularios controlados o tesauros, 8. Tecnologías sobre Sistemas de
+                  Información Geográfica (SIG), 9. Tecnologías de la información y la comunicación,
+                  9. Tecnologías sobre Procesamiento del Lenguaje Natural (PLN), 10. Tecnologías
+                  sobre web semántica, 11. Visualización de datos, 12. Otros. El objetivo detrás de
+                  algunas de las opciones que dimos era confirmar si la comunidad de uso de la TEI
+                  en español era de hecho consciente de las mejores prácticas ya en uso a nivel
+                  internacional.</p>
                <p>Las respuestas revelaron que la mayoría de los proyectos recurren a
                   personalizaciones del esquema TEI (40) y utilizan esquemas y ODD (39), que son
                   algunos de los requisitos para un flujo de trabajo de marcado documentado,
@@ -475,22 +479,28 @@
                         <ptr target="http://exist-db.org/"/></note>
                </p>
                <p>En lo que respecta a la transformación y renderizado de XML, el lenguaje más
-                  utilizado parece seguir siendo el ya veterano XSLT (29),<note>XSLT, fecha de
-                     consulta 16 de julio de 2023, <ptr target="https://www.w3.org/TR/xslt/"
-                     />.</note> mientras que las transformaciones XQuery (11)<note>XQuery, fecha de
-                     consulta 16 de julio de 2023, <ptr target="https://www.w3.org/XML/Query/"
-                     />.</note> se utilizan menos. Esto no parece coincidir del todo con la pregunta
-                  anterior sobre el uso de bases de datos XML, ya que la mayoría de las bases de
-                  datos XML nativas utilizan XQuery como principal herramienta de recuperación de
-                  datos, en lugar de XSLT. Entre los participantes existe una curiosa mezcla entre
-                  las formas <term>antiguas</term> y las <term>nuevas</term>.</p>
+                  utilizado parece seguir siendo el ya veterano <ptr type="software" xml:id="XSLT"
+                     target="#XSLT"/><rs type="soft.name" ref="#XSLT">XSLT</rs> (29),<note><ptr
+                        type="software" xml:id="XSLT" target="#XSLT"/><rs type="soft.name"
+                        ref="#XSLT">XSLT</rs>, fecha de consulta 16 de julio de 2023, <ptr
+                        target="https://www.w3.org/TR/xslt/"/>.</note> mientras que las
+                  transformaciones XQuery (11)<note>XQuery, fecha de consulta 16 de julio de 2023,
+                        <ptr target="https://www.w3.org/XML/Query/"/>.</note> se utilizan menos.
+                  Esto no parece coincidir del todo con la pregunta anterior sobre el uso de bases
+                  de datos XML, ya que la mayoría de las bases de datos XML nativas utilizan XQuery
+                  como principal herramienta de recuperación de datos, en lugar de <ptr
+                     type="software" xml:id="XSLT" target="#XSLT"/><rs type="soft.name" ref="#XSLT"
+                     >XSLT</rs>. Entre los participantes existe una curiosa mezcla entre las formas
+                     <term>antiguas</term> y las <term>nuevas</term>.</p>
                <p>Otras prácticas que los participantes adoptan cuando trabajan con TEI son la
                   visualización de datos (31), y los vocabularios controlados o tesauros (22), así
                   como las tecnologías relacionadas con la web semántica (16), los sistemas SIG
                   (11), y el Procesamiento del Lenguaje Natural (12%). En <term>Otros</term>,
                   algunos participantes explicaron que utilizaban scripts de interoperabilidad entre
-                  distintos esquemas (DCAT, DDI-CDI), anotación lingüística de corpus, XSLT - LaTex
-                  - PDF y Cocoon. Lamentablemente, el 9% eligió otros sin especificar más.</p>
+                  distintos esquemas (DCAT, DDI-CDI), anotación lingüística de corpus, <ptr
+                     type="software" xml:id="XSLT" target="#XSLT"/><rs type="soft.name" ref="#XSLT"
+                     >XSLT</rs> - LaTex - PDF y Cocoon. Lamentablemente, el 9% eligió otros sin
+                  especificar más.</p>
                <figure xml:id="figure13">
                   <graphic url="image/Fig_13.png" height="289px" width="468px"/>
                   <head type="legend">Tecnologías utilizadas en proyectos de edición digital con
@@ -514,9 +524,13 @@
                   los participantes para publicar sus archivos TEI. El objetivo era controlar si
                   había alguna plataforma que se destacara por su uso. Por ello, propusimos las
                   siguientes: 1. Infraestructura web creada <emph>ad hoc</emph> (por ejemplo, XML,
-                  XSLT, PHP, Python, etc.), 2. Generadores web estáticos (Jekyll, Gatsby, etc.), 3.
-                  Boilerplate, 4. eXist; 5. TEI Publisher, 6. CETEIcean, 7. Edition Visualization
-                  Technology, y añadimos una opción 8. Otros.</p>
+                     <ptr type="software" xml:id="XSLT" target="#XSLT"/><rs type="soft.name"
+                     ref="#XSLT">XSLT</rs>, <ptr type="software" xml:id="PHP" target="#PHP"/><rs
+                     type="soft.name" ref="#PHP">PHP</rs>, <ptr type="software" xml:id="Python"
+                     target="#Python"/><rs type="soft.name" ref="#Python">Python</rs>, etc.), 2.
+                  Generadores web estáticos (Jekyll, Gatsby, etc.), 3. Boilerplate, 4. eXist; 5. TEI
+                  Publisher, 6. CETEIcean, 7. Edition Visualization Technology, y añadimos una
+                  opción 8. Otros.</p>
                <p>No es sorprendente que la puntuación más alta correspondiera a las
                   infraestructuras creadas <hi rend="italic">ad hoc</hi> (43). Así pues, la gran
                   mayoría siente la necesidad de construir su propia infraestructura en términos de
@@ -540,9 +554,13 @@
                   probablemente a dos hechos: primero, el auge de la computación mínima que permite
                   la creación de infraestructuras sin necesidad de servidores comerciales o
                   institucionales (por ejemplo, los sitios estáticos pueden vivir en servicios
-                  gratuitos como GitHub y GitHub Pages)<note>GitHub Pages, fecha de consulta 16 de
-                     julio de 2023, <ptr target="https://pages.github.com/"/> .</note> y segundo, la
-                  falta de acceso a infraestructuras digitales especialmente en América
+                  gratuitos como <ptr type="software" xml:id="GitHub" target="#GitHub"/><rs
+                     type="soft.name" ref="#GitHub">GitHub</rs> y <ptr type="software"
+                     xml:id="GitHub" target="#GitHub"/><rs type="soft.name" ref="#GitHub"
+                     >GitHub</rs> Pages)<note><ptr type="software" xml:id="GitHub" target="#GitHub"
+                        /><rs type="soft.name" ref="#GitHub">GitHub</rs> Pages, fecha de consulta 16
+                     de julio de 2023, <ptr target="https://pages.github.com/"/> .</note> y segundo,
+                  la falta de acceso a infraestructuras digitales especialmente en América
                      Latina.<note>Para más información sobre el movimiento de la computación mínima,
                      véase la página del grupo Minimal Computing, fecha de consulta 16 de julio de
                      2023, <ptr target="https://go-dh.github.io/mincomp/about/"/>.</note> Además,
@@ -667,10 +685,11 @@
                      mejorar la enseñanza y el aprendizaje de la TEI?</q> Algunos de los
                   participantes insistieron en la necesidad de recursos y materiales de formación a
                   todos los niveles y en español, incluyendo además temas específicos (por ejemplo,
-                  transformaciones con XSLT), así como otros tipos de recursos, como referencias
-                  bibliográficas. La necesidad de formación formal e informal dentro y fuera del
-                  mundo académico surge también como otra preocupación legítima. Entre las demandas
-                  de formación aflora el desconocimiento de las etapas finales del proceso
+                  transformaciones con <ptr type="software" xml:id="XSLT" target="#XSLT"/><rs
+                     type="soft.name" ref="#XSLT">XSLT</rs>), así como otros tipos de recursos, como
+                  referencias bibliográficas. La necesidad de formación formal e informal dentro y
+                  fuera del mundo académico surge también como otra preocupación legítima. Entre las
+                  demandas de formación aflora el desconocimiento de las etapas finales del proceso
                   editorial, es decir, la transformación de los archivos codificados en XML-TEI y su
                   publicación en línea. Esto parece indicar que la comunidad está deseosa de avanzar
                   en sus conocimientos técnicos. El deseo de contar con editores XML libres y
@@ -700,25 +719,26 @@
                instrucciones generales para marcar textos de modo que puedan ser procesados por
                ordenador. El consorcio de la TEI está insuflado de un espíritu de apertura y
                colaboración que hace que los propios usuarios puedan proponer mejoras y
-               modificaciones a través de su repositorio en GitHub. Este espíritu de colaboración y
-               difusión se manifiesta también a través de un diálogo continuo mediante una lista de
-               discusión en línea y la organización anual de un congreso internacional. Por último,
-               el consorcio es un gran paraguas que da lugar a diferentes grupos de trabajo y de
-               interés para determinados temas, como la creación de diccionarios, el trabajo con
-               lingüística de corpus, o la descripción de manuscritos, entre otros. Sin embargo, lo
-               anterior se aplica principalmente al mundo anglófono, donde, como decíamos al
-               principio, nació la TEI, pero esto no quiere decir que no contemos con proyectos e
-               iniciativas en países hispanohablantes. Con este estudio hemos tratado de profundizar
-               en una comunidad particular de practicantes, no sólo definida por la lengua de los
-               textos con los que trabaja, el español, sino también por sus peculiaridades y
-               necesidades culturales y sociales específicas. En este intento internacional por
-               parte de la comunidad de la TEI de respetar la diversidad e incluir otros idiomas
-               además del inglés, está más claro que nunca que tanto el conocimiento lingüístico
-               como el cultural son necesarios si se quiere entender a las personas y a sus
-               comunidades (<ref type="bibl" target="#MLA2007">Modern Language Association
-                  2007</ref>). La recopilación de los datos más destacados de nuestra encuesta ha
-               buscado ofrecer un sucinto estado de la cuestión sobre el uso de la TEI en la
-               actualidad para textos en español. Las respuestas de los participantes nos han
+               modificaciones a través de su repositorio en <ptr type="software" xml:id="GitHub"
+                  target="#GitHub"/><rs type="soft.name" ref="#GitHub">GitHub</rs>. Este espíritu de
+               colaboración y difusión se manifiesta también a través de un diálogo continuo
+               mediante una lista de discusión en línea y la organización anual de un congreso
+               internacional. Por último, el consorcio es un gran paraguas que da lugar a diferentes
+               grupos de trabajo y de interés para determinados temas, como la creación de
+               diccionarios, el trabajo con lingüística de corpus, o la descripción de manuscritos,
+               entre otros. Sin embargo, lo anterior se aplica principalmente al mundo anglófono,
+               donde, como decíamos al principio, nació la TEI, pero esto no quiere decir que no
+               contemos con proyectos e iniciativas en países hispanohablantes. Con este estudio
+               hemos tratado de profundizar en una comunidad particular de practicantes, no sólo
+               definida por la lengua de los textos con los que trabaja, el español, sino también
+               por sus peculiaridades y necesidades culturales y sociales específicas. En este
+               intento internacional por parte de la comunidad de la TEI de respetar la diversidad e
+               incluir otros idiomas además del inglés, está más claro que nunca que tanto el
+               conocimiento lingüístico como el cultural son necesarios si se quiere entender a las
+               personas y a sus comunidades (<ref type="bibl" target="#MLA2007">Modern Language
+                  Association 2007</ref>). La recopilación de los datos más destacados de nuestra
+               encuesta ha buscado ofrecer un sucinto estado de la cuestión sobre el uso de la TEI
+               en la actualidad para textos en español. Las respuestas de los participantes nos han
                ayudado a constatar algunas de nuestras percepciones. Desde el punto de vista
                geográfico, ahora tenemos claro que la mayoría de los estudiosos y profesionales de
                la TEI tienen su sede en España, seguidos de México, Estados Unidos, Colombia y
@@ -760,14 +780,16 @@
                programación y la alfabetización digital en general. Además, diríamos que han surgido
                de forma audible otras dos preocupaciones, en primer lugar, la necesidad de
                materiales de formación para todo el proceso de labor editorial, con especial
-               insistencia en la transformación del XML-TEI (XSLT, XQuery) y publicación de los
-               archivos TEI. Esto significa que la comunidad ya ha superado las fases iniciales de
-               familiarización con la TEI, y que ahora urgen temas más avanzados. En segundo lugar,
-               han aparecido varias voces que defienden la necesidad de contar con editores XML
-               gratuitos. El hecho de que el software más popular sea propietario desanima a algunos
-               usuarios. Ni que decir tiene que ya se han dado algunos pasos para adaptar software
-               de código abierto para trabajar con archivos TEI, como Visual Studio Code, que se ha
-               beneficiado del desarrollo del plugin <hi rend="italic">Scholarly</hi>
+               insistencia en la transformación del XML-TEI (<ptr type="software" xml:id="XSLT"
+                  target="#XSLT"/><rs type="soft.name" ref="#XSLT">XSLT</rs>, XQuery) y publicación
+               de los archivos TEI. Esto significa que la comunidad ya ha superado las fases
+               iniciales de familiarización con la TEI, y que ahora urgen temas más avanzados. En
+               segundo lugar, han aparecido varias voces que defienden la necesidad de contar con
+               editores XML gratuitos. El hecho de que el software más popular sea propietario
+               desanima a algunos usuarios. Ni que decir tiene que ya se han dado algunos pasos para
+               adaptar software de código abierto para trabajar con archivos TEI, como Visual Studio
+               Code, que se ha beneficiado del desarrollo del plugin <hi rend="italic"
+                  >Scholarly</hi>
                <hi rend="italic">XML</hi>, que permite una codificación básica pero rigurosa en
                   XML-TEI.<note>Este trabajo se debe a Raffaele Viglianti (Maryland Institute for
                   Technology in the Humanities) y el plugin puede descargarse en línea en: fecha de
