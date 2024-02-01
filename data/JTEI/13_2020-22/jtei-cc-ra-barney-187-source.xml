@@ -1,0 +1,1079 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model 
+   href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" 
+   type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" 
+   type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<!-- $Id: jtei-cc-ra-barney-187-source.xml 1027 2021-04-20 09:26:08Z tiago.sousa-garcia $ -->
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+   rend="jTEI.internal">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title type="main">TEI, the Walt Whitman Archive, and the Test of Time </title>
+            <author>
+               <name>
+                  <forename>Brett</forename>
+                  <surname>Barney</surname>
+               </name>
+               <affiliation>Brett Barney is a <roleName>research associate professor</roleName> at
+                     <orgName>University of Nebraska–Lincoln’s Center for Digital Research in the
+                     Humanities (CDRH)</orgName> and has been involved in the development of the
+                  Walt Whitman Archive since 2000, first as a research assistant and more recently
+                  as senior associate editor. He has also worked on a variety of other CDRH
+                  projects, including the Willa Cather Archive and the Journals of the Lewis and
+                  Clark Expedition Online. He served two terms (2010–2013) on the TEI Consortium’s
+                  Technical Council and is especially interested in expanding TEI’s provisions for
+                  documentary and genetic editing.</affiliation>
+               <email>bbarney2@unl.edu</email>
+            </author>
+         </titleStmt>
+         <publicationStmt>
+            <publisher>TEI Consortium</publisher>
+            <date>25/02/2021</date>
+            <availability>
+               <licence target="https://creativecommons.org/licenses/by/4.0/">
+                  <p>For this publication a Creative Commons Attribution 4.0 International license
+                     has been granted by the author(s) who retain full copyright.</p>
+               </licence>
+            </availability>
+         </publicationStmt>
+         <seriesStmt>
+            <title level="j">Journal of the Text Encoding Initiative</title>
+            <editor role="guest">Susan Schreibman</editor>
+            <editor role="managing">Tanja Wissik</editor>
+            <editor role="managing">Joel Kalvesmaki</editor>
+            <editor role="managing">Pietro Maria Liuzzo</editor>
+            <editor role="managing">Tiago Sousa Garcia</editor>
+            <editor role="technical">Ron Van den Branden</editor>
+            <biblScope unit="issue" n="13">Selected Papers from the 2018 TEI Conference</biblScope>
+         </seriesStmt>
+         <sourceDesc>
+            <p>No source, born digital.</p>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <projectDesc>
+            <p>OpenEdition Journals -centre for open electronic publishing- is the platform for
+               journals in the humanities and social sciences, open to quality periodicals looking
+               to publish full-text articles online.</p>
+         </projectDesc>
+      </encodingDesc>
+      <profileDesc>
+         <langUsage>
+            <language ident="en">en</language>
+         </langUsage>
+         <textClass>
+            <keywords xml:lang="en">
+               <term>scholarly editing</term>
+               <term>manuscripts</term>
+               <term>genetic editions</term>
+               <term>temporality</term>
+               <term>diachronic markup</term>
+               <term/>
+            </keywords>
+         </textClass>
+      </profileDesc>
+      <revisionDesc>
+         <change when="2021-04-20">Tiago Sousa Garcia added author corrections to proof</change>
+         <change when="2021-02-25">Pietro Liuzzo encoded the file.</change>
+      </revisionDesc>
+   </teiHeader>
+   <text>
+      <front>
+         <div type="abstract" xml:id="abstract">
+            <p><q>Diachronic Markup and Presentation Practices for Text Editions in Digital
+                  Environments</q>, a 2014–15 transatlantic collaboration funded jointly by DFG and
+               NEH, provided an occasion to test TEI’s relatively new provisions for encoding
+               temporality. My experiences in attempting to apply these provisions to Walt Whitman
+               manuscripts led me to conclude that chapter 11 of the TEI Guidelines should be
+               significantly revised and that the basic dichotomy it introduces between
+                  <gi>sourceDoc</gi> and <gi>text</gi> deserves renewed scrutiny. Some of the
+               problems in the chapter can be traced to the way the Guidelines have evolved over
+               time through a series of choices motivated by expediency. The Whitman Archive has,
+               since its first foray into TEI markup in 2000, been anxious to find a way to leverage
+               its potential to encode the temporal characteristics and relationships among various
+               manuscript and print instances. The customization we created, however, has shown
+               itself inadequate to describe and make processable important genetic information.
+               Unfortunately, TEI also continues to provide inadequate guidance in the area of
+               encoding genetic relationships, both between documents and within them. My
+               experiments during the Diachronic Markup project included using <gi>listChange</gi>
+               to encode the sequence in which the text of a single document was inscribed and show
+               that, although the Guidelines need to be developed with specific advice and examples,
+               existing elements and attributes can be used to posit claims about the <soCalled>way
+                  the page was filled,</soCalled> thereby enabling useful processing and
+               display.</p>
+         </div>
+         <div type="acknowledgements">
+            <p>This essay has been substantially revised since I presented it at the 2018 TEI
+               Conference in Tokyo. I am very grateful to Gerrit Brüning, who has offered wise and
+               generous insights over the course of several years as we have discussed many of the
+               specific issues I raise here. I have also attempted to benefit from the input of two
+               anonymous reviewers, whose comments were at once kind, thoughtful, and incisive.</p>
+         </div>
+      </front>
+      <body>
+
+         <p>The release of version 2.0 of the P5 Guidelines in late 2011 represented a culmination
+            of sorts for the efforts, over the course of several years, of the Workgroup on Genetic
+            Editions. The group’s stated goal was <quote source="#quoteref1">to develop an
+               Application Profile for the encoding of genetic editions and, in general, genetic
+               phenomena</quote> (<ref type="bibl" xml:id="quoteref1" target="#burnard">Burnard et
+               al. n.d.</ref>). In the words of the Council members who wrote the release notes, P5
+            v. 2 included <quote source="#quoteref2">several new elements <gap/> to facilitate a
+               more <soCalled>document-focussed</soCalled> (as opposed to
+                  <soCalled>text-focussed</soCalled>) way of working.</quote> The most dramatic
+            innovation was the introduction of the <gi>sourceDoc</gi> element, which as an analog to
+            the <gi>text</gi> element can be used to group both <quote source="#quoteref2">images of
+               a source document</quote> and <quote source="#quoteref2">detailed <gap/>
+               transcriptions of the source.</quote> To explain the ways in which one might
+            undertake such a representation, chapter 11, <title level="a">Representation of Primary
+               Sources</title>, was <quote source="#quoteref2">exhaustively revised</quote> to
+            include the new provisions, which were intended to <quote source="#quoteref2">improve
+               <gap/> support <gap/> for documentary and genetic editing</quote> (<ref type="bibl"
+               target="#TEI2011" xml:id="quoteref2">TEI Consortium 2011</ref>).</p>
+         <p>Having used TEI in my work for the Walt Whitman Archive (<ptr
+               target="whitmanarchive.org"/>) since 2000, I had been observing the progress of the
+            Workgroup with great interest and had, in fact, been involved with them to an extent,
+            first as one of many digital editors convened in 2009 to provide input and later as a
+            member of the TEI Council when the Workgroup’s proposals were being debated and
+            eventually implemented. I was therefore enthusiastic when the editors of the Whitman
+            Archive were approached to contribute material to a two-year project with the
+            no-nonsense title <q>Diachronic Markup and Presentation Practices for Text Editions in
+               Digital Environments</q>, which was to be proposed to the National Endowment for the
+            Humanities and the Deutsche Forschungsgemeinschaft. Submitted by Anne Bohnenkamp-Renken
+            and Malte Rehbein, the proposal states that the main purpose of the transatlantic
+            project was <quote source="#quoteref3">to test, improve, and make usable for a broad
+               audience the TEI Guidelines for diachronic markup</quote> (<ref type="bibl"
+               xml:id="quoteref3" target="#bohnenkamp2012">2012</ref>).<note>The term
+                  <soCalled>diachronic</soCalled> came into the field of editing from linguistics
+               and signifies the historical dimension of texts (i.e., their change across time). In
+               this way it contrasts with the <soCalled>synchronic</soCalled> dimension, which is
+               static and ahistorical, like a snapshot. Marina Buzzoni has discussed the relevance
+               of the diachronic and synchronic in digital editing in terms of Gianfranco Cantini’s
+               requirement that an edition <quote source="#quoteref4">aim at injecting history into
+                  the critically reconstructed text by taking into account the different synchronic
+                  states that make up its diachronic dimension</quote> (<ref target="#buzzoni"
+                  type="bibl" xml:id="quoteref4">2016, 62</ref>).</note> Through a series of strange
+            events I found myself and the Whitman Archive closer to the center of this project than
+            I had anticipated, as I became the United States–based co-principal investigator when
+            Rehbein relocated to Germany shortly before the project started.</p>
+         <p>The work and outcomes of the Diachronic Markup project have been the subject of several
+            previous presentations. Gerrit Brüning, Katrin Henzel, and Dietmar Pravida, who were
+            engaged with Bohnenkamp-Renken in creating a digital edition of Johann Wolfgang von
+            Goethe’s <title level="m">Faust</title>, have offered especially insightful reflections
+            on their experiences in testing TEI’s then-new markup (<ref target="#bruning2013"
+               type="bibl">2013</ref>).<note>Their edition is now available at <ptr
+                  target="https://faustedition.net"/>.</note> Joshua Schäuble and Hans Walter Gabler
+            have also discussed the project and some of the interfaces that grew out of it (<ref
+               type="bibl" target="#schauble2018">2018</ref>). One sobering, though instructive,
+            outcome of our collaboration was a clearer realization of the profound differences among
+            our individual editorial projects, all of which deal with corpora of manuscripts by
+            single authors of the modern era. Although each of the participants was committed to the
+            collective goal of using TEI to encode the temporal dimensions of their author’s
+            writings, the diversity of practices among those various authors meant that each corpus
+            presented unique kinds and amounts of evidence for textual change across time.
+            Furthermore, the editors’ diverse theoretical and methodological commitments inclined
+            them toward heterogeneous emphases in presenting the materials to readers and,
+            therefore, often toward different encoding approaches.</p>
+         <p>It was my belief that the main value of our project lay not in producing an edition of
+            Whitman’s or anyone else’s work but in its potential to advance the capacity of TEI
+            markup for encoding genetic (and not simply
+               <soCalled>diplomatic</soCalled>)<note>Although <soCalled>genetic</soCalled>,
+                  <soCalled>documentary</soCalled>, and <soCalled>diplomatic</soCalled> are
+               sometimes used, in the context of digital editing, as loosely synonymous, even almost
+               interchangeable, I wish to exploit the ways that they are distinct. These
+               distinctions are largely a matter of emphasis (theoretical and/or methodological),
+               which I would sketch as follows: <term>Documentary</term> editing foregrounds the
+               singularity of the original upon which it is based (see <ref type="bibl"
+                  target="#pierazzo2014a">Pierazzo 2014a, 2</ref>, and <ref type="bibl"
+                  target="#klineND">Kline and Perdue n.d.</ref>); <term>diplomatic</term> editing
+               highlights the combination of a high degree of fidelity to the physical disposition
+               of writing with a low degree of editorial interpretation (see <ref type="bibl"
+                  target="#bodard2020">Bodard 2020</ref>); and <term>genetic</term> editing places
+               emphasis on the process of writing as opposed to the text produced by the process
+               (see <ref target="#hay2017" type="bibl">Hay 2017, 531</ref>).</note> information. And
+            over the course of the grant period I did indeed formulate definite opinions about how
+            P5 v. 2 could be revised so as to better serve the needs of those wishing to foreground
+            the time-inflected aspects of the texts they are editing. I had occasion to carefully
+            reread chapter 11 of the TEI Guidelines several times and to discuss it with colleagues
+            on the <title level="m">Faust</title> project. Based on those readings and discussions,
+            Brüning and I submitted a series of revision suggestions to the TEI Technical Council.
+            Many of these revisions were what might be called, in TEI parlance,
+               <soCalled>phrase-level</soCalled> tweaks and corrections that were implemented
+            quickly and without need for much discussion. Others, however, involved at least
+            chunk-level units. The most radical suggestion and the one that has generated the most
+            discussion and debate is titled, in the TEI GitHub repository, <title level="a"
+               >Restructure chapter 11</title> (<ref
+               target="https://github.com/TEIC/TEI/issues/1427">issue no. 1427</ref>).<note>See <ptr
+                  target="https://github.com/TEIC/TEI/issues/1427"/>.</note> The process of reading
+            the Guidelines, testing what they recommend, discussing results, and then proposing
+            changes (which have sometimes been further discussed and negotiated) has resulted or
+            will likely result in incremental improvements that, taken together, should make the
+            Guidelines significantly more usable.<note>As I was revising this essay for publication
+               in August 2020, in fact, I was notified that the TEI Council was planning to address
+               issue no. 1427, our request that the chapter be restructured, by issuing a new
+               release of the Guidelines with some significant changes to the prose of chapter 11.
+               Among the revisions, the several new introductory paragraphs are especially welcome,
+               as they go some way toward making explicit the basic difference in approach between
+               transcriptions within <gi>sourceDoc</gi>, which emphasize <quote source="#quoteref5"
+                  >spatial features</quote>, and those within <gi>text</gi>, which emphasize <quote
+                  source="#quoteref5">logical textual structure</quote> (<ref xml:id="quoteref5"
+                  type="bibl" target="#TEI2020">TEI Consortium 2020</ref>).</note> That same
+            process, however, has also convinced me that for the TEI Guidelines to become truly
+            adequate to the task of creating digital genetic editions of various kinds, the content
+            models for <gi>sourceDoc</gi> and <gi>text</gi> should be thoughtfully rationalized, so
+            as to disentangle (or at least acknowledge the entanglement of) markup most appropriate
+            to the document (<gi>sourceDoc</gi>) and that most appropriate to the text
+               (<gi>text</gi>).<note>The distinction that I am referring to (and advocating) here is
+               the one perhaps most succinctly articulated by Peter Shillingsburg, who says that
+                  <quote source="#quoteref6"><mentioned>document</mentioned></quote> refers to
+                  <quote source="#quoteref6">the physical vessel <gap/> that contains (or
+                  incarnates) the <mentioned>text</mentioned></quote>, whereas <quote
+                  source="#quoteref6"><mentioned>text</mentioned></quote> refers to <quote
+                  source="#quoteref6">the series of words and pauses recorded in a document</quote>
+                  (<ref type="bibl" target="#shillingsburg1996" xml:id="quoteref6">1996,
+               174</ref>).</note> Doing so would require that the TEI Council be willing at least to
+            consider the full range of options, not excluding those that would break backward
+            compatibility. I say this knowing only too well that radical change is a sort of third
+            rail for TEI, where, at least in recent years, incremental evolution has become the
+               <foreign xml:lang="la">modus operandi</foreign>. In most cases I believe this
+            institutional conservatism to be a positive aspect of TEI and, in fact, important to its
+            continued use and adoption, but in this case a fresh, large-scale reconsideration rather
+            than a localized tinkering is in order, as it could help to solidify TEI’s theoretical
+            grounding, or at least better articulate it, for the benefit of both present and future
+            practitioners.</p>
+         <p>With regard to temporal encoding specifically, however, there is ample scope to
+               <soCalled>build out</soCalled> the Guidelines’ facilities without attempting anything
+            so fundamental and admittedly controversial as the redefinition of <gi>text</gi> and
+               <gi>sourceDoc</gi>. In what follows, therefore, I will focus on chapter 11’s
+            provisions for encoding a text’s diachronic dimensions, by which I mean its temporal
+            characteristics both within a single document (that is, the posited sequence in which
+            the textual content of a particular document was inscribed) and those between and among
+            multiple documents (the time-sequenced relationships of text across the various
+            components that an editor sees as constituting its genetic dossier).<note>I use the term
+                  <term>genetic dossier</term> here as a synonym of <term>avant-texte</term> to
+               refer to all of the documents that contributed to a published work. In doing so, I
+               follow the usage of, for example, Dirk Van Hulle (<ref type="bibl"
+                  target="#vanhulle2016">2016, 46</ref>) and Elena Pierazzo (<ref type="bibl"
+                  target="#pierazzo2015">2015, 14</ref>; <ref type="bibl" target="#pierazzo2016"
+                  >2016, 49</ref>). Hans Walter Gabler notes, however, that the two terms are
+               sometimes contrasted, the former used to mean that which comprises <quote
+                  source="#quoteref7">transcription and image in conjunction,</quote> thus offering
+                  <quote source="#quoteref7">the document perspective on what, from the text
+                  perspective, is named <soCalled>avant-texte</soCalled></quote> (<ref
+                  xml:id="quoteref7" type="bibl" target="#gabler2018">2018, 210</ref>). In fact,
+               although in the hands of later practitioners of the French school of genetic
+               criticism <soCalled>avant-texte</soCalled> has often been associated specifically
+               with texts rather than documents, as originally coined by Jean Bellemin-Noël it seems
+               to have been conceived as document-centric, referring to <quote source="#quoteref8"
+                  >the totality of the material written for any project that was first made public
+                  in a specific form</quote> (<ref xml:id="quoteref8" type="bibl"
+                  target="#bellemin2004">2004, 31</ref>).</note> During the Diachronic Markup
+            project we sometimes talked about these two related but distinct types or levels of
+            diachronic relationship as the <soCalled>micro</soCalled> and the
+               <soCalled>macro</soCalled>, respectively.<note>Note that I am using these terms to
+               indicate temporal and notional relationships different from those indicated by the
+                  <mentioned>microgenetic</mentioned> and <mentioned>macrogenetic</mentioned> levels
+               Van Hulle describes in his five-part scheme (the others being
+                  <mentioned>exogenetic</mentioned>, <mentioned>endogenetic</mentioned>, and
+                  <mentioned>epigenetic</mentioned>), where the contrast is essentially a matter of
+               size or wholeness: the macrogenetic level involves <quote source="#quoteref9">the
+                  genesis of the work in its entirety across multiple versions,</quote> and the
+               microgenetic <quote source="#quoteref9">one specific textual instance across <gap/>
+                  versions</quote> (<ref xml:id="quoteref9" type="bibl" target="#vanhulle2016">2016,
+                  50</ref>).</note>
+         </p>
+         <p>Much of the weakness of TEI’s provisions for conducting genetic editing generally, and
+            for its inadequate address of the diachronic dimensions of texts specifically, can be
+            traced to the peculiar historical circumstances in which chapter 11 has developed. I
+            would suggest, then, that a consideration of the genesis of the Guidelines themselves is
+            in order, so that ongoing discussions of their remediation can proceed with a shared
+            understanding of their historical context.</p>
+         <p>A second, closer look at the P5 v. 2 release notes reveals several significant details.
+            First, it is worth noting that although the Workgroup carried out its remit under the
+            banner of genetic editing, the innovations that resulted from that work were largely
+            aimed at, and conceived in terms of, better equipping TEI for the purposes of producing
+            narrowly documentary transcriptions, with only a brief nod to an overarching genetic
+            purpose: the lead story in the release notes is that <quote source="#quoteref10"
+                  ><supplied>s</supplied>everal new elements have been introduced to facilitate a
+               more <soCalled>document-focussed</soCalled> (as opposed to
+                  <soCalled>text-focussed</soCalled>) way of working</quote> (<ref type="bibl"
+               target="#TEI2011" xml:id="quoteref10">TEI Consortium 2011</ref>). Of course, this
+            characterization relies on the dichotomy between the semantic, intellectual signal
+            (viz., the text) and the material, spatial properties of the carrier (viz., the
+            document). In the French tradition of genetic criticism, diplomatic transcriptions have
+            been a central feature.<note>Pierazzo calls attention to some of the problems of printed
+               genetic editions, which have not only been <quote source="#quoteref11">criticized as
+                  unreadable, unusable, time-consuming, and, in general deceptive</quote> (<ref
+                  type="bibl" target="#pierazzo2009" xml:id="quoteref11">2009, 171</ref>) but also
+               as <quote source="#quoteref12">incapable of represent<supplied>ing</supplied> the
+                  time flow</quote> (<ref type="bibl" target="#pierazzo2009" xml:id="quoteref12"
+                  >2009, 171–73</ref>), even though, as she notes, the editors of <title level="m"
+                  >Genetic Criticism: Texts and Avant-textes</title> state that genetic criticism
+                  <quote source="#quoteref13">aims to restore a temporal dimension to the study of
+                  literature</quote> (<ref type="bibl" target="#deppman" xml:id="quoteref13"
+                  >Deppman, Ferrer, and Groden 2004, 2</ref>).</note> It is probably for this reason
+            that the transcriptions enabled by the revisions introduced in P5 v. 2 are frequently
+            termed <soCalled>genetic</soCalled>, even though they are for the most part concerned
+            with the spatial layout of text without any necessary regard to genetic relationships.
+            Also in this regard, I would point out that the release notes mistakenly (though
+            tellingly) refer to the new container element as <soCalled><gi>document</gi></soCalled>,
+            making quite clear the connection between documentary editing and the sort of
+            transcription provided for. The release notes’ explanation of the primary function of
+            this new element is similarly telling: <quote source="#quoteref10">to organize digital
+               images</quote> in the way previously allowed by <gi>facsimile</gi>, but now possible
+            in tandem with a transcription.</p>
+         <p>Another instructive oddity of the release notes is their surprising reference to chapter
+            11 as the <quote source="#quoteref10">chapter on <term>Physical
+               Transcription</term></quote>, a slip that unwittingly evokes an earlier state of the
+            Guidelines: The current chapter 11, <title level="a">Representation of Primary
+               Sources</title>, began, in the P3 version of the TEI Guidelines, as chapter 18,
+               <title level="a">Transcription of Primary Sources</title> (<ref type="bibl"
+               target="#sperbergmcqueen1994">Sperberg-McQueen and Burnard 1994</ref>), a title that
+            it retained through the publication of P4 (<ref target="#TEI2002" type="bibl">TEI
+               Consortium 2002</ref>).<note>Equally meaningful is the interpolation in the mis-title
+               of the word <mentioned>physical</mentioned>, which was not part of any actual
+               version. The term <mentioned>physical transcription</mentioned> does, however, pretty
+               accurately reflect the foregrounding of diplomatic transcription in the 2011 version
+               of the chapter.</note> The change from <soCalled>transcription</soCalled> to
+               <soCalled>representation</soCalled> was necessitated by the inclusion, in the 2007
+            release of P5 v. 1, of the new elements <gi>facsimile</gi> (with its descendants
+               <gi>surface</gi> and <gi>zone</gi>) and <gi>msDesc</gi> (with its descendants
+               <gi>msPart</gi>, <gi>physDesc</gi>, etc.) (<ref type="bibl" target="#TEI2007">TEI
+               Consortium 2007</ref>). Members of the TEI community had long lamented the
+            Guidelines’ deficiencies for doing codicological work, a shortcoming that the P5 v. 1
+            release began to address by adding both an entirely new chapter, <title level="a">10
+               Manuscript Description</title>, and a relatively modest section at the beginning of
+            what had been chapter 18, now retitled <title level="a">11 Representation of Primary
+               Sources</title> (<ref type="bibl" target="#TEI2007">TEI Consortium 2007</ref>). In
+            its earlier incarnation this chapter was explicitly restricted in focus to <quote
+               source="#quoteref14">the transcription of primary sources, particularly
+               manuscripts</quote> (<ref xml:id="quoteref14" type="bibl" target="#TEI2002">TEI
+               Consortium 2002</ref>), but it was now expanded to demonstrate the use of
+               <gi>facsimile</gi> as a way to provide a nontranscriptional representation of the
+            object of interest either alone or as complement to a transcription.</p>
+         <p>Having broadened the purview of the chapter to accommodate such a treatment, the Council
+            no doubt viewed the subsequent request for a method to allow specific components of a
+            transcription to be topographically located—a need of those wishing to create more
+            faithful diplomatic transcriptions—as most easily accomplished by a further retooling of
+            the existing <gi>facsimile</gi> and associated elements, along with the addition of
+            several new elements, such as <gi>metamark</gi>, <gi>transpose</gi>, and
+               <gi>retrace</gi>. In this way, the chapter took on an emphasis on layout not so much
+            through careful planning and <emph>building out</emph> of what was embryonically present
+            to begin with, but by a sequence of choices characterized by expediency.</p>
+         <p>I recount these aspects of the historical development of chapter 11 not simply to bemoan
+            problems that this evolution has wrought. Rather, I suggest that not only is there a
+            logical explanation for the continuing (though unfortunate) lack of solid guidance for
+            those wishing to encode the temporal aspects of a text’s coming-into-being, but that the
+            chapter’s developmental history has helped to obscure the lack. In short, although
+            chapter 11 was chosen as the location of the revisions that grew out of the Workgroup on
+            Genetic Editions, and although its contents are largely discussed in reference to
+            genetic editing, the chapter brings with it a continuing slant toward physical layout,
+            with provisions for encoding temporality still relatively poorly developed.</p>
+         <p>Like most other TEI users, my interest in the development of TEI is profoundly
+            conditioned by an investment in its use for a specific project. In the past two decades,
+            much of my work has been devoted to using TEI, in its various iterations, to edit
+            manuscripts for the Whitman Archive. Whitman was—and is—many things to many people:
+            formal innovator of free verse, one of the first <soCalled>truly great</soCalled>
+            American writers, pioneer of literary gay identity, poet of the working person, and
+            master of self-promotion, among others. Certainly part of Whitman’s fame, in both his
+            time and our own, can be attributed to the creation of an unusual public persona. Ed
+            Folsom has claimed that <quote source="#quoteref15">no author’s life in the nineteenth
+               century was more continuously photographed than Whitman’s</quote> (<ref
+               xml:id="quoteref15" type="bibl" target="#folsom1986">1986, 2–3</ref>), and it was
+            partly through the widespread distribution of the photographs he particularly liked that
+            Whitman worked to construct what he believed to be his best public self. In a similar
+            vein, I have come to believe that every presentation regarding the editing of Whitman’s
+            works should make an opportunity to present the following image, which provides visual
+            evidence that the poet was accurate in describing his living situation: <quote
+               source="#quoteref16">The floor <gap/> is half cover’d by a deep litter of books,
+               papers, magazines, thrown-down letters and circulars, rejected manuscripts,
+               memoranda, bits of light or strong twine, a bundle to be
+                  <soCalled>express’d,</soCalled> and two or three venerable scrap books</quote>
+               (<ref xml:id="quoteref16" type="bibl" target="#whitman1892">Whitman 1892,
+            517</ref>).</p>
+
+         <figure xml:id="waltwithmannbedroom">
+            <graphic url="images/Figure_01.jpg" width="620px" height="980px"/>
+            <head type="legend">Walt Whitman in his bedroom, 1891, photographed by Dr. William
+               Reeder. Available at <ptr
+                  target="https://whitmanarchive.org/multimedia/images/large/121.jpg"/>.</head>
+         </figure>
+
+         <p>At least some of what I like about this photograph is germane to the present topic. Most
+            obviously, it presents an arresting visual emblem of both the volume and the disarray of
+            the record that editors of Whitman have to confront. <ptr target="#spinesofsome"
+               type="crossref"/> shows another favorite image, a graphic created for the Whitman
+            Archive in its early days, before I began my association with it (and before the editors
+            adopted TEI).</p>
+
+         <figure xml:id="spinesofsome">
+            <graphic url="images/Figure_02.png" width="620px" height="980px"/>
+            <head type="legend">Spines of some of the various editions of <title level="m">Leaves of
+                  Grass</title>, as displayed on the Whitman Archive from 1995 to 2000. Available at
+                  <ptr target="https://whitmanarchive.org/archive1/works/leaves/"/>.</head>
+         </figure>
+
+         <p> </p>
+         <p>One of the ideas that this image vividly conveys is the multiplicity of Whitman’s poetry
+            collection, <title level="m">Leaves of Grass</title>. In 1855 <title level="m"
+               >Leaves</title> was an oddly tall volume of about one hundred pages, containing
+            twelve poems and a long preface in prose. The last incarnation, which Whitman prepared
+            shortly before his death in 1892, was a book more conventional in appearance, containing
+            nearly four hundred poems on over four hundred pages and a (different) long epilogue in
+            prose. Throughout the three and a half decades between those first and last versions,
+            Whitman’s masterwork was always a protean entity, moving through a series of
+            transformations. Poems were revised; poems were added; poems were deleted; poems were
+            retitled. The initial prose preface was turned into poetry. Poems were combined or
+            shuffled into new groupings. Groupings were added, discarded, or retitled.</p>
+         <p>One of the first conversations that I can recall from around the time that I joined the
+            Whitman Archive in 2000 concerned the hope of leveraging the power of the computer to
+            analyze these various and multiple ways in which <title level="m">Leaves of
+               Grass</title> and its constituent works transmuted over time, across various
+            manuscript and printed instantiations. At least part of the appeal of using the Text
+            Encoding Initiative’s scheme (embodied in P3, which I came to call <soCalled>the green
+               books</soCalled>: see <ref type="bibl" target="#sperbergmcqueen1994">Sperberg-McQueen
+               and Burnard 1994</ref>) was its potential utility for such analysis. We found,
+            however, that the markup they offered was inadequate to the task of indicating what
+            seemed to us the most basic facts about the relationships among the various iterations
+            of Whitman’s masterpiece: namely, that a certain poem in one edition developed from a
+            certain poem in a previous edition or manuscript. Our desires to represent such
+            relationships prompted a series of project-wide discussions that eventually led to the
+            decision to add to our TEI DTD the custom elements <gi>relations</gi> and <gi>work</gi>,
+            with the goal of specifying such genetic relationships. These elements we included in
+            our transcriptions of textual instances. Here, for example, is a relevant snippet,
+            slightly simplified, from one of our TEI-encoded transcriptions of a manuscript
+            draft:</p>
+         <egXML xmlns="http://www.tei-c.org/ns/Examples">
+            <TEI>
+               <relations>
+                  <work ref="xxx.00565" cert="high"/>
+               </relations>
+               <!-- ... -->
+            </TEI>
+         </egXML>
+         <p>The key to this system, of course, is the <att>ref</att> attribute, which connects this
+            instance to one of Whitman’s works—in this case, the poem <title level="a">After the
+               Argument</title>.<note>IDs are recorded, along with regularized titles, in separate
+               files, one per work (e.g., poem or essay). A third custom element,
+                  <gi>workParent</gi>, is used in these files to indicate constituency relationships
+               (for example, to declare that a poem is one of several component parts that
+               constitute a series).</note>
+         </p>
+         <p>One might get the impression, from the photograph of the old man sitting amid chaotic
+            mounds of papers, that Whitman saved absolutely everything—that the manuscript record of
+            his literary production is complete, or nearly so. From another perspective, of course,
+            the same picture provides clues as to why this is far from true, why the author’s
+               <soCalled>system</soCalled> for saving things has resulted in a less-than-ideal
+            record from which any would-be Whitman editor must work. Still, the genetic dossiers of
+               <emph>some</emph> of Whitman’s individual poems or essays—especially those that date
+            from his last years—is relatively fully extant. Far fewer draft materials have survived
+            from the 1850s than from the 1880s, and manuscripts that predate the first edition of
+               <title level="m">Leaves of Grass</title> in 1855 are fewer still. It is, alas, these
+            earliest manuscripts that are of greatest interest to most Whitman scholars, who would
+            welcome evidence that might shed light on what has been one of the great
+               <soCalled>mysteries</soCalled> of Whitman scholarship: what Whitman Archive editors
+            Ed Folsom and Kenneth M. Price have described as <quote source="#quoteref17">his
+               transformation from an unoriginal and conventional poet into one who abruptly
+               abandoned conventional rhyme and meter and <gap/> exploited the odd loveliness of
+               homely imagery, finding beauty in the commonplace but expressing it in an uncommon
+               way</quote> (<ref xml:id="quoteref17" type="bibl" target="#folsomNDb">n.d.</ref>). As
+            Ralph Waldo Emerson famously wrote, the remarkable poems of the 1855 edition <q>must
+               have had a long foreground somewhere, for such a start</q>, but we have rather scant
+            concrete evidence about the specific ways in which the text of that edition
+               developed.<note>The quotation comes from a private letter to Whitman, which he
+               published widely (without Emerson’s permission), even including it in some of the
+               copies of the first edition of <title level="m">Leaves of Grass</title>.</note>
+         </p>
+         <p>Although not many of Whitman’s early poems are attested extensively in the manuscript
+            record, the manuscripts that do exist are often fascinating (sometimes in part because
+            of the riddles that arise from their being partial). For the purposes of the Diachronic
+            Markup project, I was fortunate that at least a passage from one of those first-edition
+            poems exists in multiple manuscript forms. That passage, from the poem eventually titled
+               <title level="a">The Sleepers</title>, has the added distinction of being of
+            particular interest to Whitman scholars generally as evidence of Whitman’s treatment of
+            racial issues. At least five different manuscripts related to this passage
+               exist.<note>The Whitman Archive has, in fact, recently completed work, funded by an
+               NEH grant, to publish a <soCalled>variorum</soCalled> edition of the 1855 <title
+                  level="m">Leaves of Grass</title> that connects each poetic line in the first
+               printed edition to known manuscripts (<soCalled>avante-texte</soCalled>) as well as
+               to significant textual and spatial variations in different copies. In the course of
+               that work, we identified two additional related manuscripts. These do not affect the
+               substance of my point here, so I have not included them in the discussion. The <title
+                  level="m">Leaves of Grass</title> (1855) Variorum is available at <ptr
+                  target=" https://whitmanarchive.org/published/LG/1855/variorum/index.html"
+               />.</note> Four of these are individual leaves in the collection of the University of
+            Virginia; the other is contained in a notebook at the Library of Congress that includes,
+            besides the three consecutive pages of writing relevant to the passage from <title
+               level="a">The Sleepers</title>, much writing that is unrelated.</p>
+         <p>After a brief examination of images of these documents, nearly anyone would be able to
+            surmise that they are related to one another. However, the exact
+               <soCalled>nature</soCalled> of those relationships is far less apparent. The finding
+            guide for the collection that houses the four manuscripts at University of Virginia
+            (probably originally written by the famous descriptive bibliographer Fredson Bowers)
+            describes their relationships thus: the first one shown below (<ptr
+               target="#manuscriptsidentifiedp12" type="crossref"/>) <quote source="#quoteref18"
+               >seems to have come first or second</quote>; the next (<ptr
+               target="#manuscriptsidentifiedp9" type="crossref"/>) <quote source="#quoteref18">was
+               probably second</quote>, the next (<ptr target="#manuscriptsidentifiedp11"
+               type="crossref"/>) <quote source="#quoteref18">appears to have come third</quote>;
+            and the one in <ptr target="#manuscriptsidentifiedp10" type="crossref"/>
+            <quote source="#quoteref18">seems to have been the last</quote> (<ref
+               xml:id="quoteref18" type="bibl" target="#guidewwhitman">Special Collections, UVA
+               Library 2011</ref>).</p>
+         <figure xml:id="manuscriptsidentifiedp12">
+            <graphic url="images/Figure_03.jpg" width="620px" height="980px"/>
+
+            <head type="legend">Manuscript identified as <q>Page 12. The sores on my shoulders are
+                  from his</q> in the University of Virginia Library finding aid (<ref type="bibl"
+                  target="#guidewwhitman">Special Collections, UVA Library 2011</ref>) and as
+                  <q>uva.00260</q> in the Whitman Archive’s <title level="u">Integrated Catalog of
+                  Walt Whitman’s Literary Manuscripts</title> (<ref type="bibl" target="#folsomNDa"
+                  >EAD Project Team, UNL n.d.</ref>)</head>
+         </figure>
+
+         <figure xml:id="manuscriptsidentifiedp9">
+            <graphic url="images/Figure_04.jpg" width="620px" height="980px"/>
+            <head type="legend">Manuscript identified as <q>Page 9. I am a curse</q> in the
+               University of Virginia Library finding aid (<ref type="bibl" target="#guidewwhitman"
+                  >Special Collections, UVA Library 2011</ref>) and as <q>uva.00256</q> in the
+               Whitman Archive’s <title level="u">Integrated Catalog of Walt Whitman’s Literary
+                  Manuscripts</title> (<ref type="bibl" target="#folsomNDa">EAD Project Team, UNL
+                  n.d.</ref>).</head>
+         </figure>
+
+
+         <figure xml:id="manuscriptsidentifiedp11">
+            <graphic url="images/Figure_05.jpg" width="620px" height="980px"/>
+            <head type="legend">Manuscript identified as <q>Page 11. Topple down upon him</q> in the
+               University of Virginia Library finding aid (<ref type="bibl" target="#guidewwhitman"
+                  >Special Collections, UVA Library 2011</ref>) and as <q>uva.00258</q> in the
+               Whitman Archive’s <title level="u">Integrated Catalog of Walt Whitman’s Literary
+                  Manuscripts</title> (<ref type="bibl" target="#folsomNDa">EAD Project Team, UNL
+                  n.d.</ref>).</head>
+         </figure>
+
+         <figure xml:id="manuscriptsidentifiedp10">
+            <graphic url="images/Figure_06.jpg" width="620px" height="980px"/>
+            <head type="legend">Manuscript identified as <q>Page 10. Black Lucifer was not dead</q>
+               in the University of Virginia Library finding aid (<ref type="bibl"
+                  target="#guidewwhitman">Special Collections, UVA Library 2011</ref>) and as
+                  <q>uva.00257</q> in the Whitman Archive’s <title level="u">Integrated Catalog of
+                  Walt Whitman’s Literary Manuscripts</title> (<ref xml:id="quoteref20" type="bibl"
+                  target="#folsomNDa">EAD Project Team, UNL n.d.</ref>).</head>
+         </figure>
+
+         <p>Only sketchy justifications are offered for these tentative conclusions, the key one
+            being that since the published version in 1855 (see <ptr target="#detailp74"
+               type="crossref"/>) contains neither a version of the line <q>I look off the river
+               with my bloodshot eyes <gap/></q> nor any mention of a curse, the deletion of these
+            words on leaf 11 suggests that it represents <quote source="#quoteref19">a reworking of
+               the lines beginning <title>I am a Curse</title> in the . . . notebook</quote> (see
+               <ptr target="#firsttwo" type="crossref"/>) combined with <quote source="#quoteref19"
+               >verses added from Leaf 9</quote> (<ref type="bibl" target="#guidewwhitman"
+               xml:id="quoteref19">Special Collections, University of Virginia Library
+            2011</ref>)</p>
+
+         <figure xml:id="detailp74">
+            <graphic url="images/Figure_07.jpg" width="620px" height="980px"/>
+            <head type="legend">Detail of page 74 in the first edition of <title level="m">Leaves of
+                  Grass</title> (<ref type="bibl" target="#whitman1855">Whitman 1855</ref>).</head>
+         </figure>
+
+         <figure xml:id="firsttwo">
+            <graphic url="images/Figure_08.jpg" width="620px" height="980px"/>
+
+            <head type="legend"> First two pages of a three-page section of notebook in which
+               Whitman drafted lines for <title level="a">The Sleepers</title>, identified as
+                  <q>MSS45443, Box 8: Notebook LC #80</q> by the Library of Congress in the Thomas
+               Biggs Harned Collection of the Papers of Walt Whitman (<ref type="bibl"
+                  target="#mcelderry2013">McElderry 2013</ref>) and as <q>loc.00141</q> in the
+               Whitman Archive’s <title level="u">Integrated Catalog of Walt Whitman’s Literary
+                  Manuscripts</title> (<ref type="bibl" target="#folsomNDa">EAD Project Team, UNL
+                  n.d.</ref>).</head>
+         </figure>
+
+         <p>These details, plus the relatively close resemblances between leaf 10 and the published
+            passage, make the scenario outlined in the finding guide seem quite plausible.
+            Nevertheless, other scenarios are also imaginable. In fact, the University of Virginia
+            finding guide itself offers one of them: On leaf 10 <quote source="#quoteref20">the word
+                  <mentioned>Sleepchaser’s</mentioned> appears in the upper right corner</quote>,
+            and this word’s similarity to the title <title level="a">Sleep-Chasings</title> (first
+            used in the 1860 edition) might indicate that, instead of inscribing leaf 10 just after
+            leaf 11 and just before the printed version appeared, Whitman wrote leaf 10
+               <emph>after</emph> the first printing—that it <quote source="#quoteref21">is in fact
+               a reworking of the section for the 1860 edition</quote> (<ref type="bibl"
+               target="#guidewwhitman" xml:id="quoteref21">Special Collections, UVA Library
+               2011</ref>). Ordering of the other four manuscripts similarly turns out to be not
+            entirely straightforward (as one might infer from the speculation that leaf 9 came
+            either <quote source="#quoteref21">first or second</quote>). My point here, fortunately,
+            is not to argue for a particular genetic sequence but to illustrate the fact that the
+               <soCalled>dossier</soCalled> with which the genetic editor must work often offers
+            ambiguous evidence regarding the order in which documents were inscribed and, hence,
+            might oblige one to offer multiple genetic descriptions as possibilities.</p>
+         <p>Our use of the home-grown elements <gi>relations</gi> and <gi>work</gi> to connect a
+            particular documentary instance (manuscript or print) to a work has proven useful, most
+            notably as the enabling presence behind our <title level="u"><ref
+                  target="https://whitmanarchive.org/manuscripts/finding_aids/integrated.html"
+                  >Integrated Catalog of Walt Whitman’s Literary Manuscripts</ref></title> (<ref
+               type="bibl" target="#folsomNDa">EAD Project Team, UNL n.d.</ref>), a union finding
+            guide generated from individual EAD-encoded finding guides for several dozen separate
+               collections.<note>See <ptr
+                  target="https://whitmanarchive.org/manuscripts/finding_aids/integrated.html"/>. It
+               is worth noting, however, that the finding guide draws on the connections between
+               instance and work as recorded in EAD records rather than in TEI-encoded
+               transcriptions.</note> While it has been useful, however, our system is in no way
+            adequate to the task of representing the sort of genetic details that I’ve outlined for
+            the <title level="a">Sleepers</title> manuscripts. Our encoding simply declares that the
+            document currently under consideration (or some division of that document) is an
+            instance of a specified work. That’s all it does. Of the many things it does
+               <emph>not</emph> do, perhaps the most fundamental is that it offers no
+            machine-processable way of <emph>ordering</emph> the materials—of saying that a
+            particular manuscript was the first draft, another was the second, etc.—let alone of
+            indicating alternative possible orderings. I sometimes shake my head at our lack of
+            foresight in neglecting to design such a provision, but then I remember that during the
+            nineteen years we have been using this markup the TEI community has not developed
+               <emph>any</emph> consensus facility for associating, in a documentary transcription,
+            all of the various instances with a given work. If the Whitman Archive were coming to
+            TEI for the first time today, in late 2020, we would search the Guidelines in vain for
+            advice about encoding the genetic relationships among the various manuscript instances
+            of <title level="a">The Sleepers</title>.</p>
+         <p>For these macro, interdocument diachronies, two basic frameworks possibly worth
+            consideration are RDF and <term>directed acyclic graphs</term>. The second of these was,
+            in fact, suggested as a possibility in the draft recommendations of the TEI’s Workgroup
+            on Genetic Editions (<ref type="bibl" target="#burnard">Burnard et al. n.d., sec. 4:
+                  <title>The Dossier Level</title></ref>). Either approach, however, would require
+            further development to specify such things as types of relationships, degrees of
+            certainty, and alternative theories. No already existing RDF vocabulary appropriate to
+            describing genetic textual relationships seems to exist; likewise, to my knowledge,
+            nothing like a universally applicable set of values for the components of a directed
+            graph has been devised.</p>
+         <p>What the TEI Guidelines do have to offer for the encoding of diachronic information
+            pertains to the <soCalled>micro</soCalled> level, that is, those traces of the passage
+            of time that exist within the bounds of a single document. In addition to the use of the
+               <att>seq</att> attribute to specify an order among the components of <gi>choice</gi>,
+            the P5 v. 2 Guidelines introduced a means of characterizing the temporal relationships
+            among a broad range of textual alterations via <gi>listChange</gi>, whose
+               <gi>change</gi> children can be cross-referenced via the <att>change</att> attributes
+            of the various elements used to mark up blocks of text in the transcription proper. This
+            method (though, importantly, not the <gi>change</gi> element itself) was developed for
+            the encoding of <soCalled>revision campaigns</soCalled> (i.e., the inferred
+            rounds/sessions during which specific portions of a single document were inscribed), and
+            the Guidelines discuss the markup of revision campaigns as the primary use of this set
+            of elements and attributes. Of the four authors whose manuscripts formed the corpus
+            under consideration in the Diachronic Markup project (Whitman, Goethe, Virginia Woolf,
+            and James Joyce), Goethe’s writing processes most easily lend themselves to such an
+            approach. Whitman’s individual manuscript documents rarely exhibit traces of having been
+            inscribed in more than one writing session. That is, there are usually no changes of
+            hand or medium to suggest that he made an initial inscription, paused, and then came
+            back at a significantly later time or in a distinctly different <soCalled>fit</soCalled>
+            to make changes. Unlike some other authors, he had no consistent habit of using, say,
+            ink during an initial drafting phase and pencil during a proofreading one, nor did he
+            employ scribes, as Goethe, for example, sometimes did. The lack of such typical kinds of
+            evidence for <soCalled>revision campaigns</soCalled>
+            <emph>per se,</emph> however, does not mean that the diachronic dimension is utterly
+            imperceptible within Whitman’s manuscripts, only that the time frame is collapsed. The
+            manuscripts are very frequently a tangle of writing and revision, and therefore pose
+            significant challenges to understanding the processes by which they came into being. On
+            occasion, I have spent hours examining a single manuscript image, slowly developing a
+            theory of how the page was incrementally inscribed.<note>Hans Walter Gabler has
+               provocatively analyzed this process of <quote source="#quoteref22">ascertaining the
+                  order in which the manuscript pages were filled</quote> as essentially iterative,
+               moving <quote source="#quoteref22">loop by loop, from document to text in ever finer
+                  steps of granularity</quote> (<ref xml:id="quoteref22" type="bibl"
+                  target="#gabler2007">2007, 201</ref>).</note> Editors who want to record
+            conclusions and/or posit conjectures about such processes might well wish to encode a
+            sequential ordering of the parts of an inscription <emph>within</emph> a single
+               <soCalled>revision campaign</soCalled>. Although it is <emph>possible</emph> to use
+               <gi>listChange</gi> and other elements to encode such time-dependent relationships,
+            the Guidelines, as currently written, offer no clear direction for how this should be
+            done.</p>
+         <p>To illustrate some of the gaps that could be filled in future versions of the
+            Guidelines, as well as some of the potential hermeneutical value of creating such
+            encodings, I hereby offer my own modest experiment in employing <gi>listChange</gi> to
+            encode hypotheses regarding <q>how the page was filled</q> for a single example
+            manuscript, the one shown in <ptr target="#manuscriptsidentifiedp9" type="crossref"/>,
+            above. The following snippet shows part of the <gi>listChange</gi> section of the
+               <gi>teiHeader</gi>, which asserts the order in which I believe Whitman carried out
+            the actions that produced what is now visible as the first line of the manuscript:</p>
+         <egXML xmlns="http://www.tei-c.org/ns/Examples">
+            <listChange>
+               <change xml:id="ch01">
+                  <desc>writes "I am blac"</desc>
+               </change>
+               <change xml:id="ch02">
+                  <desc>overstrikes "blac"</desc>
+               </change>
+               <change xml:id="ch03">
+                  <desc>writes "a curse:"</desc>
+               </change>
+               <!-- ... -->
+               <change xml:id="ch07">
+                  <desc>writes "a black slave spoke me"</desc>
+               </change>
+               <!-- ... -->
+               <change xml:id="ch09">
+                  <desc>overstrikes "black slave" and writes "negro"</desc>
+               </change>
+               <change xml:id="ch10">
+                  <desc>overstrikes "spoke" and writes "felt"</desc>
+               </change>
+               <change xml:id="ch11">
+                  <desc>overstrikes "felt" and writes "thought"</desc>
+               </change>
+               <change xml:id="ch12">
+                  <desc>overstrikes "thought" and writes "thinks"</desc>
+               </change>
+            </listChange>
+         </egXML>
+         <p>To create this section, I populated <gi>listChange</gi> with the series of steps (one
+            per <gi>change</gi>) that I believe Whitman took in inscribing the manuscript.<note>It
+               is important to acknowledge that, although populating <gi>listChange</gi> might be
+                  <soCalled>simple</soCalled>, decisions about what constitutes a discrete
+                  <soCalled>step</soCalled> are never simple. For example, in the case of a
+               substitution, should each deletion and each addition be a separate step or should the
+               two be grouped as a single <gi>change</gi>? For my purposes, I chose the latter
+               approach. It should also be noted that, in the encoding of the transcription, I chose
+               to forego <gi>subst</gi> altogether, since substitutions are already implied by the
+               corresponding <att>change</att> values on the <gi>del</gi> and <gi>add</gi>
+               elements.</note> For each <gi>change</gi> element I then added a <gi>desc</gi>
+            containing human-readable prose, so that, taken together, these constitute a version of
+            what John Bryant has called a <quote source="#quoteref23">revision narrative</quote>
+               (<ref xml:id="quoteref23" type="bibl" target="#bryant2002">2002, esp.
+            167–71</ref>).<!--<note>See
+                  especially pp. 167–71.</note>--> Although I was not able to look to
+            the TEI Guidelines for a model of how to create this narrative, I found it relatively
+            easy, by extrapolation, to arrive at a workable and perhaps even adequate approach for
+            this part of the encoding task. The following snippet from the body of the transcription
+            shows my attempt to make this sequence machine-readable, via references in
+               <att>change</att> to the <att>xml:id</att> of the relevant <gi>change</gi> in <gi>
+               listChange</gi>:</p>
+         <egXML xmlns="http://www.tei-c.org/ns/Examples">
+            <seg change="#ch01">I am <del rend="overstrike" change="#ch02">black</del>
+            </seg>
+            <seg change="#ch03">a curse:</seg>
+            <seg change="#ch07">a <del rend="overstrike" change="#ch09">black slave</del>
+               <add rend="unmarked" place="above" change="#ch09">negro </add>
+               <del rend="overstrike" change="#ch10"> spoke</del>
+               <del rend="overstrike" change="#ch11">
+                  <add rend="unmarked" place="above" change="#ch10">felt </add>
+               </del>
+               <del rend="overstrike" change="#ch12">
+                  <add rend="unmarked" place="above" change="#ch11"> thought</add>
+               </del>
+               <add rend="unmarked" place="above" change="#ch12"> thinks</add> me</seg>
+         </egXML>
+         <p>I felt (and feel) less satisfied with this part of the encoding. While it wasn’t
+            difficult to describe a step-by-step order of inscription, the nesting of <gi>seg</gi>
+            and <gi>add</gi> and <gi>del</gi> elements in the transcription caused me anxiety. The
+            change associated with <tag>xml:id="7"</tag>, which I describe as <q>writes <q>a black
+                  slave spoke me</q></q>, offers an example of my difficulty in translating the bits
+            of my narrative description into unambiguous encoding. In the transcription excerpted
+            above, the phrase is indicated as a <att>seg</att>, interrupted by elements embedded at
+            various levels and conceived as the contents of the <att>seg</att>
+            <emph>minus</emph> the child <gi>add</gi> elements. Child <gi>del</gi> elements,
+            however, <emph>are</emph> to be considered part of this change, <emph>except</emph> when
+            their contents are further marked as an addition. I am uncertain whether this logic is
+            scalable to a larger set of Whitman documents, let alone to documents created by
+            others.</p>
+         <p>More immediately, however, I was uncertain whether the logic actually <emph>was</emph>
+            machine-readable, that is, whether it was both consistent and complete enough to allow
+            some sort of algorithmic translation. Specifically, I hoped that two of my colleagues at
+            the Center for Digital Research in the Humanities, Brian Pytlik Zillig and Jessica
+            Dussault, could make use of the temporal information in my encoding to produce a
+            meaningful display of the manuscript text. The grant period was very nearly at an end,
+            so my expectations were modest, but in the few days that remained they did, in fact,
+            create a JavaScript program that successfully uses the code to represent, albeit
+            imperfectly, the temporal sequence of inscription via animation.</p>
+
+         <figure xml:id="video">
+            <graphic url="images/Figure_09.gif" height="400px" width="651px"/>
+            <head type="legend">Brett Barney, Brian Pytlik Zillig, and Jessica Dussault. Temporal
+               animation of Whitman’s manuscript changes (written in javascript). To view the
+               animation select the original link below.</head>
+         </figure>
+
+         <p>Astute readers will quickly recognize that this animation doesn’t get everything right,
+            and I remain uncertain how much of the work to perfect it might depend on changes to the
+            encoding and how much on further development of the script.<note>Dussault and I have
+               only recently resumed conversations about this and have begun exploring other,
+               non-JavaScript alternatives for processing the TEI. As we are both doing this work in
+               our <soCalled>free time</soCalled>, however, progress is slow. We would, of course,
+               welcome suggestions or other constructive input.</note> However, when I consider it
+            as purely a proof of concept, I find this to be a surprisingly powerful and satisfying
+            rendering, one that suggests how an editor’s assertions about the time-dependent
+            sequence of inscription within a document might be brought to life with an immediacy
+            that no amount of <term>apparatus criticus</term> prose could.<note>I was, in part,
+               inspired by work done by Elena Pierazzo and a group of collaborators to produce a
+               prototype interactive rendering of pages from one of Marcel Proust’s notebooks. By
+               encoding <gi>zone</gi>s and assigning to them a relative order, the project team was
+               able to <quote source="#quoteref24">create an interactive, accessible
+                  interface</quote> (<ref type="bibl" target="#pierazzo2014b" xml:id="quoteref24"
+                  >2014b, 18</ref>). Unfortunately, their prototype appears to be no longer
+               available. Attempts to visualize the development of a text across documents have been
+               more common, though they face their own significant challenges, of course. Such
+               projects as <title level="m">Faustedition</title> (<ptr
+                  target="http://www.faustedition.net/"/>), the <title level="m">Samuel Beckett
+                  Digital Manuscript Project</title> (<ptr target="https://www.beckettarchive.org/"
+               />), and <title level="m">Ulysses: A Digital Critical and Synoptic Edition</title>
+                  (<ptr target="http://ulysses.online/index.html"/>) have produced various forms of
+               visualization (including, in the case of the Beckett Project, animation) that might
+               serve as inspiration for future work.</note>
+         </p>
+         <p>I believe that work remains to more fully implement the aspirations and recommendations
+            of the Workgroup on Genetic Editions, especially with regard to diachronic markup, and I
+            will continue to advocate for further development of the TEI specification.<note>In
+               making my case for further development I am mindful of James Cummings’s sage
+               discussion of common <quote source="#quoteref25">myths, misconceptions, and
+                  misunderstandings</quote> about TEI, wherein he addresses <quote
+                  source="#quoteref25">the criticism often levelled at the TEI</quote> of being
+                  <quote source="#quoteref25">too simple or too general.</quote> He rightly points
+               out that such complaints are often born of a <quote source="#quoteref25">superficial
+                  understanding of the scope of the TEI</quote> or a lack of understanding of <quote
+                  source="#quoteref25">the way in which any individual element can be further
+                  refined by using attributes or nested levels of encoding.</quote> Diachronic
+               markup, however, is not such a case but, rather, an example of a <quote
+                  source="#quoteref25">real instance<supplied/></quote> in which the TEI <quote
+                  source="#quoteref25">provides only a general level of markup for some
+                  phenomena</quote> because <quote source="#quoteref25">the TEI community has not
+                  pushed the standard forward yet to greater detail in this area</quote> (<ref
+                  target="#cummings" type="bibl" xml:id="quoteref25">2019, i58, i61–i62</ref>). What
+               I am calling for, then, is a harder collective push.</note> Future versions of the
+            Guidelines should provide direction for representing macro-level temporal relationships
+            among documents and allow for alternate orderings and indications of levels of
+            certainty, perhaps by leveraging the possibilities of the <gi>standOff</gi> element,
+            which was introduced in the February 2020 release of P5 v. 4.0.0. With regard to markup
+            for micro-level diachronic information, I see an even easier—perhaps even
+            non-controversial—opportunity for the Council to elaborate the Guidelines’ prose to show
+            how this can be achieved within the existing scheme. By articulating recommendations and
+            providing encoding examples, TEI could better fulfill an important part of its stated
+            mission to <quote source="#quoteref26">facilitat<supplied>e</supplied> the loss-free
+               interchange of data</quote> (<ref type="bibl" target="#TEI2020" xml:id="quoteref26"
+               >TEI Consortium 2020</ref>).</p>
+
+      </body>
+      <back>
+         <div type="bibliography">
+            <listBibl>
+               <bibl xml:id="bellemin2004"><author>Bellemin-Noël, Jean</author>. <date>2004</date>.
+                     <title level="a">Psychoanalytic Reading and the Avant-texte</title>. In <title
+                     level="m">Genetic Criticism: Texts and Avant-textes</title>, edited by
+                     <editor>Jed Deppman</editor>, <editor>Daniel Ferrer</editor>, and
+                     <editor>Michael Groden</editor>, <biblScope unit="page">28–35</biblScope>.
+                     <pubPlace>Philadelphia</pubPlace>: <publisher>University of Pennsylvania
+                     Press</publisher>.</bibl>
+               <bibl xml:id="bodard2020"><author>Bodard, Gabriel</author>. <date>2020</date>. <title
+                     level="a">Diplomatic Transcriptions</title>. In <title level="m">EpiDoc
+                     Guidelines: Ancient Documents in TEI XML</title>, edited by <editor>Tom
+                     Elliott</editor>, <editor>Gabriel Bodard</editor>, <editor>Elli
+                     Mylonas</editor>, <editor>Simona Stoyanova</editor>, <editor>Charlotte
+                     Tupman</editor>, <editor>Scott Vanderbilt</editor>, et al. <edition>Version
+                     9.2</edition>. Accessed February 19, 2021. <ptr
+                     target="https://epidoc.stoa.org/gl/latest/trans-diplomatic.html"/>.</bibl>
+               <bibl xml:id="bohnenkamp2012">
+                  <author>Bohnenkamp-Renken, Anne</author>, and <author>Malte Rehbein</author>.
+                     <date>2012</date>. <title level="u">Diachronic Markup and Presentation
+                     Practices for Text Editions in Digital Environments</title>. Unpublished grant
+                  proposal, September 26. PDF file.</bibl>
+               <bibl xml:id="bruning2013"><author>Brüning, Gerrit</author>, <author>Katrin
+                     Henzel</author>, and <author>Dietmar Pravida</author>. <date>2013</date>.
+                     <title level="a">Multiple Encoding in Genetic Editions: The Case of <title
+                        level="m">Faust</title></title>. <title level="j">Journal of the Text
+                     Encoding Initiative</title>
+                  <biblScope unit="issue">4</biblScope>. <ptr
+                     target="http://journals.openedition.org/jtei/697"/>; doi:<idno type="doi"
+                     >10.4000/jtei.697</idno>.</bibl>
+               <bibl xml:id="bryant2002"><author>Bryant, John</author>. <date>2002</date>. <title
+                     level="m">The Fluid Text: A Theory of Revision and Editing for Book and
+                     Screen</title>. <pubPlace>Ann Arbor</pubPlace>: <publisher>University of
+                     Michigan Press</publisher>.</bibl>
+               <bibl xml:id="burnard"><author>Burnard, Lou</author>, <author>Fotis
+                  Jannidis</author>, <author>Elena Pierazzo</author>, and <author>Malte
+                     Rehbein</author>. <date>n.d.</date>
+                  <title level="a">An Encoding Model for Genetic Editions.</title> Revised draft.
+                     <pubPlace>N.p.</pubPlace>: <publisher>TEI Consortium</publisher>. Workgroup on
+                  Genetic Editions (TEI MS SIG). Accessed February 19, 2021. <ptr
+                     target="https://www.tei-c.org/Vault/TC/tcw19.html"/>.</bibl>
+               <bibl xml:id="buzzoni"><author>Buzzoni, Marina</author>. <date>2016</date>. <title
+                     level="a">A Protocol for Scholarly Digital Editions? The Italian Point of
+                     View.</title> In <title level="m">Digital Scholarly Editing: Theories and
+                     Practices</title>, edited by <editor>Matthew James Driscoll</editor> and
+                     <editor>Elena Pierazzo</editor>, <biblScope unit="page">59–82</biblScope>.
+                     <pubPlace>Cambridge</pubPlace>: <publisher>Open Book Publishers</publisher>.
+                     doi:<idno type="doi">10.11647/OBP.0095</idno>.</bibl>
+               <bibl xml:id="cummings"><author>Cummings, James</author>. <date>2019</date>. <title
+                     level="a">A World of Difference: Myths and Misconceptions about the
+                     TEI.</title>
+                  <title level="j">Digital Scholarship in the Humanities</title>
+                  <biblScope unit="issue">34</biblScope> (supplement 1): <biblScope unit="page"
+                     >i58–i79</biblScope>. doi:<idno type="doi">10.1093/llc/fqy071</idno>.</bibl>
+               <bibl xml:id="deppman"><author>Deppman, Jed</author>, <author>Daniel Ferrer</author>,
+                  and <author>Michael Groden</author>. <date>2004</date>. <title level="a"
+                     >Introduction: A Genesis of French Genetic Criticism.</title> In <title
+                     level="m">Genetic Criticism: Texts and Avante-Textes</title>, <biblScope
+                     unit="page">1–16</biblScope>. <pubPlace>Philadelphia</pubPlace>:
+                     <publisher>University of Pennsylvania Press</publisher>.</bibl>
+               <bibl xml:id="folsom1986"><author>Folsom, Ed</author>. <date>1986</date>. <title
+                     level="a">Introduction: <q>This Heart’s Geography’s Map</q>: The Photographs of
+                     Walt Whitman.</title> In <title level="m">Whitman Photographs,</title> special
+                  double issue, <title level="j">Walt Whitman Quarterly Review</title>
+                  <biblScope unit="issue">4</biblScope> (2–3, Fall): <biblScope unit="page"
+                     >1–5</biblScope>. doi:<idno type="doi">10.13008/2153-3695.1138</idno>.</bibl>
+               <bibl xml:id="folsomNDa"><author>Folsom, Ed</author>, and <author>Kenneth M.
+                     Price</author>. <date>n.d.</date>
+                  <title level="u">Integrated Catalog of Walt Whitman’s Literary
+                  Manuscripts</title>. <orgName>Walt Whitman Archive</orgName>, edited by
+                     <editor>Matt Cohen</editor>, <editor>Ed Folsom</editor>, and <editor>Kenneth M.
+                     Price</editor>. Accessed February 19, 2021. <ptr
+                     target="https://whitmanarchive.org/manuscripts/finding_aids/integrated.html"
+                  />.</bibl>
+               <bibl xml:id="folsomNDb"><author>Folsom, Ed</author>, and <author>Kenneth M.
+                     Price</author>. <date>n.d.</date>
+                  <title level="u">Walt Whitman.</title>
+                  <orgName>Walt Whitman Archive</orgName>. <ptr
+                     target="https://whitmanarchive.org/biography/walt_whitman/index.html"/>.</bibl>
+               <bibl xml:id="gabler2007"><author>Gabler, Hans Walter</author>. <date>2007</date>.
+                     <title level="a">The Primacy of the Document in Editing</title>. <title
+                     level="j">Ecdotica</title>
+                  <biblScope unit="issue">4</biblScope>: <biblScope unit="page"
+                  >197–207</biblScope>.</bibl>
+               <bibl xml:id="gabler2018"><author>Gabler, Hans Walter</author>. <date>2018</date>.
+                     <title level="a">The Draft Manuscript as Material Foundation for Genetic
+                     Editing and Genetic Criticism</title>. In <title level="m">Text Genetics in
+                     Literary Modernism and Other Essays</title>. <pubPlace>Cambridge</pubPlace>:
+                     <publisher>Open Book Publishers</publisher>, <biblScope unit="page"
+                     >209–19</biblScope>. doi:<idno type="doi">10.11647/OBP.0120</idno>.</bibl>
+               <bibl xml:id="hay2017"><author>Hay, Louis</author>. <date>2017</date>. <title
+                     level="a">Genetic Criticism: Another Approach to Writing?</title>
+                  <biblScope unit="chapter">Chap. 29</biblScope> in <title level="m">Research on
+                     Writing: Multiple Perspectives</title>, edited by <editor>Sylvie
+                  Plane</editor>, <editor>Charles Bazerman</editor>, <editor>Fabienne
+                     Rondelli</editor>, <editor>Christiane Donahue</editor>, <editor>Arthur N.
+                     Applebee</editor>, <editor>Catherine Boré</editor>, <editor>Paula
+                     Carlino</editor>, <editor>Martine Marquilló Larruy</editor>, <editor>Paul
+                     Rogers</editor>, and <editor>David Russell</editor>, <biblScope unit="page"
+                     >531–47</biblScope>. <pubPlace>Fort Collins, CO</pubPlace>: <publisher>The WAC
+                     Clearinghouse</publisher>. doi:<idno type="doi"
+                     >10.37514/INT-B.2017.0919.2.29</idno>.</bibl>
+               <bibl xml:id="klineND"><author>Kline, Mary-Jo</author>, and <author>Susan Holbrook
+                     Perdue</author>. <date>n.d.</date>
+                  <title level="a">Introduction: What Is Documentary Editing? Where Did It Come
+                     From?</title> In <title level="m">A Guide to Documentary Editing</title>.
+                     <edition>3rd ed</edition>. Online edition.
+                  <pubPlace>Charlottesville</pubPlace>: <publisher>University of Virginia
+                     Press</publisher>. Accessed 26 February 2021. <ptr
+                     target="https://gde.upress.virginia.edu/01A-gde.html"/>.</bibl>
+               <bibl xml:id="mcelderry2013"><author>McElderry, Michael</author>. <date>2013</date>.
+                     <title level="m">Thomas Biggs Harned Collection of Walt Whitman Papers,
+                     1842–1937. A Finding Aid to the Collection in the Library of Congress.</title>
+                  Last updated February 2017. Washington, D.C.: Manuscript Division, Library of
+                  Congress. <ptr target="https://hdl.loc.gov/loc.mss/eadmss.ms002007"/>.</bibl>
+               <bibl xml:id="pierazzo2009"><author>Pierazzo, Elena</author>. <date>2009</date>.
+                     <title level="a">Digital Genetic Editions: The Encoding of Time in Manuscript
+                     Transcription.</title>
+                  <biblScope unit="chapter">Chap. 11</biblScope> in <title level="m">Text Editing,
+                     Print and the Digital World</title>, edited by <editor>Marilyn Deegan</editor>
+                  and <editor>Kathryn Sutherland</editor>, <biblScope unit="page"
+                  >169–86</biblScope>. <pubPlace>Farnham, England</pubPlace>:
+                     <publisher>Ashgate</publisher>.</bibl>
+               <bibl xml:id="pierazzo2014a"><author>Pierazzo, Elena</author>. <date>2014</date>a.
+                     <title level="a">Digital Documentary Editions and the Others.</title>
+                  <title level="j">Scholarly Editing: The Annual of the Association for Documentary
+                     Editing</title>
+                  <biblScope unit="issue">35</biblScope>: <biblScope unit="page">1–23</biblScope>.
+                     <ptr target="http://www.scholarlyediting.org/2014/essays/essay.pierazzo.html"
+                  />.</bibl>
+               <bibl xml:id="pierazzo2014b"><author>Pierazzo, Elena</author>. <date>2014</date>b.
+                     <title level="a">Of Time and Space: Unpacking the Draft Page: A New Framework
+                     for Digital Editions of Draft Manuscripts.</title>
+                  <ptr target="https://hal.univ-grenoble-alpes.fr/hal-01182133"/>.</bibl>
+               <bibl xml:id="pierazzo2015"><author>Pierazzo, Elena</author>. <date>2015</date>.
+                     <title level="m">Digital Scholarly Editing: Theories, Models and
+                     Methods</title>. <pubPlace>London</pubPlace> and <pubPlace>New York</pubPlace>:
+                     <publisher>Routledge</publisher>. Preprint available at <ptr
+                     target="https://hal.univ-grenoble-alpes.fr/hal-01182162"/>.</bibl>
+               <bibl xml:id="pierazzo2016"><author>Pierazzo, Elena</author>. <date>2016</date>.
+                     <title level="a">Modelling Digital Scholarly Editing: From Plato to
+                     Heraclitus.</title>
+                  <biblScope unit="chapter">Chap. 2</biblScope> in <title level="m">Digital
+                     Scholarly Editing: Theories and Practices</title>, edited by <editor>Matthew
+                     James Driscoll</editor> and <editor>Elena Pierazzo</editor>.
+                     <pubPlace>Cambridge</pubPlace>: <publisher>Open Book Publishers</publisher>,
+                     <biblScope unit="page">41–58</biblScope>. doi:<idno type="doi"
+                     >10.11647/OBP.0095</idno>.</bibl>
+               <bibl xml:id="schauble2018"><author>Schäuble, Joshua</author>, with <author>Hans
+                     Walter Gabler</author>. <date>2018</date>. <title level="a">Encodings and
+                     Visualisations of Text Processes across Document Borders.</title> In <title
+                     level="m">Digital Scholarly Digital Editions as Interfaces</title>, edited by
+                     <editor>Roman Bleier</editor>, <editor>Martina Bürgermeister</editor>,
+                     <editor>Helmut W. Klug</editor>, <editor>Frederike Neuber</editor>, and
+                     <editor>Gerlinde Schneider</editor>, <biblScope unit="page">165–91</biblScope>.
+                     <pubPlace>Norderstedt</pubPlace>: <publisher>BoD</publisher>. <ptr
+                     target="https://kups.ub.uni-koeln.de/9116/"/>.</bibl>
+               <bibl xml:id="shillingsburg1996">
+                  <author>Shillingsburg, Peter L.</author>
+                  <date>1996</date>. <title level="m">Scholarly Editing in the Computer Age: Theory
+                     and Practice.</title>
+                  <edition>3rd ed</edition>. <pubPlace>Ann Arbor</pubPlace>: <publisher>University
+                     of Michigan Press</publisher>.</bibl>
+               <bibl xml:id="sperbergmcqueen1994"><author>Sperberg-McQueen, C. M.</author>, and
+                     <author>Lou Burnard</author>. <date>1994</date>. <title level="m">TEI P3:
+                     Guidelines for Electronic Text Encoding and Interchange</title>.
+                     <pubPlace>Chicago</pubPlace>; <pubPlace>Oxford</pubPlace>: <publisher>Text
+                     Encoding Initiative</publisher>. Available at <ptr
+                     target="https://tei-c.org/Vault/GL/teip3doc.tar.gz"/>.</bibl>
+               <bibl xml:id="TEI2002"><orgName>TEI Consortium</orgName>. <date>2002</date>. <title
+                     level="m">TEI P4: Guidelines for Electronic Text Encoding and Interchange:
+                     XML-compatible Edition</title>, edited by <editor>C. M.
+                     Sperberg-McQueen</editor> and <editor>Lou Burnard</editor>.
+                     <pubPlace>N.p.</pubPlace>: <publisher>TEI Consortium</publisher>. <ptr
+                     target="https://tei-c.org/Vault/P4/doc/html/"/>.</bibl>
+               <bibl xml:id="TEI2007"><orgName>TEI Consortium</orgName>. <date>2007</date>. TEI P5:
+                  Guidelines for Electronic Text Encoding and Interchange. <edition>Version
+                     1.0.0</edition>. Last updated October 28. <ptr
+                     target="https://tei-c.org/Vault/P5/1.0.0/doc/tei-p5-doc/en/html/"/>.</bibl>
+               <bibl xml:id="TEI2011"><orgName>TEI Consortium</orgName>. <date>2011</date>. <title
+                     level="u">P5 Version 2.0 Release Notes.</title>
+                  <pubPlace>N.p.</pubPlace>: <publisher>TEI Consortium</publisher>. <ptr
+                     target="https://tei-c.org/Vault/P5/2.0.0/doc/tei-p5-doc/release/tei-p5-doc/share/doc/tei-p5-doc/readme-2.0.html"
+                  />.</bibl>
+               <bibl xml:id="TEI2020"><author>TEI Consortium</author>. <date>2020</date>. <title
+                     level="a">Representation of Primary Sources.</title>
+                  <biblScope unit="chapter">Chap. 11</biblScope> in <title level="m">TEI P5:
+                     Guidelines for Electronic Text Encoding and Interchange</title>.
+                     <edition>Version 4.1.0</edition>. Last updated August 19.
+                     <pubPlace>N.p.</pubPlace>: <publisher>TEI Consortium</publisher>. <ptr
+                     target="https://tei-c.org/Vault/P5/4.1.0/doc/tei-p5-doc/en/html/PH.html"
+                  />.</bibl>
+               <bibl xml:id="guidewwhitman"><orgName>Special Collections, University of Virginia
+                     Library</orgName>. <date>2011</date>. <title level="u">A Guide to the Papers of
+                     Walt Whitman, 1838–1987: A Collection in the Clifton Waller Barrett Library,
+                     Special Collections, The University of Virginia Library.</title>
+                  <pubPlace>N.p.</pubPlace>: <publisher>Rector and Visitors of the University of
+                     Virginia</publisher>. Accessed February 19, 2021. <ptr
+                     target="http://ead.lib.virginia.edu/vivaxtf/view?docId=uva-sc/viu03978.xml"
+                  />.</bibl>
+               <bibl xml:id="vanhulle2016"><author>Van Hulle, Dirk</author>. <date>2016</date>.
+                     <title level="a">Modelling a Digital Scholarly Edition for Genetic Criticism: A
+                     Rapprochement.</title>
+                  <title level="j">Variants</title>
+                  <biblScope unit="issue">12–13</biblScope>: <biblScope unit="page"
+                     >34–56</biblScope>. <ptr target="http://journals.openedition.org/variants/293"
+                  />; doi:<idno type="doi">10.4000/variants.293</idno>.</bibl>
+               <bibl xml:id="whitman1855"><author>Whitman, Walt</author>. <date>1855</date>. <title
+                     level="m">Leaves of Grass.</title>
+                  <pubPlace>Brooklyn, NY</pubPlace>: <publisher>N.p.</publisher> Whitman Archive ID
+                     <idno>ppp.00271</idno>. Available at <ptr
+                     target="https://whitmanarchive.org/published/LG/1855/whole.html"/>.</bibl>
+               <bibl xml:id="whitman1892"><author>Whitman, Walt</author>. <date>1892</date>. <title
+                     level="m">Complete Prose Works.</title>
+                  <pubPlace>Philadelphia</pubPlace>: <publisher>David McKay</publisher>. Whitman
+                  Archive ID <idno>ppp.00504</idno>. Available at <ptr
+                     target="https://whitmanarchive.org/published/other/CompleteProse.html"
+                  />.</bibl>
+            </listBibl>
+         </div>
+      </back>
+   </text>
+</TEI>

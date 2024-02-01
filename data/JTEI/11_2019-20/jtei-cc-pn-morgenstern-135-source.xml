@@ -1,0 +1,759 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<!-- $Id: jtei-cc-pn-morgenstern-135-source.xml 914 2020-02-20 09:04:30Z ron $ -->
+<TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="main">Biography as Compilation</title>
+        <title type="sub">How to Encode Georg Nikolaus Nissen’s <title level="m">Biographie W. A.
+            Mozart’s</title> (1828) in TEI P5</title>
+        <author>
+          <name>
+            <forename>Anja</forename>
+            <surname>Morgenstern</surname>
+          </name>
+          <affiliation>From 2001 to 2007 Anja Morgenstern was a <roleName>research
+              assistant</roleName> at the Felix Mendelssohn Bartholdy Letters Edition Project at the
+              <orgName>University of Leipzig</orgName>. Since 2007 she has been a member of the
+              <roleName>research staff</roleName> of the Digital Mozart-Edition at the
+              <orgName>Mozart Foundation Salzburg</orgName>, where she is responsible for the online
+            edition of letters and documents of the Mozart family.</affiliation>
+          <email>morgenstern@mozarteum.at</email>
+        </author>
+        <author>
+          <name>
+            <forename>Agnes</forename>
+            <surname>Amminger</surname>
+          </name>
+          <affiliation>Agnes Amminger is currently studying for a master’s degree in German
+            philology at the <orgName>University of Salzburg</orgName>. She has been a
+              <roleName>staff member</roleName> of the Digital Mozart-Edition at the <orgName>Mozart
+              Foundation Salzburg</orgName> since 2012.</affiliation>
+          <email>amminger@mozarteum.at</email>
+        </author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>TEI Consortium</publisher>
+        <date>16/01/2020</date>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by/4.0/">
+            <p>For this publication a Creative Commons Attribution 4.0 International license has
+              been granted by the author(s) who retain full copyright.</p>
+          </licence>
+        </availability>
+      </publicationStmt>
+      <seriesStmt>
+        <title level="j">Journal of the Text Encoding Initiative</title>
+        <editor role="guest">Claudia Resch</editor>
+        <editor role="guest managing">Tanja Wissik</editor>
+        <editor role="guest">Vanessa Hannesschlaeger</editor>
+        <editor role="managing">Joel Kalvesmaki</editor>
+        <editor role="managing">Pietro Maria Liuzzo (Universität Hamburg)</editor>
+        <editor role="managing">Tiago Sousa Garcia (Newcastle University)</editor>
+        <editor role="chief">John Walsh</editor>
+        <editor role="technical">Ron Van den Branden</editor>
+        <biblScope unit="issue" n="11">Selected Papers from the 2016 TEI Conference</biblScope>
+      </seriesStmt>
+      <sourceDesc>
+        <p>No source, born digital.</p>
+      </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+      <projectDesc>
+        <p>OpenEdition Journals -centre for open electronic publishing- is the platform for journals
+          in the humanities and social sciences, open to quality periodicals looking to publish
+          full-text articles online.</p>
+      </projectDesc>
+    </encodingDesc>
+    <profileDesc>
+      <langUsage>
+        <language ident="en">en</language>
+      </langUsage>
+      <textClass>
+        <keywords xml:lang="en">
+          <term>digital edition</term>
+          <term>text encoding</term>
+          <term>source criticism</term>
+          <term>biography</term>
+          <term>Mozart</term>
+        </keywords>
+      </textClass>
+    </profileDesc>
+    <revisionDesc>
+      <change when="2020-02-12">RvdB applied proofing corrections.</change>
+      <change when="2020-02-05">RvdB applied proofing corrections.</change>
+      <change when="2020-01-16">RvdB encoded the file.</change>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <front>
+      <div type="abstract" xml:id="abstract">
+        <p>The project of editing the early <title level="m">Biographie W. A. Mozart’s</title>
+          (1828) by Georg Nikolaus Nissen (Nissen Online) began as part of the Digital
+          Mozart-Edition (DME) at the Mozarteum Foundation Salzburg. The aim of the edition is to
+          reveal the structure of the text by identifying the diverse sources Nissen relied on when
+          writing the biography. These include primary sources such as original letters and
+          documents from the Mozart family, secondary sources such as contemporary literature about
+          Wolfgang Amadeus Mozart, and original text written by the author and later editors.
+          Considering the challenges that arise when creating an edition that tries to define the
+          different strands of a text, this paper describes how XML/TEI markup was applied to <list
+            rend="ordered">
+            <item>encode text passages which often do not correlate with common text structures
+              (paragraphs, chapters);</item>
+            <item>document different types of sources and their authors or editors; and</item>
+            <item>integrate a detailed bibliography of the sources as well as critical annotations
+              for each single text passage.</item>
+          </list>
+        </p>
+      </div>
+    </front>
+    <body>
+      <div xml:id="biography">
+        <head>The Biography</head>
+        <p>The <title level="m">Biographie W. A. Mozart’s</title>, comprising two volumes totaling
+          approximately one thousand pages, was written between 1824 and 1828 in Salzburg and
+          published in early 1829 by Breitkopf &amp; Härtel in Leipzig (<ref type="bibl"
+            target="#nissen1829a">Nissen 1829a</ref>, <ref type="bibl" target="#nissen1829b"
+            >1829b</ref>). It was the first comprehensive biography of Mozart and utilized, for the
+          first time on a large scale, about four hundred letters of the Mozart family. The author
+          was Georg Nikolaus Nissen (1761–1826), a Danish diplomat and the second husband of
+          Constanze Mozart (1762–1842), widow of the composer.</p>
+        <div xml:id="origination">
+          <head>Origination Process</head>
+          <p>In the summer of 1824 Mr. and Mrs. Nissen visited Mozart’s sister, Maria Anna von
+            Berchtold zu Sonnenburg (1751–1829), in Salzburg. She presented them with the family
+            correspondence and other original documents by Mozart. This gift inspired Nissen to
+            start his work on a book about Wolfgang Amadeus Mozart.</p>
+          <p>Nissen studied the letters and made excerpts of passages he regarded as worth
+            publishing. Up until early 1826 he collected and copied all published writings on
+            Mozart. He compiled a bibliographical list of the works he had studied, which the
+            editors later included in the biography. It contains more than eighty items, including
+            the earliest German biographies of Mozart, Italian and French biographical articles,
+            biographies of other musicians, the most important musical periodicals, musical and
+            general encyclopedias, as well as music history books and many more items. However,
+            Nissen and his successors did not properly cite the author or source of the majority of
+            the texts they used. As a consequence, unattributed direct quotation from many sources
+            constituted a kind of plagiarism.</p>
+          <p>All the working material Nissen used for the main volume is preserved in the Library of
+            the Mozarteum Foundation Salzburg and helps us to reconstruct his work on the biography.
+            In addition to the letters, two early Mozart biographies form the basis of Nissen’s
+            biography: the necrology by Friedrich Schlichtegroll (Gotha <ref type="bibl"
+              target="#schlichtegroll1793">1793</ref>, offprint <ref type="bibl"
+              target="#schlichtegroll1794">1794</ref>) and the second edition of the <title
+              level="m">Lebensbeschreibung des K. K. Kapellmeisters Wolfgang Amadeus Mozart</title>
+            by Franz Xaver Niemetschek, issued in <ref type="bibl" target="#niemetschek1808"
+              >1808</ref>. These two publications, based on authentic material provided by Mozart’s
+            sister and widow, formed the framework for Nissen. A feature of this framework was the
+            integration of numerous passages extracted from secondary sources.</p>
+          <p>Nissen died in March 1826 without leaving a publishable manuscript, and two other
+            people were involved in completing his work. The first was Anton Jähndl (1783–1861), the
+              <foreign xml:lang="la">Regens chori</foreign> (choirmaster) of the Benedictine convent
+            Nonnberg at Salzburg. While using the working material left by Nissen he prepared the
+            manuscript for publication, sometimes adding documents and articles that had been
+            published after March 1826, but also adding passages of his own. When this work was
+            completed in the spring of 1828, Constanze Nissen engaged the physician and Mozart
+            enthusiast Johann Heinrich Feuerstein (1797–1850) at Pirna in Saxonia as the second
+            editor of the manuscript. Feuerstein changed a great number of verbal expressions and
+            added some of his own ideas as well.</p>
+        </div>
+        <div xml:id="assessment">
+          <head>Assessment</head>
+          <p>While some readers, among them Johann Wolfgang von Goethe and Felix Mendelssohn
+            Bartholdy, appreciated the insights available from Mozart’s letters published in
+            Nissen’s biography, several critical reviews of the book emerged in early 1829. The most
+            important article was written by Ignaz Mosel (1772–1844), a music historian, and
+            published in 1830 in <title level="m">Jahrbücher der Literatur</title>. Mosel recognized
+            all the plagiarized passages. His detailed analysis culminates in the following summary:
+              <quote source="#quoteref1">the major part of the book, or in fact—excluding the
+              letters—the whole book consists of plagiarism</quote><note>German: <quote
+                source="#quoteref1">diese Plagiate machen den größten Theil des Buches, oder
+                eigentlich—die Briefe abgerechnet—das Buch selbst aus.</quote></note> (<ref
+              xml:id="quoteref1" type="bibl" target="#mosel1830">Mosel 1830, 164</ref>). He further
+            characterizes the book as a <quote source="#quoteref2">mix of copies, citations, and
+              plagiarism without sensitivity, in random choice and order</quote><note>German: <quote
+                source="#quoteref2">ohne Zartgefühl, ohne Wahl und ohne Ordnung zusammengeknetetes
+                Volumen von Abschriften, Citationen und Plagiaten.</quote></note> (<ref
+              xml:id="quoteref2" type="bibl" target="#mosel1830">Mosel 1830, 163</ref>). Some years
+            later the Russian music writer Aleksandr Ulybyšev (1794–1858) and the philologist and
+            music historian Otto Jahn (1813–1869) also became aware of the deficiencies in Nissen’s
+            biography, and both decided to write their own biographies of Mozart. In 1842–43
+            Ulybyšev published a biography in French in three volumes, and between 1856 and 1858
+            Jahn published a biography in German in four volumes.</p>
+          <p>Over the next 150 years, this critical assessment of the biography was forgotten, and
+            the editors of the <title level="m">Neue Mozart-Ausgabe</title> used it for the
+            documentary volume <title level="m">Mozart. Die Dokumente seines Lebens</title> (<ref
+              type="bibl" target="#deutsch61">Deutsch 1961</ref>), without critical annotation. The
+            importance accorded to Nissen’s biography was based on the circumstance that the author
+            was married to the widow of Mozart. The opinion that Nissen had firsthand information
+            was expressed again by Rudolph Angermüller in his new edition of the biography (<ref
+              type="bibl" target="#nissen10">Nissen 2010</ref>). It contains many annotations on
+            people and works, but completely abstains from analyzing and commenting on the secondary
+            sources used by Nissen on a large scale, even though in 1997 Dieter Demuth had already
+            stated that Nissen’s biography of Mozart was—apart from the letters—a true plagiarism of
+            early Mozart literature and that the detection of all of Nissen’s sources remained a
+            desideratum (<ref type="bibl" target="#demuth97">Demuth 1997, 83</ref>).</p>
+        </div>
+        <div xml:id="results">
+          <head>Research Results</head>
+          <p>The detailed analysis of Nissen’s biography revealed that the hypothesis of firsthand
+            information is by no means valid. Nissen used secondary sources even for biographical
+            details about Mozart. All aesthetic considerations of Mozart’s music are unattributed
+            quotations taken from other authors. Nissen sometimes put together contradictory
+            statements or contrasting aesthetical positions, such as classical and romantic ideas
+            about Mozart’s music, without critical reflection. Constanze Mozart’s contribution to
+            the biography consists only of details of little importance (<ref type="bibl"
+              target="#morgenstern14">Morgenstern 2014, 103–9</ref>).</p>
+          <p>Although Nissen’s biography reproduced texts and worklists of other authors on a large
+            scale, the book offered, besides the important Mozart correspondence, some original
+            documents, unknown portraits of Mozart and his family, musical pieces from the so called
+              <title level="m">Nannerl Notebook</title>, as well as a specimen of Mozart’s
+            handwriting. The list of unfinished musical compositions by Mozart was completely new to
+            the musical world at this time as well. For a few Mozart letters, where the originals
+            are lost today, the biography is the only known source.</p>
+        </div>
+      </div>
+      <div xml:id="digitaledition">
+        <head>The Digital Edition</head>
+        <p>Our project is part of the <title level="m">Digital Mozart-Edition</title> at the
+          Salzburg Mozarteum Foundation. Its goal is to fill a gap in Mozart research by analyzing
+          the Nissen biography to distinguish and elucidate its various sources: <list
+            rend="bulleted">
+            <item>primary sources (such as Mozart letters and original documents),</item>
+            <item>secondary sources (early Mozart literature, newspapers, encyclopedias, etc.),
+              and</item>
+            <item>original texts (texts written originally by Nissen, Jähndl, or Feuerstein).</item>
+          </list>
+        </p>
+        <p>The choice of an appropriate encoding method was determined by the aim of covering as
+          many results of this analysis as possible. Regarding the individual text passages, the
+          results of the research—or rather the information to be conveyed by the online edition—can
+          be outlined by the following questions: Is the text passage in question based on a primary
+          or a secondary source, or was it originally written by one of the biography’s editors? For
+          primary and secondary sources: What is the exact source or reference? And, finally: Which
+          one of the editors is responsible for inserting each passage into the biography?</p>
+        <p>The base TEI XML file, containing the text of the biography as well as basic structural
+          markup—for instance, for headings, paragraphs, and graphically highlighted text—was
+          created by converting a Microsoft Word document via the TEI’s OxGarage tool (<ptr
+            target="https://oxgarage.tei-c.org"/>).<note>The file, including a transcription of the
+            whole text, was provided by courtesy of Paul Corneilson from the Early Mozart
+            Biographies Project of the Mozart Society of America (<ptr
+              target="http://mozartsocietyofamerica.org/embp/"/>).</note> The encoding mode,
+          hereafter described in detail, is based on the TEI P5 and on categories determined and
+          described by ourselves in compliance with the TEI, either within the XML document itself
+          or in the corresponding schema file.<note>After the completion of the encoding process,
+            the TEI XML file and the attached schema will be uploaded on GitHub. The edition itself
+            will later go online as part of the <ref target="https://dme.mozarteum.at/en">Digital
+              Mozart-Edition</ref>.</note> In order to assign and add certain information, we
+          reference resources provided externally, like digitized texts or authority files.</p>
+        <p>Our schema is a subset of the TEI. We started with an all-encompassing TEI
+              schema,<note><title level="a">All</title>, TEI customization with all modules
+            included, <ptr target="https://tei-c.org/guidelines/customization/#section-1"/>; RELAX
+            NG version, <ptr
+              target="https://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng"
+            />.</note> customizing it mainly by deleting elements and attributes, and by adding
+          closed lists of attribute values to other elements. The values are described in prose
+          within the schema file or in the document itself. This was the case with the subsections
+          of the bibliography (see <ptr type="crossref" target="#sourcereferences"/>) and the
+          listing of the editors (see <ptr type="crossref" target="#editors"/>). While the former
+          merely introduces project-specific terms (e.g., <q>primary</q> and <q>secondary</q>) to
+          classify sources, the latter covers the circumstance of editors contributing to a text in
+          a manner not explicitly taken into account by the TEI, namely by tacit text
+            reuse.<note>The use of <att>resp</att> in association with <gi>respStmt</gi> describes
+            only the agents working on a TEI file (<ref type="bibl" target="#tei16">TEI Consortium
+              2016, 1.3.1.1.4</ref>: <title level="a"><ref
+                target="https://www.tei-c.org/Vault/P5/3.1.0/doc/tei-p5-doc/en/html/ST.html#STGAso"
+                >Sources, certainty, and responsibility</ref></title>; <ref type="bibl"
+              target="#tei16">TEI Consortium 2016, 11.3.2.2</ref>: <title level="a"><ref
+                target="https://www.tei-c.org/Vault/P5/3.1.0/doc/tei-p5-doc/en/html/PH.html#PHHR"
+                >Hand, Responsibility, and Certainty Attributes</ref></title>).</note> The
+          referenced descriptions are also meant to be displayed, for example in order to provide
+          additional information when a certain passage is clicked, and thus also serve a purpose
+          besides the documentation.</p>
+        <div xml:id="encoding">
+          <head>The Encoding</head>
+          <div xml:id="segmentation">
+            <head>Segmentation According to Sources</head>
+            <p>The first step in the process of source-related encoding was the segmentation of the
+              text in accordance with the biography’s composition process. Since the biography is
+              made up of passages from many different sources, each passage from a distinct source
+              should be marked up and be recognizable as such. However, these passages do not always
+              correlate with paragraphs; in some cases, a passage of this kind might even stretch
+              from inside a paragraph to the middle of the next one. The tree structure of the
+              format-related markup is overlapped by a stream of text passages as illustrated in
+                <ptr type="crossref" target="#figure1"/>: <figure xml:id="figure1">
+                <graphic url="images/figure1.png" height="843px" width="480px"/>
+                <head type="legend">Page 652 of the printed biography; the first passage in grey
+                  comprises the first and part of the second paragraph.</head>
+              </figure>
+            </p>
+            <p>Since the need to deal with overlapping structures in XML is obvious and indeed
+              frequently encountered in text encoding, a great number of possible solutions have
+              already been proposed. The TEI Guidelines list and discuss in detail multiple
+              approaches, some of them requiring extensions of the TEI, while also mentioning
+              non-XML-based and nonconformant techniques (<ref type="bibl" target="#tei16">TEI
+                Consortium 2016, 20</ref>: <title level="a"><ref
+                  target="https://www.tei-c.org/Vault/P5/3.1.0/doc/tei-p5-doc/en/html/NH.html"
+                  >Non-hierarchical Structures</ref></title>).<note><ptr
+                  target="https://www.tei-c.org/Vault/P5/3.1.0/doc/tei-p5-doc/en/html/NH.html"
+                />.</note> This does not mean that complex structures could not be handled with
+                <soCalled>pure</soCalled> TEI, and we never considered an extension or a
+              non-XML-based approach necessary because we mainly deal with a relatively simple case
+              of just two overlapping hierarchies, one being merely a series of passages without any
+              nesting or further overlapping. Generally, the goal of keeping the markup as
+              intelligible as possible for the encoder, while sticking with only one file in order
+              to keep control of the material, played a major role in settling for one of the
+              proposed TEI-conformant approaches. This precluded the use of stand-off markup (<ref
+                type="bibl" target="#tei16">TEI Consortium 2016, 20.4</ref>: <title level="a"><ref
+                  target="https://www.tei-c.org/Vault/P5/3.1.0/doc/tei-p5-doc/en/html/NH.html#NHSO"
+                  >Stand-off Markup</ref></title>),<note><ptr
+                  target="https://www.tei-c.org/Vault/P5/3.1.0/doc/tei-p5-doc/en/html/NH.html#NHSO"
+                />.</note> which involves both an extension and the necessity of encoding the two
+              conflicting layers in different places or files. In the end we favored <title
+                level="a"><ref
+                  target="https://www.tei-c.org/Vault/P5/3.1.0/doc/tei-p5-doc/en/html/NH.html#NHBM"
+                  >Boundary Marking with Empty Elements</ref></title> (<ref type="bibl"
+                target="#tei16">TEI Consortium 2016, 20.2</ref>)<note><ptr
+                  target="https://www.tei-c.org/Vault/P5/3.1.0/doc/tei-p5-doc/en/html/NH.html#NHBM"
+                />.</note> over <title level="a"><ref
+                  target="https://www.tei-c.org/Vault/P5/3.1.0/doc/tei-p5-doc/en/html/NH.html#NHVE"
+                  >Fragmentation and Reconstitution of Virtual Elements</ref></title> (<ref
+                type="bibl" target="#tei16">TEI Consortium 2016, 20.3</ref>),<note><ptr
+                  target="https://www.tei-c.org/Vault/P5/3.1.0/doc/tei-p5-doc/en/html/NH.html#NHVE"
+                />.</note> the former having the advantage that only the boundary points between the
+              alternating text passages from different sources have to be marked up. The latter, on
+              the other hand, requires that each fragment of every passage (the fragmentation being
+              a result of the conflicting formal hierarchy) needs to be enclosed by its own tag,
+              which, depending on the position of the passages in relation to the paragraphs, might
+              result in a lot more markup. As can be seen in <ptr type="crossref" target="#example1"
+              />, every boundary point between the different passages is marked by an empty
+              milestone-like element (<gi>anchor</gi>). Each <gi>anchor</gi> element is given an
+                <att>xml:id</att> comprising the incipit of the following passage. Often, but not
+              always, the boundary point of a passage matches an already existing boundary, for
+              example between two paragraphs. If that is the case, the <gi>anchor</gi> element is
+              placed in between the paragraphs.</p>
+            <p>After the marking of the boundary points, another empty element (<gi>span</gi>) is
+              inserted for every passage (see <ptr type="crossref" target="#example1"/>). Each
+                <gi>span</gi> references a text passage by pointing to the <gi>anchor</gi> before it
+              (using <att>from</att> for this purpose) and to the <gi>anchor</gi> after it (using
+                <att>to</att>):<note>In a different context, Martin Holmes suggested a similar
+                approach on the TEI-L mailing list: <ptr
+                  target="https://listserv.brown.edu/cgi-bin/wa?A2=ind1302&amp;L=TEI-L&amp;D=0&amp;P=148629"
+                />.</note></p>
+            <figure xml:id="example1">
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <anchor xml:id="anch1002_p651_Die_Musik"/> […] <pb n="652"/>
+                <p>menza di Tito, welche am 5ten September auf’s Theater kam. In der Mitte dieses
+                  Monats reis’te er nach Wien zurück und schrieb ein paar Tage vor der Vorstellung
+                  der Zauberflöte, die am 30sten September 1791 geschah, die beste seiner Ouverturen
+                  und den herrlichen Priestermarsch zu Anfange des zweyten Actes der Zauberflöte am
+                  28sten September.</p>
+                <p>Solcher Beyspiele könnten mehre angeführt werden. Sein ausserordentliches
+                  Gedächtniss zeigte sich auch schon in der Jugend; das aufgefasste Miserere in Rom
+                  giebt hiervon einen vollen Beweis. Er behielt es ungeschwächt bis an sein
+                    Ende.<span from="#anch1002_p651_Die_Musik" to="#anch1003_p652_Es_hat"/>
+                  <anchor xml:id="anch1003_p652_Es_hat"/>Es hat sich gefunden, dass, als Burney viel
+                  später dieses Miserere nach einer Copie des Originals öffentlich bekannt machte,
+                  auch nicht eine Note anders als bey Mozart darin war.</p>
+                <span from="#anch1003_p652_Es_hat" to="#anch1004_p652_Da_man"/>
+                <anchor xml:id="anch1004_p652_Da_man"/> [Da man …] <pb n="653"/>
+              </egXML>
+              <head type="legend"><gi>span</gi> elements defining text passages by referencing
+                  <gi>anchor</gi> elements (excerpt from page 652).</head>
+            </figure>
+            <p>The <gi>span</gi> elements do not necessarily need to be positioned as shown above;
+              another possibility is putting them into a <gi>spanGrp</gi> elsewhere within the
+              document. However, it helps the encoder to have the <gi>span</gi> elements as close as
+              possible to the text passages they refer to, since more information regarding a given
+              passage will be added there later.</p>
+            <p>The TEI Guidelines do express some concern about processing data encoded with empty
+              elements to mark boundary points between passages: <quote source="#quoteref3">since
+                the elements of the analysis <gap/>
+                <supplied>in our case the text passages</supplied> are not uniformly represented by
+                nodes in the document tree, they must be reconstituted by software in an ad hoc
+                fashion, which is likely to be difficult and may be error prone</quote> (<ref
+                xml:id="quoteref3" type="bibl" target="#tei16">TEI Consortium 2016, 20.2</ref>:
+                <title level="a"><ref
+                  target="https://www.tei-c.org/Vault/P5/3.1.0/doc/tei-p5-doc/en/html/NH.html#NHBM"
+                  >Boundary Marking with Empty Elements</ref></title>).<note><ptr
+                  target="https://www.tei-c.org/Vault/P5/3.1.0/doc/tei-p5-doc/en/html/NH.html#NHBM"
+                />.</note> However, the <gi>span</gi> elements referencing the text passages can
+              easily be addressed. Difficulties arise when the passages—that is, the text streams
+              themselves—need to be addressed, but the <gi>span</gi> elements, which reference
+              unambiguously the beginning and end point of a particular portion of text, are of
+              great advantage. The need to address a text passage as a stream arises, for example,
+              during a search for all passages with a certain quality or attribute as text, or if
+              every text passage on a certain page of the book is to be displayed in a different
+              color when rendering the text with an appropriate web application. At this point, the
+              development of the tool for online presentation is just beginning, so it remains to be
+              seen how easy the markup will be to process.</p>
+          </div>
+          <div xml:id="documentation">
+            <head>Documentation of Specifications</head>
+            <p>Not only does the <gi>span</gi> element, as it is used in our encoding scheme,
+              represent and reference passages or parts of text within a document; it also serves
+              the purpose of associating <quote source="#quoteref4">an interpretative annotation
+                directly with a span of text</quote> (<ref xml:id="quoteref4" type="bibl"
+                target="#tei16">TEI Consortium 2016, 17.3</ref>: <title level="a"><ref
+                  target="https://www.tei-c.org/Vault/P5/3.1.0/doc/tei-p5-doc/en/html/AI.html#AISP"
+                  >Spans and Interpretations</ref></title>).<note><ptr
+                  target="https://www.tei-c.org/Vault/P5/3.1.0/doc/tei-p5-doc/en/html/AI.html#AISP"
+                />.</note> Although <gi>span</gi> elements can have textual content, we decided to
+              use <gi>span</gi> as an empty element with attributes since the annotations we want to
+              add either are limited to only a few options (e.g., indicating which editor is
+              responsible for the insertion of a given passage) or simply consist of a reference to
+              an object encoded elsewhere (the bibliographic records of the sources that have been
+              used). Therefore, there is no need for a prose description in either case since both
+              specifications of the <gi>span</gi> element can easily be addressed using attributes
+              and their values: <figure xml:id="example2">
+                <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <p>[…]<anchor xml:id="anch1003_p652_Es_hat"/>Es hat sich gefunden, dass, als
+                    Burney viel später dieses Miserere nach einer Copie des Originals öffentlich
+                    bekannt machte, auch nicht eine Note anders als bey Mozart darin war.</p>
+                  <span from="#anch1003_p652_Es_hat" to="#anch1004_p652_Da_man"
+                    source="#Rochlitz_Tonkunst_1825_5" ana="#Nissen" corresp="#note_anch1003"/>
+                  <anchor xml:id="anch1004_p652_Da_man"/>
+                </egXML>
+                <head type="legend"><gi>span</gi> element with all attributes.</head>
+              </figure>
+            </p>
+            <p>The elements referenced by the values of the attributes, i.e., <att>ana</att>,
+                <att>source</att>, and <att>corresp</att>, are documented within the same TEI XML
+              file.</p>
+          </div>
+          <div xml:id="editors">
+            <head>Editors</head>
+            <p>The value of <att>ana</att> targets a <gi>category</gi> element within a
+                <gi>taxonomy</gi> element. The <gi>taxonomy</gi> element is enclosed by a
+                <gi>classDecl</gi> element, which is part of the encoding description
+                (<gi>encodingDesc</gi>). The categories were established during the preceding
+              examination and the analysis of the editors’ preserved working materials as well as
+              the text of the biography itself. <figure xml:id="example3">
+                <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <classDecl>
+                    <taxonomy resp="#AM">
+                      <category xml:id="Nissen">
+                        <catDesc>Text inserted by Georg Nikolaus Nissen</catDesc>
+                      </category>
+                      <category xml:id="Feuerstein">
+                        <catDesc>Text inserted by Johann Heinrich Feuerstein</catDesc>
+                      </category>
+                      <category xml:id="Jähndl">
+                        <catDesc>Text inserted by Anton Jähndl</catDesc>
+                      </category>
+                      <category xml:id="CNissen">
+                        <catDesc>Text inserted by Constanze Nissen</catDesc>
+                      </category>
+                      <category xml:id="Verlag">
+                        <catDesc>Text inserted by the typesetter of Breitkopf &amp; Härtel</catDesc>
+                      </category>
+                    </taxonomy>
+                  </classDecl>
+                </egXML>
+                <head type="legend">Documentation of the editors within a taxonomy.</head>
+              </figure>
+            </p>
+          </div>
+        </div>
+        <div xml:id="sourcereferences">
+          <head>Source References</head>
+          <p>The many textual sources integrated into the biography are represented in the edition
+            as structured bibliographic citations encoded in TEI. The element <gi>biblStruct</gi> is
+            used to represent these citations. Please note the <gi>citedRange</gi> elements at the
+            end of <ptr type="crossref" target="#example4"/>: <figure xml:id="example4">
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <biblStruct xml:id="Rochlitz_Tonkunst_1825">
+                  <monogr>
+                    <author>
+                      <persName key="58350">
+                        <forename>Friedrich</forename>
+                        <surname>Rochlitz</surname>
+                      </persName>
+                    </author>
+                    <title level="m"
+                      ref="http://www.mdz-nbn-resolving.de/urn/resolver.pl?urn=urn:nbn:de:bvb:12-bsb10599333-6">
+                      <title type="main">Für Freunde der Tonkunst.</title>
+                      <title type="sub">Zweiter Band</title>
+                    </title>
+                    <imprint>
+                      <publisher>Carl Cnobloch</publisher>
+                      <pubPlace>Leipzig</pubPlace>
+                      <date when="1825">1825</date>
+                    </imprint>
+                  </monogr>
+                  <citedRange xml:id="Rochlitz_Tonkunst_1825_1" unit="page" from="172" to="172"
+                    target="http://reader.digitale-sammlungen.de/de/fs1/object/display/bsb10599333_00190.html"/>
+                  <citedRange><!-- ... --></citedRange>
+                  <citedRange><!-- ... --></citedRange>
+                  <citedRange><!-- ... --></citedRange>
+                  <citedRange xml:id="Rochlitz_Tonkunst_1825_5" unit="page" from="285" to="285"
+                    target="http://reader.digitale-sammlungen.de/de/fs1/object/display/bsb10599333_00300.html"
+                  />
+                </biblStruct>
+              </egXML>
+              <head type="legend"><gi>citedRange</gi> elements as part of
+                <gi>biblStruct</gi>.</head>
+            </figure>
+          </p>
+          <p>Each <gi>citedRange</gi> element indicates a page (or range of pages) containing text
+            material reused by the editors of the biography. One coherent piece of reused text
+            corresponds to exactly one <gi>citedRange</gi> element, which means that in cases where
+            a certain work is cited (or rather plagiarized) more than once, several
+              <gi>citedRange</gi> elements are listed. Each <gi>citedRange</gi> element is
+            associated with the corresponding text passage within the biography. The mechanisms of
+              associating<note>Our thanks go to Peter Stadler, research assistant at the
+              Carl-Maria-von-Weber-Gesamtausgabe, for suggesting this approach.</note> elements and
+            texts can be explained by looking at two examples given earlier: in <ptr type="crossref"
+              target="#example2"/>, the <gi>span</gi> element representing a reused text passage has
+            a <att>source</att> attribute, and this specific attribute points to a complete
+              <gi>citedRange</gi> element in <ptr type="crossref" target="#example4"/>.</p>
+          <p>This approach to encoding the original source of a text passage follows the standard
+            procedure of citing from a traditional prose text: citation by page number. As such, it
+            sufficiently serves its purpose. It could rightfully be argued, though, that in
+            comparison to the exact identification of the passage within the biography itself, the
+            rather generic reference to the source is somehow unsatisfactory. However, we do not
+            have the resources to also encode in TEI all the texts that have been used in order to
+            be able to point exactly to each sentence within its original context.<note>For a
+              non-XML-based, technology-independent approach to referencing exact portions of text,
+              see the description of an implementation of CTS URNs by Berti et al. (<ref type="bibl"
+                target="#berti14">2014</ref>).</note></p>
+          <p>The bibliography itself (encoded as <gi>listBibl</gi>) is further divided into two
+            sections, one as <code>type="primary"</code>, the other one as
+              <code>type="secondary"</code>. The former contains all the primary sources, the latter
+            the secondary sources: <figure xml:id="example5">
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <listBibl>
+                  <listBibl type="primary">
+                    <biblStruct/>
+                    <biblStruct/>
+                  </listBibl>
+                  <listBibl type="secondary">
+                    <biblStruct xml:id="Rochlitz_Tonkunst_1825"/>
+                    <biblStruct/>
+                  </listBibl>
+                </listBibl>
+              </egXML>
+              <head type="legend">Separate bibliographies for different types of sources
+                  (<gi>biblStruct</gi> elements stripped down).</head>
+            </figure>
+          </p>
+          <p>Since every bibliographical entry is part of either the first or the second
+              <gi>listBibl</gi>, the source type of every text passage within the biography is
+            documented through the relationship with its corresponding bibliographical entry. The
+            bibliography is organized like a taxonomy, and therefore serves the purpose not only of
+            listing the sources that have been used but also of classifying and characterizing them
+            further. The values of the <att>type</att> attribute are documented in the corresponding
+            schema.</p>
+          <p>If a passage was originally written by one of the editors and is thus not part of
+            either a primary or a secondary source, but an original text, no <att>source</att> is
+            attached to the <gi>span</gi> element in question. In this case, the editor referenced
+            by <att>ana</att> is identical to the author of the text.</p>
+          <div xml:id="remarks">
+            <head>Additional Remarks</head>
+            <p>The responsible editor and the original source of a passage are represented by
+              mechanisms that point toward further descriptive elements. Given that we might want to
+              comment on a passage in a way that is not covered by the functions associated with
+              these elements, an optional <att>corresp</att> attribute pointing to a <gi>note</gi>
+              element containing additional remarks is supplied within the respective <gi>span</gi>:
+                <figure xml:id="example6">
+                <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <p><!-- ... --><anchor xml:id="anch1003_p652_Es_hat"/>Es hat sich gefunden, dass,
+                    als Burney viel später dieses Miserere nach einer Copie des Originals öffentlich
+                    bekannt machte, auch nicht eine Note anders als bey Mozart darin war.</p>
+                  <span from="#anch1003_p652_Es_hat" to="#anch1004_p652_Da_man"
+                    source="#Rochlitz_Tonkunst_1825_5" ana="#Nissen" corresp="#note_anch1003"/>
+                  <note xml:id="note_anch1003" type="commentary">Dieser Abschnitt ist einer Fußnote
+                    zu Mozarts Gedächtnis im Artikel "Ein guter Rath Mozarts" entnommen. Diesen
+                    Artikel hatte Friedrich Rochlitz bereits 1820 unter dem Titel "Mozarts guter
+                    Rath an Componisten" in der Allgemeinen Musikalischen Zeitung, Sp. 297–307,
+                    jedoch ohne diese Fußnote, veröffentlicht. Charles Burney hat das Miserere von
+                    Gregorio Allegri 1771 publiziert.</note>
+                </egXML>
+                <head type="legend"><gi>note</gi> element for additional remarks.</head>
+              </figure>
+            </p>
+            <p>Only during the editing process do the <gi>note</gi> elements remain positioned as
+              shown in <ptr type="crossref" target="#example6"/>. In a second step, the notes will
+              be listed in a <gi>list</gi> element of <code>type="notes"</code> which is part of the
+              document’s back matter. If they remained positioned between <gi>anchor</gi> elements,
+              they would be part of the text passage represented and addressed by a <gi>span</gi>
+              element, which would be semantically misleading since they are not part of the
+              original text of the biography.</p>
+          </div>
+          <div xml:id="linking">
+            <head>Linking to Primary and Secondary Sources</head>
+            <p>Nissen Online focuses on linking to the primary and secondary sources. The letters
+              printed in the biography will be linked to the <ref
+                target="http://dme.mozarteum.at/DME/briefe/doclist.php?l=2">DME edition of letters
+                and documents</ref>.<note>Mozart Letters and Documents—Online Edition, accessed
+                October 18, 2019, <ptr target="http://dme.mozarteum.at/DME/briefe/doclist.php?l=2"
+                />.</note> This edition provides metadata and a diplomatic transcription of all
+              Mozart letters, and displays digital images of the originals if they are in possession
+              of the Mozarteum Foundation Salzburg.</p>
+            <p>Every text passage identified as a secondary source will be linked to an electronic
+              resource. The <ref target="http://digibib.mozarteum.at/?lang=en">digital
+                collections</ref> of the Bibliotheca Mozartiana of the Mozarteum Foundation Salzburg
+              already provide hundreds of sources as digital images,<note>Digital Collections of the
+                Bibliotheca Mozartiana, accessed October 18, 2019, <ptr
+                  target="http://digibib.mozarteum.at/?lang=en"/>.</note> including books that were
+              once part of Nissen’s library. Furthermore, the digital collections of the Bavarian
+              State Library and the National Library of Austria’s digital portal <ref
+                target="http://anno.onb.ac.at/">ANNO</ref> (AustriaN Newspapers
+                Online)<note>ANNO—AustriaN Newspapers Online (Historische österreichische Zeitungen
+                und Zeitschriften online), accessed October 18, 2019, <ptr
+                  target="http://anno.onb.ac.at/"/>.</note> offer digital resources that include a
+              wide range of historical books, encyclopedias, and newspapers. Since not all of the
+              digital portals offer permalinks for individual pages, the Persistent Uniform Resource
+              Locator (PURL) for a digital resource as a whole is given within the <gi>title</gi>
+              element of the corresponding bibliographical entry (see <ptr type="crossref"
+                target="#example4"/>).</p>
+            <p>The integration of electronic images of the primary and secondary sources used by the
+              three authors serves two purposes: <list rend="ordered">
+                <item>Linking to electronic versions of the sources offers direct access to the
+                  original texts and allows comparison with the published texts in the biography.
+                  Nissen and Jähndl re-wrote the plagiarized material slightly. Feuerstein, on the
+                  other hand, acted like a copy editor, restructuring sentences to a great extent
+                  and occasionally also changing individual phrases. It is not easy to determine
+                  whether Feuerstein did this in order to obscure the true provenance of the text or
+                  simply for reasons of style. In addition, the publisher Breitkopf &amp; Härtel
+                  modernized and standardized spellings, especially in the Mozart letters. The
+                  online edition focuses on the macro level of the text, revealing for the first
+                  time all the sources Nissen, Jähndl, and Feuerstein used for the Mozart biography.
+                  Due to its complex revision process, a complete encoding of all changes on a micro
+                  level is currently not part of the project. Cases of specific semantic alterations
+                  (e.g., the original phrase <q>himmlischer Genuss <supplied><mentioned>heavenly
+                        pleasure</mentioned></supplied></q> was changed by Feuerstein to
+                    <q>herrlicher Genuss <supplied><mentioned>marvelous
+                      pleasure</mentioned></supplied></q>) will be documented with annotations by
+                  the editors.</item>
+                <item>The authors seldom used texts in full. Sometimes only one sentence on Mozart
+                  was taken from a long article primarily dealing not with Mozart but, for instance,
+                  with French opera history in general. Linking to electronic images of the sources
+                  allows the user to understand the context from which a phrase or paragraph was
+                  taken. Nevertheless, an additional commentary will discuss the source and its use
+                  in the biography (see <ptr type="crossref" target="#remarks"/>). Digital images of
+                  the working material are only presented in cases where it is the sole preserved
+                  source of otherwise lost documents, such as some of Mozart’s letters.</item>
+              </list>
+            </p>
+          </div>
+          <div xml:id="indexing">
+            <head>Indexing</head>
+            <p>To index persons, names of places, and musical works, the project uses local
+              databases of the Digital Mozart Edition (DME). Database entries relating to persons
+              reference the authority file <ref
+                target="https://www.dnb.de/EN/Professionell/Standardisierung/GND/gnd_node.html"
+                >GND</ref>,<note><title level="a">The Integrated Authority File (GND)</title>,
+                accessed November 6, 2019, <ptr
+                  target="https://www.dnb.de/EN/Professionell/Standardisierung/GND/gnd_node.html"
+                />.</note> if a listing is available. However, many people are mentioned in the
+              Nissen biography for whom there still exists no GND record. Thus the DME, with its
+              editors’ profound knowledge on Mozart’s contemporaries, has started generating GND
+              records for scholars working in collaboration with the library Bibliotheca Mozartiana.
+              Until this work is completed, it remains necessary to link to local databases.</p>
+            <p>For the identification of places we reference the <ref
+                target="http://www.geonames.org/">GeoNames</ref> authority files.<note>GeoNames
+                geographical database, accessed November 6, 2019, <ptr
+                  target="http://www.geonames.org/"/>.</note> Referencing authority files such as
+              GND and GeoNames enables interchange between projects. The letter edition of the DME,
+              which Nissen Online references, collaborates with <ref
+                target="https://correspsearch.net/index.xql?id=&amp;l=en"
+                >correspSearch</ref>,<note>Developed and operated by TELOTA (The Electronic Life of
+                the Academy), Berlin Brandenburg Academy of Sciences and Humanities (BBAW), accessed
+                November 6, 2019, <ptr target="https://correspsearch.net/index.xql?id=&amp;l=en"
+                />.</note> a tool that allows one to search the metadata of various scholarly
+              editions of letters.</p>
+          </div>
+        </div>
+      </div>
+      <div xml:id="conclusion">
+        <head>Conclusion</head>
+        <p>Despite several critical evaluations in the nineteenth and twentieth centuries, many
+          scholars in our days still cite the Nissen biography without being aware of the plagiarism
+          inherent in it. This is the reason a critical edition is needed. Our online edition offers
+          musicologists, and Mozart scholars in particular, a new, groundbreaking instrument for the
+          critical study of the Nissen biography, with a focus on the documentation and presentation
+          of the secondary sources used by its authors. These sources encompass most of the familiar
+          writings on Mozart up to 1829, but also less well-known publications.</p>
+        <p>The outlined encoding method allows for numerous search functions to be applied to the
+          text of the biography. It allows users to examine how much primary and secondary source
+          material and how much original text the biography contains. It also makes it possible to
+          retrieve the contributions of a specific editor—the text passages he inserted or wrote by
+          himself. And since the sources are further defined through the taxonomic order of the
+          bibliography, it is possible to search the biography for particular types of sources.</p>
+        <p>The making of Nissen’s <title level="m">Biographie W. A. Mozart’s</title> is by no means
+          an isolated case. Extensive utilization as well as copying of all available sources were
+          common practices in the making of nineteenth-century biographies (<ref type="bibl"
+            target="#klein09">Klein 2009, 247</ref>). Therefore, the outlined considerations on how
+          to encode Nissen’s compilation in TEI P5 might also be of interest for future work on
+          similar texts.</p>
+      </div>
+    </body>
+    <back>
+      <div type="bibliography">
+        <listBibl>
+          <bibl xml:id="berti14"><author>Berti, Monica</author>, <author>Bridget Almas</author>,
+              <author>David Dubin</author>, <author>Greta Franzini</author>, <author>Simona
+              Stoyanova</author>, and <author>Gregory R. Crane</author>. <date>2014</date>. <title
+              level="a">The Linked Fragment: TEI and the Encoding of Text Reuses of Lost
+              Authors</title>. <title level="j">Journal of the Text Encoding Initiative</title>
+            <biblScope unit="issue">8</biblScope>. <ptr
+              target="http://journals.openedition.org/jtei/1218"/>; doi:<idno type="doi"
+              >10.4000/jtei.1218</idno>.</bibl>
+          <bibl xml:id="demuth97"><author>Demuth, Dieter</author>. <date>1997</date>. <title
+              level="m">Das idealistische Mozart-Bild 1785–1860.</title>
+            <pubPlace>Tutzing</pubPlace>: <publisher>Schneider</publisher>.</bibl>
+          <bibl xml:id="klein09"><author>Klein, Christian</author>. <date>2009</date>. <title
+              level="m">Handbuch Biographie: Methoden, Traditionen, Theorien</title>.
+              <pubPlace>Stuttgart</pubPlace>: <publisher>Metzler</publisher>.</bibl>
+          <bibl xml:id="deutsch61"><author>Deutsch, Otto Erich</author>. <date>1961</date>. <title
+              level="m">Mozart, die Dokumente seines Lebens</title>. Neue Ausgabe sämtlicher Werke:
+            in Verbindung mit den Mozartstädten Augsburg, Salzburg und Wien, Serie 10, Supplement:
+            Werkgruppe 34. Kassel: Bärenreiter.</bibl>
+          <bibl xml:id="morgenstern14"><author>Morgenstern, Anja</author>. <date>2014</date>. <title
+              level="a">Neues zur Entstehungsgeschichte und Autorschaft der <title level="m"
+                >Biographie W. A. Mozart’s</title> von Georg Nikolaus Nissen (1828/29)</title>,
+              <title level="m">Mozart-Jahrbuch 2012</title>: <biblScope unit="page"
+              >21–146</biblScope>.</bibl>
+          <bibl xml:id="mosel1830"><author>Mosel, Ignaz Franz von</author>. <date>1830</date>.
+              <title level="a">Mozart’s Biographie</title>. <title level="j">Jahrbücher der
+              Literatur</title>
+            <biblScope unit="issue">49</biblScope> (January–March), <biblScope unit="page"
+              >161–211</biblScope>.</bibl>
+          <bibl xml:id="niemetschek1808"><author>Niemetschek, Franz Xaver</author>.
+              <date>1808</date>. <title level="m">Lebensbeschreibung des K. K. Kapellmeisters
+              Wolfgang Amadeus Mozart, aus Originalquellen, [...]</title>. <edition>Second
+              ed.</edition>
+            <pubPlace>Prag</pubPlace>: <publisher>Herrl</publisher>.</bibl>
+          <bibl xml:id="nissen1829a"><author>Nissen, Georg Nikolaus</author>. <date>1829a</date>.
+              <title level="m">Biographie W. A. Mozart’s: Nach Originalbriefen, Sammlungen alles
+              über ihn Geschriebenen, mit vielen neuen Beylagen, Steindrücken, Musikblättern und
+              einem Fac-simile.</title>
+            <pubPlace>Leipzig</pubPlace>: <publisher>Breitkopf und Härtel</publisher>.</bibl>
+          <bibl xml:id="nissen1829b"><author>Nissen, Georg Nikolaus</author>. <date>1829b</date>.
+              <title level="m">Anhang zu Wolfgang Amadeus Mozart’s Biographie: Nach Originalbriefen,
+              Sammlungen alles über ihn Geschriebenen, mit vielen neuen Beylagen, Steindrücken,
+              Musikblättern und einem Fac-simile.</title>
+            <pubPlace>Leipzig</pubPlace>: <publisher>Breitkopf und Härtel</publisher>.</bibl>
+          <bibl xml:id="nissen10"><author>Nissen, Georg Nikolaus</author>. <date>2010</date>. <title
+              level="m">Biographie W. A. Mozarts</title>, edited by <editor>Rudolph
+              Angermüller</editor>. <pubPlace>Hildesheim</pubPlace>:
+            <publisher>Olms</publisher>.</bibl>
+          <bibl xml:id="schlichtegroll1793"><author>Schlichtegroll, Friedrich</author>.
+              <date>1793</date>. <title level="a">Den 5. December. Johannes Chrisostomus Wolfgang
+              Gottlieb Mozart</title>, In <title level="m">Nekrolog auf das Jahr 1791. Enthaltend
+              Nachrichten von dem Leben merkwürdiger in diesem Jahre verstorbener Personen</title>
+            <biblScope unit="issue">2</biblScope>. Vol. <biblScope unit="volume">2</biblScope>,
+              <publisher>Gotha</publisher>: <biblScope unit="page">82–112</biblScope>.</bibl>
+          <bibl xml:id="schlichtegroll1794">[<author>Schlichtegroll, Friedrich</author>.]
+              <date>1794</date>. <title level="m">Mozarts Leben</title>, <pubPlace>Graz</pubPlace>:
+              <publisher>Joseph Georg Hubeck</publisher>.</bibl>
+          <bibl xml:id="tei16"><orgName>TEI Consortium</orgName>. <date>2016</date>. <title
+              level="m">TEI P5: Guidelines for Electronic Text Encoding and Interchange</title>.
+              <edition>Version 3.1.0</edition>. Last updated December 15. <ptr
+              target="https://www.tei-c.org/Vault/P5/3.1.0/doc/tei-p5-doc/en/html/"/>.</bibl>
+        </listBibl>
+      </div>
+    </back>
+  </text>
+</TEI>

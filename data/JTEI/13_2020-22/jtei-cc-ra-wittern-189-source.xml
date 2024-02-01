@@ -1,0 +1,768 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://github.com/DH-RSE/software-citation/raw/main/schema/tei_jtei_annotated.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="https://github.com/DH-RSE/software-citation/raw/main/schema/tei_jtei_annotated.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<!-- $Id: jtei-cc-ra-wittern-189-source.xml 978 2020-10-19 21:28:08Z ron $ -->
+<TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="main">Digital Texts in Practice</title>
+        <author>
+          <name>
+            <forename>Christian</forename>
+            <surname>Wittern</surname>
+          </name>
+          <affiliation>Christian Wittern studied philosophy, German literature, and Sinology in
+            Tübingen, Hamburg, Hangzhou, Kyoto, and Göttingen. During graduate studies in Kyoto, he
+            participated in the Zen Knowledgebase project led by Urs App at Hanazono University,
+            which published digital texts and research tools on a CD-ROM in 1995. After receiving a
+            PhD, he moved to Taiwan to work at the Chung-hwa Institute for Buddhist Studies and with
+            the Chinese Buddhist Electronic Text Association (CBETA), for which he has served as
+            adviser since its foundation in 1998. He currently works at the Center for Informatics
+            in East Asian Studies, Institute for Research in Humanities, <orgName>Kyoto
+              University</orgName>. One of his current research projects is the Kanseki Repository,
+            an open-source collection of premodern Chinese texts, currently holding almost ten
+            thousand items.</affiliation>
+          <email>cwittern@gmail.com</email>
+        </author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>TEI Consortium</publisher>
+        <date>19/10/2020</date>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by/4.0/">
+            <p>For this publication a Creative Commons Attribution 4.0 International license has
+              been granted by the author(s) who retain full copyright.</p>
+          </licence>
+        </availability>
+      </publicationStmt>
+      <seriesStmt>
+        <title level="j">Journal of the Text Encoding Initiative</title>
+        <editor role="guest">Susan Schreibman</editor>
+        <editor role="managing">Tanja Wissik</editor>
+        <editor role="managing">Joel Kalvesmaki</editor>
+        <editor role="managing">Pietro Maria Liuzzo</editor>
+        <editor role="managing">Tiago Sousa Garcia</editor>
+        <editor role="technical">Ron Van den Branden</editor>
+        <biblScope unit="issue" n="13">Selected Papers from the 2018 TEI Conference</biblScope>
+      </seriesStmt>
+      <sourceDesc>
+        <p>No source, born digital.</p>
+      </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+      <projectDesc>
+        <p>OpenEdition Journals -centre for open electronic publishing- is the platform for journals
+          in the humanities and social sciences, open to quality periodicals looking to publish
+          full-text articles online.</p>
+      </projectDesc>
+    </encodingDesc>
+    <profileDesc>
+      <langUsage>
+        <language ident="en">en</language>
+      </langUsage>
+      <textClass>
+        <keywords xml:lang="en">
+          <term>text encoding</term>
+          <term>character encoding</term>
+          <term>Chinese texts</term>
+          <term>SGML</term>
+          <term>XML</term>
+          <term>TEI</term>
+        </keywords>
+      </textClass>
+    </profileDesc>
+    <revisionDesc>
+      <change when="2020-05-13">Ron Van den Branden encoded the file.</change>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <front>
+      <div type="authorNotes">
+        <p>This paper was originally delivered as a keynote presentation at the TEI meeting in Tokyo
+          in September 2018. I would like to thank the audience for the interesting discussion and
+          feedback. In reworking the presentation into this paper, I have tried to take this into
+          account, while preserving traces of the oral delivery.</p>
+      </div>
+      <div type="abstract" xml:id="abstract">
+        <p>As a student of intellectual, religious, and cultural developments in areas of the
+          Chinese cultural sphere, my initial motivation for engaging with digital texts thirty
+          years ago was to open up the new possibilities that the digital medium offered to
+          researchers, without losing any of the affordances of a traditional printed edition. This
+          requirement includes use of texts for reading, translating, annotating, quoting, and
+          publishing, thus integrating with the whole of the scholarly workflow.</p>
+        <p>At that time theories of electronic texts started to appear and the Text Encoding
+          Initiative had already begun to create a common text model and interchange specification,
+          based mainly on European languages. For East Asian texts, things were much more
+          complicated because of different and quickly evolving character encoding standards,
+          different textual traditions and approaches to text editing, as well as different
+          institutional embedding.</p>
+        <p>In this paper, I will look back at these developments, first to recount some of the
+          history, albeit from a strictly personal perspective, but also to take stock of the
+          situation and consider where we are now, how we got there, and what remains to be done to
+          realize the dream of the universal digital text, easily shared and annotated, but still
+          tractable, verifiable, and authoritative.</p>
+      </div>
+    </front>
+    <body>
+      <div xml:id="introduction">
+        <head>Introduction</head>
+        <p>In this paper, I will look back at different stages of my work with digital texts. I do
+          this not so much because I consider what I did particularly important, but rather because
+          I think it represents some important milestones in the development of digital texts, the
+          theoretical basis for them, and ways of working with them. And of course I do it because I
+          know a bit more about my own work than about other things, even if these other things
+          might be more important.</p>
+        <p>I am a Sinologist by training; my interest lies mostly in Buddhist and Daoist texts from
+          China of the eighth to twelfth centuries, but also includes intellectual history and
+          poetry of many periods. I stumbled into what is now called digital humanities about the
+          time I was starting to write my master’s thesis, because I assumed that the computer would
+          be a shortcut to working with the huge amount of material. Rather than reading all the
+          stuff myself, I thought it would be easy to let the computer do the hard work and then
+          reap the rewards. Boy, was I wrong! Instead, for many years I had almost no time to read
+          books because there was so much missing on the computer side that I could only try to make
+          up for that by filling in the blanks (or at least participating in the filling in)
+          myself.</p>
+        <p>My real vision was to be able to work with digital texts in the same way as with printed
+          texts, but on top of that <emph>also</emph> being able to search, analyze, annotate,
+          excerpt, and reorganize the content. What I mean by <q>in the same way</q> specifically
+          includes things such as carrying the texts around with me (even without access to a
+          network, which at that time mostly connected mainframe computers over dial-up lines,
+          mainly for military use) and being able to scribble in the margins to keep a record of
+          what I had already read and what I thought of it. And of course the digital text would
+          have to be as <q>easy to use</q> as a book.</p>
+      </div>
+      <div xml:id="firststeps">
+        <head>First Steps: Encoding and <soCalled>Missing Characters</soCalled></head>
+        <p>My work with digital texts can be traced back to a rainy afternoon in October 1989, when
+          I opened in my Hamburg home the laptop computer I had acquired in Hong Kong on my way back
+          from a two-year stay at Hangzhou University, People’s Republic of China, and finally
+          managed to switch the display to Chinese characters. At that time the computer was running
+          the English version of MS-DOS 3.3, but clever programmers had found a way to overlay the
+          screen with Chinese characters through a memory resident overlay (see <ptr type="crossref"
+            target="#figure2"/>).</p>
+        <figure xml:id="figure1">
+          <graphic url="images/figure1.jpg" width="1280px" height="960px"/>
+          <head type="legend">The ETen Chinese System along with the hardware extension card for
+            desktop computers</head>
+        </figure>
+        <p>However, right here I encountered my first difficulty. The laptop I had bought did not
+          have the standard VGA resolution of 640 x 480, but had the slightly different resolution
+          of the Hercules graphics card, which should be 720 x 350. However, the display of this
+          laptop had only an emulation of the Hercules graphics mode, which displayed 720 x 480 dots
+          on the screen. The software I was using, ETen Chinese System (倚天中文系統; see <ptr
+            type="crossref" target="#figure1"/>), was designed for either the standard VGA or the
+          Hercules mode, but to start it for this specific hardware, it needed a special command
+          line switch that was not documented in the manual.</p>
+        <figure xml:id="figure2">
+          <graphic url="images/figure2.png" width="365px" height="273px"/>
+          <head type="legend">Startup screen of the Chinese system</head>
+        </figure>
+        <p>In the previous paragraph, you may have noticed many highly specialized terms that even
+          then were hardly known among technically minded people, let alone aspiring Sinologists.
+          Since I had absolutely no knowledge of the workings of computers or how to operate them,
+          it took me six weeks to get far enough in the manual, which was written in Chinese, to
+          figure out how to start the Chinese mode. I had to find the batch file which contained the
+          appropriate command-line switch before I could type Chinese characters. I then immediately
+          started to type in the poems I was working with for my master’s thesis in order to create
+          a critical edition, analyze them, and make a concordance. These were about three hundred
+          poems from manuscripts found in the Central Asian oasis city of Dunhuang at the beginning
+          of the twentieth century, with some fragments from collections in Japan (see <ptr
+            type="crossref" target="#figure3"/> for an example of such a manuscript fragment).
+          Fortunately for me, there was already a modern edition, but it was not very reliable, and
+          many of the characters in the manuscripts were not in the modern standard form used to
+          create the fonts in the Chinese system I was using.</p>
+        <figure xml:id="figure3">
+          <graphic url="images/figure3.jpg" width="3709px" height="2530px"/>
+          <head type="legend">A page from manuscript Stein 778, a fragment of Wang Fanzhi’s
+            poems</head>
+        </figure>
+        <p>Luckily, since I had studied the manual so thoroughly, I knew that there was a little
+          utility program that allowed users to create additional characters if the standard ones
+          did not suffice. Apparently, this problem was common enough to already have a ready-made
+          solution. I learned that a separate region in the codespace had been allocated for the
+          definition of such character shapes and they could even be added to the input system, thus
+          making them first-class citizens indistinguishable from the other characters.</p>
+        <div xml:id="codingsystems">
+          <head>Codes and Coding Systems</head>
+          <p>At this point, it might be useful to very briefly introduce character encoding.
+            Computers were invented in England, but the development into the kind of machines we use
+            today was done in the United States. At first every system had its own way of assigning
+            the internal representation, that is, numbers to visible shapes (i.e., characters).
+            Since this was not sufficient when computers started talking to each other, a standard
+            for encoding was needed. This came to be called the American Standard Code for
+            Information Interchange (ASCII), which contained only the most urgently needed
+            characters (in the version of 1962 only the uppercase letters of the English alphabet;
+            the lowercase rows were added in 1963), since memory allocation was an important
+            consideration. ASCII assigns 127 slots (see <ptr type="crossref" target="#figure4"/>),
+            most to visual characters, but also a significant number to control characters. These
+            slots are represented internally as a fixed sequence of <soCalled>on</soCalled> and
+              <soCalled>off</soCalled> states, usually represented in writing as 1 and 0. The
+            numbers are thus represented as integers with base two. A binary number with 7 digits
+            can encode up to 128 slots. This came to be called a <soCalled>byte</soCalled>, while
+            every individual digit is a <soCalled>bit</soCalled>. Internally the bits are
+            represented in memory in fixed spaces of length 8, but one of the bits was used for
+            control purposes, so only 7 bits were available for encoding in ASCII. All coding
+            systems that have been developed since then bear some kind of relationship to ASCII:
+            most involve an extension of the codespace; some also a slight change in the assignment
+            of non-alphabetical character shapes. The system I happened to start my computing life
+            with was developed in Taiwan and thus used the Big5 encoding, a coding system for
+            traditional Chinese, which enlarges the ASCII codespace by using two ASCII characters to
+            represent one Chinese character. Big5 is an industry-defined character encoding system
+            (I avoid the word standard here, since there are actually a number of competing,
+            slightly different versions and there is no definite standard document<note>The standard
+              reference for all East Asian encodings is the work by Ken Lunde, which started out as
+              a textfile called japan.info, circulated via email and on message boards, and later
+              was expanded and published as a book (<ref type="bibl" target="#lunde1993">Lunde
+                1993</ref>). Subsequently, he also integrated information about Chinese, Korean, and
+              eventually Vietnamese encodings (<ref type="bibl" target="#lunde1999">Lunde
+              1999</ref>). Now in its second edition (<ref type="bibl" target="#lunde2009">Lunde
+                2009</ref>), the latter also covers input methods, fonts, printing, and more; it is
+              still a convenient reference for everything relevant to information processing in East
+              Asia.</note>), while most of the other character encoding systems used in East Asia
+            are defined by the government bodies charged with defining standards. Big5 also allows
+            text in plain ASCII to mingle with Chinese, making it much easier to use in practice
+            than the first batch of official encodings, which assume a completely localized system
+            with no room for plain ASCII. Since characters can occupy either one position (English)
+            or two positions (Chinese), the processing becomes more complex and requires specialized
+            software.</p>
+          <figure xml:id="figure4">
+            <graphic url="images/figure4.jpg" width="1050px" height="742px"/>
+            <head type="legend">ASCII code table (1963)</head>
+          </figure>
+        </div>
+        <div xml:id="missincharacters">
+          <head>The Missing Characters</head>
+          <p>Back to the poems for my master’s thesis. I could type and display all the characters
+            easily, and even print them with my dot-matrix printer. But later, when I started to use
+            the quite nicer outline fonts that allow for much more detailed renderings of the
+            characters, which is especially necessary for kanji, I discovered that these customized
+            characters were missing, since there was no way to add them to an existing font. That
+            was the first time I encountered a problem I would spend a lot of time with in later
+            years: attempting to make these privately defined characters in some ways
+            interchangeable across boundaries of character encodings, operating systems, users, and
+            language environments.</p>
+        </div>
+      </div>
+      <div xml:id="zenbase">
+        <head>ZenBase</head>
+        <p>After receiving my master’s degree, I set out for graduate studies in Kyoto and soon
+          found myself busy helping Urs App and his Zen Knowledgebase project at the International
+          Research Institute for Zen Buddhism of Hanazono University. He was trying to create a text
+          database of all the texts that played a role in the development of Zen (or Chan) Buddhism
+          and was struggling with problems similar to mine. More importantly, he was also putting
+          out a newsletter, the <title level="j">Electronic Bodhidharma</title>,<note>See
+            Publications: <bibl><title level="j">Electronic Bodhidharma</title>,
+                <publisher>International Research Institute for Zen Buddhism</publisher>, accessed
+              July 22, 2019, <ptr target="http://iriz.hanazono.ac.jp/frame/book_f5.en.html"
+            /></bibl>.</note> which tried to connect projects working in the field of Buddhist
+          studies, make them compatible across language barriers, and also encourage collaboration
+          and avoid duplication.</p>
+        <p>Urs was also a founding member of the Electronic Buddhist Text Initiative (EBTI), which
+          was started by Lew Lancaster at UC Berkeley in 1993. Lew travels a lot and picks up on new
+          trends early. One souvenir of a visit he made to our Kyoto Institute that year was a thick
+          tome titled <title level="m">The SGML Handbook</title> (<ref type="bibl"
+            target="#goldfarb1990">Goldfarb and Rubinsky 1990</ref>), which landed on my desk and
+          claimed to be important. I started to dig into it, but it proved to be very hard to read.
+          Looking for easier access points and other people struggling to understand SGML, I found
+          references to something called the <soCalled>Text Encoding Initiative</soCalled> and
+          discussions of <soCalled>P2</soCalled>, which appeared to be a set of draft documents on
+          an FTP server in Oslo, Norway. This was a real revelation and I immediately saw that TEI
+          would be the future of digital texts: <quote source="#quoteref1">These Guidelines <gap/>
+            are addressed to anyone who works with any text in electronic form. They provide a means
+            of encoding those features of a text which need to be identified in some way in order to
+            aid the processing of that text by computer programs</quote><note>From the introduction
+            to P2 as of April 1993 (document <bibl xml:id="quoteref1">p2ab.p2x</bibl>) contained in
+            the TEI Consortium archive, accessed April 20, 2020, at <ptr
+              target="https://tei-c.org/Vault/GL/teip2.tar.gz"/>. (Accessed 2020-04-20),</note>
+            (<ref type="bibl" target="#msmq1993">Sperberg-McQueen and Burnard 1993</ref>). And this
+          information about the documents could also be defined in a machine-readable and
+          machine-exchangeable form! Eureka! Another result of this discovery was that we decided we
+          needed an introduction to TEI and invited the editors to the next EBTI conference, which
+          was being held at Haienji, a remote mountain monastery in Korea, in October 1994, to
+          discuss a <soCalled>Buddhist DTD</soCalled> (as we then called it, without really
+          understanding what a DTD was or why it was useful).</p>
+        <p>As you might expect, there were also many setbacks, especially since applying TEI to East
+          Asian texts with their various encodings and different writing conventions was still quite
+          a tall order, but the connection was made, and for the next twenty years, applying TEI to
+          East Asian Texts formed a considerable part of my professional life. Urs understood the
+          necessity of all this markup and SGML very well (and wrote enthusiastically about it in
+          the newsletter: see <ref type="bibl" target="#app1993">App 1993</ref>; <ref type="bibl"
+            target="#app1995a">1995a</ref>, <ref type="bibl" target="#app1995b">b</ref>, <ref
+            type="bibl" target="#app1995c">c</ref>), but he was still reluctant to burden our users
+          with it right away, since a toolchain for working with these SGML encoded texts was still
+          largely missing and what software was available would not work with our Chinese texts. So
+          the texts on the <title level="m">ZenBase CD 1</title> (<ref type="bibl" target="#app1995"
+            >App, Wittern, and Fujimoto 1995</ref>), which was published in June 1995, were still
+          plain text without TEI markup, but each of them had a TEI header attached, because we
+          realized that having the metadata of the texts in machine-readable form was itself a big
+          win. I did manage to sneak in one text I had encoded in TEI P3 (see <ptr type="crossref"
+            target="#figure5"/>), just to demonstrate the usefulness of this new technology, but we
+          needed to provide a program that would strip out the markup to make it usable in the same
+          way as the other texts. Use of the CD depended upon a grep-like tool, which extracts
+          matching lines from a text file, to locate a search term in the text.</p>
+        <figure xml:id="figure5">
+          <graphic url="images/figure5.png" width="1538px" height="1040px"/>
+          <head type="legend">TEI header of the first published Chinese text marked in TEI, the
+            Wudeng Huiyuan (<ref type="bibl" target="#app1995">ZenBase CD 1, June 1995</ref>)</head>
+        </figure>
+        <p>Although a primitive method limited in many ways, this tool had made digital texts usable
+          in practice for many scholars as far back as the early 1990s, and even today the regular
+          expression tool grep is loved by colleagues of my generation in Chinese Buddhist Studies.
+          And the TEI SGML–encoded version of the Wudeng Huiyuan (WDHY), despite the beauty of all
+          these angled brackets, did not see much use, at least not any use that would tap into its
+          true potential.</p>
+        <figure xml:id="figure6">
+          <graphic url="images/figure6.png" width="1667px" height="1053px"/>
+          <head type="legend">Text sample from the Wudeng Huiyuan (the same text as in <ptr
+              type="crossref" target="#figure5"/>)</head>
+        </figure>
+        <p>The screenshot in <ptr type="crossref" target="#figure6"/> shows the beginning of the
+          body of the text. What I was really proud of and always used as my sales pitch for TEI was
+          the use of the <gi>RS</gi><note>The same as <gi>rs</gi>, which in TEI P5 is glossed:
+              <quote source="#quoteref2">(referencing string) contains a general purpose name or
+              referring string.</quote>
+            <bibl xml:id="quoteref2"><orgName>TEI Consortium</orgName>
+              <date>2020</date>, Appendix C: Elements, <title level="a"><gi>rs</gi></title>, <ptr
+                target="https://tei-c.org/Vault/P5/4.0.0/doc/tei-p5-doc/en/html/ref-rs.html"
+              /></bibl>.</note> tag and its <att>KEY</att> attribute. This text recounts the sayings
+          and doings of about two thousand Zen masters, all of them referred to in the text as
+            <q>師</q>, which means <q>the master</q>. Using the <gi>RS</gi> tag allowed me to assign
+          a key to each of these masters and thus distinguish the utterances, find the sayings of
+          specific masters, and much more. Of course, the software to actually do this was not
+          available then, but the concept was still appealing.</p>
+      </div>
+      <div xml:id="cbeta">
+        <head>CBETA</head>
+        <p>PhD in hand, I went to Taiwan in February 1998 to attend the founding meeting of the
+          Chinese Buddhist Electronic Text Association (CBETA), and then immediately decided to move
+          there with my family. This provided me with an opportunity to work with a team of very
+          dedicated people on a new digital version of the Chinese Buddhist canon. At that time some
+          lay Buddhists and some researchers in Buddhist studies had started to type texts into
+          their computers and made them available on the internet, then in its infancy, thereby
+          allowing free sharing of these texts. As can be expected, there was a lack of
+          authoritative editions and scholarly rigor; most texts did not indicate the source of a
+          digital transcription and there was no way to easily compare one to a printed version to
+          make sure it was accurate. CBETA set a goal of providing a digital version of high
+          quality, one that could be useful to both scholars and believers, based for the first
+          batch of common texts on the most authoritative and widely used edition of the Chinese
+          Buddhist canon, the <title level="m">Taisho Shinshu Daizokyo</title> compiled in Japan
+          during the 1920s and 1930s.</p>
+        <p>Such a project could not be undertaken without a carefully designed workflow and a
+          well-defined text format. In my view, the only possible candidate for this was TEI. Nobody
+          else on the team had ever heard of it, but fortunately they accepted my suggestion and
+          since then the master text format (<ptr type="crossref" target="#figure7"/> shows an
+          excerpt from such a text) and a number of published versions derived from it have all been
+          encoded in TEI, with the most recent version in TEI P5 and Unicode.<note>The most recent
+            version of the whole textual database is available in the CBETA XML P5 <ptr
+              type="software" xml:id="GitHub" target="#GitHub"/><rs type="soft.name" ref="#GitHub"
+              >GitHub</rs> repository, accessed April 20, 2020, <ptr
+              target="https://github.com/cbeta-org/xml-p5"/>.</note>
+        </p>
+        <figure xml:id="figure7">
+          <graphic url="images/figure7.png" width="1538px" height="1042px"/>
+          <head type="legend">Text from the Taisho Tripitaka in the first XML version, ca.
+            1998</head>
+        </figure>
+      </div>
+      <div xml:id="tei">
+        <head>TEI Work</head>
+        <div xml:id="cew">
+          <head>Character Encoding Workgroup</head>
+          <p>Around this time (1999, to be precise), John Unsworth, Claus Huitfeld, Lou Burnard, and
+            others were trying to reactivate the TEI project, which had lost a bit of steam since
+            the publication of P3 in May 1994 (<ref type="bibl" target="#msmq1994">Sperberg-McQueen
+              and Burnard 1994</ref>). John was convinced that a consortium would be best suited for
+            this, and that it should in some ways be modeled on the Unicode Consortium, the body
+            that maintains the Unicode Standard together with the ISO (International Organization
+            for Standardization). After a long period of preparation, the TEI Consortium was
+            officially incorporated in December 2000 and development and maintenance activity of the
+            TEI Guidelines could resume. The first members’ meeting, convened by the late Antonio
+            Zampolli (1937–2003), was held in Pisa, Italy, in November 2001, and I was elected a
+            member of the newly formed Technical Council.</p>
+          <p>A long list of things urgently needed to be addressed, including the XML-compatible
+            version of the Guidelines, which was eventually published as P4 in 2002, and a complete
+            overhaul of the way character encoding was addressed within the TEI. For the latter
+            undertaking, I was tasked to form <ref target="https://tei-c.org/Vault/Workgroups/CE/">a
+              working group</ref>.<note>TEI Character Encoding Workgroup, last updated September 16,
+              2007, <ptr target="https://tei-c.org/Vault/Workgroups/CE/"/>.</note> The TEI Character
+            Encoding Workgroup’s efforts resulted, among other things, in the so-called Gaiji module
+            of P5,<note>This is now in <ref type="bibl" target="#teic2020">TEI Consortium
+              2020</ref>, 5: <title level="a">Characters, Glyphs, and Writing Modes</title>, <ptr
+                target="https://tei-c.org/Vault/P5/4.0.0/doc/tei-p5-doc/en/html/WD.html"/>.</note>
+            which allows users of the TEI Guidelines to encode characters within their texts which
+            have not yet been added to Unicode. As the name suggests, the creation of this module
+            was initially driven by the desire to address the problem of widely varying orthography
+            in texts printed in the premodern era across East Asia, but it proved applicable to many
+            other cases as well.</p>
+          <p>Beyond the direct realm of character encoding, the proposal made by this working group
+            also had an impact on the whole underlying text model of the TEI. If markup can be used
+            for the task of establishing the characters used to represent the text, in addition to
+            describing features of the text, which had been the assumption so far, then this
+            markup-containing text can in principle also appear in some values of attributes, such
+            as labels, representations for a lemma, as well as on <gi>orig</gi> or <gi>sic</gi>, to
+            give just a few examples. All of these instances of attributes that could now contain
+            markup had to be reformulated as elements, where the value could be textual content, so
+            that the same feature could be expressed without using attributes, and this in turn
+            paved the way to creating elements such as <gi>choice</gi>, which describe different
+            logical paths through a document.</p>
+          <p>The old assumption underlying the early work of the TEI (at least in some people’s
+            minds), that markup is what is in angled brackets and if one takes that away, the pure,
+            plain text would be left over for the reader to inspect (which had not been entirely
+            true anyway), completely fell apart. Even the generation of such plain text now involves
+            proper parsing and processing of the text with the XML toolchain, not just a few regular
+            expressions that a Perl programmer might come up with.</p>
+        </div>
+        <div xml:id="council">
+          <head>Council: P5</head>
+          <p>After sitting on the TEI Technical Council since 2001, to my surprise I was appointed
+            chair in 2003. Our task was to invent and implement the major architectural changes that
+            were required for P5, including a whole new templating infrastructure based on what came
+            to be known as ODD.<note>ODD (One Document Does it all) was the nickname for the
+              composition of the Guidelines, inspired by literate programming, which included the
+              description of the outcome both in its human-readable form and in the machine-readable
+              schema. The P5 version of this schema definition was first called the Son of ODD, but
+              later was simply known as ODD; see <ref type="bibl" target="#teic2020">TEI Consortium
+                2020, 22</ref>: <title level="a">Documentation Elements</title>, <ptr
+                target="https://tei-c.org/Vault/P5/4.0.0/doc/tei-p5-doc/en/html/TD.html"/>.</note>
+            Fortunately, the never-tiring Sebastian Rahtz (1955–2016) was a core member who did the
+            lion’s share of the work, along with Lou Burnard, James Cummings, and Laurent Romary, so
+            my job was simply to keep the ball rolling, schedule meetings, and the like.
+            Nevertheless, when we actually managed to publish P5 on schedule at the TEI meeting in
+            Maryland in 2007, it was a great relief and allowed me to shift focus to other work.</p>
+        </div>
+      </div>
+      <div xml:id="daozang">
+        <head><foreign>Daozang jiyao</foreign></head>
+        <p>Sometime around 2005, we started a project at our institute in Kyoto, led by the late
+          Monica Esposito (1962–2011), which aimed at research in Daoism during the Qing period,
+          focusing on one of the major text collections of that period, the <foreign>Daozang
+            jiyao</foreign> (DZJY). As happens frequently with premodern texts and text collections
+          in China, the content is somewhat fluid: after the initial printing, there have been
+          additions, reorderings, and other changes to the overall appearance, as well as a reprint
+          at the beginning of the twentieth century, which again was fluid in its composition. In
+          this project, a digital edition was to re-create this complex history and allow
+          researchers to inspect the different versions, compare the content, and trace the
+          development of texts. That was the plan.</p>
+        <p>After more than ten years of working with markup and digital texts, it was obvious to me
+          that this had to be done in TEI. I started to train our small team of researchers with a
+          pilot project while designing the workflow. Some of the digital transcriptions were
+          acquired from a company specializing in the production of text databases, others were
+          keyed in by our partners in Taiwan or China, and some were produced in-house. In any case,
+          the texts came in a plain-text format, where every line in the text file represented a
+          line of the original woodblock print. We converted these text files to structured XML
+          files, which were then proofread and enhanced with information about textual variants. Or
+          such was the plan. Then reality intervened.</p>
+        <p>As it turned out, mixing the two very distinct tasks of proofreading the digital text
+          against its original source and enhancing this digital text with readings from other
+          sources was not making the work easier, but rather required a constant switching of
+          contexts and became a burden that slowed down progress. On top of that, translating the
+          observations our researchers made on the texts into the correct markup constructs also
+          required much more training than expected and was undertaken less than unenthusiastically
+          by those involved.</p>
+        <p>This caused intense discussions among members of the team and we started to look in
+          different directions for solutions. At that time, I also started to dig further into
+          editorial theory, scholarly editing, and the way these fields were changed by the
+          introduction of digital tools. In the end, we decided to separate these concerns and
+          created separate files for each of the versions we edited—both a digital facsimile and a
+          documentary transcription—and separately a new edition, which also included punctuation
+          and standardized orthography that reflected the editorial views of the team.</p>
+        <p>The work on the <foreign>Daozang jiyao</foreign> thus proved to be a good opportunity to
+          further refine both the theoretical approach and the practical implementation of working
+          with premodern Chinese digital texts. Interestingly, at the same time, the TEI community
+          was updating and refining the TEI textual model,<note>I am specifically referring here to
+            the work by the Workgroup on Genetic Editions, chaired by Fotis Jannidis, which
+            published a draft in 2009. For details, see <title level="u">An Encoding Model for
+              Genetic Editions</title>, accessed July 3, 2020, <ptr
+              target="https://tei-c.org/Vault/TC/tcw19.html"/>.</note> which used to consist of
+            <soCalled>the one and true</soCalled> digital representation of the text in the form of
+          a transcribed text with markup applied to it, to which text model they added the notion of
+          a digital facsimile as a separate representation of the text, which shortly afterward was
+          followed by a way to document the physical representation of the text, via
+            <gi>sourceDoc</gi>. This development shows how the practice of working with digital text
+          and markup evolves over time and improves our understanding of both the textual features
+          and how markup should be done, a fact that is also documented on an almost daily basis in
+          the discussions on the TEI mailing list.</p>
+      </div>
+      <div xml:id="kanseki">
+        <head>Kanseki Repository</head>
+        <p>By the year 2010, the practice of using separate text files for different witnesses of a
+          text had become well established in our workflow. For tracking changes to these files, we
+          had used version control tools from the start. At some point, we realized that the modern
+          distributed variety of these tools, Git and <ptr type="software" xml:id="GitHub"
+            target="#GitHub"/><rs type="soft.name" ref="#GitHub">GitHub</rs>, not only had the
+          potential to solve the problem of keeping track of changes made to a file, but could also
+          be used to hold all witnesses of a text in one repository, each of them represented as a
+            <soCalled>branch</soCalled>. (In the terminology of version control software, a branch
+          is one current state in the editing history of the file, which has been given a name to
+          make it easy to address it and to track changes along a specific trajectory.)</p>
+        <p>The distributed nature of this toolchain, which unlike earlier version control systems
+          does not require a central authority, also seemed to have the potential to solve another
+          problem I had been trying to solve almost from the beginning of my work with digital
+          texts. As stated already, one of the aims of my work from the outset was to make a digital
+          version of a text at least as versatile as a printed scholarly edition. For me, this also
+          included taking ownership of one specific copy of such an edition and tracking the work by
+          adding marginal notes, comments, and references directly into the book. With <ptr
+            type="software" xml:id="GitHub" target="#GitHub"/><rs type="soft.name" ref="#GitHub"
+            >GitHub</rs> as a repository for texts and Git as a means to control the various
+          maintenance tasks, researchers interested in a text could clone the text, add their own
+          marginal notes, then make their version of the text available to us or any other
+          researcher to integrate, if we so chose.</p>
+        <p>A Git workflow can use any kind of digital material, but it works better with textual
+          material as opposed to images or videos, and even better for texts that use lines as a
+          structural element. This again is where the plain text we used in the <foreign>Daozang
+            jiyao</foreign> project worked better than did the XML tree structure, which is at the
+          core of every TEI file.</p>
+        <p>When I first presented this idea at the TEI conference in Würzburg in October 2011, I got
+          this comment via a tweet from one of the most respected members of the TEI community (<ptr
+            type="crossref" target="#figure8"/>: <code>@rahtz</code>: interesting that
+            <code>@cwittern</code> thinks <code>&lt;&gt;</code> is hard, Git is easy.
+            <code>#tei2011</code>).</p>
+        <figure xml:id="figure8">
+          <graphic url="images/figure8.png" width="1102px" height="489px"/>
+          <head type="legend">Aurélien Berra retweeting Sebastian Rahtz’s tweet</head>
+        </figure>
+        <p>As described in that talk (published as <ref type="bibl" target="#wittern2013">Wittern
+            2013</ref>), the text format used here is not simply plain text, but rather an extended
+          form of the text format used in the Emacs <ref target="https://orgmode.org/"
+            >Orgmode</ref>,<note>Accessed May 18, 2020, <ptr target="https://orgmode.org/"/>.</note>
+          in spirit comparable to the much more frequently seen Markdown, but better. The defining
+          difference here is the more elegant and functional choice of markup elements, and the fact
+          that the format was originally conceived as the base for a note-taking and scheduling
+          application, so the markup itself and the software that operates on it are essentially one
+          unit, and the development of the software (which is itself community driven) informs the
+          choices and considerations for markup constructs. For the DZJY project, we added a few
+          more conventions, to accommodate our specific needs, but without changing any of the
+          essential features. Org mode uses what I called an <soCalled>implicit markup</soCalled>,
+          which is exactly the opposite of XML. Org mode’s markup is as short as possible and in
+          many cases derived from context. An asterisk <code>*</code> followed by a space at the
+          start of a line indicates a heading of level one, instead of TEI’s <gi>div</gi> followed
+          by a <gi>head</gi><note>For a full description of this format, see <title level="u">The
+              Mandoku Text Format</title>, accessed April 20, 2020, <ptr
+              target="https://github.com/mandoku/mandoku/blob/master/doc/mandoku-format-en.org"
+            />.</note> (and the corresponding closing tags to convey this information).</p>
+        <p>From the beginning, the DZJY was in my view itself a pilot project for a much larger
+          project, on which preparatory work started in earnest in 2012: the <ref
+            target="https://www.kanripo.org/">Kanseki Repository (<ptr type="software"
+              xml:id="GitHub" target="#GitHub"/><rs type="soft.name" ref="#GitHub">GitHub</rs>
+            username <code>@kanripo</code>)</ref>.<note>Accessed June24, 2020, <ptr
+              target="https://www.kanripo.org/"/> and <ptr target="https://www.github.com/kanripo"
+            />.</note>
+          <foreign>Kanseki</foreign> here is the Japanese term for premodern Chinese texts, and
+            <soCalled>repository</soCalled> to be understood not in the technical sense, but more in
+          the sense used by scholarly archives and libraries.</p>
+        <p>Building on the experience of the DZJY, the Kanripo project sought a firm theoretical
+          foundation for the creation of digital textual artifacts, based mostly on the German
+          tradition of scholarly editing and its distinction between <soCalled>documentary
+            edition</soCalled> and <soCalled>interpretative edition</soCalled>. These two types are
+          distinguished through naming conventions for the Git branches. Documentary editions are
+          also represented through digital facsimiles, which can be called up to be displayed side
+          by side with the transcribed text. Interpretative editions may normalize the characters
+          used to modern forms, add punctuation, and also make it possible to add translations and
+          semantic annotations.</p>
+        <p>From earlier textual projects, such as ZenBase, CBETA, and DZJY, but also from other
+          sources available on the Internet, we have compiled an initial catalog of about 10,000
+          titles to be included in a first phase of the project; this catalog is also being
+          supplemented by users who deposit whatever texts they are interested in into the
+          repository. Since the initial publication on <ptr type="software" xml:id="GitHub"
+            target="#GitHub"/><rs type="soft.name" ref="#GitHub">GitHub</rs> in September 2015, and
+          the launch of a dedicated website in March 2016, usage has been increasing slowly but
+          steadily.</p>
+        <div xml:id="kanripo">
+          <head>Kanripo Project Details</head>
+          <p>All the texts are freely available on <ptr type="software" xml:id="GitHub"
+              target="#GitHub"/><rs type="soft.name" ref="#GitHub">GitHub</rs> in their source form.
+            This repository of texts can be accessed through the <ref
+              target="https://www.kanripo.org/">kanripo.org</ref> website, but also through a module
+            of the Emacs editor called Mandoku. This allows users to query, access, clone, edit, and
+            push the texts directly from their own computer. Reading, commenting, and editing do not
+            require internet access.</p>
+          <p>While not yet a full realization of the original vision, this project is currently the
+            best compromise I know of between allowing the researcher (user) to take complete
+            ownership of a text—not just in the technical sense, but also in a practical sense of
+            being in a position to actually be able to edit the text in a way that is meaningful in
+            the context of their aims—and authoritative vetting and editorial quality assurance.</p>
+          <p><ptr type="crossref" target="#figure9 #figure10 #figure11 #figure12"/> demonstrate the
+            concept and functions of the Kanseki Repository. On the website, users can search for
+            texts or browse the catalog. Once a text is found, the webserver reads it from the <ptr
+              type="software" xml:id="GitHub" target="#GitHub"/><rs type="soft.name" ref="#GitHub"
+              >GitHub</rs> repository and serves it to the user. For most texts, there are different
+            editions to choose from; usually both documentary and interpretative versions exist. For
+            many texts, there is also a digital facsimile, which can be called up alongside the
+            text; if there is more than one edition documented with a digital facsimile, the others
+            can also be directly inspected on the page for the text on the Kanseki Repository
+            website.</p>
+          <figure xml:id="figure9">
+            <graphic url="images/figure9.png" width="1736px" height="1390px"/>
+            <head type="legend">A text in the Kanseki Repository</head>
+          </figure>
+          <p>In the screenshot in <ptr type="crossref" target="#figure9"/>, there is a link at the
+            top of the page labeled <q><ptr type="software" xml:id="GitHub" target="#GitHub"/><rs
+                type="soft.name" ref="#GitHub">GitHub</rs></q>, from which the source of the text
+            can be directly accessed. A user who wishes to make changes to the text, by correcting,
+            annotating, or even translating it, can transfer a copy of this text from the public
+              <code>@kanripo</code> account, either by cloning it to their own account on <ptr
+              type="software" xml:id="GitHub" target="#GitHub"/><rs type="soft.name" ref="#GitHub"
+              >GitHub</rs>, or by downloading it locally.</p>
+          <p>The user can also log in to the Kanripo website with their Github credentials. When
+            this is done for the first time, the user has to grant the Kanseki Repository access to
+            their repositories. In addition, a new repository <soCalled>KR-Workspace</soCalled> is
+            created; some settings related to the use of the Kanseki Repository are stored here.
+            (Most websites store this kind of information in their own database, with no direct
+            access to it for the user. KR does it in this way <list rend="inline ordered">
+              <item>to allow the user control over their data and</item>
+              <item>so that the user’s preferences and settings can be applied to different
+                applications with which the user might access the KR.</item>
+            </list>) When the user selects a text for display that they had previously cloned to
+            their own account, the text shown will be their own private version, with all changes
+            and annotations, not the public one from <code>@kanripo</code>. See <ptr type="crossref"
+              target="#figure12"/> for an example. Other customizations and options become available
+            once logged in.</p>
+        </div>
+        <div xml:id="krshadow">
+          <head>KR-Shadow</head>
+          <p>What I have shown so far is for users interested in exploration or close reading. For
+            distant reading, text analysis, and similar purposes, a separate account <ref
+              target="https://www.github.com/kr-shadow"><code>@kr-shadow</code></ref><note>Accessed
+              June 24, 2020, <ptr target="https://www.github.com/kr-shadow"/></note> has been
+            created on Github. You will find here the texts of the <soCalled>master</soCalled>
+            branch, which is usually the normalized and edited version of the text in a form that
+            makes it easy to download the whole archive at once.</p>
+        </div>
+        <div xml:id="mandoku">
+          <head>Mandoku</head>
+          <p>As mentioned, the texts can also be accessed from the text editor Emacs, which is
+            available on all major platforms. This is intended for people who work intensely with a
+            text, for example as the topic for a PhD thesis. The Emacs module <ref
+              target="https://github.com/mandoku/mandoku">Mandoku</ref><note>Accessed May 18, 2020,
+                <ptr target="https://github.com/mandoku/mandoku"/>.</note> provides ways to search
+            the KR, clone texts, create new branches, and many other functions. All other Emacs
+            extensions and modules can also be used. <ptr type="crossref" target="#figure10"/> shows
+            an example of a text with its digital facsimile, and <ptr type="crossref"
+              target="#figure11"/> shows the same poems, rearranged by line, with a translation
+            added. In the middle there is an example of an inline note. And finally, <ptr
+              type="crossref" target="#figure12"/> shows the same text, pushed to the user’s account
+            and displayed from there on the Kanripo website.</p>
+          <figure xml:id="figure10">
+            <graphic url="images/figure10.png" width="1757px" height="989px"/>
+            <head type="legend">A text from the Kanseki Repository, side by side with a facsimile,
+              displayed using the Emacs module Mandoku</head>
+          </figure>
+          <figure xml:id="figure11">
+            <graphic url="images/figure11.png" width="1757px" height="1019px"/>
+            <head type="legend">The text with translation, also showing an annotation about a
+              Chinese term</head>
+          </figure>
+          <figure xml:id="figure12">
+            <graphic url="images/figure12.png" width="1864px" height="1028px"/>
+            <head type="legend">The text with translation, now pulled from the user’s <ptr
+                type="software" xml:id="GitHub" target="#GitHub"/><rs type="soft.name" ref="#GitHub"
+                >GitHub</rs> account</head>
+          </figure>
+        </div>
+        <div xml:id="teirelationship">
+          <head>Relationship to TEI</head>
+          <p>I see the approach described here not as an alternative to TEI but as a useful
+            extension. The original concept for the Kanseki Repository did include a transformation
+            tool that would take the different versions of one text and wrap them together into one
+            XML file. This is a <soCalled>simple</soCalled> transformation, but there has so far
+            been no opportunity to actually implement it. The other direction, from TEI P5 to a
+            repository of a text with witnesses as branches, does exist, but only for internal use,
+            as it requires a lot of assumptions about source and target. Seen from this angle, the
+            KR can also be envisioned as a postproduction tool, which opens up a new publication
+            avenue for the texts and for users’ engagement with them.</p>
+        </div>
+      </div>
+      <div xml:id="parting">
+        <head>In Parting</head>
+        <p>As shown in the above examples of projects I have been involved with over almost thirty
+          years, we have come a long way in sophistication of textual awareness and technical means
+          to model it. The TEI conferences, as well as job advertisements for early career academic
+          positions, for example, show that there is a thriving community of experts who engage in a
+          high-level discourse that further advances our understanding of complex features of texts
+          and ways to represent such features in machine-readable form, readily available for
+          display and analysis. This community is building a bridge right over the deep ridge
+          between researchers in humanities on the one side and computer and technical science on
+          the other.</p>
+        <p>For me, the question still remains: how can we make sure that the fruits of our efforts,
+          the sophisticated digital editions of texts, published online in most cases, actually
+          reach the researchers that want to make use of them? And do they reach them in a way that
+          is most beneficial to them? For example, a PhD student working on the development of
+          medical terminology in premodern China, or a researcher interested in changing concepts of
+          relationships as reflected in British novels of the eighteenth and nineteenth
+          centuries—for this kind of research, direct access to the source files of texts, and
+          ideally also ways to select, group, and annotate such files, would be necessary, as well
+          as knowledge on how to filter out exactly what is needed for the question at hand and
+          discard the rest.</p>
+        <p>Do we envision such work to be done by the researcher themselves? Or does this require a
+          team of specialists from different backgrounds? To what degree should we open the black
+          box which a web-based critical edition is to many of its users, and allow them (in fact
+          force them) to look beyond the surface?</p>
+        <p>As might be obvious by now, to me the answer to this question is: yes, we need to train
+          young researchers in humanities fields to have a minimum understanding of text encoding,
+          text processing, and the underlying technologies. This should be a general requirement,
+          not just an optional minor or a postgraduate-level course. And in an ideal world, I think
+          I would like to introduce them to Emacs, or to a similar tool that allows them to take
+          control of their digital life, rather than being limited to pressing a few colorful
+          icons.</p>
+      </div>
+    </body>
+    <back>
+      <div type="bibliography">
+        <listBibl>
+          <bibl xml:id="app1993"><author>App, Urs</author>. <date>1993</date>. <title level="a"
+              >Guidelines for the Creation of Large Chinese Text Databases</title>. <title level="j"
+              >Electronic Bodhidharma</title>
+            <biblScope unit="issue">3</biblScope>.</bibl>
+          <bibl xml:id="app1995a"><author>App, Urs</author>. <date>1995</date>a. <title level="a"
+              >The Code of the Codex</title>. <title level="j">Electronic Bodhidharma</title>
+            <biblScope unit="issue">4</biblScope>.</bibl>
+          <bibl xml:id="app1995b"><author>App, Urs</author>. <date>1995</date>b. <title level="a"
+              >Dog Ears and SGML</title>. <title level="j">Electronic Bodhidharma</title>
+            <biblScope unit="issue">4</biblScope>.</bibl>
+          <bibl xml:id="app1995c"><author>App, Urs</author>. <date>1995</date>c. <title level="a"
+              >From Dumb to Intelligent Text</title>. <title level="j">Electronic
+              Bodhidharma</title>
+            <biblScope unit="issue">4</biblScope>.</bibl>
+          <bibl xml:id="app1995"><author>App, Urs</author>, <author>Christian Wittern</author>, and
+              <author>Kumiko Fujimoto</author>. <date>1995</date>. <title level="m">ZenBase CD
+              1</title>. <pubPlace>Kyoto, Japan</pubPlace>: <publisher>International Research
+              Institute for Zen Buddhism</publisher>. CD-ROM.</bibl>
+          <bibl xml:id="goldfarb1990"><author>Goldfarb, Charles F.</author>, and <author>Yuri
+              Rubinsky</author>. <date>1990</date>. <title level="m">The SGML Handbook</title>.
+              <pubPlace>Oxford</pubPlace>: <publisher>Clarendon Press</publisher>.</bibl>
+          <bibl xml:id="lunde1993"><author>Lunde, Ken</author>. <date>1993</date>. <title level="m"
+              >Understanding Japanese Information Processing</title>. <pubPlace>Sebastopol,
+              CA</pubPlace>: <publisher>O’Reilly</publisher>.</bibl>
+          <bibl xml:id="lunde1999"><author>Lunde, Ken</author>. <date>1999</date>. <title level="m"
+              >CJKV Information Processing</title>. <pubPlace>Beijing</pubPlace>;
+              <pubPlace>Cambridge [MA]</pubPlace>: <publisher>O’Reilly</publisher>.</bibl>
+          <bibl xml:id="lunde2009"><author>Lunde, Ken</author>. 2009. <title level="m">CJKV
+              Information Processing</title>. <edition>2nd ed.</edition>
+            <pubPlace>Sebastopol, CA</pubPlace>: <publisher>O’Reilly</publisher>.</bibl>
+          <bibl xml:id="msmq1993"><editor>Sperberg-McQueen, C. M.</editor>, and <editor>Lou
+              Burnard</editor>, eds. <date>1993</date>. Introduction to <title level="m">Guidelines
+              for Electronic Text Encoding and Interchange</title>, <edition>version 2 (TEI
+              P2)</edition>, archived document p2ab.p2x. <pubPlace>Chicago; Oxford</pubPlace>:
+              <publisher>Text Encoding Initiative</publisher>. Accessed April 20, 2020. <ptr
+              target="https://tei-c.org/Vault/GL/teip2.tar.gz"/>.</bibl>
+          <bibl xml:id="msmq1994"><editor>Sperberg-McQueen, C. M.</editor>, and <editor>Lou
+              Burnard</editor>, eds. <date>1994</date>. <title level="m">Guidelines for Electronic
+              Text Encoding and Interchange</title>
+            <edition>(TEI P3)</edition>. 2 vols. <pubPlace>Chicago</pubPlace>;
+              <pubPlace>Oxford</pubPlace>: <publisher>Text Encoding Initiative</publisher>.</bibl>
+          <bibl xml:id="teic2020"><orgName>TEI Consortium 2020</orgName>. <title level="m">TEI P5:
+              Guidelines for Electronic Text Encoding and Interchange</title>. <edition>Version
+              4.0.0</edition>. Last updated February 13, 2020. <ptr
+              target="https://tei-c.org/Vault/P5/4.0.0/doc/tei-p5-doc/en/html/"/>.</bibl>
+          <bibl xml:id="wittern2013"><author>Wittern, Christian</author>. <date>2013</date>. <title
+              level="a">Beyond TEI: Returning the Text to the Reader</title>. <title level="j"
+              >Journal of the Text Encoding Initiative</title>
+            <biblScope unit="issue">4</biblScope>. <ptr
+              target="https://journals.openedition.org/jtei/691"/>; doi:<idno type="doi"
+              >10.4000/jtei.691</idno>.</bibl>
+        </listBibl>
+      </div>
+    </back>
+  </text>
+</TEI>

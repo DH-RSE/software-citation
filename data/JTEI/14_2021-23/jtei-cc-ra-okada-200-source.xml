@@ -1,0 +1,1230 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<!-- $Id: jtei-cc-ra-okada-200-source.xml 1184 2023-03-02 20:46:55Z ron $ -->
+<TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="main"><term>Rubi</term> as a Text</title>
+        <title type="sub">A Note on the Ruby Gloss Encoding</title>
+        <author>
+          <name>
+            <forename>Kazuhiro</forename>
+            <surname>Okada</surname>
+          </name>
+          <affiliation>Kazuhiro Okada, PhD, is a <roleName>lecturer</roleName> at
+              <orgName>Hokkai-Gakuen University</orgName>, Hokkaido, Japan. Formerly, he was a
+              <roleName>specially appointed assistant professor</roleName> at the <orgName>National
+              Institute of Japanese Literature</orgName>, where he was responsible for the
+            development of a project for digitized Japanese historical texts.</affiliation>
+          <email>oo.kzhr@gmail.com</email>
+        </author>
+        <author>
+          <name>
+            <forename>Satoru</forename>
+            <surname>Nakamura</surname>
+          </name>
+          <affiliation>Satoru Nakamura, PhD, is an <roleName>assistant professor</roleName> at the
+            Historiographical Institute of <orgName>the University of Tokyo</orgName>. His research
+            centers on the development and utilization of digital archives, particularly for
+            academic research. He played a central role in the digitization and publication of the
+            technical documents left by Yuzuru Hiraga, who was president of Tokyo Imperial
+            University and a vice-admiral in the shipbuilding division of the Imperial Japanese
+            Navy. Nakamura is currently engaged in developing digital archives for the University of
+            Tokyo Library.</affiliation>
+          <email>nakamura.satoru@mail.u-tokyo.ac.jp</email>
+        </author>
+        <author>
+          <name>
+            <forename>Kiyonori</forename>
+            <surname>Nagasaki</surname>
+          </name>
+          <affiliation>Kiyonori Nagasaki, PhD, is a <roleName>senior fellow</roleName> at the
+              <orgName>International Institute for Digital Humanities</orgName> in Tokyo. His main
+            research interest is in the development of a digital environment for Buddhist studies.
+            He is also investigating the significance of digital methodology in the humanities in
+            Japan. Recent publications include <title level="a">Contexts of Digital Humanities in
+              Japan</title>, in <title level="m">Digital Humanities and Scholarly Research Trends in
+              the Asia-Pacific</title>
+            <!-- [RvdB] no bibliographic entry -->(2019, 71–90); and <title level="m">Migrating
+              Cultural Materials to the Digital Environment</title> (in Japanese), Jusonbo,
+            2019.</affiliation>
+          <email>nagasaki@dhii.jp</email>
+        </author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>TEI Consortium</publisher>
+        <date>14/02/2023</date>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by/4.0/">
+            <p>For this publication a Creative Commons Attribution 4.0 International license has
+              been granted by the author(s) who retain full copyright.</p>
+          </licence>
+        </availability>
+      </publicationStmt>
+      <seriesStmt>
+        <title level="j">Journal of the Text Encoding Initiative</title>
+        <editor role="guest">Georg Vogeler</editor>
+        <editor role="managing">Tanja Wissik</editor>
+        <editor role="managing">Joel Kalvesmaki</editor>
+        <editor role="managing">Pietro Maria Liuzzo</editor>
+        <editor role="managing">Tiago Sousa Garcia</editor>
+        <editor role="technical">Ron Van den Branden</editor>
+        <biblScope unit="issue" n="14">Selected Papers from the 2019 TEI Conference</biblScope>
+      </seriesStmt>
+      <sourceDesc>
+        <p>No source, born digital.</p>
+      </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+      <projectDesc>
+        <p>OpenEdition Journals -centre for open electronic publishing- is the platform for journals
+          in the humanities and social sciences, open to quality periodicals looking to publish
+          full-text articles online.</p>
+      </projectDesc>
+    </encodingDesc>
+    <profileDesc>
+      <langUsage>
+        <language ident="en">en</language>
+      </langUsage>
+      <textClass>
+        <keywords xml:lang="en">
+          <term>ruby</term>
+          <term>Japanese text encoding</term>
+          <term>parallel textual structure</term>
+          <term>cultural accommodation</term>
+        </keywords>
+      </textClass>
+    </profileDesc>
+    <revisionDesc>
+      <change/>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <front>
+      <div type="abstract" xml:id="abstract">
+        <p>This article describes a proposal for elements of ruby glossing that was incorporated
+          into the <ref target="#TEIC2021" type="bibl">TEI Guidelines release 4.2.0</ref>, which was
+          codenamed <soCalled>Ruby</soCalled>. The Japanese writing system is one of the most
+          complex writing systems in the world, mixing three scripts. The system can also be
+          described as complex in terms of text linearity: the ruby gloss, originally developed from
+          vernacular glosses to Classical Chinese texts, is now a device for presenting a parallel
+          text alongside the main text. <term>Ruby</term>, or <term>rubi</term>, or
+            <term>furigana</term>, can be used to give clues about phonation as well as to present
+          another reading of the text, which sometimes can be an essential part of the text. Such a
+          textual structure requires another layer of semantics besides the existing set of
+          vocabulary, such as <gi>seg</gi>, <gi>note</gi> (or <gi>add</gi>) and <gi>span</gi>. Ruby
+          glosses can also be double-sided. This note discusses the encoding of examples attested in
+          real texts using proposed elements (<gi>ruby</gi>, <gi>rb</gi>, and <gi>rt</gi>), and also
+          considers Taiwanese <term>bopomofo</term>, a related gloss form.</p>
+      </div>
+      <div type="acknowledgements">
+        <p>This paper has been developed from a paper presented at the 2019 TEI Conference. The
+          authors wish to express their gratitude to Nobutake Kamiya, Naoki Kokaze, So Miyagawa, and
+          Wang Yifan for their input in completion of the paper and the related proposal to the TEI
+          Technical Council. Kazuhiro Okada wishes to express his gratitude for support from the
+          Introduction of TEI to Japanese Pre-modern Texts project at the National Institute of
+          Japanese Literature; Satoru Nakamura was supported by JSPS KAKENHI Grant Number
+          JP19K20626; Kiyonori Nagasaki was supported by JSPS KAKENHI Grant Numbers JP19H00516 and
+          JP19H00526. The authors are sincerely grateful for the concepts established by W3C (<ref
+            target="#W3c2001" type="bibl">2001</ref>; <ref target="#W3c2013" type="bibl">2013</ref>;
+            <ref target="#W3c2014" type="bibl">2014</ref>) and the clear guide developed by Ishida
+            (<ref target="#Ishida2016" type="bibl">2016</ref>).</p>
+      </div>
+    </front>
+    <body>
+      <div xml:id="div_intro">
+        <head>Introduction</head>
+        <p>Glossing is a custom found in most medieval manuscript cultures. In those cultures,
+          phrases or words written in classical languages are explained by marginalia, interlinear
+          glosses, and the like, normally in a vernacular language. Whereas most of these traditions
+          have been abandoned and have not been incorporated into modern writing systems, glosses in
+          the Japanese writing system have continuously evolved over the centuries, and are still
+          used today. The Japanese gloss is now called <foreign>rubi ルビ</foreign>, a Japanese
+          rendition of the movable body type size <soCalled>ruby</soCalled>. This paper describes
+          the necessity of the ruby as an element set in the TEI Guidelines by explaining its
+          characteristics. <note>
+            <p>This paper was originally submitted to jTEI before submission of the proposal to the
+              TEI-C Technical Council. In the course of editing, we have tried to reflect the
+              outcome, but it is not the object of this paper to describe the underlying
+              discussions. To prevent confusion with our proposed schema and the official schema, we
+              decided to omit, or move to footnotes, part of the discussion related to the schema
+              that we originally proposed. For details of the original schema and relevant
+              discussion within the TEI community, see GitHub issues <ptr
+                target="https://github.com/TEIC/TEI/issues/2054"/> and <ptr
+                target="https://github.com/TEIC/TEI/issues/2109"/>. The authors wish to express
+              sincere gratitude to the Technical Council, and especially Martin Holmes, who
+              enthusiastically advocated for the proposal’s acceptance into the Guidelines and
+              polished the details. Without him, the proposal would not have been committed so
+              promptly. Holmes and Syd Baumann kindly tested, modified, and refined our proposal and
+              edited the Guidelines based on our proposal. For details, see <ref
+                target="https://github.com/martindholmes/rubyForTEI">the dedicated repository on
+                GitHub</ref> (<ptr target="https://github.com/martindholmes/rubyForTEI"/>).</p>
+          </note>
+        </p>
+      </div>
+      <div xml:id="div_overview_of_ruby">
+        <head>Overview of Ruby</head>
+        <p>Other names for the ruby gloss include <foreign>furigana 振り仮名</foreign> and
+            <foreign>bōkun 傍訓</foreign>. <term>Rubi</term> was a slang term used by printers in the
+          early twentieth century, derived from the name of a size of movable type imported from
+          England, and it is now a standard term. In Japanese linguistics literature in Japanese,
+          the term <term>furigana</term> is preferred, as in Ōshima (<ref target="#Oshima1989"
+            type="bibl">1989</ref>), Konno (<ref target="#Konno2009" type="bibl">2009</ref>), and
+          Yada (<ref target="#Yada2018" type="bibl">2018</ref>). In this article, we consistently
+          use the term <soCalled>ruby</soCalled>, following the convention adopted in markup
+          languages.</p>
+        <p>Whereas interlinear glosses are not found exclusively in the Japanese writing system, and
+          similar phenomena can be observed in other East Asian material, the Japanese ruby is
+          surely among the most complex glosses. A ruby basically functions as a phonetic gloss to
+          an attached Chinese character, but it is not just a pronunciation aid; it can show
+          multilayered reading or even encode the main voice of the text (see <ptr
+            target="#div_historical" type="crossref"/> for a detailed discussion). Encoding
+          multilayered ruby glosses within the existing TEI framework had been a challenge.</p>
+        <p>A ruby gloss is visually aligned to some portion of text, but the relationship between a
+          ruby and the text which it glosses and which it is embedded in can be flexible. This
+          flexibility allows certain types of ruby to introduce nuanced or rather polyphonic
+          expressions. First, the structure of polyphonic texts is, we believe, different from that
+          of the interlinear glosses familiar from Western texts, normally tagged with <gi>add</gi>
+          or <gi>note</gi>, whose purpose is usually to clarify the meaning of the text or to
+          provide no more than a simple note, a common strategy used for encoding interlinear
+          glosses (see <ref target="#Estill2016" type="bibl">Estill, 2016</ref>). Second, ruby
+          glosses can be structurally multilayered: as demonstrated below, rubies can be doubled and
+          even tripled, thus piling up multiple voices. This complexity, which has hindered existing
+          ruby markup, may be seen as odd. But from another perspective, it is a unique
+          characteristic of the ruby gloss. This article explores ways to conceptualize these
+          phenomena within a manageable structure.</p>
+        <p>Modeling a culturally specific phenomenon with TEI in order to introduce elements into a
+          public standard, rather than creating a customized model, is also supported by the history
+          of attempts to mark up ruby glosses. In fact, the Japanese community has faced difficulty
+          with ruby markup in various projects: see Kawase, Ichimura, and Ogiso (<ref
+            target="#KawaseIchimuraOgiso2013" type="bibl">2013</ref>), on their Japanese literature
+          corpus building, and Cong and Takaku (<ref target="#CongTakaku2018" type="bibl"
+          >2018</ref>), on Tang poems in secondary education textbooks in Japan. While the former
+          encodes the glossed text with <gi>w</gi> and the ruby text with <att>ana</att>, the latter
+          directly introduces a tagset from HTML. It indicates the difficulty of sharing methods of
+          encoding interlinear glosses such as <gi>note</gi>, which are not explicitly included in
+          the Guidelines. In this regard, encoding the ruby model directly within the TEI Guidelines
+          not only provides a markup system natural to the text but accommodates other East Asian
+          materials. This advance will also benefit similar glossing practices around the world.</p>
+        <p>This paper is organized as follows: in <ptr target="#div_phenomena" type="crossref"/> we
+          describe ruby examples from a historical perspective. The first half of <ptr
+            target="#div_conceptualize" type="crossref"/> demonstrates encoded examples, and the
+          last half deals with an efficient way of modeling the ruby examples discussed. <ptr
+            target="#div_concl" type="crossref"/> discusses the proposal in light of other East
+          Asian materials.</p>
+      </div>
+      <div xml:id="div_phenomena">
+        <head>Ruby Examples to Be Examined</head>
+        <p>This section briefly explores the ruby examples to be considered. Before going deeper, we
+          provide a glossary to assist the discussion: <list type="gloss">
+            <label>glossed text (base text; <gi>rb</gi>)</label>
+            <item>A part of text that is glossed. Usually in <term>kanji</term>, or Chinese
+              characters, but not limited to them.</item>
+            <label>ruby text (gloss; <gi>rt</gi>)</label>
+            <item>A text that glosses the glossed text. In a plain text transcription, parenthesized
+              text shows ruby text. Usually written in <term>hiragana</term> (or
+                <term>katakana</term> for loanwords), but not exclusively (kanji,
+                <term>romaji</term>, and also in Taiwan, bopomofo will appear).</item>
+            <label>ruby gloss (ruby glossed text; <gi>ruby</gi>)</label>
+            <item>A glossed text and its corresponding ruby text.</item>
+            <label>right- (top-) or left- (bottom-)sided ruby</label>
+            <item>A ruby gloss whose position relative to the glossed text is semantically
+              meaningful. In Japanese, the default position is on the right side in a vertical text;
+              in a horizontal text, the default position will be the top side. A ruby gloss placed
+              on the other side implies a special case. A pair of ruby glosses that gloss a text
+              from both right and left sides or top and bottom sides is called a <term>double-sided
+                ruby</term>. In other writing systems the default position may differ. In the
+              transcriptions in this paper, a ruby text in the default position precedes a text on
+              the other side.</item>
+            <label><term>kanji</term> (Chinese character)</label>
+            <item>A script borrowed from the Chinese writing system for writing Japanese. Roughly
+              speaking, it denotes either a word of Chinese origin, or the morphemic root of a
+              Japanese native content word.</item>
+            <label><term>kana</term></label>
+            <item>Kana was developed from a phonological usage of kanji to write native words. It is
+              also a cover term for hiragana and katakana (see below).</item>
+            <label><term>hiragana</term></label>
+            <item>Hiragana is a cursive development of kana. Among its uses in the contemporary
+              Japanese writing system, it denotes the agglutinative part of the language, which
+              cannot be fully specified with kanji. To illustrate the idea with English, given the
+              word <mentioned>stronger</mentioned>, the root part, <mentioned>strong</mentioned>,
+              would be written in kanji and the rest in hiragana. Hiragana is also preferred when
+              use of kanji seems not to be suitable.</item>
+            <label><term>katakana</term></label>
+            <item>Katakana is developed from components or fragments of a phonological usage of
+              kanji. It was a major component of the glossing system of Classical Chinese writing,
+              and today katakana signals that the expression is special. It is usually used for
+              modern words borrowed from Western languages and for words with colloquial
+              nuances.</item>
+          </list>
+        </p>
+        <p>A description of ruby gloss patterns and backgrounds now follows. An adequate history of
+          the ruby gloss would require a book-length inquiry, but in this treatment we are going to
+          concentrate on the history of its structure and related matters. For simplicity, we will
+          first review modern Japanese ruby glosses. Then we will proceed to historical ones, and
+          lastly to Taiwanese bopomofo examples.</p>
+        <div xml:id="div_contemp">
+          <head>Modern Japanese Ruby Glosses</head>
+          <p>In modern Japanese texts, ruby glosses are used to gloss Chinese characters with kana
+            syllabaries. The relationship between glossed and ruby texts have two general patterns
+            that can be distinguished: either (A) the gloss is subject to the glossed text, or (B)
+            the opposite. Ōshima (<ref target="#Oshima1989" type="bibl">1989</ref>) summarizes the
+            possible ruby gloss patterns as follows: <cit>
+              <quote source="#quote_Oshima1989_ref1">
+                <list rend="simple">
+                  <item><label>A-a.</label> Specifying phonation, pattern 1: to prevent confusion
+                    with another word with the same orthography (such as <foreign>Ōgoto
+                      大事[おおごと]</foreign> with <foreign>Daiji</foreign>, <foreign>Ani-san
+                      兄[あに]さん</foreign> with <foreign>Nii-san</foreign>, or <foreign>Hinichi
+                      日日[ひにち]</foreign> with <foreign>Hibi</foreign>).</item>
+                  <item><label>A-b.</label> Specifying phonation, pattern 2: to supply an accented
+                    reading (such as <foreign>Senso 戦争[せんそ]</foreign> with Standard Japanese
+                      <foreign>Sensō</foreign> or <foreign>Chau 違[ちゃ]う</foreign> with
+                      <foreign>Chigau</foreign>).</item>
+                  <item><label>A-c.</label> Glossing a reading, pattern 1: to assist in the learning
+                    of new words. Orthography and pronunciation of unfamiliar words are
+                    presented.</item>
+                  <item><label>A-d.</label> Glossing a reading, pattern 2: to explain unfamiliar
+                    orthography. The reader would already know the word, but under a different
+                    orthography.</item>
+                  <item><label>B-e.</label> Specifying the meaning of the kana orthography. When the
+                    orthography is irregular for the gloss, as in <foreign>rabirinsu
+                      迷宮(ラビリンス)</foreign> for <foreign>meikyū</foreign>, <foreign>hito
+                      女(ひと)</foreign> for <foreign>on’na</foreign>, and <foreign>hairu
+                      侵(はい)る</foreign> for <foreign>okasu</foreign>.<note>
+                      <p>This is a pattern playing with ambiguity. In the first example,
+                          <foreign>ラビリンス</foreign>, a Japanese rendering of <q>labyrinth</q>, is
+                        what the author wished to show as a text. It is foreign (or rather to say
+                          <soCalled>exotic</soCalled>) to Japanese people, and the author decided to
+                        gloss the word, choosing the Chinese-origin synonym <foreign>迷宮</foreign>
+                          (<foreign>mígōng</foreign>). However, applying usual kana glosses here is
+                        not preferred because the gloss employs Chinese characters rather than
+                        standard Japanese orthography. At the same time, Chinese characters placed
+                        in a gloss are not always legible. Thus, the placement in this example was
+                        reversed: <foreign>迷宮</foreign> is on the text side, and
+                          <foreign>ラビリンス</foreign> is on the gloss side. Another motivation is that,
+                        following an older tradition, what is glossed should be Chinese characters.
+                        Ōshima’s (<ref target="#Oshima1989" type="bibl">1989</ref>) viewpoint is on
+                        the role of the glossing in question, so the
+                          <soCalled>counterpart</soCalled> explanation is enough at the moment. An
+                        English equivalent could be to mark the phrase <q>lol</q> with the gloss
+                          <q>hearty laughter</q>, or <q xml:lang="la">vir</q> with the gloss <q>a
+                          brave man</q>.</p>
+                    </note></item>
+                  <item><label>B-f.</label> Specifying the items referred to by the gloss.
+                      <foreign>Achira 大陸(あちら)</foreign> for <foreign>Tairiku</foreign> and
+                      <foreign>Ani-san 伊兵衛(あに)さん</foreign> for <foreign>Ibē san</foreign>.</item>
+                </list>
+                <figure xml:id="fig_oshima1989">
+                  <graphic url="images/fig_oshima1989.png" width="963px" height="1338px"/>
+                  <head type="legend">Original passage of Ōshima (<ref target="#Oshima1989"
+                      type="bibl">1989</ref>).</head>
+                </figure>
+              </quote>
+              <ref xml:id="quote_Oshima1989_ref1" target="#Oshima1989" type="bibl">Ōshima 1989,
+                  72–73<note>Translation ours with slight modifications in numbering and
+                  illustrations.</note></ref>
+            </cit>
+          </p>
+          <p>Ōshima (<ref target="#Oshima1989" type="bibl">1989</ref>) adds other cases, for
+            specifying the meaning of the Chinese character orthography (<foreign>tabū
+              禁忌[タブー]</foreign> [<q>taboo</q>] for <foreign>kinki</foreign> [<q>taboo</q> or
+              <q>contraindication</q>]), and the equal (or rather independent) relationship between
+            the gloss and the glossed text (<foreign>Wocchingu 再発見[ウォッチング]</foreign>
+              [<q>watching</q>] for <foreign>saihakken</foreign> [<q>rediscovery</q>]). We could add
+            more patterns of glossing other language expressions. Here, what is important is that
+            the uniform structure of the ruby gloss allows all of the above patterns. In addition,
+            these patterns are not exclusive.</p>
+          <p>Contemporary Japanese texts do not have ruby glosses unless they are needed. However,
+            as seen in the above patterns, especially patterns A-b, B-e, and B-f, ruby glosses can
+            be a device for rich expressions. Moreover, occasionally the text is glossed on both the
+            right and left, or the top and bottom sides. The examples below illustrate the usual
+            single- and double-sided ruby glosses.</p>
+          <p>Note that single-sided ruby glosses have typographical complexities that are
+            structurally straightforward. (As we will see later, HTML schemas have been concerned
+            with typographical matters.) The examples below, <ptr
+              target="#fig_kawakami1a #fig_kawakami1b #fig_kawakami2" type="crossref"/> (written top
+            to bottom and right to left) show some typographical conventions when glossing words
+            with complex orthography: <note>
+              <p>Generally speaking, in the Japanese writing system, one kanji denotes a single
+                morpheme or syllable. However, there are cases where two or more characters denote a
+                single morpheme, which could be termed a complex-orthography word. There are a
+                number of typographic considerations involved in the composition of ruby glossed
+                text. However, this does not mean that they present logical complexities, which is
+                the focus of the TEI proposal, and so differs from the W3C’s (<ref type="bibl"
+                  target="#W3c2012">2012</ref>) conception of the ruby glossed text.</p>
+            </note>
+            <list rend="bulleted">
+              <item><q>真面目(ま/じ/め)</q> (from <ptr target="#fig_kawakami1a" type="crossref"/>)</item>
+              <item><q>浴衣(ゆかた)</q> (from <ptr target="#fig_kawakami1b" type="crossref"/>)</item>
+              <item><q>あんたの/鼾(いびき)</q> (from <ptr target="#fig_kawakami2" type="crossref"/>)</item>
+            </list>
+            <figure xml:id="fig_kawakami1a">
+              <graphic url="images/fig_kawakami1a.png" width="178px" height="264px"/>
+              <head type="legend"><bibl>Kawakami Hiromi. 1998. <title level="m">Yashi, Yashi
+                    椰子・椰子</title>, p. 21, detail. Tokyo: Shinchosha.</bibl></head>
+            </figure>
+            <figure xml:id="fig_kawakami1b">
+              <graphic url="images/fig_kawakami1b.png" width="94px" height="307px"/>
+              <head type="legend"><bibl>Kawakami Hiromi. 1998. <title level="m">Yashi,
+                  Yashi</title>, p. 21, detail. Tokyo: Shinchosha.</bibl></head>
+            </figure>
+            <figure xml:id="fig_kawakami2">
+              <graphic url="images/fig_kawakami2-v2.png" width="335px" height="532px"/>
+              <head type="legend"><bibl>Kawakami Hiromi. 1998. <title level="m">Yashi,
+                  Yashi</title>, p. 29. Tokyo: Shinchosha.</bibl></head>
+            </figure>
+          </p>
+          <p>Unlike its appearance in the second (<ptr type="crossref" target="#fig_kawakami1b"/>),
+            the ruby text (<q xml:lang="ja">いびき</q>) is not glossed to the word <q xml:lang="ja"
+              >の</q>. This is because ruby glosses can be placed alongside a neighboring word if it
+            would not be misleading, especially if the glossed text is in
+            <!-- [RvdB] check consistency of kanji + kana -->kanji and the neighboring words are in
+            kana. This is not a structural but a typographical matter; see W3C (<ref
+              target="#W3c2012" type="bibl">2012, §3.3.5, figs. 121, 122</ref>) for further
+            illustrations.</p>
+          <p>Yet another example of a single-sided ruby gloss is of the pattern II-e (<ptr
+              target="#fig_kindaichi" type="crossref"/>, written top to bottom and right to left).
+            Here the translator rendered the name of an Ainu divinity,
+              <foreign>kamuy’otopus</foreign>, in Japanese characters that were equivalent to the
+            Chinese characters <q>神髪彦(カムイオトプシ)の</q>. We note that again the ruby text is allowed to
+            continue alongside a character that is not being glossed. <figure xml:id="fig_kindaichi">
+              <graphic url="images/fig_kindaichi.png" width="183px" height=" 321px"/>
+              <head type="legend"><bibl>Kindaichi Kyosuke, editor and translator. 1936. <title
+                    level="m">Ainu jojishi yūkara アイヌ叙事詩ユーカラ [Yukar: Ainu Epics]</title>, p. 219.
+                  Tokyo: Iwanami Publishers.</bibl></head>
+            </figure>
+          </p>
+          <p>The next example is double-sided. In this example (<ptr target="#fig_yamakawa"
+              type="crossref"/>), <q>大王(おおきみ)(だいおう)</q>, the preferred reading
+              <foreign>ōkimi</foreign> is presented as the top ruby text and another reading,
+              <foreign>daiō</foreign>, is presented parenthesized as a bottom-sided ruby. It should
+            be noted that, as this is a textbook of Japanese history for Japanese junior high
+            schools, it has numerous interlinear glosses, birth and death years for example.
+            However, these glosses are not tied with a particular text, but just function as
+            pointers, explanations, or something else. We consider them <emph>not</emph> to be ruby
+            glosses, but general annotations that fall under the semantics of <gi>note</gi>. <figure
+              xml:id="fig_yamakawa">
+              <graphic url="images/fig_yoshikawa.png" width="558px" height="372px"/>
+              <head type="legend"><bibl>Ishii Susumu, Gomi Fumihiko, Sasayama Haruo, and Takano
+                  Toshihiko, editors. 2007. <title level="m">Shōsetsu nihonshi 詳説日本史 [Advanced
+                    Japanese History]</title>, p. 21. Tokyo: Yamakawa Shoten.</bibl></head>
+            </figure>
+          </p>
+          <p>Lastly, although not yet confirmed by a real example, a double-sided ruby could overlap
+            and not nest. In a blog entry discussing complex ruby structures and their encodings,
+            Uchida cites a constructed example presented by a now-deleted tweet: <cit>
+              <quote source="#quote_uchida_ref1">
+                <p>まず、<ref target="http://twitter.com/koueihei/status/17330668872"
+                    >@koueiheiさんによるルビの例</ref>。「労働者階級意識」といふ親文字列のうち、「労働者階級」に「プロレタリアート」といふルビ。同時に「階級意識」に「かいきゅういしき」といふルビ。これは入れ子方式ではマーク付けできない。</p>
+                <p>もっとも、日本語でも英語でも「階級」と「意識」は2つの単語に分解できるんぢゃないか、したがって無理にcomplex
+                  rubyで扱ふ必要な無いんぢゃないか、といふ指摘もあらう。</p>
+              </quote>
+              <ref xml:id="quote_uchida_ref1" target="#Uchida2010" type="bibl">Uchida 2010</ref>
+            </cit> Twitter user <code>@koueihei</code> (who had deleted their account at the time of
+            writing) offers a glossed text that reads <q>労働者階級意識</q> —a phrase that is difficult to
+            translate. In this example, <code>@koueihei</code> has added two ruby glosses:
+              <foreign>プロレタリアート</foreign> (<foreign>Proletariat</foreign>) to the (upper?/right?)
+            side of <q>労働者階級</q>, and <q>かいきゅういしき</q> to the (bottom?/left?) side of <q>階級意識</q>
+            (translation of <foreign>Klassenbewußtsein</foreign> or class consciousness). The
+            double-sided ruby could be visualized as in either <ptr target="#fig_proletariat1"
+              type="crossref"/> or <ptr target="#fig_proletariat2" type="crossref"/>. <figure
+              xml:id="fig_proletariat1">
+              <graphic url="images/fig_proletariat_consciousness.png" width="987px" height="255px"/>
+              <head type="legend">A possible rendering of an example in Uchida (<ref type="bibl"
+                  target="#Uchida2010">2010</ref>), where the vertical bar shows morpheme
+                boundaries. In this variant, the bottom-side ruby corresponds with word
+                divisions.</head>
+            </figure>
+            <figure xml:id="fig_proletariat2">
+              <graphic url="images/fig_proletariat_consciousness_v2.png" width="987px"
+                height="255px"/>
+              <head type="legend">Another rendering of <ptr type="crossref" target="#fig_yamakawa"
+                />. In this variant, the bottom-side ruby corresponds with morpheme
+                divisions.</head>
+            </figure>
+          </p>
+          <p>According to Uchida, word-to-morpheme alignment, as shown in <ptr
+              target="#fig_proletariat1" type="crossref"/>, cannot be represented using nested
+            structure. It is true, as Uchida also points out, that the glossed text consists of
+            three morphemes, and that it does not need to encode both rubies as a single ruby gloss
+            structure, as we can see from the glossing boundaries in <ptr target="#fig_proletariat2"
+              type="crossref"/>. It is enough then to encode both rubies at the boundary of
+              <q>階級</q> and <q>意識</q>, meaning that it is not necessarily an encoding problem.
+            However, we can imagine a case where the left/bottom-side ruby was
+              <foreign>Klassenbewußtsein</foreign>, and hence remains a problem for nested encoding.
+            In any case, this example is surely one of the rarest structures among ruby glosses. But
+            it is theoretically possible, and the possibility that examples will emerge warrants
+            consideration of encoding strategies that can handle them.</p>
+        </div>
+        <div xml:id="div_historical">
+          <head>Historical Japanese Ruby Glosses</head>
+          <p>Historical ruby glosses are not too distant from modern ruby glosses. Ruby is
+            originally derived from interlinear glosses to Classical Chinese texts, or
+              <foreign>Kanbun Kundoku (漢文訓読)</foreign>.<note>
+              <p>Although the Japanese writing system adopts Chinese characters, the way it uses
+                them cannot be summarized in a sentence. Roughly speaking, the major categories of
+                Chinese characters in the Japanese writing system fall into Sino-Japanese and native
+                strata. The Sino-Japanese stratum represents the adaptation of Chinese
+                pronunciation, whereas the native stratum represents renditions of the Chinese
+                language, in which a character generally represents a word or a syllable. The
+                complexity of these reading strata also contributed to the development of
+                interlinear glosses as a part of the writing system. <foreign>Ateji</foreign>, or
+                  <quote source="#quote_Seeley1991_ref1">phonogram usage of Chinese
+                  characters</quote> (<ref target="#Seeley1991" xml:id="quote_Seeley1991_ref1"
+                  type="bibl">Seeley 1991, 188</ref>), is the most related to the need for ruby in
+                Japanese texts. As <foreign>ateji</foreign> strips the character in question of its
+                semantics, it can be ambiguous without the aid of a ruby gloss. For example,
+                  <foreign>urayamashii</foreign>, or <q>to be jealous</q>, has been written in
+                numerous ways: a more recent rendition prefers <q xml:lang="ja">羨しい</q>, compared
+                with Chinese <foreign>xiànmù 羨慕</foreign>, or <q>to be jealous</q>, but older
+                renditions employed <foreign>ateji</foreign> as in <foreign>裏山敷い</foreign>, where
+                all three Chinese characters denote solely their phonetic value. Another device
+                which deserves to be taken into account is <foreign>jukuji kun</foreign>, a native
+                reading for a set of Chinese characters. As its name suggests, <foreign>jukuji
+                  kun</foreign> provides a reading in cases where a sequence of the native reading
+                for each character would not be adequate for a set of characters. For example, a
+                rendition for the Chinese word <foreign>zuórì 昨日</foreign> is
+                  <foreign>kinō</foreign> and not the Japanese equivalent <foreign>saki no
+                  hi</foreign>. This also makes it difficult to read a text in a consistent way, and
+                is helpfully shored up by a ruby gloss. The heavy use of the ruby gloss in the
+                Japanese writing system emerged from such polyvalent Chinese character readings.</p>
+            </note> A summary of the application of Japanese glosses to Classical Chinese texts can
+            be found in Whitman (<ref target="#Whitman2011" type="bibl">2011</ref>) and Kosukegawa
+              (<ref target="#Kosukegawa2014" type="bibl">2014</ref>). See Whitman (<ref
+              target="#Whitman2011" type="bibl">2011</ref>) for a comparison with glosses in Latin
+            manuscripts. Kosukegawa (<ref target="#Kosukegawa2014" type="bibl">2014</ref>)
+            summarizes the Japanese glossing practice as follows: <cit>
+              <quote source="#quote_Kosukegawa2014_ref1">
+                <list rend="ordered">
+                  <item>The source texts of <foreign>kundoku</foreign> glossing were in classical
+                    Chinese.</item>
+                  <item><gap/></item>
+                  <item><foreign>Kundoku</foreign> involves the act of directly adding glosses to a
+                    classical Chinese text.</item>
+                  <item>The method of adding glosses has both similarities and differences in each
+                    Sinoxenic language.<note>Any language that has a tradition of reading Chinese
+                      characters is called Sinoxenic. Sinoxenic languages include Sino-Japanese,
+                      Sino-Korean, and Sino-Vietnamese.</note></item>
+                </list>
+              </quote>
+              <ref xml:id="quote_Kosukegawa2014_ref1" type="bibl" target="#Kosukegawa2014"
+                >Kosukegawa 2014, 1</ref>
+            </cit> The third point is particularly relevant to the ruby phenomenon. Here Kosukegawa
+              (<ref target="#Kosukegawa2014" type="bibl">2014</ref>) translates the summarization of
+            the Japanese glossing practice by Ishizuka (<ref xml:id="quote_Ishizuka2001_ref1"
+              target="#Ishizuka2001" type="bibl">2001, 2</ref>) as <quote
+              source="#quote_Ishizuka2001_ref1">adding of annotations or symbols to aid in the
+              comprehension of a classical Chinese <supplied>text</supplied> while reading
+              it.</quote> The purpose of glossing, not translating, is to preserve the original
+            glossed text as it is. The purpose of Japanese ruby is practically the same: to leave
+            the intended graphic expression in the glossed text while conveying the meaning.</p>
+          <p>What distinguishes ruby glosses from glosses to the Classical Chinese text is that ruby
+            glosses are applied to text in the same language. Yada (<ref target="#Yada2018"
+              type="bibl">2018</ref>) identifies the earliest ruby gloss from late twentieth-century
+            materials. Konno (<ref target="#Konno2009" type="bibl">2009, 93</ref>) demonstrates that
+            B-e–type ruby glosses can be attested as early as the sixteenth century. Such glosses
+            are as a rule not later additions but glosses by the authors themselves (see also <ref
+              target="#Yada2018" type="bibl">Yada 2018, 803</ref>).</p>
+          <p>Double-sided ruby glosses flourished between the eighteenth and nineteenth centuries,
+            when the Tokugawa Shogunate ruled the nation. Murakami (<ref target="#Murakami2017"
+              type="bibl">2017</ref>) claims that those double-sided ruby glosses emerged from the
+            Sinological practices of Ogyū Sorai (1666–1728), who valued understanding texts through
+            the living vernacular language rather than the vernacular-glossed Classical Japanese
+            language. According to Murakami (<ref target="#Murakami2017" type="bibl">2017</ref>),
+            while the right side of the ruby gloss generally shows the pronunciation, the left side
+            of the ruby gloss is a vernacular explanation of the glossed text.<note>
+              <p>We do not say much about the practice of glossing Classical Chinese texts. However,
+                it should be noted that, prior to Sorai, nonstandard glosses had long been practiced
+                in Chinese character dictionaries and in formal texts such as the <title level="m"
+                  >Chronicle of Japan</title>, written in Classical Chinese, which Japanese readers
+                have long preferred to read in its artificial archaic language (<ref
+                  target="#Konno2009" type="bibl">Konno 2009, ch. 2</ref>). As for the Chinese
+                character dictionaries, since a Chinese character can have a number of equivalents,
+                more than ten glosses may appear, whereas they are not part of a running text. We do
+                not see any rationale for treating them as a kind of ruby gloss, as in Konno (<ref
+                  target="#Konno2009" type="bibl">2009</ref>). Glosses to Classical Chinese texts
+                are in the semantic tradition of interlinear glosses.</p>
+              <p>However, a modern rendition of a gloss of a Classical Chinese text can pose issues
+                since it sometimes distinguishes agglutinative endings for a word root (or a stem)
+                by the choice of two types of kana. See Cong and Takaku (<ref
+                  target="#CongTakaku2018" type="bibl">2018</ref>) and Nagasaki, et al. (<ref
+                  target="#NagasakiEtal2022" type="bibl">2022</ref>) for further discussion.</p>
+            </note> Murakami’s (<ref target="#Murakami2017" type="bibl">2017</ref>) argument is
+            important to account for the question as to why the complex glosses to Classical Chinese
+            texts turn into the more modern double-sided rubies: the old glosses, sometimes
+            successively accumulating, as a rule show independent interpretations and have nothing
+            to do with position; in contrast, Sorai’s double-sided ruby glosses are systematically
+            positioned. Sorai’s double-sided ruby glosses are intended to explain Classical Chinese
+            texts in the vernacular Japanese language, and the same motivation lies behind
+            double-sided rubies in Japanese texts.</p>
+          <p>Explanatory vernacular glosses also developed during the days of the Tokugawa Shogunate.<note>
+              <p>This practice was a fruit of the adaptation of Chinese vernacular-influenced
+                literature, called <foreign>báihuà wénxué 白话文学</foreign>. The adopters wished to
+                show traces of adaptation by rendering Chinese words as they were written, but at
+                the same time, they wanted them to be read in Japanese discourse: they could imitate
+                the old glossing method to show their intended reading while showing the Chinese
+                words in Chinese characters. In this way, ruby glosses became important for reading
+                the text.</p>
+            </note> In a limited timeframe from the eighteenth to the nineteenth century,
+            publications for the general public in which most Chinese characters were glossed
+            appeared widely. Yanaike (<ref target="#Yanaike2009" type="bibl">2009</ref>) claims that
+            such glosses, rather than the glossed text itself, were what people actually read. Such
+            blanket use of glossing was demanded because of the Japanese population’s low literacy
+            in Chinese characters, and was possible because of printing: almost all Japanese
+            publications were produced using woodblock printing. Only in the last decade of the
+            nineteenth century did movable type printing supersede woodblock printing. The ruby
+            gloss became uneconomical in movable type printing, and the introduction of modern
+            compulsory education reduced the need for the glosses.</p>
+          <p>The example below is a page from an early modern text, <title level="m">Hanabusa
+              sōshi</title> (<ptr target="#fig_hanabusa" type="crossref"/>). It is written top to
+            bottom and right to left. Here, the line on the far left is to be transcribed: <cit>
+              <quote source="#quote_hanabusa_ref1"
+                >にむかひ梁(りやう)武帝(ぶてい)の仏(ぶつ)に淫(いん)して民膏(みんかう)(たみのあぶら)を費(ついや)し国の衰(おとろ)へとなり</quote>
+              <bibl xml:id="quote_hanabusa_ref1">Tsuga Teishō. (1749). <title level="m">Hanabusa
+                  sōshi 英草紙</title>. Vol. 1, f. 3r. doi:<idno type="DOI"
+                >10.20730/200016727</idno>.</bibl>
+            </cit>
+            <figure xml:id="fig_hanabusa">
+              <graphic url="images/fig_hanabusa.jpg" width="1008px" height="1366px"/>
+              <head type="legend"><bibl>Tsuga Teishō. (1749). <title level="m">Hanabusa
+                    sōshi</title>. Vol. 1, f. 3r. doi:<idno type="DOI"
+                  >10.20730/200016727</idno>.</bibl></head>
+              <head type="license">National Institute of Japanese Literature, Japan. CC BY-SA
+                4.0.</head>
+            </figure> In this example, a sequence of two characters <foreign>民膏</foreign>, or the
+            wealth of the people, is doubly glossed, being Sino-Japanese reading in an old-fashioned
+            spelling <q>minkō みんかう</q> (cf. Mandarin <foreign>mín gāo</foreign>): (1) on the right
+            side, with the native word explanation <q>tami no abura たみのあぶら</q> and (2) on the left
+            side. The left-side gloss, which literally means <q>the fat of the people</q>, is a
+            rather literal rendition of the glossed characters, meaning that it explains the
+            characters rather than the word.</p>
+          <p>The next example is taken from a Japanese song, <title level="m">Igirisu
+              dodoitsu</title> (<ptr target="#fig_igirisu" type="crossref"/>, written top to bottom
+            and right to left). The first line has triple ruby glosses: <cit>
+              <quote source="#quote_igirisu_ref1">まことリットル(りつとる)(少(すくな)き)</quote>
+              <bibl xml:id="quote_igirisu_ref1">Bōan Koikoi Sanjin. Late 18c. <title level="m">Gengo
+                  chūkai igirisu dodoitsu言語注解英語土渡逸</title>. Vol. 1, f. 1v. doi:<idno type="DOI"
+                  >10.20730/200018433</idno>.</bibl>
+            </cit>
+            <figure xml:id="fig_igirisu">
+              <graphic url="images/fig_igirisu.png" width="805px" height="1170px"/>
+              <head type="legend"><bibl>Bōan Koikoi Sanjin. Late 18c. <title level="m">Gengo chūkai
+                    igirisu dodoitsu</title>. Vol. 1, f. 1v. doi:<idno type="DOI"
+                    >10.20730/200018433</idno>.</bibl></head>
+              <head type="license">National Institute of Japanese Literature, Japan. CC BY-SA
+                4.0.</head>
+            </figure> In this example, the left-side gloss is itself glossed. The glossed text (1),
+            in katakana script, is a rendition of <q>little.</q> An equivalent transcription in
+            hiragana is given in the right-side ruby gloss (2), and a translation is given in the
+            leftmost left-side ruby gloss (3). To the best of our knowledge, such complicated ruby
+            glosses appear initially in the late eighteenth century and again briefly, around 1870.
+            Although not unlikely in other eras, technically speaking a deeper gloss is possible. As
+            TEI is intended for documenting rather than creating, we believe that a ruby schema
+            should be capable of encoding historical examples as long as it does not complicate the
+            schema itself.</p>
+        </div>
+        <div xml:id="div_global">
+          <head>Ruby-Like Interlinear Glosses in Other Writing Systems: An Example from Taiwanese
+            Bopomofo</head>
+          <p>There is another writing system, besides the Japanese system, that has ruby-like
+            glosses: bopomofo, used in Taiwan. Bopomofo, or the <foreign>Zhùyīn Fúhào 注音符號</foreign>
+            system, is a transcription system for Mandarin Chinese and other Chinese languages.
+            Bopomofo was learned in order to gloss phonetically from Japanese kana, so we consider
+            it one of the ruby gloss systems.</p>
+          <p>Bopomofo has unique characteristics in ruby text positioning. It allows both top and
+            right sides of the glossed text in horizontal writing, meaning that its default value
+            for the ruby text position is not definable (<ref target="#MoE2000" type="bibl">Ministry
+              of Education 2000</ref>; note that the right-hand position in horizontal writing is
+            preferably called intercharacter position, a counterpart to the term <term>interlinear
+              position</term>). The function of bopomofo, reflecting the monosyllabic nature of the
+            Chinese language, is mostly to present the phonetic value of a glossed character.
+            Metaphorical usage may technically arise, but it does not change the structure of
+            bopomofo. <figure xml:id="fig_topbopomofo">
+              <graphic url="images/fig_bopomofo.jpg" width="1547px" height="591px"/>
+              <head type="legend">Horizontal right-sided (intercharacter) bopomofo example on the
+                street</head>
+              <head type="license">nesnad. 2016. <title level="a">File:Bopomofo on Taiwanese street
+                  - with English - Nov 2016 2.jpg</title>. In <title level="m">Wikimedia
+                  Commons</title>. <ptr
+                  target="https://commons.wikimedia.org/wiki/File:Bopomofo_on_Taiwanese_street_-_with_English_-_Nov_2016_2.jpg"
+                /></head>
+            </figure>
+          </p>
+          <p>Similar examples can be obtained from schoolbooks used in mainland China, but not as
+            frequently as in Taiwan. In Korea and Vietnam, similar vernacular reading aids were
+            applied to words of Chinese origin written in Chinese characters before modern writing
+            systems emerged. The TEI ruby gloss encoding schema will help to encode Korean and
+            Vietnamese texts with such glosses.</p>
+        </div>
+      </div>
+      <div xml:id="div_conceptualize">
+        <head>Conceptualization of the Structure</head>
+        <div xml:id="div_earlierschema-jp">
+          <head>Earlier Proposed Schema and Encoding Models: Japanese Cases</head>
+          <p>The ruby gloss has long been a problem for Japanese text encoding. Within the XML
+            framework, Hara and Yasunaga (<ref target="#HaraYasunaga2002" type="bibl">2002</ref>)
+            were among the first to address this problem. Their scope was, however, limited to the
+            simple single-sided ruby. It is practically the same with Yamaguchi et al. (<ref
+              target="#YamaguchiEtal2011" type="bibl">2011</ref>), whose goal was to build an XML
+            vocabulary for Japanese linguistic corpora. They treated ruby text as an attribute for
+            the ruby gloss element, which is useful only for the phonation gloss (types A-a,
+            A-b).</p>
+          <p>Such a simple structure works for most ruby glosses, but faces numerous problems.
+            Taking an example from corpus building, if ruby text is going to be analyzed, how can it
+            be described? It is impossible to tag an attribute value for a ruby text in XML. In
+            fact, Murayama, Ogiso, and Nakamura (<ref target="#MurayamaOgisoNakamura2017"
+              type="bibl">2017</ref>), building on the work of Yamaguchi et al. (<ref
+              target="#YamaguchiEtal2011" type="bibl">2011</ref>), describe their difficulties in
+            handling these values in their environment. In the same vein, a double-sided ruby can be
+            described only as long as the ruby gloss element is allowed to nest, and the ruby text
+            refers to the same glossed text. Kawase, Ichimura, and Ogiso (<ref
+              target="#KawaseIchimuraOgiso2013" type="bibl">2013</ref>) attempted to introduce a TEI
+            framework based on Yamaguchi et al. (<ref target="#YamaguchiEtal2011" type="bibl"
+              >2011</ref>). They were aware of this problem, and introduced HTML’s ruby vocabulary
+            while calling for a more sophisticated structural approach in TEI. Later, Murayama,
+            Ogiso, and Nakamura (<ref target="#MurayamaOgisoNakamura2017" type="bibl">2017</ref>)
+            addressed this issue by introducing a new nesting left-side ruby element to their own
+            schema. Cong and Takaku (<ref target="#CongTakaku2018" type="bibl">2018</ref>) also
+            introduce HTML’s ruby vocabulary to the TEI framework. However, HTML is not intended for
+            documentation of the text, and this is a crucial limitation. Cong and Takaku (<ref
+              target="#CongTakaku2018" type="bibl">2018</ref>) also marked up ruby texts character
+            by character, rather than at the morphemic level, which would break up the logical
+            relationship of ruby and glossed text.</p>
+          <div xml:id="div_htmlschema">
+            <head>HTML’s Ruby Schemas</head>
+            <p>The history of ruby encoding in HTML is marked by pro- and anti-SGML (XML) positions
+              on structure. A ruby encoding system was first proposed in the earliest draft of W3C
+                (<ref target="#W3c2001" type="bibl">2001</ref>) (which eventually became a module of
+              XHTML 1.1),<note><p>As acknowledged in W3C (<ref target="#W3c2001" type="bibl"
+                    >2001</ref>), their work was inspired by Dürst (<ref target="#Duerst1997"
+                    type="bibl">1997</ref>), in which ruby glosses were encoded as
+                attributes.</p></note> in late 1998, and implemented in 1999 by Microsoft informally
+              in their Internet Explorer 5. In its earliest form, W3C (<ref target="#W3c2001"
+                type="bibl">2001</ref>) accommodates only single-sided ruby; however, the final form
+              also covers double-sided ruby. The published form defines the envelope <gi
+                scheme="ruby">ruby</gi> element, the container elements <gi scheme="ruby">rb</gi>,
+                <gi scheme="ruby">rt</gi>, and respective <gi scheme="ruby">rbc</gi> and <gi
+                scheme="ruby">rtc</gi> elements as the containers of <gi scheme="ruby">rb</gi>s and
+                <gi scheme="ruby">rt</gi>s, with the compatibility-easing <gi scheme="ruby">rp</gi>
+              element, whose role was to give parentheses to unsupported implementations. One thing
+              to note is that the first draft, which was produced during the transition from HTML to
+              XHTML, allowed the omission of the end tags of <gi scheme="ruby">rb</gi> and <gi
+                scheme="ruby">rt</gi>, but reversed that in the final form. However, the Internet
+              Explorer implementation was based on an earlier draft of this document, and they did
+              not follow the later version. This gap between W3C and implementers, although not
+              limited to this small corner, has continued to cause practical issues until now,
+              although W3C abandoned their development of XHTML 2.0. Another thing worth mentioning
+              is that, in this schema, <gi scheme="ruby">rb</gi> was allowed once per <gi
+                scheme="ruby">ruby</gi> element, and not allowed under the <gi scheme="ruby"
+                >rbc</gi> element (see W3C <ref target="#W3c2013" type="bibl">2013</ref> for a
+              comparison between approaches in XHTML and HTML5); therefore, if an encoder wished to
+              divide the ruby text character by character (as shown in the examples of <ptr
+                target="#fig_kawakami1a #fig_kawakami1b #fig_kawakami2" type="crossref"/>), they
+              needed to tag every unit of ruby-text correspondence, and ignore the semantic
+              unit.</p>
+            <p>As an extension to HTML5, W3C (<ref target="#W3c2014" type="bibl">2014</ref>) set out
+              to create ruby encoding that met the requirements of W3C (<ref target="#W3c2012"
+                type="bibl">2012</ref>) with the styling component covered by CSS3
+                  modules.<note><p>As for the encoding model after HTML5, note well that before W3C
+                    (<ref target="#W3c2013" type="bibl">2013</ref>) was published, HTML5 dropped <gi
+                    scheme="ruby">rb</gi>, claiming that the base text element was unnecessary
+                  because the children text nodes of <gi scheme="ruby">ruby</gi> necessarily were
+                  the base text. See <ptr
+                    target="https://www.w3.org/Bugs/Public/show_bug.cgi?id=10830"/> for details.
+                  Thus, it is not clear why W3C (<ref target="#W3c2014" type="bibl">2014</ref>)
+                  reintroduced the use of <gi scheme="ruby">rb</gi> and <gi scheme="ruby">rtc</gi>
+                  elements. However, as they were declared optional, the difference may not be as
+                  large as may appear. At any rate, current HTML standards have not fully
+                  reintroduced these elements.</p></note> This extension addressed the gap noted in
+              W3C (<ref target="#W3c2013" type="bibl">2013</ref>), which investigated the ways in
+              which W3C (<ref target="#W3c2012" type="bibl">2012</ref>) was insufficient to meet
+              ruby-related criteria. Based on JISC (<ref target="#Jisc2004" type="bibl">2004</ref>),
+              W3C (<ref target="#W3c2012" type="bibl">2012</ref>) had tried to show the traditional
+              typography standard that should be realized in modern browsers (<ref
+                target="#Yabe2010" type="bibl">Yabe 2010</ref>). In contrast with fixed layout
+              settings, where traditional typography has worked, it was not an easy task to
+              accomplish this in content-flow layout; content-flow allows adjusting the layout to
+              fit everything from smart-phone browsers to large monitors for desktop PCs. Ruby
+              glosses present a number of challenges for content-flow layout; to name but two
+              examples: How and at what distance from the glossed text should ruby text be rendered,
+              given a limited allotted boundary? What if a line break occurs in the middle of the
+              ruby gloss? Kawabata (<ref target="#Kawabata2014" type="bibl">2014</ref>) reviews
+              difficulties in rendering ruby glosses properly in different versions of HTML.</p>
+            <p>The encoding models that were adopted in HTML5 (and those inherited by WHATWG’s HTML
+              Living Standards) have, in principle, a tabular structure and an interleaving
+              structure. Each has its own strength and weakness, in terms of logical structure. The
+              interleaving structure provides a simple parsing mechanism and conforms to desktop
+              publishing implementations. Most actual HTML encoding tends to take this approach.
+              However, since not a few Japanese words have two or more Chinese characters to be
+              represented, it breaks up the logical word structure and hinders deeper encoding. In
+              contrast, the tabular structure is more intuitive, but the repetition of the same <gi
+                scheme="ruby">rb</gi> or <gi scheme="ruby">rt</gi> tags would cause ambiguity in
+              encoding, especially when the numbers of <gi scheme="ruby">rb</gi> and <gi
+                scheme="ruby">rt</gi> tags differ. As both <gi scheme="ruby">rb</gi> and <gi
+                scheme="ruby">rt</gi> are content elements in their own right, they prioritize
+              presentation functions at the expense of their original logical structure.</p>
+            <p>The double-sided ruby, termed complex ruby in HTML schemas, is modeled using both a
+              nested structure and a boxed structure. The nested structure gives a simpler and more
+              flexible representation of the structure. The boxed structure creates a table layout
+              within which details are filled in. One weakness of the nested model is that it cannot
+              handle some overlapping cases, as discussed by Uchida (<ref target="#Uchida2010"
+                type="bibl">2010</ref>). However, from the viewpoint of stand-off versus inline
+              markup, this problem is rooted in a limitation of inline markup in XML. HTML5
+              addresses this problem by allowing empty <gi scheme="ruby">rt</gi> elements (<ref
+                target="#Ishida2016" type="bibl">Ishida 2016</ref>). In the context of the TEI
+              Guidelines, blank elements can be replaced by linking elements.</p>
+          </div>
+          <div xml:id="div_ourschema">
+            <head>Our Proposed Schema and Encoding Model</head>
+            <p>As we have seen, the HTML encoding schemas were designed principally to allow ruby to
+              be rendered in browsers. But TEI is concerned principally with meaning, not rendering.
+              Therefore, for the TEI schema, it was necessary to invent a new model for descriptive
+              encoding. TEI has not only introduced a nested ruby gloss element, but also provided a
+              stand-off mechanism for correspondence between spans of ruby and glossed texts.</p>
+            <p>Our conception was, basically, that the schema should allow maximum flexibility
+              through a simple model. In particular, while we allow nesting of the ruby gloss
+              element (similar to the parallel segmentation method used in a critical apparatus), we
+              also allow, if necessary, the double-end-point-attached method in order to accommodate
+              the most complex examples, which require the use of <gi>anchor</gi>.<note><p>In the
+                  original proposal, there was a limit of one <gi>rb</gi> and one <gi>rt</gi>
+                  element per <gi>ruby</gi> element so as to force a nesting structure. However, it
+                  was pointed out that Taiwanese bopomofo ruby sometimes uses bopomofo and pinyin
+                  annotations simultaneously, and that they should not be treated as nested. To
+                  address this, the constraint was not included in the Guidelines.</p></note> We do
+              not find convincing reasons for maintaining multiple encoding strategies, and for the
+              reasons discussed above, we avoid employing either the interleaving structure or the
+              boxed structure.</p>
+          </div>
+        </div>
+        <div xml:id="div_examples">
+          <head>Encoding Examples</head>
+          <p>The following examples show how our proposal addresses the examples discussed
+            above.</p>
+          <div xml:id="div_mod_ex">
+            <head>Modern Japanese Ruby Glosses</head>
+            <figure xml:id="code_majime">
+              <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true">
+                <p>
+                  <ruby>
+                    <rb><anchor xml:id="ma"/>真<anchor xml:id="ji"/>面<anchor xml:id="me"/>目</rb>
+                    <rt><anchor target="#ma"/>ま<anchor target="#ji"/>じ<anchor target="#me"/>め</rt>
+                  </ruby>
+                </p>
+              </egXML>
+              <head type="legend">
+                <q>真面目(ま/じ/め)</q>
+              </head>
+            </figure>
+            <figure xml:id="code_yukata">
+              <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true">
+                <p>
+                  <ruby>
+                    <rb>浴衣</rb>
+                    <rt>ゆかた</rt>
+                  </ruby>
+                </p>
+              </egXML>
+              <head type="legend">
+                <q>浴衣(ゆかた)</q>
+              </head>
+            </figure>
+            <figure xml:id="code_ibiki">
+              <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true">
+                <p>あんたの <ruby>
+                    <rb>鼾</rb>
+                    <rt>いびき</rt>
+                  </ruby>
+                </p>
+              </egXML>
+              <head type="legend">
+                <q>あんたの鼾(いびき)</q>
+              </head>
+            </figure>
+            <figure xml:id="code_kamuiotopusi">
+              <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true">
+                <p>
+                  <ruby>
+                    <rb>神髪彦</rb>
+                    <rt xml:lang="ain">カムイオトプシ</rt>
+                  </ruby>の </p>
+              </egXML>
+              <head type="legend">
+                <q>神髪彦(カムイオトプシ)の</q>
+              </head>
+            </figure>
+            <figure xml:id="code_okimi">
+              <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true">
+                <p>
+                  <ruby>
+                    <rb>
+                      <ruby>
+                        <rb>大王</rb>
+                        <rt place="top">おおきみ</rt>
+                      </ruby>
+                    </rb>
+                    <rt place="bottom">（だいおう）</rt>
+                  </ruby>
+                </p>
+              </egXML>
+              <head type="legend">
+                <q>大王(おおきみ)([だいおう])</q>
+              </head>
+            </figure>
+            <figure xml:id="code_proletariat">
+              <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true">
+                <p>
+                  <ruby>
+                    <rb xml:id="rb1">労働者<anchor xml:id="rb1-1"/>階級<anchor xml:id="rb1-2"/>意識<anchor
+                        xml:id="rb1-3"/></rb>
+                    <rt from="#rb1" to="#rb1-2" place="left">プロレタリアート</rt>
+                    <rt from="#rb1-1" to="#rb1-3" place="right">かいきゅういしき</rt>
+                  </ruby>
+                </p>
+              </egXML>
+              <head type="legend">
+                <q>労働者階級意識</q>
+              </head>
+            </figure>
+          </div>
+          <div xml:id="div_hist_ex">
+            <head>Historical Japanese Ruby Glosses</head>
+            <figure xml:id="code_hanabusa">
+              <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true">
+                <p>にむかひ<ruby>
+                    <rb>梁</rb>
+                    <rt>りやう</rt>
+                  </ruby><ruby>
+                    <rb>武帝</rb>
+                    <rt>ぶてい</rt>
+                  </ruby>の<ruby>
+                    <rb>仏</rb>
+                    <rt>ぶつ</rt>
+                  </ruby>に<ruby>
+                    <rb>淫</rb>
+                    <rt>いん</rt>
+                  </ruby>して<ruby>
+                    <rb><ruby>
+                        <rb>民膏</rb>
+                        <rt place="right" type="primary">みんかう</rt>
+                      </ruby>
+                    </rb>
+                    <rt place="left" type="secondary">たみのあぶら</rt>
+                  </ruby>を<ruby>
+                    <rb>費</rb>
+                    <rt>ついや</rt>
+                  </ruby>し国の<ruby>
+                    <rb>衰</rb>
+                    <rt>おとろ</rt>
+                  </ruby>へとなり </p>
+              </egXML>
+              <head type="legend">Example from <title level="m">Hanabusa soshi</title></head>
+            </figure>
+            <figure xml:id="code_igirisu">
+              <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true">
+                <l>まこと<ruby>
+                    <rb><ruby>
+                        <rt place="right">りつとる</rt>
+                        <rb>リットル</rb>
+                      </ruby></rb>
+                    <rt place="left"><ruby>
+                        <rb>少</rb>
+                        <rt place="right">すくな</rt>
+                      </ruby>き</rt>
+                  </ruby></l>
+              </egXML>
+              <head type="legend">Example from <title level="m">Igirisu dodoitsu</title></head>
+            </figure>
+          </div>
+          <div xml:id="div_oth_ex">
+            <head>Bopomofo</head>
+            <figure xml:id="code_bopomofo">
+              <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true">
+                <tagsDecl>
+                  <rendition selector="rt" scheme="css"> ruby-position: inter-character; /* making
+                    use of editor’s draft CSS 3 module, CSS Ruby Annotation Layout Module Level 1 */
+                  </rendition>
+                </tagsDecl> … <p>
+                  <ruby>
+                    <rb>牆</rb>
+                    <rt>ㄑㄧㄤˊ</rt>
+                  </ruby><ruby>
+                    <rb>面</rb>
+                    <rt>ㄇㄧㄢˋ</rt>
+                  </ruby><ruby>
+                    <rb>請</rb>
+                    <rt>ㄑㄧㄥˇ</rt>
+                  </ruby><ruby>
+                    <rb>勿</rb>
+                    <rt>ㄨˋ</rt>
+                  </ruby><ruby>
+                    <rb>攀</rb>
+                    <rt>ㄆㄢ</rt>
+                  </ruby><ruby>
+                    <rb>爬</rb>
+                    <rt>ㄆㄚˊ</rt>
+                  </ruby>，</p>
+              </egXML>
+              <head type="legend">Example of bopomofo</head>
+            </figure>
+          </div>
+        </div>
+        <div xml:id="div_concep_remark">
+          <head>Some Remarks on Encoding Strategy</head>
+          <p>Some additional comments are worth making. First, in the case of double-sided ruby
+            glosses encoding, if the order of priority is apparent, lower-priority glosses should be
+            encoded in the shallower level and have a <att>type</att> for both <gi>rt</gi>s; their
+            respective values should be something like <val>primary</val> and <val>secondary</val>
+            in the working language of the encoding project (see <ptr target="#code_hanabusa"
+              type="crossref"/>; in this case, the right-sided ruby gloss is encoded in a shallower
+            position than the left-sided one).<note><p>In our original proposal, <att>type</att> was
+                allowed for the <gi>ruby</gi> element and required when nested. However, it is not
+                always apparent which side of a ruby gloss is primary. In addition, having a
+                  <att>type</att> attribute on the <gi>rt</gi> element is considered more
+                intuitive.</p></note> If the order is not apparent, encoders should treat them in a
+            consistent manner. Second, in a writing system where the default value of the ruby text
+            position cannot be fixed, documenting it in <gi>tagUsage</gi> and <gi>rendition</gi> may
+            be helpful (see <ptr target="#code_bopomofo" type="crossref"/>). Third, the
+            correspondence between layouts of the ruby and glossed texts should be made clear with
+            the aid of the <gi>anchor</gi> element.<note>
+              <p>Descriptions in the TEI Guidelines, <ref target="#TEIC2021" type="bibl">chapter
+                  3.4.2</ref> differ somewhat in details. When encoders divide some glossed text
+                with <gi>anchor</gi>, the Guidelines encourages the user to specify correspondence
+                by dividing up their respective ruby glosses as well. The reason we maintain our
+                original proposal here is because we want to allow analytic elements in <gi>rt</gi>.
+                This may be a matter for further discussion. For the difference, see, for example,
+                the transcription for <ptr target="#fig_kawakami1a" type="crossref"/>:</p>
+              <figure xml:id="code_guideline-anchor" rend="inline">
+                <egXML xmlns="http://www.tei-c.org/ns/Examples" rend="inline" valid="true"><p
+                    rend="inline">
+                    <ruby>
+                      <rb><anchor xml:id="ma"/>真<anchor xml:id="ji"/>面<anchor xml:id="me"/>目</rb>
+                      <rt target="#ma">ま</rt><rt target="#ji">じ</rt><rt target="#me">め</rt>
+                    </ruby>
+                  </p>
+                </egXML>
+                <head type="legend"><q>真面目(ま/じ/め)</q></head>
+              </figure>
+            </note> In an HTML context, reflecting a perception that ruby text is glossed per
+            character, encoders may wish to encode <ptr target="#code_majime" type="crossref"/> as
+            follows (<ptr target="#code_majime2" type="crossref"/>): <figure xml:id="code_majime2">
+              <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true"><p>
+                  <ruby>
+                    <rb>真</rb><rt>ま</rt>
+                    <rb>面</rb><rt>じ</rt>
+                    <rb>目</rb><rt>め</rt>
+                  </ruby>
+                </p></egXML>
+              <head type="legend">Not recommended encoding example of <q>真面目(ま/じ/め)</q></head>
+            </figure> Such a structure is not prohibited, but it prevents users from further
+            analyzing and encoding the ruby and the glossed text.</p>
+          <p>The new schema permits the encoding of complex ruby glosses. Ruby glosses can be
+            nested, and adjusted for unusual spanned alignment, making it possible to encode triple
+            ruby glosses and the nonnested glosses. It has also a downside in that these most
+            complex ruby glosses cannot be directly translated into HTML, the most widely used ruby
+            gloss encoding schema. In addition, the default ruby position cannot be fixed. Thus,
+            every encoding project should use <att>place</att> to specify a desired output.</p>
+        </div>
+      </div>
+      <div xml:id="div_concl">
+        <head>Conclusion</head>
+        <p>Our goal has been to describe the rationale for introducing to the TEI Guidelines a
+          schema that fully accommodates the rich structure of ruby. This richness, as presented in
+          Ariga (<ref target="#Ariga1989" type="bibl">1989, 332</ref>), is seen in an 1874 essay by
+          a Japanese author where the text is written in Classical Chinese but expected to be read
+          with detailed accompanying glosses in Japanese. In the dialog a Chinese word <foreign>鄙吝
+            bǐlìn</foreign> (in Sino-Japanese form, <foreign>birin</foreign>), or
+            <mentioned>stingy</mentioned>, was transformed into Japanese slang <foreign>kechinbō
+            ケチンボー</foreign> using an unusual ruby gloss to give a vivid tone to a formal narrative.
+          (See also <ref target="#TakashiWilkersonWilkerson2000" type="bibl">Takashi Wilkerson and
+            Wilkerson 2000</ref> on the playfulness of contemporary ruby.) Our proposal was to allow
+          such a structure to be encoded in conformance with the Guidelines.</p>
+        <p>Such inclusion of localized meaning not only takes a great step toward fully including a
+          local textual tradition but also gives the TEI community a way to contribute to the global
+          humanities by encouraging the inclusion of other underrepresented textual traditions. We
+          hope this proposal encourages introducing other underrepresented local textual structures
+          into the Guidelines.</p>
+      </div>
+    </body>
+    <back>
+      <div type="bibliography">
+        <listBibl>
+          <bibl xml:id="Ariga1989"><author>Ariga, Chieko</author>. <date>1989</date>. <title
+              level="a">The Playful Gloss: Rubi in Japanese Literature</title>. <title level="j"
+              >Monumenta Nipponica</title>
+            <biblScope unit="volume">44</biblScope>(<biblScope unit="issue">3</biblScope>):
+              <biblScope unit="page">309–35</biblScope>. doi:<idno type="DOI"
+            >10.2307/2384611</idno>.</bibl>
+          <bibl xml:id="CongTakaku2018"><author>Cong, Yan</author>, and <author>Masao
+              Takaku</author>. <date>2018</date>. <title level="a">Tōshi sakuhin no honbun furu
+              tekisuto ni taisuru TEI mākuappu shuhō no teian 唐詩作品の本文フルテキストに対するTEIマークアップ手法の提案 [A
+              Proposal of TEI Markup for the Content of Tang Poems]</title>. <title level="j">Jōhō
+              chishiki gakkai shi 情報知識学会誌 [Journal of Japan Society of Information and
+              Knowledge]</title>
+            <biblScope unit="volume">28</biblScope>(<biblScope unit="issue">2</biblScope>):
+              <biblScope unit="page">174–85</biblScope>. doi:<idno type="DOI"
+              >10.2964/jsik_2018_017</idno>.</bibl>
+          <bibl xml:id="Duerst1997"><author>Dürst, Martin J.</author>
+            <date>1997</date>. <title level="u">Ruby in the Hypertext Markup Language</title>.
+            Internet draft. <ptr target="https://www.w3.org/International/draft-duerst-ruby-01"
+            />.</bibl>
+          <bibl xml:id="Estill2016"><author>Estill, Laura</author>. <date>2016</date>. <title
+              level="a">Encoding the Edge: Manuscript Marginalia and the TEI</title>. <title
+              level="j">Digital Literary Studies</title>
+            <biblScope unit="volume">1</biblScope>(<biblScope unit="issue">1</biblScope>). <ptr
+              target="https://journals.psu.edu/dls/article/view/59715"/>.</bibl>
+          <bibl xml:id="HaraYasunaga2002"><author>Hara, Shōichirō</author>, and <author>Yasunaga,
+              Hisashi</author>. <date>2002</date>. <title level="a">Kokubungaku kenkyū shien no tame
+              no SGML/XML dēta sisutemu: Kokubungaku dēta kyōyū no tame no hyōjunka
+              国文学研究支援のためのSGML/XMLデータシステム: 国文学データ共有のための標準化 [SGML/XML Data System for Japanese
+              Classical Literature: Standardization for Literacy Resource Sharing]</title>. <title
+              level="j">Jōhō chishiki gakkai shi 情報知識学会誌 [Journal of Japan Society of Information
+              and Knowledge]</title>
+            <biblScope unit="volume">11</biblScope>(<biblScope unit="issue">4</biblScope>):
+              <biblScope unit="page">17–35, 46</biblScope>. doi:<idno type="DOI"
+              >10.2964/jsik_KJ00001039453</idno>.</bibl>
+          <bibl xml:id="Ishida2016"><author>Ishida, Richard</author>. <date>2016</date>. <title
+              level="a">Ruby Markup</title>. <title level="j">W3C Internationalization</title>. Last
+            updated July 18, 2016. <ptr
+              target="https://www.w3.org/International/articles/ruby/markup.en"/>.</bibl>
+          <bibl xml:id="Ishizuka2001"><author>Ishizuka, Harumichi</author>. <date>2001</date>.
+              <title level="a">Sōron 総論 [General Remarks]</title>. In <title level="m">Kuntengo
+              jiten 訓点語辞典 [A Linguistic Dictionary of Kunten Materials]</title>, <biblScope
+              unit="page">1–2</biblScope>. <pubPlace>Tokyo</pubPlace>:
+              <publisher>Tokyodō</publisher>.</bibl>
+          <bibl xml:id="Jisc2004"><orgName>JISC (Japan Industrial Standard Committee)</orgName>.
+              <date>2004</date>. <title level="m">JIS X 4051: Nihongo bunsho no kumihan hōhō
+              日本語文書の組版方法 [Formatting Rules for Japanese Documents]</title>.
+              <placeName>Tokyo</placeName>: <publisher>Japanese Industrial Standards
+              Committee</publisher>.</bibl>
+          <bibl xml:id="Kawabata2014"><author>Kawabata, Taichi</author>. <date>2014</date>. <title
+              level="a">HTML no rubi hyōjunka no genjō to kadai HTMLのルビ標準化の現状と課題 [Current Status and
+              Issues in HTML’s Ruby Standardization]</title>. <title level="j">Journal of Japan
+              Association for East Asian Text Processing</title>
+            <biblScope unit="issue">15</biblScope>: <biblScope unit="page">4–15</biblScope>.</bibl>
+          <bibl xml:id="KawaseIchimuraOgiso2013"><author>Kawase, Akihiro</author>, <author>Taro
+              Ichimura</author>, and <author>Tomonobu Ogiso</author>. <date>2013</date>. <title
+              level="a">TEI P5 ni motozuku kinsei kōgo shiryō no kōzōka to sono mondaiten TEI
+              P5に基づく近世口語資料の構造化とその問題点 [Problems in TEI P5 Encoding on Colloquial Japanese Documents
+              of the Early Modern Period]</title>. In <title level="m">Jinmonkon 2013 ronbunshū
+              じんもんこん2013論文集 [Proceedings of the Computers and Humanities Symposium JinMonCom
+              2013]</title>, <biblScope unit="page">7–12</biblScope>. <pubPlace>Tokyo</pubPlace>:
+              <publisher>Jōhō shori gakkai</publisher>. <ptr
+              target="http://id.nii.ac.jp/1001/00096389/"/>.</bibl>
+          <bibl xml:id="Konno2009"><author>Konno, Shinji</author>. <date>2009</date>. <title
+              level="m">Furigana no rekishi 振仮名の歴史</title>. Tokyo: Shueisha.</bibl>
+          <bibl xml:id="Kosukegawa2014"><author>Kosukegawa, Teiji</author>. <date>2014</date>.
+              <title level="a">Explaining What Kundoku Is in the Premodern Sinosphere</title>. In
+              <title level="m">Lecture vernaculaire de textes classiques chinois / Reading Chinese
+              Classical texts in the Vernacular</title>, edited by <editor>John Whitman</editor> and
+              <editor>Franck Cinato</editor>. <title level="s">Dossiers d’HEL</title> (electronic
+            supplement to the journal Histoire Épistémologie Langage) <biblScope unit="issue"
+              >7</biblScope>. <ptr
+              target="http://shesl.org/index.php/dossier7-lecture-vernaculaire/"/>.</bibl>
+          <bibl xml:id="MoE2000"><orgName>Ministry of Education</orgName>. <date>2000</date>. <title
+              level="m">The Manual of the Phonetic Symbols of Mandarin Chinese</title>.
+              <pubPlace>Taipei</pubPlace>: <publisher>Ministry of Education</publisher>. <ptr
+              target="https://language.moe.gov.tw/001/Upload/files/site_content/M0001/juyin/index.html"
+            />.</bibl>
+          <bibl xml:id="Murakami2017"><author>Murakami, Masataka</author>. <date>2017</date>. <title
+              level="a">Kunyaku iwayuru hidari rubi o megutte 訓訳 いわゆる左ルビをめぐって [On
+                <foreign>Kun’yaku</foreign> (Colloquial Japanese Glosses in
+                <foreign>báihuà</foreign> Novels)]</title>. In <title level="m">Nihon kindaigo
+              kenkyū 6</title>, edited by <editor>Modern Japanese Language Research
+              Association</editor>, <biblScope unit="page">87–106</biblScope>.
+              <pubPlace>Tokyo</pubPlace>: <publisher>Hitsuji shobō</publisher>.</bibl>
+          <bibl xml:id="MurayamaOgisoNakamura2017"><author>Murayama, Miwako</author>,
+              <author>Toshinobu Ogiso</author>, and <author>Takenori Nakamura</author>.
+              <date>2017</date>. <title level="a">Keitairon jōhō no tajūka ni yoru sharebon kōpasu
+              no shitsuteki kakuchō 形態論情報の多重化による洒落本コーパスの質的拡張 [Qualitative Expansion of the
+                <foreign>Sharebon</foreign> Corpus using Multilayer Morphological
+              Information]</title>. <title level="j">Jōhō shori gakkai kenkyū hōkoku 情報処理学会研究報告
+              [IPSJ SIG Technical Report]</title>
+            <biblScope unit="volume">2017-CH-114</biblScope> (<biblScope unit="issue"
+            >8</biblScope>): <biblScope unit="page">1–8</biblScope>. <ptr
+              target="http://id.nii.ac.jp/1001/00178697/"/>.</bibl>
+          <bibl xml:id="NagasakiEtal2022"><author>Nagasaki, Kiyonori</author>, <author>Satoru
+              Nakamura</author>, <author>Makoto Tanaka</author>, <author>Masato Nishikawa</author>,
+              <author>Ryūju Hayashi</author>, <author>Keijun Inoue</author>, and <author>Masahiro
+              Shimoda</author>. <date>2022</date>. <title level="a">Kōzōka tekisuto dēta no katsuyō
+              ni okeru genjō to kadai: TEI ni junkyo shita <title level="m">Jōdo Shinshū Seiten
+                Zensho</title> zenbun kensaku shisutemu no kaihatsu o tsūjite
+              構造化テキストデータの活用における現状と課題: TEIに準拠した『浄土真宗聖典全書』全文検索システムの開発を通じて [Current Status and Issues
+              in Utilization of Structured Text Data: Development of a Full-Text Search System for
+              TEI-Compliant Buddhist Scriptures]</title>. <title level="j">Jinmonkon 2022 ronbunshū
+              じんもんこん2022論文集 [Proceedings of the Computers and Humanities Symposium JinMonCom
+              2022]</title>
+            <biblScope unit="page">73–78</biblScope>. <pubPlace>Tokyo</pubPlace>: <publisher>Jōhō
+              shori gakkai</publisher>. <ptr target="http://id.nii.ac.jp/1001/00223165/"/>.</bibl>
+          <bibl xml:id="Oshima1989"><author>Ōshima, Chūsei</author>. <date>1989</date>. <title
+              level="a">Hyōki shutai no hyōki mokuteki kara mita kanji kana heiretsu hyōki: Iwayuru
+              furigana tsuki hyōki keishiki o megutte 表記主体の表記目的から見た漢字仮名並列表記: いわゆる振り仮名付き表記形式をめぐって
+              [Kanji-kana Paralleled Orthography with Emphasis on the Intention of the Agent of
+              Writing: The So-Called Orthography with <foreign>Furigana</foreign>]</title>. <title
+              level="j">Dōshisha Joshi Daigaku gakujutsu kenkyū nenpō 同志社女子大学学術研究年報 [Doshisha
+              Women’s College of Liberal Arts Annual Reports of Studies]</title>
+            <biblScope unit="volume">40</biblScope> (<biblScope unit="issue">4</biblScope>):
+              <biblScope unit="page">440–54</biblScope>.</bibl>
+          <bibl xml:id="Seeley1991"><author>Seeley, Christopher</author>. <date>1991</date>. <title
+              level="m">A History of Writing in Japan</title>. <pubPlace>Leiden</pubPlace>:
+              <publisher>Brill</publisher>.</bibl>
+          <bibl xml:id="TakashiWilkersonWilkerson2000"><author>Takashi Wilkerson, Kyoko</author>,
+            and <author>Douglas Wilkerson</author>. <date>2000</date>. <title level="a">The Gloss as
+              Poetics, Transcending the Didactic</title>. <title level="j">Visible Language</title>
+            <biblScope unit="volume">34</biblScope> (<biblScope unit="issue">3</biblScope>):
+              <biblScope unit="page">228–63</biblScope>.</bibl>
+          <bibl xml:id="TEIC2021"><orgName>TEI Consortium</orgName>. <date>2021</date>. <title
+              level="m">TEI P5: Guidelines for Electronic Text Encoding and Interchange</title>.
+              <edition>Version 4.2.0</edition>. Last updated on 25th February 2021, revision
+            736c0acf0. <pubPlace>N.p.</pubPlace>: <publisher>TEI Consortium</publisher>. <ptr
+              target="https://tei-c.org/Vault/P5/4.2.0/doc/tei-p5-doc/en/html/"/>.</bibl>
+          <bibl xml:id="Uchida2010"><author>Uchida, Akira</author>. <date>2010</date>. <title
+              level="a">Yahari HTML5 niwa complex ruby ga hitsuyō dewa naikaやはりHTML5にはcomplex
+              rubyが必要ではないか [Isn’t HTML5 Still Necessary for Complex Ruby?]</title>, <title level="j"
+              >Nihongo renshūchū 日本語練習虫 [A Bug in Training Japanese Language Skill]</title> (blog).
+            July 4, 2010. <ptr target="http://uakira.hateblo.jp/entry/20100704"/>.</bibl>
+          <bibl xml:id="Whitman2011"><author>Whitman, John</author>. <date>2011</date>. <title
+              level="a">The Ubiquity of the Gloss.</title>
+            <title level="j">SCRIPTA</title>
+            <biblScope unit="issue">3</biblScope>: <biblScope unit="page">95–121</biblScope>.</bibl>
+          <bibl xml:id="W3c2001"><orgName>W3C</orgName>. <date>2001</date>. <title level="m">Ruby
+              Annotation</title>. W3C Recommendation. May 31, 2001. <ptr
+              target="https://www.w3.org/TR/2001/REC-ruby-20010531/"/>.</bibl>
+          <bibl xml:id="W3c2012"><orgName>W3C</orgName>. <date>2012</date>. <title level="m"
+              >Requirements for Japanese Text Layout</title>. W3C Working Group Note. April 3,
+              2012.<ptr target=" https://www.w3.org/TR/2012/NOTE-jlreq-20120403/"/>.</bibl>
+          <bibl xml:id="W3c2013"><orgName>W3C</orgName>. <date>2013</date>. <title level="m">Use
+              Cases &amp; Exploratory Approaches for Ruby Markup</title>. W3C Working Group Note.
+            October 8, 2013. <ptr target="https://www.w3.org/TR/ruby-use-cases/"/>.</bibl>
+          <bibl xml:id="W3c2014"><orgName>W3C</orgName>. 2014. HTML Ruby Markup Extensions . W3C
+            Working Group Note. February 4, 2014. <ptr
+              target="https://www.w3.org/TR/html-ruby-extensions/"/>.</bibl>
+          <bibl xml:id="Yabe2010"><author>Yabe, Masafumi</author>. <date>2010</date>. <title
+              level="m">Katsuji to arufabetto: Gijutsu kara mita nihongo hyōki no sugata 活字とアルファベット:
+              技術から見た日本語表記の姿 [Movable Types and the Alphabet: The Japanese Writing System Seen
+              Through Technologies]</title>. <pubPlace>Tokyo</pubPlace>: <publisher>Hōsei daigaku
+              shuppankyoku</publisher>.</bibl>
+          <bibl xml:id="Yada2018"><author>Yada, Tsutomu</author>. <date>2018</date>. <title
+              level="a">Furigana</title>. In <title level="m">Nihongogaku daijiten</title>, edited
+            by <editor>The Society for Japanese Linguistics</editor>, <biblScope unit="page"
+              >802–3</biblScope>. <pubPlace>Tokyo</pubPlace>: <publisher>Tokyodō</publisher>.</bibl>
+          <bibl xml:id="YamaguchiEtal2011"><author>Yamaguchi, Masaya</author>, <author>Tomokazu
+              Takada</author>, <author>Masanori Kitamura</author>, <author>Yōko Mabuchi</author>,
+              <author>Ōshima Hajime</author>, <author>Kobayashi Masayuki</author>, <author>Nishibe
+              Michiru</author>, et al. <date>2011</date>. <title level="m"><q>Gendai nihongo kaki
+                kotoba kinkō kōpasu</q> ni okeru denshika fōmatto ver. 2.2
+              『現代日本語書き言葉均衡コーパス』における電子化フォーマット ver. 2.2 [Digitization and Encoding Rules for the
+              Balanced Corpus of Contemporary Written Japanese]</title>. <pubPlace>Tokyo</pubPlace>:
+              <publisher>NINJAL</publisher>.</bibl>
+          <bibl xml:id="Yanaike2009"><author>Yanaike, Makoto</author>. <date>2009</date>. <title
+              level="a"><q>Sō rubi</q> no jidai: Nihongo hyōki no jūkyū seiki 「総ルビ」の時代: 日本語表記の十九世紀
+              [An Era of <foreign>Sō Rubi</foreign>: The Nineteenth Century in the History of the
+              Japanese Writing System]</title>. <title level="j">Bungaku 文学 [Literature]</title>
+            <biblScope unit="volume">10</biblScope> (<biblScope unit="issue">6</biblScope>):
+              <biblScope unit="page">117–30</biblScope>.</bibl>
+        </listBibl>
+      </div>
+    </back>
+  </text>
+</TEI>

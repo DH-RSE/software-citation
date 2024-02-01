@@ -1,0 +1,1053 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+
+<!-- $Id: jtei-calarco-232-source.xml 1213 2023-07-31 19:56:49Z pietro.liuzzo $ -->
+<TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI.internal" xml:lang="es">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title type="main">La écfrasis en el <emph>Libro de Alexandre</emph>, un proyecto de
+               edición digital para el estudio de la poesía clerical castellana del siglo XIII con
+                  <emph>minimal computing</emph></title>
+            <title type="sub" xml:lang="en">The Ekphrasis in the <emph>Libro de Alexandre</emph>, a
+               Digital Edition Project for the Study of the Castilian Clerical Poetry of the 13th
+               Century with Minimal Computing</title>
+            <!-- author information in separate <author> elements per author -->
+            <author>
+               <name>
+                  <forename>Gabriel A.</forename>
+                  <surname>Calarco</surname>
+               </name>
+               <affiliation> Gabriel Calarco es <roleName>Licenciado en Letras</roleName> por la
+                     <orgName>Universidad de Buenos Aires</orgName> (UBA) y se encuentra cursando el
+                  doctorado en Literatura en la misma universidad como <roleName>becario</roleName>
+                  del <orgName>IIBICRIT-CONICET</orgName>. Su proyecto de tesis está dedicado al
+                  estudio de la écfrasis en el <title level="m">Libro de Alexandre</title> y al uso
+                  de herramientas de las Humanidades Digitales para la edición de textos medievales.
+                  También se desempeña como docente en la Diplomatura de Humanidades Digitales
+                  (UCES), como editor adjunto de la Revista de Publicaciones de la Asociación
+                  Argentina de Humanidades Digitales y como profesor de Literatura en la Educación
+                  secundaria. ORCID: <ptr target="https://orcid.org/0000-0002-7841-6538"
+                  />.</affiliation>
+               <email>gabcalarco@gmail.com</email>
+            </author>
+         </titleStmt>
+         <publicationStmt>
+            <publisher>TEI Consortium</publisher>
+            <date>01/08/2023</date>
+            <availability>
+               <licence target="https://creativecommons.org/licenses/by/4.0/">
+                  <p>For this publication a Creative Commons Attribution 4.0 International license
+                     has been granted by the author(s) who retain full copyright.</p>
+               </licence>
+            </availability>
+         </publicationStmt>
+         <seriesStmt>
+            <title level="j">Journal of the Text Encoding Initiative</title>
+            <editor role="guest">Gimena del Rio Riande</editor>
+            <editor role="guest">Susanna Allés-Torrent</editor>
+            <editor role="managing">Tanja Wissik</editor>
+            <editor role="managing">Joel Kalvesmaki</editor>
+            <editor role="managing">Pietro Maria Liuzzo</editor>
+            <editor role="managing">Tiago Sousa Garcia</editor>
+            <editor role="technical">Ron Van den Branden</editor>
+            <biblScope unit="issue" n="16">Spanish Issue</biblScope>
+         </seriesStmt>
+         <sourceDesc>
+            <p>Encoded from .docx copyedited version, and encoded according to the jTEI schema.</p>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <projectDesc>
+            <p>OpenEdition Journals -centre for open electronic publishing- is the platform for
+               journals in the humanities and social sciences, open to quality periodicals looking
+               to publish full-text articles online.</p>
+         </projectDesc>
+      </encodingDesc>
+      <profileDesc>
+         <langUsage>
+            <language ident="es">es</language>
+            <language ident="en">en</language>
+         </langUsage>
+         <textClass>
+            <keywords xml:lang="es">
+               <term>edición digital académica</term>
+               <term>minimal computing</term>
+               <term>código abierto</term>
+               <term>poesía medieval castellana</term>
+               <term>Libro de Alexandre</term>
+               <term>écfrasis</term>
+            </keywords>
+         </textClass>
+         <textClass>
+            <keywords xml:lang="en">
+               <term>digital scholarly edition</term>
+               <term>minimal computing</term>
+               <term>open source</term>
+               <term>medieval castilian poetry</term>
+               <term>Libro de Alexandre</term>
+               <term>ekphrasis</term>
+            </keywords>
+         </textClass>
+      </profileDesc>
+      <revisionDesc>
+         <change><!-- Description of a change to the article; we recommend using @who and @when. --></change>
+      </revisionDesc>
+   </teiHeader>
+   <text>
+      <front>
+         <div type="abstract" xml:id="resumen" xml:lang="es">
+            <p>En este artículo se presenta un proyecto de edición digital de una serie de
+               fragmentos del poema castellano conocido como <title level="m">Libro de
+                  Alexandre</title>. En primer lugar, se expondrán las razones de la propuesta
+               editorial, que no tiene por objeto la creación de un nuevo texto crítico ni la
+               publicación de la obra completa, sino de un recorte de fragmentos relacionados con el
+               tema de mi investigación doctoral. En cambio, se propone presentar el corpus de
+               fragmentos de écfrasis en el poema enriquecidos con una capa de información semántica
+               que permita integrar en la edición digital los resultados de la investigación
+               filológica. En una segunda instancia se describe la propuesta de marcado XML-TEI
+               adoptada para la codificación del texto y se expone una metodología de publicación
+               digital con minimal computing que fue utilizada para crear un sitio estático a modo
+               de versión de prueba para la visualización de los textos codificados. Además de la
+               presentación de este proyecto de edición digital concreto, este artículo aspira a
+               ofrecer una reflexión sobre la necesidad de promover el desarrollo y uso de software
+               abierto en los proyectos de Humanidades Digitales, especialmente para aquellos que se
+               desarrollan en el Sur Global.</p>
+         </div>
+         <div type="abstract" xml:id="abstract" xml:lang="en">
+            <p>In this article I present a digital edition project of a series of fragments of the
+               Castilian poem known as <title level="m">Libro de Alexandre</title>. Firstly, I
+               explain the reasons for the editorial proposal, which does not have as goal the
+               publishing of a new complete critical text, but a selection of fragments related to
+               the topic of my doctoral research, the use of the ekphrasis in the poem. Secondly, I
+               describe the process of semantic enrichment of the text, the XML-TEI encoding, and
+               the minimal computing approach. Furthermore, this article aims to offer a reflection
+               on the need to promote the use of open software in Digital Scholarly Edition
+               projects, especially those that take place in the Global South.</p>
+         </div>
+      </front>
+      <body>
+         <!-- text divisions, each with an @xml:id and <head> -->
+         <div xml:id="intro">
+            <head>Introducción</head>
+            <p>El proyecto de edición digital que se presenta a continuación se encuentra en
+               desarrollo como parte del trabajo de mi tesis doctoral, cuyo objeto de estudio es el
+               uso de la écfrasis en el <title level="m">Libro de Alexandre</title>, un poema
+               castellano del siglo XIII, compuesto probablemente por un clérigo letrado, que narra
+               una versión fuertemente ficcionalizada de la vida y conquistas de Alejandro Magno. El
+               objetivo de esta edición no será la presentación del texto completo del poema
+               castellano, ni la elaboración de una nueva versión crítica, sino que se editarán solo
+               los pasajes que presentan descripciones ecfrásticas,<note>Desarrollo la noción de
+                  écfrasis y su uso en el <title level="m">Libro de Alexandre</title> en el apartado
+                     <title level="a">El corpus de esta edición digital</title> (<ptr
+                     target="#corpus" type="crossref"/>).</note> complementadas con notas y recursos
+               visuales. Con este fin, se realizó una codificación de los pasajes seleccionados en
+               XML-TEI cuyos principios se exponen en los siguientes apartados. Por otra parte, este
+               proyecto también tiene el objetivo de explorar y documentar un método de edición
+               digital académica<note>La precisa definición y delimitación de conceptos como edición
+                  digital, edición digital académica y edición digital filológica es objeto de un
+                  debate que escapa al alcance de este artículo. Sin ánimo de proporcionar una lista
+                  exhaustiva, se sugiere la siguiente bibliografía (mayormente en español) como una
+                  introducción a esta discusión: <ref target="#Pierazzo2015" type="bibl">Pierazzo
+                     2015</ref>; <ref target="#Pierazzo2019" type="bibl">2019</ref>; <ref
+                     type="bibl" target="#Alles2015">Allés-Torrent 2015</ref>; <ref
+                     target="#Alles2020" type="bibl">2020</ref>; <ref type="bibl"
+                     target="#Sahle2017">Sahle 2017</ref>; <ref target="#Rojas2018" type="bibl"
+                     >Rojas Castro 2018</ref>; <ref type="bibl" target="#Alvite2022">Alvite Díez y
+                     Rojas Castro 2022</ref>.</note> con software de código abierto, estándares de
+               codificación y principios de la minimal computing. Se busca además que esta
+               metodología pueda ser reutilizada, adaptada o replicada por otros proyectos similares
+               en el futuro, con el fin de evitar que las infraestructuras tecnológicas (muchas
+               veces limitadas en el Sur Global, donde se desarrolla este trabajo) constituyan un
+               obstáculo.</p>
+         </div>
+         <div xml:id="sobre">
+            <head>Sobre el <title level="m">Libro de Alexandre</title> y esta propuesta
+               editorial</head>
+            <p>Como punto de partida se realizará una breve presentación de las fuentes textuales de
+               la edición y esta propuesta en relación con los testimonios existentes y las
+               ediciones publicadas hasta hoy. Del <title level="m">Libro de Alexandre</title> se
+               conservan dos testimonios que transmiten el relato completo,<note>Además de estos dos
+                  manuscritos, se conservan tres fragmentos muy breves, pero resultan de escasa
+                  importancia para nuestro trabajo, ya que no incluyen ninguno de los pasajes de
+                  écfrasis analizados.</note> aunque con diferencias en la cantidad y el
+               ordenamiento de las estrofas: O (Biblioteca Nacional de Madrid, signatura: Vit. 5–10)
+               es el más antiguo de los manuscritos conservados, se trata de un códice en cuarto, de
+               pergamino, copiado por una sola mano con letra gótica fechada entre finales del siglo
+               XIII y comienzos del siglo XIV; y P (Bibliothèque Nationale de Paris, signatura: Ms.
+               Esp. 488), un códice en papel, trasladado en escritura gótica del siglo XV (<ref
+                  target="#Casas2007" type="bibl">Casas Rigall 2007, 73–74</ref>; <ref
+                  target="#Marcos2002" type="bibl">Marcos Marín 2002, 756–757</ref>). La enorme
+               divergencia entre estos dos testimonios en cuestiones tan importantes como las
+               variantes de lengua o la atribución de la autoría del poema hace que las hipótesis
+               para su edición crítica sean ampliamente debatidas. Es por ello que Arizaleta (<ref
+                  type="bibl" target="#Arizaleta1999">1999, 15</ref>) señala que las divergencias
+               son tan grandes que el objetivo de realizar un reconstrucción crítica arquetipo
+               original parece inalcanzable.</p>
+            <p>A pesar de todo, estas dificultades no han impedido la elaboración de varias
+               ediciones críticas de esta obra central en la historia temprana de la literatura
+               castellana, como las de <ref target="#Canas1978" type="bibl">Cañas Murillo (publicada
+                  originalmente en 1978 y revisada en 1988)</ref>, Nelson (<ref type="bibl"
+                  target="#Nelson1979">1979</ref>), Marcos Marín (<ref target="#Marcos1987"
+                  type="bibl">1987</ref>), <ref type="bibl" target="#Casas2007">Casas Rigall
+                  (publicada originalmente en 2007 y revisada en 2014)</ref> y García López (<ref
+                  target="#Garcia2010" type="bibl">2010</ref>). La disponibilidad de una variedad de
+               ediciones académicas de gran calidad vuelve redundante el establecimiento de un nuevo
+               texto crítico en un proyecto como el que aquí se presenta, cuyo eje central no es la
+               crítica textual. Por este motivo, se utilizó el texto de Casas Rigall como base de la
+               edición digital, ya que se trata de la edición crítica más completa y actualizada
+               publicada hasta el momento. Respecto al problema de la transmisión manuscrita, Casas
+               Rigall (<ref type="bibl" target="#Casas2007">2007, 120–121</ref>) se inclina por la
+               elección de un <term>codex optimus</term>, que a su entender es el manuscrito P, que
+               enmienda y completa en aquellos pasajes que considera necesario.</p>
+            <p>Por otra parte, el <title level="m">Libro de Alexandre</title> no solo cuenta con una
+               variedad de ediciones críticas, sino que también se encuentra disponible en línea a
+               través de la edición digital unificada de Marcos Marín (<ref type="bibl"
+                  target="#Marcos2000">2000</ref>), publicada desde la Biblioteca Virtual
+                  Cervantes.<note>Fecha de consulta 16 de julio de 2023, <ptr
+                     target="https://www.cervantesvirtual.com/obra/libro-de-alexandre--0/"/>.</note>
+               Por este motivo, la necesidad de ofrecer una versión completa y abierta de este texto
+               también se encuentra cubierta. Teniendo en cuenta estos antecedentes, el objeto
+               digital proyectado no se concibe como una plataforma para la lectura del <title
+                  level="m">Libro de Alexandre</title>, sino como una herramienta para acompañar el
+               estudio de esta obra y de otras afines de las letras clericales castellanas del siglo
+               XIII. Es por eso que en lugar de realizar una edición completa del poema (opción que
+               además excedería las posibilidades del marco del trabajo de mi tesis doctoral), la
+               propuesta es editar un corpus de fragmentos seleccionados sobre los que se centrará
+               el estudio filológico. Esta propuesta parte del supuesto teórico de que la edición
+               digital no necesariamente debe definir su objeto de estudio de la misma forma en la
+               que lo hacen las ediciones impresas. Aengus Ward señala que: <cit>
+                  <quote source="#q1">La presentación de una edición (digital) como un subconjunto
+                     –una perspectiva sobre la obra entre otras muchas posibles– es un punto fuerte
+                     de la edición digital, porque establece una relación dialéctica entre múltiples
+                     perspectivas, y la naturaleza digital de su materia prima permite su constante
+                     renovación y reutilización por otros usuarios/editores para nuevas ediciones
+                     que pueden (o no) servir a fines muy distintos.</quote>
+                  <ref target="#Ward2017" xml:id="q1" type="bibl">Ward 2017, 29</ref>
+               </cit>
+            </p>
+         </div>
+         <div xml:id="corpus">
+            <head>El corpus de esta edición digital</head>
+            <p>Las definiciones modernas de écfrasis, particularmente a partir de Spitzer (<ref
+                  target="#Spitzer1955" type="bibl">1955</ref>), la asocian directamente con la
+               descripción de obras de arte (<ref type="bibl" target="#Webb1999">Webb 1999,
+               10</ref>; <ref type="bibl" target="#Gabrieloni2008">Gabrieloni 2008, 96</ref>; <ref
+                  target="#Koopman2014" type="bibl">Koopman 2014, 5</ref>). Ya desde el escudo de
+               Aquiles en la <title level="m">Ilíada</title>, las obras de arte fueron los objetos
+               predilectos de las descripciones ecfrásticas en la tradición de la épica culta de la
+               que desciende el <title level="m">Libro de Alexandre</title> (<ref
+                  target="#Heffernan1993" type="bibl">Heffernan 1993, 9–10</ref>). El poema
+               castellano resulta especialmente prolífico en este tipo de descripciones, que
+               incluyen varios escudos, sepulcros y otros objetos artísticos, entre los cuales se
+               destaca una extensa y elaborada descripción de las pinturas que adornan los paños de
+               la tienda de Alejandro. Sin embargo se debe tener en cuenta que, para la retórica
+               antigua, el término écfrasis se utilizaba en forma menos restringida, para referirse
+               a descripciones no solo de obras de arte, sino de todo tipo de elementos como
+               personas, acciones y lugares (<ref type="bibl" target="#Webb1999">Webb 1999,
+               11</ref>; <ref type="bibl" target="#Gabrieloni2008">Gabrieloni 2008, 90</ref>; <ref
+                  target="#Koopman2014" type="bibl">Koopman 2014, 4</ref>). La condición que estas
+               descripciones debían cumplir no estaban referidas a su objeto, sino al efecto que
+               estaban destinadas a causar en el público, la <term>enargeia</term>, es decir,
+               producir una imagen vívida de ese objeto en la mente del público. Si se toma esta
+               definición más amplia de écfrasis para examinar el <title level="m">Libro de
+                  Alexandre</title> es posible verificar que el poema cuenta con varios pasajes
+               descriptivos que no tienen por objeto a una obra de arte, y que sin embargo apelan a
+               motivos comunes en las representaciones visuales medievales y en donde los temas
+               representados coinciden con los que aparecen en los objetos artísticos del poema.
+               Estas secciones se relacionan en general con la descripción de los espacios alejados
+               de la normalidad, como la ciudad de Babilonia, el fondo del mar e incluso el
+               Infierno.</p>
+            <p>Teniendo en cuenta las diferentes concepciones de la <term>écfrasis</term> arriba
+               expuestas, el corpus de pasajes del <title level="m">Libro de Alexandre</title> que
+               fueron seleccionados para su edición digital en este punto del proyecto se compone
+               del siguiente modo:<note>Los números de estrofas corresponden a la edición de Casas
+                  Rigall (2007).</note></p>
+            <p>Descripciones de obras de arte:</p>
+            <list rend="bulleted">
+               <item>Escudo de Alejandro (96–98) </item>
+               <item>Escudo de Aquiles (653–659)</item>
+               <item>Carro de Darío (855–864)</item>
+               <item>Armas de Darío (989- 1001)</item>
+               <item>Sepulcro de Endrona (1239–1249)</item>
+               <item>Sepulcro de Darío (1791–1803)</item>
+               <item>Árbol autómata del rey Poro (2132–2142)</item>
+               <item>Tienda de Alejando (2539–2595)</item>
+            </list>
+            <p> </p>
+            <p>Otras descripciones <soCalled>ecfrásticas</soCalled>:</p>
+            <list rend="bulleted">
+               <item>Descripción de Asia (276–294)</item>
+               <item>Descripción de Babilonia (1460–1547)</item>
+               <item>Viaje submarino de Alejandro (2305–2322)</item>
+               <item>Descripción del Infierno (2334–2423)</item>
+               <item>Viaje aéreo de Alejandro (2496–2514).</item>
+            </list>
+            <p>Cabe aclarar que si bien este corpus se encuentra muy cercano a lo que será la
+               presentación final de la edición digital, también existe un margen de apertura para
+               la adición de ciertos pasajes, si el curso de la investigación filológica que se
+               encuentra en proceso así lo requiriese.</p>
+         </div>
+         <div xml:id="antecedentes">
+            <head>Antecedentes</head>
+            <p>El esquema de marcado TEI que se presentará en el siguiente apartado tuvo su origen
+               en una serie de proyectos anteriores, dedicados a la codificación de poesía
+               castellana medieval. Fue justamente en un proyecto pionero del uso de TEI en la
+               edición académica argentina, <title level="u">Diálogo Medieval</title>, dirigido por
+               Gimena del Rio y Carina Zubillaga, en el que comencé a colaborar en 2017, donde tuve
+               mi primer acercamiento al uso de TEI y al prototipo del esquema que luego se
+               terminaría adaptando para esta edición.<note>Sobre este proyecto, véase del Rio
+                  Riande (2020).</note> Como señalan las directoras del proyecto, este a su vez se
+               planteó como la continuación de trabajos anteriores dedicados al estudio de la poesía
+               castellana medieval mediante el uso de herramientas de las Humanidades
+                     Digitales.<note><ref type="bibl" target="#Rio2015" xml:id="quote1">del Rio
+                     Riande y Zubillaga (2015, 155)</ref> señalan que: <quote source="#quote1">Esta
+                     tarea de orden filológico se orientará, al mismo tiempo, a un objetivo más
+                     general basado en el examen de las posibilidades y beneficios críticos y
+                     metodológicos de las Humanidades Digitales para contribuir a la transmisión y
+                     recepción más accesibles de los textos medievales. En otras palabras, la labor
+                     analítica y ecdótica irá de la mano del trabajo digital, con lo que
+                     paralelamente se etiquetarán los textos editados en lenguaje TEI-XML, tomando
+                     como punto de partida los avances en este tema del proyecto ReMetCa, madre del
+                     nuestro</quote>. Para más información sobre el proyecto ReMetCa véase Martínez
+                  Cantón et al. (<ref type="bibl" target="#Martinez2014">2014</ref>).</note> Por
+               ello algunos aspectos de la propuesta de marcado que se utilizó dan continuidad a una
+               práctica académica con numerosos antecedentes en este campo de estudio.</p>
+            <p>El esquema utilizado en la codificación de textos para <title level="u">Diálogo
+                  Medieval</title> proporcionó la base estructural para el marcado de textos en
+               verso, aunque cabe destacar que el objeto de estudio de la presente investigación no
+               se relaciona directamente con los aspectos métricos y rimáticos del verso, por lo que
+               el marcado de aspectos formales se encuentra sumamente simplificado. Por otro lado,
+               se añade la cesura, característica de los poemas en cuadernavía castellanos
+               identificados con el <soCalled>mester de clerecía</soCalled> (<ref type="bibl"
+                  target="#Rico1985">Rico 1985, 22–23</ref>; <ref target="#Uria2000" type="bibl"
+                  >Uría Maqua 2000, 76</ref>). Adicionalmente, este esquema incluía el uso de un
+               vocabulario controlado con la terminología que los poetas utilizaban para referirse a
+               su arte.<note>Fecha de consulta 16 de julio de 2023, <ptr
+                     target="http://vocabularios.caicyt.gov.ar/pmc/"/>.</note> La incorporación de
+               este vocabulario a la codificación XML-TEI se realizó mediante el uso del elemento
+                  <gi>term</gi>, al que se le añadía el atributo <att>cRef</att> para referenciar
+               cada término con su entrada correspondiente en el vocabulario controlado. Como
+               veremos en los siguientes apartados, esta es una de las principales características
+               tomadas del esquema utilizado en <title level="u">Diálogo Medieval</title>.</p>
+            <p>A pesar de los avances en materia de codificación realizados en estos antecedentes,
+               los textos editados en esta primera etapa no llegaron a tener una presentación en
+               línea duradera, principalmente debido a la dependencia de servidores institucionales
+               para alojar el sitio que había sido creado para presentar la edición. Por ese motivo,
+               cuando en 2019 se comenzó a trabajar bajo la dirección de la Dra. Gimena del Rio
+               Riande en una continuación de ese proyecto <title level="u">Poesía
+                  Medieval</title>,<note>Fecha de consulta 16 de julio de 2023, <ptr
+                     target="http://hdlab.space/Poesia-Medieval/"/>.</note> se recurrió a la
+               publicación del material en un sitio estático. Esta aproximación permitió superar el
+               problema de la falta de servidores institucionales capaces de garantizar el
+               almacenamiento a largo plazo de sus ediciones digitales.</p>
+            <p>También debe mencionarse el proyecto <title level="u">Poetriae</title> como un
+               antecedente de ediciones digitales relacionadas al estudio de la poesía medieval
+               castellana en el que el trabajo de codificación se realizó sobre textos críticos
+               previamente existentes. Si bien los objetivos y el contexto de trabajo de esta
+               propuesta es muy diferente a la que aquí se presenta, resulta pertinente retomar las
+               palabras de las creadoras de <title level="u">Poetriae</title> respecto a la
+               elaboración de ediciones digitales a partir de textos críticos ya establecidos: <cit>
+                  <quote source="#q2">Es importante resaltar que este proyecto no pretende realizar
+                     nuevas ediciones críticas de cada uno de los tratados, sino aprovechar y
+                     reutilizar el trabajo ya realizado por reconocidos medievalistas para
+                     enriquecerlos mediante nuevas posibilidades de consulta y comparación por
+                     conceptos entre textos.</quote>
+                  <ref xml:id="q2" type="bibl" target="#Martinez2018">Martínez Cantón, del Rio
+                     Riande, y González-Blanco García 2018, 13</ref>
+               </cit>
+            </p>
+            <p>Finalmente, otro antecedente fundamental para el presente proyecto fue la experiencia
+               del curso de edición digital con herramientas de <term>minimal computing</term>
+               impartido por Gimena del Rio Riande y Raffaele Viglianti, que tuvo su primera edición
+               en el año <ref target="#Rio2020" type="bibl">2020</ref>.<note>El curso <title
+                     level="u">Digital Publishing with Minimal Computing/Ediciones digitales con
+                     minimal computing</title> es una iniciativa de Global Classrooms, que surge
+                  como colaboración entre la Universidad de Maryland (Estados Unidos) y la
+                  Universidad del Salvador (Argentina) fecha de consulta 16 de julio de 2023, <ptr
+                     target="https://mith.umd.edu/minimaldigipub/es/"/>. Para más información sobre
+                  este curso desde el punto de vista de la primera camada de estudiantes del mismo,
+                  véase Calarco et al. (<ref type="bibl" target="#Calarco2021">2021</ref>).</note>
+               Dado que uno de los objetivos de este proyecto es documentar un flujo de trabajo para
+               la edición y publicación digital académica en español, que pudiera ser reutilizado
+               por otros proyectos similares en el futuro, el uso de software propietario constituía
+               una seria limitación para la replicabilidad del proceso, especialmente en las
+               comunidades científicas del Sur Global, como la argentina, en la que se desarrolla
+               este trabajo. Por ese motivo, las herramientas gratuitas y abiertas que fueron
+               proporcionadas en este curso, desde el editor de código hasta el alojamiento de los
+               sitios finales, fueron de enorme importancia para alcanzar este objetivo.</p>
+         </div>
+         <div xml:id="modelizacion">
+            <head>Modelización y elaboración del vocabulario controlado</head>
+            <p>Dado que el objetivo central de la presente investigación filológica es el estudio de
+               la representación del rol del arte y el artista en el <emph>Alexandre</emph> a través
+               de la écfrasis, el sistema de codificación adoptado debía ser capaz de describir la
+               actividad artística y los motivos representados de forma que estos pudieran ser
+               interpretados informáticamente. Con este fin, uno de los primeros pasos en la
+               preparación de esta edición digital fue la creación de un vocabulario controlado que
+               permitiera agregar una capa de información semántica referida a este tema en la
+               codificación del texto. Como señalan Abaitua et al., retomando la definición de
+                  <soCalled>semántica</soCalled> de Berners-Lee: <cit>
+                  <quote source="#q3">Para Berners-Lee (<ref target="#BernersLee1998" type="bibl"
+                        >1998</ref>) el término <soCalled>semántica</soCalled> significa
+                     específicamente <q>tratable computacionalmente</q>, que es una interpretación
+                     distinta a la que se usa en lingüística. En esta nueva acepción, la semántica
+                     debe transmitir lo que las máquinas deben hacer con los datos. El test
+                     semántico será el que permita comprobar si la máquina ha sabido tratar
+                     correctamente un dato dado o no. Con todo, pese a lo que pueda parecer, esta
+                     semántica, al igual que todo buen sistema simbólico, debe ser declarativa y no
+                     procedimental; es decir, debe servir para expresar lo que un dato
+                        <q>significa</q> y no lo que se quiere hacer con él.</quote>
+                  <ref target="#Abaitua2003" xml:id="q3" type="bibl">Abaitua et al. 2003, 26</ref>
+               </cit>
+            </p>
+            <p>Este vocabulario controlado fue creado mediante el software de código abierto
+                  TemaTres,<note>Fecha de consulta 16 de julio de 2023, <ptr
+                     target="https://vocabularyserver.com/web/"/>.</note> que es <quote
+                  source="#quote2">una aplicación web para gestionar representaciones lingüísticas
+                  formales del conocimiento: vocabularios controlados, taxonomías, tesauros, listas
+                  de encabezados, etc.</quote> (<ref target="#Gonzales2012" type="bibl"
+                  xml:id="quote2">Gonzales Aguilar, Ramírez-Posada, y Ferreyra 2012, 318</ref>).
+               Como señalan quienes desarrollaron esta aplicación, los vocabularios controlados son:
+                  <quote source="#quote3">lenguajes documentales, sistemas semánticos artificiales
+                  que mediante el uso de términos normalizados o controlados permiten describir el
+                  contenido de los documentos y evitar posibles ambigüedades</quote> (<ref
+                  type="bibl" target="#Gonzales2012" xml:id="quote3">Gonzales Aguilar,
+                  Ramírez-Posada, y Ferreyra 2012, 318</ref>). El uso de un vocabulario de este tipo
+               hizo posible representar el trabajo de investigación en curso como una serie de
+               entradas ordenadas en una taxonomía informáticamente referenciable a través de los
+               URL que TemaTres le asigna a cada término. El vocabulario desarrollado de este modo
+               se encuentra disponible en su versión provisoria en la plataforma de
+                  TemaTres.<note>Fecha de consulta 16 de julio de 2023, <ptr
+                     target="https://vocabularyserver.com/alexandre/index.php"/>.</note>
+            </p>
+            <p>El punto de partida para la creación de una taxonomía en esta aplicación es el
+               establecimiento de al menos tres meta-términos, que deben ser las categorías
+               superiores que contienen al resto de las entradas. Los meta-términos que estructuran
+               el vocabulario son:</p>
+            <list rend="bulleted">
+               <item>Agentes de producción: Dedicado a todos los términos relacionados con los
+                  artistas en el <title level="m">Libro de Alexandre</title>, sus cualidades, las
+                  herramientas que usan, etc.</item>
+               <item>Écfrasis: Los términos contenidos en esta categoría se centran en las obras de
+                  arte y otras imágenes descritas en el poema castellano, sus cualidades, los
+                  materiales con los que fueron hechas, las reacciones que provocan en quienes las
+                  contemplan, etc.</item>
+               <item>Motivos: Mientras que los dos primeros meta-términos se centran en describir
+                  los elementos del arte y del artista, esta tercera categoría contiene una
+                  clasificación de motivos representados en las obras de arte y otras descripciones
+                     <emph>ecfrásticas</emph> del <title level="m">Libro de Alexandre</title>. Dado
+                  que en estas descripciones el foco de la atención suele estar puesto en el
+                  contenido de la representación más que en su ejecución material (<ref type="bibl"
+                     target="#Pascual2010">Pascual-Argente 2010, 77</ref>), la categoría
+                  correspondiente a los motivos es la que cuenta con más entradas y en donde se
+                  concentra el grueso de la investigación filológica. Por esta razón, mientras que
+                  las dos primeras categorías del vocabulario se encuentran agrupadas para su
+                  visualización en la edición digital (como se verá en los siguientes apartados),
+                  las cuatro subcategorías del meta-término de <term>motivos</term> se encuentran
+                  individualizadas en términos de visualización. Estas subcategorías se relacionan
+                  con el tipo de fuentes textuales representadas, que se clasifican en:</item>
+               <item>
+                  <list rend="bulleted">
+                     <item>Clásicas: La Guerra de Troya, las hazañas de Hércules, referencias
+                        mitológicas greco-romanas, etc.</item>
+                     <item>Religiosas: Mayoritariamente pertenecientes al Antiguo Testamento, pero
+                        también algunas referencias a la vida de Cristo, e incluso fuentes
+                        cristianas relacionadas, por ejemplo, con la caracterización de los pecados
+                        capitales.</item>
+                     <item>Enciclopédicas: En esta subcategoría se incluyen diferentes fuentes
+                        relacionadas con la representación del mapamundi, los cuerpos celestes, los
+                        meses del año, los animales y las plantas, etc.; es decir, un tipo de saber
+                        que sería anacrónico calificar plenamente de científico, pero que se
+                        relaciona con el conocimiento del mundo físico y natural (<ref
+                           target="#Zumthor1994" type="bibl">Zumthor 1994, 213</ref>).</item>
+                     <item>Gestas de Alejandro Magno: Si bien esta última subcategoría es la que
+                        cuenta con menos entradas, la presencia de la materia misma en el poema
+                        representada como motivo artístico resulta de gran importancia. Este se debe
+                        a que estos fragmentos acentúan los paralelismos entre el trabajo artístico
+                        representado en las écfrasis del poema y el que el autor anónimo lleva a
+                        cabo componiendo el <emph>Alexandre</emph> a partir de sus fuentes (<ref
+                           target="#Arizaleta1999" type="bibl">Arizaleta 1999, 143–44</ref>; <ref
+                           type="bibl" target="#Weiss2006">Weiss 2006, 140</ref>; <ref
+                           target="#Pascual2010" type="bibl">Pascual-Argente 2010,
+                        82–92</ref>).</item>
+                  </list>
+               </item>
+            </list>
+
+            <figure xml:id="figure1">
+               <graphic url="image1.jpg" height="249px" width="451px"/>
+               <head type="legend">Pantalla de inicio del vocabulario controlado de la écfrasis en
+                  el <hi rend="italic">Alexandre</hi> creado con la aplicación TemaTres (elaboración
+                  propia).</head>
+            </figure>
+         </div>
+         <div xml:id="codification">
+            <head>Codificación XML-TEI</head>
+            <p>Una vez establecida la taxonomía de términos de los pasajes a editar que debían ser
+               incluidos en el vocabulario controlado, el siguiente paso fue la codificación de los
+               textos del corpus en XML-TEI (aunque en la práctica, ambas actividades se fueron
+               desarrollando y evolucionando en paralelo).<note>Los documentos XML-TEI (en su estado
+                  provisorio de desarrollo actual), junto con el resto de los archvos relacionados
+                  con mi edición, se encuentran disponibles en el siguiente repositorio de GitLab:
+                  fecha de consulta 16 de julio de 2023, <ptr
+                     target="https://gitlab.com/gabrielcalarco/ecfrasis-beta/-/tree/master/archivos/TEI"
+                  />. El archivo ODD que contiene la definición de la propuesta de marcado que aquí
+                  presentamos puede consultarse en: fecha de consulta 16 de julio de 2023, <ptr
+                     target="https://gitlab.com/gabrielcalarco/ecfrasis-beta/-/blob/master/archivos/Auxiliar/TEI_alex.xml"
+                  /></note> Para realizar el marcado de los textos se utilizó el editor de código
+               abierto Visual Studio Code.<note>Fecha de consulta 16 de julio de 2023, <ptr
+                     target="https://code.visualstudio.com/"/>.</note> Cabe señalar que hasta hace
+               poco, debido a la falta de opciones de acceso o descarga gratuita que permitieran
+               validar documentos XML-TEI a partir de un esquema, y de disponer de herramientas
+               predictivas que aceleran considerablemente los tiempos de trabajo, para la
+               codificación de textos con TEI era prácticamente obligatorio el uso de un editor de
+               código propietario, como Oxygen.<note>Fecha de consulta 16 de julio de 2023, <ptr
+                     target="https://www.oxygenxml.com/"/>.</note> Sin embargo, gracias al
+               desarrollo reciente por parte del Dr. Raffaele Viglianti de la extensión Scholarly
+               XML, es posible trabajar con un esquema básico en TEI en Visual Studio
+                  Code.<note>Fecha de consulta 16 de julio de 2023, <ptr
+                     target="https://marketplace.visualstudio.com/items?itemName=raffazizzi.sxml"
+                  />.</note> Este detalle no es menor para los objetivos de este proyecto que se
+               lleva adelante en una institución pública de un país que viene atravesando diferentes
+               crisis económicas que han impactado de lleno en la financiación y la sostenibilidad
+               de la investigación. No obstante, como ya se ha señalado, un proceso de edición
+               digital utilizando herramientas que se encuentran disponibles para toda la comunidad
+               científica, con la mayor independencia posible de barreras económicas como la que
+               impone el uso de software propietario, facilita las condiciones de replicabilidad y/o
+               reproducibilidad en proyectos de edición digital o Humanidades Digitales.</p>
+            <p>A continuación detallaremos las principales características de la propuesta de
+               marcado dividiéndola en dos parte, el encabezado y el cuerpo del texto.</p>
+            <div xml:id="encabezado">
+               <head>Encabezado</head>
+               <p>En esta primera etapa de desarrollo de la edición digital los fragmentos fueron
+                  codificados con un encabezado muy sencillo en el que se recoge la siguiente
+                  información:</p>
+               <list rend="bulleted">
+                  <item>En el <gi>titleStmt</gi> se utilizan dos elementos <gi>title</gi>, el
+                     primero con el atributo <att>type</att>=<val>main</val> para referir al título
+                     del poema, y el segundo con <att>type</att>=<val>sub</val> para referir al
+                     fragmento concreto que constituye la unidad de edición de los archivos XML que
+                     forman el corpus. Adicionalmente, el título del fragmento se encuentra
+                     referenciado a su correspondiente entrada en el vocabulario controlado mediante
+                     un <att>ref</att> Además de estos elementos se agrega un <gi>author</gi> que se
+                     declara anónimo siguiendo el consenso mayoritario de la crítica,<note>Si bien
+                        ambos manuscritos dedican una estrofa a presentar al autor del poema, estos
+                        no solo difieren entre sí, sino que se contradicen internamente cuando en un
+                        punto posterior del relato se vuelve a mencionar el nombre del autor, y
+                        volvemos a encontrar las mismas atribuciones (Gonzalo de Berceo y Juan
+                        Lorenzo de Astorga), pero invertidas. Por este motivo, la mayoría de los
+                        editores actuales eligen publicar este poema como una obra anónima (<ref
+                           type="bibl" target="#Gorog1970">Gorog 1970</ref>; <ref
+                           target="#Goldberg1980" type="bibl">Goldberg 1980</ref>; <ref type="bibl"
+                           target="#Rico1985">Rico 1985</ref>; <ref target="#Michael1986"
+                           type="bibl">Michael 1986</ref>; <ref type="bibl" target="#Uria2000">Uría
+                           Maqua 2000</ref>; <ref target="#Casas2007" type="bibl">Casas Rigall
+                           2007</ref>).</note> y un <gi>editor</gi> para declarar al editor del
+                     documento digital, diferenciado del editor del texto crítico con el atributo
+                        <att>role</att>=<val>digital</val>.</item>
+                  <item>En el <gi>publicationStmt</gi> la información que se proporciona es muy
+                     escasa aun, y solo se indica que la publicación se realiza con una licencia
+                     Creative Commons Attribution - ShareAlike 4.0 International, <note>Fecha de
+                        consulta 16 de julio de 2023, <ptr
+                           target="https://creativecommons.org/licenses/by/4.0/"/>.</note> para lo
+                     que se utiliza el elemento <gi>license</gi> contenido a su vez por un elemento
+                        <gi>availability</gi>.</item>
+                  <item>En la <gi>sourceDesc</gi> se incluyen dos <gi>listBibl</gi>, el primero para
+                     consignar la edición de Casas Rigall de la que se tomó el texto editado,
+                     introducido con un <tag>bibl type="book"</tag>, al que se agrega el título del
+                     libro, el editor crítico, la editorial, el lugar y la fecha de publicación. Por
+                     otro lado, en el segundo <gi>listBibl</gi> se consigna la información referente
+                     a los manuscritos, para esto se utilizan los elementos <gi>msDesc</gi> y
+                        <gi>msIdentifier</gi>, en los que se incluye la ubicación del manuscrito
+                        (<gi>repository</gi>), el identificador dado por la entidad propietaria
+                        (<gi>idno</gi>) y las letras con las que la crítica suele identificarlos
+                     (nuevamente con <gi>idno</gi>, pero en este caso anidado en un
+                        <gi>altIdentifier</gi>).</item>
+               </list>
+            </div>
+            <div xml:id="cuerpo">
+               <head>Cuerpo del texto</head>
+               <p>En el cuerpo del texto se pueden distinguir, según su función, dos tipos de
+                  elementos. En primer lugar se encuentran los estructurales, <gi>lg</gi>,
+                     <gi>l</gi> y <gi>caesura</gi>, que describen el ordenamiento del texto en
+                  versos y estrofas. Con la excepción de la cesura, el uso de estos elementos fue
+                  tomado del esquema utilizado en proyectos anteriores dedicados al estudio de la
+                  poesía hispánica medieval, en donde los aspectos formales del verso tienen una
+                  gran importancia. Dado que este proyecto no se focaliza en este tipo de
+                  problemáticas, se ha reducido el uso de algunos atributos y elementos de las
+                  propuestas anteriores (por ejemplo, no se codificaron las rimas). Sin embargo, no
+                  se eliminaron todos los atributos relacionados con los aspectos métrico-rimáticos,
+                  en previsión de la posibilidad de reutilización a futuro de los textos codificados
+                  con TEI en un proyecto en donde la presencia de esos datos sea relevante. Esta
+                  información se incorpora en el primer elemento <gi>lg</gi> que contiene al resto
+                  del fragmento editado y se introduce mediante los atributos <att>type</att>
+                     (<val>fragmento</val>), <att>subtype</att> (<val>epica-culta</val>),
+                     <att>met</att> (<val>4x4</val>), <att>rhyme</att> (<val>AAAA</val>),
+                     <att>unisonancia</att> (<val>singular</val>), <att>isometrismo</att>
+                     (<val>isometrico</val>), <att>isoestrofismo</att> (<val>isoestrofico</val>) y
+                     <att>asonancia</att> (<val>consonante</val>). Adicionalmente en los <gi>lg</gi>
+                  que contienen cada estrofa se agrega el <att>type</att> con el valor
+                     <val>tetrastico_monorrimo</val>.<note>Para más información sobre los aspectos
+                     formales del verso en el <emph>Alexandre</emph>, véase: <ref type="bibl"
+                        target="#Rico1985">Rico 1985</ref>; <ref target="#Michael1986" type="bibl"
+                        >Michael 1986</ref>; <ref type="bibl" target="#Uria2000">Uría Maqua
+                        2000</ref>; <ref target="#Gonzalez2008" type="bibl">González-Blanco García
+                        2008</ref>.</note> Como puede apreciarse por sus nombres en español, varios
+                  de estos atributos no son originales del módulo de verso de TEI, sino que fueron
+                  creados especialmente para el marcado de poesía medieval española en los proyectos
+                  referidos en la sección de antecedentes.</p>
+               <p>Por otra parte, se encuentran los elementos que se utilizan para introducir la
+                  información semántica sobre los términos que forman el vocabulario controlado del
+                  estudio de la écfrasis en el poema. Se marcan todas las apariciones de los
+                  términos de la taxonomía en el texto, con este fin se utilizan tres elementos:
+                     <gi>term</gi>, <gi>persName</gi> y <gi>placeName</gi>, de los cuales el más
+                  utilizado es por amplio margen el primero, que abarca un abanico mucho más amplio
+                  de posibles entradas, mientras que los otros dos se reservan para los casos de
+                  nombres propios de lugares o personas que forman parte de los motivos incluidos en
+                  el vocabulario. Estos tres elementos reciben los mismos atributos; <att>ref</att>
+                  cuyo valor es el URL asignado por el vocabulario controlado para cada término; y
+                     <att>type</att> cuyo valor puede ser una de cinco opciones. Los valores
+                  admitidos en <att>type</att> son: <val>artistico</val> (para todas las entradas
+                  incluidas en los dos primeros meta-términos del vocabulario controlado), o alguna
+                  de las cuatro subcategorías de motivos, es decir <val>clasico</val>,
+                     <val>religioso</val>, <val>enciclopedico</val> o <val>alexandre</val> (cuya
+                  descripción detallada puede encontrarse en el apartado anterior).</p>
+               <p>Por otra parte, además del marcado de términos en el texto, también se codifica la
+                  aparición de los motivos más importantes para el análisis de los pasajes editados
+                  (como el mapamundi o el episodio de la construcción de la Torre de Babel). En este
+                  momento del desarrollo de la edición digital esa función está siendo cumplida
+                  paralelamente por dos sistemas de marcado. Uno de estos sistemas es el uso del
+                  elemento <gi>note</gi> al que se añade un <att>type</att> para indicar que se
+                  trata de un motivo, mientras que se utilizan <att>subtype</att> y <att>ref</att>
+                  para incluir la referencia a la entrada correspondiente en el vocabulario
+                  controlado y la clasificación dentro del sistema de motivos). Al mismo tiempo, se
+                  utiliza <att>ana</att> en los elementos <gi>l</gi> y <gi>lg</gi> en los que se
+                  desea hacer manifiesta la presencia de uno de los motivos analizados. El valor de
+                  los <att>ana</att> se encuentra definido a través de la reproducción de la
+                  taxonomía creada en TemaTres en un archivo XML-TEI mediante el uso del elemento
+                     <gi>taxonomy</gi> y sus correspondientes elementos descendientes
+                     <gi>category</gi>. Sin embargo, hasta el momento, esa taxonomía codificada en
+                  TEI se encuentra en un archivo separado de los textos marcados, y el uso y función
+                  de este segundo sistema de codificación de motivos está sujeto a revisión en el
+                  futuro; ya que, como se verá en el siguiente apartado, en la edición de prueba que
+                  aloja los textos actualmente, los motivos solo se recuperan a partir del elemento
+                     <gi>note</gi>. A continuación, se reproduce a modo de ejemplo una estrofa de un
+                  documento TEI codificado mediante esta propuesta:</p>
+               <figure xml:id="example1">
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                     <lg n="653" type="terastico" met="4x14" rhyme="AAAA">
+                        <l xml:id="L1">En pocas de <term
+                              ref="https://vocabularyserver.com/alexandre/index.php?tema=310"
+                              type="artistico">palabras</term>
+                           <caesura/>vos quiero <term
+                              ref="https://vocabularyserver.com/alexandre/index.php?tema=79"
+                              type="artistico">destajar</term>
+                        </l>
+                        <l xml:id="L2"> la <term
+                              ref="https://vocabularyserver.com/alexandre/index.php?tema=26"
+                              type="artistico">obra</term> de las <term
+                              ref="https://vocabularyserver.com/alexandre/index.php?tema=62"
+                              type="artistico">armas</term>
+                           <caesura/> qu’<persName
+                              ref="https://vocabularyserver.com/alexandre/index.php?tema=210"
+                              type="clasico">Aquiles</persName> mandó far, </l>
+                        <l xml:id="L3">que, si por orden todo <caesura/>lo quesiés’én’ <term
+                              ref="https://vocabularyserver.com/alexandre/index.php?tema=77"
+                              type="artistico">notar</term>, </l>
+                        <l xml:id="L4">serié un <term
+                              ref="https://vocabularyserver.com/alexandre/index.php?tema=311"
+                              type="artistico">brevïario</term>
+                           <caesura/> que prendrié grant logar. </l>
+                     </lg>
+                  </egXML>
+                  <head type="legend">Primera estrofa de la descripción de las armas de
+                     Aquiles</head>
+               </figure>
+            </div>
+         </div>
+         <div xml:id="Visualizacion">
+            <head>Visualización en un sitio estático con Jekyll y GitLab</head>
+            <p>Una vez realizada la primera etapa de codificación de los textos en TEI, el siguiente
+               paso fue el desarrollo de un sitio estático que pudiera servir como versión de prueba
+               para obtener una primera visualización de la edición y como base desde la cual
+               continuar trabajando en una versión definitiva. La metodología adoptada para este fin
+               fue el uso de Jekyll<note>Fecha de consulta 16 de julio de 2023, <ptr
+                     target="https://jekyllrb.com/"/>.</note> para la construcción del sitio
+               estático y GitLab,<note>Fecha de consulta 16 de julio de 2023, <ptr
+                     target="https://about.gitlab.com/"/>.</note> que permite el alojamiento de
+               sitios con estas características de forma gratuita. Esto se debe a que los sitios
+               estáticos no usan una base de datos para almacenar información, sino que todo el
+               contenido de cada página se encuentra por completo en uno, o varios archivos HTML. La
+               función de Jekyll es facilitar la construcción de esos archivos HTML generando una
+               estructura que permite evitar escribir las líneas de código que se repiten en varias
+               páginas (como el pie de página del sitio o el menú de navegación) en cada archivo.
+               Jekyll también ofrece una variedad de temas gratuitos con funciones integradas, entre
+               los cuales se encuentra el que se utilizó como base para construir esta versión de
+               prueba, el tema Ed.<note>Fecha de consulta 16 de julio de 2023, <ptr
+                     target="https://minicomp.github.io/ed/"/>.</note> La estructura inicial que
+               proporciona este tema permitió integrar dos funciones extremadamente útiles, un
+               buscador de términos discretos y la opción de introducir anotaciones en cualquiera de
+               las páginas del sitio mediante la integración de la aplicación web
+                  Hypothesis.is.<note>Fecha de consulta 16 de julio de 2023, <ptr
+                     target="https://via.hypothes.is/"/>.</note> Por su parte, GitLab ofrece dos
+               servicios de gran importancia, el primero es el almacenamiento y control de versiones
+               del repositorio de archivos que forman la edición digital (desde los textos
+               codificados en XML-TEI hasta los HTML de las páginas del sitio); el segundo es
+               proporcionar el alojamiento para el sitio estático creado con Jekyll, a través del
+               servicio de GitLab Pages.</p>
+            <p>Estas herramientas dieron al proyecto la posibilidad de disponer de un sitio de
+               prueba totalmente libre de costo económico y con mínimos requerimientos de
+               mantenimiento. Sin embargo, cabe destacar que los programas y las plataformas
+               utilizadas no son las únicas opciones disponibles para poner en práctica el flujo de
+               trabajo que aquí se describe, ya que existen otras alternativas, tanto para la
+               construcción de sitios estáticos (como el software Gatsby),<note>Fecha de consulta 16
+                  de julio de 2023, <ptr target="https://www.gatsbyjs.com/"/>.</note> como para el
+               alojamiento del sitio en línea y el control de versiones (como GitHub).<note>Fecha de
+                  consulta 16 de julio de 2023, <ptr target="https://github.com/"/>.</note> De
+               hecho, en la etapa actual del trabajo de desarrollo de lo que será la versión final
+               de la edición se está considerando el reemplazo de las herramientas utilizadas en la
+               versión de prueba, particularmente en el caso del alojamiento, debido a que en 2021
+               GitLab realizó un cambio en sus políticas de acceso que exige el uso de una tarjeta
+               de crédito para autenticar las nuevas cuentas que se registran en el sitio, lo cual
+               daña seriamente el objetivo ya mencionado de desarrollar una metodología de trabajo
+               que sea replicable usando solo herramientas completamente abiertas.</p>
+            <p>Para esta primera visualización de prueba de los textos codificados en TEI, el
+               objetivo principal fue lograr una presentación que destacara los términos incluidos
+               en el vocabulario controlado, que permitiera identificar visualmente la distribución
+               de las principales categorías utilizadas como valores de los <att>type</att> de estos
+               términos, y por último, que estos funcionaran como un hipervínculo a la entrada
+               correspondiente de la taxonomía. Las mismas características se aplicaron a los
+                  <gi>note</gi> destinados a señalar la aparición de diferentes motivos artísticos
+               en el texto. La estrategia adoptada en la versión de prueba fue utilizar un sistema
+               de colores para distinguir a los términos y motivos marcados y su clasificación. Como
+               se puede observar en la <ptr target="#figure2" type="crossref"/>, las palabras en
+               rojo pertenecen a la categoría de términos relacionados con el arte
+                  (<att>type</att>=<val>artistico</val>), en azul aparecen los referentes al
+               conocimiento enciclopédico (<att>type</att>=<val>enciclopedico</val>), y finalmente
+               el nombre de Aquiles es verde porque pertenece a la tradición clásica
+                  (<att>type</att>=<val>clasico</val>).</p>
+            <figure xml:id="figure2">
+               <graphic url="image2.png" height="207px" width="451px"/>
+               <head type="legend">Ejemplo de las primeras estrofas de uno de los fragmentos de
+                  écfrasis del <emph>Alexandre</emph> en el sitio de prueba (elaboración
+                  propia).</head>
+            </figure>
+            <p>Los términos en color y los motivos que aparecen debajo del número de estrofa también
+               funcionan como enlaces a las entradas correspondientes en el vocabulario controlado.
+               Por el momento estos enlaces no resultan de mucha utilidad, ya que la gran mayoría de
+               esas entradas se encuentran vacías, y solo revelan la posición del término en la
+               taxonomía (como se puede ver en la <ptr target="#figure3" type="crossref"/>). Sin
+               embargo, el proyecto a futuro consiste en integrar esta taxonomía en la estructura
+               del sitio final, como una serie de entradas en donde se vuelquen los resultados de la
+               investigación filológica y en donde se ofrezcan al lector contenidos multimediales,
+               recursos relacionados y una variedad de posibilidades de navegación, ya sea entre
+               diferentes entradas de la taxonomía, o entre estas y el texto editado. De esta forma
+               se busca proveer al público de la edición con una aproximación lo más completa
+               posible al contexto simbólico en el que esos motivos habrían sido interpretados en el
+               ámbito cultural castellano del siglo XIII en el que se gestó el <title level="m"
+                  >Libro de Alexandre</title>.</p>
+
+            <figure xml:id="figure3">
+               <graphic url="image3.png" height="245px" width="451px"/>
+               <head type="legend">Ejemplo de una entrada en el vocabulario controlado de TemaTres
+                  (elaboración propia).</head>
+            </figure>
+         </div>
+         <div xml:id="conclusion">
+            <head>A modo de conclusión, la elección de la <term>minimal computing</term>
+            </head>
+            <p>A lo largo de este trabajo se hizo referencia a una variedad de software de código
+               abierto para la elaboración de esta versión de prueba. Cabe destacar que esta se
+               trata de una elección en la que conviven razones prácticas de índole económica,
+               derivadas de la escasez de infraestructura y financiamiento que sufre la práctica
+               profesional de las Humanidades (y en particular las digitales) en Argentina, pero
+               también derivadas de la convicción de que la investigación abierta y replicable es
+               una cualidad absolutamente necesaria para el desarrollo de una comunidad científica
+               más efectiva, diversa y justa (<ref target="#Rio2018" type="bibl">del Rio Riande
+                  2018</ref>, <ref target="#Rio2022" type="bibl">2022</ref>; <ref type="bibl"
+                  target="#Viglianti2022">Viglianti et al. 2022</ref>). Es por esto que en este
+               proyecto resultó de gran importancia la adopción de un método de edición digital
+               académica que pueda ser reproducido utilizando estándares de marcado y software de
+               código abierto.</p>
+            <p>Como se señala en el sitio de quienes impulsaron originalmente los principios
+               asociados a la <hi rend="italic">minimal computing</hi>, su propuesta de uso de
+               tecnologías con requerimientos técnicos mínimos para las Humanidades Digitales se
+               encuentra en un punto de cruce entre la elección y la necesidad (<ref type="bibl"
+                  target="#GODH">GO::DH Minimal Computing Working Group s/f</ref>). Las preguntas
+               que la <hi rend="italic">minimal computing</hi> invita a hacerse son ¿qué
+               requerimientos tecnológicos tiene mi proyecto para que pueda alcanzar sus objetivos
+               previstos? y ¿Cuál es la mínima infraestructura que es realmente necesaria para poder
+               alcanzar esos requerimientos? Para quienes desarrollan su práctica profesional en el
+               Sur Global, donde las exigencias económicas de los softwares propietarios y de las
+               infraestructuras tecnológicas materiales muchas veces resultan inaccesibles y
+               funcionan como canales de exclusión (<ref target="#DeGreiff2017" type="bibl">De
+                  Greiff 2017, 80–81</ref>), es fundamental el desarrollo y la difusión de prácticas
+               académicas basadas en el uso de estándares de marcado, herramientas de código abierto
+               y políticas de ciencia abierta.</p>
+         </div>
+      </body>
+      <back>
+         <div type="bibliography">
+            <!-- the bibliography for the article, organized as a series of <bibl> elements inside <listBibl> -->
+            <listBibl>
+               <bibl xml:id="Abaitua2003"><author>Abaitua, Joseba</author>, <author>Guillermo
+                     Barrutieta</author>,<author> Josuka Díaz</author>, <author>Inés Jacob</author>,
+                  y <author>Fernando Quintana</author>. <date>2003</date>. <title level="a"
+                     >Contenidos y metacontenidos en la edición digital.</title>
+                  <title level="j">Letras de Deusto</title>
+                  <biblScope unit="issue">100</biblScope>: <biblScope unit="page"
+                  >11–52</biblScope>.</bibl>
+               <bibl xml:id="Alles2015"><author>Allés-Torrent, Susanna</author>. <date>2015</date>.
+                     <title level="a">Edición Digital y Algunas Tecnologías Aliadas.</title>
+                  <title level="j">Insula</title>
+                  <biblScope unit="issue">822</biblScope>: <biblScope unit="page"
+                  >18–21</biblScope>.</bibl>
+               <bibl xml:id="Alles2020"><author>Allés-Torrent, Susanna</author>. <date>2020</date>.
+                     <title level="a">Crítica textual y edición digital o ¿dónde está la crítica en
+                     las ediciones digitales?</title>
+                  <title level="j">Studia Aurea</title>
+                  <biblScope unit="issue">14</biblScope>: <biblScope unit="page">63–98</biblScope>.
+                  <!--Fecha de consulta: 30 de marzo de 2022.--> doi:<idno type="DOI"
+                     >10.5565/rev/studiaaurea.395</idno>.</bibl>
+               <bibl xml:id="Alvite2022"><author>Alvite Díez</author>, <author>María Luisa</author>,
+                  y <author>Antonio Rojas Castro</author>. <date>2022</date>. <title level="a"
+                     >Ediciones digitales académicas: concepto, estándares de calidad y software de
+                     publicación.</title>
+                  <title level="j">El Profesional de la información</title> 31, 2.
+                  <!--Fecha de consulta: 30 de marzo de 2022.--> doi:<idno type="DOI"
+                     >10.3145/epi.2022.mar.16</idno>.</bibl>
+               <bibl xml:id="Arizaleta1999"><author>Arizaleta, Amaia</author>. <date>1999</date>.
+                     <title level="m">La translation d’Alexandre: recherches sur les structures et
+                     les significations du <emph>Libro de Alexandre</emph></title>. Publication du
+                  séminaire d’études médiévales hispaniques.</bibl>
+               <bibl xml:id="BernersLee1998"><author>Berners-Lee, Tim</author>. <date>1998</date>.
+                     <title level="u">Semantic Web roadmap.</title> World Wide Web Consortium (W3C). <!--Fecha de consulta: 30 de marzo de 2022.-->
+                  <ptr target="https://www.w3.org/DesignIssues/Semantic.html"/>.</bibl>
+               <bibl xml:id="Calarco2021"><author>Calarco, Gabriel</author>, <author>Pamela
+                     Gionco</author>, <author>Rocío Méndez</author>, <author>David Merino
+                     Recalde</author>, <author>Gabriela Striker</author>, y <author>Cristian Suárez
+                     Giraldo</author>. <date>2021</date>. <title level="a">Digital Publishing with
+                     Minimal Computing (UMD-USAL, 2020): nuestra experiencia como
+                     estudiantes.</title>
+                  <title level="j">Publicaciones De La Asociación Argentina De Humanidades
+                     Digitales</title> 2, e022. <!--Fecha de consulta: 18 de noviembre de 2022.-->
+                     doi:<idno type="DOI">10.24215/27187470e022</idno>.</bibl>
+               <bibl xml:id="Canas1978"><editor>Cañas Murillo, Jesús</editor>, ed.
+                  <date>1978</date>. <title level="m">Libro de Alexandre</title>. Biblioteca de la
+                  literatura y el pensamiento hispánicos 35. <pubPlace>Madrid</pubPlace>:
+                     <publisher>Editora Nacional</publisher>.</bibl>
+               <bibl xml:id="Casas2007"><editor>Casas Rigall, Juan</editor>, ed. <date>2007</date>.
+                     <title level="m">Libro de Alexandre</title>. Nueva Biblioteca de Erudición y
+                  Crítica. <pubPlace>Madrid</pubPlace>: <publisher>Castalia</publisher>.</bibl>
+               <bibl xml:id="DeGreiff2017"><author>De Greiff, Alexis</author>. <date>2017</date>.
+                     <title level="a">Infraestructura y distribución social de objetos digitales
+                     culturales.</title> En <title level="j">Transiciones inciertas archivos,
+                     conocimientos y transformación digital en América Latina</title>, editado por
+                  Barbara Göbel y Gloria Beatriz Chicote.
+                     <!--Fecha de consulta: 30 de marzo de 2022. --><ptr
+                     target="http://libros.fahce.unlp.edu.ar/index.php/libros/catalog/book/99"
+                  />.</bibl>
+               <bibl xml:id="Gabrieloni2008"><author>Gabrieloni, Ana L.</author>
+                  <date>2008</date>. <title level="a">Écfrasis.</title>
+                  <title level="j">Eadem Utraque Europa</title>
+                  <biblScope unit="volume">4</biblScope> (<biblScope unit="issue">6</biblScope>):
+                     <biblScope unit="page">83–108</biblScope>.</bibl>
+               <bibl xml:id="Garcia2010"><editor>García López, Jorge</editor>, ed.
+                  <date>2010</date>. <title level="m">Alexandre</title>.
+                  <pubPlace>Madrid</pubPlace>: <publisher>Crítica</publisher>.</bibl>
+               <bibl xml:id="GODH">GO::DH Minimal Computing Working Group. s/f. <title level="u"
+                     >About · Minimal Computing.</title> Minimal Computing.<!-- Fecha de consulta: 29 de marzo de 2022.-->
+                  <ptr target="https://go-dh.github.io/mincomp/about/"/>.</bibl>
+               <bibl xml:id="Goldberg1980">Goldberg, Harriet. <date>1980</date>. <title level="a"
+                     >The voice of the author in the works of Gonzalo de Berceo and in the
+                        <title>Libro de Alexandre</title> and the <title>Poema de Fernán
+                        González</title>.</title>
+                  <title level="j">La Corónica</title>
+                  <biblScope unit="issue">8</biblScope>: <biblScope unit="page"
+                  >100–112</biblScope>.</bibl>
+               <bibl xml:id="Gonzales2012"><author>Gonzales Aguilar</author>, <author>Audilio, María
+                     Ramírez-Posada</author>, y <author>Diego Ferreyra</author>. <date>2012</date>.
+                     <title level="a">TemaTres : software para gestionar tesauros.</title>
+                  <title level="j">El Profesional de la Información</title>
+                  <biblScope unit="issue">21</biblScope>: <biblScope unit="page">319–25</biblScope>.
+                  <!--Fecha de consulta: 30 de marzo de 2022.--> doi:<idno type="DOI"
+                     >10.3145/epi.2012.may.14</idno>.</bibl>
+               <bibl xml:id="Gonzalez2008"><author>González-Blanco García, Elena</author>.
+                     <date>2008</date>. <title level="a">Las raíces del <term>Mester de
+                        Clerecía.</term></title>
+                  <title level="j">Revista de Filología Española</title>
+                  <biblScope unit="issue">88</biblScope>, <biblScope unit="volume">1</biblScope>:
+                     <biblScope unit="page">195–207</biblScope>.
+                  <!--Fecha de consulta: 30 de marzo de 2022.--> doi:<idno type="DOI"
+                     >10.3989/rfe.2008.v88.i1.49</idno>.</bibl>
+               <bibl xml:id="Gorog1970"><author>Gorog, Ralph Paul de</author>. <date>1970</date>.
+                     <title level="a">La sinonimia en Berceo y el vocabulario del <emph>Libro de
+                        Alexandre</emph>.</title>
+                  <title level="j">Hispanic review</title>
+                  <biblScope unit="issue">38</biblScope>: <biblScope unit="page"
+                  >353–67</biblScope>.</bibl>
+               <bibl xml:id="Heffernan1993"><author>Heffernan, James A. W.</author>
+                  <date>1993</date>. <title level="m">Museum of Words : The Poetics of Ekphrasis
+                     from Homer to Ashbery</title>. <pubPlace>Chicago</pubPlace> :
+                     <publisher>University of Chicago Press</publisher>.</bibl>
+               <bibl xml:id="Koopman2014"><author>Koopman, Niels</author>. <date>2014</date>. <title
+                     level="m">Ancient Greek Ekphrasis: Between Description and Narration: Five
+                     Linguistic and Narratological Case Studies</title>.
+                  <pubPlace>Leiden</pubPlace>: <publisher>Brill</publisher>.</bibl>
+               <bibl xml:id="Marcos1987"><editor>Marcos Marín, Francisco</editor>, ed.
+                     <date>1987</date>. <title level="m">Libro de Alexandre</title>.
+                     <pubPlace>Madrid</pubPlace>: <publisher>Alianza Editorial</publisher>.</bibl>
+               <bibl xml:id="Marcos2000"><editor>Marcos Marín, Francisco</editor>, ed.
+                     <date>2000</date>. <title level="m">Libro de Alexandre / Edición digital
+                     unificada</title>. Biblioteca Virtual Cervantes. <!--Fecha de consulta: 30 de marzo de 2022.-->
+                  <ptr target="http://www.cervantesvirtual.com/nd/ark:/59851/bmc2f7m5"/>.</bibl>
+               <bibl xml:id="Marcos2002"><author>Marcos Marín, Francisco</author>.
+                  <date>2002</date>. <title level="u">Libro de Alexandre.</title> En <title
+                     level="m">Diccionario filológico de literatura medieval española: textos y
+                     transmisión</title>, editado por <editor>José Manuel Lucía Megías</editor> y
+                     <editor>Carlos Alvar Ezquerra</editor>. <pubPlace>Madrid</pubPlace>:
+                     <publisher>Castalia</publisher>: <biblScope unit="page"
+                  >754–762</biblScope>.</bibl>
+               <bibl xml:id="Martinez2014"><author>Martínez Cantón, Clara, María</author>,
+                     <author>Gimena Del Rio Riande</author>, <author>Elena González Blanco
+                     García</author>, y <author>Maria Dolores Martos</author>. <date>2014</date>.
+                     <title level="a">La codificación informática del sistema poético medieval
+                     castellano, problemas y propuestas en la elaboración de un repertorio métrico
+                     digital: ReMetCa.</title> En <title level="m">Visibilidad y divulgación de la
+                     investigación desde las Humanidades Digitales. Experiencias y
+                  proyectos</title>, editado por Álvaro Baraibar Echeverria. Pamplona: Servicio de
+                  Publicaciones de la Universidad de Navarra.
+                     <!--Fecha de consulta: 30 de marzo de 2022. --><ptr
+                     target="https://www.aacademica.org/gimena.delrio.riande/85"/>.</bibl>
+               <bibl xml:id="Martinez2018"><author>Martínez Cantón, Clara</author>, <author>Gimena
+                     del Rio Riande</author>, y <author>Elena González-Blanco García</author>.
+                     <date>2018</date>. <title level="a">Poetriae. Una colección de poéticas
+                     medievales basada en conceptos métricos únicos y referenciables.</title> En
+                     <title level="j">Humanidades Digitales: Construcciones locales en contextos
+                     globales</title>. Asociación Argentina de Humanidades Digitales, Buenos Aires,
+                  2016. <!--Fecha de consulta: 30 de marzo de 2022. --><idno type="URI"
+                     >https://www.aacademica.org/aahd2016/20</idno>
+               </bibl>
+               <bibl xml:id="Michael1986"><author>Michael, Ian</author>. <date>1986</date>. <title
+                     level="m">The Alexandre Enigma: a solution</title>.
+                  <pubPlace>Oxford</pubPlace>: <publisher>The Dolphin Book</publisher>.</bibl>
+               <bibl xml:id="Nelson1979"><editor>Nelson, Dana Arthur</editor>, ed.
+                  <date>1979</date>. <title level="m">El libro de Alixandre</title>.
+                     <pubPlace>Madrid</pubPlace>: <publisher>Gredos</publisher>.</bibl>
+               <bibl xml:id="Pascual2010"><author>Pascual-Argente, Clara</author>.
+                  <date>2010</date>. <title level="a"><q>El cabdal sepulcro</q>: Word and Image in
+                     the <emph>Libro de Alexandre</emph>.</title>
+                  <title level="j">La corónica: A Journal of Medieval Hispanic Languages,
+                     Literatures, and Cultures</title>
+                  <biblScope unit="issue">38</biblScope>: <biblScope unit="page">71–98</biblScope>.
+                  <!--Fecha de consulta: 30 de marzo de 2022.--> doi:<idno type="DOI"
+                     >10.1353/cor.0.0064</idno>.</bibl>
+               <bibl xml:id="Pierazzo2015"><author>Pierazzo, Elena</author>. <date>2015</date>.
+                     <title level="a">Textual Scholarship and Text Encoding.</title> En <title
+                     level="m">A New Companion to Digital Humanities</title>, editado por Susan
+                  Schreibman, Ray Siemens y John Unsworth, <biblScope unit="page"
+                  >307–21</biblScope>. <pubPlace>Chichester</pubPlace>: <publisher>John Wiley &amp;
+                     Sons, Ltd.</publisher>
+                  <!--Fecha de consulta: 30 de marzo de 2022.--> doi:<idno type="DOI"
+                     >10.1002/9781118680605.ch21</idno>.</bibl>
+               <bibl xml:id="Pierazzo2019"><author>Pierazzo, Elena</author>. <date>2019</date>.
+                     <title level="a">What future for digital scholarly editions? From Haute Couture
+                     to Prêt-à-Porter.</title>
+                  <title level="j">International Journal of Digital Humanities</title>
+                  <biblScope unit="issue">1</biblScope>.
+                  <!--Fecha de consulta: 30 de marzo de 2022.--> doi:<idno type="DOI"
+                     >10.1007/s42803-019-00019-3</idno>.</bibl>
+               <bibl xml:id="Rico1985"><author>Rico, Francisco</author>. <date>1985</date>. <title
+                     level="a">La clerecía del mester.</title>
+                  <title level="j">Hispanic Review</title>
+                  <biblScope unit="issue">53</biblScope>(<biblScope unit="volume">1</biblScope>):
+                     <biblScope unit="page">1–23</biblScope>.
+                  <!--Fecha de consulta: 30 de marzo de 2022.--> doi:<idno type="DOI"
+                     >10.2307/474168</idno>.</bibl>
+               <bibl xml:id="Rio2022"><author>Rio Riande, Gimena del</author>. <date>2022</date>.
+                     <title level="a">Humanidades Digitales o las Humanidades en la intersección de
+                     lo digital, lo público, lo mínimo y lo abierto.</title>
+                  <title level="j">Publicaciones de la Asociación Argentina de Humanidades
+                     Digitales</title>
+                  <biblScope unit="issue">3</biblScope>.
+                     <!--Fecha de consulta: 7 de noviembre de 2022. -->doi:<idno type="DOI"
+                     >10.24215/27187470e038</idno>.</bibl>
+               <bibl xml:id="Rio2020"><author>Rio Riande, Gimena del</author>. <date>2020</date>.
+                     <title level="u">Editing a Medieval Hispanic Poetry Corpus with
+                     TextGrid.</title> Text+. <!--Fecha de consulta: 30 de marzo de 2022.--><ptr
+                     target="https://www.text-plus.org/en/research-data/user-story-407/"/>.</bibl>
+               <bibl xml:id="Rio2018"><author>Rio Riande, Gimena del</author>. <date>2018</date>.
+                     <title level="a">Humanidades Digitales bajo la lupa: Investigación abierta y
+                     evaluación científica.</title>
+                  <title level="j">Ex Libris</title>
+                  <biblScope unit="issue">7</biblScope>: <biblScope unit="page">136–149</biblScope>.
+                     <!--Fecha de consulta: 30 de marzo de 2022. --><ptr
+                     target="http://revistas.filo.uba.ar/index.php/exlibris/article/view/3177"
+                  />.</bibl>
+               <bibl xml:id="Rio2015"><author>Rio Riande, Gimena del</author>, y <author>Carina
+                     Zubillaga</author>. <date>2015</date>. <title level="a">Un proyecto de edición
+                     digital académica en Argentina. Diálogo Medieval.</title> En <title level="j"
+                     >Las Humanidades Digitales desde Argentina: Tecnologías, Culturas,
+                     Saberes</title>, <biblScope unit="page">150–161</biblScope>, editado por
+                  Gabriela Striker, Lucía Cantamutto, y María Gimena del Rio Riande. Editorial de la
+                  Facultad de Filosofía y Letras, Universidad de Buenos Aires.
+                     <!-- Fecha de consulta: 30 de marzo de 2022. --><ptr
+                     target="http://repositorio.filo.uba.ar/handle/filodigital/1837"/>.</bibl>
+               <bibl xml:id="Rojas2018"><author>Rojas Castro, Antonio</author>. <date>2018</date>.
+                     <title level="a">La edición académica digital. De las teorías del texto a la
+                     visualización de la información.</title> En <title level="j">Humanidades
+                     Digitales: Edición, Literatura y Arte</title>, editado por Isabela Galina
+                  Russel et al,<biblScope unit="page"> 47–80</biblScope>. México D.F.: Bonilla
+                  Artigas. <!--Fecha de consulta: 30 de marzo de 2022. --><ptr
+                     target="https://hcommons.org/deposits/item/hc:21883/"/>.</bibl>
+               <bibl xml:id="Sahle2017"><author>Sahle, Patrick</author>. <date>2017</date>. <title
+                     level="a">What Is a Scholarly Digital Edition?</title> En <title level="j"
+                     >Digital Scholarly Editing : Theories and Practices</title>, editado por
+                  Matthew James Driscoll y Elena Pierazzo, <biblScope unit="page">19–39</biblScope>.
+                     <pubPlace>Cambridge</pubPlace>: <publisher>Open Book Publishers</publisher>. <!--Fecha de consulta: 30 de marzo de 2022.-->
+                  <ptr target="https://via.hypothes.is/https:/books.openedition.org/obp/3397"
+                  />.</bibl>
+               <bibl xml:id="Spitzer1955"><author>Spitzer, Leo</author>. <date>1955</date>. <title
+                     level="a">The <title>Ode on a Grecian Urn,</title> or Content vs.
+                     Metagrammar.</title>
+                  <title level="j">Comparative Literature</title>
+                  <biblScope unit="issue">7</biblScope> (<biblScope unit="volume">3</biblScope>):
+                     <biblScope unit="page">203–25</biblScope>.</bibl>
+               <bibl xml:id="Uria2000"><author>Uría Maqua, Isabel</author>. <date>2000</date>.
+                     <title level="m">Panorama crítico del <term>Mester de clerecía.</term></title>
+                  <pubPlace>Madrid</pubPlace>: <publisher>Castalia</publisher>.</bibl>
+               <bibl xml:id="Viglianti2022"><author>Viglianti, Raffaele</author>, <author>Gimena del
+                     Rio Riande</author>, <author>Nidia Hernández</author> y <author>Romina De
+                     León</author>. <title level="a">Open, Equitable, and Minimal: Teaching Digital
+                     Scholarly Editing North and South.</title>
+                  <title level="j">Digital Humanities Quarterly</title>, <biblScope unit="issue"
+                     >16</biblScope>(<biblScope unit="volume">2</biblScope>) <date>2022</date>.
+                     <!--Fecha de consulta: 18 de noviembre de 2022.--><ptr
+                     target="http://www.digitalhumanities.org/dhq/vol/16/2/000591/000591.html"
+                  />.</bibl>
+               <bibl xml:id="Ward2017"><author>Ward, Aengus</author>. <date>2017</date>. <title
+                     level="a">Editar la Estoria de Espanna: retos y problemas de la edición
+                     digital.</title>
+                  <title level="j">Incipit</title>
+                  <biblScope unit="issue">37</biblScope>.</bibl>
+               <bibl xml:id="Webb1999"><author>Webb, Ruth</author>. <date>1999</date>. <title
+                     level="a">Ekphrasis ancient and modern: The invention of a genre.</title>
+                  <title level="j">Word &amp; Image</title>
+                  <biblScope unit="issue">15</biblScope>(<biblScope unit="volume">1</biblScope>):
+                     <biblScope unit="page">7–18</biblScope>.
+                  <!--Fecha de consulta: 30 de marzo de 2022.--> doi:<idno type="DOI"
+                     >10.1080/02666286.1999.10443970</idno>.</bibl>
+               <bibl xml:id="Weiss2006"><author>Weiss, Julian</author>. <date>2006</date>. <title
+                     level="m">The Mester de Clerecía: Intellectuals and ideologies in
+                     thirteenth-century Castile</title>. <pubPlace>Woodbridge</pubPlace>:
+                     <publisher>Támesis</publisher>.</bibl>
+               <bibl xml:id="Zumthor1994"><author>Zumthor, Paul</author>. <date>1994</date>. <title
+                     level="m">La medida del mundo: Representación del espacio en la Edad
+                     Media</title>. <pubPlace>Madrid</pubPlace>:
+                  <publisher>Cátedra</publisher>.</bibl>
+            </listBibl>
+         </div>
+      </back>
+   </text>
+</TEI>

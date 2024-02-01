@@ -1,0 +1,617 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="main"><q>It will discourse most eloquent music</q>: Sonifying Variants of
+          Hamlet</title>
+        <author>
+          <name>
+            <forename>Iain</forename>
+            <surname>Emsley</surname>
+          </name>
+          <affiliation>Iain Emsley is a <roleName>research associate</roleName> at the
+              <orgName>Oxford e-Research Centre</orgName>. Currently reading for a Master’s in
+            Software Engineering at Oxford, his research interests include
+            sonification.</affiliation>
+          <email>iain.emsley@oerc.ox.ac.uk</email>
+        </author>
+        <author>
+          <name>
+            <forename>David</forename>
+            <surname>De Roure</surname>
+          </name>
+          <affiliation>David De Roure is <roleName>Professor</roleName> of e-Research at the
+              <orgName>University of Oxford</orgName>, where he directs the multidisciplinary
+            e-Research Centre. Focused on advancing digital scholarship, David has conducted
+            research across disciplines in the areas of social machines, computational musicology,
+            web science, social computing, and hypertext.</affiliation>
+          <email>david.deroure@oerc.ox.ac.uk</email>
+        </author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>TEI Consortium</publisher>
+        <date>24/01/2017</date>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by/4.0/">
+            <p>For this publication a Creative Commons Attribution 4.0 International license has
+              been granted by the author(s) who retain full copyright.</p>
+          </licence>
+        </availability>
+      </publicationStmt>
+      <seriesStmt>
+        <title level="j">Journal of the Text Encoding Initiative</title>
+        <editor role="guest">Marjorie Burghart</editor>
+        <editor role="guest">Emmanuelle Morlock</editor>
+        <editor role="chief">John Walsh</editor>
+        <editor role="managing">Anne Baillot</editor>
+        <editor role="technical">Ron Van den Branden</editor>
+        <biblScope unit="issue" n="10">Selected Papers from the 2015 TEI Conference</biblScope>
+      </seriesStmt>
+      <sourceDesc>
+        <p>No source, born digital.</p>
+      </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+      <projectDesc>
+        <p>Revues.org -centre for open electronic publishing- is the platform for journals in the
+          humanities and social sciences, open to quality periodicals looking to publish full-text
+          articles online.</p>
+      </projectDesc>
+    </encodingDesc>
+    <profileDesc>
+      <langUsage>
+        <language ident="en">en</language>
+      </langUsage>
+      <textClass>
+        <keywords xml:lang="en">
+          <term>auditory display</term>
+          <term>hypertext</term>
+          <term>sonification</term>
+        </keywords>
+      </textClass>
+    </profileDesc>
+  </teiHeader>
+  <text>
+    <front>
+      <div type="abstract" xml:id="abstract">
+        <p>Sonification is a complementary technique to visualization that uses sound to describe
+          relationships in data. We describe work to aid exploratory textual analysis by sonifying
+          textual variants. The sonification presented focuses on using pitch and tones to help the
+          user listen to differences in the structure between variations of a text or texts encoded
+          in Text Encoding Initiative (TEI) XML. Extracting hyperstructures, we describe our
+          conversion of TEI elements and attributes into sounds for a listener. We discuss our
+          approaches to creating the sounds used to represent the data from the Bodleian Libraries’
+            <title level="m">First Folio</title> project and early visualizations, and we consider
+          the issues raised by the use of this novel technique. The use of sound provides an
+          exciting alternative way of exploring textual structures to determine differences between
+          them. While the novelty in this area is a major challenge, we suggest that this method can
+          be useful in the exploration of variants between texts marked up with TEI.</p>
+      </div>
+    </front>
+    <body>
+      <p>Sonification is a complementary technique to visualization that uses sound to describe
+        relationships in data. Kramer defines sonification as <quote source="#quoteref1">the use of
+          nonspeech audio to convey information.</quote> More specifically, <quote
+          source="#quoteref1">sonification is the transformation of data relations into perceived
+          relations in an acoustic signal for the purposes of facilitating communication or
+          interpretation</quote> (<ref xml:id="quoteref1" type="bibl" target="#kramer99">Kramer et
+          al. 1999</ref>). While providing new opportunities for communicating through the human
+        perceptual and cognitive apparatus, sonification poses challenges with presenting the
+        exploratory patterns in data to the user, as sonification techniques are less well
+        established than those of visualization.</p>
+      <p>We describe our work to sonify textual variants<note>Iain Emsley, Scripts for sonification
+          of the TEI XML, 2015, accessed December 22, 2016, <ptr
+            target="https://github.com/iaine/sonificationshakespeare"/>.</note> in order to aid
+        exploratory textual analysis. The sonification presented focuses on using a mixture of
+        instruments and pitches to help the user listen to differences in the structure between
+        variations of a text or texts encoded in Text Encoding Initiative (TEI) XML.</p>
+      <p>Our approach is inspired by the Hinman Collator, an opto-mechanical device originally used
+        to highlight print variants in Shakespeare texts, whereby visual differences between two
+        texts literally stood out through a stereoscopic effect (<ref type="bibl" target="#hinman47"
+          >Hinman 1947</ref>, <ref type="bibl" target="#smith00">Smith 2000</ref>). Using an audio
+        stream for each text, this project aims to produce a binaural presentation of the text,
+        creating an audio version of the stereoscopic illusion used in collating machines. The
+        timing and frequencies can be extracted for storage and transformation into alternate
+        formats or to repeat the analysis.</p>
+      <p>We present initial work on XML variants of Shakespeare’s <title level="m">Hamlet</title>
+        using the XML content from the Bodleian Libraries’ <ref
+          target="http://firstfolio.bodleian.ox.ac.uk/"><title level="m">First Folio</title></ref>
+            project<note><title level="m">The Bodleian First Folio: A Digital Facsimile of the First
+            Folio of Shakespeare’s Plays</title>, Bodleian Arch. G c.7, accessed December 22, 2016,
+            <ptr target="http://firstfolio.bodleian.ox.ac.uk/"/>.</note> and their earlier project,
+        the <ref target="http://quartos.org/"><title level="m">Shakespeare Quartos
+          Archive</title></ref>.<note>The Shakespeare Quartos Archive, accessed December 22, 2016,
+            <ptr target="http://quartos.org/"/>.</note> We extracted document entities such as acts,
+        scenes, lines, and stage directions for the analysis. These are viewed as hyperstructures:
+        structures that can be manipulated by hyperoperations to create new structures. These may be
+        separated from the text for sonification and comparison with other variants. Analytical
+        perceptions can be altered through the presentation of the instruments, pitches, and audio
+        icons. Audio displays demand the creator to rethink how structural data is presented to the
+        user, and about the hyperstructures extracted to give potential for conversion of the
+        analysis into hypermedia using visualization as well as sonification. Early results show
+        promise for the auditory comparison.</p>
+      <p>We look at related work and present the case study. We then consider the use of audio
+        beacons to help the user locate within the document, and discuss the integration with
+        visualization. Finally, we look at future work and conclude the paper.</p>
+      <div xml:id="relatedwork">
+        <head>Related Work</head>
+        <p>Sonification on data patterns has been explored in several projects. For example, work on
+          stock market data (<ref type="bibl" target="#nesbitt02">Nesbitt and Barrass 2002</ref>,
+            <ref target="#nesbitt04" type="bibl">Nesbitt and Barrass 2004</ref>) discusses the use
+          of volume and pitch to alert to changes in the data, rather than relying on purely visual
+          stimuli. It demonstrates the use of sonification for pattern analysis in exploratory data
+          using a rule system, and is closely associated with visualization.</p>
+        <p>The <ref target="http://listen.hatnote.com/"><title level="m">Listening to
+              Wikipedia</title></ref> project<note>Accessed December 22, 2016, <ptr
+              target="http://listen.hatnote.com/"/>.</note> presents an audio-visual display of
+          edits made to Wikipedia pages. Using circles for the visualization and rule-based sounds,
+          it presents the <soCalled>recent changes</soCalled> feed to the user, including new users
+          and the type of user making the edit. This work provides an elegant interface to the user
+          data but it is limited to one stream.</p>
+        <p>The <ref target="http://tei-comparator.sourceforge.net/">TEI-Comparator</ref><note>
+            Accessed December 22, 2016, <ptr target="http://tei-comparator.sourceforge.net/"
+            />.</note> was developed to compare paragraphs and visualize the changes (<ref
+            target="#cummings10" type="bibl">Cummings and Mittelbach 2010</ref>, <ref
+            target="#lehmann10" type="bibl">Lehmann et al. 2010</ref>) for the <title level="m"
+            >Holinshed Chronicles</title><note><title level="a">About the Project</title>, accessed
+            December 22, 2016, <ptr target="http://www.cems.ox.ac.uk/holinshed/about.shtml"
+            />.</note> project, illustrating a collation approach applied to TEI. This visualization
+          work does not render the text into audio signals, and it was designed for a particular
+          text. It focuses on the text rather than the editorial structures.</p>
+        <p>Sonification of hyperstructures is explored where an authored hypertextual structure is
+          sonified using the techniques of algorithmic composition (<ref target="#deroure02"
+            type="bibl">De Roure et al. 2002</ref>). In contrast, we present work that develops the
+          notion of sonifying the hyperstructure, or hyperstructures, extracted and transformed from
+          existing editorial matter.</p>
+      </div>
+      <div xml:id="hamlet">
+        <head>Sonifying Versions of <title level="m">Hamlet</title></head>
+        <p>We present work on creating an auditory display using Shakespeare’s <title level="m"
+            >Hamlet</title>. This began with the Bodleian’s work on the First Folio and continued
+          with their earlier work on the variants of <title level="m">Hamlet</title> in the
+          Shakespeare Quartos Archive project with the British Library and Folger Shakespeare
+          Library.</p>
+        <p>This work focuses on an alternative presentation to Hinman’s Collator. In the collator,
+          two texts are transposed in stereoscope to show the differences between them. Our eyes use
+          variations between images to interpret depth in 3D vision; similarly, our ears use subtle
+          timing and phase variations to establish a stereo stage. Using an audio stream for each
+          text, the project aims to produce a binaural image of the text with auditory beacons to
+          guide the user within the audio illusion. Playing a synchronized audio stream per text in
+          each ear helps the listener’s brain to hear any subtle differences between two versions
+          through use of binaural transmission.</p>
+        <p>Displaying the hyperstructures of the texts, such as the speakers of a <gi>line</gi>
+          element, allows the listener to hear whether editorial changes have been made to the
+          textual structure. This method uses chosen structures from the metadata to examine the
+          texts and how they might change over time or between editors.</p>
+        <p>We convert a selection of TEI XML elements and attributes, including <att>act</att> and
+            <att>scene</att> attributes of the <gi>div</gi> tag, <gi>stage</gi>,<note><ref
+              target="#tei13" type="bibl">TEI Consortium 2013</ref>.</note> lines (both <gi>l</gi>
+          and <gi>p</gi>), and <gi>person</gi>,<note><ref target="#tei13" type="bibl">TEI Consortium
+              2013</ref>.</note> into a series of numbers using a rule set to cluster the elements
+          into related groups. <ptr type="crossref" target="#table1"/> illustrates the sonification
+          pipeline. The process uses the <att>xml:id</att> attribute for the characters in the
+            <gi>line</gi> elements to match the <gi>speaker</gi> to the <gi>line</gi>.</p>
+        <p>Initially, we locate the speakers to build a representation of marked-up characters and
+          identities. In the P5 TEI XML used in the <title level="m">First Folio</title>, we can
+          take this from the headers using the <gi>speaker</gi> element. This provides an
+            <ident>id</ident> that is used with the variants that may be found in the text. We
+          create a linked list to associate the <att>xml:id</att> attribute with an incremental
+          numeric value.</p>
+        <p>In the quartos, we have to extract the names where the <att>ref</att> was taken from the
+            <gi>name</gi> element that contains the <att>character</att> attribute. As the
+          identities are not marked up in the <gi>head</gi> element, we use a linked list to capture
+          the <ident>id</ident>s marked up in the <att>character</att> attribute and give these a
+          numeric value as they are discovered. This creates a linked list of identities with an
+          assigned number for that character in that version of the text.</p>
+        <table xml:id="table1">
+          <head>Table of the initial rule-based mapping</head>
+          <row role="label">
+            <cell>Element</cell>
+            <cell>XML to MIDI Number</cell>
+            <cell>MIDI Number to Sound</cell>
+          </row>
+          <row>
+            <cell>act</cell>
+            <cell>0–9</cell>
+            <cell>Flute</cell>
+          </row>
+          <row>
+            <cell>scene</cell>
+            <cell>10–20</cell>
+            <cell>Flute</cell>
+          </row>
+          <row>
+            <cell>stage</cell>
+            <cell>40–50</cell>
+            <cell>Shakers</cell>
+          </row>
+          <row>
+            <cell>speaker (l, p)</cell>
+            <cell>60–100 (added to person number)</cell>
+            <cell>Flute</cell>
+          </row>
+          <row>
+            <cell>Person (speaker or name)</cell>
+            <cell>Number derived from association with the <att>xml:id</att></cell>
+            <cell> </cell>
+          </row>
+        </table>
+        <p>A simple rule-based mapping was applied to the transformations, as described in <ptr
+            type="crossref" target="#table1"/>, to turn the element into a number using the same
+          groups. This use of rules provides a method of ensuring that the different types of TEI
+          encoding from the Shakespeare Quartos Archive and the First Folio could be mapped to the
+          same groups using numbers in the MIDI (Musical Instrument Digital Interface)
+          specification.</p>
+        <p>The generated numbers that represent the desired parts of the editorial markup are then
+          either stored as a file or streamed to the sonification software. This transformation is
+          completed as a separate script from the sonification toolkit. We preserve the mapped data
+          for provenance purposes.</p>
+        <p>Our sonification software, written using the <ref target="http://chuck.cs.princeton.edu/"
+            >ChucK</ref><note>ChucK: Strongly-timed, Concurrent, and On-the-fly Music Programming
+            Language, accessed December 22, 2016, <ptr target="http://chuck.cs.princeton.edu/"
+            />.</note> language, ingests the file or the data stream. The data is then mapped to
+          relevant pitches and sounds, using a set of rules that are created from a discussion
+          between the developer and the listeners, as shown in <ptr target="#table1" type="crossref"
+          />. Some initial sounds were created as experiments, but the choice should be an exercise
+          in codesign. The data is transformed into the frequency to be played with the given
+          instrument, and ChucK defines some instruments that we use. We might use more than one
+          channel if using more than one file, provided the playing device supports this and it is
+          defined in the mapping. The sound is then played. The frequencies created and their
+          associated times are optionally written to a file so that we can check that the data is
+          being presented correctly.</p>
+        <figure xml:id="figure1">
+          <graphic url="images/figure1.jpg" height="476px" width="1775px"/>
+          <head type="legend">Sample transform of TEI XML structure into sound.</head>
+        </figure>
+        <p>We show this pipeline in the sequence diagram in <ptr type="crossref" target="#figure1"
+          />. The transformation script may be written in any language. We use both PHP and Python,
+          having developed the scripts from other software. We use our own software to map the
+          sounds to the notes and then play them.</p>
+        <p>The different versions of TEI encodings pose challenges to ensure that each play has the
+          same characters encoded in the same way. Either the markup used changes between the texts
+          or the character order is different and may produce alternate pitches across variations
+          for the same person. This echoes an issue that we face using digitally marked-up copies of
+          texts for sonification: what are we sonifying—the text or the editorial structure? In this
+          work, we concentrate on looking at the structures that relate to a particular variant,
+          such as a stage direction or person speaking on a particular line, rather than the markup
+          pertaining to the text’s physical condition or features.</p>
+        <p>By way of example, in the <ref
+            target="http://www.quartos.org/XML_Orig/ham-1603-22275x-bli-c01_orig.xml">1603 Quarto
+            edition</ref><note><title level="m">The Tragedy of Hamlet Prince of Denmarke: An
+              Electronic Edition</title>, First Quarto, 1603, British Library Shelfmark: C.34.k.1,
+            accessed December 22, 2016, <ptr
+              target="http://www.quartos.org/XML_Orig/ham-1603-22275x-bli-c01_orig.xml"/>.</note>
+          the first stage direction and first lines are:</p>
+        <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="egXML1">
+          <stage rend="italic, centred" type="entrance">Enter two Centinels. <add
+              place="margin-right" type="note" hand="#ab" resp="#bli">
+              <figure>
+                <figDesc>Brace.</figDesc>
+              </figure>now call&#x0027;d <name type="character" ref="#bar">Bernardo</name>
+              <lb/>&#x0026; <name type="character" ref="#fra">Francisco</name> &#x2014; </add>
+          </stage>
+          <sp who="#sen">
+            <speaker>1.</speaker>
+            <l><c rend="droppedCapital">S</c>Tand: who is that?</l>
+          </sp>
+          <sp who="#bar">
+            <speaker>2.</speaker>
+            <l>Tis I.</l>
+          </sp>
+        </egXML>
+        <p>In the <ref target="http://www.quartos.org/XML_Orig/ham-1605-22276a-bli-c01_orig.xml"
+            >1605 Quarto edition</ref>,<note><title level="m">The Tragedy of Hamlet Prince of
+              Denmarke: An Electronic Edition</title>, Second Quarto Variant, 1605, British Library
+            Shelfmark: C.34.k.2, accessed December 22, 2016, <ptr
+              target="http://www.quartos.org/XML_Orig/ham-1605-22276a-bli-c01_orig.xml"/>.</note>
+          the stage direction and first lines are:</p>
+        <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="egXML2">
+          <stage rend="italic, centred" type="entrance">Enter <name type="character" ref="#bar"
+              >Barnardo</name>, and <name type="character" ref="#fra">Francisco</name>, two
+            Centinels. </stage>
+          <sp who="#bar">
+            <speaker rend="italic">Bar.</speaker>
+            <l><c rend="droppedCapital">VV</c>Hose there?</l>
+          </sp>
+          <sp who="#fra">
+            <speaker rend="italic">Fran.</speaker>
+            <l>Nay answere me. Stand and vnfolde your selfe.</l>
+          </sp>
+        </egXML>
+        <p>Although the sentinels are identified as Barnardo and Francisco in the stage direction,
+          the text and markup specify different characters between the variants. In our software,
+          this would create separate sounds for the first line but not the second. The latter line
+          would create the binaural illusion through the production of the same note and volume in
+          both ears so that it appears to be one entity. The former breaks this by changing the note
+          and volume so that it is clearly two sounds representing a variation in the markup. At
+          this point, the listener understands that the editorial choices are dissimilar: the line
+          is marked up differently in the versions being compared.</p>
+        <p>This allows us to understand the variant editorial structures placed onto the texts,
+          reflecting choices made either in the encoding or in the textual version. As the
+          structures are rendered at the same time, we hear the differences simultaneously.</p>
+        <p>We group related elements, such as <gi>act</gi>s and <gi>scene</gi>s, together through
+          sounds to aid the comprehension of the structure. We are aware that the brain does have a
+          limit to the amount of audio information it can decode, and we try to use the sounds in a
+          way that limits cognitive overload where possible. This grouping is another transformation
+          that creates an artificial layer of interpretation of the editorial choices, designed to
+          help the listener understand the data more easily.</p>
+      </div>
+      <div xml:id="beacons">
+        <head>Audio Beacons</head>
+        <p>The use of sound, with or without visual assistance, poses user experience challenges.
+          The sounds and the relationships that they describe may be unfamiliar and require some
+          training or assistance. As audio is an unfamiliar medium for work in exploratory analysis,
+          there is a need to help the listener identify their position within the document structure
+          and for designers to create an experience that justifies the work.</p>
+        <p>As user experiments to represent the sounds we considered a mixture of auditory icons
+            (<ref target="#gaver97" type="bibl">Gaver 1997</ref>), which are sounds that mimic the
+          real world, and <soCalled>earcons</soCalled> (<ref target="#blattner89" type="bibl"
+            >Blattner, Sumikawa, and Greenberg 1989</ref>), which use music and might be thought of
+          as leitmotifs to indicate a presence or event. The present work uses earcons created from
+          a variety of computer-generated instruments, such as flutes or types of shakers, to
+          represent different types of textual event as sound. Considering pitch as <quote
+            source="#quoteref2">a psychological phenomenon related to the frequency</quote> (<ref
+            xml:id="quoteref2" target="#levitin06" type="bibl">Levitin 2006</ref>), gestalt
+          psychology is used to represent similar events with sounds to help the listener’s
+          perception of the interpretation (<ref target="#rosli14" type="bibl">Rosli and Cabrera
+            2014</ref>).</p>
+        <p>The work’s acts and scenes provide useful beacons for the listener to understand which
+          section of the text is being presented. Simple auditory icons are used to aid the listener
+          in understanding the presented event, and research is ongoing to improve these. In the
+          present sonifications, we use flutes for both acts and scenes, using lower pitches for the
+          acts and slightly higher ones for the scenes. The intention is twofold: firstly, we use
+          the scenes and acts to mark locations, like ticks on a graph axis, denoting a position;
+          secondly, we group the non-speaking parts of the text that are contained in the data set
+          into similar pitches to help the listener identify the events. Using grouping lessens the
+          cognitive load of identifying the event being presented and echoes the existing practices
+          within visualization.</p>
+        <p>In early versions of the sonification, the acts and scenes were produced with different
+          instruments and pitches to allow the user to identify them as part of this group.
+          Currently we represent the two elements with one instrument, the flute, as they are so
+          closely linked as structures, but with a more rapidly rising pitch for the <gi>scene</gi>
+          element.</p>
+        <p>The <gi>stage</gi> element provides greater detail to use within the display. The current
+          sounds use shakers to denote the stage element. Different pitches are used to denote the
+            <att>type</att> attribute so we can hear a subtle difference of type of stage direction.
+          The <att>type</att> and <att>who</att> attributes help to design the type of sound. The
+          sounds associated with the <att>who</att> attribute can be linked to the speakers but
+          present a different issue. The <att>speaker</att> attribute is associated with one person,
+          but the stage directions may have more than one person interacting with the direction.
+          This changes the sound from a single note to a chord or progression. We use different
+          pitches for the <att>type</att> attribute so that the change in the type is
+          detectable.</p>
+        <p>The <att>xml:id</att> attribute in the <gi>l</gi> tag is used to link to the speaker
+          where the <att>xml:id</att> is checked against the list of person associations to retrieve
+          the numeric identity, as per <ptr type="crossref" target="#table1"/>. The flute is used
+          for the speakers and the tone is then matched to the <ident>id</ident> in the linked list
+          derived from the person list. This has the number 60 added to it so that the MIDI pitch
+          starts near middle C and can be heard easily. The volume for each speaker is slightly
+          raised as they continue speaking, helping the user identify that the speaker has not
+          changed. When comparing two streams, the listeners will identify any textual changes when
+          both the tone associated with the speaker and volume alter. Using the two parameters of
+          note and volume provides the user with two axes to understand where data changes.</p>
+        <p>The <ref target="https://jtei.revues.org/1543?file=1"><ident>actspeak</ident></ref> MP3
+          file demonstrates the acts, scenes, and speakers. The first flute sounds represent the act
+          and then the scene. A standard time-step of 100 milliseconds is applied to other elements,
+          which are silent in this file, and then the shakers sound to indicate the scenes. In the
+            <ref target="https://jtei.revues.org/1542?file=1"><ident>speakers</ident></ref> MP3
+          file, the flutes create one note as the texts match (from the Hamlet XML shown above).
+          When the texts diverge, so do the sounds.</p>
+        <p>This means that the listener requires a key to understand how to associate the sound with
+          the event. The present version of the software uses simple pitches and instruments. We are
+          considering the development of auditory icons to help identify the type of element event
+          being presented.</p>
+        <p>What sound should be represented: one that is contemporary to the text or to the period
+          when the text is being sonified? Even if we use a period sound for representation, we must
+          be aware that we are still creating an artificial sound.</p>
+        <p>Using period sounds raises questions of interpretation and performance as well. This
+          interpretive element could be useful to demonstrate the way that sounds might work on a
+          stage for students or to explore the soundscape presented in the play from any existing
+          sounds. This would rely upon knowing various contexts, such as performance and staging
+          practices as well as the locations of performance.</p>
+        <p>Early results from informal listening tests suggest that the pitches need to be
+          listenable for the user as part of the user experience. This raises questions about two
+          contexts: the listener and the underlying data. The sounds that are created should be
+          distinguishable from the background noises in their local environment, otherwise the
+          sonification will not be understood. Equally, the sound that is created should work with
+          the underlying data set and the facets being enhanced or created. This echoes the question
+          raised from musicology about the use of historical techniques and instruments in playing
+          pieces and whether these represent the period or an interpretation of it (<ref
+            target="#holden12" type="bibl">Holden 2012</ref>). These are sound design issues and
+          require reflection on the aims of the sonification or the exploration, as well as using
+          known musical techniques, such as masking or filtering, or the use of psychoacoustics,
+          allowing the mind to make some of the cognitive links. The sounds used for the elements
+          should be similar, such as using two wind instruments, as two dissimilar sounds, such as a
+          wind and a string instrument, are distracting and uncomfortable for this purpose.</p>
+        <p>This allows us to focus upon the use of the sonifications to show the relevant facets.
+          The current objective is to explore differences between the two versions of a particular
+          text, leading us to focus on the moments where the sounds diverge. In other experiments,
+          we use sound to demonstrate the richness or sparsity of data while searching catalogues of
+          metadata, as an adjunct process to a search. As well as showing the results and linking to
+          the data, we provide a view of the way that the data is organized both in volume of data
+          and in its closeness to earlier results.</p>
+        <p>At present, our software only allows us to listen to the audio from start to end as one
+          piece. We have not yet added interaction to allow control of the sounds or annotation.
+          This would lead us into a deeper consideration of methodologies and practices.</p>
+      </div>
+      <div xml:id="visualization">
+        <head>Visualization</head>
+        <p>Multimodal experiences provide alternative presentations for the same event. In <ptr
+            type="crossref" target="#figure1"/>, we show an early prototype visualization showing
+          symbolic representations of the events, using the <ref target="https://processing.org/"
+            >Processing language</ref> used for coding in the visual arts.<note>The Processing
+            Language, <ptr target="https://processing.org/"/>, accessed December 22, 2016.</note>
+          This visualization was used to investigate how a multimodal experience might enhance the
+          sonification work.</p>
+        <p>The note data were sent to a visualization process to show an abstract image or text
+          based on the notes received, displayed in near–real time to the sound. Such images or
+          texts were found to aid comprehension of the audio display.</p>
+        <p>The use of abstract symbols, like the circles for speakers, poses the same challenge as
+          in sonification: the symbol must be understood. This confirms that we should use a key to
+          the symbols for easier comprehension.</p>
+        <p>Informal tests were achieved by playing the sonifications to interested parties,
+          including a workshop, using our equipment. Notes were made on the feedback for discussion
+          and used as some of the user tests for the software. This suggests that further refinement
+          is required to help make the displays more useful and points towards different use cases.
+          This may include using text and developing a version for the web. Multimodal experiences
+          provide a different challenge to the user. The pure sonification can be a passive task and
+          run simultaneously to other tasks with the anomalies in the sound change alerting the user
+          to variances. The use of visual cues makes the task active as the symbol must be seen to
+          be effective.</p>
+      </div>
+      <div xml:id="conclusion">
+        <head>Conclusion</head>
+        <p>The use of sound opens up possibilities for visually impaired scholars to interpret and
+          explore data sets using sound. A mixture of audio user experience for presentation and
+          haptics for control and annotation via a simple set of tools could provide another way of
+          collating or exploring texts and their markup. As previously discussed, mixing the
+          soundscape of the texts with performance context may provide a different experience of the
+          texts and how they could be perceived.</p>
+        <p>The work presented here explores one facet of sound as <quote source="#quoteref3">the
+            transformation of data relations into perceived relations in an acoustic signal</quote>
+            (<ref xml:id="quoteref3" target="#kramer99" type="bibl">Kramer et al. 1999</ref>). As a
+          starting point, it shows us how sound can be used as a secondary perceptive detail. The
+          early results are promising and provoke questions about how we can use sonification to
+          illuminate multiple facets of the data.</p>
+        <p>We have demonstrated the potential of sonification as a tool to help the user identify
+          differences between textual variants. Although known in exploring scientific data,
+          sonification is a new analytical approach for the Digital Humanities. It allows the
+          designer to use multiple parameters simultaneously to add meaning to an event by changing
+          types of sound, tone, pitch, or volume. Making the technique understandable presents an
+          ongoing challenge. The use of binaural playback indicates that further work with spatial
+          displays to create a richer user display may improve user comprehension of the data.</p>
+        <p>Words and lines may be auralized using the tone associated with the speaker. The
+          sonification would then render the associated tones. This does pose the issue of how a
+          word is sonified: is it by length or some other metric? The <gi>choice</gi> element from
+          the Text Encoding Initiative provides options for an original reading and a variation. The
+          sonification would then have to associate a similar tone with the choices. It may be that
+          the original text would be the expected tone and that the variation is an additional
+          different pitch played simultaneously.</p>
+        <p>Further work is needed to create better auditory icons that work across streams and to
+          integrate audio and visual displays. We have not explored this area fully. Contextual
+          questions include the type of sound that would be typical in a dramatic context or
+          physical one, such as the construction of places of performance. It also demands knowledge
+          of the practices of staging or presentation. We intend to conduct formal user testing.
+          This has implications for the development of sonic skills for both listeners and
+          developers to provide a good user experience.</p>
+        <p>While these initial examples are focused upon individual works, sound may also be used
+          within discovery processes. We are also looking at social network analysis within given
+          timeframes to explore how a community interacts, and this may raise questions regarding
+          the linking of different types of event and text genres, such as a novel or letter, or
+          whether it has a license and is available or not. We have applied sound to the searching
+          of authors within the <ref target="https://github.com/textcreationpartnership/Texts"
+            >EEBO/TCP metadata catalogue</ref><note>Catalogue of the Text Creation Partnership /
+            Early English Books Online, <ptr
+              target="https://github.com/textcreationpartnership/Texts"/>.</note> to explore the
+          richness or sparsity of data within a search with an option to show links to the resulting
+          texts.</p>
+        <p>We believe that the use of sound provides an exciting workflow for exploring
+          hyperstructures to determine differences between them. The novelty in this area is a major
+          challenge, but we strongly believe that it will be useful in the exploration of variants
+          between texts marked up with TEI.</p>
+      </div>
+    </body>
+    <back>
+      <div type="bibliography">
+        <listBibl>
+          <bibl xml:id="blattner89"><author>Blattner, Meera M.</author>, <author>Denise A.
+              Sumikawa</author>, and <author>Robert M. Greenberg</author>. <date>1989</date>. <title
+              level="a">Earcons and Icons: Their Structure and Common Design Principles</title>.
+              <title level="j">Human–Computer Interaction</title>
+            <biblScope unit="issue">4</biblScope> (<biblScope unit="issue">1</biblScope>):
+              <biblScope unit="page">11–44</biblScope>. doi:<idno type="doi"
+              >10.1207/s15327051hci0401_1</idno>.</bibl>
+          <bibl xml:id="cummings10"><author>Cummings, James</author>, and <author>Arno
+              Mittelbach</author>. <date>2010</date>. <title level="a">The Holinshed Project:
+              Comparing and Linking Two Editions of Holinshed’s Chronicle</title>. <title level="j"
+              >International Journal of Humanities and Arts Computing</title>
+            <biblScope unit="volume">4</biblScope> (<biblScope unit="issue">1–2</biblScope>):
+              <biblScope unit="page">39–53</biblScope>. doi:<idno type="doi"
+              >10.3366/ijhac.2011.0006</idno>.</bibl>
+          <bibl xml:id="deroure02"><author>De Roure, David C.</author>, <author>Don G.
+              Cruickshank</author>, <author>Danius T. Michaelides</author>, <author>Kevin R.
+              Page</author>, and <author>Mark J. Weal</author>. <date>2002</date>. <title level="a"
+              >On Hyperstructure and Musical Structure</title>. In <title level="m">Proceedings of
+              the Thirteenth ACM Conference on Hypertext and Hypermedia</title>, <biblScope
+              unit="page">95–104</biblScope>. <pubPlace>NY</pubPlace>: <publisher>ACM</publisher>.
+              doi:<idno type="doi">10.1145/513338.513366</idno>.</bibl>
+          <bibl xml:id="gaver97"><author>Gaver, William W.</author>
+            <date>1997</date>. <title level="a">Auditory Interfaces</title>. In <title level="m"
+              >Handbook of Human-computer Interaction</title>, <edition>2nd ed.</edition>, edited by
+              <editor>Martin G. Helander</editor>, <editor>Thomas K. Landauer</editor>, and
+              <editor>Prasad V. Prabhu</editor>, <biblScope unit="page">1003–1041</biblScope>.
+              <pubPlace>Amsterdam</pubPlace>: <publisher>Elsevier Science</publisher>,
+              <date>1997</date>.</bibl>
+          <bibl xml:id="hinman47"><author>Hinman, Charlton</author>. <date>1947</date>. <title
+              level="a">Mechanized Collation: A Preliminary Report</title>. <title level="j">Papers
+              of the Bibliographical Society of America</title>
+            <biblScope unit="volume">41</biblScope> (<biblScope unit="issue">2</biblScope>):
+              <biblScope unit="page">99–106</biblScope>.</bibl>
+          <bibl xml:id="holden12"><author>Holden, Claire</author>. <date>2012</date>. <title
+              level="u">Recreating Early 19th-century Style in a 21st-century Marketplace: An
+              Orchestral Violinist’s Perspective</title>. Paper presented at Institute of Musical
+            Research DeNote Seminar, Senate House, London, January 30: <biblScope unit="page"
+              >17–21</biblScope>
+            <ptr target="http://orca.cf.ac.uk/17241/1/Claire_Holden_IMR_Seminar_doc.pdf"/>.</bibl>
+          <bibl xml:id="kramer93"><author>Kramer, Gregory</author>. <date>1993</date>. <title
+              level="m">Auditory Display: Sonification, Audification, and Auditory
+              Interfaces</title>. <pubPlace>Reading, MA</pubPlace>: <publisher>Perseus
+              Publishing</publisher>.</bibl>
+          <bibl xml:id="kramer99"><author>Kramer, Gregory</author>, <author>Bruce Walker</author>,
+              <author>Terri Bonebright</author>, <author>Perry Cook</author>, <author>John H.
+              Flowers</author>, <author>Nadine Miner</author>, <author>John Neuhoff</author>, et al.
+              <date>1999</date>. <title level="u">The Sonification Report: Status of the Field and
+              Research Agenda</title>. Report prepared for the National Science Foundation by
+            members of the International Community for Auditory Display. Santa Fe, NM: International
+            Community for Auditory Display (ICAD). <ptr
+              target="http://www.icad.org/websiteV2.0/References/nsf.html"/>.</bibl>
+          <bibl xml:id="lehmann10"><author>Lehmann, Lasse</author>, <author>Arno
+            Mittelbach</author>, <author>James Cummings</author>, <author>Christoph
+            Rensing</author>, and <author>Ralf Steinmetz</author>. <date>2010</date>. <title
+              level="a">Automatic Detection and Visualisation of Overlap for Tracking of Information
+              Flow</title>. In <title level="m">Proceedings of I-KNOW 10: 10th International
+              Conference on Knowledge Management and Knowledge Technologies</title>, edited by
+              <editor>Klaus Tochtermann</editor> and <editor>Hermann Maurer</editor>, <biblScope
+              unit="page">186–97</biblScope>. <pubPlace>Graz, Austria</pubPlace>: <publisher>Verlag
+              der Technischen Universität Graz</publisher>. <ptr
+              target="http://hdl.handle.net/10419/44446"/>.</bibl>
+          <bibl xml:id="levitin06"><author>Levitin, Daniel</author>. <date>2006</date>. <title
+              level="m">This is Your Brain on Music: Understanding a Human Obsession</title>.
+              <pubPlace>London</pubPlace>: <publisher>Atlantic Books</publisher>.</bibl>
+          <bibl xml:id="nesbitt02"><author>Nesbitt, Keith V.</author>, and <author>Stephen
+              Barrass</author>. <date>2002</date>. <title level="a">Evaluation of a Multimodal
+              Sonification and Visualisation of Depth of Market Stock Data</title>. In <title
+              level="m">Proceedings of the 2002 International Conference on Auditory Display (ICAD
+              2002)</title>, edited by <editor>Ryohei Nakatsu</editor> and <editor>Hideki
+              Kawahara</editor>, <biblScope unit="page">2–5</biblScope>. <ptr
+              target="http://hdl.handle.net/1853/51355"/>.</bibl>
+          <bibl xml:id="nesbitt04"><author>Nesbitt, Keith V.</author>, and <author>Stephen
+              Barrass</author>. <date>2004</date>. <title level="a">Finding Trading Patterns in
+              Stock Market Data</title>. <title level="j">IEEE Computer Graphics and
+              Applications</title>
+            <biblScope unit="volume">24</biblScope> (<biblScope unit="issue">5</biblScope>):
+              <biblScope unit="page">45–55</biblScope>. doi:<idno type="doi"
+              >10.1109/MCG.2004.28</idno>.</bibl>
+          <bibl xml:id="rosli14"><author>Rosli, Muhammad Hafiz Wan</author>, and <author>Andrés
+              Cabrera</author>. <date>2014</date>. <title level="a">Application of Gestalt
+              Principles to Multimodal Data Representation</title>. In <title level="m">Proceedings
+              of the IEEE VIS Arts Program (VISAP) 2014</title>, <biblScope unit="page"
+              >102–107</biblScope>.</bibl>
+          <bibl xml:id="smith00"><author>Smith, Steven E.</author>
+            <date>2000</date>. <title level="a"><q>The Eternal Verities Verified</q>: Charlton
+              Hinman and the Roots of Mechanical Collation</title>. <title level="j">Studies in
+              Bibliography</title>
+            <biblScope unit="issue">53</biblScope>: <biblScope unit="page"
+            >129–62</biblScope>.</bibl>
+          <bibl xml:id="tei13"><orgName>TEI Consortium</orgName>. <date>2013</date>. <title
+              level="m">TEI P5: Guidelines for Electronic Text Encoding and Interchange</title>.
+              <edition>Version 2.5.0</edition>. Last updated July 26. <pubPlace>N.p.</pubPlace>:
+              <publisher>TEI Consortium</publisher>. <ptr
+              target="http://www.tei-c.org/Vault/P5/2.5.0/doc/tei-p5-doc/en/html/"/>.</bibl>
+        </listBibl>
+      </div>
+    </back>
+  </text>
+</TEI>

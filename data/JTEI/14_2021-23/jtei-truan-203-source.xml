@@ -1,0 +1,1450 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<!-- $Id: jtei-truan-203-source.xml 1117 2022-06-07 09:19:28Z tiago.sousa-garcia $ -->
+<TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI.internal">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title type="main">Building, Encoding, and Annotating a Corpus of Parliamentary Debates
+               in TEI XML: A Cross-Linguistic Account</title>
+            <!-- author information in separate <author> elements per author -->
+            <author>
+               <name>
+                  <forename>Naomi</forename>
+                  <surname>Truan</surname>
+               </name>
+               <affiliation>Naomi Truan is a <roleName>Research and Teaching Fellow in German
+                     Linguistics</roleName> at the <orgName>University of Leipzig</orgName>,
+                  Germany. Her research interests include political discourse, digital interactions,
+                  multilingual practices, educational contexts, and language ideologies. Her first
+                  book, <title level="m">The Politics of Person Reference</title> (2021), explores
+                  various instantiations of the third person in British, German, and French
+                  parliamentary debates. As an Alumna of the <orgName>Open Science Fellows
+                     Program</orgName>, she is committed to open science and science communication.
+                  You can find her publications in open access here: <ptr
+                     target="https://cv.archives-ouvertes.fr/naomi-truan"/>.</affiliation>
+               <email>naomi.truan@uni-leipzig.de</email>
+            </author>
+            <author>
+               <name>
+                  <forename>Laurent</forename>
+                  <surname>Romary</surname>
+               </name>
+               <affiliation>Laurent Romary is <roleName>Senior Researcher</roleName> at
+                     <orgName>Inria</orgName>, France, and former initiator and director general of
+                  the <orgName>DARIAH European infrastructure</orgName>. He carries out research on
+                  the modeling of semi-structured documents, with a specific emphasis on texts and
+                  linguistic resources. He has been active in standardization activities with
+                     <orgName>ISO</orgName>, as chair of the ISO/TC 37/SC 4 (2002–2014) and ISO/TC
+                  37 (2016–) committees, and with the <orgName>Text Encoding Initiative</orgName>,
+                  as member (2001–2011) and chair (2008–2011) of its technical council. He has been
+                  involved in scientific information (now called open science) policies and
+                  corresponding infrastructure deployments (HAL and Episciences) since 2005 within
+                  various research-performing organizations.</affiliation>
+               <email>laurent.romary@inria.fr</email>
+            </author>
+         </titleStmt>
+         <publicationStmt>
+            <publisher>TEI Consortium</publisher>
+            <date>06/05/2022</date>
+            <availability>
+               <licence target="https://creativecommons.org/licenses/by/4.0/">
+                  <p>For this publication a Creative Commons Attribution 4.0 International license
+                     has been granted by the author(s) who retain full copyright.</p>
+               </licence>
+            </availability>
+         </publicationStmt>
+         <seriesStmt>
+            <title level="j">Journal of the Text Encoding Initiative</title>
+            <editor role="guest">Georg Vogeler</editor>
+            <editor role="managing">Tanja Wissik</editor>
+            <editor role="managing">Joel Kalvesmaki</editor>
+            <editor role="managing">Pietro Maria Liuzzo</editor>
+            <editor role="managing">Tiago Sousa Garcia</editor>
+            <editor role="technical">Ron Van den Branden</editor>
+            <biblScope unit="issue" n="14">Selected Papers from the 2019 TEI Conference</biblScope>
+         </seriesStmt>
+         <sourceDesc>
+            <p>No source, born digital.</p>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <projectDesc>
+            <p>OpenEdition Journals -centre for open electronic publishing- is the platform for
+               journals in the humanities and social sciences, open to quality periodicals looking
+               to publish full-text articles online.</p>
+         </projectDesc>
+      </encodingDesc>
+      <profileDesc>
+         <langUsage>
+            <language ident="en">en</language>
+         </langUsage>
+         <textClass>
+            <keywords xml:lang="en">
+               <term>annotation</term>
+               <term>contrastive linguistics</term>
+               <term>parliamentary debates</term>
+            </keywords>
+         </textClass>
+      </profileDesc>
+      <revisionDesc>
+         <change who="TSG" when="2022-06-22">Final author corrections and editors note</change>
+         <change who="TSG" when="2022-06-07">Further author corrections</change>
+         <change who="TSG" when="2022-05-20">Inserting author corrections</change>
+         <change who="TSG" when="2022-05-06">Initial Encoding</change>
+      </revisionDesc>
+   </teiHeader>
+   <text>
+      <front>
+         <div type="abstract" xml:id="abstract">
+            <p>This paper introduces an integrative and comprehensive method for the linguistic
+               annotation of parliamentary discourse. Initially conceived as documentation for a
+               specific and small-scale research project, the annotation scheme takes into account
+               national specificities and is geared to proposing an annotation scheme that is both
+               highly standardized and adaptable to other research contexts. In this paper we
+               present a specific application of the Text Encoding Initiative (TEI) framework
+               applied to a subset of official transcripts of plenary proceedings in three
+               parliamentary cultures. The TEI annotation scheme proposed here has two main
+               applications: first, it serves as a basis for encoding parliamentary corpora by
+               providing a systematic way of annotating both elements within the text (e.g., turns,
+               incidents, and interruptions) and the metadata associated with it (e.g., variables
+               pertaining to the speaker or the speech event); second, it provides a
+               cross-linguistic empirical basis for further annotation projects.</p>
+         </div>
+         <div type="acknowledgements" xml:id="acknowledgements">
+            <p>We would like to thank Erzsébet Tóth-Czifra, Tomaž Erjavec, and Andrej Pančur for
+               valuable comments on earlier versions of this paper.</p>
+         </div>
+         <div type="editorNotes" xml:id="editor-notes">
+            <p>Although this article was submitted to our rolling issue, it was added <foreign
+                  xml:lang="la">ex post facto</foreign> with the authors’ consent to <title
+                  level="s">Selected Papers from the 2019 TEI Conference</title> given its thematic
+               similarities to some of the other articles in this issue.</p>
+         </div>
+      </front>
+      <body>
+         <!-- text divisions, each with an @xml:id and <head> -->
+         <div xml:id="introduction">
+            <head>Introduction: Parliamentary Talk as a Linguistic Object of Annotation</head>
+            <p> Linguistic annotation can be defined as <quote source="#quote1">the practice of
+                  adding interpretative, linguistic information to an electronic corpus of spoken
+                  and/or written language data</quote> (<ref xml:id="quote1" type="bibl"
+                  target="#leech2013">Leech 2013, 2</ref>). As reflections on linguistic annotation
+               go hand in hand with the development of corpus studies (<ref type="bibl"
+                  target="#ideetal2017">Ide and Pustejovsky 2017</ref>), we argue that there is
+               still a need for a context-sensitive, fine-grained annotation of parliamentary
+               corpora, specifically in the context of linguistic research. Since linguistic
+               annotation shapes linguistic research (i.e., allows for specific research questions,
+               but also potentially limits the interpretation), we maintain that the issues and
+               decisions pertaining to linguistic annotation are an integral part of linguistic
+               research, and, therefore, should be part of the annotated corpus once released and
+               should become available to the research community together with the data. </p>
+            <p>This paper aims at tackling this issue by offering methodological reflections on what
+               doing linguistic annotation within the TEI framework means, especially when the
+               annotation serves a small-scale contrastive research project but is geared toward
+               further applications and intends to distribute an open and reusable language
+               resource. In other words, what can be learned from cross-linguistic research on
+               parliamentary discourse for other, potentially more comprehensive, annotation
+               frameworks for parliamentary discourse? In this paper, we do not propose any analysis
+               or substantive discussion of the data. Rather, we intend, through a focus on
+               specialized discourse, to show how and why a reflection on annotation practices
+                  <emph>belongs</emph> to the analysis, and is not only a preliminary step. </p>
+            <p>On this ground, we present an integrative and comprehensive approach for the
+               linguistic annotation of parliamentary discourse on the basis of <quote
+                  source="#quote2">small specialised corpora</quote> (<ref xml:id="quote2"
+                  type="bibl" target="#koester2010">Koester 2010</ref>). We apply the annotation
+               scheme to three electronic corpora based on the stenographic protocols of the British
+               House of Commons, the German Bundestag, and the French Assemblée nationale (<ref
+                  type="bibl" target="#truan2016a">Truan 2016a</ref>, <ref type="bibl"
+                  target="#truan2016b">2016b</ref>, <ref type="bibl" target="#truan2016c"
+                  >2016c</ref>). The novelty of this approach is that it integrates three different
+               parliamentary traditions. In order to ensure not only the interoperability but also
+               the comparison between different parliamentary cultures, we need a common annotation
+               framework, flexible enough to accommodate national specificities, yet standardized
+               enough to be valid for, we expect, any type of parliamentary discourse. Based on the
+               Text Encoding Initiative (TEI) Guidelines (<ref type="bibl" target="#tei2022">TEI
+                  Consortium 2022</ref>), the annotation framework combines a high degree of
+               standardization with a flexible structure: it is both specific to the methodological
+               and technical difficulties encountered while dealing with these particular types of
+               corpora and generalizable to other types of linguistic projects that may aim at
+               extending or refining the annotation scheme presented here.</p>
+            <p>The following discussion proceeds in four steps: first, we explain the rationale
+               behind a cross-linguistic encoding of parliamentary debates. Second, we show why the
+               TEI is a sustainable, reproducible, highly standardized, yet equally flexible
+               annotation framework suited to capturing parliamentary interaction. Third, we
+               describe the annotation scheme at the level of the metadata contained in the TEI
+               header, more specifically the variables associated with each speaker (each member of
+               Parliament in our case). We also detail the annotation scheme at the level of the
+               text, delineating why the transcription of speech vocabulary should be preferred to a
+               more drama-oriented markup for parliamentary data. Finally, in order to invite
+               further applications of the TEI framework, we discuss documenting and archiving the
+               data from an open-access perspective.</p>
+         </div>
+         <div xml:id="section2">
+            <head>Adopting a Contrastive View on the Annotation Scheme</head>
+            <p> The corpus annotation and documentation takes place in a specific research project
+               focusing on the uses and functions of third-person forms in three communities of
+               practice: the German, French, and British parliaments (<ref type="bibl"
+                  target="#truan2018">Truan 2018</ref>, <ref type="bibl" target="#truan2021">Truan
+                  2021</ref>). The dissertation project and, subsequently, the manual annotation of
+               the three subcorpora and its documentation in open access were conducted by Naomi
+               Truan only, but the decisions behind the use of specific tags within the TEI
+               framework were made in concertation with Laurent Romary. While the focus of this
+               research project and the reasons for the comparison of these three
+                  linguacultures<note>A concept that refers to culture in language or the cultural
+                  dimensions of language (see <ref type="bibl" target="#risager2014">Risager
+                     2014</ref>).</note> will not be discussed in this paper, it appears necessary
+               to sketch out the context in which corpus building has materialized. We first discuss
+               the focus on parliamentary discourse, then move to the contrastive view underlying
+               the project since its inception. We finally set forth the reasons why the TEI is a
+               robust procedure for encoding parliamentary corpora. </p>
+            <div xml:id="section2.1">
+               <head>Why Parliamentary Debates?</head>
+               <p>In political discourse, parliamentary debates have recently raised the interest of
+                  linguists (<ref type="bibl" target="#burkhardtetal2000">Burkhardt and Pape
+                     2000</ref>; <ref type="bibl" target="#burkhardt2003">Burkhardt 2003</ref>; <ref
+                     type="bibl" target="#ihalainenetal2016">Ihalainen, Ilie, and Palonen
+                  2016</ref>), especially because they are particularly valuable corpora for
+                  contrastive studies (<ref type="bibl" target="#bayley2004">Bayley 2004</ref>; <ref
+                     type="bibl" target="#ilie2010">Ilie 2010</ref>). Yet <quote source="#quote3">in
+                     spite of the growing visibility of parliamentary institutions, the scholarly
+                     interest for the study of parliamentary discourse has been rather low until
+                     recently</quote> (<ref xml:id="quote3" type="bibl" target="#ilie2006">Ilie
+                     2006, 188</ref>). In this context, parliamentary debates increasingly become an
+                  object of linguistic annotation (see <ref type="bibl" target="#fiseretal2018"
+                     >Fišer and Lenardič, 2018</ref> for an overview of CLARIN parliamentary corpora
+                  on which the corpora addressed here are also listed). </p>
+               <p> While we do not engage in a debate on whether parliamentary discourse is of
+                  intrinsic research value, we believe that records of parliamentary interaction
+                  yield valuable insights in linguistic analysis. First, in most Western countries,
+                  parliamentary debates are publicly available in several complementary formats:
+                  video, audio, and text. The plenary sessions are already transcribed by a team of
+                  professional stenographers familiar with parliamentary procedures as well as with
+                  the members of Parliament, thus enabling the researcher to focus on other levels
+                  of transcription and annotation.</p>
+               <p>The corpus used for the present study relies on the official transcripts of the
+                  plenary debates. The differences between stenographic protocols and the
+                  parliamentary debates, as well as the problems they raise, have been extensively
+                  described for the three countries under investigation (see <ref type="bibl"
+                     target="#slembrouck1992">Slembrouck 1992</ref>; <ref type="bibl"
+                     target="#mollin2007">Mollin 2007</ref> for the House of Commons; <ref
+                     type="bibl" target="#gardey2005">Gardey 2005</ref> for the Assemblée nationale;
+                     <ref type="bibl" target="#olschewski2000">Olschewski 2000</ref> for the German
+                  Bundestag). Notwithstanding these valid reservations, official transcripts are
+                     <quote source="#quote4">a valuable basis to start from</quote> (<ref
+                     xml:id="quote4" type="bibl" target="#zimaetal2010">Zima, Brône, and Feyaerts
+                     2010, 140</ref>) (see also <ref xml:id="quote5" type="bibl"
+                     target="#cribbetal2018">Cribb and Rochford [2018, 13]</ref>, who speak of
+                     <quote source="#quote5">a robust reporting procedure</quote>). Moreover, video
+                  recordings are not a panacea since they are highly dependent on the choices made
+                  by the cameraperson. In the case of unauthorized turns, verifications with the
+                  video recordings are sometimes impossible since the camera focuses on the speaker
+                  and very rarely on the co-interlocutors.</p>
+               <p>Second, being at the interface between spoken and written data, parliamentary
+                  discourse gives access to a wide range of discourse features (see <ref type="bibl"
+                     target="#vukovic2012">Vuković [2012]</ref> for a comparison of pre-prepared and
+                  spontaneous parliamentary discourse at the House of Commons). Even if official
+                  proceedings/transcripts do not adequately capture the interactional nature of the
+                  events such as pauses and hesitations (see <ref type="bibl"
+                     target="#cribbetal2018">Cribb and Rochford [2018]</ref> for an example based on
+                  the House of Commons), we adopted a TEI structure based on spoken data rather than
+                  drama-oriented data in order to allow for further projects that would take into
+                  consideration the interactional nature of plenary sessions. Finally, parliamentary
+                  debates display a wide range of speakers over a large time span, thus inviting for
+                  both diachronic and synchronic sociolinguistic case studies in terms of
+                  (expressed) gender, status, or political affiliation (see <ref type="bibl"
+                     target="#burnettetal2019">Burnett and Bonami [2019]</ref> for the Assemblée
+                  nationale).</p>
+            </div>
+            <div xml:id="section2.2">
+               <head>Why a New Annotated Corpus of Parliamentary Debates?</head>
+               <p>As sketched above, corpus studies based on parliamentary interaction have become
+                  numerous in the last decade. Against this background, what can a new annotated
+                  corpus of parliamentary data contribute? Why not work with already available
+                  parliamentary corpora? While reference corpora such as the Hansard corpus, which
+                  consists of British Parliament speeches between 1803 and 2005 (1.6 billion words,
+                  7.5 million speeches), would offer statistically robust results with
+                  corpus-assisted techniques, they do not give access to the whole co-text<note>We
+                     define co-text as the elements surrounding an occurrence, as opposed to the
+                     broader context that may be linked to discourse (see <ref type="bibl"
+                        target="#widdowson2004">Widdowson 2004, 59</ref>). </note> because of
+                  property rights. Moreover, no equivalent corpora for the German Bundestag and the
+                  French Assemblée nationale were available when the project started
+                  (2015–2016).</p>
+               <p>It should be noted, however, that several projects involving parliamentary data
+                  have been launched in the meantime. The <title level="m">GermaParl</title> R data
+                  package, a corpus that includes <quote source="#quote6">all plenary protocols that
+                     were published by the German Bundestag between February 1996 and December
+                     2016</quote> (<ref xml:id="quote6" type="bibl" target="#blatteetal2018">Blätte
+                     and Blessing 2018, 810</ref>), has been developed (<ref type="bibl"
+                     target="#blatte2017a">Blätte 2017a</ref>, <ref type="bibl"
+                     target="#blatte2017b">Blätte 2017b</ref>). Apart from the fact that the period
+                  covered by the corpus is by no means comparable to the British House of Commons,
+                  it raises problems in terms of transcription that will be addressed below.
+                  Furthermore, as the authors acknowledge, <quote source="#quote7"
+                        ><supplied>a</supplied> thematically specialized corpus <gap/> may offer
+                     significantly more detailed metadata and annotation</quote> (<ref
+                     xml:id="quote7" type="bibl" target="#blatteetal2018">Blätte and Blessing 2018,
+                     810</ref>). A provisory version of other annotated French parliamentary debates
+                  was also created (<ref type="bibl" target="#diwersyetal2018">Diwersy, Frontini,
+                     and Luxardo 2018</ref>) after the first release of the corpus in November 2016
+                  (see <ref type="crossref" target="#section6">sec. 6</ref> for more detail on the
+                  platform that hosts the corpora). </p>
+               <p>Parla-CLARIN,<note><bibl xml:id="erjavecetal2021"><author>Tomaž Erjavec</author>
+                        and <author>Andrej Pančur</author>, <title level="m">Parla-CLARIN: A TEI
+                           Schema for Corpora of Parliamentary Proceedings</title>, v. 0.2, accessed
+                           <date>February 8, 2021</date>, <ptr
+                           target="https://clarin-eric.github.io/parla-clarin"/>.</bibl></note> a
+                  comprehensive project aiming <q>to develop a TEI customisation for annotating
+                     parliamentary debates</q> by <q>storing and interchanging linguistically
+                     annotated corpora of parliamentary data to be used in scholarly
+                        research</q>,<note><bibl xml:id="erjavec2021"><author>Tomaž Erjavec</author>
+                        and <author>Andrej Pančur</author>, <title level="m">Parla-CLARIN GitHub
+                           repository</title>, accessed <date>February 8, 2021</date>, <ptr
+                           target="https://github.com/clarin-eric/parla-clarin/"/></bibl>.</note>
+                  was launched in 2018, two years after the open-access release of the corpora.
+                  Similarly, ParlaMint: Towards Comparable Parliamentary Corpora,<note>Accessed
+                     February 8, 2021, <ptr
+                        target="https://www.clarin.eu/content/parlamint-towards-comparable-parliamentary-corpora"
+                     />. </note> a project funded by CLARIN, <quote source="#quote8">is a
+                     multilingual set of comparable corpora containing parliamentary debates mostly
+                     starting at the end of 2015 and extending to mid-2020</quote> (<ref
+                     xml:id="quote8" type="bibl" target="#erjavecetal2020">Erjavec et al. 2020,
+                     Description</ref>). ParlaMint was not, however, available when Naomi Truan
+                  started her PhD (2015), as it was launched in July 2020. While these projects
+                  offer important and valuable sources of comparison, the annotation scheme
+                  described in this paper was conceived before they were launched. </p>
+               <p> Most of the projects presented above differ significantly from the small-scale
+                  contrastive project which is the focus of this paper, however, as they involve
+                  teams and infrastructures, while the TEI annotation presented here has been
+                  implemented by one person only (the first author). The annotation scheme used for
+                  the analysis (<ref type="bibl" target="#truan2018">Truan 2018</ref>, <ref
+                     type="bibl" target="#truan2021">2021</ref>) not only invites extension and
+                  possibly revision, but also offers a point of entry for further (doctoral)
+                  projects working on small specialized corpora, thus showing what can be annotated
+                  for specific research purposes and with limited means. Moreover, small-scale
+                  annotation schemes offer other advantages: for example, the possibility of
+                  encoding the variable majority/opposition, which had not been implemented
+                  otherwise prior to the annotation scheme presented here (<ref type="bibl"
+                     target="#truan2019">Truan 2019, 45</ref>), as it needs to be done manually. </p>
+               <p>The variety of sources and formats is a strong point in favor of a common
+                  annotation framework. All the texts have been retrieved from the official websites
+                  of the respective parliaments:</p>
+               <list rend="bulleted">
+                  <item><ptr target="http://hansard.parliament.uk/"/> for the House of Commons; </item>
+                  <item><ptr target="http://pdok.bundestag.de/"/> for the German Bundestag; </item>
+                  <item><ptr target="http://archives.assemblee-nationale.fr/"/> for the Assemblée
+                        nationale.<note> All files are from the <term>Compte rendu intégral</term>
+                        (and not from the <term>Compte rendu analytique</term> when it
+                        exists).</note>
+                  </item>
+               </list>
+               <p> Both the British House of Commons and the French Assemblée nationale display the
+                  parliamentary proceedings in HTML, which allows for a quick, easy, and accurate
+                  retrieval of the content. The German corpus, on the other hand, is based on PDF
+                  files. PDF files are noticeably less adequate for further encoding and tagging. In
+                  this case, the files have sometimes suffered from inadequate word breaks, thus
+                  necessitating minor corrections.</p>
+               <p> We carried out the process of encoding in TEI by combining manual and automatic
+                  processing workflows, with the idea of keeping both the content and the metadata
+                  of the sources. In particular, we used the GROBID software suite,<note>GROBID is a
+                     machine-learning library, with a particular focus on technical and scientific
+                     publications, for extracting, parsing, and re-structuring raw documents such as
+                     PDFs into structured TEI-encoded documents. For a detailed description, see
+                        <ref type="bibl" target="#romaryetal2015">Romary and Lopez
+                     (2015)</ref>.</note> which provides a relatively efficient transformation
+                  process from PDFs to a decent TEI format, although not fully compliant with the
+                  target encoding scheme. Attention was given to unifying the final format across
+                  the three languages and parliamentary settings so that the same phenomena and
+                  features would be encoded exactly in the same way for each sub-corpus.</p>
+            </div>
+            <div xml:id="section2.3">
+               <head>Small Monolingual Corpora as the Basis for a Cross-Linguistic
+                  Perspective</head>
+               <p>The rationale behind the constitution of <quote source="#quote9">small monolingual
+                     corpora</quote><note>The German corpus is the largest, with 417,095 tokens. The
+                     British corpus contains 188,913 tokens, the French one 137,620. </note> (<ref
+                     xml:id="quote9" type="bibl" target="#koester2010">Koester 2010</ref>) is to
+                  allow for the interaction between statistical measures and a close-reading
+                  analysis that is sensitive to the sociopolitical context in which parliamentary
+                  interaction takes place. In order to ensure that external variables that may shape
+                  parliamentary talk are assessed appropriately, the research project that builds
+                  the basis for the annotation scheme focused on a limited range of national debates
+                  concerning a major European Council meeting (see <ref type="bibl"
+                     target="#truan2021">Truan 2021, chap. 4</ref>).</p>
+               <p>Despite their high degree of conventionality, parliamentary debates involve a wide
+                  range of different activities (or subgenres) such as ministerial statements,
+                  speeches, debates, oral/written questions, and Question Time (<ref type="bibl"
+                     target="#ilie2006">Ilie 2006, 191</ref>). In order to capture a wide array of
+                  speakers and to ensure thematic continuity, Naomi Truan selected one plenary
+                  debate per year held between 1998 and 2015 in the British, German, and French
+                  national parliaments, respectively, about a major European Council meeting (either
+                  before or after the meeting or on the same day). As <ref xml:id="quote10"
+                     type="bibl" target="#aueletal2014">Auel and Raunio (2014, 17)</ref> stress,
+                     <quote source="#quote10"><supplied>p</supplied>roblematic for the comparative
+                     analysis is that identifying EU debates is rather difficult in some
+                     parliaments.</quote> While the Bundestag and the Assemblée nationale list what
+                  they consider to be EU debates on their websites for the current and previous
+                  legislative periods, the House of Commons does not provide such information on its
+                  website. Search engines do not enable further distinction between the EU being
+                  only mentioned in a debate on, say, agriculture on a national level, and the EU
+                  being the specific topic covered during the plenary session. For these reasons,
+                  and because European affairs are not the focus of this work but only a common
+                  variable to ensure the comparability of the data, it has been assumed that the
+                  European Council meetings offer a baseline against which to collect the national
+                  plenary debates.</p>
+               <p> To increase the reliability of the comparison, the genre of parliamentary debate
+                  has therefore been considered a constant variable, together with the focus on
+                  European Council meetings. The main purpose was to avoid contrastive analyses
+                  based on the languages but disregarding the specificities of a particular culture
+                  or institution. Following <ref xml:id="quote11" type="bibl"
+                     target="#krzeszowski1989">Krzeszowski (1989, 61)</ref>, we recognize that
+                     <quote source="#quote11"><supplied>t</supplied>ext-bound CS
+                        <supplied>contrastive studies</supplied> are
+                     <term>corpus-restricted</term></quote> since no systematic generalizations
+                  outside the original data are made. Bearing in mind that institutional settings
+                  are accordingly more stabilized, routinized and conventionalized than everyday
+                  interactions, it can be posited that genres function as an intermediary level of
+                  representativeness prior to analysis or as a first step toward the comparison of
+                  discourse communities that should be the basis of expectations of a contrastive
+                  discourse analysis (see <ref type="bibl" target="#munchow2010">von Münchow
+                     2010</ref>).</p>
+               <p>While the annotation scheme described in this paper presents typical features of
+                  parliamentary interaction, it also represents a first step toward integrating
+                  contrastive perspectives while developing an annotation framework. The advantage
+                  of the comparison pertains to its heuristic value: by reflecting on similarities
+                  and differences during the annotation process, we come closer to an architecture
+                  that is valid and applicable to a large variety of linguistic data and metadata
+                  (see also <ref type="bibl" target="#truan2019">Truan 2019</ref> for methodological
+                  reflections on contrastive discourse analysis).</p>
+            </div>
+         </div>
+         <div xml:id="section3">
+            <head>Preventing the Built-in Obsolescence of the Corpus</head>
+            <p>In this section, we outline the principles guiding the documentation of the corpus
+               and show how the choices we made are intended to serve general purposes. We argue
+               that annotating corpora cross-linguistically calls for a very flexible annotation
+               framework that allows for multiple, expansible, and evolving annotations that may
+               change over the course of time—a principle that is deeply rooted in the TEI. In order
+               for this paper to be received outside the TEI community as well, we first briefly
+               present the TEI Guidelines and show why they are deemed to be appropriate for
+               parliamentary debates. We then link this general framework to what we call a
+               sustainable corpus. </p>
+            <div xml:id="section3.1">
+               <head>The TEI Annotation Scheme</head>
+               <p>The Text Encoding Initiative (see <ref type="bibl" target="#romary2008">Romary
+                     2008</ref>) has become, since its inception in 1987, the reference technical
+                  standard for the representation of textual content in the humanities. Based upon
+                  the W3C XML recommendation, it covers a wide range of genres and provides users
+                  with a vocabulary of nearly six hundred XML elements. At the core of the TEI
+                  Guidelines resides the principle that any TEI-based project should define its own
+                  subset (or <term>customization</term>) where the elements which are deemed useful
+                  for the representational task at hand are selected, documented, and possibly
+                  amended.</p>
+               <p>In the context of small specialized corpora, TEI annotation can be used to store
+                  the <quote source="#quote12">detailed information about the speakers or
+                     writers</quote> (<ref xml:id="quote12" type="bibl" target="#koester2010"
+                     >Koester 2010, 72</ref>). Linked with <quote source="#quote13">the goals of the
+                     interactions or texts and the setting in which they were produced as part of
+                     the corpus database means that linguistic practices can easily be linked to
+                     specific contextual variables</quote> (<ref xml:id="quote13" type="bibl"
+                     target="#koester2010">Koester 2010, 72</ref>). TEI XML annotation enables
+                  researchers to fruitfully visualize the articulation between text and context—that
+                  is, between the plenary session and the metadata associated with it.
+                  Interpretative data is situated within the corpus using dedicated TEI elements. As
+                  we will detail in <ref type="crossref" target="#section6">section 6</ref>, the
+                  corpus is available under a CC BY 4.0 license, which enables anyone to correct or
+                  extend the metadata if necessary.</p>
+               <p>Based on this general understanding, we have conceived the annotation framework
+                  with this contrastive research question in mind: the subset we have devised
+                  consists of elements that are deemed equally valid for British, French, and German
+                  parliamentary debates. We argue that the cross-linguistic view enables us to take
+                  into account national specificities while <quote source="#quote14"
+                        >emphasiz<supplied>ing</supplied> what is common to every kind of
+                     document</quote>, as <ref xml:id="quote14" type="bibl" target="#burnard2014"
+                     >Burnard (2014, <title level="a">The TEI and XML</title>)</ref> highlights for
+                  TEI. In this sense, and despite the fact that the political context changes over
+                  time between France, Germany, and the United Kingdom, TEI gives access to a common
+                  technical, practical, and methodological framework between the three subcorpora
+                  and the three languages. </p>
+            </div>
+            <div xml:id="section3.2">
+               <head>A Sustainable Corpus</head>
+               <p>In designing the TEI-based encoding scheme of our corpus, we intended for it to be
+                  easy for other scholars to take it up to carry out various types of research, and
+                  also to allow its possible extension (in terms of coverage) or enrichment (e.g.,
+                  with additional annotated features). Although we would avoid the term
+                     <term>reference corpus</term>, which is more applicable to large-scale
+                  endeavors to build up a representative sample for a language (see, e.g., <ref
+                     type="bibl" target="#kupietzetal2010">Kupietz et al. 2010</ref>), we strove to
+                  create a sustainable corpus that may be combined in time and space with other
+                  endeavors to describe language resources in a variety of contexts and for a
+                  variety of genres. Within this framework, we saw adopting a sampling strategy
+                  focused on our research question not as a restriction in the constitution of the
+                  corpus, but rather as a route to a better grasp of the parameters for the
+                  linguistic analysis and thus for the encoding.</p>
+               <p> With this perspective in mind, we chose the TEI Guidelines as a basis for the
+                  encoding scheme because of the lack of consistency across the various corpora of
+                  parliamentary debates available online in their native source representations. As
+                  reflected in the corpus overview page compiled by the CLARIN
+                        infrastructure,<note><title level="a">Parliamentary Corpora</title>,
+                     accessed <date>February 8, 2021</date>, <ptr
+                        target="https://www.clarin.eu/resource-families/parliamentary-corpora"
+                     />.</note> existing corpora have been designed mainly on the basis of
+                  proprietary formats ranging from flat plain-text representations (<ref type="bibl"
+                     target="#kapociuteetal2017">Kapočiūtė-Dzikienė, Šarkutė, and Utka 2017</ref>;
+                     <ref type="bibl" target="#frantzi2018">Frantzi 2018</ref>) to ad-hoc XML
+                  vocabularies (<ref type="bibl" target="#prazaketal2012">Pražák and Šmídl
+                     2012</ref>; <ref type="bibl" target="#hansen2018">Hansen 2018</ref>; <ref
+                     type="bibl" target="#vitalietal2007">Vitali and Zeni 2007</ref>), with even
+                  some attempts to define a specific metadata schema for parliamentary debates (<ref
+                     type="bibl" target="#gartner2013">Gartner 2013</ref>)—a practice that can be
+                  seen as opposite to the underlying assumptions of the TEI community that strives
+                  towards finding consensus to cover similar use cases<note>As another illustration
+                     of this, we can mention what the TEI Lex-0 has aimed to achieve in the domain
+                     of interoperable lexical data and for which it was awarded the Rahtz Prize for
+                     TEI Ingenuity in 2020 (see <bibl><author>Eliza Papaki</author>, <title
+                           level="a">DARIAH Working Group on Lexical Resources Wins Innovation
+                           Prize</title>, <date>November 20, 2020</date></bibl>, <ptr
+                        target="https://www.dariah.eu/2020/11/20/dariah-working-group-on-lexical-resources-wins-innovation-prize/"
+                     />).</note> rather than <term>ad hoc</term> solutions. Besides, even for those
+                  corpora conforming to the TEI Guidelines, there are some strong discrepancies in
+                  the actual TEI encoding styles: whereas some (<ref type="bibl"
+                     target="#research2018">Research Group of Computational Linguistics, University
+                     of Tartu 2018</ref>) have used a simple paragraph segmentation for the encoding
+                  of turns and associated features, others (<ref type="bibl"
+                     target="#blatteetal2018">Blätte and Blessing 2018</ref>) have considered
+                  parliamentary debates as a possible instance of drama, with a third group of
+                  researchers (<ref type="bibl" target="#pancuretal2018">Pančur, Šorn, and Erjavec
+                     2018</ref>) who based their work upon the Transcription of Speech module of the
+                  TEI Guidelines.</p>
+               <p>The (internal) debate within the TEI community as to which module can optimally
+                  deal with parliamentary corpora, Drama or Transcription of Speech, relates to a
+                  more essential question: how should parliamentary debates be considered as a
+                  scholarly source? Three arguments plead, in our view, for an annotation as
+                  transcription of speech rather than drama. First, when designing the annotation
+                  scheme, we were quickly set on identifying parliamentary debates as the tangible
+                  record of an observable interaction rather than a performance that could be
+                  derived from a preexisting script. Indeed, even if MPs may be reading from notes
+                  when participating in a parliamentary debate, <foreign xml:lang="fr">seul le
+                     prononcé fait foi</foreign>, that is, the transcription only records what is
+                  actually said.</p>
+               <p> Second, even if one could claim—following the theatrical metaphor—that MPs play a
+                  role, specifically depending on their relation to the government (majority,
+                  opposition) or their specific positioning on certain political issues, we also
+                  observe speakers as concrete entities to which we can associate, as we shall see,
+                  concrete personal and sociolinguistic markers in the context of a given political
+                  speech. Finally, parliamentary debates display a wide range of phenomena
+                  pertaining to spoken (multimodal) interactions such as overlaps, interruptions,
+                  background noises, or applause, which may all be deemed to bear an interactional,
+                  if not political, meaning and thus cannot equate with blocking as indications
+                  pertaining to the staging of actors in order to facilitate the performance.
+                  Furthermore, MPs often depart from the script (at the British House of Commons,
+                  they are not allowed to read a text aloud). While the resemblance between
+                  parliamentary debates and theater is attested (<ref type="bibl" target="#ilie2003"
+                     >Ilie 2003</ref>), there is always room for improvisation, unplanned reactions,
+                  interventions, or comments in parliament. It is true that some of these
+                  characteristics may not be transcribed by the official stenographers (see below
+                  for a discussion), yet they remain available. </p>
+               <p>Third, although some parliamentary records appear to be strongly edited and may be
+                  seen as very close to written prose or drama in style or structure, we think it
+                  would go against a general effort toward interoperability to adopt, for a subset
+                  of the general corpus of parliamentary records, an encoding strategy that would be
+                  different from what is needed for more fine-grained transcriptions. As a matter of
+                  fact, the tagset for the transcription of spoken language of the TEI Guidelines
+                  does not imply that all details from the source must be encoded and one can
+                  implement, with a very small subset of the corresponding elements, exactly what
+                  could be achieved when adopting an encoding strategy based upon the tagset
+                  intended for drama.</p>
+               <p> For these three main reasons, we have adopted a TEI annotation scheme distinct
+                  from drama.</p>
+            </div>
+         </div>
+         <div xml:id="section4">
+            <head>Enabling Sociolinguistic Explorations: The TEI Header</head>
+            <p>The criteria for documenting the corpus are directly derived from the model sketched
+               out in the first two sections. In this section, we account for two levels of analysis
+               underlying the annotation scheme: first, the TEI header (<gi>teiHeader</gi> element),
+               which stores information related to <quote source="#quote15">the metadata associated
+                  with the digital document itself, analogous to the title page of a printed
+                  book</quote> (<ref xml:id="quote15" type="bibl" target="#burnard2014">Burnard
+                  2014, <title level="a">The TEI Header</title></ref>); second, the transcriptions
+               of speech within the <gi>text</gi> element itself (for instance, the distribution of
+               turns). </p>
+            <div xml:id="section4.1">
+               <head>Political Speakers: The TEI Element <gi>person</gi>
+               </head>
+               <p> In this part, we describe the metadata attached to the TEI element
+                     <gi>person</gi> corresponding to each speaker. In this corpus, the TEI header
+                  contains, among others, the metadata (or variables) associated with the
+                  environment of the parliamentary debate (organization, place, and date encoded in
+                     <gi>settingDesc</gi>: see <ref type="crossref" target="#example3">example
+                     3</ref>) and with the speakers (name, sex, political party, political
+                  affiliation, and position encoded in <gi>particDesc</gi>: see <ref type="crossref"
+                     target="#example1">example 1</ref>).<note>For a comprehensive mapping of all
+                     the TEI tags used in this work and how they have been applied to parliamentary
+                     debates specifically, see <ref type="bibl" target="#truan2016a">Truan
+                        2016a</ref>, <ref type="bibl" target="#truan2016b">2016b</ref>, and <ref
+                        type="bibl" target="#truan2016c">2016c</ref>. </note>
+               </p>
+               <p> An important decision was to encode speakers’ related information in the header
+                  of each document and to associate such descriptions with a group of features
+                  relevant for the linguistic analysis of parliamentary discourse. In compliance
+                  with the TEI Guidelines, and more specifically its Language Corpora module (<ref
+                     type="bibl" target="#tei2022">TEI Consortium 2022, chap. 15</ref><note>Accessed
+                     June 6, 2022, <ptr
+                        target="https://tei-c.org/Vault/P5/4.4.0/doc/tei-p5-doc/en/html/CC.html"
+                     /></note>), such information is situated in the profile description section
+                     (<gi>profileDesc</gi>) of the TEI header within the element
+                     (<gi>particDesc</gi>) dedicated to the cataloging of participants in a spoken
+                  discourse. Our choice was essentially motivated by the need to find an adequate
+                  compromise between two possible strategies:</p>
+               <list rend="ordered">
+                  <item> on the one hand, localizing speaker-related information at the utterance
+                     level, at the risk of being insufficiently generic, introducing redundancy, and
+                     above all introducing contradictory information throughout the document, when
+                     annotation is not carried out consistently; </item>
+                  <item> on the other hand, grouping all speakers’ related information within a
+                     global prosopographic document (i.e., an independent digital thesaurus of
+                     persons) where each MP would have been identified once and for all, thus
+                     preventing a finer-grained analysis accounting for the variation of, for
+                     instance, political roles over time and across parliamentary
+                        debates.<note>There is a trade-off here as to how much speaker-related
+                        information should be localized with the parliamentary debate as opposed to
+                        grouped in a prosopographic document. We expect our encoding to reflect the
+                        need to make each plenary debate an autonomous object not requiring constant
+                        back-and-forth access to an external authority document.</note>
+                  </item>
+               </list>
+               <p> Crucially, providing the speaker’s description at the (local) level of each
+                  parliamentary debate or TEI document (i) does not prevent us from setting up an
+                  external, more comprehensive prosopographic document where all biographic
+                  indications (and somehow independent from specific political contexts) may be
+                  maintained (ii). Referring from the corpus documentation to such a prosopographic
+                  document by means of the <att>corresp</att> attribute on the <gi>person</gi>
+                  element is technically simple. </p>
+               <p> Our documentation strategy has been determined by our fundamental decision within
+                  our corpus to fragment parliamentary debates into document units corresponding to
+                  plenary sessions, with the additional advantage of optimizing the maintenance of
+                  the corresponding information within our corpus at large (e.g., allowing other
+                  researchers to easily complement the corpus with additional sessions, as
+                  independent TEI documents), as well as facilitating cross-session analysis. Hence,
+                  each TEI XML document corresponds to one plenary debate as a communicative unit,
+                  that is, a given spatiotemporal unit bound to a specific situation in which a
+                  group of given participants discusses a given topic (<ref type="bibl"
+                     target="#kerbrat1990">Kerbrat-Orecchioni 1990, 216</ref>), thus making the text
+                  the proper linguistic object under investigation.<note>But note that one session
+                     can last more than one day, i.e., can be split.</note>
+               </p>
+               <p> We have chosen to identify the speakers in each debate in the corresponding
+                  header and <emph>not</emph> in each utterance (or prior to each utterance) for
+                  three main reasons: </p>
+               <list rend="ordered">
+                  <item> it makes the TEI document more readable at first glance since the metadata
+                     associated with each speaker is not mixed—and thus potentially hard to
+                     retrieve—all together in the text (see the ode to simplicity in the next
+                     section); </item>
+                  <item> it ensures the consistency of the parameters applied to each speaker since
+                     the list of the speakers attending a specific plenary debate is given at the
+                     beginning; </item>
+                  <item> it permits the development and extension of the metadata associated with
+                     each speaker if necessary by changing the TEI header only once, and not every
+                     time a speaker produces a new turn. </item>
+               </list>
+               <p>In this context, the documentation of speakers in the header plays a double role
+                  for the management of our transcription document:</p>
+               <list rend="ordered">
+                  <item> first, it ensures unique identification of the speakers<note>Speakers are
+                        mostly, but not only, MPs. For instance, in France, members of the
+                        government who are not members of the parliament can be invited to make a
+                        speech. </note> across their various interventions within a plenary debate; </item>
+                  <item> second, it provides various descriptive features which are both stable for
+                     the corresponding debate and relevant for the purpose of the study of
+                     parliamentary discourse at large. </item>
+               </list>
+               <figure xml:id="example1">
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                     <teiHeader>
+                        <profileDesc> ... <particDesc>
+                              <listPerson type="parliamentarians"> ... <person
+                                    xml:id="ROBERTSON-ANGUS">
+                                    <persName>Angus Robertson</persName>
+                                    <sex>male</sex>
+                                    <occupation>MP</occupation>
+                                    <affiliation>Scottish National Party</affiliation>
+                                    <trait type="party">
+                                       <desc>Independent</desc>
+                                    </trait>
+                                    <floruit>opposition</floruit>
+                                    <nationality>UK</nationality>
+                                    <residence>Moray</residence>
+                                 </person> ... </listPerson>
+                           </particDesc>
+                        </profileDesc>
+                     </teiHeader>
+                  </egXML>
+                  <head type="legend">Example of a speaker’s description entry in the TEI header of
+                     a session document</head>
+               </figure>
+               <p> Usually, the <gi>id</gi> of a speaker corresponds to the last name. When speakers
+                  share their last names with another speaker of the corpus, as is the case here,
+                  the first names are added. Another option could have been to add the date of birth
+                  for each speaker. </p>
+               <p> The first group of features attached to the description of an MP within a plenary
+                  debate corresponds to stable—or very rarely varying—characteristics pertaining to
+                  the identification of the speakers according to long-term properties such as name
+                     (<gi>persName</gi>), sex (<gi>sex</gi>
+                  <note>Although the TEI documentation reports on a <att>value</att> attribute to
+                     normalize the corresponding content of the <gi>sex</gi> element, it does not
+                     provide a real standardized set of values as reference (<ref type="bibl"
+                        target="#tei2022">TEI Consortium 2022, Appendix C: Elements, <gi>sex</gi>,
+                           <ptr
+                           target="https://tei-c.org/Vault/P5/4.4.0/doc/tei-p5-doc/en/html/ref-sex.html"
+                        /></ref>). We thus discarded this attribute in our encoding, but we used
+                     normalized values within the corpus (male/female/none). </note>), and
+                  nationality (<gi>nationality</gi>). The content of <gi>sex</gi> allows for simple
+                  comparisons such as length of speeches by gender (see <ref type="bibl"
+                     target="#truan2021">Truan 2021, chap. 4</ref>).</p>
+               <p> The second group of features is more specific to each plenary debate and
+                  corresponds to the political characteristics of the speakers: their political
+                  affiliation (<gi>affiliation</gi>), their relation to current government
+                     (<gi>floruit</gi>,<note> Although the description of the <gi>floruit</gi>
+                     element in the TEI Guidelines may suggest that <gi>floruit</gi> should remain
+                     limited to the description of a temporal time span, we consider it acceptable
+                     to extend this description to the nature of the activity of the person in the
+                     given time span, especially when this activity may change over time, as is the
+                     case for the variable majority/opposition in the political sphere. </note> with
+                  values <val>majority</val>and <val>opposition</val>), and the district that
+                  elected them (<gi>residence</gi>).</p>
+               <p> This approach allowed us to look into the corpus through variables that have not,
+                  as far as we know, been consistently integrated into the corpus-based and
+                  corpus-driven analysis of parliamentary discourse so far. We are able to gain
+                  insights into the relationship between opposition and majority in terms of person
+                  reference that otherwise would have remained hidden. For instance, referring to
+                     <term xml:lang="fr">certains</term> (<term>some</term>), for a member of the
+                  UMP (Conservatives in France), is likely to denote the Communists at the Assemblée
+                  nationale (see <ref type="bibl" target="#truan2021">Truan 2021, chap. 7</ref>).
+                  Building categories of discourse participants is closely intertwined with the
+                  speaker’s construal of who is included and who is excluded. Such a finding could
+                  only be attained through the exploration of the correlation between linguistic
+                  forms and manually encoded variables in the form of TEI constructs.</p>
+               <p> The annotation framework was geared toward the coding of external variables (or
+                  metadata) which had only rarely been taken into account until the first release of
+                  the corpus in November 2016, such as the variable majority/opposition or grouping
+                  together parliamentary groups such as PDS/Die Linke that are coded as
+                     <soCalled>Far Left</soCalled> (see the use of <gi>trait</gi> in <ptr
+                     type="crossref" target="#example1"/>) (for some observations on the variable
+                  majority/opposition in a Norwegian corpus, see <ref type="bibl"
+                     target="#lapponietal2016">Lapponi and Søyland 2016</ref>; <ref type="bibl"
+                     target="#lapponietal2018">Lapponi et al. 2018</ref>). </p>
+               <p> Although we have not encountered this situation in our corpus, it should be
+                  pointed out that even in the last group of features, a change can happen within a
+                  given debate, when for instance an MP changes sides. Such a scenario occurred with
+                  the creation of The Independent Group (TIG) in February 2019. In such cases, the
+                  flexibility of the TEI toolkit would allow for a meaningful representation through
+                  the use of temporal attributes as exemplified in <ptr type="crossref"
+                     target="#example2"/>.</p>
+               <figure xml:id="example2">
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                     <person xml:id="SOUBRY">
+                        <persName>Anna Mary Soubry</persName> ... <affiliation notAfter="2019-02-20"
+                           >Tories</affiliation>
+                        <affiliation notBefore="2019-02-20">The Independent Group</affiliation> ...
+                     </person>
+                  </egXML>
+                  <head type="legend">Exemplifying a change in political party within a plenary
+                     debate</head>
+               </figure>
+            </div>
+            <div xml:id="section4.2">
+               <head>The Speech Event: The TEI Element <gi>settingDesc</gi>
+               </head>
+               <p>As shown previously, each parliamentary debate constitutes a specific speech event
+                  taking place at one time and one place. The speech event constitutes a macro frame
+                  in which speakers, who alternatively become hearers as well, produce several
+                  turns. The contextual description of the speech event must thus contain the basic
+                  features that enable a user of the corpus to situate each utterance within a
+                  precise geo-temporal environment, but also to understand the broader political
+                  context.</p>
+               <p>The TEI Guidelines provide a suitable way to do so within the TEI header by using
+                  the <gi>setting</gi> element within a <gi>settingDesc</gi> element, whose usage we
+                  have adapted to match our purposes. As illustrated in the example below, we have
+                  described the following features attached to a parliamentary debate:</p>
+               <list rend="ordered">
+                  <item>the name of the organization (<gi>orgName</gi>
+                     <note> It might have been preferable to actually indicate the organization
+                           (<tag type="start">org type="parliament"</tag>) rather than just the
+                        name, but the corresponding element is currently not allowed in
+                           <gi>setting</gi>.</note>) where the debate is taking place, namely the
+                     corresponding national parliament (for this corpus: House of Commons, Deutscher
+                     Bundestag, and Assemblée Nationale);</item>
+                  <item>the actual date of the debate (<tag type="start">date
+                        type="parliamentaryDebateDate"</tag>) both as recorded in the original
+                     transcript and normalized according to the ISO standard 8601 (yyyy-mm-dd); </item>
+                  <item>the name of the head of government in place (<gi>persName</gi>, <note>A
+                        further development of general guidelines for such encodings should lead to
+                        agreement on a <att>type</att> for such elements (e.g.,
+                           <att>type</att>=<val>governmentHead</val>)</note> so that the debate can
+                     be easily understood in relation to a wider political context. We adopted a
+                     complementary numbering marker (e. g., Blair I, Blair II, Blair III, etc.) to
+                     signal successive governments with the same leader; </item>
+                  <item> the actual legislative session (<gi>name</gi>
+                     <note>Here also we could think of adding a <att>type</att> to the corresponding
+                           <gi>name</gi> element within a larger standardization context, and
+                        possibly link this with a reference document of legislature events.</note>)
+                     within which the debate is taking place. </item>
+               </list>
+               <p>In addition to these generic political parameters, we added two specific
+                  descriptors intended to provide information about the European debate per se. In
+                  doing this, we pursued our general encoding strategy, and reused existing elements
+                  from the TEI Guidelines while slightly adapting their semantics as TEI components.
+                  For the description of the main topic(s) of the European Council meeting about
+                  which the national parliament is debating, we used the <gi>activity</gi> element.
+                  For the description of the place where the European Council meeting took place, we
+                  used the <gi>locale</gi> element. Both choices could probably be the most
+                  problematic ones if we were to carry out a wider dialogue with the scientific
+                  community on the standardization process and the encoding of parliamentary
+                  debates.</p>
+               <figure xml:id="example3">
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                     <settingDesc>
+                        <setting>
+                           <orgName type="parliament">Assemblée Nationale</orgName>
+                           <date type="parliamentarySessionDate" when="2008-12-10">10 December
+                              2008</date>
+                           <activity>Treaty of Lisbon, General questions</activity>
+                           <locale>Brussels</locale>
+                           <persName>Sarkozy</persName>
+                           <name>XIIIe législature</name>
+                        </setting>
+                     </settingDesc>
+                  </egXML>
+                  <head type="legend">Example of a session’s description entry in the TEI header of
+                     a session document</head>
+               </figure>
+            </div>
+         </div>
+         <div xml:id="section5">
+            <head>Encoding the Content</head>
+            <p> In this section, we present the decisions pertaining to the turn level <ptr
+                  type="crossref" target="#section5.1"/> as well as the intra-turn level <ptr
+                  type="crossref" target="#section5.2"/>. Importantly, we do not address other
+               levels of annotation such as word-level annotation that could have been marked up in
+               TEI as well. Indeed, for the purpose of this project, the results are based on
+               automatic part-of-speech tagging. The open-source software TXM<note>Accessed February
+                  5, 2021, <ptr target="http://textometrie.ens-lyon.fr/?lang=en"/>.</note> (<ref
+                  type="bibl" target="#heidenetal2010">Heiden, Magué, and Pincemin 2010</ref>) used
+               in this project indeed proceeds to language-specific part-of-speech tagging when a
+               corpus is imported.</p>
+            <div xml:id="section5.1">
+               <head>The Representation of Spoken Political Discourse: The Turn Level</head>
+               <div xml:id="section5.1.1">
+                  <head>Utterances/Turns</head>
+                  <p>The element <gi>u</gi> (utterance) in the TEI Guidelines potentially covers any
+                     kind of linguistic segmentation in a transcription of a spoken sequence as long
+                     as this segment may be attributed to a single speaker. For the purpose of
+                     encoding parliamentary debates, we decided to adopt a terser interpretation of
+                     this element and considered that it should represent a <term>turn</term> in the
+                     standard linguistic terminology. Turns are a superficial unit pertaining <quote
+                        source="#quote16">to the surface structure of conversation</quote> (<ref
+                        xml:id="quote16" type="bibl" target="#kerbrat2004">Kerbrat-Orecchioni 2004,
+                        8</ref>) since they solely indicate a change of speaker. We made this
+                     decision to account for the essentially monological nature of parliamentary
+                     interaction so that a specific speaker’s turn can be easily identified and
+                     distinguished from the preceding and following turns of other MPs.</p>
+
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples"><u who="#ROBERTSON-ANGUS">On the
+                        question of European enlargement and immigration […] </u></egXML>
+
+               </div>
+               <div xml:id="section5.1.2">
+                  <head> Interruptions </head>
+                  <p><ref xml:id="quote17" type="bibl" target="#diwersyetal2018">Diwersy, Frontini,
+                        and Luxardo (2018)</ref> observe that the descriptor <quote
+                        source="#quote17">speech type (debate, interruption, vote explanation,
+                        etc.)</quote>, which we do not use in our corpus annotation, proves to be
+                        <quote source="#quote17">particularly important when it comes to
+                        differentiate effects of register variation ranging from highly formulaic to
+                        less formal speech (as in the case of e. g. interruptions).</quote> The main
+                     reason for not annotating this level of analysis is, once again, to be found in
+                     the contrastive perspective we adopt. Whereas interruptions are thoroughly
+                     transcribed in the official recordings of the Bundestag and the Assemblée
+                     nationale, enabling new research questions on the special kind of dialogue
+                     emerging during these interactions, unexpected or unauthorized turns at the
+                     British parliament are only indicated as <term>interruptions</term> with no
+                     further information provided on the nature, source, or content of the
+                     disruption, as in the following example:</p>
+
+
+                  <cit>
+                     <quote source="#blockquote"><p>Mr. David Cameron (Tories)
+                              <supplied>majority</supplied>: There is a case for saying that the
+                           institutions that Europe put in place after the second world war and I
+                           would include NATO as well as the European Union have played a role in
+                           making sure that we settle our problems around conference tables rather
+                           than on the fields of Flanders. To that extent, yes, I think that it is
+                           right.</p>
+                        <p><emph>
+                              <hi rend="bold">Interruption</hi>
+                           </emph></p><p>Someone says, <q>Why not go?</q></p></quote>
+                     <ref xml:id="blockquote" type="bibl" target="#truan2016c">UK
+                           2012.10.22<note>The source of the utterance (or metadata) is to be found
+                           at the end of the excerpt in round brackets: ISO 3166 country code (DE
+                           for Germany, FR for France, UK for the United Kingdom), year.month.day of
+                           the debate.</note></ref>
+                  </cit>
+
+
+                  <p>Although the co-text sometimes gives insights on what kind of
+                        <term>interruption</term> occurred (and although the video recordings are
+                     available online), it is clear that transcription practices (to name only one
+                     factor) have a considerable impact on a contrastive research overall. For
+                     statistical purposes, it appeared more suitable to encode changes of speakers
+                     without discriminating between unauthorized and authorized interventions, which
+                     enables us to retrieve automatically all the utterances of a given speaker.
+                  </p>
+               </div>
+            </div>
+            <div xml:id="section5.2">
+               <head>Segments and Quotes: The Intra-turn Level</head>
+               <p> Finally, we had to resort to the very generic <gi>note</gi> element to mark up
+                  additional commentaries present in the transcripts of the debates and usually
+                  added by the parliamentary clerks:</p>
+
+               <egXML xmlns="http://www.tei-c.org/ns/Examples"><note>Official Report, 15 January
+                     2014, Vol. 573, c. 11MC.</note></egXML>
+
+               <p> For the purpose of our corpus, we have not fully used the richness of the
+                  Transcriptions of Speech module of the TEI Guidelines, as described by <ref
+                     type="bibl" target="#schmidt2011">Schmidt (2011)</ref>. This is due to both the
+                  specific scope of the linguistic study that we were pursuing and the actual
+                  informational simplicity of the available sources. Still, the choice we made of
+                  using this module offers the possibility of a variety of potential enrichments,
+                  either by ourselves, or indeed by anyone who would want to further complement the
+                  corpus. The possibility to align with precision, but means of a timeline, the
+                  various turns, sub-segments or any kind of incident, offers the potential to have
+                  a better insight in the nature of the interactions carried out in parliamentary
+                  contexts, from a prosodic or gestural point of view for instance.</p>
+            </div>
+         </div>
+         <div xml:id="section6">
+            <head>Documenting and archiving the data</head>
+            <p>The Text Encoding Initiative has been, right from the onset, the basis for a strong
+               open science vision, where interoperability would be at the service of sharing and
+               reusing digital content encoded according to the TEI Guidelines (for an overview, see
+                  <ref type="bibl" target="#romary2020">Romary 2020</ref>). For this reason we
+               provide here an overview of our efforts to make the corpus FAIR (<quote
+                  source="#quote18">Findable, Accessible, Identifiable, and Reusable</quote>; <ref
+                  xml:id="quote18" type="bibl" target="#wilkinsonetal2016">Wilkinson et al.
+                  2016</ref>).</p>
+            <p>As already alluded to, the corpus has been designed with the idea that it could be
+               easily reused and complemented by others. It thus was in accord with our principles
+               to adopt a completely open distribution setting by releasing it on the Ortolang
+               platform (<ptr target="https://www.ortolang.fr/"/>). Ortolang combines a number of
+               important technical features:</p>
+            <list rend="ordered">
+               <item> specialization in linguistic data with the ability to attach several
+                  linguistic descriptors (language, genre, source type, etc.) to the corpus itself; </item>
+               <item> provision of unique identifiers to the resources; </item>
+               <item> long-term archiving for all uploaded resources; </item>
+               <item> version management, which allows the publication of corrections and
+                  improvements to the corpus while keeping the same underlying digital identity; </item>
+               <item> precise identification of the various contributors to a resource; </item>
+               <item> linking of resources with open licences—in our case a Creative Commons CC BY
+                  licence requiring proper attribution to the authors (CC BY 4.0) in
+                     <gi>publicationStmt</gi>; </item>
+               <item> finally, the ability to add an XSLT stylesheet to the corpus to provide a
+                  default search and presentation environment (in HTML). </item>
+            </list>
+            <p>Beyond the technical setting, we conclude with dissemination issues that, to our
+               view, are an essential part of the annotation project. First, we considered that
+               beyond seeing the corpus as reusable (linguistic) content, presenting the annotation
+               framework as an ongoing process could also play a role as a methodological point of
+               comparison for other comparable endeavors. As a consequence, we decided to distribute
+               all the source documents rather than limiting access through, for example, a query
+               interface, as is the case for the EuroParl corpus. Second, although there are often
+               fears of being plundered when data is disseminated at too early a stage in a research
+               process, the author who compiled the corpus as part of her dissertation project took
+               the decision to have the data online even before the actual doctoral publication was
+                  available.<note>One of the points of contention could be that the dissemination
+                  through Ortolang is not fully open-source, as it would be through such a platform
+                  as GitHub. We see GitHub, which is a private platform and thus does not fulfill
+                  all our criteria of a sustainable environment, as a possible front end for the
+                  further development of such a corpus as ours, while keeping an environment such as
+                  Ortolang as the final publication setting. </note>
+            </p>
+            <p> The three corpora are available online at the following addresses:</p>
+            <list rend="bulleted">
+               <item><ptr target="hdl.handle.net/11403/uk-parl"/> for the British corpus; </item>
+               <item><ptr target="hdl.handle.net/11403/fr-parl"/> for the French corpus; </item>
+               <item><ptr target="hdl.handle.net/11403/de-parl"/> for the German corpus. </item>
+            </list>
+            <p> These links are dynamic persistent identifiers that always reference the latest
+               published version of the subcorpora; thus no specific date of access of the given
+               sources is provided. Online access to the corpus (or the three subcorpora) was opened
+               in November 2016.</p>
+            <p>Since the open-access release of the corpora in November 2016, the corpora (including
+               their documentation) have been downloaded (partly or as a whole) 113 times for the
+               British corpus, 49 times for the German corpus, and 418 times for the French corpus,
+               respectively as of 17 May 2022. The corpora are listed on the CLARIN
+                     website.<note><title level="a">Parliamentary Corpora</title>, accessed
+                     <date>February 8, 2021</date>, <ptr
+                     target="https://www.clarin.eu/resource-families/parliamentary-corpora"
+                  />.</note> Moreover, they have been discussed in several other annotation projects
+               (see, for instance, <ref type="bibl" target="#blatteetal2018">Blätte 2018</ref> for
+               German or <ref type="bibl" target="#diwersyetal2018">Diwersy, Frontini, and Luxardo
+                  2018</ref> for French) and used as a comparison corpus for other research projects
+               (see, for instance, <ref type="bibl" target="#stefanowitsch2019">Stefanowitsch
+                  2019</ref>, <ref type="bibl" target="#zinnetal2021">Zinn and Müller 2021</ref>,
+                  <ref type="bibl" target="#piquer2022">Piquer Martinez 2022</ref>). These examples
+               show that an early open-access release (November 2016) of the annotated corpora
+               together with their documentation, long before the dissertation project was submitted
+               (October 2018), is beneficial to the community.</p>
+         </div>
+         <div xml:id="section7">
+            <head>Conclusion</head>
+            <p> This paper has suggested an integrative and comprehensive approach to the linguistic
+               annotation of parliamentary discourse that takes into account national specificities
+               and is specifically geared to proposing an annotation scheme that is both highly
+               standardized and adaptable. The method is based on the TEI framework. We have argued
+               that the linguistic features of parliamentary interaction call for an annotation
+               scheme distinct from the ways theatrical plays have been accounted for within the TEI
+               community. We have also pleaded for an easily reproducible cross-linguistic
+               annotation framework. Specifically, we have shown that including metadata such as
+                  <term>political affiliation</term> or the distinction between majority and
+               opposition is crucial to allowing for the comparison between several parliamentary
+               systems. </p>
+            <p>We understand this paper as a first step toward the annotation of parliamentary
+               corpora on a larger scale. We recognize that the small size of the corpora (from
+               approximately 137,000 tokens for the French corpus to 417,000 for the German corpus)
+               allowed for fine-grained annotation that may be more difficult to implement on a
+               larger scale. Accordingly, the application of this annotation scheme to a bigger
+               corpus needs to be systematized. On the other hand, it would also be possible to
+               further complement the detailed annotation scheme, for instance by providing
+               timestamps and the hyperlinks to the videos, as suggested by <ref xml:id="quote19"
+                  type="bibl" target="#cribbetal2018">Cribb and Rochford (2018, 13)</ref>, <quote
+                  source="#quote19">so that a user at a particular point in the report can link
+                  through to the audio recording effortlessly and accurately</quote>. A more precise
+               linkage between the videos and the transcripts could also enable insightful
+               annotation in terms of kinesics—a dimension which, arguably, would adequately
+               complete a close-reading discourse-analytic endeavor.</p>
+            <p>These further extensions and exploitations of the annotated corpora are at the core
+               of our understanding of annotation as a process rather than a finished product (see
+               also <ref type="bibl" target="#bucholtz2000">Bucholtz 2000</ref>) for a similarly
+               reasoned argument in terms of <q>the politics of transcription</q>). In doing science
+               in the digital age it is essential to make decisions explicit, transparent, and
+               replicable. The annotation scheme developed in this project is only a first step.</p>
+         </div>
+      </body>
+      <back>
+         <div type="bibliography">
+            <!-- the bibliography for the article, organized as a series of <bibl> elements inside <listBibl> -->
+            <listBibl>
+               <bibl xml:id="aueletal2014"><author>Auel, Katrin</author>, and <author>Tapio
+                     Raunio</author>. <date>2014</date>. <title level="a">Debating the State of the
+                     Union? Comparing Parliamentary Debates on EU Issues in Finland, France, Germany
+                     and the United Kingdom.</title>
+                  <title level="j">Journal of Legislative Studies</title>
+                  <biblScope unit="volume">20</biblScope>
+                  <biblScope unit="issue">(1)</biblScope>: <biblScope unit="page"
+                  >13–28</biblScope>.</bibl>
+               <bibl xml:id="bayley2004"><editor>Bayley, Paul</editor>, ed. <date>2004</date>.
+                     <title level="m">Cross-Cultural Perspectives on Parliamentary
+                  Discourse</title>. <pubPlace>Amsterdam</pubPlace>: <publisher>John
+                     Benjamins</publisher>.</bibl>
+               <bibl xml:id="blatte2017a"><author>Blätte, Andreas</author>. <date>2017a</date>.
+                     <title level="m">GermaParl: Corpus of Plenary Protocols of the German
+                     Bundestag</title>. <publisher>R data package</publisher>, <biblScope>v.
+                     1.0.4</biblScope>. <ptr
+                     target="http://polmine.sowi.uni-due.de/packages/src/contrib/GermaParl_1.0.4.tar.gz"
+                  />.</bibl>
+               <bibl xml:id="blatte2017b"><author>Blätte, Andreas</author>. <date>2017b</date>.
+                     <title level="m">GermaParl: Linguistically Annotated and Indexed Corpus of
+                     Plenary Protocols of the German Bundestag</title>. <publisher>CWB
+                     corpus</publisher>
+                  <biblScope>v. 1.0.4</biblScope>. <idno type="DOI">10.5281/zenodo.3735141</idno>,
+                     <ptr target="https://doi.org/10.5281/zenodo.3735141"/>.</bibl>
+               <bibl xml:id="blatteetal2018"><author>Blätte, Andreas</author>, and <author>Andre
+                     Blessing</author>. <date>2018</date>. <title level="a">The GermaParl Corpus of
+                     Parliamentary Protocols</title>. <title level="j">Proceedings of the Eleventh
+                     International Conference on Language Resources and Evaluation (LREC
+                     2018)</title>, edited by <editor>Nicoletta Calzolari</editor>, <editor>Khalid
+                     Choukri</editor>, <editor>Christopher Cieri</editor>, <editor>Thierry
+                     Declerck</editor>, <editor>Sara Goggi</editor>, <editor>Koiti Hasida</editor>,
+                     <editor>Hitoshi Isahara</editor>, et al., <biblScope unit="page"
+                     >810–16</biblScope>. N.p.: <publisher>European Language Resources
+                     Association</publisher>. <ptr
+                     target="http://www.lrec-conf.org/proceedings/lrec2018/summaries/1024.html"
+                  />.</bibl>
+               <bibl xml:id="bucholtz2000"><author>Bucholtz, Mary</author>. <date>2000</date>.
+                     <title level="a">The Politics of Transcription</title>. <title level="j"
+                     >Journal of Pragmatics</title>
+                  <biblScope unit="volume">32</biblScope> (<biblScope unit="issue">10</biblScope>):
+                     <biblScope unit="page">1439–65</biblScope>. <idno type="DOI"
+                     >doi:10.1016/S0378-2166(99)00094-6</idno>.</bibl>
+               <bibl xml:id="burkhardt2003"><author>Burkhardt, Armin</author>. <date>2003</date>.
+                     <title level="m">Das Parlament und seine Sprache: Studien zu Theorie und
+                     Geschichte parlamentarischer Kommunikation</title>.
+                     <pubPlace>Tübingen</pubPlace>: <publisher>Max Niemeyer</publisher>.</bibl>
+               <bibl xml:id="burkhardtetal2000"><editor>Burkhardt, Armin</editor>, and
+                     <editor>Kornelia Pape</editor>, eds. <date>2000</date>. <title level="m"
+                     >Sprache des deutschen Parlamentarismus: Studien zu 150 Jahren
+                     parlamentarischer Kommunikation</title>. <pubPlace>Wiesbaden</pubPlace>:
+                     <publisher>Springer</publisher>.</bibl>
+               <bibl xml:id="burnard2014"><author>Burnard, Lou</author>. <date>2014</date>. <title
+                     level="m">What Is the Text Encoding Initiative? How to Add Intelligent Markup
+                     to Digital Resources</title>. <title level="s">Encyclopédie numérique</title>.
+                     <pubPlace>Marseille</pubPlace>: <publisher>OpenEdition Press</publisher>. <idno
+                     type="DOI">doi:10.4000/books.oep.426</idno>.</bibl>
+               <bibl xml:id="burnettetal2019"><author>Burnett, Heather</author>, and <author>Olivier
+                     Bonami</author>. <date>2019</date>. <title level="a">Linguistic Prescription,
+                     Ideological Structure, and the Actuation of Linguistic Changes: Grammatical
+                     Gender in French Parliamentary Debates</title>. <title level="j">Language in
+                     Society</title>
+                  <biblScope unit="volume">48</biblScope> (<biblScope unit="issue">1</biblScope>):
+                     <biblScope unit="page">65–93</biblScope>. <idno type="DOI"
+                     >doi:10.1017/S0047404518001161</idno>.</bibl>
+               <bibl xml:id="cribbetal2018"><author>Cribb, V. Michael</author>, and <author>Shivani
+                     Rochford</author>. <date>2018</date>. <title level="a">The Transcription and
+                     Representation of Spoken Political Discourse in the UK House of
+                  Commons</title>. <title level="j">International Journal of English
+                     Linguistics</title>
+                  <biblScope unit="volume">8</biblScope> (<biblScope unit="issue">2</biblScope>):
+                     <biblScope unit="page">1–14</biblScope>. <idno type="DOI"
+                     >doi:10.5539/ijel.v8n2p1</idno>.</bibl>
+               <bibl xml:id="diwersyetal2018"><author>Diwersy, Sascha</author>, <author>Francesca
+                     Frontini</author>, and <author>Giancarlo Luxardo</author>. <date>2018</date>.
+                     <title level="a">The Parliamentary Debates as a Resource for the Textometric
+                     Study of the French Political Discourse</title>. In <title level="m"
+                     >Proceedings of the LREC2018 Workshop ParlaCLARIN: Creating and Using
+                     Parliamentary Corpora</title>, edited by <editor>Darja Fišer</editor>,
+                     <editor>Maria Eskevich</editor>, and <editor>Franciska de Jong</editor>,
+                     <biblScope unit="page">73–77</biblScope>. <pubPlace>Paris</pubPlace>:
+                     <publisher>European Language Resources Association</publisher>. <ptr
+                     target="http://lrec-conf.org/workshops/lrec2018/W2/summaries/22_W2.html"
+                  />.</bibl>
+               <bibl xml:id="erjavecetal2020"><author>Erjavec, Tomaž</author>, <author>Vladislava
+                     Grigorova</author>, <author>Nikola Ljubešić</author>, <author>Maciej
+                     Ogrodniczuk</author>, <author>Petya Osenova</author>, <author>Andrej
+                     Pančur</author>, <author>Michał Rudolf</author>, and <author>Kiril
+                     Simov</author>. <date>2020</date>. <title level="m">Multilingual Comparable
+                     Corpora of Parliamentary Debates ParlaMint</title> 1.0. <date>October 15,
+                     2020</date>. <publisher>CLARIN ERIC</publisher>. <ptr
+                     target="https://hdl.handle.net/11356/1345"/>.</bibl>
+               <bibl xml:id="fiseretal2018"><author>Fišer, Darja</author>, and <author>Jakob
+                     Lenardič</author>. <date>2018</date>. <title level="a">CLARIN Corpora for
+                     Parliamentary Discourse Research</title>. In <title level="m">Proceedings of
+                     the LREC2018 Workshop ParlaCLARIN: Creating and Using Parliamentary
+                     Corpora</title>, edited by <editor>Darja Fišer</editor>, <editor>Maria
+                     Eskevich</editor>, and <editor>Franciska de Jong</editor>, <biblScope
+                     unit="page">2–7</biblScope>. <pubPlace>Paris</pubPlace>: <publisher>European
+                     Language Resources Association</publisher>. <ptr
+                     target="http://lrec-conf.org/workshops/lrec2018/W2/summaries/14_W2.html"
+                  />.</bibl>
+               <bibl xml:id="frantzi2018"><author>Frantzi, Katerina T</author>. <date>2018</date>.
+                     <title level="a">Tour de CLARIN: Clarin:el Presents the Hellenic Parliament
+                     Sittings and Hellenic Parliamentary Corpus H-ParCo</title>. Blog post, edited
+                  by <editor>Maria Gavriilidou</editor>. <date>July 30</date>. <ptr
+                     target="https://www.clarin.eu/blog/tour-de-clarin-clarinel-presents-hellenic-parliament-sittings-and-hellenic-parliamentary-corpus"
+                  />.</bibl>
+               <bibl xml:id="gardey2005"><author>Gardey, Delphine</author>. <date>2005</date>.
+                     <title level="a">Turning Public Discourse into an Authentic Artifact: Shorthand
+                     Transcription in the French National Assembly</title>. In <title level="m"
+                     >Making Things Public: Atmospheres of Democracy</title>, edited by
+                     <editor>Bruno Latour</editor> and <editor>Peter Weibel</editor>, <biblScope
+                     unit="page">836–43</biblScope>. <pubPlace>Cambridge, MA</pubPlace>:
+                     <publisher>MIT Press</publisher>. <ptr
+                     target="https://archive-ouverte.unige.ch/unige:76415"/>.</bibl>
+               <bibl xml:id="gartner2013"><author>Gartner, Richard</author>. <date>2013</date>.
+                     <title level="a">Parliamentary Metadata Language: An XML Approach to Integrated
+                     Metadata for Legislative Proceedings</title>. <title level="j">Journal of
+                     Library Metadata</title>
+                  <biblScope unit="volume">13</biblScope> (<biblScope unit="issue">1</biblScope>):
+                     <biblScope unit="page">17–35</biblScope>. <idno type="DOI"
+                     >doi:10.1080/19386389.2013.778728</idno>.</bibl>
+               <bibl xml:id="hansen2018"><author>Hansen, Dorte Haltrup</author>. <date>2018</date>.
+                     <title level="m">The Danish Parliament Corpus 2009–2017, v1</title>.
+                  CLARIN-DK-UCPH Centre Repository. <pubPlace>Copenhagen</pubPlace>:
+                     <publisher>Centre for Language Technology, NorS, University of
+                     Copenhagen</publisher>; <publisher>The Danish Parliament</publisher>. <ptr
+                     target="http://hdl.handle.net/20.500.12115/8"/>.</bibl>
+               <bibl xml:id="heidenetal2010"><author>Heiden, Serge</author>. <date>2010</date>.
+                     <title level="a">The TXM Platform: Building Open-Source Textual Analysis
+                     Software Compatible with the TEI Encoding Scheme</title>. In <title level="m"
+                     >Proceedings of the 24th Pacific Asia Conference on Language, Information and
+                     Computation</title>, edited by <editor>Ryo Otoguro</editor>, <editor>Kiyoshi
+                     Ishikawa</editor>, <editor>Hiroshi Umemoto</editor>, <editor>Kei
+                     Yoshimoto</editor>, and <editor>Yasunari Harada</editor>, <biblScope
+                     unit="page">389–98</biblScope>. <pubPlace>Waseda, Japan</pubPlace>:
+                     <publisher>Institute for Digital Enhancement of Cognitive Development, Waseda
+                     University</publisher>. <ptr
+                     target="https://halshs.archives-ouvertes.fr/halshs-00549764/document"/>; <ptr
+                     target="https://aclanthology.org/Y10-1044/"/>. </bibl>
+               <bibl xml:id="ideetal2017"><editor>Ide, Nancy</editor>, and <editor>James
+                     Pustejovsky</editor>, eds. <date>2017</date>. <title level="m">Handbook of
+                     Linguistic Annotation</title>. <pubPlace>Dordrecht</pubPlace>:
+                     <publisher>Springer</publisher>.</bibl>
+               <bibl xml:id="ihalainenetal2016"><editor>Ihalainen, Pasi</editor>, <editor>Cornelia
+                     Ilie</editor>, and <editor>Kari Palonen</editor>, eds. <date>2016</date>.
+                     <title level="m">Parliament and Parliamentarism: A Comparative History of a
+                     European Concept</title>. <pubPlace>New York</pubPlace>:
+                     <publisher>Berghahn</publisher>.</bibl>
+               <bibl xml:id="ilie2003"><author>Ilie, Cornelia</author>. <date>2003</date>. <title
+                     level="a">Histrionic and Agonistic Features of Parliamentary Discourse</title>.
+                     <title level="j">Studies in Communication Sciences</title>
+                  <biblScope unit="volume">3</biblScope> (<biblScope unit="issue">1</biblScope>):
+                     <biblScope unit="page">25–53</biblScope>.</bibl>
+               <bibl xml:id="ilie2006"><author>Ilie, Cornelia</author>. <date>2006</date>. <title
+                     level="a">Parliamentary Discourses</title>. In <title level="m">Encyclopedia of
+                     Language &amp; Linguistics</title>, edited by <editor>Keith Brown</editor>,
+                     <edition>2nd ed</edition>., <biblScope unit="page">188–96</biblScope>.
+                     <pubPlace>Oxford</pubPlace>: <publisher>Elsevier</publisher>.</bibl>
+               <bibl xml:id="ilie2010"><editor>Ilie, Cornelia</editor>, ed. <date>2010</date>.
+                     <title level="m">European Parliaments under Scrutiny: Discourse Strategies and
+                     Interaction Practices</title>. <pubPlace>Amsterdam</pubPlace>: <publisher>John
+                     Benjamins</publisher>.</bibl>
+               <bibl xml:id="kapociuteetal2017"><author>Kapočiūtė-Dzikienė, Jurgita</author>,
+                     <author>Ligita Šarkutė</author>, and <author>Andrius Utka</author>.
+                     <date>2017</date>. <title level="m">Lithuanian Parliament Corpus for Authorship
+                     Attribution. CLARIN-LT Digital Library in the Republic of Lithuania</title>.
+                     [<pubPlace>Kaunas, Lithuania</pubPlace>]: <publisher>Vytautas Magnus
+                     University</publisher>. <ptr target="http://hdl.handle.net/20.500.11821/17"
+                  />.</bibl>
+               <bibl xml:id="kerbrat1990"><author>Kerbrat-Orecchioni, Catherine</author>.
+                     <date>1990</date>. <title level="m">Les interactions verbales</title>.
+                     <biblScope unit="volume">Tome 1</biblScope>. <pubPlace>Paris</pubPlace>:
+                     <publisher>Armand Colin</publisher>.</bibl>
+               <bibl xml:id="kerbrat2004">
+                  <author>Kerbrat-Orecchioni, Catherine</author>. <date>2004</date>. <title
+                     level="a">Introducing Polylogue</title>. <title level="j">Journal of
+                     Pragmatics</title>
+                  <biblScope unit="volume">36</biblScope> (<biblScope unit="issue">1</biblScope>):
+                     <biblScope unit="page">1–24</biblScope>. <idno type="DOI"
+                     >doi:10.1016/S0378-2166(03)00034-1</idno>.</bibl>
+               <bibl xml:id="koester2010"><author>Koester, Almut</author>. <date>2010</date>. <title
+                     level="a">Building Small Specialised Corpora</title>. In <title level="m">The
+                     Routledge Handbook of Corpus Linguistics</title>, edited by <editor>Anne
+                     O’Keeffe</editor> and <editor>Michael McCarthy</editor>, <biblScope unit="page"
+                     >66–79</biblScope>. <pubPlace>London</pubPlace>:
+                     <publisher>Routledge</publisher>.</bibl>
+               <bibl xml:id="krzeszowski1989"><author>Krzeszowski, Tomasz P.</author>
+                  <date>1989</date>. <title level="a">Towards a Typology of Contrastive
+                     Studies</title>. In <title level="m">Contrastive Pragmatics</title>, edited by
+                     <editor>Wieslaw Oleksy</editor>, <biblScope unit="page">55–72</biblScope>.
+                     <title level="s">Pragmatics &amp; Beyond New Series 3</title>.
+                     <pubPlace>Amsterdam</pubPlace>: <publisher>John Benjamins</publisher>.</bibl>
+               <bibl xml:id="kupietzetal2010"><author>Kupietz, Marc</author>, <author>Cyril
+                     Belica</author>, <author>Holger Keibel</author>, and <author>Andreas
+                     Witt</author>. <date>2010</date>. <title level="a">The German Reference Corpus
+                     DeReKo: A Primordial Sample for Linguistic Research</title>. In <title
+                     level="m">Proceedings of the Seventh International Conference on Language
+                     Resources and Evaluation (LREC’10)</title>, edited by <editor>Nicoletta
+                     Calzolari</editor>, <editor>Khalid Choukri</editor>, <editor>Bente
+                     Maegaard</editor>, <editor>Joseph Mariani</editor>, <editor>Jan Odijk</editor>,
+                     <editor>Stelios Piperidis</editor>, <editor>Mike Rosner</editor>, and
+                     <editor>Daniel Tapias</editor>, <biblScope unit="page">1848–54</biblScope>.
+                  N.p.: <publisher>European Language Resources Association (ELRA)</publisher>. <ptr
+                     target="https://aclanthology.org/L10-1285/"/>.</bibl>
+               <bibl xml:id="lapponietal2016"><author>Lapponi, Emanuele</author>, and <author>Martin
+                     G. Søyland</author>. <date>2016</date>. <title level="m">Talk of Norway. Common
+                     Language Resources and Technology Infrastructure Norway (CLARINO) Bergen
+                     Repository</title>. [<pubPlace>Oslo</pubPlace>]: <publisher>University of
+                     Oslo</publisher>. <ptr target="http://hdl.handle.net/11509/123"/>.</bibl>
+               <bibl xml:id="lapponietal2018"><author>Lapponi, Emanuele</author>, <author>Martin G.
+                     Søyland</author>, <author>Erik Velldal</author>, and <author>Stephan
+                     Oepen</author>. <date>2018</date>. <title level="a">The Talk of Norway: A
+                     Richly Annotated Corpus of the Norwegian Parliament, 1998–2016</title>. <title
+                     level="j">Language Resources and Evaluation</title>
+                  <biblScope unit="volume">52</biblScope> (<biblScope unit="issue">3</biblScope>):
+                     <biblScope unit="page">873–93</biblScope>. <idno type="DOI"
+                     >doi:10.1007/s10579-018-9411-5</idno>.</bibl>
+               <bibl xml:id="leech2013"><author>Leech, Geoffrey</author>. <date>2013</date>. <title
+                     level="a">Introducing Corpus Annotation</title>. In <title level="m">Corpus
+                     Annotation</title>, edited by <editor>Roger Garside</editor>, <editor>Geoffrey
+                     N. Leech</editor>, and <editor>Tony McEnery</editor>, <biblScope unit="page"
+                     >1–18</biblScope>. <pubPlace>London</pubPlace>:
+                     <publisher>Routledge</publisher>.</bibl>
+               <bibl xml:id="mollin2007"><author>Mollin, Sandra</author>. <date>2007</date>. <title
+                     level="a">The Hansard Hazard: Gauging the Accuracy of British Parliamentary
+                     Transcripts</title>. <title level="j">Corpora</title>
+                  <biblScope unit="volume">2</biblScope> (<biblScope unit="issue">2</biblScope>):
+                     <biblScope unit="page">187–210</biblScope>. <idno type="DOI"
+                     >doi:10.3366/cor.2007.2.2.187</idno>.</bibl>
+               <bibl xml:id="munchow2010"><author>Münchow, Patricia von</author>. <date>2010</date>.
+                     <title level="a">Langue, discours, culture: quelle articulation? (1ère
+                     partie)</title>. In <title level="a">Visions du monde et spécificité des
+                     discours</title>, ed. <editor>Mioara Codleanu</editor> and <editor>Sandina
+                     Iulia Vasile</editor>, special issue, <title level="j">Signes, discours et
+                     sociétés: Revue semestrielle en sciences humaines et sociales dédiée à
+                     l’analyse des Discours</title>
+                  <biblScope unit="volume">4</biblScope>. <ptr
+                     target="http://revue-signes.gsu.edu.tr/article/-LXz7yiZKgVO69fy49uT"/>.</bibl>
+               <bibl xml:id="olschewski2000"><author>Olschewski, Andreas</author>.
+                  <date>2000</date>. <title level="a">Die Verschriftung von Parlamentsdebatten durch
+                     die stenographischen Dienste in Geschichte und Gegenwart</title>. In <title
+                     level="m">Sprache des deutschen Parlamentarismus. Studien zu 150 Jahren
+                     parlamentarischer Kommunikation</title>, edited by <editor>Armin
+                     Burkhardt</editor> and <editor>Kornelia Pape</editor>, <biblScope unit="page"
+                     >336–53</biblScope>. <pubPlace>Wiesbaden</pubPlace>:
+                     <publisher>Springer</publisher>.</bibl>
+               <bibl xml:id="pancuretal2018"><author>Pančur, Andrej</author>, <author>Mojca
+                     Šorn</author>, and <author>Tomaž Erjavec</author>. <date>2018</date>. <title
+                     level="a">SlovParl 2.0: The Collection of Slovene Parliamentary Debates from
+                     the Period of Secession</title>. In <title level="m">Proceedings of the
+                     LREC2018 Workshop ParlaCLARIN: Creating and Using Parliamentary
+                  Corpora</title>, edited by <editor>Darja Fišer</editor>, <editor>Maria
+                     Eskevich</editor>, and <editor>Franciska de Jong</editor>, <biblScope
+                     unit="page">8–14</biblScope>. <pubPlace>Paris</pubPlace>: <publisher>European
+                     Language Resources Association</publisher>. <ptr
+                     target="http://lrec-conf.org/workshops/lrec2018/W2/summaries/4_W2.html"
+                  />.</bibl>
+               <bibl xml:id="piquer2022"><author>Piquer Martinez, Jose</author>. <date>2022</date>.
+                     <title level="m">Corpus of Political Speeches: Policy responses to the Great
+                     Recession in the United Kingdom and Spain (2008–2014)</title> [Dataset].
+                     <publisher>Department of Politics And International Studies</publisher>. <idno
+                     type="DOI">https://doi.org/10.17863/CAM.79047</idno>. <ptr
+                     target="https://www.repository.cam.ac.uk/handle/1810/332648"/>. </bibl>
+               <bibl xml:id="prazaketal2012"><author>Pražák, Aleš</author> and <author>Luboš
+                     Šmídl</author>. <date>2012</date>. <title level="m">Czech Parliament
+                     Meetings</title>, LINDAT/CLARIAH-CZ digital library at the Institute of Formal
+                  and Applied Linguistics (ÚFAL), Faculty of Mathematics and Physics, Charles
+                  University. [<pubPlace>Pilsen, Czech Republic</pubPlace>]: <publisher>University
+                     of West Bohemia, Department of Cybernetics</publisher>. <ptr
+                     target="http://hdl.handle.net/11858/00-097C-0000-0005-CF9C-4"/>.</bibl>
+               <bibl xml:id="research2018"><author>Research Group of Computational Linguistics,
+                     University of Tartu</author>. <date>2018</date>. <title level="m">Reference
+                     Corpus of Estonian: Transcripts of Riigikogu (Estonian Parliament)</title>.
+                  Last modified <date>December 21, 2018</date>. <ptr
+                     target="https://www.cl.ut.ee/korpused/segakorpus/riigikogu/"/>.</bibl>
+               <bibl xml:id="risager2014"><author>Risager, Karen</author>. <date>2014</date>. <title
+                     level="a">The language-culture nexus in transnational perspective</title>. In
+                     <title level="m">The Routledge Handbook of Language and Culture</title>, edited
+                  by <editor>Farzad Sharifian</editor>, <biblScope unit="page">87–99</biblScope>.
+                     <pubPlace>London</pubPlace>: <publisher>Routledge</publisher>.</bibl>
+               <bibl xml:id="romary2008">
+                  <author>Romary, Laurent</author>. <date>2008</date>. <title level="a">Questions
+                     &amp; Answers for TEI Newcomers</title>. <title level="j">Jahrbuch für
+                     Computerphilologie</title>
+                  <biblScope unit="volume">10</biblScope>: <biblScope unit="page">69–90</biblScope>.
+                     <ptr target="https://hal.archives-ouvertes.fr/hal-00348372"/>; <ptr
+                     target="http://computerphilologie.digital-humanities.de/jahrbuch/jb10-content.html"
+                  />; <ptr target="http://computerphilologie.de/jg08/romary.pdf"/>. </bibl>
+               <bibl xml:id="romaryetal2015">
+                  <author>Romary, Laurent</author>, and <author>Patrice Lopez</author>.
+                     <date>2015</date>. <title level="a">GROBID - Information Extraction from
+                     Scientific Publications</title>. <title level="j">ERCIM News</title>
+                  <biblScope unit="issue">100 (January)</biblScope>. <ptr
+                     target="https://hal.inria.fr/hal-01673305/document"/>; <ptr
+                     target="https://ercim-news.ercim.eu/en100/r-i/grobid-information-extraction-from-scientific-publications"
+                  />.</bibl>
+               <bibl xml:id="romary2020"><author>Romary, Laurent</author>. <date>2020</date>. <title
+                     level="a">TEI Guidelines: Born to be Open</title>. <title level="s">ACDH-CH
+                     (Austrian Centre for Digital Humanities and Cultural Heritage) Lecture
+                     6.1</title>, <date>June 10, 2020</date>, <pubPlace>Vienna, Austria</pubPlace>.
+                     <ptr target="https://hal.inria.fr/hal-02864525"/>. </bibl>
+               <bibl xml:id="schmidt2011">
+                  <author>Schmidt, Thomas</author>. <date>2011</date>. <title level="a">A TEI-Based
+                     Approach to Standardising Spoken Language Transcription</title>. <title
+                     level="j">Journal of the Text Encoding Initiative</title>
+                  <biblScope unit="issue">1</biblScope>. <ptr
+                     target="https://journals.openedition.org/jtei/142"/>; <idno type="DOI"
+                     >doi:10.4000/jtei.142</idno>.</bibl>
+               <bibl xml:id="slembrouck1992"><author>Slembrouck, Stef</author>. <date>1992</date>.
+                     <title level="a">The Parliamentary Hansard <soCalled>Verbatim</soCalled>
+                     Report: The Written Construction of Spoken Discourse</title>. <title level="j"
+                     >Language and Literature</title>
+                  <biblScope unit="volume">1</biblScope> (<biblScope unit="issue">2</biblScope>):
+                     <biblScope unit="page">101–19</biblScope>. <idno type="DOI"
+                     >doi:10.1177/096394709200100202</idno>.</bibl>
+               <bibl xml:id="stefanowitsch2019"><author>Stefanowitsch, Anatol</author>.
+                     <date>2019</date>. <title level="a">Delivering a Brexit Deal to the British
+                     People: Theresa May as a Reluctant Populist.</title>
+                  <title level="j">Zeitschrift für Anglistik und Amerikanistik</title>
+                  <biblScope unit="volume">67</biblScope> (<biblScope unit="issue">3</biblScope>):
+                     <biblScope unit="page">231–63</biblScope>. <ptr
+                     target="https://doi.org/10.1515/zaa-2019-0022"/>.</bibl>
+               <bibl xml:id="tei2022"><author>TEI Consortium</author>. <date>2022</date>. <title
+                     level="m">TEI P5: Guidelines for Electronic Text Encoding and
+                     Interchange</title>. Version 4.4.0. Last updated <date>April 29 2022</date>.
+                     <ptr target="https://www.tei-c.org/Vault/P5/4.4.0/doc/tei-p5-doc/en/html/"
+                  />.</bibl>
+               <bibl xml:id="truan2016a"><author>Truan, Naomi</author>. <date>2016a</date>. <title
+                     level="m">Parliamentary Debates on Europe at the Assemblée nationale
+                     (2002–2012)</title> [Corpus]. <publisher>ORTOLANG (Open Resources and TOols for
+                     LANGuage)</publisher>. <ptr target="hdl.handle.net/11403/fr-parl"/>.</bibl>
+               <bibl xml:id="truan2016b"><author>Truan, Naomi</author>. <date>2016b</date>. <title
+                     level="m">Parliamentary Debates on Europe at the Deutscher Bundestag
+                     (1998–2015)</title> [Corpus]. <publisher>ORTOLANG (Open Resources and TOols for
+                     LANGuage)</publisher>. <ptr target="hdl.handle.net/11403/de-parl"/>.</bibl>
+               <bibl xml:id="truan2016c"><author>Truan, Naomi</author>. <date>2016c</date>. <title
+                     level="m">Parliamentary Debates on Europe at the House of Commons
+                     (1998–2015)</title> [Corpus]. <publisher>ORTOLANG (Open Resources and TOols for
+                     LANGuage)</publisher>. <ptr target="hdl.handle.net/11403/uk-parl"/>.</bibl>
+               <bibl xml:id="truan2018"><author>Truan, Naomi</author>. <date>2018</date>. <title
+                     level="u"><q>Who Are You Talking About?</q>. The Pragmatics of Third-Person
+                     Referring Expressions: A Contrastive Corpus-Based Study of British, German, and
+                     French Parliamentary Debates</title>. PhD diss., <pubPlace>Sorbonne Université
+                     and Freie Universität Berlin</pubPlace>.</bibl>
+               <bibl xml:id="truan2019"><author>Truan, Naomi</author>. <date>2019</date>. <title
+                     level="a">Möglichkeiten und Herausforderungen einer pragmatisch orientierten
+                     kontrastiven Diskursanalyse: Ein Vorschlag am Beispiel deutscher, französischer
+                     und britischer Parlamentsdebatten</title>. <title level="j">Diskurse –
+                     digital</title>
+                  <biblScope unit="volume">1</biblScope> (<biblScope unit="issue">3</biblScope>):
+                     <biblScope unit="page">29–50</biblScope>.</bibl>
+               <bibl xml:id="truan2021"><author>Truan, Naomi</author>. <date>2021</date>. <title
+                     level="m">The Politics of Person Reference: Third-person Forms in English,
+                     German, and French</title>. <title level="s">Pragmatics &amp; Beyond New Series
+                     320</title>. <pubPlace>Amsterdam</pubPlace>: <publisher>John
+                     Benjamins</publisher>. <idno type="DOI">doi:10.1075/pbns.320</idno>.</bibl>
+               <bibl xml:id="vitalietal2007"><author>Vitali, Fabio</author>, and <author>Flavio
+                     Zeni</author>. <date>2007</date>. <title level="a">Towards a
+                     Country-Independent Data Format: The Akoma Ntoso Experience</title>. In <title
+                     level="m">Proceedings of the V Legislative XML Workshop</title>, edited by
+                     <editor>Carlo Biagioli</editor>, <editor>Enrico Francesconi</editor>, and
+                     <editor>Giovanni Sartor</editor>, <biblScope unit="page">67–86</biblScope>.
+                     <pubPlace>Florence</pubPlace>: <publisher>European Press Academic
+                     Publishing</publisher>.</bibl>
+               <bibl xml:id="vukovic2012"><author>Vuković, Milica</author>. <date>2012</date>.
+                     <title level="a">Positioning in Pre-prepared and Spontaneous Parliamentary
+                     Discourse: Choice of Person in the Parliament of Montenegro</title>. <title
+                     level="j">Discourse &amp; Society</title>
+                  <biblScope unit="volume">23</biblScope> (<biblScope unit="issue">2</biblScope>):
+                     <biblScope unit="page">184–202</biblScope>. <idno type="DOI"
+                     >doi:10.1177/0957926511431507</idno>.</bibl>
+               <bibl xml:id="widdowson2004">
+                  <author>Widdowson, H. G.</author>
+                  <date>2004</date>. <title level="m">Text, Context, Pretext: Critical Issues in
+                     Discourse Analysis</title>. <title level="s">Language in Society</title>
+                  <biblScope unit="volume">35</biblScope>. <pubPlace>Malden, MA</pubPlace>:
+                     <publisher>Blackwell</publisher>.</bibl>
+               <bibl xml:id="wilkinsonetal2016"><author>Wilkinson, Mark D.</author>, <author>Michel
+                     Dumontier</author>, <author>IJsbrand Jan Aalbersberg</author>,
+                     <author>Gabrielle Appleton</author>, <author>Myles Axton</author>, <author>Arie
+                     Baak</author>, <author>Niklas Blomberg</author>, et al. <date>2016</date>.
+                     <title level="a">The FAIR Guiding Principles for Scientific Data Management and
+                     Stewardship</title>. <title level="j">Scientific Data</title>
+                  <biblScope unit="volume">3</biblScope>, article no. <idno>160018</idno>. <idno
+                     type="DOI">10.1038/sdata.2016.18</idno>, <ptr
+                     target="https://doi.org/10.1038/sdata.2016.18"/>.</bibl>
+               <bibl xml:id="zimaetal2010"><author>Zima, Elisabeth</author>, <author>Geert
+                     Brône</author>, and <author>Kurt Feyaerts</author>. <date>2010</date>. <title
+                     level="a">Patterns of Interaction in Austrian Parliamentary Debates: On the
+                     Pragmasemantics of Unauthorized Interruptive Comments</title>. In <title
+                     level="m">European Parliaments under Scrutiny: Discourse Strategies and
+                     Interaction Practices</title>, edited by <editor>Cornelia Ilie</editor>,
+                     <biblScope unit="page">135–64</biblScope>. <pubPlace>Amsterdam</pubPlace>:
+                     <publisher>John Benjamins</publisher>.</bibl>
+               <bibl xml:id="zinnetal2021"><author>Zinn, Jens O.</author>, and <author>Marcus
+                     Müller</author>. <date>2021</date>. <title level="a">Understanding discourse
+                     and language of risk</title>. <title level="j">Journal of Risk
+                  Research</title>. <biblScope unit="page">1–14</biblScope>. <ref
+                     target="https://doi.org/10/gnwxbv"><idno type="DOI"
+                        >https://doi.org/10/gnwxbv</idno></ref>. </bibl>
+            </listBibl>
+         </div>
+      </back>
+   </text>
+</TEI>

@@ -10,3 +10,5 @@ We provide the following datasets in the directory data/ (in TEI/XML format):
 
 * Papers from DH conferences, years 2015–2020, originally published on ADHO's GitHub page: https://github.com/ADHO/ (licenced under CC BY). They were however retrieved in TEI format from the ToolXtractor's GitHub page: https://github.com/lehkost/ToolXtractor (licenced under Apache 2.0). Quote from ToolXtractor's Readme: "for papers of DH2017 we used the tool Grobid to create XML-TEI files (however, Grobid failed to convert all files properly, some of these conversions contain only parts of the PDF versions" (https://github.com/lehkost/ToolXtractor#datasets).
 
+[![fair-software.eu](https://img.shields.io/badge/fair--software.eu-%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8B%20%20%E2%97%8F%20%20%E2%97%8B-orange)](https://fair-software.eu)
+

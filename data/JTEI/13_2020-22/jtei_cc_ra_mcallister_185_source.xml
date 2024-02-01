@@ -1,0 +1,1619 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<!-- $Id: jtei-cc-ra-mcallister-185-source.xml 1043 2021-06-01 09:40:20Z tiago.sousa-garcia $ -->
+<TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI.internal">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title type="main">Quotes, Paraphrases, and Allusions: Text Reuse in Sanskrit
+               Commentaries and How to Encode It</title>
+            <!-- author information in separate <author> elements per author -->
+            <author>
+               <name>
+                  <forename>Patrick</forename>
+                  <surname>McAllister</surname>
+               </name>
+               <affiliation><!-- a prose description of this author's affiliation, containing <roleName> and <orgName>-->Patrick
+                  McAllister is currently a <roleName>researcher</roleName> at the <orgName>Austrian
+                     Academy of Sciences’ Institute for the Cultural and Intellectual History of
+                     Asia</orgName>. His main research interest is the development of Buddhist
+                  epistemological theories during the ninth to eleventh centuries (primarily in the
+                  works of Prajñākaragupta, Jñānaśrīmitra, and Ratnakīrti).</affiliation>
+               <email>patrick.mcallister@​oeaw.ac.at</email>
+            </author>
+         </titleStmt>
+         <publicationStmt>
+            <publisher>TEI Consortium</publisher>
+            <date>10/04/2021</date>
+            <availability>
+               <licence target="https://creativecommons.org/licenses/by/4.0/">
+                  <p>For this publication a Creative Commons Attribution 4.0 International license
+                     has been granted by the author(s) who retain full copyright.</p>
+               </licence>
+            </availability>
+         </publicationStmt>
+         <seriesStmt>
+            <title level="j">Journal of the Text Encoding Initiative</title>
+            <editor role="guest">Susan Schreibman</editor>
+            <editor role="managing">Tanja Wissik</editor>
+            <editor role="managing">Joel Kalvesmaki</editor>
+            <editor role="managing">Pietro Maria Liuzzo</editor>
+            <editor role="managing">Tiago Sousa Garcia</editor>
+            <editor role="technical">Ron Van den Branden</editor>
+            <biblScope unit="issue" n="13">Selected Papers from the 2018 TEI Conference</biblScope>
+         </seriesStmt>
+         <sourceDesc>
+            <p>No source, born digital.</p>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <projectDesc>
+            <p>OpenEdition Journals -centre for open electronic publishing- is the platform for
+               journals in the humanities and social sciences, open to quality periodicals looking
+               to publish full-text articles online.</p>
+         </projectDesc>
+      </encodingDesc>
+      <profileDesc>
+         <langUsage>
+            <language ident="en">en</language>
+         </langUsage>
+         <textClass>
+            <keywords xml:lang="en">
+               <!-- a list of keywords, each in its own <term> -->
+               <term>scholarly Sanskrit</term>
+               <term>commentaries</term>
+               <term>quotations</term>
+               <term>linked texts</term>
+            </keywords>
+         </textClass>
+      </profileDesc>
+      <revisionDesc>
+         <change who="TSG" when="2021-03-15">Final corrections</change>
+         <change who="TSG" when="2021-03-12">Added encoding for sigla, corrected xml:lang, created
+            appendix, other small corrections</change>
+         <change who="TSG" when="2021-03-10">Finished encoding the article</change>
+         <change who="TSG" when="2021-03-09">Started encoding of the article</change>
+      </revisionDesc>
+   </teiHeader>
+   <text>
+      <front>
+         <div type="abstract" xml:id="abstract">
+            <p> The Sanskrit literary genre of commentaries has several characteristics that are a
+               challenge to the structural encoding of its texts. One particular tricky feature is
+               the skillful and sophisticated reuse of text in such commentaries. This article
+               examines practical examples of encoding these types of passages, drawing on the
+               documents of <ref target="https://sarit.indology.info/">SARIT</ref><note><ptr
+                     target="https://sarit.indology.info/"/></note> (Search and Retrieval of Indic
+               Texts) and the author’s own encoding projects.</p>
+         </div>
+      </front>
+      <body>
+         <!-- text divisions, each with an @xml:id and <head> -->
+         <div xml:id="div1">
+            <head>Introduction</head>
+            <p>This article explores possibilities for encoding the reuse of text in the works of
+               the logico-epistemological school of Buddhism in South Asia (the texts of the <title
+                  level="m" xml:lang="sa">pramāṇavādin</title>s). This school starts in about the
+               fifth century CE in South Asia with Dignāga (ca 480 – ca 540 CE) and continues to
+               produce texts up to around the thirteenth century. This corpus of Sanskrit literature
+               consists of roughly 150 works, which were written by at least, but not many more
+               than, forty authors. In terms of volume, again roughly speaking, the relevant section
+               of the Tibetan canon, which includes translations of a significant number of these
+               Sanskrit texts, is around 25 MB in size (encoded in ASCII). For comparison, a simple
+                  <soCalled>text-only</soCalled> measurement of the Folger Shakespeare edition
+               results in approximately 8 MB of such raw text.<note>The Shakespeare estimate is
+                  based on measuring the result of <code lang="XPath">//text()</code> on the XML
+                  files in <ptr
+                     target="http://www.folgerdigitaltexts.org/download/xml/FolgerDigitalTexts_XML_Complete.zip"
+                  />, downloaded 2018-09-11. So this includes any notes or additional material. The
+                     <foreign xml:lang="sa">bstan ’gyur</foreign> section of the Tibetan canon as
+                  downloaded from <ptr
+                     target="https://asianclassics.org/data/TENGYUR%20(Roman%20%20%20Letters).zip"
+                  />(md5sum: 4c6cb125c9eb8c6cfffa08e3da232010, downloaded 2019-05-07) has a zipped
+                  size of 76 MB, and of 244 MB unzipped. It contains hardly any additional content
+                  like editorial comments or markup. The subdirectory <ident>TENGYUR (Roman
+                     Letters)/11_TSAD_MA</ident>, which contains many of the texts that belong to
+                  the group being discussed here in their Tibetan translation, is 25 MB in size.
+                  Other common measures of the size of collections do not easily transfer to the
+                  texts under consideration here: in the absence of a reliable tokenizer for
+                  Sanskrit combined with the characteristic lack of space between words, the number
+                  of distinct tokens in our collection remains a guess (see Hellwig [<ref
+                     type="bibl" xml:id="refHel" target="#Hellwig2015">2015</ref>, <ref type="bibl"
+                     xml:id="refHel2" target="#Hellwig2016">2016</ref>] for the state of the art and
+                  limitations to Sanskrit tokenizing and splitting). In a recent printed edition,
+                  the Tibetan section of <foreign xml:lang="sa">pramāṇa</foreign> texts (<foreign
+                     xml:lang="sa">tshad ma</foreign>) including minimal notes runs to approximately
+                  18,000 pages in twelve volumes (see <ref type="bibl" xml:id="refKrung"
+                     target="#krung19942009" xml:lang="sa">krung go’i bod rig pa zhib ’jug lte gnas
+                     kyi bka’ bstan dpe sdur khang 1994–2009, vols. 97–108</ref>).</note> These
+               texts of the logico-epistemological school of Buddhism range in extent from a few
+               hundred words to multivolume works. Not all texts survive in their original language,
+               Sanskrit. Some are accessible only in translations, usually Tibetan ones, and others
+               are known only through fragments surviving in other texts. Many of those texts that
+               do survive in their original have not been critically edited.</p>
+            <p>Recent years have witnessed increased efforts to understand the various literary and
+               social conventions that are characteristic of premodern South Asian literature, which
+               this group of works belongs to. <ref type="bibl" xml:id="FresRef"
+                  target="#Freschi2015">Freschi (2015)</ref>, introducing a two-volume collection of
+               specialist papers on text reuse in South Asian literature, provides a succinct
+               overview of the expectations, difficulties, and hermeneutic considerations attached
+               to the editing of these texts. Freschi (<ref type="bibl" xml:id="FresRef2"
+                  target="#Freschi2015">2015, 86–87</ref>) distinguishes three reasons for studying
+               the reuse of text: first, it aids textual criticism, allowing the reconstitution of
+               texts and increasing the certainty of editorial decisions; second, it facilitates a
+               clearer understanding of the relations between works (and their authors); third, it
+               provides an opportunity for reflecting on <quote source="#quote1">historically
+                  conditioned notions of <term>text</term>, <term>author</term>,
+                     <term>originality</term>, <term>copyright</term> and so on</quote> (<ref
+                  type="bibl" xml:id="quote1" target="#Freschi2015">Freschi 2015,
+                  87</ref>).<note>Freschi and Maas (<ref type="bibl" xml:id="quote2"
+                     target="#Freschietal2017b">2017b, 13–21</ref>) develop the notion of <quote
+                     source="#quote2">adaptive reuse</quote>, where a significant and inseparable
+                  element of text reuse is the intention that is attached to it.</note> Most of
+               these questions are outside the focus of this article, however. It aims one level
+               below them: how to provide scholars and editors with the basis for making such
+               judgments or decisions.</p>
+            <p>The term <term>text reuse</term>, furthermore, is broad. Even in the literature that
+               deals with the texts under consideration, it subsumes such varied notions as
+                  <term>citation</term>, <term>quote</term>, <term>quasi-quotation</term>,
+                  <term>report</term>, <term>passages that have been silently used</term>, or
+                  <term>secondary usage</term>.<note>See <ref type="bibl" xml:id="ref1"
+                     target="#Steinkellner2017">Steinkellner (2017, xii–xiii)</ref> for the various
+                  phenomena considered, as well as <ref type="bibl" xml:id="quote3"
+                     target="#Preisendanz2008">Preisendanz (2008, 611)</ref> for the <quote
+                     source="#quote3">quasi-quotations</quote>.</note>
+               <term>Quotation</term> is too narrow a category to subsume even the most basic cases
+               of intratextual relations that are encountered in these texts.</p>
+            <p>To understand the phenomena that the term <term>reuse</term> is supposed to cover
+               here, it is first necessary to delimit and characterize this group of texts. These
+               texts fall mainly within two categories: some of them belong to the literary genre
+               called <foreign xml:lang="sa">bhāṣya</foreign> (commentary). The others are
+               independent treatises that are mostly dedicated to a particular topic, either
+               refuting opposing views or establishing tenets of this Buddhist group as the author
+               saw them. The works of both groups are composed in what is often referred to as a
+                  <quote source="#quote5">nominal style</quote> (<ref type="bibl" xml:id="quote5"
+                  target="#Jacobi1903">Jacobi 1903</ref>), a style that avoids the complex verb
+               forms that Sanskrit can boast of and favors formally simpler noun formations. This
+               leads to a high degree of abstraction and compression.</p>
+            <p>More significantly for our purposes, however, these texts share a certain set of ways
+               to make use of other texts.<note>An accessible overview to the <term xml:lang="sa"
+                     >bhāṣya</term> style is given by Tubb and Boose (<ref type="bibl" xml:id="ref3"
+                     target="#Tubbetal2007">2007</ref>). Apart from the observations on the general
+                  purpose and techniques of commentaries in Sanskrit traditions, they discuss the
+                  most common ways in which a commentary can quote or paraphrase the base text for
+                  the purpose of explaining it.</note> This method, or technique, consists of
+               several acceptable conventions that can, at first glance, all be classified as
+               quotes, either explicit or not, and that can show strongly diverging degrees of
+               literal accuracy.</p>
+            <p>A formal system of analysis for these occurrences was developed by Ernst Steinkellner
+               for printed critical editions. This system is the most differentiated that has been
+               advanced for the classification of intertextual relations in the field of Buddhist
+               studies. Its purpose is as follows:</p>
+            <cit>
+               <quote source="#quote4">It is with a view to providing a fairly general system of
+                  categories for differentiating between the various materials available as witness
+                  for original Sanskrit texts in their degree of testimonial validity that I would
+                  like to present below a more detailed list of kinds of text.</quote>
+               <ref type="bibl" xml:id="quote4" target="#Steinkellner1988">Steinkellner 1988,
+                  112</ref>
+            </cit>
+            <p>The system defines a set of sigla that are to be used for the characterization of
+               reused text. The most important ones are these:<note>This reference system was
+                  formalized by Steinkellner (<ref type="bibl" xml:id="refStein"
+                     target="#Steinkellner1988">1988, 116–18</ref>), and revised in later
+                  publications, e.g., <ref type="bibl" xml:id="refSteinetal"
+                     target="#Steinkellneretal2005">Steinkellner, Krasser, and Lasic (2005,
+                     1:lii–liv)</ref>. The latest version is described and argued for by
+                  Steinkellner (<ref type="bibl" xml:id="refStein2017" target="#Steinkellner2017"
+                     >2017, xx–xxv</ref>). Here, only the more common cases will be
+                  discussed.</note>
+            </p>
+            <list type="gloss">
+               <label><mentioned>T</mentioned>:</label>
+               <item><foreign xml:lang="la">textus</foreign>, the text being edited;</item>
+               <label><mentioned>Ce</mentioned>:</label>
+               <item><foreign xml:lang="la">citatum ex alio</foreign>, a quotation from another text
+                  in <mentioned>T</mentioned>;</item>
+               <label><mentioned>Ce'</mentioned>:</label>
+               <item><mentioned>Ce</mentioned>
+                  <foreign xml:lang="la">usus secundarii</foreign> in <mentioned>T</mentioned>: like
+                     <mentioned>Ce</mentioned>, but not explicitly acknowledged as a quote;</item>
+               <label><mentioned>e</mentioned>:</label>
+               <item>added to <mentioned>Ce</mentioned> or <mentioned>Ce'</mentioned>: signifying
+                     <foreign xml:lang="la">modus edendi</foreign>, that the reused text was
+                  modified by the person quoting it;</item>
+               <label><mentioned>Ci</mentioned>:</label>
+               <item>
+                  <foreign xml:lang="la">citatum in alio</foreign>, quotation of
+                     <mentioned>T</mentioned> in another text, again with the possible addition of
+                  an apostrophe (<mentioned>'</mentioned>) or an <mentioned>e</mentioned>, yielding
+                     <mentioned>Ci'</mentioned>, <mentioned>Cie</mentioned>, and
+                     <mentioned>Ci'e</mentioned>;</item>
+               <label><mentioned>R</mentioned>:</label>
+               <item><foreign xml:lang="la">citatum in alio modo referendi</foreign>, a span of text
+                  in <mentioned>T</mentioned> that is referred to in a later work.</item>
+            </list>
+            <p>Each combination of sigla is usually followed by either a bibliographic reference to
+               an edition of the related text, or, if the text has not been edited, the name of the
+               related text.</p>
+            <p>The individual letters used in this system of characterization have separate and
+               rather diverse functions. The initial capital, <mentioned>T</mentioned>,
+                  <mentioned>C</mentioned>, or <mentioned>R</mentioned>, qualifies a span of text
+               either, in the case of <mentioned>T</mentioned>, as the aim of the editorial
+               endeavor, or, in the other cases, as a passage that has been found to be reused.</p>
+            <p>The second character, <mentioned>i</mentioned> or <mentioned>e</mentioned>, indicates
+               the direction of reuse, either in another text or from another text.<note>The
+                  qualifier <mentioned>i</mentioned> is of somewhat limited use in the present
+                  investigation: if a passage in a given text is marked like this, it is mainly a
+                  helpful reminder to the reader that the passage in question is quoted somewhere
+                  else, and that this occurrence has been considered in editing the present text. It
+                  does not actually mark the passage as a quotation in the context of the text being
+                  edited.</note> In a recent explanation of the symbol <mentioned>e</mentioned>,
+               Steinkellner (<ref type="bibl" target="#Steinkellner2017" xml:id="refSte">2017, xii,
+                  n. 4</ref>) has made it explicit that it should not be understood to imply direct
+               quotation: if the reuse of text A in text B is marked by an editor of text B with the
+               appropriate symbols (<mentioned>Ce</mentioned>, <mentioned>Ce'</mentioned>, etc.), we
+               should not conclude that the editor is asserting that the author of text B had direct
+               access to text A.<note>This distinction becomes relevant when a passage is reused
+                  more than once by subsequent authors, or when it is contained in a passage that is
+                  itself a case of text reuse. See the discussion of <ref type="crossref"
+                     target="#example_8">example 8</ref>.</note>
+            </p>
+            <p>This second character is, furthermore, defined from the perspective of the edited
+               text. Any passage in text B that is marked as a case of reuse of text A
+                  (<mentioned>Ce</mentioned> etc.) commits the editor to acknowledging a
+               corresponding <mentioned>Ci</mentioned> in the (perhaps hypothetical) edition of text
+               A. This <mentioned>Ci</mentioned> in text A is also fully dependent on the
+                  <mentioned>Ce</mentioned> in text B: obviously, nothing about a passage marked as
+                  <mentioned>Ci</mentioned> indicates that it is reused in another text, and it is
+               only by finding it reused in that other text that we can classify it in this way.</p>
+            <p>The decision whether this span of text is to be characterized as <term>secondary
+                  usage</term>, signalled by adding an apostrophe as the third character, is usually
+               derived from the context in which the passage appears, the para-text surrounding the
+               reused span of text. Any certainty in this regard is usually due to the author
+               explicitly saying that the current passage was said, thought, or held by someone. The
+               addition of this apostrophe is a binary sign: either a passage is reused secondarily,
+               or it is not. It allows no further differentiation.</p>
+            <p>The presence of the final letter, <mentioned>e</mentioned> (for <foreign
+                  xml:lang="la">modus edendi</foreign>), is supposed to reflect the editor’s
+               estimate of the difference between the reused text as it appears in a source and as
+               it appears in the context of its reuse, insofar as one might reasonably assume that
+               differences are due to an intentional change by the author of the text that
+               incorporates the passage from another. Several editors (including this writer) have
+               found it hard to give good reasons for this kind of decision in their editions, and
+               have avoided the use of this category altogether.<note>Steinkellner (<ref type="bibl"
+                     xml:id="quote6" target="#Steinkellner2017">2017, xxv</ref>) has recently
+                  maintained: <quote source="#quote6">When comparing two texts, it is not always
+                     possible to determine the nature and origin of specific noticeable differences,
+                     yet the difference between changes due to a text being adapted to a new context
+                     and those due to scribal and/or editorial work is usually recognizable.</quote>
+                  There is, as yet, no consensus on this point.</note> In any case, this siglum
+               never was intended to characterize differences that could be due to simple mistakes
+               in copying manuscripts, but to mark intentional changes on the part of the author
+               reusing the text. This siglum is again a binary operator, and as such allows only for
+               a basic distinction without further characterization.</p>
+            <p>Even though this system of characterizations has been criticized in recent years
+               because of a basic impossibility of being certain about which copy of a text an
+               author quoting another text might have had,<note>Steinkellner (<ref type="bibl"
+                     xml:id="ref4" target="#Steinkellner2017">2017, xxi–xxv</ref>) summarizes and
+                  responds to the main concerns that have been raised against his suggestions. Since
+                  the debate is, by and large, about the certainty that can be had about what these
+                  symbols posit about a span of text, the issues raised should be further discussed
+                  in publications pertinent to the corresponding field of research.</note> it cannot
+               be disputed that the distinctions in the conceptual space opened up by this analysis
+               are significant and useful ones for any research concerned with these kinds of texts:
+                  <mentioned>C</mentioned> and <mentioned>R</mentioned> mark reused material as
+               either literally accurate or only paraphrased or alluded to;
+               <mentioned>e</mentioned>, together with a source description, makes it clear where
+               the quote is from; the apostrophe (<mentioned>'</mentioned>) reflects a basic
+               observation about the passage’s context in the text being edited (whether it occurs
+               as an explicit quote or not). And the final, optional <mentioned>e</mentioned>
+               represents the editor’s estimate of the quoted material’s accuracy as a
+               representation of the source.</p>
+            <p>In the rest of this article, these categories will be applied to some sample passages
+               using the conceptual framework of the TEI Guidelines. The purpose is to illustrate
+               light-weight markup rules for some general cases of textual reuse in the works of
+               this genre that allow for easy querying of the resulting structured information.
+               Before doing that, however, it will be useful to briefly consider the current
+               infrastructure that the version 4.1 of the Guidelines (<ref type="bibl" xml:id="ref6"
+                  target="#TEI2020">TEI Consortium 2020</ref>) offers as to its general
+               applicability to these phenomena.</p>
+            <div xml:id="div1.1">
+               <head>Markup of quotations in the TEI P5 Guidelines version 4.1</head>
+               <p>The part of the TEI P5 Guidelines version 4.1 most relevant to our inquiry is
+                  section <ref
+                     target="https://tei-c.org/Vault/P5/4.1.0/doc/tei-p5-doc/en/html/CO.html#COHQQ"
+                     >3.3.3: Quotation</ref> (<ref type="bibl" xml:id="ref5" target="#TEI2020">TEI
+                     Consortium 2020</ref>). It occurs within a longer section that <quote
+                     source="#quote7"><gap/> deals with a variety of textual features, all of which
+                     have in common that they are frequently realized in conventional printing
+                     practice by the use of such features as underlining, italic fonts, or quotation
+                     marks, collectively referred to here as <emph>highlighting</emph></quote> (<ref
+                     type="bibl" xml:id="quote7" target="#TEI2020">TEI Consortium 2020, 3.3: <ptr
+                        target="https://tei-c.org/Vault/P5/4.1.0/doc/tei-p5-doc/en/html/CO.html#COHQ"
+                     />Highlighting and Quotation</ref>). Many of the texts under discussion here
+                  show features that are particular to South Asian manuscript culture. So, the
+                  categories of <quote source="#quote7">conventional printing practice</quote>
+                  (primarily European and American practice, that is) cannot be naively applied to
+                  the encoding of these texts: the devices employed in the manuscripts, and also the
+                  texts, for emphasizing, distancing oneself from, or quoting words or longer
+                  phrases are often quite different from those encountered in printed
+                     editions.<note>The modern editions of these texts generally do use the
+                     categories of modern printing. Insofar as texts are digitized not from
+                     manuscripts but from printed editions (as are many of the texts in the SARIT
+                     library, accessed October 10, 2020, <ptr
+                        target="https://github.com/sarit/SARIT-corpus"/>), the categories are a
+                     better, though not perfect, fit. For further observations on the history of
+                     book printing in relation to South Asian manuscript culture, see <ref
+                        type="bibl" xml:id="refPol" target="#Pollock2007">Pollock
+                     (2007)</ref>.</note> Before looking at some of these conventions, it will be
+                  useful to summarize the main points in section 3.3.3. of the TEI Guidelines. The
+                  elements presented there are as follows, grouped by their nearest model class (all
+                  quotes in the following list are from <ref type="bibl" xml:id="quote8"
+                     target="#TEI2020">TEI Consortium 2020, 3.3.3</ref>):<note>See also <ref
+                        type="crossref" target="#table_1">table 1</ref> for an overview together
+                     with the attributes most useful for linking the segment of text to either a
+                     source or a parallel instance.</note>
+               </p>
+               <list rend="bulleted">
+                  <item>
+                     <p>in the class of <ident>model.hiLike</ident> (and
+                        <ident>model.common</ident>)</p>
+                     <list rend="bulleted">
+                        <item>
+                           <gi scheme="TEI">q</gi>: the most generic marker for quotations;</item>
+                     </list>
+                  </item>
+                  <item>
+                     <p>in the class of <ident>model.attributable</ident>
+                     </p>
+                     <list rend="bulleted">
+                        <item>
+                           <p>
+                              <gi scheme="TEI">said</gi>: for quotations of what someone says or
+                              thinks;</p>
+                           <list rend="bulleted">
+                              <item>with the boolean attributes <att>direct</att> and/or
+                                    <att>aloud</att>
+                              </item>
+                           </list>
+                        </item>
+                        <item>
+                           <p>in the sub-class <ident>model.quoteLike</ident>
+                           </p>
+                           <list rend="bulleted">
+                              <item>
+                                 <p>
+                                    <gi scheme="TEI">quote</gi>: for any passage that is
+                                       <q>attributed by the narrator or author to some agency
+                                       external to the text</q>;</p>
+                                 <list rend="bulleted">
+                                    <item>allows the attribute <att>source</att>, which points at a
+                                       source;</item>
+                                 </list>
+                              </item>
+                              <item>
+                                 <gi scheme="TEI">cit</gi>, <q>cited quotation</q>, a container for
+                                    <gi scheme="TEI">quote</gi> in which it is associated with an
+                                 explicit (in the text) reference to a source;<note>The element <gi
+                                       scheme="TEI">cit</gi> is used also in dictionaries, but this
+                                    is not the issue here.</note>
+                              </item>
+                           </list>
+                        </item>
+                     </list>
+                  </item>
+                  <item>
+                     <p>in the class of <ident>model.emphLike</ident>
+                     </p>
+                     <list rend="bulleted">
+                        <item>
+                           <gi scheme="TEI">mentioned</gi>: <quote source="#quote8">marks words or
+                              phrases mentioned, not used</quote><note>The <title level="m">Chicago
+                                 Manual of Style</title> (<ref type="bibl" xml:id="quote9"
+                                 target="#Chicago2010">University of Chicago Press 2010, 7.58</ref>)
+                              describes the situation like this: <quote source="#quote9">When a word
+                                 or term is not used functionally but is referred to as the word or
+                                 term itself, it is either italicized or enclosed in quotation
+                                 marks.</quote> It is for this kind of phenomenon that the <gi
+                                 scheme="TEI">mentioned</gi> tag is intended.</note> in a given
+                           context;</item>
+                        <item>
+                           <gi scheme="TEI">soCalled</gi>: for <quote source="#quote8">cases in
+                              which quotation marks are used to distance the quoted text from the
+                              narrator or speaker.</quote></item>
+                     </list>
+                  </item>
+               </list>
+               <p>That the TEI Guidelines define elements and attributes largely through their
+                  inclusion in such classes means that these classes are relevant not only for the
+                  correct (as intended) employment of the elements in marking up documents, but also
+                  for the development of reliable software that queries the documents. For even
+                  though section 3.3.3 discusses the varying use cases for all the above-mentioned
+                  elements as candidates for analyzing material surrounded by quotation marks,
+                  querying for them efficiently presupposes the correct expectations of their
+                  various properties. And these are mostly a function of the classes that the
+                  elements belong to. For example, an XPath<note>Unless indicated otherwise, all
+                     XPath and XQuery expressions shown in this paper operate in the default
+                     namespace, <ident>http://www.tei-c.org/ns/1.0</ident>.</note> that collects all
+                  elements likely to be used for quotation marks would be <code lang="XPath"
+                     >//(q|said|quote|cit|mentioned|soCalled)</code> (with duplication).<note>A more
+                     elegant solution would be to derive the elements’ names from the corresponding
+                     documentation (or ODD file). See <ref type="crossref" target="#example_1"
+                        >example 1</ref> for a slightly less naive approach that returns the local
+                     names of the elements in <ident>model.attributable</ident> and its immediate
+                     subclasses. Even this simple example shows that <q>a search for all
+                        quotations</q> in a TEI document needs to take a schema as its basis, for it
+                     includes <gi scheme="TEI">floatingText</gi> in its results, which is, however,
+                     differentiated from quotes in an important respect: <quote source="#quote11"
+                        ><gap/>the semantics of <gi scheme="TEI">quote</gi> suggest that its content
+                        derives from a source external to the current text, <gi scheme="TEI"
+                           >floatingText</gi> carries no such implication <gap/></quote> (<ref
+                        type="bibl" xml:id="quote11" target="#TEI2020">TEI Consortium 2020, section
+                        4.3.2</ref>)</note>
+               </p>
+               <figure xml:id="example_1">
+                  <eg>
+                     <code lang="XQuery">declare default element namespace
+                        "http://www.tei-c.org/ns/1.0";
+                        doc("https://www.tei-c.org/Vault/P5/4.1.0/xml/tei/odd/p5subset.xml")
+                        //elementSpec[ classes/memberOf[ @key=( "model.attributable", //classSpec[
+                        classes/memberOf[@key="model.attributable"]] /@ident/string())]]
+                        /@ident/string()</code></eg>
+                  <head type="legend">XQuery for the local names of elements in
+                        <ident>model.attributable</ident> class (according to <ref type="bibl"
+                        xml:id="refTEI" target="#TEI2020">TEI Consortium 2020</ref>). The result is
+                     the list (<gi scheme="TEI">said</gi>, <gi scheme="TEI">quote</gi>, <gi
+                        scheme="TEI">cit</gi>, <gi scheme="TEI">floatingText</gi>).</head>
+               </figure>
+               <table xml:id="table_1">
+                  <head>TEI elements for marking material in quotation marks, with selected
+                     attributes for linking to a source or other occurrence of the material</head>
+                  <row role="label" rows="1" cols="1">
+                     <cell role="label" rows="1" cols="1"> Element </cell>
+                     <cell role="label" rows="1" cols="1"> Nearest Model </cell>
+                     <cell role="label" rows="1" cols="1"> Attributes linking to other occurrences
+                     </cell>
+                  </row>
+                  <row role="data" rows="1" cols="1">
+                     <cell role="data" rows="1" cols="1">
+                        <gi scheme="TEI">q</gi>
+                     </cell>
+                     <cell role="data" rows="1" cols="1">
+                        <ident>model.hiLike</ident>
+                     </cell>
+                     <cell role="data" rows="1" cols="1">
+                        <att>who</att>; <att>source</att>; <att>corresp</att>
+                     </cell>
+                  </row>
+                  <row role="data" rows="1" cols="1">
+                     <cell role="data" rows="1" cols="1">
+                        <gi scheme="TEI">said</gi>
+                     </cell>
+                     <cell role="data" rows="1" cols="1">
+                        <ident>model.attributable</ident>
+                     </cell>
+                     <cell role="data" rows="1" cols="1">
+                        <att>who</att>; <att>source</att>; <att>corresp</att>
+                     </cell>
+                  </row>
+                  <row role="data" rows="1" cols="1">
+                     <cell role="data" rows="1" cols="1">
+                        <gi scheme="TEI">quote</gi>
+                     </cell>
+                     <cell role="data" rows="1" cols="1">
+                        <ident>model.quoteLike</ident>
+                     </cell>
+                     <cell role="data" rows="1" cols="1">
+                        <att>source</att>; <att>corresp</att>
+                     </cell>
+                  </row>
+                  <row role="data" rows="1" cols="1">
+                     <cell role="data" rows="1" cols="1">
+                        <gi scheme="TEI">cit</gi>
+                     </cell>
+                     <cell role="data" rows="1" cols="1">
+                        <ident>model.quoteLike</ident>
+                     </cell>
+                     <cell role="data" rows="1" cols="1">
+                        <att>source</att>; <att>corresp</att>; source usually encoded in a child
+                        element</cell>
+                  </row>
+                  <row role="data" rows="1" cols="1">
+                     <cell role="data" rows="1" cols="1">
+                        <gi scheme="TEI">mentioned</gi>
+                     </cell>
+                     <cell role="data" rows="1" cols="1">
+                        <ident>model.emphLike</ident>
+                     </cell>
+                     <cell role="data" rows="1" cols="1">
+                        <att>source</att>; <att>corresp</att>
+                     </cell>
+                  </row>
+                  <row role="data" rows="1" cols="1">
+                     <cell role="data" rows="1" cols="1">
+                        <gi scheme="TEI">soCalled</gi>
+                     </cell>
+                     <cell role="data" rows="1" cols="1">
+                        <ident>model.emphLike</ident>
+                     </cell>
+                     <cell role="data" rows="1" cols="1">
+                        <att>source</att>; <att>corresp</att>
+                     </cell>
+                  </row>
+               </table>
+               <p>It is noteworthy that the elements suggested for marking quotation in section
+                  3.3.3 of the TEI Guidelines do not share one class: some belong to
+                     <ident>model.attributable</ident>, others to <ident>model.emphLike</ident>, and
+                  the most general marker—<gi scheme="TEI">q</gi>—belongs to
+                     <ident>model.hiLike.</ident> This is a result of the presentation in section
+                  3.3.3, which focuses on the use of quotation marks. Since modern printing does
+                  not, on the analysis proposed there, employ them to mark only related features,
+                  there need not be any expectation of a common superclass for the elements
+                  discussed here.</p>
+               <p>The quotation elements as described in the TEI Guidelines all share the
+                     <att>source</att> and <att>corresp</att> attributes. These two properties are
+                  expressive enough to provide the required intertextual links—that is, a link to a
+                  work, either in the abstract or as found in a certain edition, and to a passage in
+                  that edition. <note>At least if a well-construed system is used. A noteworthy
+                     example is the definition of the Uniform Resource Name (URN) defined for the
+                        <title level="a">Canonical Text Services</title> (CTS) in the Homer
+                     Multitext Project (<ptr
+                        target="http://www.homermultitext.org/hmt-doc/cite/texts/ctsoverview.html"/>
+                     see <ref type="bibl" xml:id="ref7" target="#Blackwelletal2013">Blackwell and
+                        Smith 2013</ref>). <ref type="bibl" xml:id="ref8" target="#Bertietal2015"
+                        >Berti, Almas, et al. (2015)</ref> show that this reference format has
+                     proven useful even for organizing fragments, i.e., text passages that have been
+                     taken from works that did not survive as a whole. Applying this observation,
+                        <ref type="bibl" xml:id="ref9" target="#Bertietal2016">Berti, Blackwell, et
+                        al. (2016)</ref> provide a detailed discussion and case-study of
+                     constructing valid URNs that are expressive enough to encode text reused in
+                     several ways, together with its referential aspects. Especially interesting
+                     here are their proposed solutions for encoding text that is either reused in a
+                     direct quotation, alluded to, or repeated for further explanation. They propose
+                     a very general system of aligning texts, mainly through the judicious use of
+                     three locators: one for the passage as found in a canonical edition, one for
+                     the passage as found in the work reusing it, and one for the new edition of the
+                     work as constituted by the collection of the reused passages.</note> For this
+                  reason, they need not be discussed further here. What is not so easily solved,
+                  however, is how these various elements map onto the conceptual distinctions
+                  underlying Steinkellner’s model. Should one just use <gi scheme="TEI">q</gi>, the
+                  most general form, and be done with it? Or can something be gained from
+                  differentiating among the elements for different cases? The next section will
+                  consider some examples to answer these questions.</p>
+            </div>
+         </div>
+         <div xml:id="div2">
+            <head>Simple Quotations (and Their Context)</head>
+            <p>Example 2 shows a quotation in the fullest sense of the word.</p>
+            <figure xml:id="example_2">
+               <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true">
+                  <div>
+                     <div xml:lang="sa">
+                        <p>
+                           <seg>etena yad uktam <persName>udyotakareṇa</persName>
+                              <quote source="NBhV.xml#p312l21">avācakatve śabdānāṃ pratijñāhetvor
+                                 vyāghāta</quote> iti tad api pratyuktaṃ bhavati.</seg>
+                        </p>
+                     </div>
+                     <div type="translation" xml:lang="en">
+                        <p>
+                           <seg>Through this also what <persName>Uddyotakara</persName> said,
+                                 <quote>If words do not denote anything, both the proposition and
+                                 the reason [in your inference] are inconsistent.</quote> has been
+                              rejected.</seg>
+                        </p>
+                     </div>
+                  </div>
+               </egXML>
+               <head type="legend">Simple quote with attribution (the target of <code lang="XPath"
+                     >tei:quote/@source</code> is not shown).</head>
+            </figure>
+            <p><ref type="crossref" target="#example_2">Example 2</ref> is from the ca.
+               eighth-century <title level="a" xml:lang="sa">Tattvasaṅgrahapañjikā</title> (see <ref
+                  type="bibl" xml:id="ref16" target="#Krishnamacharya1926">Krishnamacharya
+                  1926</ref>), the commentary by Kamalaśīla on Śāntarakṣita’s panorama, in verse, of
+               contemporary philosophy, the <title level="a" xml:lang="sa">Tattvasaṅgraha</title>
+               (see <ref type="bibl" xml:id="ref17" target="#Krishnamacharya1926">Krishnamacharya
+                  1926</ref>).</p>
+            <p>There are three voices that must be distinguished in this passage:</p>
+            <list rend="ordered">
+               <item>The passage as a whole is spoken by Kamalaśīla, the commentator.</item>
+               <item>He is connecting a passage in the base text, the text he is commenting upon, to
+                  an objection by a non-Buddhist opponent. The base text is here not quoted but only
+                  pointed at, by saying <mentioned>Through this</mentioned>, that is, through what
+                  is said in the base text.</item>
+               <item>The opponent’s text is quoted verbatim, as a subphrase in a statement that
+                  rejects it. In this case, we can verify that it is a faithful quote, since the
+                  sentence is found in Uddyotakara’s work (<title level="a" xml:lang="sa"
+                     >Nyāyabhāṣyavārttika</title> 312.21–22, in <ref type="bibl" xml:id="ref18"
+                     target="#Thakur1997">Thakur 1997</ref>).</item>
+            </list>
+            <p>The commentary here performs various functions:</p>
+            <list rend="ordered">
+               <item>The construction <mentioned><q>Through this <gap/> has been
+                     rejected.</q></mentioned> (<mentioned><q xml:lang="sa">etena <gap/> pratyuktaṃ
+                        bhavati</q></mentioned>): connection of the text commented upon and the
+                  provided quote</item>
+               <item>
+                  <mentioned>What was said</mentioned> (<foreign xml:lang="sa">yad uktam</foreign>):
+                  introduction of the quote</item>
+               <item>Uddyotakara (<foreign xml:lang="sa">udyotakareṇa</foreign>): attribution of the
+                  quote (the spelling with a double <mentioned>d</mentioned> is preferable)</item>
+               <item>
+                  <gi scheme="TEI">quote</gi>: repetition of what Uddyotakara said</item>
+            </list>
+            <p>Since it is generally useful to capture the context of a quote, it is embedded in a
+                  <gi scheme="TEI">seg</gi> element, which carries little semantic baggage. One
+               could also consider the employment of a <gi scheme="TEI">cit</gi> element instead of
+               it in this case. But in the absence of a <quote source="#quote17">bibliographic
+                  reference to <supplied>the</supplied> source</quote> (<ref type="bibl"
+                  xml:id="quote17" target="#TEI2020">TEI Consortium 2020, 3.3.3</ref>) of the
+               quotation, this would not be an appropriate use case for <gi scheme="TEI"
+               >cit</gi>.</p>
+            <p>All of these functions can be tied to parts or segments of the sentences under
+               consideration. Ideally, all these functions that the commentary performs should be
+               easy to find by general queries run on the group of texts. A simple search for <code
+                  lang="XPath">//quote</code> will catch this type of quote, and its context can be
+               discovered by checking the parent (<code lang="XPath">//quote/parent::*</code>).
+               Possible refinements that could be made by employing <att>type</att> and/or
+                  <att>ana</att> attributes, and which are not reflected in the structure of the
+               markup, will not be discussed here.</p>
+            <p>In Steinkellner’s analysis, Uddyotakara’s words in this passage would be categorized
+               as <mentioned>Ce</mentioned>, an explicit quotation that is exactly the same as in a
+               source available to us today.</p>
+         </div>
+         <div xml:id="div3">
+            <head>Quotes as References</head>
+            <p>Later in the same text, Kamalaśīla introduces verse 1061 of the text he is commenting
+               on as shown in <ref type="crossref" target="#example_3">example 3</ref>.</p>
+            <figure xml:id="example_3">
+               <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true">
+                  <div n="1061">
+                     <div xml:lang="sa">
+                        <div type="base-text">
+                           <lg xml:id="ts__1061">
+                              <l>agobhinnaṃ ca yad vastu tad akṣair vyavasīyate /</l>
+                              <l>...</l>
+                           </lg>
+                        </div>
+                        <div type="commentary">
+                           <p>yac coktam <hi rend="bold">indriyair</hi> ityādi, tad asiddham iti
+                              darśayann āha—<hi rend="bold">agobhinnaṃ ce</hi>tyādi.</p>
+                        </div>
+                     </div>
+                     <div type="translation" xml:lang="en">
+                        <div type="base-text">
+                           <lg xml:id="ts__1061__trl">
+                              <l>Also a real thing excluded from what is not a cow is ascertained
+                                 through the sense faculties.</l>
+                              <l>...</l>
+                           </lg>
+                        </div>
+                        <div type="commentary">
+                           <p>Further, what was [previously] stated starting with [the word] <hi
+                                 rend="bold" xml:lang="sa">indriyaiḥ</hi>, that is unestablished. In
+                              order to show this, [Śāntarakṣita, the author of the base text,] spoke
+                              [the verse] that begins with [the words] <hi rend="bold">Also [a real
+                                 thing] excluded from what is not a cow</hi>.</p>
+                        </div>
+                     </div>
+                  </div>
+               </egXML>
+               <head type="legend">Quotes as references, markup following typography .</head>
+            </figure>
+            <p>The passage in <ref type="crossref" target="#example_3">example 3</ref> shows a type
+               of quote significantly different from the one we saw before. The commentator’s
+               introduction of the passage from the base text, the text the commentary is written
+               on, contains at least two elements (here still marked graphically by <gi scheme="TEI"
+                  >hi</gi>) <note>This example is taken from a file produced by the project <title
+                     level="m">
+                     <ref
+                        target="https://github.com/sarit/SARIT-corpus/blob/a355567b5bc61032e1d7fa39392f5e06d679be5c/tattvasangrahapanjika.xml"
+                        >Search and Retrieval of Indic Texts (SARIT)</ref></title>. This project
+                  digitized Sanskrit texts from printed publications, and the first-level markup (as
+                  shown in <ref type="crossref" target="#example_3">example 3</ref>) consisted in
+                  marking the typographical features of the text encoded: in this case, <gi
+                     scheme="TEI">hi</gi> elements with <att>rend</att> set to
+                  <val>bold</val>.</note> that should be categorized as <gi scheme="TEI">quote</gi>
+               elements of some sort:</p>
+            <list rend="ordered">
+               <item>The first is <foreign xml:lang="sa">indriyair</foreign>
+                  <foreign xml:lang="sa">ityādi</foreign>. This refers to an earlier verse,
+                  Tattvasaṅgraha 939 (see <ref type="bibl" xml:id="ref10"
+                     target="#Krishnamacharya1926">Krishnamacharya 1926</ref>), which itself is a
+                  quote, in the base text, of a passage by an opponent.</item>
+               <item>The second is <foreign xml:lang="sa">agobhinnaṃ ca</foreign>
+                  <foreign xml:lang="sa">ityādi</foreign>, which points to the beginning of the
+                  verse in the base text, Tattvasaṅgraha 1061, in which the author of the base text
+                  answers the opponent’s claim that was reproduced in Tattvasaṅgraha 939.</item>
+            </list>
+            <p>Both of these phrases have as their main function the indication of the passage that
+               the commentator is going to speak about, and they indicate it by repeating a few
+               words from the beginning of the passage.<note>Since these kinds of reuse are intended
+                  to point at the beginning of a passage, they should usually not be translated, or
+                  the translation should just indicate which words are at the beginning of the
+                  translated passage. When the translation happens to follow the order of words in
+                  Sanskrit, this issue remains hidden. The translation in <ref type="crossref"
+                     target="#example_3">example 3</ref> shows two of these solutions.</note> It is
+               characteristic about this type of quotation that its content is usually irrelevant:
+               it is a reference to a particular string of characters, or sequence of sounds, much
+               like a lemma in a note of a critical edition indicates the place to which the note
+               applies. <ref type="bibl" xml:id="quote12" target="#Steinkellner1988">Steinkellner
+                  (1988, 117)</ref> remarks that these cases should be categorized as <quote
+                  source="#quote12">quotations from another text</quote>
+               (<mentioned>Ce</mentioned>), though in his own editions he usually marked these kinds
+               of quotes by graphical means (bold face), probably so as not to make the apparatus
+                  overflow.<note>See, for example, <ref type="bibl" xml:id="quote13"
+                     target="#Steinkellneretal2005">Steinkellner, Krasser, and Lasic (2005,
+                     1:lvi)</ref>: <quote source="#quote13">Words from the text commented upon—as
+                        <term>pratīka</term>, in grammatical or lexicographical explanations, or as
+                     used in an explanatory context—are in bold face.</quote> (The term
+                     <term>pratīka</term> is here used to describe the quotations that are mainly
+                  pointers to the base text.)</note>
+            </p>
+            <figure xml:id="example_4">
+               <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true">
+                  <div n="1061">
+                     <div type="base-text">
+                        <lg xml:id="ts__1061">
+                           <l>agobhinnaṃ ca yad vastu tad akṣair vyavasīyate /</l>
+                           <l>...</l>
+                        </lg>
+                     </div>
+                     <div type="commentary">
+                        <p>
+                           <seg>yac coktam <quote type="lemma" source="#ts__939">indriyair</quote>
+                              ityādi, tad asiddham iti darśayann āha—<quote type="lemma"
+                                 source="#ts__1061">agobhinnaṃ ce</quote>tyādi.</seg>
+                        </p>
+                     </div>
+                  </div>
+               </egXML>
+               <head type="legend">Quotes as references, first attempt (translated in example 3; the
+                  element with the <att>xml:id</att> of <val>ts__939</val> is not shown).</head>
+            </figure>
+            <p>A first solution, shown in <ref type="crossref" target="#example_4">example 4</ref>,
+               is to use the <gi scheme="TEI">quote</gi> tag for these repetitions, with
+                  <att>type</att> set to <val>lemma</val> (in the sense used in textual criticism,
+               not to be confused with the linguistic value as in the <att>lemma</att> attribute).
+               With this markup we can separate these <gi scheme="TEI">quote</gi> elements from
+               other types quite easily. The reference to the base text is encoded in a
+                  <att>source</att> attribute. A possible drawback in this encoding is that the
+               referring function of the passage in which the quotation appears does not become
+               evident. Ultimately, one would have to establish (in the <gi scheme="TEI"
+                  >encodingDesc</gi>) that the value <val>lemma</val> in the <att>type</att> of a
+                  <gi scheme="TEI">quote</gi> element means that this element has some features of a
+                  reference.<note>One might consider encoding this information in a
+                     <att>corresp</att> attribute. But this could lead to misunderstandings, as the
+                  TEI Guidelines (<ref type="bibl" xml:id="quote14" target="#TEI2020">16.5.1:
+                     Correspondence</ref>) state: <quote source="#quote14">the correspondence
+                     relationship is not <emph>from</emph> one to the other, but
+                        <emph>between</emph> the two objects. It is thus different from the
+                        <att>target</att> attribute</quote>
+                  <ptr
+                     target="https://tei-c.org/Vault/P5/4.1.0/doc/tei-p5-doc/en/html/SA.html#SACS1"
+                  />. In the current case, we would want to encode precisely such a
+                     <soCalled>from</soCalled> relationship: from the commentary to the base text,
+                  but not the other way around.</note>
+            </p>
+            <p>The next suggested solution, in <ref type="crossref" target="#example_5">example
+                  5</ref>, tries to make this feature explicit by using <gi scheme="TEI">ref</gi>
+               elements. However, this creates problems. Semantically, it is problematic because it
+               is not the content of the quote that <gi scheme="TEI">ref</gi> refers to: the
+               commentary uses the phrase <q>that starting with xyz</q> to refer to the base text
+               but only <q>xyz</q> is an actual quote. It also has the significant drawback that any
+               query intended to catch all quote-like elements will now have to include certain <gi
+                  scheme="TEI">ref</gi> elements. This would increase the complexity of queries
+               significantly.</p>
+            <figure xml:id="example_5">
+               <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true">
+                  <div n="1061">
+                     <div type="base-text">
+                        <lg xml:id="ts__1061">
+                           <l>agobhinnaṃ ca yad vastu tad akṣair vyavasīyate /</l>
+                           <l>...</l>
+                        </lg>
+                     </div>
+                     <div type="commentary">
+                        <p>
+                           <seg>yac coktam <ref target="#ts__939" type="lemma">indriyair</ref>
+                              ityādi, tad asiddham iti darśayann āha—<ref target="#ts__1061"
+                                 type="lemma">agobhinnaṃ ce</ref>tyādi.</seg>
+                        </p>
+                     </div>
+                  </div>
+               </egXML>
+               <head type="legend">Quotes as references, second attempt (translated in <ref
+                     type="crossref" target="#example_3">example 3</ref>; the element with the
+                     <att>xml:id</att> of <val>ts__939</val> is not shown).</head>
+            </figure>
+            <figure xml:id="example_6">
+               <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true">
+                  <div n="1061">
+                     <div type="base-text">
+                        <lg xml:id="ts__1061">
+                           <l>agobhinnaṃ ca yad vastu tad akṣair vyavasīyate /</l>
+                           <l>...</l>
+                        </lg>
+                     </div>
+                     <div type="commentary">
+                        <p>
+                           <seg>yac coktam <ref target="#ts__939"><quote type="lemma"
+                                    >indriyair</quote> ityādi</ref>, tad asiddham iti darśayann
+                                 āha—<ref target="#ts__1061"><quote type="lemma">agobhinnaṃ
+                                    ce</quote>tyādi</ref>.</seg>
+                        </p>
+                     </div>
+                  </div>
+               </egXML>
+               <head type="legend">Quotes as references, proposed solution (translated in <ref
+                     type="crossref" target="#example_3">example 3</ref>; the element with the
+                     <att>xml:id</att> of <val>ts__939</val> is not shown).</head>
+            </figure>
+            <p>It thus seems best to combine these solutions, and treat the quote together with its
+               embedding phrase as a reference as shown in <ref type="crossref" target="#example_6"
+                  >example 6</ref>. This expresses most of the features that we can see in these
+               quotations: we can pick out these <gi scheme="TEI">quote</gi> elements along with all
+               the other types, and still easily differentiate them by examining whether they are
+               embedded in a <gi scheme="TEI">ref</gi> to the base text.</p>
+         </div>
+         <div xml:id="div4">
+            <head>Quotes of Individual Words/Phrases for Elucidation</head>
+            <p>In a second passage that follows later in the commentary on the same verse,
+               Kamalaśīla takes up the Sanskrit word <foreign xml:lang="sa">ca</foreign> (usually
+                  <mentioned>and</mentioned> or <mentioned>furthermore</mentioned>), and explains
+               how it is to be understood in the verse: its function there is the inclusion of
+               objects that are not explicitly mentioned in the verse, rather than the simple
+               conjunction of this sentence with the previous one. This is not the same kind of
+               referring quotation that we considered above in <ref type="crossref"
+                  target="#example_4">examples 4–6</ref>, because its main purpose is to comment on
+               the significance or meaning of the term, not to indicate a particular point in the
+               base text. A proposal for its markup with <gi scheme="TEI">mentioned</gi> and <gi
+                  scheme="TEI">gloss</gi> is shown in <ref type="crossref" target="#example_7"
+                  >example 7</ref>.</p>
+            <figure xml:id="example_7">
+               <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true">
+                  <div n="1061">
+                     <div xml:lang="sa">
+                        <div type="base-text">
+                           <lg xml:id="ts__1061">
+                              <l><seg xml:id="ts__1061__a">agobhinnaṃ</seg>
+                                 <seg xml:id="ts__1061__b">ca</seg> yad vastu tad akṣair vyavasīyate
+                                 /</l>
+                              <l>...</l>
+                           </lg>
+                        </div>
+                        <div type="commentary">
+                           <p>
+                              <seg><mentioned source="#ts__1061__b">ca</mentioned>kāro <gloss
+                                    target="#ts__1061__b">'nuktārthasamuccaye</gloss>.</seg>
+                           </p>
+                        </div>
+                     </div>
+                     <div type="translation" xml:lang="en">
+                        <div type="base-text">
+                           <lg xml:id="ts__1061__trl">
+                              <l><seg xml:id="ts__1061__b__trl">Also</seg> a real thing <seg
+                                    xml:id="ts__1061__a__trl">excluded from what is not a cow</seg>
+                                 is ascertained through the sense faculties.</l>
+                              <l>...</l>
+                           </lg>
+                        </div>
+                        <div type="commentary">
+                           <p>
+                              <seg>The particle <mentioned source="#ts__1061__b__trl">ca</mentioned>
+                                 [is used] <gloss target="#ts__1061__b__trl">in the sense of
+                                    indicating objects not mentioned [in the verse]</gloss>.</seg>
+                           </p>
+                        </div>
+                     </div>
+                  </div>
+               </egXML>
+               <head type="legend">Quotes for explanation.</head>
+            </figure>
+            <p>In terms of query complexity, this has similar problems to the simple <gi
+                  scheme="TEI">ref</gi> solution just discussed: any query for quotes in general
+               will have to take the variation introduced by <gi scheme="TEI">mentioned</gi> into
+               account, and will therefore become more complicated. However, section 3.3.3 of the
+               TEI Guidelines does suggest <gi scheme="TEI">mentioned</gi> as the element to use for
+               the phenomenon described here. The element <gi scheme="TEI">mentioned</gi> therefore
+               must be considered in well-constructed queries for reused text.</p>
+            <p>The primary function of repeating the word that is to be explained, <foreign
+                  xml:lang="sa">ca</foreign>, is not to refer to the text, but to say something
+               about the meaning or content of that term. This explanation can be encoded as a <gi
+                  scheme="TEI">gloss</gi> element. Both elements, <gi scheme="TEI">mentioned</gi>
+               and <gi scheme="TEI">gloss</gi>, are loosely tied to the base text, and not to each
+               other, because there are variant forms of this phenomenon where either there is no
+               clearly identifiable <gi scheme="TEI">gloss</gi>, or the term which could be <gi
+                  scheme="TEI">mentioned</gi> is not repeated in the text. As before, the context
+               useful to understanding this occurrence is wrapped in an anonymous <gi scheme="TEI"
+                  >seg</gi> element.</p>
+            <p>Steinkellner marks text segments of this kind with <mentioned>T'</mentioned>
+                  (<foreign xml:lang="la">textus usus secundarii</foreign>), though he notes that
+                  <quote source="#quote15"><supplied>f</supplied>ormally this kind of text would
+                  correspond to the group of
+                  <soCalled><mentioned>Ce'</mentioned>-texts</soCalled><gap/> But in order to
+                  distinguish the group of quotation-texts in their hierarchical position more
+                  clearly I prefer the reference to the <foreign xml:lang="la">textus</foreign> in
+                  the present definition</quote> (<ref type="bibl" xml:id="quote15"
+                  target="#Steinkellner1988">1988, 116–17</ref>). This hierarchical position amounts
+               to an expression of the value that an editor assigns to a text as a witness for some
+               other text. In the present case, it declares the editor’s conviction that the direct
+               commentary is a privileged witness that is second in reliability only to direct
+               witnesses (usually manuscripts) for the text that is being commented upon. The markup
+               solution proposed here (with <gi scheme="TEI">mentioned</gi>) does not explicitly
+               express this facet, since it captures only the typed structural correspondence
+               between text passages. However, this facet can be defined by the editor in a
+               systematic fashion through the annotation of the target of the <att>source</att>
+               attribute: the determination of the <quote source="#quote15">hierarchical
+                  position</quote> is something that the editor will usually make explicit in their
+               organization and interpretation of the sources. The encoding proposed here thus has
+               the benefit of keeping two unrelated things separate: the similarity (or, in some
+               cases, identity) of sequences of characters in different texts, and the editor’s
+               estimate of their value as witnesses for certain editorial decisions. For example, an
+               explicit quote from the base text in a commentary (corresponding to
+                  <mentioned>Ce</mentioned> in Steinkellner’s schema) would receive the same markup
+               as an explicit quote in any other text (<gi scheme="TEI">quote</gi> with
+                  <att>source</att>). If the editor decided that the commentary had greater
+               reliability than the other text, this could be made explicit in any of the many ways
+               that the TEI Guidelines provide for: for example, since a document encoded on the
+               basis of witnesses will probably have a <gi scheme="TEI">listWit</gi> element, one
+               could at least add an <att>ana</att> attribute to the <gi scheme="TEI">witness</gi>
+               elements contained therein, and derive the desired hierarchical position from a query
+               of that attribute.</p>
+         </div>
+         <div xml:id="div5">
+            <head>Silent Quotes and Allusions</head>
+            <p>The last case of text reuse to be discussed is that of <soCalled>silent
+                  reuse</soCalled>. In this variant, phrases, sentences, or even longer passages are
+               reused without explicitly marking them as being due to another agency. This
+               phenomenon is characterized as <foreign xml:lang="la">usus secundarii</foreign> by
+               Steinkellner. These passages can, in this process, also change to varying degrees,
+               and it is a difficult philological problem to judge the differences between the
+                  <soCalled>reused</soCalled> and <soCalled>original</soCalled> texts.<note>Silent
+                  reuse is very common across the genre of scholastic Sanskrit. See <ref type="bibl"
+                     xml:id="ref11" target="#Gnoli1960">Gnoli (1960a, xix n. 2)</ref> for an example
+                  from Maṇḍana (<title level="a" xml:lang="sa">Sphoṭasiddhi</title>, 99.1–100.15, in
+                     <ref type="bibl" xml:id="ref12" target="#Bhattetal1958">Bhatt and Ramanujam
+                     1958</ref>): the reused passage is not especially differentiated from the
+                  surrounding text, which is closed simply by the phrase <foreign xml:lang="sa"
+                     >kevalam eṣa manorathaḥ</foreign> (<title xml:lang="sa">Sphoṭasiddhi</title>,
+                  100.15–16, my translation: <q>This is only wishful thinking.</q>).</note> The
+               markup outlined for passages in this category also applies to cases where a passage
+               is only paraphrased or alluded to.</p>
+            <p>In practice, all three possible modes of reuse are encountered: a text might
+               reproduce a passage from another by embellishing or otherwise extending it, it might
+               summarize or condense the original passage, or it might reproduce it very faithfully.
+               Often, one will find all three modes mixed together in the same text.<note>Well-known
+                  examples are Ravigupta’s reworking of Prajñākaragupta’s <title level="a"
+                     xml:lang="sa">Pramāṇavārttikālaṅkārabhāṣya</title> (see <ref type="bibl"
+                     xml:id="refSan" target="#Sānkntyāyana1953" xml:lang="sa">Sāṅkṛtyāyana
+                     1953</ref>), or Ratnakīrti’s writings, discussed below.</note> In many cases it
+               is also not possible to determine through how many intermediary steps a passage has
+               been received, especially when the work it is supposedly taken from has not survived
+               as a whole.</p>
+            <figure xml:id="example_8">
+               <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true">
+                  <div>
+                     <!-- source text -->
+                     <div type="text1">
+                        <p>...<anchor xml:id="j-1-s"/>tatraikas tāvad bāhyo ... dṛṣṭāv iva
+                              iti<anchor xml:id="j-1-e"/></p>
+                        <p>... atrāpy uktam ... <anchor xml:id="j-2-e"/>...</p>
+                     </div>
+                     <!-- First reuse: Ratnakīrti’s Apohasiddhi -->
+                     <div type="text2">
+                        <p>...<anchor xml:id="r-1-s"/>tatra bāhyo ’rtho ... dṛṣṭāv iva iti<anchor
+                              xml:id="r-1-e"/></p>
+                        <p>...atrāpy uktam ...<anchor xml:id="r-2-e"/>...</p>
+                     </div>
+                     <!-- Second reuse: Mokṣākaragupta’s Tarkabhāṣā -->
+                     <div type="text3">
+                        <p>...<anchor xml:id="m-1-s"/>bāhyārtho ... dṛṣṭāv iva iti<anchor
+                              xml:id="m-1-e"/></p>
+                     </div>
+                     <linkGrp type="silentreuse">
+                        <link target="#j-1-s #j-2-e #r-1-s #r-2-e"/>
+                        <link target="#j-1-s #j-1-e #r-1-s #r-1-e #m-1-s #m-1-e"/>
+                     </linkGrp>
+                  </div>
+               </egXML>
+               <head type="legend">Encoding parallels, suggested solution with stand-off markup (<gi
+                     scheme="TEI">anchor</gi> only). The three <gi scheme="TEI">div</gi> elements
+                  could be in different documents. For the text content, see examples <ref
+                     type="crossref" target="#example_11">11</ref>, <ref type="crossref"
+                     target="#example_13">13</ref>, and <ref type="crossref" target="#example_15"
+                     >15</ref>. The internal markup of the text passages linked in this way is not
+                  relevant to this solution.</head>
+            </figure>
+            <p>The source text referred to in <ref type="crossref" target="#example_8">example
+                  8</ref> is from a work by Jñānaśrīmitra, a Buddhist monk and scholar active at the
+               beginning of the eleventh century CE in Bengal. The section of text is from his
+                  <title level="a" xml:lang="sa">Apohaprakaraṇa</title> (see <ref type="crossref"
+                  target="#example_11">example 11</ref> for the full text). This section was reused
+               twice, with various degrees of abridgements.</p>
+            <p>Its first reuse (encoded in <ref type="crossref" target="#example_13">example
+                  13</ref>) is taken from the <title level="a" xml:lang="sa">Apohasiddhi</title>
+               (see <ref type="bibl" xml:id="ref13" target="#Mcallister2020">McAllister 2020</ref>)
+               of Ratnakīrti, who lived in the first half of the eleventh century: he calls his
+               texts <q>abridgements</q> or <q>summaries</q> (<foreign xml:lang="sa"
+                  >saṃkṣepa</foreign>) of the much more extensive works of his teacher,
+               Jñānaśrīmitra. The same passage is again reused a few centuries later by
+               Mokṣākaragupta in his <title level="a" xml:lang="sa">Tarkabhāṣā</title> (see <ref
+                  type="bibl" xml:id="ref14" target="#Iyengar1952">Iyengar 1952</ref>; encoded in
+                  <ref type="crossref" target="#example_15">example 15</ref>). This third
+               manifestation of the passage is heavily abridged. This case illustrates how text
+               passages were reused by several authors. It also contains a quote-within-a-quote, an
+               explicit quotation of a partial verse from a foundational text for the
+               logico-epistemological school of Buddhism, the <title level="a" xml:lang="sa"
+                  >Pramāṇaviniścaya</title> (see <ref type="bibl" xml:id="ref15"
+                  target="#Steinkellner2007">Steinkellner 2007</ref>) (in the examples below, a
+               modern partial edition of it is referred to by <val>#pvin1</val>; the
+                  <att>target</att>
+               <val>PVin.xml#v15</val> refers to a TEI XML edition containing the quote). One might
+               hesitate about how to categorize this quote from the <title level="a" xml:lang="sa"
+                  >Pramāṇaviniścaya</title>: it is, on the surface, an explicit quote, but it is
+               unlikely that any of the two authors reusing the passage in which it occurs should be
+               said to have quoted this contained item itself. It is more likely that the verse was
+               transmitted by them in the form found in the passage surrounding it, which was being
+               reused as a whole. This question has to be answered when one wishes to judge the
+               value of the preserved version of the verse for an edition of the <title level="a"
+                  xml:lang="sa">Pramāṇaviniścaya</title>. The proposed markup should enable a
+               researcher to easily collect information that allows them to answer that
+               question.</p>
+            <p>Two solutions will be proposed here. The first employs only lightweight stand-off
+               markup and might be suitable for cases where the markup of the source documents
+               cannot easily be changed. The second solution has the benefit of simpler querying,
+               but at the cost of deeper interventions in the source documents.</p>
+            <p>The first solution is to use encoding such as that shown in <ref type="crossref"
+                  target="#example_8">example 8</ref>. This proposal marks up parallel text passages
+               in a way that is minimally invasive on the source documents. It adheres closely to
+               the <gi scheme="TEI">linkGrp</gi> solution proposed in section 16.5.2 of the TEI
+               Guidelines, <ref
+                  target="https://tei-c.org/Vault/P5/4.1.0/doc/tei-p5-doc/en/html/SA.html#SACSAL"
+                  >Alignment of Parallel Texts</ref>.<note><ptr
+                     target="https://tei-c.org/Vault/P5/4.1.0/doc/tei-p5-doc/en/html/SA.html#SACSAL"
+                  /></note> This solution has at least two advantages: often, the interpretation of
+               textual parallels is a rather subjective matter. The separation of this
+               interpretative layer from the main text requires only <gi scheme="TEI">anchor</gi>
+               elements in the document, so that the impact on existing applications should be
+               minimal. The <gi scheme="TEI">linkGrp</gi> elements can be easily shared, stored in
+               separate files, and one can have several of them, so that they can accommodate
+               conflicting interpretations by different researchers. A second benefit is that they
+               also work when the quoted material does not align nicely with block-level elements,
+               as is the case in <ref type="crossref" target="#example_8">example 8</ref>, where the
+               reused material crosses over a paragraph border in the first case of its reuse.</p>
+            <p>A drawback of this solution is that the search for quotes will become more
+               complicated. But I feel that in this situation this disadvantage is justified to a
+               certain extent: all members of <ident>model.attributable</ident> are defined, after
+               all, as having been explicitly marked as quotes in the source text. These
+                  <soCalled>silent quotes</soCalled> are not marked in such a way.</p>
+            <figure xml:id="example_9">
+               <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true">
+                  <div>
+                     <linkGrp type="silentreuse">
+                        <link target="#j1 #r1 #m1"/>
+                        <link target="#j2 #r2"/>
+                     </linkGrp>
+                  </div>
+               </egXML>
+               <head type="legend">Encoding parallels, solution with linked elements (the documents
+                  presupposed are shown in examples <ref type="crossref" target="#example_11"
+                     >11</ref>, <ref type="crossref" target="#example_13">13</ref>, and <ref
+                     type="crossref" target="#example_15">15</ref>).</head>
+            </figure>
+            <p>The second proposed solution is as shown in <ref type="crossref" target="#example_9"
+                  >example 9</ref>. This solution is superficially similar to the one shown in <ref
+                  type="crossref" target="#example_8">example 8</ref>, but it links whole elements
+               to each other, not the start and end points of spans of text. It thus requires the
+               identification of spans of texts (at least as <gi scheme="TEI">seg</gi>) that are to
+               be linked, even in the case of the original text that is being reused. It might be
+               preferable, however, since it facilitates easier querying of the document. It employs
+               the mechanisms provided in <gi scheme="TEI">att.global.linking</gi> , that is, the
+                  <att>next</att> and <att>prev</att> attributes as described in section 16.7 of the
+               TEI Guidelines, <ref
+                  target="https://tei-c.org/Vault/P5/4.1.0/doc/tei-p5-doc/en/html/SA.html#SAAG"
+                  >Aggregation</ref>.<note><ptr
+                     target="https://tei-c.org/Vault/P5/4.1.0/doc/tei-p5-doc/en/html/SA.html#SAAG"
+                  /></note> This allows elements to be constructed around the hierarchical
+               constraints of the XML tree. In this variant, the employment of <gi scheme="TEI"
+                  >seg</gi> (for a quote’s context) and <gi scheme="TEI">quote</gi> (for the quoted
+               material) would cohere closely to the suggestions offered above for the cases of
+               explicit quotations. But to the extent that the employment of
+                  <ident>model.attributable</ident> elements is questionable, this solution might be
+               inadequate. The main practical benefit is certainly that a simple <soCalled>search
+                  for all quotes</soCalled>, for example, <code lang="Xpath">//quote</code>, would
+               return these results as well as any quotes explicitly marked as such in the sources.
+               In <ref type="crossref" target="#example_13">examples 13</ref> and <ref
+                  type="crossref" target="#example_15">15</ref>, I have differentiated the <gi
+                  scheme="TEI">quote</gi> elements by setting <att>type</att> to
+               <val>silent</val>.</p>
+            <p>Both solutions could be simplified by using CTS URNs as suggested and discussed by
+                  <ref type="bibl" xml:id="refBertietAl" target="#Bertietal2015">Berti, Almas, et
+                  al. (2015)</ref> and <ref type="bibl" xml:id="refBertietAl16"
+                  target="#Bertietal2016">Berti, Blackwell, et al. (2016)</ref>. Such references
+               would replace the simple internal references (like <val>#j1</val> in the examples).
+               For the first solution, we would then not even have to introduce <gi scheme="TEI"
+                  >anchor</gi> elements, since we could link directly into the text. For the second
+               solution, it would at least save us the necessary markup in the document containing
+               the reused text.</p>
+         </div>
+         <div xml:id="div6">
+            <head>Conclusion</head>
+            <p>All cases of text reuse analyzed so far can be quite clearly expressed within the
+               framework of the TEI Guidelines. So in this sense, no particular changes are
+               necessary to accommodate this facet of Sanskrit literature. The markup proposed here
+               is expressive enough to allow for all of the distinctions that were developed
+               expressly for the study and edition of these texts (<ref type="bibl"
+                  xml:id="refStein2" target="#Steinkellner1988">Steinkellner 1988</ref>). However,
+               it also allows for a cleaner separation of the raw textual evidence and the editor’s
+               judgement, by encoding only the textual correspondences. The TEI Guidelines provide a
+               rich set of mechanisms for attaching interpretations to the basic set of structural
+               elements discussed here. A simple way would be the addition of <att>ana</att> and/or
+                  <att>type</att> attributes to the appropriate <gi scheme="TEI">seg</gi> or <gi
+                  scheme="TEI">quote</gi> elements. An alignment of a source text and a derived
+               text, even through multiple derivations, is possible and could be opened for further
+               automatic processing after adequate normalization of the <gi scheme="TEI"
+                  >linkGrp</gi> elements.</p>
+            <figure xml:id="example_10">
+               <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true">
+                  <div xml:id="cases-of-silent-reuse">
+                     <p>...<anchor xml:id="j-1-s"/>tatraikas tāvad bāhyo ... dṛṣṭāv iva iti<anchor
+                           xml:id="j-1-e"/>
+                     </p>
+                     <p>... atrāpy uktam ... <anchor xml:id="j-2-e"/>...</p>
+                     <p>...<anchor xml:id="r-1-s"/>tatra bāhyo ’rtho ... dṛṣṭāv iva iti<anchor
+                           xml:id="r-1-e"/>
+                     </p>
+                     <p>...atrāpy uktam ...<anchor xml:id="r-2-e"/>...</p>
+                     <p>...<anchor xml:id="m-1-s"/>bāhyārtho ... dṛṣṭāv iva iti<anchor
+                           xml:id="m-1-e"/>
+                     </p>
+                  </div>
+               </egXML>
+               <head type="legend">List of passages connected through <gi scheme="TEI">link</gi>
+                  elements (for documents as in <ref type="crossref" target="#example_8">example
+                     8</ref>).</head>
+            </figure>
+            <p>To summarize, the following (simplified) XPath expressions might be used to select
+               and find the different categories of reuse discussed in the introduction:</p>
+            <list rend="bulleted">
+               <item>
+                  <p><mentioned>Ce</mentioned>
+                     <foreign xml:lang="la">citatum ex alio</foreign>, the quotation from another
+                     text in the text being encoded (<mentioned>T</mentioned>):</p>
+                  <list rend="bulleted">
+                     <item>A simple <code lang="XPath">//quote</code> is sufficient (see also <ref
+                           type="crossref" target="#example_1">example 1</ref>)</item>
+                  </list>
+               </item>
+               <item>
+                  <p><mentioned>Ce'</mentioned>
+                     <foreign xml:lang="la">citatum ex alio usus secundarii</foreign>, a silent
+                     quote in <mentioned>T</mentioned>:</p>
+                  <list rend="bulleted">
+                     <item>
+                        <p>On the first solution (see <ref type="crossref" target="#example_8"
+                              >example 8</ref>), an XPath is not as straightforward as in the cases
+                           of explicit quotes. Given the <gi scheme="TEI">link</gi> elements used in
+                              <ref type="crossref" target="#example_8">example 8</ref>, one could
+                           list the corresponding passages as follows:</p>
+                        <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="true">
+                           <div xml:id="cases-of-silent-reuse">{
+                              //anchor[contains(string-join(//link/@target, " "), concat("#",
+                              @xml:id))]/parent::* }</div>
+                        </egXML>
+                        <p>The result is shown in <ref type="crossref" target="#example_10">example
+                              10</ref>. This XQuery expression is not a general solution because the
+                           analysis of the links is very naive (matching on a partial string) and
+                           there is no loop over the elements of the <gi scheme="TEI">linkGrp</gi>
+                           or grouping of results.</p>
+                     </item>
+                     <item>On the second solution proposed above (see <ref type="crossref"
+                           target="#example_9">example 9</ref>), the results of <code lang="XPath"
+                           >//quote</code> would include these cases; one could filter on attribute
+                        values (not discussed here).</item>
+                  </list>
+               </item>
+               <item>
+                  <p><mentioned>e</mentioned> added to <mentioned>Ce</mentioned> or
+                        <mentioned>Ce'</mentioned>, signifying that the editor believes that the
+                     text was changed by the author of <mentioned>T</mentioned> (<foreign
+                        xml:lang="la">modus edendi</foreign>)</p>
+                  <list rend="bulleted">
+                     <item>This is judged from the comparison of two passages; the editor’s decision
+                        can be recorded in an <att>ana</att> attribute to all of the proposed
+                        elements, but should not be expressed in the structure of the markup.</item>
+                  </list>
+               </item>
+               <item>
+                  <p><mentioned>Ci(')</mentioned>
+                     <foreign xml:lang="la">citatum in alio (usus secundarii)</foreign>, (silent)
+                     quotation of <mentioned>T</mentioned> in another text</p>
+                  <list rend="bulleted">
+                     <item>This is a simple reversion of previous relations (i.e., a <code
+                           lang="XPath">//quote</code> or similar search on the target text).</item>
+                  </list>
+               </item>
+               <item>
+                  <p><mentioned>R</mentioned>
+                     <foreign xml:lang="la">citatum in alio modo referendi</foreign>, a text of
+                        <mentioned>T</mentioned> referred to or paraphrased</p>
+                  <list rend="bulleted">
+                     <item>This case belongs to the ones discussed in <ref type="crossref"
+                           target="#div5">section 5</ref>. An editor might express peculiarities of
+                        the reference or paraphrase with an <att>ana</att> attribute that can be
+                        added to any of the given relations. In most cases, the
+                           <soCalled>quotation</soCalled> expressed through a <gi scheme="TEI"
+                           >link</gi> element will be the obvious place for such a specifier. In the
+                        solution that encodes silent quotes as <gi scheme="TEI">quote</gi>, an
+                        example was given that would match <code lang="XPath"
+                           >//quote[@type="silent"]</code>.</item>
+                  </list>
+               </item>
+            </list>
+         </div>
+      </body>
+      <back>
+         <div type="bibliography">
+            <!-- the bibliography for the article, organized as a series of <bibl> elements inside <listBibl> -->
+            <listBibl>
+               <bibl xml:id="Bertietal2015"><author>Berti, Monica</author>, <author>Bridget
+                     Almas</author>, <author>David Dubin</author>, <author>Greta Franzini</author>,
+                     <author>Simona Stoyanova</author>, and <author>Gregory R. Crane</author>.
+                     <date>2015</date>. <title level="a">The Linked Fragment: TEI and the Encoding
+                     of Text Reuses of Lost Authors.</title>
+                  <title level="j">Journal of the Text Encoding Initiative</title>
+                  <biblScope unit="issue">8</biblScope>. <ptr
+                     target="http://journals.openedition.org/jtei/1218"/>; <idno type="DOI"
+                     >doi:10.4000/jtei.1218</idno>.</bibl>
+               <bibl xml:id="Bertietal2016"><author>Berti, Monica</author>, <author>Christopher
+                     Blackwell</author>, <author>Mary Daniels</author>, <author>Samantha
+                     Strickland</author>, and <author>Kimbell Vincent-Dobbins</author>.
+                     <date>2016</date>. <title level="a">Documenting Homeric Text-Reuse in the
+                     Deipnosophistae of Athenaeus of Naucratis.</title>
+                  <title level="j">Bulletin of the Institute of Classical Studies</title>
+                  <biblScope unit="volume">59</biblScope>
+                  <biblScope unit="issue">(2)</biblScope>: <biblScope unit="page"
+                  >121–39</biblScope>. <idno type="DOI"
+                  >doi:10.1111/j.2041-5370.2016.12042.x</idno>.</bibl>
+               <bibl xml:id="Bhattetal1958"><author>Bhatt, N. R.</author>, and <author>T.
+                     Ramanujam</author>, eds. <date>1958</date>. <title level="m" xml:lang="sa"
+                     >Sphoṭa Siddhi. La démonstration du Sphoṭa par Maṇḍana Miśra.</title>
+                  Translated by <editor role="translator">Madeleine Biardeau</editor>.
+                     <series>Publications de l’Institut français d’indologie</series>
+                  <biblScope unit="issue">13</biblScope>. <pubPlace>Pondichéry</pubPlace>:
+                     <publisher>Institut français d’indologie</publisher>.</bibl>
+               <bibl xml:id="Blackwelletal2013"><author>Blackwell, Christopher</author>, and
+                     <author>Neel Smith</author>. <date>2013</date>. <title level="m">Homer
+                     Multitext Project: Documentation</title>. Accessed <date>May 23, 2019</date>.
+                     <ptr target="http://www.homermultitext.org/hmt-doc/index.html"/>.</bibl>
+               <bibl xml:id="krung19942009"><author>krung go’i bod rig pa zhib ’jug lte gnas kyi
+                     bka’ bstan dpe sdur khang</author> ed. <date>1994–2009</date>. <title level="m"
+                     xml:lang="sa">bstan ’gyur (dpe bsdur ma)</title>. <pubPlace>Beijing</pubPlace>:
+                     <publisher>krung-go’i bod kyi shes rig dpe skrun khang / China Tibetology
+                     Publishing House</publisher>.</bibl>
+               <bibl xml:id="Freschi2015"><author>Freschi, Elisa</author>. <date>2015</date>. <title
+                     level="a">The Reuse of Texts in Indian Philosophy: Introduction.</title>
+                  <title level="j">Journal of Indian Philosophy</title>
+                  <biblScope unit="volume">43</biblScope><biblScope unit="issue">(2–3)</biblScope>:
+                     <biblScope unit="page">85–108</biblScope>. <idno type="DOI"
+                     >doi:10.1007/s10781-014-9232-9</idno>.</bibl>
+               <bibl xml:id="Freschietal2017a"><author>Freschi, Elisa</author>, and <author>Philipp
+                     A. Maas</author>, eds. <date>2017a</date>. <title level="j">Adaptive Reuse:
+                     Aspects of Creativity in South Asian Cultural History.</title>
+                  <series>Abhandlungen für die Kunde des Morgenlandes</series>
+                  <biblScope unit="issue">101</biblScope>. <pubPlace>Wiesbaden</pubPlace>:
+                     <publisher>Harrassowitz Verlag</publisher>.</bibl>
+               <bibl xml:id="Freschietal2017b"><author>Freschi, Elisa</author>, and <author>Philipp
+                     A. Maas</author>. <date>2017b</date>. <title level="a">Introduction: Conceptual
+                     Reflections on Adaptive Reuse.</title> In <ref type="bibl"
+                     target="#Freschietal2017a">Freschi and Maas 2017a, 11–25</ref>.</bibl>
+               <bibl xml:id="Gnoli1960"><author>Gnoli, Raniero</author>. <date>1960</date>. <title
+                     level="a">Introduction.</title> In <title level="m" xml:lang="sa">The
+                     Pramāṇavārttikam of Dharmakīrti. The First Chapter with the Autocommentary;
+                     Text and Critical Notes</title>, <biblScope unit="page">xv–xl</biblScope>.
+                     <series>Serie Orientale Roma</series>
+                  <biblScope unit="volume">23</biblScope>. <pubPlace>Rome</pubPlace>:
+                     <publisher>Istituto Italiano per il Medio ed Estremo
+                  Oriente</publisher>.</bibl>
+               <bibl xml:id="Hellwig2015"><author>Hellwig, Oliver</author>. <date>2015</date>.
+                     <title level="a">Using Recurrent Neural Networks for Joint Compound Splitting
+                     and Sandhi Resolution in Sanskrit.</title><title level="j">Human Language
+                     Technologies as a Challenge for Computer Science and Linguistics. 7th Language
+                     &amp; Technology Conference: Proceedings</title>, edited by <editor>Zygmunt
+                     Vetulani</editor> and <editor>Joseph Mariani</editor>, <biblScope unit="page"
+                     >289–93</biblScope>. <pubPlace>Poznań, Poland</pubPlace>: <publisher>Fundacja
+                     Uniwersytetu im. Adama Mickiewicza w Poznaniu</publisher>. <ptr
+                     target="http://ltc.amu.edu.pl/a2015/book/papers/LRL-1.pdf"/>.</bibl>
+               <bibl xml:id="Hellwig2016"><author>Hellwig, Oliver</author>. <date>2016</date>.
+                     <title level="a">Detecting Sentence Boundaries in Sanskrit Texts.</title><title
+                     level="j">Proceedings of COLING 2016, the 26th International Conference on
+                     Computational Linguistics: Technical Papers</title>, edited by <editor>Yuji
+                     Matsumoto</editor> and <editor>Rashmi Prasad</editor>, <biblScope unit="page"
+                     >288–97</biblScope>. <pubPlace>Osaka, Japan</pubPlace>: <publisher>The COLING
+                     2016 Organizing Committee</publisher>. <ptr
+                     target="https://www.aclweb.org/anthology/C16-1028/"/>.</bibl>
+               <bibl xml:id="Iyengar1952"><author>Iyengar, H. R. Rangaswami</author>.
+                     <date>1952</date>. <title level="m" xml:lang="sa">Tarkabhāṣa and Vādasthāna of
+                     Mokṣākaragupta and Jitāripāda.</title>
+                  <edition>2nd ed</edition>. <pubPlace>Mysore</pubPlace>: <publisher>Hindusthan
+                     Press</publisher>.</bibl>
+               <bibl xml:id="Jacobi1903"><author>Jacobi, Hermann</author>. <date>1903</date>. <title
+                     level="a" xml:lang="de">Über den nominalen Stil des wissenschaftlichen
+                     Sanskrits.</title>
+                  <title level="j" xml:lang="de">Indogermanische Forschungen</title>
+                  <biblScope unit="issue">14</biblScope>: <biblScope unit="page"
+                  >236–51</biblScope>.</bibl>
+               <bibl xml:id="Krishnamacharya1926"><author>Krishnamacharya, Embar</author>, ed.
+                     <date>1926</date>. <title level="m" xml:lang="sa">Tattvasaṅgraha of
+                     Śāntarakṣita: With the Commentary of Kamalaśīla.</title>
+                  <biblScope unit="volume">2 vols</biblScope>. <series>Gaekwad’s Oriental
+                     Series</series>
+                  <biblScope unit="page">30–31</biblScope>. <pubPlace>Baroda</pubPlace>:
+                     <publisher>Central Library</publisher>.</bibl>
+               <bibl xml:id="Mcallister2020"><author>McAllister, Patrick</author>.
+                  <date>2020</date>. <title level="m">Ratnakīrti’s Proof of Exclusion.</title>
+                  <series>Beiträge zur Kultur- und Geistesgeschichte Asiens</series>
+                  <biblScope unit="volume">98</biblScope>. <pubPlace>Vienna</pubPlace>:
+                     <publisher>Austrian Academy of Sciences</publisher>.</bibl>
+               <bibl xml:id="McCrea2010"><author>McCrea, Lawrence J</author>., and <author>Parimal
+                     G. Patil</author>. <date>2010</date>. <title level="m">Buddhist Philosophy of
+                     Language in India: Jñānaśrīmitra on Exclusion.</title>
+                  <pubPlace>New York</pubPlace>: <publisher>Columbia University
+                  Press</publisher>.</bibl>
+               <bibl xml:id="Pollock2007"><author>Pollock, Sheldon</author>. <date>2007</date>.
+                     <title level="a">Literary Culture and Manuscript Culture in Precolonial
+                     India.</title> In <title level="m">Literary Cultures and the Material
+                     Book</title>, edited by <editor>Simon Elliot</editor>, <editor>Andrew
+                     Nash</editor>, and <editor>Ian Willison</editor>, <biblScope unit="page"
+                     >77–94</biblScope>. <pubPlace>London</pubPlace>: <publisher>The British
+                     Library</publisher>.</bibl>
+               <bibl xml:id="Preisendanz2008"><author>Preisendanz, Karin</author>.
+                  <date>2008</date>. <title level="a">Text, Commentary, Annotation. Some Reflections
+                     on the Philosophical Genre.</title>
+                  <title level="j">Journal of Indian Philosophy</title>
+                  <biblScope unit="volume">36</biblScope>
+                  <biblScope unit="issue">(5–6)</biblScope>: <biblScope unit="page"
+                     >599–618</biblScope>. <idno type="DOI"
+                  >doi:10.1007/s10781-008-9036-x</idno>.</bibl>
+               <bibl xml:id="Sānkntyāyana1953"><author>Sāṅkṛtyāyana, Rāhula</author>.
+                     <date>1953</date>. <title level="m" xml:lang="sa">Pramāṇavārtikabhāshyam or
+                     Vārtikālaṅkāraḥ of Prajñākaragupta (Being a Commentary on Dharmakīrti’s
+                     Pramāṇavārtikam)</title>. <series>Tibetan Sanskrit Works Series</series>
+                  <biblScope unit="volume">1</biblScope>. <pubPlace>Patna</pubPlace>:
+                     <publisher>Kashi Prasad Jayaswal Research Institute</publisher>.</bibl>
+               <bibl xml:id="Steinkellner1988"><author>Steinkellner, Ernst</author>.
+                     <date>1988</date>. <title level="a">Methodological Remarks on the Constitution
+                     of Sanskrit Texts from the Buddhist pramāṇa-Tradition.</title>
+                  <title level="j" xml:lang="de">Wiener Zeitschrift für die Kunde Südasiens und
+                     Archiv für indische Philosophie</title>
+                  <biblScope unit="volume">32</biblScope>: <biblScope unit="page"
+                  >103–29</biblScope>.</bibl>
+               <bibl xml:id="Steinkellner2007"><author>Steinkellner, Ernst</author>, ed.
+                     <date>2007</date>. <title level="m" xml:lang="sa">Dharmakīrti’s
+                     Pramāṇaviniścaya: Chapters 1 and 2.</title>
+                  <series>Sanskrit Texts from the Tibetan Autonomous Region</series>
+                  <biblScope unit="volume">2</biblScope>. <pubPlace>Beijing</pubPlace>:
+                     <publisher>China Tibetology Research Center</publisher>;
+                     <pubPlace>Vienna</pubPlace>: <publisher>Austrian Academy of
+                     Sciences</publisher>.</bibl>
+               <bibl xml:id="Steinkellner2017"><author>Steinkellner, Ernst</author>.
+                     <date>2017</date>. <title level="m">Early Indian Epistemology and Logic:
+                     Fragments from Jinendrabuddhi’s Pramāṇasamuccayaṭīkā 1 and 2.</title>
+                  <series>Studia Philologica Buddhica Monograph Series</series>
+                  <biblScope unit="volume">35</biblScope>. <pubPlace>Tokyo</pubPlace>:
+                     <publisher>International Institute for Buddhist Studies of the International
+                     College for Postgraduate Buddhist Studies</publisher>.</bibl>
+               <bibl xml:id="Steinkellneretal2005"><author>Steinkellner, Ernst</author>,
+                     <author>Helmut Krasser</author>, and <author>Horst Lasic</author>, eds.
+                     <date>2005</date>. <title level="m" xml:lang="sa">Jinendrabuddhi’s
+                     Viśālāmalavatī Pramāṇasamuccayaṭīkā. Chapter 1</title>. <biblScope
+                     unit="volume">2 vols</biblScope>. <series>Sanskrit Texts from the Tibetan
+                     Autonomous Region</series>
+                  <biblScope unit="volume">1</biblScope>. <pubPlace>Vienna</pubPlace>:
+                     <publisher>Austrian Academy of Sciences</publisher>, in cooperation with
+                     <publisher>China Tibetology Publishing House</publisher>.</bibl>
+               <bibl xml:id="TEI2020"><author>TEI Consortium</author>. <date>2020</date>. <title
+                     level="m">TEI P5: Guidelines for Electronic Text Encoding and
+                     Interchange</title>. <edition>Version 4.1.0</edition>. Last updated
+                     <date>August 19</date>. <pubPlace>N.p.</pubPlace>: <publisher>TEI
+                     Consortium</publisher>. <ptr
+                     target="https://tei-c.org/Vault/P5/4.1.0/doc/tei-p5-doc/en/html/"/>.</bibl>
+               <bibl xml:id="Thakur1987"><author>Thakur, Anantalal</author>, ed. <date>1987</date>.
+                     <title level="m" xml:lang="sa">Jñānaśrīmitranibandhāvali: Buddhist
+                     Philosophical Works of Jñānaśrīmitra</title>. <edition>2nd ed</edition>.
+                     <series>Tibetan Sanskrit Works Series</series>
+                  <biblScope unit="volume">5</biblScope>. <pubPlace>Patna</pubPlace>:
+                     <publisher>Kashi Prasad Jayaswal Research Institute</publisher>.</bibl>
+               <bibl xml:id="Thakur1997"><author>Thakur, Anantalal</author>. <date>1997</date>.
+                     <title level="m" xml:lang="sa">Nyāyabhāṣyavārttika of Bhāradvāja
+                     Uddyotakara</title>. <series xml:lang="sa">Nyāyacaturgranthikā</series>
+                  <biblScope unit="volume">2</biblScope>. <pubPlace>New Delhi</pubPlace>:
+                     <publisher>Indian Council of Philosophical Research</publisher>.</bibl>
+               <bibl xml:id="Tubbetal2007"><author>Tubb, Gary A.</author>, and <author>Emery R.
+                     Boose</author>. <date>2007</date>. <title level="m">Scholastic Sanskrit: A
+                     Handbook for Students</title>. <series>Treasury of the Indic Sciences</series>.
+                     <pubPlace>New York</pubPlace>: <publisher>The American Institute of Buddhist
+                     Studies at Columbia University</publisher> and <publisher>Columbia University
+                     Press</publisher>.</bibl>
+               <bibl xml:id="Chicago2010"><author>University of Chicago Press</author>.
+                     <date>2010</date>. <title level="m">The Chicago Manual of Style</title>.
+                     <edition>16th ed</edition>. <pubPlace>Chicago</pubPlace>: <publisher>University
+                     of Chicago Press</publisher>.</bibl>
+            </listBibl>
+         </div>
+         <div type="appendix">
+            <figure xml:id="example_11">
+               <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <div xml:id="jna">
+                     <p> ... <seg xml:id="j1">tatraikas tāvad bāhyo ’dhyavasāyād eva vācyo
+                           vyavasthāpyate, na svalakṣaṇaparisphūrttyā katham iti cet? anubhavād eva.
+                           yathā hi pratyakṣacetasi deśakālāvasthāniyatāni parisphuṭarūpāṇi
+                           svalakṣaṇāni pratibhānty anubhūyante, tathā na vikalpakāle. vikalpakāle
+                           hi vijātivyāvṛttameva parasparākārākīrṇam ivāsphuṭam iva
+                           pratyakṣāparicitaṃ kiñcid rūpam ābhāsamānam anubhavaviṣayaḥ. <seg>yac
+                                 <bibl corresp="#pvin1">chāstram</bibl>
+                              <quote source="PVin.xml#v15">
+                                 <lg>
+                                    <l>śabdenāvyāpṛtākṣasya buddhāv apratibhāsanāt /</l>
+                                    <l>arthasya dṛṣṭāv iva</l>
+                                 </lg>
+                              </quote> iti. </seg>
+                        </seg>
+                     </p>
+                     <p><seg xml:id="j2">upāyabhedād ekasyaiva pratibhāsabhedaḥ. ekatra hi buddhāv
+                           indriyam āśrayo 'nyatra śabdādīti cet? atrāpy uktam ...</seg> ... </p>
+                  </div>
+               </egXML>
+               <head type="legend">Source text from Jñānaśrīmitra’s <title level="a" xml:lang="sa"
+                     >Apohaprakaraṇa</title> (<ref type="bibl" xml:id="ref19" target="#Thakur1987"
+                     >p. 208, in Thakur 1987</ref>; for a translation, see <ref type="crossref"
+                     target="#example_12">example 12</ref>). Markup as presupposed in <ref
+                     type="crossref" target="#example_9">example 9</ref>.</head>
+            </figure>
+            <figure xml:id="example_12">
+               <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <div>
+                     <p>... Now of these, the first, the external, is conditionally adopted as what
+                        is expressed only on the basis of determination, and not through the
+                        appearance of a particular. If you say, “How is this so?” We say, “Purely on
+                        the basis of experience.” For the way in which particulars are experienced
+                        when they appear in perceptual awareness—fixed with respect to place, time,
+                        and condition, and having a clearly manifest form—is not the way they are
+                        experienced when we have a conceptual awareness of them. For when we have a
+                        conceptual awareness of them, the object of our experience appears having a
+                        certain form (1) which is not familiar from perceptual awareness, (2) which
+                        is really excluded from what belongs to a different class, (3) which seems
+                        as if it were mixed up with each and every individual form, and (4) which
+                        seems as if it were unclear. <seg>As it is said <bibl corresp="#pvin1">in
+                              the authoritative text, <author>Dharmakīrti’s</author>
+                              <title>Pramānaviniścaya</title></bibl>, <quote source="PVin.xml#v15">
+                              <lg>
+                                 <l>... because through language, an object does not appear in the
+                                    awareness of someone whose eye is inactive</l>
+                                 <l>as it would in visual awareness.</l>
+                              </lg>
+                           </quote>
+                        </seg></p>
+                     <p>If you say, <quote>Because of a difference in method of awareness, there is
+                           a difference in the appearance of one and the same thing. For the basis
+                           of one awareness is the sense faculty and that of the other is language,
+                           and the like.</quote> In response to this, Dharmakīrti has said, ....</p>
+                  </div>
+               </egXML>
+               <head type="legend">Translation by McCrea and Patil (<ref type="bibl" xml:id="refMcC"
+                     target="#McCrea2010">2010, 60–61</ref>) of the text in <ref type="crossref"
+                     target="#example_11">example 11</ref>, with relevant markup added and some
+                  formatting removed.</head>
+            </figure>
+            <figure xml:id="example_13">
+               <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <div xml:id="ratna">
+                     <p>... <seg xml:id="r-context1" next="#r-context2">vidhiśabdena ca
+                           yathādhyavasāyam atadrūpaparāvṛtto bāhyo ’rtho ’bhimataḥ,
+                           yathāpratibhāsaṃ buddhyākāraś ca. <quote xml:id="r1" next="#r2"
+                              type="silent">tatra bāhyo ’rtho ’dhyavasāyād eva śabdavācyo
+                              vyavasthāpyate, na svalakṣaṇaparisphūrtyā, pratyakṣavad
+                              deśakālāvasthāniyata pravyaktasvalakṣaṇāsphuraṇāt. <seg>yac <bibl
+                                    corresp="#pvin1">chāstram</bibl>
+                                 <quote source="PVin.xml#v15">
+                                    <lg>
+                                       <l>śabdenāvyāpṛtākṣasya buddhāv apratibhāsanāt /</l>
+                                       <l>arthasya dṛṣṭāv iva </l>
+                                    </lg>
+                                 </quote> iti.</seg></quote></seg></p>
+                     <p>
+                        <seg xml:id="r-context2" prev="#r-context1"><quote xml:id="r2" prev="#r1"
+                              type="silent">indriyaśabdasvabhāvopāyabhedād ekasyaivārthasya
+                              pratibhāsa bheda iti cet. atrāpy uktam ... </quote> ...</seg>
+                     </p>
+                  </div>
+               </egXML>
+               <head type="legend">First instance of silently reused text in Ratnakīrti’s <title
+                     level="a" xml:lang="sa">Apohasiddhi</title> (<ref type="bibl" xml:id="ref20"
+                     target="#Mcallister2020">pp. 53–54, in McAllister 2020</ref>; see the
+                  translation in <ref type="crossref" target="#example_14">example 14</ref>). Markup
+                  as presupposed in <ref type="crossref" target="#example_9">example 9</ref>.</head>
+            </figure>
+            <figure xml:id="example_14">
+               <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <div>
+                     <p>... <seg xml:id="r-context1" next="#r-context2">And by the word “positive
+                           element” an external object that is distinguished from that of another
+                           nature is meant according to determination, and according to appearance a
+                           form of awareness [is meant]. <quote xml:id="r1" next="#r2" type="silent"
+                              >Amongst these, the external object is defined as that to be expressed
+                              by a word only because of determination, not because of a particular’s
+                              appearance, since there is no appearance of a manifest particular that
+                              is limited to a [certain] place, time and condition as [there is in
+                              the case of] perception. <seg>[This is] what <bibl corresp="#pvin1"
+                                    >the treatise</bibl> [says, too]: <quote source="PVin.xml#v15">
+                                    <lg>
+                                       <l>Because an object does not appear due to a word in the
+                                          awareness of [someone having] an inactive sense organ</l>
+                                       <l>in the same way as [it does] in perception [, .... ]</l>
+                                    </lg>
+                                 </quote></seg></quote></seg></p>
+                     <p>
+                        <seg xml:id="r-context2" prev="#r-context1"><quote xml:id="r2" prev="#r1"
+                              type="silent">[Opponent:] There is a difference in the appearance of
+                              [what is in fact] a single object, because the ways [of apprehending
+                              an object, according] to the nature of a sense faculty [or] a word,
+                              are different. [Proponent:] Also with regard to this it was said:
+                              ...</quote> ...</seg>
+                     </p>
+                  </div>
+               </egXML>
+               <head type="legend">Translation as in <ref type="bibl" xml:id="refMcA"
+                     target="#Mcallister2020">McAllister (2020, 96–97)</ref> of the text in <ref
+                     type="crossref" target="#example_13">example 13</ref>, with markup
+                  added.</head>
+            </figure>
+            <figure xml:id="example_15">
+               <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <div xml:id="moksa">
+                     <p>... <seg>tasmāt sthitam etat, <quote xml:id="m1" type="silent">bāhyārtho
+                              'dhyavasāyād eva śabdavācye vyavasthāpyate; na tu
+                              svalakṣaṇaparisphūrtyā; pratyakṣavad
+                              deśakālākārāvasthānaniyatapravyaktasvalakṣaṇāsphuraṇāt. <seg>yad āha
+                                    <persName corresp="#dharmakīrti">nyāyaparameśvaraḥ</persName>—
+                                    <quote source="PVin.xml#v15">
+                                    <lg>
+                                       <l>sabdenāvyāpṛtākṣasya buddhāv apratibhāsanāt |</l>
+                                       <l>arthasya dṛṣṭāv iva</l>
+                                    </lg> iti </quote></seg></quote></seg></p>
+                  </div>
+               </egXML>
+               <head type="legend">Second instance of silently reused text in Mokṣākaragupta’s
+                     <title level="a" xml:lang="sa">Tarkabhāṣā</title> (<ref type="bibl"
+                     xml:id="ref21" target="#Iyengar1952">pp. 53–54, in Iyengar 1952</ref>; see the
+                  translation in <ref type="crossref" target="#example_16">example 16</ref>). Markup
+                  as presupposed in <ref type="crossref" target="#example_9">example 9</ref>.</head>
+            </figure>
+            <figure xml:id="example_16">
+               <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <div>
+                     <p>... <seg>Therefore, this is established: <quote xml:id="m1" type="silent">An
+                              external object is defined to be what a word denotes only on account
+                              of determination; but not on account of an appearance with its
+                              individual characteristic, because this object does not appear with
+                              its individual characteristic that is fixed as to its location, time,
+                              and state. <seg>Which <persName corresp="#dharmakīrti">the lord of
+                                    logic</persName> said— <quote source="PVin.xml#v15">
+                                    <lg>
+                                       <l>Because an object does not appear due to a word in the
+                                          awareness of [someone having] an inactive sense organ</l>
+                                       <l>in the same way as [it does] in perception [, .... ]</l>
+                                    </lg>
+                                 </quote></seg></quote></seg></p>
+                  </div>
+               </egXML>
+               <head type="legend">Translation of the text in <ref type="crossref"
+                     target="#example_15">example 15</ref>, with corresponding markup.</head>
+            </figure>
+         </div>
+      </back>
+   </text>
+</TEI>
