@@ -25,10 +25,10 @@
     </xsl:template>
   
     <!-- When matching elementSpec ident="rs": get items from list-->
-    <!-- /tei:TEI/tei:text[1]/tei:back[1]/tei:div[2]/tei:schemaSpec[1]/tei:elementSpec[48] -->
+    <!-- /tei:TEI/tei:text[1]/tei:back[1]/tei:div[2]/tei:schemaSpec[1]/tei:elementSpec[48]/tei:attList[1]/tei:attDef[1]/tei:valList[1] -->
     <!-- /TEI/teiHeader[1]/encodingDesc[1]/classDecl[1]/taxonomy[1]/category[1] -->
     <xsl:template
-      match="//tei:TEI/tei:text/tei:back/tei:div/tei:schemaSpec/tei:elementSpec[@ident='rs']/tei:attList/tei:attdef[@ident='type']/tei:valList[1]">
+      match="//tei:TEI/tei:text/tei:back/tei:div/tei:schemaSpec/tei:elementSpec[@ident='rs']/tei:attList/tei:attDef[@ident='type']/tei:valList[1]">
       <valList type="closed">
         <xsl:for-each select="distinct-values($softwaretaxonomy/tei:TEI/tei:teiHeader/tei:encodingDesc/tei:classDecl/tei:taxonomy/tei:category/@xml:id)">
           <valItem mode="add" ident="{lower-case(.)}"/>
