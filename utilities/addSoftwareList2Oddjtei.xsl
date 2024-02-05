@@ -29,7 +29,7 @@
     <!-- /TEI/teiHeader[1]/encodingDesc[1]/classDecl[1]/taxonomy[1]/category[1] -->
     <xsl:template
       match="//tei:TEI/tei:text/tei:back/tei:div/tei:schemaSpec/tei:elementSpec[@ident='rs']/tei:attList/tei:attDef[@ident='type']/tei:valList[1]">
-      <valList type="closed">
+      <valList type="closed" mode="change">
         <xsl:for-each select="distinct-values($softwaretaxonomy/tei:TEI/tei:teiHeader/tei:encodingDesc/tei:classDecl/tei:taxonomy/tei:category/@xml:id)">
           <valItem mode="add" ident="{lower-case(.)}"/>
         </xsl:for-each>
