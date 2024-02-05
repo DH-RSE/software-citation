@@ -19,7 +19,7 @@
         match="//tei:TEI/tei:text/tei:back/tei:div/tei:schemaSpec/tei:dataSpec[@ident='software.mention.target']/tei:content[1]/tei:alternate[1]/tei:valList[1]">
         <valList type="closed">
         <xsl:for-each select="distinct-values($softwarelist//tei:list/tei:item/@xml:id)">
-            <valItem mode="add" ident="{.}"/>
+            <valItem mode="add" ident="{concat('#',.)}"/>
         </xsl:for-each>
         </valList>
     </xsl:template>
