@@ -5,7 +5,7 @@
          xmlns="http://relaxng.org/ns/structure/1.0"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2024-01-31T20:48:12Z. 2014. 
+Schema generated from ODD source 2024-02-05T10:41:11Z. 2014. 
 TEI Edition: P5 Version 4.7.0. Last updated on 16th November 2023, revision e5dd73ed0 
 TEI Edition Location: https://www.tei-c.org/Vault/P5/4.7.0/ 
   
@@ -2238,11 +2238,11 @@ Suggested values include: 1] top; 2] bottom; 3] margin; 4] opposite; 5] overleaf
                       xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                       context="tei:quote">
-                  <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#quotations"
+                           <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#quotations"
                            test="id(substring-after(@source, '#'))/(self::tei:ref[@type eq 'bibl']|self::tei:bibl[ancestor::tei:body])">
-                    <sch:name/> must have a @source that points to the @xml:id of either a
+                              <sch:name/> must have a @source that points to the @xml:id of either a
                     ref[type='bibl'], or a &lt;bibl&gt; in the &lt;body&gt;. </sch:assert>
-                </sch:rule>
+                        </sch:rule>
          </pattern>
          <ref name="att.global.attributes"/>
          <ref name="att.notated.attributes"/>
@@ -2279,11 +2279,12 @@ Suggested values include: 1] top; 2] bottom; 3] margin; 4] opposite; 5] overleaf
                       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                       context="tei:cit"
                       role="warning">
-                  <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#quotations"
+                           <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#quotations"
                            test="tei:ref">
-                    <sch:name/> is normally expected to have a bibliographic reference (ref[@type="bibl"]). Please make sure you intended not to add one here.
+                              <sch:name/> is normally expected to have a bibliographic reference
+                    (ref[@type="bibl"]). Please make sure you intended not to add one here.
                   </sch:assert>
-                </sch:rule>
+                        </sch:rule>
          </pattern>
          <ref name="att.global.attributes"/>
          <empty/>
@@ -2358,11 +2359,10 @@ Suggested values include: 1] top; 2] bottom; 3] margin; 4] opposite; 5] overleaf
                       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                       context="tei:gap"
                       role="warning">
-                  <sch:report see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#inline_rhetorical"
-                           test="following-sibling::node()[1][self::text()] and starts-with(following-sibling::node()[1], '.')">
-                    A <sch:name/> element should follow a period rather than precede it when an ellipsis follows the end of a sentence.
-                  </sch:report>
-                </sch:rule>
+                           <sch:report see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#inline_rhetorical"
+                           test="following-sibling::node()[1][self::text()] and starts-with(following-sibling::node()[1], '.')"> A <sch:name/> element should follow a period rather than precede it when an
+                    ellipsis follows the end of a sentence. </sch:report>
+                        </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   id="tei_jtei-gap-jtei.sch-gap-ws-constraint-rule-12">
@@ -2374,11 +2374,10 @@ Suggested values include: 1] top; 2] bottom; 3] margin; 4] opposite; 5] overleaf
                       xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                       context="tei:gap">
-                  <sch:report see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#inline_rhetorical"
-                           test="preceding-sibling::node()[1][self::text()][matches(., '\.\s+$')]">
-                    A <sch:name/> should follow a period directly, without preceding whitespace.
+                           <sch:report see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#inline_rhetorical"
+                           test="preceding-sibling::node()[1][self::text()][matches(., '\.\s+$')]"> A <sch:name/> should follow a period directly, without preceding whitespace.
                   </sch:report>
-                </sch:rule>
+                        </sch:rule>
          </pattern>
          <ref name="att.global.attributes"/>
          <ref name="att.editLike.attributes"/>
@@ -2589,11 +2588,10 @@ Sample values include: 1] suspension (suspension); 2] contraction (contraction);
                       xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                       context="tei:ptr[not(@type='crossref')]">
-                  <sch:report see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#internal_linking"
-                           test="count(tokenize(normalize-space(@target), '\s+')) &gt; 1"> Multiple
-                    values in @target are only allowed for <sch:name/>[@type='crossref'].
+                           <sch:report see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#internal_linking"
+                           test="count(tokenize(normalize-space(@target), '\s+')) &gt; 1"> Multiple values in @target are only allowed for <sch:name/>[@type='crossref'].
                   </sch:report>
-                </sch:rule>
+                        </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   id="tei_jtei-ptr-ptrAtts-constraint-report-10">
@@ -2615,367 +2613,465 @@ attributes @target and @cRef may be supplied on <name/>.</report>
                <zeroOrMore>
                   <choice>
                      <choice>
-                        <value>Python</value>
+                        <value>python</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Java</value>
+                        <value>java</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>JavaScript</value>
+                        <value>javascript</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>React</value>
+                        <value>react</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Pandas</value>
+                        <value>pandas</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Matplotlib</value>
+                        <value>matplotlib</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Jupyter_Notebook</value>
+                        <value>jupyternotebook</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>MediaWiki</value>
+                        <value>mediawiki</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>PoetryLab</value>
+                        <value>poetrylab</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>spaCy</value>
+                        <value>spacy</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Rantanplan</value>
+                        <value>rantanplan</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>JollyJumper</value>
+                        <value>jollyjumper</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Rolling.Classify</value>
+                        <value>rollingclassify</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Rolling.Delta</value>
+                        <value>rollingdelta</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>ANNIS</value>
+                        <value>annis</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>IncipitSearch</value>
+                        <value>incipitsearch</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>ZeuScansion</value>
+                        <value>zeuscansion</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Scandroid</value>
+                        <value>scandroid</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Navarro-Colorado_2017</value>
+                        <value>navarrocolorado2017</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Agirrezabal-et-al_2017</value>
+                        <value>agirrezabaletal2017</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Gervas_2000</value>
+                        <value>gervas2000</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>FreeLing</value>
+                        <value>freeling</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>spacy-affixes</value>
+                        <value>spacyaffixes</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Mestre_1998</value>
+                        <value>mestre1998</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>HisMeTag</value>
+                        <value>hismetag</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>VOSviewer</value>
+                        <value>vosviewer</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>SALSAH</value>
+                        <value>salsah</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Knora</value>
+                        <value>knora</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>NLTK</value>
+                        <value>nltk</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>OpheliaOH</value>
+                        <value>opheliaoh</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>eXistdb</value>
+                        <value>existdb</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>ARACNE</value>
+                        <value>aracne</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Lucene</value>
+                        <value>lucene</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Elastic</value>
+                        <value>elastic</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Jena</value>
+                        <value>jena</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>CHQL</value>
+                        <value>chql</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>SQL</value>
+                        <value>sql</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>SQWRL</value>
+                        <value>cms</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Blender</value>
+                        <value>sqwrl</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Unity</value>
+                        <value>blender</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>A-Frame</value>
+                        <value>unity</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Gephi</value>
+                        <value>aframe</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Scalar</value>
+                        <value>gephi</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Wandora</value>
+                        <value>scalar</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>CloudCompare</value>
+                        <value>wandora</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>ArcGIS</value>
+                        <value>cloudcompare</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>DigaIT</value>
+                        <value>arcgis</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Lercari-et-al_2018</value>
+                        <value>digait</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Lingle-Seifert_2017</value>
+                        <value>lercarietal2018</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Cartonera-Publishers-Database</value>
+                        <value>lingleseifert2017</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Semantic-MediaWiki</value>
+                        <value>cartonerapublishersdatabase</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Prelude</value>
+                        <value>semanticmediawiki</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>BRIT</value>
+                        <value>prelude</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Tesseract</value>
+                        <value>brit</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Pytesseract</value>
+                        <value>tesseract</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>OpenCV</value>
+                        <value>pytesseract</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Omeka</value>
+                        <value>opencv</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Omeka_ItemRelations</value>
+                        <value>omeka</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>omeka_reference</value>
+                        <value>omekaitemrelations</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>AcuGIS</value>
+                        <value>omekareference</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>AcuGIS_Carta</value>
+                        <value>acugis</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Webpack</value>
+                        <value>acugiscarta</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>ELEM</value>
+                        <value>webpack</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>LiteratureTranslation</value>
+                        <value>elem</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>GitHub</value>
+                        <value>literaturetranslation</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Leaflet</value>
+                        <value>github</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Ugarit</value>
+                        <value>leaflet</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Smart_Compose</value>
+                        <value>ugarit</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>OpenTOSCA</value>
+                        <value>smartcompose</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>TOSCA</value>
+                        <value>opentosca</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Winery</value>
+                        <value>tosca</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>GeoNewsMiner</value>
+                        <value>winery</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>SOLR</value>
+                        <value>geonewsminer</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>XSLT</value>
+                        <value>solr</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>ReRites</value>
+                        <value>xslt</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>SonGenApp</value>
+                        <value>rerites</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>songenapp</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
                         <value>word2vec</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Golden_Agents</value>
+                        <value>goldenagents</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Lenticular_Lenses_II</value>
+                        <value>lenticularlensesii</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>D3.js</value>
+                        <value>d3js</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>EntityMapper</value>
+                        <value>entitymapper</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Revistas_Culturales_2.0</value>
+                        <value>revistasculturales20</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Revistas_Ideias_Cultura</value>
+                        <value>revistasideiascultura</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>MapModern</value>
+                        <value>mapmodern</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Drupal</value>
+                        <value>drupal</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
                         <value>nodegoat</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Celluloid</value>
+                        <value>celluloid</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>VLC</value>
+                        <value>vlc</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Final_Cut</value>
+                        <value>finalcut</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Premiere</value>
+                        <value>premiere</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Lignes_de_temps</value>
+                        <value>lignesdetemps</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Advene</value>
+                        <value>advene</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Media_Cope</value>
+                        <value>mediacope</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Vialogues</value>
+                        <value>vialogues</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>VideoAnt</value>
+                        <value>videoant</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Pad.ma</value>
+                        <value>padma</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>MemoRekall</value>
+                        <value>memorekall</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>YouTube</value>
+                        <value>youtube</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Logo</value>
+                        <value>logo</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>TurtleGraphics</value>
+                        <value>turtlegraphics</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Scratch</value>
+                        <value>scratch</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Snap</value>
+                        <value>snap</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>NetsBlox</value>
+                        <value>netsblox</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Voyant</value>
+                        <value>voyant</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>CATMA</value>
+                        <value>catma</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Concourse</value>
+                        <value>concourse</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>TPEN</value>
+                        <value>tpen</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>CollateX</value>
+                        <value>collatex</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Stemmaweb</value>
+                        <value>stemmaweb</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>MySQL</value>
+                        <value>mysql</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Catalogue_Digital_Editions</value>
+                        <value>cataloguedigitaleditions</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Bootstrap</value>
+                        <value>bootstrap</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Tacitus_Online</value>
+                        <value>tacitusonline</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Dictionnaire_topographique_API</value>
+                        <value>dictionnairetopographiqueapi</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>OpenTermAlign</value>
+                        <value>opentermalign</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>BBTalk</value>
+                        <value>bbtalk</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Vocabulary_Matching_Tool</value>
+                        <value>vocabularymatchingtool</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>VisTA</value>
+                        <value>vista</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Mapping_Memory_Manager</value>
+                        <value>mappingmemorymanager</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Heterotoki</value>
+                        <value>heterotoki</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>PHP</value>
+                        <value>php</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Atlas_Narrativa_Mexicana</value>
+                        <value>atlasnarrativamexicana</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Archivo_Procesos_Fotograficos</value>
+                        <value>archivoprocesosfotograficos</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Tentacion_Desierto</value>
+                        <value>tentaciondesierto</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Peluconas</value>
+                        <value>peluconas</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Mulaka</value>
+                        <value>mulaka</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>RAICES</value>
+                        <value>raices</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Wirikuta</value>
+                        <value>wirikuta</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>BAC</value>
+                        <value>bac</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>CARTO</value>
+                        <value>carto</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>GIS</value>
+                        <value>gis</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>SpatialHumanitiesKit</value>
+                        <value>spatialhumanitieskit</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>GoogleDrive</value>
+                        <value>googledrive</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>cPanel</value>
+                        <value>cpanel</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Wix</value>
+                        <value>wix</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>RAWGraphs</value>
+                        <value>rawgraphs</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>LancsBox</value>
+                        <value>lancsbox</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>MOSES</value>
+                        <value>moses</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>GIZA</value>
+                        <value>giza</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>OpenNMT</value>
+                        <value>opennmt</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>RDPCM</value>
+                        <value>rdpcm</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Maalr</value>
+                        <value>maalr</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
                         <value>devochdelia</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Koha</value>
+                        <value>koha</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>FileMaker</value>
+                        <value>filemaker</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Windows</value>
+                        <value>windows</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>ISIDORE</value>
+                        <value>isidore</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Webble</value>
+                        <value>webble</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>eComparatio</value>
+                        <value>ecomparatio</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>CGS</value>
+                        <value>cgs</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>WebGL</value>
+                        <value>webgl</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Signum</value>
+                        <value>signum</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Indri</value>
+                        <value>indri</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>EdinburghGeoparser</value>
+                        <value>edinburghgeoparser</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Edinburghgazetteer</value>
+                        <value>edinburghgazetteer</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Palimpsest</value>
+                        <value>palimpsest</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Cytoscape</value>
+                        <value>cytoscape</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>ABBY</value>
+                        <value>abby</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>OmniPage</value>
+                        <value>omnipage</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Juxta</value>
+                        <value>juxta</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>KorAP</value>
+                        <value>korap</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>CWRC</value>
+                        <value>cwrc</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>CWRC-Writer</value>
+                        <value>cwrcwriter</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>FromThePage</value>
+                        <value>fromthepage</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>RubyOnRails</value>
+                        <value>rubyonrails</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>AutoCAD</value>
+                        <value>autocad</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Max-3ds</value>
+                        <value>max3ds</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>AzureCloud</value>
+                        <value>azurecloud</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>GATE</value>
+                        <value>gate</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>R</value>
+                        <value>r</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>iGraph</value>
+                        <value>igraph</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Textal</value>
+                        <value>textal</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>PlantHumanitiesWorkbench</value>
+                        <value>planthumanitiesworkbench</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Zooniverse</value>
+                        <value>zooniverse</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>tis_api</value>
+                        <value>tisapi</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>TIS</value>
+                        <value>tis</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>LAC</value>
+                        <value>lac</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>DUCAT</value>
+                        <value>ducat</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>Inkscape</value>
+                        <value>inkscape</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
                         <value>apachespark</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                        <value>unreal_engine</value>
+                        <value>unrealengine</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>software</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>tool</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>script</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>code</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>program</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>teicorpo</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>teiconvert</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>teimeta</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>clan</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>transcriber</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>praat</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>elan</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>treetagger</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>stanfordcorenlp</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>txm</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>letrameur</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>iramuteq</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>exmaralda</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>anvil</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>folker</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>weblicht</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>efes</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>epidocxslt</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>oxygen</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>kiln</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>tapas</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>teipublisher</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>teichi</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>eppt</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>elwoodviewer</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>evt</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>boilerplate</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>tei2html</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>basex</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>tipuesearch</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>digitallightbox</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>jquery</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>teistylesheets</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>dtaq</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>dbpedia</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>wikidata</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>xquery</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>cord</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>versioningmachine</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>conftool</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>indesign</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>teiboilerplate</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                        <value>teioxygenframework</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
                      </choice>
                      <data type="anyURI">
@@ -2990,7 +3086,8 @@ attributes @target and @cRef may be supplied on <name/>.</report>
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">characterizes the element in some sense, using any convenient classification scheme or typology.</a:documentation>
                <choice>
                   <value>crossref</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(A cross-reference (reference to another part of the article).) To link to another part of your article, use `&lt;ptr type="crossref"&gt;`, and point to the <code xmlns="http://www.w3.org/1999/xhtml">@xml:id</code> value of the target location: `&lt;ptr type="crossref" target="#intro"&gt;`. The <code xmlns="http://www.w3.org/1999/xhtml">&lt;ptr&gt;</code> element will be expanded to create an appropriate link to the target location.</a:documentation>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(A cross-reference (reference to
+                      another part of the article).) To link to another part of your article, use `&lt;ptr type="crossref"&gt;`, and point to the <code xmlns="http://www.w3.org/1999/xhtml">@xml:id</code> value of the target location: `&lt;ptr type="crossref" target="#intro"&gt;`. The <code xmlns="http://www.w3.org/1999/xhtml">&lt;ptr&gt;</code> element will be expanded to create an appropriate link to the target location.</a:documentation>
                   <value>software</value>
                   <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Used for annotating software mentions with pointers.</a:documentation>
                </choice>
@@ -3013,10 +3110,10 @@ attributes @target and @cRef may be supplied on <name/>.</report>
                       xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                       context="tei:ref">
-                  <sch:report see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#external_linking"
+                           <sch:report see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#external_linking"
                            test="count(tokenize(normalize-space(@target), '\s+')) &gt; 1">
-                    <sch:name/> with multiple values for @target is not supported. </sch:report>
-                </sch:rule>
+                              <sch:name/> with multiple values for @target is not supported. </sch:report>
+                        </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   id="tei_jtei-ref-jtei.sch-biblref-parentheses-constraint-rule-16">
@@ -3028,11 +3125,10 @@ attributes @target and @cRef may be supplied on <name/>.</report>
                       xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                       context="tei:ref[@type eq 'bibl']">
-                  <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#internal_linking"
-                           test="not(matches(., '^\(.*\)$'))">
-                    Parentheses are not part of bibliographic references. Please move them out of <sch:name/>.
-                  </sch:assert>
-                </sch:rule>
+                           <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#internal_linking"
+                           test="not(matches(., '^\(.*\)$'))"> Parentheses are not part of bibliographic references. Please move them out of
+                    <sch:name/>. </sch:assert>
+                        </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   id="tei_jtei-ref-jtei.sch-biblref-target-constraint-rule-17">
@@ -3044,10 +3140,10 @@ attributes @target and @cRef may be supplied on <name/>.</report>
                       xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                       context="tei:ref[@type eq 'bibl']">
-                  <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#internal_linking"
-                           test="id(substring-after(@target, '#'))/(self::tei:bibl|self::tei:person[ancestor::tei:particDesc/parent::tei:profileDesc])"> A bibliographic reference must point with a @target to the @xml:id of an entry in the div[@type="bibliography"].
-                  </sch:assert>
-                </sch:rule>
+                           <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#internal_linking"
+                           test="id(substring-after(@target, '#'))/(self::tei:bibl|self::tei:person[ancestor::tei:particDesc/parent::tei:profileDesc])"> A bibliographic reference must point with a @target to the @xml:id of an entry
+                    in the div[@type="bibliography"]. </sch:assert>
+                        </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   id="tei_jtei-ref-jtei.sch-biblref-type-constraint-rule-18">
@@ -3059,18 +3155,16 @@ attributes @target and @cRef may be supplied on <name/>.</report>
                       xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                       context="tei:ref[id(substring-after(@target, '#'))/self::tei:bibl]">
-                  <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#internal_linking"
+                           <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#internal_linking"
                            sqf:fix="bibltype.add"
-                           test="@type eq 'bibl'">
-                    A bibliographic reference must be typed as @type="bibl".
-                  </sch:assert>
-                  <sqf:fix id="bibltype.add">
-                    <sqf:description>
-                      <sqf:title>Add @type='bibl'.</sqf:title>
-                    </sqf:description>
-                    <sqf:add match="." node-type="attribute" select="'bibl'" target="type"/>
-                  </sqf:fix>
-                </sch:rule>
+                           test="@type eq 'bibl'"> A bibliographic reference must be typed as @type="bibl". </sch:assert>
+                           <sqf:fix id="bibltype.add">
+                              <sqf:description>
+                                 <sqf:title>Add @type='bibl'.</sqf:title>
+                              </sqf:description>
+                              <sqf:add match="." node-type="attribute" select="'bibl'" target="type"/>
+                           </sqf:fix>
+                        </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   id="tei_jtei-ref-refAtts-constraint-report-12">
@@ -3102,9 +3196,11 @@ attributes @target and @cRef may be supplied on <name/>.</report>
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">characterizes the element in some sense, using any convenient classification scheme or typology.</a:documentation>
                <choice>
                   <value>crossref</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(A cross-reference (reference to another part of the article).) To link to another part of your article, use `&lt;ref type="crossref"&gt;`, and point to the <code xmlns="http://www.w3.org/1999/xhtml">@xml:id</code> value of the target location: `&lt;ref type="crossref" target="#intro"&gt;`.</a:documentation>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(A cross-reference (reference to
+                      another part of the article).) To link to another part of your article, use `&lt;ref type="crossref"&gt;`, and point to the <code xmlns="http://www.w3.org/1999/xhtml">@xml:id</code> value of the target location: `&lt;ref type="crossref" target="#intro"&gt;`.</a:documentation>
                   <value>bibl</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(A bibliographic reference (reference to an entry in the bibliography).) To link to a bibliographic description in the bibliography, use `&lt;ref type="bibl"&gt;`, and point to the <code xmlns="http://www.w3.org/1999/xhtml">@xml:id</code> value of the target location: `&lt;ref type="bibl" target="#ide88"&gt;`.</a:documentation>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(A bibliographic reference
+                      (reference to an entry in the bibliography).) To link to a bibliographic description in the bibliography, use `&lt;ref type="bibl"&gt;`, and point to the <code xmlns="http://www.w3.org/1999/xhtml">@xml:id</code> value of the target location: `&lt;ref type="bibl" target="#ide88"&gt;`.</a:documentation>
                </choice>
             </attribute>
          </optional>
@@ -3192,7 +3288,8 @@ attributes @target and @cRef may be supplied on <name/>.</report>
                         <value>ordered</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(A numbered list) Items in a numbered list will be preceded by a number. If the list is inline, then the number will be enclosed in parentheses, but if it is a block-level list (the default), the number will be followed by a period. </a:documentation>
                         <value>simple</value>
-                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(A simple list (no bullets or numbers)) Items in a simple list will be rendered with no bullet or preceding number at all.</a:documentation>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(A simple list (no bullets or
+                      numbers)) Items in a simple list will be rendered with no bullet or preceding number at all.</a:documentation>
                      </choice>
                   </oneOrMore>
                </list>
@@ -3250,11 +3347,10 @@ attributes @target and @cRef may be supplied on <name/>.</report>
                       xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                       context="tei:head">
-                  <sch:report see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#body"
-                           test="matches(., '^\s*(((figure|fig\.|table|example|ex\.|section) )\d|\d+\.\d?)', 'i')">
-                    Headings are numbered and labeled automatically, please remove the hard-coded label from the text.
-                  </sch:report>
-                </sch:rule>
+                           <sch:report see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#body"
+                           test="matches(., '^\s*(((figure|fig\.|table|example|ex\.|section) )\d|\d+\.\d?)', 'i')"> Headings are numbered and labeled automatically, please remove the hard-coded
+                    label from the text. </sch:report>
+                        </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   id="tei_jtei-head-jtei.sch-figure-head-constraint-rule-21">
@@ -3266,10 +3362,10 @@ attributes @target and @cRef may be supplied on <name/>.</report>
                       xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                       context="tei:figure/tei:head">
-                  <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#figures"
-                           test="@type = ('legend', 'license')"> Figure titles (&lt;head&gt;) must have a type
-                    'legend' or 'license'. </sch:assert>
-                </sch:rule>
+                           <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#figures"
+                           test="@type = ('legend', 'license')"> Figure titles (&lt;head&gt;) must have a type 'legend' or 'license'.
+                  </sch:assert>
+                        </sch:rule>
          </pattern>
          <ref name="att.global.attributes"/>
          <ref name="att.placement.attributes"/>
@@ -3299,12 +3395,10 @@ attributes @target and @cRef may be supplied on <name/>.</report>
                       xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                       context="tei:note">
-                  <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#footnotes"
-                           test="not(following::text()[not(ancestor::tei:note)][1][matches(., '^[,\.:;!?\]]')])">
-                    Footnotes should follow punctuation marks, not precede them. Place 
-                    your &lt;<sch:name/>&gt; element after the punctuation mark.
-                  </sch:assert>
-                </sch:rule>
+                           <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#footnotes"
+                           test="not(following::text()[not(ancestor::tei:note)][1][matches(., '^[,\.:;!?\]]')])"> Footnotes should follow punctuation marks, not precede them. Place your
+                    &lt;<sch:name/>&gt; element after the punctuation mark. </sch:assert>
+                        </sch:rule>
             <sch:rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
                       xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:eg="http://www.tei-c.org/ns/Examples"
@@ -3313,12 +3407,10 @@ attributes @target and @cRef may be supplied on <name/>.</report>
                       xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                       context="tei:note">
-                  <sch:report see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#footnotes"
-                           test="preceding::text()[not(ancestor::tei:note)][1][matches(., '—$')]">
-                    Footnotes should precede the dash, not follow it. Place 
-                    your &lt;<sch:name/>&gt; element before the dash.
-                  </sch:report>
-                </sch:rule>
+                           <sch:report see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#footnotes"
+                           test="preceding::text()[not(ancestor::tei:note)][1][matches(., '—$')]"> Footnotes should precede the dash, not follow it. Place your
+                    &lt;<sch:name/>&gt; element before the dash. </sch:report>
+                        </sch:rule>
             <sch:rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
                       xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:eg="http://www.tei-c.org/ns/Examples"
@@ -3328,13 +3420,11 @@ attributes @target and @cRef may be supplied on <name/>.</report>
                       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                       context="tei:note"
                       role="warning">
-                  <sch:report see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#footnotes"
-                           test="following::text()[not(ancestor::tei:note)][1][matches(normalize-space(), '^\)')]">
-                    Footnotes may be placed before closing parentheses, though this is
-                    exceptional. Please check if this note's placement is correct.
-                    Otherwise, move it after the closing parenthesis.
-                  </sch:report>
-                </sch:rule>
+                           <sch:report see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#footnotes"
+                           test="following::text()[not(ancestor::tei:note)][1][matches(normalize-space(), '^\)')]"> Footnotes may be placed before closing parentheses, though this is
+                    exceptional. Please check if this note's placement is correct. Otherwise, move
+                    it after the closing parenthesis. </sch:report>
+                        </sch:rule>
             <sch:rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
                       xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:eg="http://www.tei-c.org/ns/Examples"
@@ -3344,11 +3434,10 @@ attributes @target and @cRef may be supplied on <name/>.</report>
                       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                       context="tei:note"
                       role="warning">
-                <sch:report see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#footnotes"
-                           test="descendant::node()[last()][                   not(matches(normalize-space(), '(^|[^.?!:;,])[.?!]$')) or                   preceding-sibling::node()[1]/descendant-or-self::*[last()]                       [matches(normalize-space(), '[.?!:;,]$')]                       ]">
-                  A footnote should end a with a single closing punctuation character.
+                           <sch:report see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#footnotes"
+                           test="descendant::node()[last()][                   not(matches(normalize-space(), '(^|[^.?!:;,])[.?!]$')) or                   preceding-sibling::node()[1]/descendant-or-self::*[last()]                       [matches(normalize-space(), '[.?!:;,]$')]                       ]"> A footnote should end a with a single closing punctuation character.
                   </sch:report>
-                </sch:rule>
+                        </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   id="tei_jtei-note-jtei.sch-note-blocks-constraint-rule-26">
@@ -3361,9 +3450,11 @@ attributes @target and @cRef may be supplied on <name/>.</report>
                       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                       context="tei:note"
                       role="warning">
-                  <sch:report see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#footnotes"
-                           test=".//(tei:cit|tei:table|tei:list[not(tokenize(@rend, '\s+')[. eq 'inline'])]|tei:figure|eg:egXML|tei:eg)"> No block-level elements (&lt;cit&gt;, &lt;table&gt;, &lt;figure&gt;, &lt;egXML&gt;, &lt;eg&gt;, &lt;list&gt; which do not have the value inline for @rend) are allowed inside <sch:name/>. </sch:report>
-                </sch:rule>
+                           <sch:report see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#footnotes"
+                           test=".//(tei:cit|tei:table|tei:list[not(tokenize(@rend, '\s+')[. eq 'inline'])]|tei:figure|eg:egXML|tei:eg)"> No block-level elements (&lt;cit&gt;, &lt;table&gt;, &lt;figure&gt;,
+                    &lt;egXML&gt;, &lt;eg&gt;, &lt;list&gt; which do not have the value inline for
+                    @rend) are allowed inside <sch:name/>. </sch:report>
+                        </sch:rule>
          </pattern>
          <ref name="att.global.attributes"/>
          <ref name="att.written.attributes"/>
@@ -3386,11 +3477,10 @@ attributes @target and @cRef may be supplied on <name/>.</report>
                       xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                       context="tei:graphic">
-                  <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#figures"
-                           test="matches(@width, '\d+px') and matches(@height, '\d+px')">
-                    Width and height in pixels must be specified for any <sch:name/>.
+                           <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#figures"
+                           test="matches(@width, '\d+px') and matches(@height, '\d+px')"> Width and height in pixels must be specified for any <sch:name/>.
                   </sch:assert>
-                </sch:rule>
+                        </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   id="tei_jtei-graphic-jtei.sch-graphic-context-constraint-rule-28">
@@ -3402,10 +3492,10 @@ attributes @target and @cRef may be supplied on <name/>.</report>
                       xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                       context="tei:graphic">
-                  <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#figures"
+                           <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#figures"
                            test="parent::tei:figure">
-                    <sch:name/> may only occur inside &lt;figure&gt;. </sch:assert>
-                </sch:rule>
+                              <sch:name/> may only occur inside &lt;figure&gt;. </sch:assert>
+                        </sch:rule>
          </pattern>
          <ref name="att.global.attributes"/>
          <ref name="att.media.attributes"/>
@@ -3459,11 +3549,10 @@ Elements 7.2.5. Speech Contents]</a:documentation>
                       xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                       context="tei:titleStmt/tei:author">
-                  <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#structure"
-                           test="tei:name and tei:affiliation and tei:email">
-                    Author information in the &lt;titleStmt&gt; must include &lt;name&gt;, &lt;affiliation&gt; and &lt;email&gt;.
-                  </sch:assert>
-                </sch:rule>
+                           <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#structure"
+                           test="tei:name and tei:affiliation and tei:email"> Author information in the &lt;titleStmt&gt; must include &lt;name&gt;,
+                    &lt;affiliation&gt; and &lt;email&gt;. </sch:assert>
+                        </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   id="tei_jtei-author-calendar-check-author-constraint-rule-30">
@@ -3566,10 +3655,9 @@ Elements 7.2.5. Speech Contents]</a:documentation>
                       xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                       context="tei:respStmt">
-                  <sch:assert test="ancestor::tei:sourceDesc">
-                    <sch:name/> can only be used in the context of sourceDesc.
-                  </sch:assert>
-                </sch:rule>
+                           <sch:assert test="ancestor::tei:sourceDesc">
+                              <sch:name/> can only be used in the context of sourceDesc. </sch:assert>
+                        </sch:rule>
          </pattern>
          <ref name="att.global.attributes"/>
          <empty/>
@@ -3625,9 +3713,11 @@ Elements 7.2.5. Speech Contents]</a:documentation>
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">classifies the title according to some convenient typology.</a:documentation>
                <choice>
                   <value>main</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(The main title of your article.) Academic articles often have a main title followed by a subtitle (sometimes with a colon separating them). If you have two such components in your article title, then in the <code xmlns="http://www.w3.org/1999/xhtml">&lt;titleStmt&gt;</code>, use `&lt;title type="main"&gt;` and `&lt;title type="sub"&gt;` to encode the two components of your title.</a:documentation>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(The main title of your
+                      article.) Academic articles often have a main title followed by a subtitle (sometimes with a colon separating them). If you have two such components in your article title, then in the <code xmlns="http://www.w3.org/1999/xhtml">&lt;titleStmt&gt;</code>, use `&lt;title type="main"&gt;` and `&lt;title type="sub"&gt;` to encode the two components of your title.</a:documentation>
                   <value>sub</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(The subtitle of your article.) Academic articles often have a main title followed by a subtitle (sometimes with a colon separating them). If you have two such components in your article title, then in the <code xmlns="http://www.w3.org/1999/xhtml">&lt;titleStmt&gt;</code>, use `&lt;title type="main"&gt;` and `&lt;title type="sub"&gt;` to encode the two components of your title.</a:documentation>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(The subtitle of your
+                      article.) Academic articles often have a main title followed by a subtitle (sometimes with a colon separating them). If you have two such components in your article title, then in the <code xmlns="http://www.w3.org/1999/xhtml">&lt;titleStmt&gt;</code>, use `&lt;title type="main"&gt;` and `&lt;title type="sub"&gt;` to encode the two components of your title.</a:documentation>
                </choice>
             </attribute>
          </optional>
@@ -3747,10 +3837,9 @@ Elements 7.2.5. Speech Contents]</a:documentation>
                       context="tei:back/tei:div[@type eq 'bibliography']//tei:bibl"
                       role="warning"
                       see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#back">
-                  <sch:assert test="@xml:id">
-                    A bibliographic entry should have a unique value for @xml:id.
-                  </sch:assert>
-                </sch:rule>
+                           <sch:assert test="@xml:id"> A bibliographic entry should have a unique value for
+                    @xml:id. </sch:assert>
+                        </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   id="tei_jtei-bibl-jtei.sch-bibl-orphan-constraint-rule-37">
@@ -3763,11 +3852,10 @@ Elements 7.2.5. Speech Contents]</a:documentation>
                       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                       context="tei:back/tei:div[@type eq 'bibliography']//tei:bibl"
                       role="warning">
-                  <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#back"
-                           test="key('idrefs', @xml:id)/parent::tei:ref[@type='bibl']">
-                    This bibliographic entry is an orphan: no ref[@type="bibl"] references to it occur in the text.
-                  </sch:assert>
-                </sch:rule>
+                           <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#back"
+                           test="key('idrefs', @xml:id)/parent::tei:ref[@type='bibl']"> This bibliographic entry is an orphan: no ref[@type="bibl"] references to it
+                    occur in the text. </sch:assert>
+                        </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   id="tei_jtei-bibl-jtei.sch-bibl-endpunctuation-constraint-rule-38">
@@ -3781,10 +3869,8 @@ Elements 7.2.5. Speech Contents]</a:documentation>
                       context="tei:back/tei:div[@type eq 'bibliography']//tei:bibl"
                       role="warning"
                       see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#back">
-                  <sch:report test="descendant::node()[last()][                     not(matches(normalize-space(), '(^|[^.?!:;,])\.$')) or                     preceding-sibling::node()[1]/descendant-or-self::*[last()]                       [matches(normalize-space(), '[.?!:;,]$')]                     ]">
-                    A bibliographic entry should end with a single period.
-                  </sch:report>
-                </sch:rule>
+                           <sch:report test="descendant::node()[last()][                     not(matches(normalize-space(), '(^|[^.?!:;,])\.$')) or                     preceding-sibling::node()[1]/descendant-or-self::*[last()]                       [matches(normalize-space(), '[.?!:;,]$')]                     ]"> A bibliographic entry should end with a single period. </sch:report>
+                        </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   id="tei_jtei-bibl-jtei.sch-title-journal-CMOS-constraint-rule-39">
@@ -3797,11 +3883,11 @@ Elements 7.2.5. Speech Contents]</a:documentation>
                       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                       context="tei:bibl/tei:title[@level='j']"
                       role="warning">
-                  <sch:report see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#back"
-                           test="self::*[preceding-sibling::*[1]/self::tei:title[@level='a']]                     [not(preceding-sibling::node()[normalize-space()][1][matches(normalize-space(), '[.,!?]$')])]                     ">
-                    An analytic title and a journal title in a bibliographic entry should only be separated by a comma or a period (or the end punctuation of the analytic title). 
+                           <sch:report see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#back"
+                           test="self::*[preceding-sibling::*[1]/self::tei:title[@level='a']]                     [not(preceding-sibling::node()[normalize-space()][1][matches(normalize-space(), '[.,!?]$')])]                     "> An analytic title and a journal title in a bibliographic entry should only be
+                    separated by a comma or a period (or the end punctuation of the analytic title).
                   </sch:report>
-                </sch:rule>
+                        </sch:rule>
          </pattern>
          <ref name="att.global.attributes"/>
          <empty/>
@@ -3949,10 +4035,9 @@ Elements 7.2.5. Speech Contents]</a:documentation>
                       xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                       context="tei:table">
-                  <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#lists"
-                           test="not(ancestor::tei:list)"> No tables are allowed inside
-                    lists. </sch:assert>
-                </sch:rule>
+                           <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#lists"
+                           test="not(ancestor::tei:list)"> No tables are allowed inside lists. </sch:assert>
+                        </sch:rule>
          </pattern>
          <ref name="att.global.attributes"/>
          <ref name="att.typed.attributes"/>
@@ -4079,18 +4164,17 @@ Elements 7.2.5. Speech Contents]</a:documentation>
                       xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                       context="tei:titleStmt">
-                  <sch:assert sqf:fix="type.add" test="tei:title[@type = 'main']">
-                    A title of type "main" is required in <sch:name/>.
-                  </sch:assert>
-                  <sqf:fix id="type.add">
-                    <sqf:description>
-                      <sqf:title>Add a @type='main' attribute to the first title.</sqf:title>
-                    </sqf:description>
-                    <sqf:add match="tei:title[not(@type='main')][1]"
+                           <sch:assert sqf:fix="type.add" test="tei:title[@type = 'main']"> A title of type
+                    "main" is required in <sch:name/>. </sch:assert>
+                           <sqf:fix id="type.add">
+                              <sqf:description>
+                                 <sqf:title>Add a @type='main' attribute to the first title.</sqf:title>
+                              </sqf:description>
+                              <sqf:add match="tei:title[not(@type='main')][1]"
                            node-type="attribute"
                            target="type">main</sqf:add>
-                  </sqf:fix>                  
-                </sch:rule>
+                           </sqf:fix>
+                        </sch:rule>
          </pattern>
          <ref name="att.global.attributes"/>
          <empty/>
@@ -4153,11 +4237,10 @@ Elements 7.2.5. Speech Contents]</a:documentation>
                       xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                       context="tei:back/tei:div[@type eq 'bibliography']//tei:idno[@type eq 'doi']">
-                  <sch:report see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#back"
-                           test="following-sibling::tei:ref">
-                    If a bibliographic entry has a formal DOI code, it should be placed at the very end of the bibliographic description.
-                  </sch:report>
-                </sch:rule>
+                           <sch:report see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#back"
+                           test="following-sibling::tei:ref"> If a bibliographic entry has a formal DOI code, it should be placed at the
+                    very end of the bibliographic description. </sch:report>
+                        </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   id="tei_jtei-idno-calendar-check-idno-constraint-rule-43">
@@ -4361,10 +4444,10 @@ Suggested values include: 1] ISBN; 2] ISSN; 3] DOI; 4] URI; 5] VIAF; 6] ESTC; 7]
                       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                       context="tei:rendition"
                       role="warning">
-                  <sch:assert test="key('idrefs', @xml:id)[. instance of attribute(rendition)]">
-                    Please remove all <sch:name/> definitions that aren't actually being used in the article.
-                  </sch:assert>
-                </sch:rule>
+                           <sch:assert test="key('idrefs', @xml:id)[. instance of attribute(rendition)]">
+                    Please remove all <sch:name/> definitions that aren't actually being used in the
+                    article. </sch:assert>
+                        </sch:rule>
          </pattern>
          <ref name="att.global.attributes"/>
          <optional>
@@ -4943,10 +5026,9 @@ Sample values include: 1] sponsor; 2] recommend; 3] discredit; 4] pledged</a:doc
                       xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                       context="tei:att">
-                  <sch:assert test="not(matches(., '^@'))">
-                    Attribute delimiters are not allowed for <sch:name/>: they are completed at processing time via XSLT.
-                  </sch:assert>
-                </sch:rule>
+                           <sch:assert test="not(matches(., '^@'))"> Attribute delimiters are not allowed for
+                    <sch:name/>: they are completed at processing time via XSLT. </sch:assert>
+                        </sch:rule>
          </pattern>
          <ref name="att.global.attributes"/>
          <empty/>
@@ -5046,11 +5128,10 @@ Sample values include: 1] TEI; 2] DBK (docbook); 3] XX (unknown); 4] Schematron;
                       xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                       context="tei:tag">
-                  <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#inline_technical"
-                           test="not(matches(., '^[&lt;!?-]|[&gt;/?\-]$'))">
-                    Tag delimiters such as angle brackets and tag-closing slashes are not allowed for <sch:name/>: they are completed at processing time via XSLT.
-                  </sch:assert>
-                </sch:rule>
+                           <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#inline_technical"
+                           test="not(matches(., '^[&lt;!?-]|[&gt;/?\-]$'))"> Tag delimiters such as angle brackets and tag-closing slashes are not allowed
+                    for <sch:name/>: they are completed at processing time via XSLT. </sch:assert>
+                        </sch:rule>
          </pattern>
          <ref name="att.global.attributes"/>
          <optional>
@@ -5101,11 +5182,10 @@ Sample values include: 1] TEI (text encoding initiative); 2] DBK (docbook); 3] X
                       xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                       context="tei:val">
-                  <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#inline_technical"
-                           test="not(matches(., concat('^', $quotes, '|', $quotes, '$')))">
-                    Attribute value delimiters are not allowed for <sch:name/>: they are completed at processing time via XSLT.
-                  </sch:assert>
-                </sch:rule>
+                           <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#inline_technical"
+                           test="not(matches(., concat('^', $quotes, '|', $quotes, '$')))"> Attribute value delimiters are not allowed for <sch:name/>: they are completed
+                    at processing time via XSLT. </sch:assert>
+                        </sch:rule>
          </pattern>
          <ref name="att.global.attributes"/>
          <empty/>
@@ -5229,10 +5309,11 @@ Sample values include: 1] TEI (text encoding initiative); 2] DBK (docbook); 3] X
                       xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                       context="tei:text[not(tei:body/tei:div[@type = ('editorialIntroduction')])]">
-                  <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#header"
-                           test="parent::tei:TEI/tei:teiHeader/tei:profileDesc/tei:textClass/tei:keywords">
-                    An article must have a keyword list in the header. This should be a list of &lt;term&gt; elements in TEI/teiHeader/profileDesc/textClass/keywords </sch:assert>
-                </sch:rule>
+                           <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#header"
+                           test="parent::tei:TEI/tei:teiHeader/tei:profileDesc/tei:textClass/tei:keywords"> An article must have a keyword list in the header. This should be a list of
+                    &lt;term&gt; elements in TEI/teiHeader/profileDesc/textClass/keywords
+                  </sch:assert>
+                        </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   id="tei_jtei-text-jtei.sch-article-abstract-constraint-rule-55">
@@ -5244,10 +5325,10 @@ Sample values include: 1] TEI (text encoding initiative); 2] DBK (docbook); 3] X
                       xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                       context="tei:text[not(tei:body/tei:div[@type = ('editorialIntroduction')])]">
-                  <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#front"
-                           test="tei:front/tei:div[@type='abstract']"> An article must have a
-                    front section with an abstract (div[@type='abstract']). </sch:assert>
-                </sch:rule>
+                           <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#front"
+                           test="tei:front/tei:div[@type='abstract']"> An article must have a front section with an abstract (div[@type='abstract']).
+                  </sch:assert>
+                        </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   id="tei_jtei-text-jtei.sch-article-back-constraint-rule-56">
@@ -5259,10 +5340,10 @@ Sample values include: 1] TEI (text encoding initiative); 2] DBK (docbook); 3] X
                       xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                       context="tei:text[not(tei:body/tei:div[@type = ('editorialIntroduction')])]">
-                  <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#back"
-                           test="tei:back/tei:div[@type='bibliography']/tei:listBibl"> An article
-                    must have a back section with a bibliography (div[@type='bibliography']). </sch:assert>
-                </sch:rule>
+                           <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#back"
+                           test="tei:back/tei:div[@type='bibliography']/tei:listBibl"> An article must have a back section with a bibliography
+                    (div[@type='bibliography']). </sch:assert>
+                        </sch:rule>
          </pattern>
          <ref name="att.global.attributes"/>
          <ref name="att.written.attributes"/>
@@ -5336,13 +5417,11 @@ Sample values include: 1] TEI (text encoding initiative); 2] DBK (docbook); 3] X
                       xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                       context="tei:body[child::tei:div[not(@type=('editorialIntroduction'))]]">
-                  <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#body"
-                           test="count(child::tei:div) gt 1">
-                    If <sch:name/> contains a div, and that div is not an editorial introduction, then there should be 
-                    more than one div. Rather than using only a single div, you may place the content directly
-                    in the <sch:name/> element.
-                  </sch:assert>
-                </sch:rule>
+                           <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#body"
+                           test="count(child::tei:div) gt 1"> If <sch:name/> contains a div, and that div is not an editorial introduction,
+                    then there should be more than one div. Rather than using only a single div, you
+                    may place the content directly in the <sch:name/> element. </sch:assert>
+                        </sch:rule>
          </pattern>
          <ref name="att.global.attributes"/>
          <empty/>
@@ -5417,10 +5496,10 @@ Sample values include: 1] TEI (text encoding initiative); 2] DBK (docbook); 3] X
                       xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                       context="tei:div[@type = $div.types.front]">
-                  <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#front"
-                           test="parent::tei:front">
-                    A text division of type <sch:value-of select="@type"/> may only occur inside &lt;front&gt;. </sch:assert>
-                </sch:rule>
+                           <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#front"
+                           test="parent::tei:front"> A text division of type <sch:value-of select="@type"/> may only occur inside
+                    &lt;front&gt;. </sch:assert>
+                        </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   id="tei_jtei-div-jtei.sch-divtypes-front2-constraint-rule-59">
@@ -5432,11 +5511,9 @@ Sample values include: 1] TEI (text encoding initiative); 2] DBK (docbook); 3] X
                       xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                       context="tei:front/tei:div">
-                  <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#front"
-                           test="@type = $div.types.front">
-                    Only text divisions of type <sch:value-of select="string-join(for $i in $div.types.front return concat(if (index-of($div.types.front, $i) = count($div.types.front)) then 'or ' else (), '&#34;', $i, '&#34;'), ', ')"/> may appear in the &lt;front&gt;.
-                  </sch:assert>
-                </sch:rule>
+                           <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#front"
+                           test="@type = $div.types.front"> Only text divisions of type <sch:value-of select="string-join(for $i in $div.types.front return concat(if (index-of($div.types.front, $i) = count($div.types.front)) then 'or ' else (), '&#34;', $i, '&#34;'), ', ')"/> may appear in the &lt;front&gt;. </sch:assert>
+                        </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   id="tei_jtei-div-jtei.sch-divtypes-back-constraint-rule-60">
@@ -5449,9 +5526,11 @@ Sample values include: 1] TEI (text encoding initiative); 2] DBK (docbook); 3] X
                       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                       context="tei:div[@type = ('bibliography', 'appendix')]"
                       see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#back">
-                  <sch:assert test="parent::tei:back">
-                    Bibliography (<sch:name/>[@type="bibliography"]) and appendices (<sch:name/>[@type="appendix"]) may only occur inside &lt;back&gt;. </sch:assert>
-                </sch:rule>
+                           <sch:assert test="parent::tei:back"> Bibliography
+                    (<sch:name/>[@type="bibliography"]) and appendices
+                    (<sch:name/>[@type="appendix"]) may only occur inside &lt;back&gt;.
+                  </sch:assert>
+                        </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   id="tei_jtei-div-jtei.sch-divtypes-body-constraint-rule-61">
@@ -5463,11 +5542,10 @@ Sample values include: 1] TEI (text encoding initiative); 2] DBK (docbook); 3] X
                       xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                       context="tei:div[@type = ('editorialIntroduction')]">
-                  <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#body"
-                           test="parent::tei:body">
-                    An editorial introduction (<sch:name/>[@type="editorialIntroduction"]) may only occur inside &lt;body&gt;.
-                  </sch:assert>
-                </sch:rule>
+                           <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#body"
+                           test="parent::tei:body"> An editorial introduction (<sch:name/>[@type="editorialIntroduction"]) may
+                    only occur inside &lt;body&gt;. </sch:assert>
+                        </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   id="tei_jtei-div-jtei.sch-div-head-constraint-rule-62">
@@ -5479,10 +5557,9 @@ Sample values include: 1] TEI (text encoding initiative); 2] DBK (docbook); 3] X
                       xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                       context="tei:body//tei:div[not(@type = ('editorialIntroduction'))]">
-                  <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#divs"
-                           test="tei:head">
-                    A <sch:name/> must contain a &lt;head&gt;. </sch:assert>
-                </sch:rule>
+                           <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#divs"
+                           test="tei:head"> A <sch:name/> must contain a &lt;head&gt;. </sch:assert>
+                        </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   id="tei_jtei-div-abstractModel-structure-div-in-l-or-lg-constraint-report-21">
@@ -5510,23 +5587,32 @@ Sample values include: 1] TEI (text encoding initiative); 2] DBK (docbook); 3] X
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">characterizes the element in some sense, using any convenient classification scheme or typology.</a:documentation>
                <choice>
                   <value>abstract</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(Abstract for the article, appearing inside &lt;front&gt;.) Every article must include an abstract, consisting of one or two paragraphs. This appears in the &lt;front&gt; element and may not appear anywhere else.</a:documentation>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(Abstract for the article,
+                      appearing inside &lt;front&gt;.) Every article must include an abstract, consisting of one or two paragraphs. This appears in the &lt;front&gt; element and may not appear anywhere else.</a:documentation>
                   <value>acknowledgements</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(Acknowledgements for the article, appearing inside &lt;front&gt;.) If an article includes a section for acknowledgements (for funders, supporters, etc.), it should be as brief as possible, and must appear in the &lt;front&gt; element and nowhere else.</a:documentation>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(Acknowledgements for the article,
+                      appearing inside &lt;front&gt;.) If an article includes a section for acknowledgements (for funders, supporters, etc.), it should be as brief as possible, and must appear in the &lt;front&gt; element and nowhere else.</a:documentation>
                   <value>authorNotes</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(Author's notes for the article, appearing inside &lt;front&gt;.) If an article includes a section for author notes, it should be as brief as possible, and must appear in the &lt;front&gt; element and nowhere else.)</a:documentation>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(Author's notes for the article,
+                      appearing inside &lt;front&gt;.) If an article includes a section for author notes, it should be as brief as possible, and must appear in the &lt;front&gt; element and nowhere else.)</a:documentation>
                   <value>dedication</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(A dedication for the article, appearing inside &lt;front&gt;.) If an article includes a section for a dedication, it should be as brief as possible, and must appear in the &lt;front&gt; element and nowhere else.)</a:documentation>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(A dedication for the article,
+                      appearing inside &lt;front&gt;.) If an article includes a section for a dedication, it should be as brief as possible, and must appear in the &lt;front&gt; element and nowhere else.)</a:documentation>
                   <value>appendix</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(Appendix to the article, appearing inside &lt;back&gt;.) Any appendices must appear in the &lt;back&gt; of the article, following the bibliography.</a:documentation>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(Appendix to the article, appearing
+                      inside &lt;back&gt;.) Any appendices must appear in the &lt;back&gt; of the article, following the bibliography.</a:documentation>
                   <value>bibliography</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(Bibliography, appearing inside &lt;back&gt;.) Every article must include a bibliography, which appears as the first component of the &lt;back&gt; element, followed by any appendices.</a:documentation>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(Bibliography, appearing inside
+                      &lt;back&gt;.) Every article must include a bibliography, which appears as the first component of the &lt;back&gt; element, followed by any appendices.</a:documentation>
                   <value>editorialIntroduction</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(Editorial introduction, appearing inside &lt;body&gt;.) [Reserved for editors only: An editorial introduction to an issue must contain a &lt;div type="editorialIntroduction"&gt;, which must appear in the &lt;body&gt; element and may not appear anywhere else.]</a:documentation>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(Editorial introduction, appearing
+                      inside &lt;body&gt;.) [Reserved for editors only: An editorial introduction to an issue must contain a &lt;div type="editorialIntroduction"&gt;, which must appear in the &lt;body&gt; element and may not appear anywhere else.]</a:documentation>
                   <value>editorNotes</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(Editor notes for the article, appearing inside &lt;front&gt;.) [Reserved for editors only: if an article includes a section for editor notes, it should be as brief as possible, and must appear in the &lt;front&gt; element and nowhere else.]</a:documentation>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(Editor notes for the article,
+                      appearing inside &lt;front&gt;.) [Reserved for editors only: if an article includes a section for editor notes, it should be as brief as possible, and must appear in the &lt;front&gt; element and nowhere else.]</a:documentation>
                   <value>corrections</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(Statement of corrections to the article, appearing inside &lt;front&gt;.) [Reserved for editors only: if an article needs corrections, those must be stated in this section, which must appear in the &lt;front&gt; element and nowhere else.]</a:documentation>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(Statement of corrections to the
+                      article, appearing inside &lt;front&gt;.) [Reserved for editors only: if an article needs corrections, those must be stated in this section, which must appear in the &lt;front&gt; element and nowhere else.]</a:documentation>
                </choice>
             </attribute>
          </optional>
@@ -5593,11 +5679,10 @@ Sample values include: 1] TEI (text encoding initiative); 2] DBK (docbook); 3] X
                       xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                       context="tei:front">
-                  <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#front"
+                           <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#front"
                            test="tei:div[@type='abstract']">
-                    <sch:name/> must have an abstract (div[@type='abstract']).
-                  </sch:assert>
-                </sch:rule>
+                              <sch:name/> must have an abstract (div[@type='abstract']). </sch:assert>
+                        </sch:rule>
          </pattern>
          <ref name="att.global.attributes"/>
          <empty/>
@@ -5662,11 +5747,11 @@ Sample values include: 1] TEI (text encoding initiative); 2] DBK (docbook); 3] X
                       xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                       context="tei:back">
-                  <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#back"
+                           <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#back"
                            test="tei:div[@type='bibliography']/tei:listBibl">
-                    <sch:name/> must have a bibliography (div[@type="bibliography"]), which must be
+                              <sch:name/> must have a bibliography (div[@type="bibliography"]), which must be
                     organized inside a &lt;listBibl&gt; element. </sch:assert>
-                </sch:rule>
+                        </sch:rule>
          </pattern>
          <ref name="att.global.attributes"/>
          <empty/>
@@ -5687,11 +5772,10 @@ Sample values include: 1] TEI (text encoding initiative); 2] DBK (docbook); 3] X
                       xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                       context="tei:supplied">
-                  <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#inline_rhetorical"
-                           test="not(matches(., '^\[|\]$'))">
-                    Please remove square brackets from <sch:name/>: they are completed at processing time via XSLT.
-                  </sch:assert>
-                </sch:rule>
+                           <sch:assert see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#inline_rhetorical"
+                           test="not(matches(., '^\[|\]$'))"> Please remove square brackets from <sch:name/>: they are completed at
+                    processing time via XSLT. </sch:assert>
+                        </sch:rule>
          </pattern>
          <ref name="att.global.attributes"/>
          <ref name="att.editLike.attributes"/>
@@ -5762,289 +5846,277 @@ Sample values include: 1] TEI (text encoding initiative); 2] DBK (docbook); 3] X
                 xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                 xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-                <xsl:key match="@target[starts-with(normalize-space(.), '#')]|@rendition[starts-with(normalize-space(.), '#')]"
+                        <xsl:key match="@target[starts-with(normalize-space(.), '#')]|@rendition[starts-with(normalize-space(.), '#')]"
                name="idrefs"
                use="for $i in tokenize(., '\s+') return substring-after($i, '#')"/>
-                <sch:let name="double.quotes" value="'[&#34;“”]'"/>
-                <sch:let name="apos.typographic" value="'[‘’]'"/>
-                <sch:let name="apos.straight" value="''''"/>
-                <sch:let name="quotes" value="concat('[', $apos.straight, '&#34;]')"/>
-                <sch:let name="div.types.front"
+                        <sch:let name="double.quotes" value="'[&#34;“”]'"/>
+                        <sch:let name="apos.typographic" value="'[‘’]'"/>
+                        <sch:let name="apos.straight" value="''''"/>
+                        <sch:let name="quotes" value="concat('[', $apos.straight, '&#34;]')"/>
+                        <sch:let name="div.types.front"
                value="('abstract', 'acknowledgements', 'authorNotes', 'editorNotes', 'corrections', 'dedication')"/>
-                
-                <sch:let name="tei.version.url"
+                        
+                        <sch:let name="tei.version.url"
                value="'https://jenkins.tei-c.org/job/TEIP5/lastStableBuild/artifact/P5/release/doc/tei-p5-doc/VERSION'"/>
-                <sch:let name="tei.version"
+                        <sch:let name="tei.version"
                value="if (unparsed-text-available($tei.version.url)) then normalize-space(unparsed-text($tei.version.url)) else ()"/>
-              </sch:pattern>
+                     </sch:pattern>
    <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
             id="tei_jtei-jtei.sch-straightApos-constraint-rule-66">
       <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                 context="text()[not(ancestor::tei:eg|ancestor::eg:egXML|ancestor::tei:code|ancestor::tei:tag|ancestor::tei:mentioned)]"
                 role="warning">
-                <sch:report xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
+                        <sch:report xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                      see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#faq"
                      sqf:fix="apostrophe.replace"
                      test="matches(., $apos.straight)">
-                  "Straight apostrophe" characters are not permitted. Please use the
-                  Right Single Quotation Mark (U+2019 or ’) character instead. On the other hand, if the straight 
-                  apostrophe characters function as quotation marks, please replace them with appropriate mark-up 
-                  that will ensure the appropriate quotation marks will be generated consistently.
-                </sch:report>
-                <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
+                  "Straight apostrophe" characters are not permitted. Please use the Right Single
+                  Quotation Mark (U+2019 or ’) character instead. On the other hand, if the straight
+                  apostrophe characters function as quotation marks, please replace them with
+                  appropriate mark-up that will ensure the appropriate quotation marks will be
+                  generated consistently. </sch:report>
+                        <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                   id="apostrophe.replace">
-                  <sqf:description>
-                    <sqf:title>Replace straight apostrophe with ’.</sqf:title>
-                  </sqf:description>
-                  <sqf:stringReplace regex="{$apos.straight}">’</sqf:stringReplace>
-                </sqf:fix>
-              </sch:rule>
+                           <sqf:description>
+                              <sqf:title>Replace straight apostrophe with ’.</sqf:title>
+                           </sqf:description>
+                           <sqf:stringReplace regex="{$apos.straight}">’</sqf:stringReplace>
+                        </sqf:fix>
+                     </sch:rule>
    </pattern>
    <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
             id="tei_jtei-jtei.sch-LRquotes-constraint-rule-67">
       <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                 context="text()[not(ancestor::tei:eg|ancestor::eg:egXML|ancestor::tei:code|ancestor::tei:tag)][matches(., $apos.typographic)]"
                 role="warning">
-                <sch:report see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#faq"
+                        <sch:report see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#faq"
                      test="matches(., '\W[’]\D') or matches(., '[‘](\W|$)') or matches(., '\w[‘]\w')">
-                  Left and Right Single Quotation Marks should be used in the right place. Please check their placement in this text node.
-
-                </sch:report>
-              </sch:rule>
+                  Left and Right Single Quotation Marks should be used in the right place. Please
+                  check their placement in this text node. </sch:report>
+                     </sch:rule>
    </pattern>
    <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
             id="tei_jtei-jtei.sch-quotationMarks-constraint-rule-68">
       <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                 context="text()[not(ancestor::tei:eg|ancestor::eg:egXML|ancestor::tei:code|ancestor::tei:tag)]">
-                <sch:report see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#faq"
+                        <sch:report see="https://tei-c.org/release/doc/tei-p5-exemplars/html/tei_jtei.doc.html#faq"
                      test="matches(., $double.quotes) or matches(., '(^|\W)[‘][^‘’]+[’](\W|$)')">
-                  Quotation marks are not permitted in plain text. Please use appropriate mark-up that will ensure the appropriate quotation marks will be generated consistently.
+                  Quotation marks are not permitted in plain text. Please use appropriate mark-up
+                  that will ensure the appropriate quotation marks will be generated consistently.
                 </sch:report>
-              </sch:rule>
+                     </sch:rule>
    </pattern>
    <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
             id="tei_jtei-jtei.sch-doubleHyphens-constraint-rule-69">
       <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                 context="text()[not(ancestor::tei:eg|ancestor::eg:egXML|ancestor::tei:code|ancestor::tei:tag|ancestor::tei:ref)]">
-                <sch:assert xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
+                        <sch:assert xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                      sqf:fix="dash.replace"
-                     test="not(contains(., '--'))">
-                  Double hyphens should not be used for dashes. Please use 
-                  the EM Dash (U+2014 or —) instead.
-                </sch:assert>
-                <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
+                     test="not(contains(., '--'))"> Double hyphens
+                  should not be used for dashes. Please use the EM Dash (U+2014 or —) instead. </sch:assert>
+                        <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                   id="dash.replace">
-                  <sqf:description>
-                    <sqf:title>Replace double hyphens with —.</sqf:title>
-                  </sqf:description>
-                  <sqf:stringReplace regex="--">—</sqf:stringReplace>
-                </sqf:fix>
-              </sch:rule>
+                           <sqf:description>
+                              <sqf:title>Replace double hyphens with —.</sqf:title>
+                           </sqf:description>
+                           <sqf:stringReplace regex="--">—</sqf:stringReplace>
+                        </sqf:fix>
+                     </sch:rule>
    </pattern>
    <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
             id="tei_jtei-jtei.sch-rangeHyphen-constraint-rule-70">
       <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                 context="text()[not(ancestor::tei:eg|ancestor::eg:egXML|ancestor::tei:code|ancestor::tei:tag|ancestor::tei:idno|ancestor::tei:date)]">
-                <sch:assert xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
+                        <sch:assert xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                      sqf:fix="hyphen.replace"
-                     test="not(matches(., '(^|[\W-[-]])\d+-\d+([\W-[-]]|$)'))">
-                  Numeric ranges should not be indicated with a hyphen. Please use 
-                  the EN Dash (U+2013 or –) character instead.
-                </sch:assert>
-                <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
+                     test="not(matches(., '(^|[\W-[-]])\d+-\d+([\W-[-]]|$)'))"> Numeric ranges should not be indicated with a hyphen.
+                  Please use the EN Dash (U+2013 or –) character instead. </sch:assert>
+                        <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                   id="hyphen.replace">
-                  <sqf:description>
-                    <sqf:title>Replace hyphen with –.</sqf:title>
-                  </sqf:description>
-                  <sqf:stringReplace regex="((^|[\W-[-]])\d+)-(\d+([\W-[-]]|$))">$1–$3</sqf:stringReplace>
-                </sqf:fix>
-              </sch:rule>
+                           <sqf:description>
+                              <sqf:title>Replace hyphen with –.</sqf:title>
+                           </sqf:description>
+                           <sqf:stringReplace regex="((^|[\W-[-]])\d+)-(\d+([\W-[-]]|$))">$1–$3</sqf:stringReplace>
+                        </sqf:fix>
+                     </sch:rule>
    </pattern>
    <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
             id="tei_jtei-jtei.sch-ieEg-constraint-rule-71">
       <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                 context="text()[not(ancestor::tei:eg|ancestor::eg:egXML|ancestor::tei:code|ancestor::tei:tag)]"
                 role="warning">
-                <sch:report xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
+                        <sch:report xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                      sqf:fix="comma.add"
-                     test="matches(., '(i\.e\.|e\.g\.)[^,]', 'i')">
-                  You should put a comma after "i.e." and "e.g.". 
-                </sch:report>
-                <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
+                     test="matches(., '(i\.e\.|e\.g\.)[^,]', 'i')"> You
+                  should put a comma after "i.e." and "e.g.". </sch:report>
+                        <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                   id="comma.add">
-                  <sqf:description>
-                    <sqf:title>Add a comma.</sqf:title>
-                  </sqf:description>
-                  <sqf:stringReplace regex="([iI]\.[eE]\.|[eE]\.[gG]\.)([^,])">$1,$2</sqf:stringReplace>
-                </sqf:fix>
-              </sch:rule>
+                           <sqf:description>
+                              <sqf:title>Add a comma.</sqf:title>
+                           </sqf:description>
+                           <sqf:stringReplace regex="([iI]\.[eE]\.|[eE]\.[gG]\.)([^,])">$1,$2</sqf:stringReplace>
+                        </sqf:fix>
+                     </sch:rule>
    </pattern>
    <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
             id="tei_jtei-jtei.sch-nonbreakingspace-constraint-rule-72">
       <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                 context="text()[not(ancestor::tei:eg|ancestor::eg:egXML|ancestor::tei:code|ancestor::tei:tag)]"
                 role="warning">
-                <sch:report xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
+                        <sch:report xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                      sqf:fix="nonbreakingspace.remove"
-                     test="matches(., ' ')">
-                  This text contains a non-breaking space character. Please consider changing this to a normal space character.
-                </sch:report>
-                <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
+                     test="matches(., ' ')"> This text
+                  contains a non-breaking space character. Please consider changing this to a normal
+                  space character. </sch:report>
+                        <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                   id="nonbreakingspace.remove">
-                  <sqf:description>
-                    <sqf:title>Normalize non-breaking space to normal space character.</sqf:title>
-                  </sqf:description>
-                  
-                  <sqf:replace match="." select="replace(., ' ', ' ')"/>
-                </sqf:fix>
-              </sch:rule>
+                           <sqf:description>
+                              <sqf:title>Normalize non-breaking space to normal space character.</sqf:title>
+                           </sqf:description>
+                           
+                           <sqf:replace match="." select="replace(., ' ', ' ')"/>
+                        </sqf:fix>
+                     </sch:rule>
    </pattern>
    <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
             id="tei_jtei-jtei.sch-localLinkTarget-constraint-rule-73">
       <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                 context="@*[self::attribute(corresp)|self::attribute(target)|self::attribute(from)|self::attribute(to)|self::attribute(ref)|self::attribute(rendition)|self::attribute(resp)|self::attribute(source)][not(ancestor::eg:egXML)][some $i in tokenize(., '\s+') satisfies starts-with($i, '#')]">
-                <sch:let name="orphan.pointers"
+                        <sch:let name="orphan.pointers"
                   value="for $p in tokenize(., '\s+')[starts-with(., '#')] return if (not(id(substring-after($p, '#')))) then $p else ()"/>
-                <sch:report test="exists($orphan.pointers)">
-                  There's no local target for <sch:value-of select="if (count($orphan.pointers) &gt; 1) then 'these pointers' else 'this pointer'"/>: <sch:value-of select="string-join($orphan.pointers, ', ')"/>. Please make sure you're referring to an existing @xml:id value.
-                </sch:report>
-              </sch:rule>
+                        <sch:report test="exists($orphan.pointers)"> There's no local target for
+                    <sch:value-of select="if (count($orphan.pointers) &gt; 1) then 'these pointers' else 'this pointer'"/>: <sch:value-of select="string-join($orphan.pointers, ', ')"/>. Please make sure
+                  you're referring to an existing @xml:id value. </sch:report>
+                     </sch:rule>
    </pattern>
    <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
             id="tei_jtei-jtei.sch-renditionTarget-constraint-rule-74">
       <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron" context="@rendition">
-                <sch:let name="orphan.pointers"
+                        <sch:let name="orphan.pointers"
                   value="for $p in tokenize(., '\s+')[starts-with(., '#')] return for $id in id(substring-after($p, '#'))[not(self::tei:rendition)] return $p"/>
-                <sch:report test="exists($orphan.pointers)">
-                  <sch:value-of select="if (count($orphan.pointers) &gt; 1) then 'These pointers don''t' else 'This pointer doesn''t'"/> point to a &lt;rendition&gt; target: <sch:value-of select="string-join($orphan.pointers, ', ')"/>.
-                </sch:report>
-              </sch:rule>
+                        <sch:report test="exists($orphan.pointers)">
+                           <sch:value-of select="if (count($orphan.pointers) &gt; 1) then 'These pointers don''t' else 'This pointer doesn''t'"/> point to a &lt;rendition&gt; target: <sch:value-of select="string-join($orphan.pointers, ', ')"/>. </sch:report>
+                     </sch:rule>
    </pattern>
    <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
             id="tei_jtei-jtei.sch-quoteDelim-constraint-rule-75">
       <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                 context="tei:title[@level eq 'a']|tei:mentioned|tei:soCalled|tei:quote|tei:q">
-                <sch:assert xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
+                        <sch:assert xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                      sqf:fix="quotation.remove"
-                     test="not(matches(., concat('^', $double.quotes, '|', $double.quotes, '$')))">
-                  Quotation mark delimiters are not allowed for <sch:name/>: they are completed at processing time via XSLT.
-                </sch:assert>
-                <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
+                     test="not(matches(., concat('^', $double.quotes, '|', $double.quotes, '$')))"> Quotation mark delimiters are not allowed for
+                  <sch:name/>: they are completed at processing time via XSLT. </sch:assert>
+                        <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                   id="quotation.remove">
-                  <sqf:description>
-                    <sqf:title>Remove quotation marks.</sqf:title>
-                  </sqf:description>
-                  <sqf:replace match="text()"
+                           <sqf:description>
+                              <sqf:title>Remove quotation marks.</sqf:title>
+                           </sqf:description>
+                           <sqf:replace match="text()"
                          select="replace(., concat('^', $double.quotes, '|', $double.quotes, '$'), '')"/>
-                </sqf:fix>
-              </sch:rule>
+                        </sqf:fix>
+                     </sch:rule>
    </pattern>
    <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
             id="tei_jtei-jtei.sch-crossref-id-constraint-rule-76">
       <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                 context="tei:body//tei:div[not(@type='editorialIntroduction')]|tei:figure|tei:table"
                 role="warning">
-                <sch:assert test="@xml:id">
-                  You're strongly advised to add an @xml:id attribute to <sch:name/> to ease formal cross-referencing 
-                  with (ptr|ref)[@type='crossref']
+                        <sch:assert test="@xml:id"> You're strongly advised to add an @xml:id attribute to
+                  <sch:name/> to ease formal cross-referencing with (ptr|ref)[@type='crossref']
                 </sch:assert>
-              </sch:rule>
+                     </sch:rule>
    </pattern>
    <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
             id="tei_jtei-jtei.sch-formalCrossref-constraint-rule-77">
       <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                 context="text()[not(ancestor::tei:eg|ancestor::eg:egXML|ancestor::tei:code|ancestor::tei:tag|ancestor::tei:ref[not(@type='crossref')])]"
                 role="warning">
-                <sch:assert test="not(matches(., '(table|figure|example|section) \d+([.,]\d+)* ((above)|(below))', 'i'))">
-                  Please replace literal references to tables, figures, examples, and sections with a formal crosslink:
-                  (ptr|ref)[@type="crossref"]
-                </sch:assert>
-              </sch:rule>
+                        <sch:assert test="not(matches(., '(table|figure|example|section) \d+([.,]\d+)* ((above)|(below))', 'i'))"> Please replace literal references to tables, figures, examples, and sections
+                  with a formal crosslink: (ptr|ref)[@type="crossref"] </sch:assert>
+                     </sch:rule>
    </pattern>
    <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
             id="tei_jtei-jtei.sch-crossrefTargetType-constraint-rule-78">
       <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                 context="tei:ptr[@type='crossref']|tei:ref[@type='crossref']">
-                <sch:let name="orphan.pointers"
+                        <sch:let name="orphan.pointers"
                   value="for $p in tokenize(@target, '\s+')[starts-with(., '#')] return for $id in id(substring-after($p, '#'))[not(self::tei:div or self::tei:figure or self::tei:table or self::tei:note)] return $p"/>
-                <sch:report test="exists($orphan.pointers)">
-                  Cross-links (<sch:name/>[@type="crossref"]) should be targeted at &lt;div&gt;, &lt;figure&gt;, &lt;table&gt;, or &lt;note&gt;
-                  elements. The target of <sch:value-of select="if (count($orphan.pointers) &gt; 1) then 'these pointers' else 'this pointer'"/> doesn't satisfy this condition: <sch:value-of select="string-join($orphan.pointers, ', ')"/>.
-                </sch:report>
-              </sch:rule>
+                        <sch:report test="exists($orphan.pointers)"> Cross-links
+                  (<sch:name/>[@type="crossref"]) should be targeted at &lt;div&gt;, &lt;figure&gt;,
+                  &lt;table&gt;, or &lt;note&gt; elements. The target of <sch:value-of select="if (count($orphan.pointers) &gt; 1) then 'these pointers' else 'this pointer'"/> doesn't satisfy this condition: <sch:value-of select="string-join($orphan.pointers, ', ')"/>. </sch:report>
+                     </sch:rule>
    </pattern>
    <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
             id="tei_jtei-jtei.sch-crossrefType-constraint-rule-79">
       <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                 context="tei:ptr[not(@type='crossref')]|tei:ref[not(@type='crossref')]">
-                <sch:report xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
+                        <sch:report xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                      sqf:fix="crossreftype.add"
-                     test="id(substring-after(@target, '#'))/(self::tei:div|self::tei:figure|self::tei:table)">
-                  Please type internal cross-references as 'crossref' (<sch:name/>[@type="crossref"]).
-                </sch:report>
-                <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
+                     test="id(substring-after(@target, '#'))/(self::tei:div|self::tei:figure|self::tei:table)"> Please type internal cross-references as 'crossref'
+                  (<sch:name/>[@type="crossref"]). </sch:report>
+                        <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                   id="crossreftype.add">
-                  <sqf:description>
-                    <sqf:title>Add @type='crossref'.</sqf:title>
-                  </sqf:description>
-                  <sqf:add match="."
+                           <sqf:description>
+                              <sqf:title>Add @type='crossref'.</sqf:title>
+                           </sqf:description>
+                           <sqf:add match="."
                      node-type="attribute"
                      select="'crossref'"
                      target="type"/>
-                </sqf:fix>
-              </sch:rule>
+                        </sqf:fix>
+                     </sch:rule>
    </pattern>
    <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
             id="tei_jtei-jtei.sch-centuries-constraint-rule-80">
       <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                 context="text()[not(ancestor::tei:quote or ancestor::tei:title)]">
-                <sch:assert test="not(matches(., '\d\d?((th)|(st)|(rd)|(nd))[- ]centur((y)|(ies))', 'i'))">
-                  Centuries such as "the nineteenth century" should be spelled out, not written with digits.
-                </sch:assert>
-              </sch:rule>
+                        <sch:assert test="not(matches(., '\d\d?((th)|(st)|(rd)|(nd))[- ]centur((y)|(ies))', 'i'))">
+                  Centuries such as "the nineteenth century" should be spelled out, not written with
+                  digits. </sch:assert>
+                     </sch:rule>
    </pattern>
    <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
             id="tei_jtei-jtei.sch-teiVersion-constraint-rule-81">
       <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                 context="@target[matches(., '^https?://(www\.)?tei-c\.org/release/doc/tei-p5-doc')]">
-                <sch:assert xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
+                        <sch:assert xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                      sqf:fix="teiURL.fix"
-                     test="false()">
-                  Please refer to the exact version of the TEI Guidelines<sch:value-of select="if (normalize-space($tei.version)) then concat(' (currently at version ', $tei.version, ')') else ()"/>, and link to the version that can be found in the Vault section. For an overview of all archived versions, see https://www.tei-c.org/Vault/P5/.
-                  
-                  If you're referring to the English version, the correct URL will likely take the form of https://www.tei-c.org/Vault/P5/{$version-number}/doc/tei-p5-doc/en/html/.
-                </sch:assert>
-                <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
+                     test="false()"> Please refer to the exact version
+                  of the TEI Guidelines<sch:value-of select="if (normalize-space($tei.version)) then concat(' (currently at version ', $tei.version, ')') else ()"/>, and link to the version that can be found in the Vault section. For an
+                  overview of all archived versions, see https://www.tei-c.org/Vault/P5/. If you're
+                  referring to the English version, the correct URL will likely take the form of
+                  https://www.tei-c.org/Vault/P5/{$version-number}/doc/tei-p5-doc/en/html/. </sch:assert>
+                        <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                   id="teiURL.fix"
                   use-when="normalize-space($tei.version)">
-                  <sqf:description>
-                    <sqf:title>Change TEI URL to a versioned URL in the Vault (currently at version <sch:value-of select="$tei.version"/>).</sqf:title>
-                  </sqf:description>
-                  <sqf:replace node-type="attribute"
+                           <sqf:description>
+                              <sqf:title>Change TEI URL to a versioned URL in the Vault (currently at version
+                        <sch:value-of select="$tei.version"/>).</sqf:title>
+                           </sqf:description>
+                           <sqf:replace node-type="attribute"
                          select="replace(., '^https?://(www\.)?tei-c\.org/release/', concat('https://www.tei-c.org/Vault/P5/', $tei.version, '/'))"
                          target="target"/>
-                </sqf:fix>
-              </sch:rule>
+                        </sqf:fix>
+                     </sch:rule>
    </pattern>
    <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
             id="tei_jtei-jtei.jtei-url-constraint-rule-82">
       <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                 context="@target[matches(., '^https?://(www\.)?jtei\.revues\.org/?')]"
                 role="warning">
-                <sch:let name="URL.fixed"
+                        <sch:let name="URL.fixed"
                   value="replace(., '^https?://(www\.)?jtei\.revues\.org/?', 'https://journals.openedition.org/jtei/')"/>
-                <sch:assert xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
+                        <sch:assert xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                      sqf:fix="jteiURL.fix"
-                     test="false()">
-                  Please refer to the correct jTEI URL: <sch:value-of select="$URL.fixed"/>.
-                </sch:assert>
-                <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
+                     test="false()"> Please refer to the correct jTEI
+                  URL: <sch:value-of select="$URL.fixed"/>. </sch:assert>
+                        <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process"
                   id="jteiURL.fix">
-                  <sqf:description>
-                    <sqf:title>Change jTEI URL to <sch:value-of select="$URL.fixed"/>.</sqf:title>
-                  </sqf:description>
-                  <sqf:replace node-type="attribute" select="$URL.fixed" target="target"/>
-                </sqf:fix>
-              </sch:rule>
+                           <sqf:description>
+                              <sqf:title>Change jTEI URL to <sch:value-of select="$URL.fixed"/>.</sqf:title>
+                           </sqf:description>
+                           <sqf:replace node-type="attribute" select="$URL.fixed" target="target"/>
+                        </sqf:fix>
+                     </sch:rule>
    </pattern>
 </grammar>
