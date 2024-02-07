@@ -3767,7 +3767,7 @@
                </constraintSpec>
                <constraintSpec ident="jtei.sch-localLinkTarget" scheme="schematron">
                   <constraint>
-                     <sch:rule context="@*[self::attribute(corresp)|self::attribute(target)|self::attribute(from)|self::attribute(to)|self::attribute(ref)|self::attribute(rendition)|self::attribute(resp)|self::attribute(source)][not(ancestor::eg:egXML)][some $i in tokenize(., '\s+') satisfies starts-with($i, '#')]">
+                     <sch:rule context="@*[self::attribute(corresp)|self::attribute(target)|self::attribute(from)|self::attribute(to)|self::attribute(ref)|self::attribute(rendition)|self::attribute(resp)|self::attribute(source)][not(ancestor::eg:egXML) and not(../@type='software')][some $i in tokenize(., '\s+') satisfies starts-with($i, '#')]">
                         <sch:let name="orphan.pointers"
                                   value="for $p in tokenize(., '\s+')[starts-with(., '#')] return if (not(id(substring-after($p, '#')))) then $p else ()"/>
                         <sch:report test="exists($orphan.pointers)"> There's no local target for

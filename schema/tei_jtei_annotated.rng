@@ -5,7 +5,7 @@
          xmlns="http://relaxng.org/ns/structure/1.0"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2024-02-06T12:47:23Z. 2014. 
+Schema generated from ODD source 2024-02-07T16:17:58Z. 2014. 
 TEI Edition: P5 Version 4.7.0. Last updated on 16th November 2023, revision e5dd73ed0 
 TEI Edition Location: https://www.tei-c.org/Vault/P5/4.7.0/ 
   
@@ -5989,7 +5989,7 @@ Sample values include: 1] TEI (text encoding initiative); 2] DBK (docbook); 3] X
    <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
             id="tei_jtei-jtei.sch-localLinkTarget-constraint-rule-73">
       <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
-                context="@*[self::attribute(corresp)|self::attribute(target)|self::attribute(from)|self::attribute(to)|self::attribute(ref)|self::attribute(rendition)|self::attribute(resp)|self::attribute(source)][not(ancestor::eg:egXML)][some $i in tokenize(., '\s+') satisfies starts-with($i, '#')]">
+                context="@*[self::attribute(corresp)|self::attribute(target)|self::attribute(from)|self::attribute(to)|self::attribute(ref)|self::attribute(rendition)|self::attribute(resp)|self::attribute(source)][not(ancestor::eg:egXML) and not(../@type='software')][some $i in tokenize(., '\s+') satisfies starts-with($i, '#')]">
                         <sch:let name="orphan.pointers"
                   value="for $p in tokenize(., '\s+')[starts-with(., '#')] return if (not(id(substring-after($p, '#')))) then $p else ()"/>
                         <sch:report test="exists($orphan.pointers)"> There's no local target for
