@@ -13,38 +13,34 @@
     
     
     <!-- Keys -->    
-    <xsl:key name="rs-by-key" match="*:rs" use="@key"/>
+    <xsl:key name="rs-by-ref" match="*:rs" use="@ref"/>
+    <xsl:key name="software-target-by-id" match="*:ptr/@target" use="../@xml:id"/>
+    <xsl:key name="software-name-by-id" match="*:name" use="../@xml:id"/>
     
     <!-- Global variables -->
     
+    <!-- software list -->
+    <xsl:variable name="software-list" select="doc('../../taxonomy/software-list.xml')"/>
+    
     <!-- directories with TEI files -->
-    <xsl:variable name="collection-dirs" as="xs:string+" select="(        
-        '../../data/deu/ADHO-DH/2016/tei',
-        '../../data/deu/ADHO-DH/2019/tei',
-        '../../data/eng/ADHO-DH/2015/tei',
-        '../../data/eng/ADHO-DH/2016/tei',
-        '../../data/eng/ADHO-DH/2017/tei',
-        '../../data/eng/ADHO-DH/2018/tei',
-        '../../data/eng/ADHO-DH/2019/tei',
-        '../../data/eng/ADHO-DH/2020/tei',
-        '../../data/fra/ADHO-DH/2016/tei',
-        '../../data/fra/ADHO-DH/2017/tei',
-        '../../data/fra/ADHO-DH/2018/tei',
-        '../../data/fra/ADHO-DH/2019/tei',
-        '../../data/fra/ADHO-DH/2020/tei',
-        '../../data/ita/ADHO-DH/2015/tei',
-        '../../data/ita/ADHO-DH/2016/tei',
-        '../../data/ita/ADHO-DH/2017/tei',
-        '../../data/ita/ADHO-DH/2018/tei',
-        '../../data/por/ADHO-DH/2018/tei',
-        '../../data/spa/ADHO-DH/2016/tei',
-        '../../data/spa/ADHO-DH/2017/tei',
-        '../../data/spa/ADHO-DH/2018/tei',
-        '../../data/spa/ADHO-DH/2020/tei'
+    <xsl:variable name="collection-dirs" as="xs:string+" select="(
+        '../../data/JTEI/10_2016-19',
+        '../../data/JTEI/13_2020-22',
+        '../../data/JTEI/7_2014',
+        '../../data/JTEI/rolling_2019',
+        '../../data/JTEI/rolling_2023',
+        '../../data/JTEI/11_2019-20',
+        '../../data/JTEI/12_2019-20',
+        '../../data/JTEI/14_2021-23',
+        '../../data/JTEI/8_2014-15',
+        '../../data/JTEI/rolling_2021',
+        '../../data/JTEI/16_2023_spa',
+        '../../data/JTEI/9_2016-17',
+        '../../data/JTEI/rolling_2022'
         )"/>
     
     <!-- categories for CSV header (later extended by boolean columns) -->
-    <xsl:variable name="categories" select="('SoftwareID','Dateipfad','Name.Only','Bib.Ref','Bib.Soft','Agent','URL','PID','Ver')" as="xs:string+"/>
+    <xsl:variable name="categories" select="('SoftwareID','Dateipfad','soft.name','soft.bib.ref','soft.bib','soft.agent','soft.url','soft.pid','soft.ver')" as="xs:string+"/>
     
     <!-- character to be used as CSV separator -->
     <xsl:variable name="csv-separator" select="','" as="xs:string"/>
@@ -72,19 +68,23 @@
             <xsl:for-each select="collection(concat(., '?select=*.xml;recurse=yes;on-error=warning'))">
                 <xsl:variable name="doc" select="/"/>
                 
-                <xsl:for-each select="distinct-values($doc//*:rs/@key)">
+                <xsl:for-each select="distinct-values($doc//*:rs[some $cit in $categories[position() &gt; 2] satisfies contains(@type, $cit)]/@ref)">
                     <xsl:sort select="." order="ascending"/>
-                    <xsl:variable name="current-key" select="." as="xs:string"/>
-                    <xsl:variable name="rs-with-this-key" select="key('rs-by-key', $current-key, $doc)"/>
-                    
+                    <xsl:variable name="current-ref" select="substring-after(., '#')" as="xs:string"/>
+                    <xsl:variable name="software-id" select="lower-case(substring-after(key('software-target-by-id', $current-ref, $doc)[1], '#'))"/>
+                    <xsl:variable name="software-name" select="(
+                        key('software-name-by-id', $software-id, $software-list), 
+                        error((), concat('No software name found for ID ''', $software-id, ''' / ref ''#', $current-ref ,''' (', base-uri($doc), ')')))[1]" as="xs:string"/>
+                    <xsl:variable name="rs-with-this-ref" select="key('rs-by-ref', ., $doc)"/>
+                                        
                     
                     <!-- SoftwareID and file path -->
-                    <xsl:value-of select="concat($current-key, $csv-separator, $current-directory, substring-after(base-uri($doc), $current-directory))"/>
+                    <xsl:value-of select="concat($software-name, $csv-separator, $current-directory, substring-after(base-uri($doc), $current-directory))"/>
                     
                     
                     <!-- other annotations -->
                     <xsl:for-each select="subsequence($categories, 3)">
-                        <xsl:variable name="count" select="count($rs-with-this-key[contains(lower-case(@ana), lower-case(concat('#',current())))])" as="xs:integer"/>
+                        <xsl:variable name="count" select="count($rs-with-this-ref[contains(lower-case(@type), lower-case(current()))])" as="xs:integer"/>
                         <xsl:value-of select="concat($csv-separator, $count)"/>
                         <xsl:value-of select="concat($csv-separator, ('1'[$count &gt; 0],'0')[1])"/>
                     </xsl:for-each>
