@@ -68,8 +68,8 @@
           <term>bottom up</term>
           <term>usability</term>
           <term>graphical user interface</term>
-          <term><ptr type="software" xml:id="ediarum" target="#ediarum"/><rs type="soft.name"
-              ref="#ediarum">ediarum</rs></term>
+          <term><ptr type="software" xml:id="R54" target="#ediarum"/><rs type="soft.name" ref="#R54"
+              >ediarum</rs></term>
         </keywords>
       </textClass>
     </profileDesc>
@@ -81,18 +81,21 @@
     <front>
       <div type="abstract" xml:id="abstract">
         <p>This article shows how, with a focus on user-friendliness and a bottom-up approach, the
-          digital work environment <ptr type="software" xml:id="ediarum" target="#ediarum"/><rs
-            type="soft.name" ref="#ediarum">ediarum</rs> was successfully developed. With <ptr
-            type="software" xml:id="ediarum" target="#ediarum"/><rs type="soft.name" ref="#ediarum"
+          digital work environment <ptr type="software" xml:id="R1" target="#ediarum"/><rs
+            type="soft.name" ref="#R1">ediarum</rs> was successfully developed. With <ptr
+            type="software" xml:id="R2" target="#ediarum"/><rs type="soft.name" ref="#R2"
             >ediarum</rs>, researchers can comfortably encode and edit in TEI, as well as publish
           their results in an online or print edition. This solution, developed by the TELOTA
           initiative of Berlin-Brandenburg Academy of Sciences and Humanities, is based on three
-          software components: eXistdb, Oxygen XML Author, and ConTeXt. These components are
-          combined, supplemented with additional functions, and tailored to fit a project’s needs.
-          After a pilot run, <ptr type="software" xml:id="ediarum" target="#ediarum"/><rs
-            type="soft.name" ref="#ediarum">ediarum</rs> has been implemented for multiple internal
-          and external research projects. The experience that was gained and our self developed
-          program components are available to the Digital Humanities community.</p>
+          software components: <ptr type="software" xml:id="R3" target="#existdb"/><rs
+            type="soft.name" ref="#R3">eXistdb</rs>, <ptr type="software" xml:id="R5"
+            target="#oxygen"/><rs type="soft.name" ref="#R5">Oxygen XML Author</rs>, and <ptr
+            type="software" xml:id="R6" target="#context"/><rs type="soft.name" ref="#R6"
+            >ConTeXt</rs>. These components are combined, supplemented with additional functions,
+          and tailored to fit a project’s needs. After a pilot run, <ptr type="software" xml:id="R7"
+            target="#ediarum"/><rs type="soft.name" ref="#R7">ediarum</rs> has been implemented for
+          multiple internal and external research projects. The experience that was gained and our
+          self developed program components are available to the Digital Humanities community.</p>
       </div>
     </front>
     <body>
@@ -107,8 +110,9 @@
             accessibility and reusability. Furthermore, both XML and TEI are well-established
             technologies—the TEI Guidelines having been in use for over 25 years. Nevertheless, in
             Germany as well as internationally, edition projects continue to use programs such as
-            Microsoft Word to edit their texts. These texts are used to create print editions and
-            may be digitized in a simple form such as PDF.</p>
+              <ptr type="software" xml:id="R8" target="#microsoftword"/><rs type="soft.name"
+              ref="#R8">Microsoft Word</rs> to edit their texts. These texts are used to create
+            print editions and may be digitized in a simple form such as PDF.</p>
           <p>There is thus a gap between the available, useful technologies and their actual
             adoption. The cause of this is in many cases economic circumstances. Academic
             institutions and publishing houses are reluctant to alter their
@@ -126,15 +130,21 @@
               of them support only the publication of TEI documents and not their creation (see,
               e.g., <ref type="bibl" target="#pape12">Pape, Schöch, and Wegner 2012</ref>). Tools
               that aim to support the actual transcription and editing of texts are less common. One
-              such tool is from the Teuchos project, which provides a basic user interface for
-              certain parts of the manuscript description (<ref type="bibl" target="#vertan12"
-                >Vertan and Reimers 2012</ref>). In this case the data is not edited directly in XML
-              but saved in a text format. In addition, it is not possible to enter inline markup. A
-              more functional solution is the CWRCWriter, which still requires the user to have a
-              good knowledge of TEI (<ref type="bibl" target="#rockwell12">Rockwell et al.
-                2012</ref> or <ptr target="http://cwrctc.artsrn.ualberta.ca/"/>).</note> A factor
-            contributing to the lack of such a user interface could be the high complexity of a
-            TEI-encoded edition.</p>
+              such tool is from the <ptr type="software" xml:id="R9" target="#teuchos"/>
+              <rs type="soft.name" ref="#R9">Teuchos</rs> project, which provides a basic user
+              interface for certain parts of the manuscript description (<rs type="soft.bib.ref"
+                ref="#R9"><ref type="bibl" target="#vertan12"><rs type="soft.agent" ref="#R9"
+                    >Vertan</rs> and <rs type="soft.agent" ref="#R9">Reimers</rs> 2012</ref></rs>).
+              In this case the data is not edited directly in XML but saved in a text format. In
+              addition, it is not possible to enter inline markup. A more functional solution is the
+                <ptr type="software" xml:id="R10" target="#cwrc"/>
+              <rs type="soft.name" ref="#R10">CWRCWriter</rs>, which still requires the user to have
+              a good knowledge of TEI (<rs type="soft.bib.ref" ref="#R10"><ref type="bibl"
+                  target="#rockwell12">
+                  <rs type="soft.agent" ref="#R10">Rockwell</rs> et al. 2012</ref></rs> or <rs
+                type="soft.url" ref="#R10"><ptr target="http://cwrctc.artsrn.ualberta.ca/"
+              /></rs>).</note> A factor contributing to the lack of such a user interface could be
+            the high complexity of a TEI-encoded edition.</p>
         </div>
         <div xml:id="bridge">
           <head>The Bridge: Greater Usability</head>
@@ -199,26 +209,41 @@
         <p>To develop such a solution from scratch requires significant resources. To reduce time
           and effort of development it is preferable to build on existing software. After evaluating
           the available software, the team chose the following programs: <list rend="bulleted">
-            <item><ref target="http://exist-db.org/">eXistdb</ref><note><ptr
-                  target="http://exist-db.org/"/>.</note> for the database in which the TEI files
-              would be stored. A decisive factor was the ability to retrieve and run XQuery and XSLT
-              scripts from within the eXistdb and not just externally.</item>
-            <item><ref target="http://www.oxygenxml.com/xml_author.html">Oxygen XML Author</ref><note>
-                <ptr target="http://www.oxygenxml.com/xml_author.html"/>.</note> as the user
+            <item><ptr type="software" xml:id="R11" target="#existdb"/><ref
+                target="http://exist-db.org/">
+                <rs type="soft.name" ref="#R11">eXistdb</rs></ref><note><rs type="soft.url"
+                  ref="#R11"><ptr target="http://exist-db.org/"/></rs>.</note> for the database in
+              which the TEI files would be stored. A decisive factor was the ability to retrieve and
+              run <ptr type="software" xml:id="R50" target="#xquery"/><rs type="soft.name"
+                ref="#R50">XQuery</rs> and <ptr type="software" xml:id="R51" target="#xslt"/><rs
+                type="soft.name" ref="#R51">XSLT</rs> scripts from within the <ptr type="software"
+                xml:id="R12" target="#existdb"/>
+              <rs type="soft.name" ref="#R12">eXistdb</rs> and not just externally.</item>
+            <item><ref target="http://www.oxygenxml.com/xml_author.html"><ptr type="software"
+                  xml:id="R13" target="#oxygen"/>
+                <rs type="soft.name" ref="#R13">Oxygen XML Author</rs></ref><note>
+                <rs type="soft.url" ref="#R13"><ptr
+                    target="http://www.oxygenxml.com/xml_author.html"/></rs>.</note> as the user
               interface for entering and editing the centrally stored TEI files. Decisive were the
-              extensive functions of Oxygen XML Author that allowed visual editing of XML for
-              persons without technical knowledge.</item>
-            <item><ref target="http://wiki.contextgarden.net/Main_Page">ConTeXt</ref><note>
-                <ptr target="http://wiki.contextgarden.net/Main_Page"/>.</note> for the formatting
-              language to generate an automatic print-ready proof from the XML files. Among its
-              benefits were its use of the long-established formatting language TeX, the possibility
-              of processing XML directly, and the option to add one’s own functions with the help of
-              the programming language Lua.</item>
+              extensive functions of <ptr type="software" xml:id="R14" target="#oxygen"/>
+              <rs type="soft.name" ref="#R14">Oxygen XML Author</rs> that allowed visual editing of
+              XML for persons without technical knowledge.</item>
+            <item><ref target="http://wiki.contextgarden.net/Main_Page"><ptr type="software"
+                  xml:id="R15" target="#context"/><rs type="soft.name" ref="#R15">ConTeXt</rs></ref><note>
+                <rs type="soft.url" ref="#R15"><ptr target="http://wiki.contextgarden.net/Main_Page"
+                  /></rs>.</note> for the formatting language to generate an automatic print-ready
+              proof from the XML files. Among its benefits were its use of the long-established
+              formatting language TeX, the possibility of processing XML directly, and the option to
+              add one’s own functions with the help of the programming language Lua.</item>
           </list>
         </p>
-        <p>Although eXistdb and ConTexT are open source software, this is not the case for Oxygen
-          XML Author. A completely open-source solution would have been preferable, but there is no
-          software currently available that offers such extensive functions for end users.</p>
+        <p>Although <ptr type="software" xml:id="R16" target="#existdb"/><rs type="soft.name"
+            ref="#R16">eXistdb</rs> and <ptr type="software" xml:id="R17" target="#context"/><rs
+            type="soft.name" ref="#R17">ConTeXt</rs> are open source software, this is not the case
+          for <ptr type="software" xml:id="R18" target="#oxygen"/>
+          <rs type="soft.name" ref="#R18">Oxygen XML Author</rs>. A completely open-source solution
+          would have been preferable, but there is no software currently available that offers such
+          extensive functions for end users.</p>
         <p>Because of the solution’s modular organization, the software components can be replaced
           if necessary (for example when a tool is no longer supported by the community or a
           company). Essentially every piece of software can and will become outdated at some point;
@@ -233,26 +258,39 @@
           generally suitable for the research project, but customized to increase the
           user-friendliness of the work environment despite the complexity behind a critical
           edition. Besides the creation of multiple TEI P5–compatible schemata, the functions and
-          toolbar of the Oxygen XML Author were also configured and supplemented with additional
-          custom functions. XQuery and XSLT scripts were written for the Web publication and its
-          presentation was designed in HTML and CSS. The automatic generation of the print edition
-          was programmed with the formatting language ConTeXt.</p>
+          toolbar of the <ptr type="software" xml:id="R19" target="#oxygen"/>
+          <rs type="soft.name" ref="#R19">Oxygen XML Author</rs> were also configured and
+          supplemented with additional custom functions. <ptr type="software" target="#xquery"/><rs
+            type="soft.name" ref="#R50">XQuery</rs> and <ptr type="software" xml:id="R51"
+            target="#xslt"/><rs type="soft.name" ref="#R51">XSLT</rs> scripts were written for the
+          Web publication and its presentation was designed in HTML and CSS. The automatic
+          generation of the print edition was programmed with the formatting language <ptr
+            type="software" xml:id="R20" target="#context"/><rs type="soft.name" ref="#R20"
+            >ConTeXt</rs>.</p>
         <div xml:id="database">
           <head>A Central Database Enables Collaborative Work</head>
-          <p>The digital work environment uses the open-source XML database eXistdb as its central
-            repository for the TEI documents. The database is installed on a server and available
-            online. This gives all the researchers on the project access to the same data
+          <p>The digital work environment uses the open-source XML database <ptr type="software"
+              xml:id="R21" target="#existdb"/><rs type="soft.name" ref="#R21">eXistdb</rs> as its
+            central repository for the TEI documents. The database is installed on a server and
+            available online. This gives all the researchers on the project access to the same data
             collection, allowing them to work collaboratively. The contents of the database are
-            directly available and searchable for users as a collection of files in Oxygen XML
-            Author. Collaborative access is made possible through the WebDAV protocol, which locks
-            files that are in use to avoid conflicts and unintended overwrites.</p>
+            directly available and searchable for users as a collection of files in <ptr
+              type="software" xml:id="R22" target="#oxygen"/>
+            <rs type="soft.name" ref="#R22">Oxygen XML Author</rs> . Collaborative access is made
+            possible through the WebDAV protocol, which locks files that are in use to avoid
+            conflicts and unintended overwrites.</p>
         </div>
         <div xml:id="environment">
-          <head>A User-Friendly Environment with Oxygen XML Author</head>
-          <p>Oxygen XML Author was chosen to create the user interface with which the editors
-            transcribe and edit in the work environment.<note>To this end we used <soCalled>Oxygen
-                Frameworks</soCalled>: that is to say, we developed additional frameworks within the
-              context offered by the program. Oxygen XML delivers a standard framework for TEI
+          <head>A User-Friendly Environment with <ptr type="software" xml:id="R23" target="#oxygen"/>
+            <rs type="soft.name" ref="#R23">Oxygen XML Author</rs>
+          </head>
+          <p><ptr type="software" xml:id="R24" target="#oxygen"/>
+            <rs type="soft.name" ref="#R24">Oxygen XML Author</rs> was chosen to create the user
+            interface with which the editors transcribe and edit in the work environment.<note>To
+              this end we used <soCalled>Oxygen Frameworks</soCalled>: that is to say, we developed
+              additional frameworks within the context offered by the program. <ptr type="software"
+                xml:id="R25" target="#oxygen"/>
+              <rs type="soft.name" ref="#R25">Oxygen XML</rs> delivers a standard framework for TEI
               documents that provides a toolbar with a few basic TEI elements. However, because of
               the large number of TEI elements and attributes, the development of an all-inclusive
               TEI Framework would not be practical. The editor would be overwhelmed with such a
@@ -266,8 +304,8 @@
               <gi>index</gi> elements.</p>
           <figure xml:id="figure2">
             <graphic url="images/jtei-8-084-dumont_fig_02.jpg" width="1024px" height="298px"/>
-            <head type="legend">Toolbar for the Schleiermacher edition with functions for inserting
-              TEI markup</head>
+            <head type="legend"><rs type="soft.unclear">Toolbar</rs> for the Schleiermacher edition
+              with functions for inserting TEI markup</head>
           </figure>
           <p>Above all, however, the end user can enter markup into the manuscript or into the TEI
             Header with one click in the toolbar. In this way, text phenomena like struck-out text
@@ -295,46 +333,64 @@
             of the person (as an attribute) to be entered. The index with the actual references to
             the correct text passages is then automatically created for both the print and Web
             publications from the marked-up TEI document. This index function is created through a
-            specially-programmed Java operation for Oxygen XML Author and with various XQuery
-            scripts in the database. When programming the Java operation, we used parameters and not
+            specially-programmed <ptr type="software" xml:id="R26" target="#java"/>
+            <rs type="soft.name" ref="#R26">Java</rs> operation for <ptr type="software"
+              xml:id="R27" target="#oxygen"/>
+            <rs type="soft.name" ref="#R27">Oxygen XML Author</rs> and with various <ptr
+              type="software" xml:id="R52" target="#xquery"/><rs type="soft.name" ref="#R52"
+              >XQuery</rs> scripts in the database. When programming the <ptr type="software"
+              xml:id="R28" target="#java"/>
+            <rs type="soft.name" ref="#R28">Java</rs> operation, we used parameters and not
             constants in the source code. Thus, the parameter values could be comfortably entered in
-            Oxygen XML Author and changed if necessary.</p>
+              <ptr type="software" xml:id="R29" target="#oxygen"/><rs type="soft.name" ref="#R29"
+              >Oxygen XML Author</rs> and changed if necessary.</p>
           <figure xml:id="figure3">
             <graphic url="images/jtei-8-084-dumont_fig_03.jpg" width="1235px" height="926px"/>
-            <head type="legend">Customized Oxygen XML Author with the index function’s dialogue box
-              opened</head>
+            <head type="legend">Customized <ptr type="software" xml:id="R30" target="#oxygen"/>
+              <rs type="soft.name" ref="#R30">Oxygen XML Author</rs> with the index function’s
+              dialogue box opened</head>
           </figure>
         </div>
         <div xml:id="website">
           <head>Website</head>
-          <p>In addition to the work environment in Oxygen XML Author, we also created a website for
-            the project. On this website the researchers can easily browse through or search the
-            current data collection through a live connection with the database. Access to the
-            website can be either limited to the project team or open to the public.</p>
+          <p>In addition to the work environment in <ptr type="software" xml:id="R31"
+              target="#oxygen"/><rs type="soft.name" ref="#R31">Oxygen XML Author</rs> , we also
+            created a website for the project. On this website the researchers can easily browse
+            through or search the current data collection through a live connection with the
+            database. Access to the website can be either limited to the project team or open to the
+            public.</p>
           <figure xml:id="figure4">
             <graphic url="images/jtei-8-084-dumont_fig_04.jpg" width="1672px" height="1042px"/>
             <head type="legend">Website for the Schleiermacher edition</head>
           </figure>
-          <p>From a technical viewpoint, the website consists primarily of XQuery scripts, whose
-            request results are presented as HTML5, through an XSL transformation. The scripts and
-            transformations are requested from eXist through a REST interface and processed with the
-            eXistdb internal parser—a great advantage of this database. The website is thus
+          <p>From a technical viewpoint, the website consists primarily of <ptr type="software"
+              xml:id="R32" target="#xquery"/>
+            <rs type="soft.name" ref="#R32">XQuery</rs> scripts, whose request results are presented
+            as HTML5, through an XSL transformation. The scripts and transformations are requested
+            from <ptr type="software" xml:id="R33" target="#existdb"/><rs type="soft.name"
+              ref="#R33">eXist</rs> through a REST interface and processed with the <ptr
+              type="software" xml:id="R34" target="#existdb"/><rs type="soft.name" ref="#R34"
+              >eXistdb</rs> internal parser—a great advantage of this database. The website is thus
             generated completely server-side.</p>
         </div>
         <div xml:id="printedition">
           <head>Print Edition</head>
-          <p>A further output option is the print edition, implemented with the help of ConTeXt,
-            which automatically generates a PDF (at any point in the workflow) from a TEI document.
-            With the correct configuration, the format and presentation of the PDF can meet the
-            research project’s exact needs for printed editions. Each TEI element is given a
-            specific formatting command through a configuration file. In this way the different
-            apparatuses can, for example, appear as footnotes that refer to the main text with the
-            help of line numbers and lemmata. The print edition can also provide the correct index
-            for each transcription and resolve any cross-references between manuscripts.</p>
+          <p>A further output option is the print edition, implemented with the help of <ptr
+              type="software" xml:id="R35" target="#context"/><rs type="soft.name" ref="#R35"
+              >ConTeXt</rs> , which automatically generates a PDF (at any point in the workflow)
+            from a TEI document. With the correct configuration, the format and presentation of the
+            PDF can meet the research project’s exact needs for printed editions. Each TEI element
+            is given a specific formatting command through a configuration file. In this way the
+            different apparatuses can, for example, appear as footnotes that refer to the main text
+            with the help of line numbers and lemmata. The print edition can also provide the
+            correct index for each transcription and resolve any cross-references between
+            manuscripts.</p>
           <figure xml:id="figure5">
             <graphic url="images/jtei-8-084-dumont_fig_05.jpg" width="800px" height="580px"/>
-            <head type="legend">Print edition for the Schleiermacher edition generated via
-              ConTeXt</head>
+            <head type="legend">Print edition for the Schleiermacher edition generated via <ptr
+                type="software" xml:id="R36" target="#context"/><rs type="soft.name" ref="#R36"
+                >ConTeXt</rs>
+            </head>
           </figure>
           <p>The print edition helps the researchers to check their TEI-encoded transcriptions;
             additionally, it obviates the need for a separate typesetting process.</p>
@@ -380,21 +436,30 @@
           already implemented. The amount of work does not depend on the software or technology, but
           on the complexity and diversity of TEI-encoded editions.</p>
         <p>With every new implementation, the work environment developed further and was
-          supplemented with new functions. This applied not just to the Java operations but also to
-          the XQuery scripts, which are responsible for various fundamental tasks such as making the
-          index file available for the Java operations. For these frequently used XQuery and XSLT
-          scripts and for further configurations, an eXistdb application<note>For further
-            information about apps in eXistdb, see <title level="a">Getting Started with Web
-              Application Development</title>, <ptr
+          supplemented with new functions. This applied not just to the <ptr type="software"
+            xml:id="R53" target="#java"/><rs type="soft.name" ref="#R53">Java</rs> operations but
+          also to the <ptr type="software" xml:id="R37" target="#xquery"/><rs type="soft.name"
+            ref="#R37">XQuery</rs> scripts, which are responsible for various fundamental tasks such
+          as making the index file available for the <ptr type="software" xml:id="R54"
+            target="#java"/><rs type="soft.name" ref="#R54">Java</rs> operations. For these
+          frequently used <ptr type="software" xml:id="R38" target="#xquery"/><rs type="soft.name"
+            ref="#R38">XQuery</rs> and <ptr type="software" xml:id="R39" target="#xslt"/><rs
+            type="soft.name" ref="#R39">XSLT</rs> scripts and for further configurations, an <ptr
+            type="software" xml:id="R40" target="#existdb"/><rs type="soft.name" ref="#R40"
+            >eXistdb</rs> application<note>For further information about apps in <ptr
+              type="software" xml:id="R41" target="#existdb"/><rs type="soft.name" ref="#R41"
+              >eXistdb</rs> , see <title level="a">Getting Started with Web Application
+              Development</title>, <ptr
               target="http://exist-db.org/exist/apps/doc/development-starter.xml"/>.</note> was
           developed in 2013 that allows for a simple and fast installation into the database.<note>
-            This eXistdb app will soon be available online.</note> New functions are then, when
-          suitable, integrated into the already existing work environment so that after the launch
-          of the work environment the operability continually improves.</p>
+            This <ptr type="software" xml:id="R42" target="#existdb"/><rs type="soft.name"
+              ref="#R42">eXistdb</rs> app will soon be available online.</note> New functions are
+          then, when suitable, integrated into the already existing work environment so that after
+          the launch of the work environment the operability continually improves.</p>
         <p>After we published a <ref
             target="http://digiversity.net/2012/digitale-arbeitsumgebung-fur-das-editionsvorhaben-schleiermacher-in-berlin-1808-1834/"
-            >report about <ptr type="software" xml:id="ediarum" target="#ediarum"/><rs
-              type="soft.name" ref="#ediarum">ediarum</rs></ref>,<note><bibl><author>Stefan
+          >report about <ptr type="software" xml:id="R55" target="#ediarum"/><rs
+            type="soft.name" ref="#R55">ediarum</rs></ref>,<note><bibl><author>Stefan
                 Dumont</author> and <author>Martin Fechner</author>, <title level="a">Digitale
                 Arbeitsumgebung für das Editionsvorhaben <q>Schleiermacher in Berlin
                 1808–1834</q></title>, <title level="j">digiversity: Webmagazin für
@@ -404,8 +469,8 @@
               />.</bibl></note> it caught the attention of other research institutions. During this
           time TELOTA introduced and explained the environment to interested institutions in various
           presentations. As a result, for example, the Academy of Science and Literature Mainz
-          adopted the concept of <ptr type="software" xml:id="ediarum" target="#ediarum"/><rs
-            type="soft.name" ref="#ediarum">ediarum</rs> and built their own digital work
+          adopted the concept of <ptr type="software" xml:id="R56" target="#ediarum"/><rs
+            type="soft.name" ref="#R56">ediarum</rs> and built their own digital work
           environment based on it. Other interested persons can read about the concept in a series
           of blog entries that are written as tutorials.<note><bibl><author>Stefan Dumont</author>,
                 <title level="a">Tutorial: Wie baue ich ein eigenes Framework für Oxygen
@@ -413,21 +478,25 @@
                 in den Geisteswissenschaften</title> (October 30, <date>2013</date>), <ptr
                 target="http://digiversity.net/2013/tutorial-wie-baue-ich-ein-oxygen-xml-framework/"
               /></bibl>, and <bibl><author>Stefan Dumont</author>, <title level="a">Tutorial:
-                Indexfunktionen für Oxygen XML Frameworks</title>, <title level="m">digiversity:
-                Webmagazin für Informationstechnologie in den Geisteswissenschaften</title>(December
-              16, <date>2013</date>), <ptr
+                Indexfunktionen für <ptr type="software" xml:id="R43" target="#oxygen"/><rs
+                  type="soft.name" ref="#R43">Oxygen XML</rs> Frameworks</title>, <title level="m"
+                >digiversity: Webmagazin für Informationstechnologie in den
+                Geisteswissenschaften</title>(December 16, <date>2013</date>), <ptr
                 target="http://digiversity.net/2013/tutorial-indexfunktionen-fuer-oxygen-xml-frameworks/"
-              />.</bibl></note> In addition, the custom Java functions were made available by TELOTA
-          on <ref target="https://github.com/telota/ediarum/tree/master/oxygen_java">GitHub</ref>
-          for the TEI community.<note><ptr
+              />.</bibl></note> In addition, the custom <ptr type="software" xml:id="R44"
+            target="#java"/><rs type="soft.name" ref="#R44">Java</rs> functions were made available
+          by TELOTA on <ref target="https://github.com/telota/ediarum/tree/master/oxygen_java"><ptr
+              type="software" xml:id="R45" target="#github"/><rs type="soft.name" ref="#R45"
+              >GitHub</rs></ref> for the TEI community.<note><ptr
               target="https://github.com/telota/ediarum/tree/master/oxygen_java"/>; for
             documentation, see <ptr
               target="https://github.com/telota/ediarum/wiki/Documentation-ediarum.jar-(english)"
-            />.</note> There the functions can be downloaded and used directly in Oxygen Frameworks
-          or, if necessary, changed in accordance with theGNU LGPL (Lesser General Public
-          License).</p>
-        <p>At the end of 2013, TELOTA began implementing <ptr type="software" xml:id="ediarum"
-            target="#ediarum"/><rs type="soft.name" ref="#ediarum">ediarum</rs> for the <ref
+            />.</note> There the functions can be downloaded and used directly in <ptr
+            type="software" xml:id="R46" target="#oxygen"/><rs type="soft.name" ref="#R46"
+            >Oxygen</rs> Frameworks or, if necessary, changed in accordance with theGNU LGPL (Lesser
+          General Public License).</p>
+        <p>At the end of 2013, TELOTA began implementing <ptr type="software" xml:id="R57"
+          target="#ediarum"/><rs type="soft.name" ref="#R57">ediarum</rs> for the <ref
             target="http://www.gotthelf.unibe.ch/content/index_ger.html">historical-critical edition
             of Jeremias Gotthelf</ref>.<note><title level="m">Jeremias Gotthelf:
               Historisch-kritische Gesamtausgabe (HKG)</title>, Forschungsstelle Jeremias Gotthelf,
@@ -435,25 +504,26 @@
             />.</note> In this collaboration with Bern University, new functions are being developed
           and existing ones improved. For instance, we plan to build a function to allow end users
           to insert overlapping markup (using, e.g., <gi>anchor</gi> elements and <att>spanTo</att>)
-          in Oxygen XML Author.</p>
+          in <ptr type="software" xml:id="R47" target="#oxygen"/><rs type="soft.name" ref="#R47"
+            >Oxygen XML Author</rs> .</p>
       </div>
       <div xml:id="summary">
         <head>Summary and Prospects</head>
-        <p>The bottom-up development of <ptr type="software" xml:id="ediarum" target="#ediarum"/><rs
-            type="soft.name" ref="#ediarum">ediarum</rs> with its strong focus on user-friendliness
+        <p>The bottom-up development of <ptr type="software" xml:id="R58" target="#ediarum"/><rs
+          type="soft.name" ref="#R58">ediarum</rs> with its strong focus on user-friendliness
           brings with it certain implications.</p>
         <p>It has required a lot of work during the initial implementation and customization of the
           environment, especially to generate the website and print edition. TELOTA is now
           considering simplifying the creation of the Web and print editions, so that less time is
           needed for programming. The goal, however, will be not to develop a complete plug-and-play
           solution. That would be impossible, considering the complexity and diversity of critical
-          editions. The aim for a future version of <ptr type="software" xml:id="ediarum"
-            target="#ediarum"/><rs type="soft.name" ref="#ediarum">ediarum</rs> will be rather to
+          editions. The aim for a future version of <ptr type="software" xml:id="R59"
+            target="#ediarum"/><rs type="soft.name" ref="#R59">ediarum</rs> will be rather to
           create a solution for encoding editions in TEI which involves the lowest possible amount
           of time and effort for programming while being customized to the specific needs of a
           project. </p>
-        <p>The concept of <ptr type="software" xml:id="ediarum" target="#ediarum"/><rs
-            type="soft.name" ref="#ediarum">ediarum</rs>’s development with its tailored solution
+        <p>The concept of <ptr type="software" xml:id="R60" target="#ediarum"/><rs
+          type="soft.name" ref="#R60">ediarum</rs>’s development with its tailored solution
           has various advantages: <list rend="bulleted">
             <item>Time and effort for programming is spared through the consistent use of existing
               software and the elimination of extraneous functionality not required by a particular
@@ -468,8 +538,8 @@
           </list>
         </p>
         <p>Thus, through addressing the needs of a specific project, we found a solution that can be
-          used by many: <ptr type="software" xml:id="ediarum" target="#ediarum"/><rs
-            type="soft.name" ref="#ediarum">ediarum</rs> helps bridge the gap between hesitant users
+          used by many: <ptr type="software" xml:id="R61" target="#ediarum"/><rs
+            type="soft.name" ref="#R61">ediarum</rs> helps bridge the gap between hesitant users
           and the many possibilities and advantages of TEI encoding.</p>
       </div>
     </body>
@@ -486,22 +556,32 @@
           <bibl xml:id="nielsen93"><author>Nielsen, Jakob</author>. <date>1993</date>. <title
               level="m">Usability Engineering</title>. <pubPlace>Boston</pubPlace>:
               <publisher>Academic Press</publisher>.</bibl>
-          <bibl xml:id="pape12"><author>Pape, Sebastian</author>, <author>Christof Schöch</author>,
-            and <author>Lutz Wegner</author>. <date>2012</date>. <title level="a">TEICHI and the
-              Tools Paradox</title>. <title level="j">Journal of the Text Encoding
-              Initiative</title>
-            <biblScope unit="issue">2</biblScope> (February). <ptr
-              target="http://jtei.revues.org/432"/>. doi:<idno type="doi"
-            >10.4000/jtei.432</idno>.</bibl>
-          <bibl xml:id="rockwell12"><author>Rockwell, Geoffrey</author>, <author>Susan
-              Brown</author>, <author>James Chartrand</author>, and <author>Susan
-            Hesemeier</author>. <date>2012</date>. <title level="a">CWRC-Writer: An In-Browser XML
-              Editor</title>. In <title level="m">Digital Humanities 2012: Conference
-              Abstracts</title>, edited by <editor>Jan Christoph Meister</editor>, <biblScope
-              unit="page">508–11</biblScope>. <pubPlace>Hamburg</pubPlace>: <publisher>Hamburg
-              University Press</publisher>. <ptr
-              target="http://www.dh2012.uni-hamburg.de/wp-content/uploads/2012/07/HamburgUP_dh2012_BoA.pdf"
-            />.</bibl>
+          <ptr type="software" xml:id="R48" target="#teichi"/>
+          <rs type="soft.bib.ref" ref="#R48">
+            <bibl xml:id="pape12"><rs type="soft.agent" ref="#R48"><author>Pape,
+                Sebastian</author></rs>, <rs type="soft.agent" ref="#R48"><author>Christof
+                  Schöch</author></rs>, and <rs type="soft.agent" ref="#R48"><author>Lutz
+                  Wegner</author></rs>. <date>2012</date>. <title level="a"><rs type="soft.name"
+                  ref="#R48">TEICHI</rs> and the Tools Paradox</title>. <title level="j">Journal of
+                the Text Encoding Initiative</title>
+              <biblScope unit="issue">2</biblScope> (February). <ptr
+                target="http://jtei.revues.org/432"/>. doi:<idno type="doi"
+              >10.4000/jtei.432</idno>.</bibl>
+          </rs>
+          <ptr type="software" xml:id="R49" target="#cwrc"/>
+          <rs type="soft.bib.ref" ref="#R49">
+            <bibl xml:id="rockwell12"><rs type="soft.agent" ref="#R49"><author>Rockwell,
+                  Geoffrey</author></rs>, <rs type="soft.agent" ref="#R49"><author>Susan
+                  Brown</author></rs>, <rs type="soft.agent" ref="#R49"><author>James
+                  Chartrand</author></rs>, and <rs type="soft.agent" ref="#R49"><author>Susan
+                  Hesemeier</author></rs>. <date>2012</date>. <title level="a"><rs type="soft.name"
+                  ref="#R49">CWRC-Writer</rs>: An In-Browser XML Editor</title>. In <title level="m"
+                >Digital Humanities 2012: Conference Abstracts</title>, edited by <editor>Jan
+                Christoph Meister</editor>, <biblScope unit="page">508–11</biblScope>.
+                <pubPlace>Hamburg</pubPlace>: <publisher>Hamburg University Press</publisher>. <ptr
+                target="http://www.dh2012.uni-hamburg.de/wp-content/uploads/2012/07/HamburgUP_dh2012_BoA.pdf"
+              />.</bibl>
+          </rs>
           <bibl xml:id="sahle13"><author>Sahle, Patrick</author>. <date>2013</date>. <title
               level="m">Digitale Editionsformen. Zum Umgang mit der Überlieferung unter den
               Bedingungen des Medienwandels. Teil 2: Befunde, Theorie und Methodik.</title>

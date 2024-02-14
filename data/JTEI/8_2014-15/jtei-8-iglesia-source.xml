@@ -92,14 +92,13 @@
           them online, mostly under free licenses. Scholars all over the world are now able to use
           huge datasets for further research. There are now many digital editions available, but
           only a few tools to analyze them. This article explores how web technologies (XML and
-          related technologies as well as <ptr type="software" xml:id="JavaScript"
-            target="#JavaScript"/><rs type="soft.name" ref="#JavaScript">JavaScript</rs>) can be
-          used to enrich the forthcoming edition of Theodor Fontane’s notebooks with data-driven
-          visualizations of named entities and how at the same time applications can be built on
-          these visualizations which are reusable for other edition projects in the TEI world.
-          Because of the density and historical scope of references to named entities and the
-          variety of entity types, Fontane’s notebooks lend themselves to advanced methods of
-          semantic analysis.</p>
+          related technologies as well as <ptr type="software" xml:id="R1" target="#JavaScript"/><rs
+            type="soft.name" ref="#R1">JavaScript</rs>) can be used to enrich the forthcoming
+          edition of Theodor Fontane’s notebooks with data-driven visualizations of named entities
+          and how at the same time applications can be built on these visualizations which are
+          reusable for other edition projects in the TEI world. Because of the density and
+          historical scope of references to named entities and the variety of entity types,
+          Fontane’s notebooks lend themselves to advanced methods of semantic analysis.</p>
       </div>
     </front>
     <body>
@@ -129,11 +128,14 @@
               Forschungsumgebung</title>, <ptr target="http://fontane-notizbuecher.de/"/></note> The
           term <term>hybrid edition</term> indicates that it is going to be published both online,
           in open access form, and as a printed book by Walter de Gruyter. The term <term>Virtual
-            Research Environment</term> in the title of the project refers to <ref
-            target="http://textgrid.de/">TextGrid</ref>,<note>TextGrid: A Virtual Research
-            Environment for the Humanities, <ptr target="http://textgrid.de/"/></note> which we use
-          in combination with the <ref target="http://www.oxygenxml.com/">oXygen XML
-            Editor</ref><note>Syncro Soft, <ptr target="http://www.oxygenxml.com/"/></note> to
+            Research Environment</term> in the title of the project refers to <ptr type="software"
+            xml:id="R2" target="#textgrid"/><ref target="http://textgrid.de/"><rs type="soft.name"
+              ref="#R2">TextGrid</rs></ref>,<note><rs type="soft.name" ref="#R2">TextGrid</rs>: A
+            Virtual Research Environment for the Humanities, <rs type="soft.url" ref="#R2"><ptr
+                target="http://textgrid.de/"/></rs></note> which we use in combination with the <ref
+            target="http://www.oxygenxml.com/"><ptr type="software" xml:id="R3" target="#oxygen"
+              /><rs type="soft.name" ref="#R3">oXygen XML Editor</rs></ref><note>Syncro Soft, <rs
+              type="soft.url" ref="#R3"><ptr target="http://www.oxygenxml.com/"/></rs></note> to
           produce our TEI-encoded transcription as well as to store both the digital images and the
           XML files permanently. The project is funded by the German Research Foundation (DFG) and
           carried out by the Theodor Fontane Research Centre at Göttingen University, in cooperation
@@ -146,7 +148,8 @@
           in TEI according to a TEI P5 subset scheme based on the elements for genetic editions
           (e.g., <gi>sourceDoc</gi> and <gi>surface</gi>) specified by the metadata specialist. This
           TEI code is then XSL-transformed into HTML and integrated into the project’s website by
-          the IT specialist. This transformation can be invoked from within the TextGrid environment
+          the IT specialist. This transformation can be invoked from within the <ptr type="software"
+            xml:id="R4" target="#textgrid"/><rs type="soft.name" ref="#R4">TextGrid</rs> environment
           at any time. Thus, the HTML file not only is used for publication on the website, but also
           supports the editors in transcribing and encoding the text of the notebooks by providing
           an on-the-fly visualization of their work which is often easier to check for errors than
@@ -182,14 +185,13 @@
           </egXML>
           <head type="legend">Example <gi>rs</gi>.</head>
         </figure>
-        <p><ptr type="software" xml:id="Reference" target="#omekareference"/><rs type="soft.name"
-            ref="#Reference">Reference</rs> attributes (<att>ref</att>) point to nodes located
-          elsewhere in the TEI dataset. It should be noted that the organization of the TEI dataset
-          and the location of the entity notes therein is of no importance to the reference linking
-          mechanism described here. At the current stage of our project, the TEI code for each of
-          the 67 notebooks is stored in its own TEI document, with the entity indexes stored within
-          each TEI header. However, combining the 67 TEI documents into one large document with the
-          entity information stored in a single header, or placing all entity data in a separate TEI
+        <p>Reference attributes (<att>ref</att>) point to nodes located elsewhere in the TEI
+          dataset. It should be noted that the organization of the TEI dataset and the location of
+          the entity notes therein is of no importance to the reference linking mechanism described
+          here. At the current stage of our project, the TEI code for each of the 67 notebooks is
+          stored in its own TEI document, with the entity indexes stored within each TEI header.
+          However, combining the 67 TEI documents into one large document with the entity
+          information stored in a single header, or placing all entity data in a separate TEI
           document altogether, would be just as feasible. In the entity data nodes, additional
           information is provided on the entities, such as hyperlinks to authority file records, or
           a classification into <term>person</term> or <term>place</term>.</p>
@@ -280,28 +282,31 @@
             specifically: were they Fontane’s contemporaries or, from Fontane’s point of view,
             historical figures? In the latter case, in which period did they live? Answering these
             questions will give us an idea of the different historical strata treated in this
-            notebook. Our tool for this purpose will be the <ref
-              target="http://www.simile-widgets.org/timeline/">Timeline Widget</ref><note>Timeline:
-              Web Widget for Visualizing Temporal Data, <ptr
-                target="http://www.simile-widgets.org/timeline/"/>.</note> from the SIMILE (Semantic
-            Interoperability of Metadata and Information in unLike Environments) collection of open
-            source data visualization tools, originally developed at MIT. A SIMILE Timeline consists
-            of events, associated with either a point in time or a duration, which are plotted on a
-            chronological, in this case horizontal, axis. If we want to visualize the persons
-            mentioned in the notebook on such a timeline, and use their lifespans as durations,
-            where do we get their birth and death dates? As mentioned earlier, our references to
-            entities are linked to authority records. In the case of persons, we found the
-            Integrated Authority File (German <soCalled><ref target="http://www.dnb.de/EN/gnd"
-                >Gemeinsame Normdatei</ref></soCalled>, GND)<note>Deutsche Nationalbibliothek, <ptr
-                target="http://www.dnb.de/EN/gnd"/>.</note> by the German National Library to be the
-            most useful and complete data source for our purpose. We have assigned a GND identifier
-            to 37 of the 47 person entities referenced in the notebook C07. The remaining 10
-            entities are groups of people rather than individuals, such as <q>the German
-              emperors</q> or <q>the Thuringian landgraves</q>. Although the GND does provide
-            records for some of these entities, they do not contain much useful information for
-            further investigation.</p>
-          <p>The SIMILE Timeline widget consists of an HTML document that uses <ptr type="software"
-              xml:id="JavaScript" target="#JavaScript"/><rs type="soft.name" ref="#JavaScript"
+            notebook. Our tool for this purpose will be the <ptr type="software" xml:id="R5"
+              target="#timeline"/><ref target="http://www.simile-widgets.org/timeline/"><rs
+                type="soft.name" ref="#R5">Timeline Widget</rs></ref><note><rs type="soft.name"
+                ref="#R5">Timeline</rs>: Web Widget for Visualizing Temporal Data, <rs
+                type="soft.url" ref="#R5"><ptr target="http://www.simile-widgets.org/timeline/"
+                /></rs>.</note> from the SIMILE (Semantic Interoperability of Metadata and
+            Information in unLike Environments) collection of open source data visualization tools,
+            originally developed at MIT.<ptr type="software" xml:id="R6" target="#timeline"/> A <rs
+              type="soft.name" ref="#R6">SIMILE Timeline</rs> consists of events, associated with
+            either a point in time or a duration, which are plotted on a chronological, in this case
+            horizontal, axis. If we want to visualize the persons mentioned in the notebook on such
+            a timeline, and use their lifespans as durations, where do we get their birth and death
+            dates? As mentioned earlier, our references to entities are linked to authority records.
+            In the case of persons, we found the Integrated Authority File (German <soCalled><ref
+                target="http://www.dnb.de/EN/gnd">Gemeinsame Normdatei</ref></soCalled>,
+              GND)<note>Deutsche Nationalbibliothek, <ptr target="http://www.dnb.de/EN/gnd"
+              />.</note> by the German National Library to be the most useful and complete data
+            source for our purpose. We have assigned a GND identifier to 37 of the 47 person
+            entities referenced in the notebook C07. The remaining 10 entities are groups of people
+            rather than individuals, such as <q>the German emperors</q> or <q>the Thuringian
+              landgraves</q>. Although the GND does provide records for some of these entities, they
+            do not contain much useful information for further investigation.</p>
+          <p>The <ptr type="software" xml:id="R7" target="#timeline"/><rs type="soft.name" ref="#R7"
+              >SIMILE Timeline</rs> widget consists of an HTML document that uses <ptr
+              type="software" xml:id="R8" target="#JavaScript"/><rs type="soft.name" ref="#R8"
               >JavaScript</rs> to process an XML file written in a simple XML markup language
             specific to SIMILE.</p>
           <figure xml:id="example3">
@@ -313,15 +318,15 @@
             </egXML>
             <head type="legend">Example of <ident>SIMILE XML</ident>.</head>
           </figure>
-          <p>We have written an <ptr type="software" xml:id="XSLT" target="#XSLT"/><rs
-              type="soft.name" ref="#XSLT">XSLT</rs> stylesheet in order to produce the HTML
-            document and at the same time generate the required XML data from the TEI code of our
-            notebook. During the transformation, this stylesheet picks up the GND identifiers of all
-            person entities in the TEI code and looks up the corresponding GND record online at the
-            German National Library. It then fetches the date of birth and date of death of the
-            persons from the GND RDF/XML record, as well as their normalized names, and uses these
-            names as labels in the timeline. With only 100 lines of code, this XSL document is quite
-            short and simple, but still checks for missing birth or death dates in the GND record to
+          <p>We have written an <ptr type="software" xml:id="R9" target="#XSLT"/><rs
+              type="soft.name" ref="#R9">XSLT</rs> stylesheet in order to produce the HTML document
+            and at the same time generate the required XML data from the TEI code of our notebook.
+            During the transformation, this stylesheet picks up the GND identifiers of all person
+            entities in the TEI code and looks up the corresponding GND record online at the German
+            National Library. It then fetches the date of birth and date of death of the persons
+            from the GND RDF/XML record, as well as their normalized names, and uses these names as
+            labels in the timeline. With only 100 lines of code, this XSL document is quite short
+            and simple, but still checks for missing birth or death dates in the GND record to
             substitute a calculated estimate for the missing value, as we will show below. Person
             entities for which neither a precise birth date nor death date can be found in the GND
             are not included in the timeline at all, which is the case for one of the 37 persons
@@ -356,21 +361,21 @@
             than a notebook, but both contain a sufficient number of references to person entities
             that we can display on a timeline. To narrow the material down, we selected a single
             year’s worth of diary entries, for the year 1835, which is the last complete year within
-            the scope of Godwin’s diaries. The <ptr type="software" xml:id="XSLT" target="#XSLT"
-              /><rs type="soft.name" ref="#XSLT">XSLT</rs> code to create the timeline has to be
-            adjusted to the Godwin TEI code, though only slightly. The main difference is that birth
-            and death dates are already contained within the <gi>person</gi> elements, and do not
-            need to be retrieved from elsewhere. Again, a filter was applied for missing birth and
-            death dates. Overall, this XSL document is even shorter and simpler at only 75
-            lines.</p>
+            the scope of Godwin’s diaries. The <ptr type="software" xml:id="R10" target="#XSLT"/><rs
+              type="soft.name" ref="#R10">XSLT</rs> code to create the timeline has to be adjusted
+            to the Godwin TEI code, though only slightly. The main difference is that birth and
+            death dates are already contained within the <gi>person</gi> elements, and do not need
+            to be retrieved from elsewhere. Again, a filter was applied for missing birth and death
+            dates. Overall, this XSL document is even shorter and simpler at only 75 lines.</p>
           <p>The resulting timeline (<ptr type="crossref" target="#figure2"/>) shows us many people
             who were all either alive in 1835, or recently deceased, such as a John Curran. (Godwin
             refers in his diary to the removal of Curran’s body from London to Ireland at the time
             of writing.)</p>
           <figure xml:id="figure2">
             <graphic url="images/jtei-8-077-image_02.png" width="827px" height="2518px"/>
-            <head type="legend">SIMILE timeline for William Godwin’s diary entries of the year
-              1835</head>
+            <head type="legend"><ptr type="software" xml:id="R11" target="#timeline"/><rs
+                type="soft.name" ref="#R11">SIMILE Timeline</rs> for William Godwin’s diary entries
+              of the year 1835</head>
           </figure>
           <p>The comparison of the two timelines shows a marked difference: while Fontane
             exclusively mentions historical figures in his notebook C07, Godwin’s diary entries of
@@ -394,10 +399,10 @@
             automatic systems to identify the historical places would not be feasible, as they are
             sometimes referred to in the notebooks by uncommon phrases which require human
             interpretation to match them to corresponding modern-day identifiers. Another <ptr
-              type="software" xml:id="XSLT" target="#XSLT"/><rs type="soft.name" ref="#XSLT"
+              type="software" xml:id="R12" target="#XSLT"/><rs type="soft.name" ref="#R12"
               >XSLT</rs> script is used to transform the TEI dataset to a Keyhole Markup Language
             (KML) file, the typical input format for geospatial visualization tools. The <ptr
-              type="software" xml:id="XSLT" target="#XSLT"/><rs type="soft.name" ref="#XSLT"
+              type="software" xml:id="R13" target="#XSLT"/><rs type="soft.name" ref="#R13"
               >XSLT</rs> resolves the IDs and retrieves the coordinates from the respective
             database. OSM is able to deliver polygons instead of geographic coordinates from a
             single URL in the resulting file: for example, for All Saints’ Church in Wittenberg or
@@ -487,7 +492,7 @@
             The first document is the HTML file, which contains the needed <ptr type="software"
               xml:id="JavaScript" target="#JavaScript"/><rs type="soft.name" ref="#JavaScript"
               >JavaScript</rs> and a reference to the external <ptr type="software" xml:id="D3.js"
-                target="#d3js"/><rs type="soft.name" ref="#D3.js">D3.js</rs> library. The second is a
+              target="#d3js"/><rs type="soft.name" ref="#D3.js">D3.js</rs> library. The second is a
             JSON file, which contains one object per entity and one associated array per object that
             includes a list of connected entities. The tree-like structure of XML allows the
             transformation of any document to a network graph by selecting elements that share the
@@ -527,7 +532,7 @@
             of the following pages. The benefit of the network is that a major topic can be
             identified with a single view.</p>
           <p>The output of this <ptr type="software" xml:id="D3.js" target="#d3js"/><rs
-            type="soft.name" ref="#D3.js">D3.js</rs> application is an SVG graphic which can be
+              type="soft.name" ref="#D3.js">D3.js</rs> application is an SVG graphic which can be
             further transformed. <gi>svg:title</gi> elements are used to store the node names, which
             modern browsers should display on mouseover. To get a better overview of the entities in
             the notebook, the node names should actually be inserted as nodes, but since there is
