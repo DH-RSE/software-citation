@@ -399,32 +399,37 @@
             automatic systems to identify the historical places would not be feasible, as they are
             sometimes referred to in the notebooks by uncommon phrases which require human
             interpretation to match them to corresponding modern-day identifiers. Another <ptr
-              type="software" xml:id="R12" target="#XSLT"/><rs type="soft.name" ref="#R12"
-              >XSLT</rs> script is used to transform the TEI dataset to a Keyhole Markup Language
-            (KML) file, the typical input format for geospatial visualization tools. The <ptr
-              type="software" xml:id="R13" target="#XSLT"/><rs type="soft.name" ref="#R13"
-              >XSLT</rs> resolves the IDs and retrieves the coordinates from the respective
-            database. OSM is able to deliver polygons instead of geographic coordinates from a
-            single URL in the resulting file: for example, for All Saints’ Church in Wittenberg or
-            the Saint Augustine Monastery at Erfurt. Again the transformation is very simple, as the
-            common format for spatial information—KML—is also expressed as XML. This approach tries
-            to provide a possible combination of place names that appear in the neighborhood of
-              <gi>date</gi> elements. The geospatial-temporal visualization tool of our choice is
-            the <ref target="http://geobrowser.de.dariah.eu/embed/?">DARIAH
-              Geo-Browser</ref>,<note>DARIAH-DE Konsortium, <ptr
-                target="http://geobrowser.de.dariah.eu/embed/?"/>.</note> which offers a timeline
-            with a map interface together with different features for selecting data.</p>
+              type="software" xml:id="R12" target="#XSLT"/><rs type="soft.name" ref="#R12">XSLT</rs>
+            script is used to transform the TEI dataset to a Keyhole Markup Language (KML) file, the
+            typical input format for geospatial visualization tools. The <ptr type="software"
+              xml:id="R13" target="#XSLT"/><rs type="soft.name" ref="#R13">XSLT</rs> resolves the
+            IDs and retrieves the coordinates from the respective database. OSM is able to deliver
+            polygons instead of geographic coordinates from a single URL in the resulting file: for
+            example, for All Saints’ Church in Wittenberg or the Saint Augustine Monastery at
+            Erfurt. Again the transformation is very simple, as the common format for spatial
+            information—KML—is also expressed as XML. This approach tries to provide a possible
+            combination of place names that appear in the neighborhood of <gi>date</gi> elements.
+            The geospatial-temporal visualization tool of our choice is the <ptr type="software"
+              xml:id="R14" target="#dariahgeobrowser"/><ref
+              target="http://geobrowser.de.dariah.eu/embed/?"><rs type="soft.name" ref="#R14">DARIAH
+                Geo-Browser</rs></ref>,<note>DARIAH-DE Konsortium, <rs type="url" ref="#R14"><ptr
+                  target="http://geobrowser.de.dariah.eu/embed/?"/></rs>.</note> which offers a
+            timeline with a map interface together with different features for selecting data.</p>
           <p>A notable feature is the use of historical maps to provide better context. The
-            selection of historical maps in the Geo-Browser is still limited, but it is also
-            possible to load one’s own overlays. Furthermore, the data are presented in tabular form
-            with a search function. In addition to the mandatory data—at least one place name with
-            latitude and longitude—HTML code can be inserted in the KML file. A useful method is to
-            pass back links to the digital edition or, more specifically, to the page where the
-            selected place can be found in the manuscript. These hyper-references will appear
-            directly in the geographical information system. We integrated an embedded version of
-            this tool via <gi>html:iframe</gi> into our website which is built on an <ref
-              target="http://exist-db.org/">eXist database</ref>.<note><ptr
-                target="http://exist-db.org/"/>.</note> An XQuery script executes the
+            selection of historical maps in the <ptr type="software" xml:id="R15"
+              target="#dariahgeobrowser"/><rs type="soft.name" ref="#R15">Geo-Browser</rs> is still
+            limited, but it is also possible to load one’s own overlays. Furthermore, the data are
+            presented in tabular form with a search function. In addition to the mandatory data—at
+            least one place name with latitude and longitude—HTML code can be inserted in the KML
+            file. A useful method is to pass back links to the digital edition or, more
+            specifically, to the page where the selected place can be found in the manuscript. These
+            hyper-references will appear directly in the geographical information system. We
+            integrated an embedded version of this tool via <gi>html:iframe</gi> into our website
+            which is built on an <ref target="http://exist-db.org/"><ptr type="software"
+                xml:id="R18" target="#existdb"/><rs type="soft.name" ref="#R18">eXist
+              database</rs></ref>.<note><rs type="soft.url" ref="#R15"><ptr
+                  target="http://exist-db.org/"/></rs>.</note> An <ptr type="software" xml:id="R16"
+              target="#xquery"/><rs type="soft.name" ref="#R16">XQuery</rs> script executes the
             transformation, stores the KML file in the database, and generates the required
               <gi>html:iframe</gi> element. The <gi>html:src</gi> attribute value contains the
             parameters to control the Geo-Browser. A URL-encoded string which points to the
@@ -443,17 +448,20 @@
             terms like the Holy Roman Empire (<q>HRR</q>) or Thuringia, and the authority files we
             use are not able to provide the required data, especially not for the desired time.</p>
           <p>The dates returned by this algorithm are also used to select a background map provided
-            by the Geo-Browser. The arithmetic mean of the temporal data in this example is 1451.25
-            CE and 11 out of 17 dates with spatial reference specify the early sixteenth century. A
-            suitable background map with the borders from 1492 can be selected via parameter
+            by the <ptr type="software" xml:id="R17" target="#dariahgeobrowser"/><rs
+              type="soft.name" ref="#R17">Geo-Browser</rs>. The arithmetic mean of the temporal data
+            in this example is 1451.25 CE and 11 out of 17 dates with spatial reference specify the
+            early sixteenth century. A suitable background map with the borders from 1492 can be
+            selected via parameter
               (<code>&amp;currentStatus=mapChanged=Historical+Map+of+1492</code>). Another possible
             solution is to use the information about the notebook’s date of creation, which can be
             found on the book cover in most cases. Then the background map of 1880 is the best
             selection for notebook C07.</p>
           <figure xml:id="figure3">
             <graphic url="images/jtei-8-077-image_03.png" width="1144px" height="114px"/>
-            <head type="legend">DARIAH-DE-Geo-Browser’s timeline with the data from notebook
-              C07</head>
+            <head type="legend"><ptr type="software" xml:id="R19" target="#dariahgeobrowser"/><rs
+                type="soft.name" ref="#R19">DARIAH-DE-Geo-Browser</rs>’s timeline with the data from
+              notebook C07</head>
           </figure>
           <p>Placenames corresponding to a selection in the timeline are displayed in a table below,
             where backlinks to the edition can be placed as well as any additional information. The
@@ -472,13 +480,15 @@
               visualizing social networks extracted from a TEI-encoded corpus</quote> (<ref
               type="bibl" xml:id="quoteref1" target="#bingenheimer11">p. 271</ref>) consisting of
             biographic data. The interface is realized with a proprietary plug-in built upon the
-              <ref target="http://prefuse.org/">Prefuse</ref><note>UC Berkeley Visualization Lab,
-                <ptr target="http://prefuse.org/"/>.</note> software library. One of our goals is to
-            implement the aggregations within the digital edition, and for this we would like to use
-            web technologies only. The <ref target="http://d3js.org/"><ptr type="software"
-                xml:id="D3.js" target="#d3js"/><rs type="soft.name" ref="#D3.js">D3.js</rs></ref>
-            (Data Driven Documents Javascript library) created by Mike Bostock provides a framework
-            for different visualizations. The <ref
+              <ref target="http://prefuse.org/"><ptr type="software" xml:id="R20" target="#prefuse"
+                /><rs type="soft.name" ref="#R20">Prefus</rs>e</ref><note>UC Berkeley Visualization
+              Lab, <rs type="soft.url" ref="#R20"><ptr target="http://prefuse.org/"/></rs>.</note>
+            software library. One of our goals is to implement the aggregations within the digital
+            edition, and for this we would like to use web technologies only. The <ref
+              target="http://d3js.org/"><ptr type="software" xml:id="R21" target="#d3js"/><rs
+                type="soft.name" ref="#R21">D3.js</rs></ref> (Data Driven Documents Javascript
+            library) created by <rs type="soft.agent" ref="#R21">Mike Bostock</rs> provides a
+            framework for different visualizations. The <ref
               target="https://github.com/mbostock/d3/wiki/Gallery">list of examples</ref><note><ptr
                 target="https://github.com/mbostock/d3/wiki/Gallery"/>.</note> is a good starting
             point and gives an introduction to the tool’s functionality. The following
@@ -487,30 +497,34 @@
                 target="http://bl.ocks.org/mbostock/4062045"/>.</note> and the <ref
               target="http://bl.ocks.org/mbostock/7607999">Hierarchical Edge
                 Bundling</ref><note><ptr target="http://bl.ocks.org/mbostock/7607999"/>.</note>
-            examples. Again we use an XSL transformation to extract the data from our source.</p>
+            examples. Again we use an <ptr type="software" xml:id="R22" target="#xslt"/><rs
+              type="soft.name" ref="#R22">XSL transformation</rs> to extract the data from our
+            source.</p>
           <p>The transformation script matches all entities and generates the required documents.
             The first document is the HTML file, which contains the needed <ptr type="software"
-              xml:id="JavaScript" target="#JavaScript"/><rs type="soft.name" ref="#JavaScript"
-              >JavaScript</rs> and a reference to the external <ptr type="software" xml:id="D3.js"
-              target="#d3js"/><rs type="soft.name" ref="#D3.js">D3.js</rs> library. The second is a
-            JSON file, which contains one object per entity and one associated array per object that
-            includes a list of connected entities. The tree-like structure of XML allows the
-            transformation of any document to a network graph by selecting elements that share the
-            same ancestor. The only requirement is that the XML input consists of at least two
-            elements. For example, the <gi>surface</gi> element (which is used in the Fontane TEI
-            data to encode a notebook page) is a common ancestor of the entities. This produces a
-            network of co-occurrences; the (undirected) edges mean that the connected nodes are both
-            descendants of a <gi>surface</gi>; both appear on one page, if the condition is defined
-            to match only the <gi>surface</gi> elements that are direct children of
-              <gi>sourceDoc</gi>, because more than one surface may be part of a single page, for
-            example where there are glued-in newspaper articles.</p>
-          <p>As in the Geo-Browser example above, we assume that the proximity of two references to
-            entities suggests a semantic connection. Naturally, such a connection may also exist
-            between two entity occurrences separated by a page break. Therefore, better criteria for
-            connectedness could be proposed, such as co-occurrence within one sentence, but this
-            requires linguistic markup which is not part of our notebook edition. The notebook page
-            as a unit of semantic coherence is still a relatively meaningful criterion, and the most
-            feasible due to our usage of the <gi>surface</gi> element.</p>
+              xml:id="R23" target="#JavaScript"/><rs type="soft.name" ref="#R23">JavaScript</rs> and
+            a reference to the external <ptr type="software" xml:id="R24" target="#d3js"/><rs
+              type="soft.name" ref="#R24">D3.js</rs> library. The second is a JSON file, which
+            contains one object per entity and one associated array per object that includes a list
+            of connected entities. The tree-like structure of XML allows the transformation of any
+            document to a network graph by selecting elements that share the same ancestor. The only
+            requirement is that the XML input consists of at least two elements. For example, the
+              <gi>surface</gi> element (which is used in the Fontane TEI data to encode a notebook
+            page) is a common ancestor of the entities. This produces a network of co-occurrences;
+            the (undirected) edges mean that the connected nodes are both descendants of a
+              <gi>surface</gi>; both appear on one page, if the condition is defined to match only
+            the <gi>surface</gi> elements that are direct children of <gi>sourceDoc</gi>, because
+            more than one surface may be part of a single page, for example where there are glued-in
+            newspaper articles.</p>
+          <p>As in the <ptr type="software" xml:id="R25" target="#dariahgeobrowser"/><rs
+              type="soft.name" ref="#R25">Geo-Browser</rs> example above, we assume that the
+            proximity of two references to entities suggests a semantic connection. Naturally, such
+            a connection may also exist between two entity occurrences separated by a page break.
+            Therefore, better criteria for connectedness could be proposed, such as co-occurrence
+            within one sentence, but this requires linguistic markup which is not part of our
+            notebook edition. The notebook page as a unit of semantic coherence is still a
+            relatively meaningful criterion, and the most feasible due to our usage of the
+              <gi>surface</gi> element.</p>
           <figure xml:id="figure4">
             <graphic url="images/jtei-8-077-image_04.png" height="1344px" width="1788px"/>
             <head type="legend">Force-Directed Graph of entities for notebook C07<note> Interactive
@@ -531,8 +545,8 @@
             headline is <q>Thüringens Geschichte</q> (History of Thuringia), which is also the topic
             of the following pages. The benefit of the network is that a major topic can be
             identified with a single view.</p>
-          <p>The output of this <ptr type="software" xml:id="D3.js" target="#d3js"/><rs
-              type="soft.name" ref="#D3.js">D3.js</rs> application is an SVG graphic which can be
+          <p>The output of this <ptr type="software" xml:id="R26" target="#d3js"/><rs
+              type="soft.name" ref="#R26">D3.js</rs> application is an SVG graphic which can be
             further transformed. <gi>svg:title</gi> elements are used to store the node names, which
             modern browsers should display on mouseover. To get a better overview of the entities in
             the notebook, the node names should actually be inserted as nodes, but since there is
@@ -545,14 +559,14 @@
             attribute contains the leaf number with a letter <val>r</val> for recto and <val>v</val>
             for a verso side and this attribute is transformed in a <ident>html:id</ident>, so we
             can go back from a single entity to the leaf of its first occurrence by generating a
-            hyperlink with the help of <ptr type="software" xml:id="JavaScript" target="#JavaScript"
-              /><rs type="soft.name" ref="#JavaScript">JavaScript</rs>. If this part is left out,
-            the objects will be sorted in alphabetical order and the network will contain more edges
-            to link those entities that co-occur on one page. Applying the hierarchy allows these
-            edges to be deleted, because the categorization lets the nodes appear together and a
-            bigger gap between the categories marks the border. This is one of the rare cases in
-            which adding more information to a visualization simplifies and refines the output at
-            the same time.</p>
+            hyperlink with the help of <ptr type="software" xml:id="R27" target="#JavaScript"/><rs
+              type="soft.name" ref="#R27">JavaScript</rs>. If this part is left out, the objects
+            will be sorted in alphabetical order and the network will contain more edges to link
+            those entities that co-occur on one page. Applying the hierarchy allows these edges to
+            be deleted, because the categorization lets the nodes appear together and a bigger gap
+            between the categories marks the border. This is one of the rare cases in which adding
+            more information to a visualization simplifies and refines the output at the same
+            time.</p>
           <p>The result is an interactive graphic in which the appropriate edges are highlighted
             when the cursor is placed over a node. If one selects the node
               <soCalled>Luther</soCalled>, all links and nodes that appear together with a reference
@@ -567,7 +581,7 @@
             way to integrate this entity into the network might be the use of another apportionment,
             as the fact that two entities are referenced on the same page may be regarded as
             artificial. Only minor changes would have to be made to the <ptr type="software"
-              xml:id="XSLT" target="#XSLT"/><rs type="soft.name" ref="#XSLT">XSLT</rs> code to use
+              xml:id="R28" target="#xslt"/><rs type="soft.name" ref="#R28">XSLT</rs> code to use
             other divisions of text, such as chapters. As notebooks are not typically organized in
             chapters, we can use paragraphs (encoded with <gi>milestone</gi> here) instead. Instead
             of one specific element, a distinctive number of blank surfaces in series can be
@@ -601,11 +615,12 @@
           and services. The additional effort required to make them work with the TEI data from the
           forthcoming edition of Theodor Fontane’s notebooks (and from the edition of William
           Godwin’s Diary) was minimal. The necessary scripting (mainly <ptr type="software"
-            xml:id="XSLT" target="#XSLT"/><rs type="soft.name" ref="#XSLT">XSLT</rs>) and code
+            xml:id="R29" target="#xslt"/><rs type="soft.name" ref="#R29">XSLT</rs>) and code
           customization were easily carried out in addition to our regular work within the Fontane
           edition project. These efforts were facilitated by a spirit of openness shared by all
-          parties involved: both the <ptr type="software" xml:id="D3.js" target="#d3js"/><rs
-            type="soft.name" ref="#D3.js">D3.js</rs> library and the SIMILE Timeline widget are
+          parties involved: both the <ptr type="software" xml:id="R30" target="#d3js"/><rs
+            type="soft.name" ref="#R30">D3.js</rs> library and the <ptr type="software" xml:id="R31"
+            target="#timeline"/><rs type="soft.name" ref="#R31">SIMILE Timeline</rs> widget are
           open-source software released under a BSD license; the data sources GND, GeoNames, and
           OpenStreetMap have permissive licenses—Creative Commons Zero (CC0), Creative Commons
           Attribution (CC BY), and Open Data Commons Open Database License (ODbL), respectively; and
