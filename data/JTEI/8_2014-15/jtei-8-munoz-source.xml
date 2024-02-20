@@ -343,24 +343,27 @@
           while producing data, use of the milestone strategy for multiple hierarchies (ontologies)
           decreases the reusability of the textual data produced. The project relies on an automatic
           process to convert the document-focused encoding into a text-focused one. This process
-          consists of <ref target="https://github.com/umd-mith/sg-readingTEI">a set of XSLT
-            transformations</ref> authored by Wendell Piez, who served as a consultant to the S-GA
-          project in 2013. These transformations are structured as a pipeline—progressively
-          remodeling the document-focused TEI data to a more familiar text-focused TEI.<note>The
-            automated transformation workflow was originally managed using XProc to compose the
-            various stylesheets but was converted to an Apache Cocoon block for ease of maintenance
-            by project staff at MITH.</note> Some of the stages involved in this process include,
-          for example, identifying chapter boundaries that span across multiple <gi>surface</gi>s
-          (which for convenience are maintained in separate files), and then combining the content
-          of these surfaces into a single <tag>div type="chapter"</tag>. While some transformations
-          can be handled heuristically, others require a <soCalled>hint</soCalled> for the
-          processor. To support this automated conversion, the S-GA team needed to go beyond
-          purpose-built milestone elements like <gi>delSpan</gi> and <gi>addSpan</gi> and, in
-          effect, semantically overload the general purpose <gi>milestone</gi> element using
-          attributes. The value of an attribute on <gi>milestone</gi> indicates which text-focused
-          element is intended to appear in a particular location:<note>This solution is loosely
-            analogous to some of the ways custom data attributes are intended to be used under the
-            HTML5 Specification: <ptr
+          consists of <ptr type="software" xml:id="R1" target="#readingtei"/>
+          <ref target="https://github.com/umd-mith/sg-readingTEI">a set of XSLT
+            transformations</ref> authored by <rs type="soft.agent" ref="#R1">Wendell Piez</rs>, who
+          served as a consultant to the S-GA project in 2013. These transformations are structured
+          as a pipeline—progressively remodeling the document-focused TEI data to a more familiar
+          text-focused TEI.<note>The automated transformation workflow was originally managed using
+              <ptr type="software" xml:id="R2" target="#xproc"/><rs type="soft.name" ref="#R2"
+              >XProc</rs> to compose the various stylesheets but was converted to an <ptr
+              type="software" xml:id="R3" target="#apachecocoon"/><rs type="soft.name" ref="#R3"
+              >Apache Cocoon</rs> block for ease of maintenance by project staff at MITH.</note>
+          Some of the stages involved in this process include, for example, identifying chapter
+          boundaries that span across multiple <gi>surface</gi>s (which for convenience are
+          maintained in separate files), and then combining the content of these surfaces into a
+          single <tag>div type="chapter"</tag>. While some transformations can be handled
+          heuristically, others require a <soCalled>hint</soCalled> for the processor. To support
+          this automated conversion, the S-GA team needed to go beyond purpose-built milestone
+          elements like <gi>delSpan</gi> and <gi>addSpan</gi> and, in effect, semantically overload
+          the general purpose <gi>milestone</gi> element using attributes. The value of an attribute
+          on <gi>milestone</gi> indicates which text-focused element is intended to appear in a
+          particular location:<note>This solution is loosely analogous to some of the ways custom
+            data attributes are intended to be used under the HTML5 Specification: <ptr
               target="http://www.w3.org/html/wg/drafts/html/CR/dom.html#embedding-custom-non-visible-data-with-the-data-*-attributes"
             />.</note>
           <egXML xmlns="http://www.tei-c.org/ns/Examples">

@@ -13,41 +13,35 @@
     
     
     <!-- Keys -->    
-    <xsl:key name="rs-by-key" match="*:rs" use="@key"/>
+    <xsl:key name="rs-by-ref" match="*:rs" use="@ref"/>
+    <xsl:key name="ptr-by-target" match="*:ptr" use="@target"/>
     
     <!-- Global variables -->
     
     <!-- directories with TEI files -->
-    <xsl:variable name="collection-dirs" as="xs:string+" select="(        
-        '../../data/deu/ADHO-DH/2016/tei',
-        '../../data/deu/ADHO-DH/2019/tei',
-        '../../data/eng/ADHO-DH/2015/tei',
-        '../../data/eng/ADHO-DH/2016/tei',
-        '../../data/eng/ADHO-DH/2017/tei',
-        '../../data/eng/ADHO-DH/2018/tei',
-        '../../data/eng/ADHO-DH/2019/tei',
-        '../../data/eng/ADHO-DH/2020/tei',
-        '../../data/fra/ADHO-DH/2016/tei',
-        '../../data/fra/ADHO-DH/2017/tei',
-        '../../data/fra/ADHO-DH/2018/tei',
-        '../../data/fra/ADHO-DH/2019/tei',
-        '../../data/fra/ADHO-DH/2020/tei',
-        '../../data/ita/ADHO-DH/2015/tei',
-        '../../data/ita/ADHO-DH/2016/tei',
-        '../../data/ita/ADHO-DH/2017/tei',
-        '../../data/ita/ADHO-DH/2018/tei',
-        '../../data/por/ADHO-DH/2018/tei',
-        '../../data/spa/ADHO-DH/2016/tei',
-        '../../data/spa/ADHO-DH/2017/tei',
-        '../../data/spa/ADHO-DH/2018/tei',
-        '../../data/spa/ADHO-DH/2020/tei'
+    <xsl:variable name="collection-dirs" as="xs:string+" select="(  
+        '../../data/JTEI/10_2016-19',
+        '../../data/JTEI/13_2020-22',
+        '../../data/JTEI/7_2014',
+        '../../data/JTEI/rolling_2019',
+        '../../data/JTEI/rolling_2023',
+        '../../data/JTEI/11_2019-20',
+        '../../data/JTEI/12_2019-20',
+        '../../data/JTEI/14_2021-23',
+        '../../data/JTEI/8_2014-15',
+        '../../data/JTEI/rolling_2021',
+        '../../data/JTEI/16_2023_spa',
+        '../../data/JTEI/9_2016-17',
+        '../../data/JTEI/rolling_2022'
         )"/>
     
     <!-- software types -->
     <xsl:variable name="types" select="document('../../taxonomy/citation-taxonomy.xml')//*:taxonomy/*:category/@xml:id" as="xs:string+"/>
     
     <!-- additional columns for predefined filters (applied to file path, compare directory list above for examples) -->
-    <xsl:variable name="path-filters" select="('/2015/', '/2016/', '/2017/', '/2018/', '/2019/', '/2020/')" as="xs:string+"/> <!-- could also be ('/deu/', '/eng/', ...) for instance -->
+    <!-- could also be ('/deu/', '/eng/', ...) for instance -->
+    <!-- could also be ('/2015/', '/2016/', '/2017/', '/2018/', '/2019/', '/2020/') for instance -->
+    <xsl:variable name="path-filters" select="''" as="xs:string+"/>
     
     <!-- character to be used as CSV separator -->
     <xsl:variable name="csv-separator" select="','" as="xs:string"/>
@@ -62,15 +56,15 @@
             <xsl:for-each select="collection(concat(., '?select=*.xml;recurse=yes;on-error=warning'))">
                 <xsl:variable name="path" select="base-uri()" as="xs:string"/>
                 <xsl:variable name="doc" select="/"/>
-                <xsl:for-each select="distinct-values($doc//*:rs/@key)">                    
-                    <xsl:variable name="current-key" select="." as="xs:string"/>
-                    <xsl:variable name="rs-with-this-key" select="key('rs-by-key', $current-key, $doc)"/>
-                    <instance text="{$path}" software="{$current-key}">
+                <xsl:for-each select="distinct-values($doc//*:ptr[@type='software']/@target)">                
+                    <xsl:variable name="current-software-target" select="." as="xs:string"/>
+                    <xsl:variable name="rs-for-this-software" select="key('rs-by-ref', key('ptr-by-target', $current-software-target, $doc)/concat('#', @xml:id), $doc)"/>
+                    <instance text="{$path}" software="{$current-software-target}">
                         <xsl:for-each select="$types">
                             <!-- counting frequencies -->
                             <!--<xsl:attribute name="{.}" select="count($rs-with-this-key[contains(lower-case(@ana), lower-case(concat('#',current())))])"/>-->
                             <!-- determining presence -->
-                            <xsl:attribute name="{.}" select="('1'[exists($rs-with-this-key[contains(lower-case(@ana), lower-case(concat('#',current())))])], '0')[1]"/>                            
+                            <xsl:attribute name="{.}" select="('1'[exists($rs-for-this-software[tokenize(lower-case(@type), '\s+') = lower-case(current())])], '0')[1]"/>                            
                         </xsl:for-each>
                     </instance> 
                 </xsl:for-each>

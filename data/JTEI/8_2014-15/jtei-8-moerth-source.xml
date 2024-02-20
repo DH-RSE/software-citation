@@ -320,15 +320,17 @@
               <gi>quote</gi> constructs containing example sentences.<note>While entries and example
               sentences were originally located directly inside the <gi>body</gi>, we have now
               settled for a clearer distinction between the two. Since most of our dictionary data
-              is created and maintained using the Viennese Lexicographic Editor and held in a
-              relational database (described in <ref type="bibl" target="#budin12">Budin, Majewski,
-                and Mörth 2012</ref>), format changes like this can be applied transparently on all
-              of our dictionaries, making it easy to ensure structural homogeneity.</note> Treating
-            these examples as independent units allows dictionary writers to reuse the same sentence
-            in various parts of a dictionary. The schema uses the <gi>entry</gi> element, does not
-            make use of the <gi>hom</gi> element, and does not allow <gi>superEntry</gi>,
-              <gi>entryFree</gi>, or <gi>dictScrap</gi>.<note>For more detail see <ref type="bibl"
-                target="#budin12">Budin, Majewski, and Mörth 2012</ref>.</note></p>
+              is created and maintained using the <ptr type="software" xml:id="R1"
+                target="#vienneseeditor"/><rs type="soft.name" ref="#R1">Viennese Lexicographic
+                Editor</rs> and held in a relational database (described in <ref type="bibl"
+                target="#budin12">Budin, Majewski, and Mörth 2012</ref>), format changes like this
+              can be applied transparently on all of our dictionaries, making it easy to ensure
+              structural homogeneity.</note> Treating these examples as independent units allows
+            dictionary writers to reuse the same sentence in various parts of a dictionary. The
+            schema uses the <gi>entry</gi> element, does not make use of the <gi>hom</gi> element,
+            and does not allow <gi>superEntry</gi>, <gi>entryFree</gi>, or
+              <gi>dictScrap</gi>.<note>For more detail see <ref type="bibl" target="#budin12">Budin,
+                Majewski, and Mörth 2012</ref>.</note></p>
           <p>Thus, our TEI dictionaries basically look like this: <egXML
               xmlns="http://www.tei-c.org/ns/Examples">
               <TEI>
@@ -804,11 +806,14 @@
             </egXML>
             <p>The <gi>query</gi> element contains the query string. It should also have a
                 <att>type</att> attribute indicating the applied query language. In the example
-              above, CQP (Corpus Query Processor) refers to the query language of the IMS<note>
-                Institut für Maschinelle Sprachverarbeitung, Stuttgart.</note> Corpus Workbench. The
-              element <gi>evalMode</gi> can be filled with either <val>none</val>, which implies
-              that the data was retrieved automatically, or <val>manual</val>, which should be
-              applied when some kind of postprocessing has been done.</p>
+              above, <ptr type="software" xml:id="R2" target="#cpq"/><rs type="soft.name" ref="#R2"
+                >CQP (Corpus Query Processor)</rs> refers to the query language of the IMS<note>
+                Institut für Maschinelle Sprachverarbeitung, Stuttgart.</note>
+              <ptr type="software" xml:id="R3" target="#cwb"/><rs type="soft.name" ref="#R3">Corpus
+                Workbench</rs>. The element <gi>evalMode</gi> can be filled with either
+                <val>none</val>, which implies that the data was retrieved automatically, or
+                <val>manual</val>, which should be applied when some kind of postprocessing has been
+              done.</p>
             <p>For purposes of reproducibility it may be desirable to document the various steps
               that produced the final set of records with finer granularity. In this case,
                 <gi>evalMode</gi> could be replaced by an <gi>evalDesc</gi> element, containing a
@@ -842,9 +847,11 @@
               language resources and keep track of user-driven modifications of the results, and
               offering functions to embed them in the markup. Until implementations have reached
               this level of integration, we have to rely on a combination of components to support
-              this functionality. An example for this is the commercial product Sketch
-                  Engine,<note><ptr target="https://www.sketchengine.co.uk"/>.</note>which includes
-              a web interface for querying language corpora. In particular, it offers the ability to
+              this functionality. An example for this is the commercial product <ptr type="software"
+                xml:id="R4" target="#sketchengine"/><rs type="soft.name" ref="#R4"> Sketch
+                Engine</rs>,<note><rs type="soft.url" ref="#R4"><ptr
+                    target="https://www.sketchengine.co.uk"/></rs>.</note>which includes a web
+              interface for querying language corpora. In particular, it offers the ability to
               download the resulting frequency data (as well as concordances) in its own,
               vendor-specific, XML format. This format also contains the sequence of query
               expressions that leads to the final result set. Thus, a simple XSL stylesheet can be
