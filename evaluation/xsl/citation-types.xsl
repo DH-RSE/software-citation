@@ -51,11 +51,11 @@
                 
                 <xsl:for-each select="distinct-values($doc//*:rs[some $cit in $categories[position() &gt; 2] satisfies contains(@type, $cit)]/tokenize(@ref, ' '))">
                     <xsl:sort select="." order="ascending"/>
-                    <xsl:variable name="current-ref" select="substring-after(., '#')" as="xs:string"/>
-                    <xsl:variable name="software-id" select="lower-case(substring-after(key('software-target-by-id', $current-ref, $doc)[1], '#'))"/>
+                    <xsl:variable name="current-ref" select="." as="xs:string"/>
+                    <xsl:variable name="software-id" select="lower-case(substring-after(key('software-target-by-id', substring-after($current-ref, '#'), $doc)[1], '#'))"/>
                     <xsl:variable name="software-name" select="(
                         key('software-name-by-id', $software-id, $software-list), 
-                        error((), concat('No software name found for ID ''', $software-id, ''' / ref ''#', $current-ref ,''' (', base-uri($doc), ')')))[1]" as="xs:string"/>
+                        error((), concat('No software name found for ID ''', $software-id, ''' / ref ''', $current-ref ,''' (', base-uri($doc), ')')))[1]" as="xs:string"/>
                     <xsl:variable name="rs-with-this-ref" select="key('rs-by-ref', ., $doc)"/>
                                         
                     
