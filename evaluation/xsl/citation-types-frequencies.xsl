@@ -12,47 +12,25 @@
     <xsl:output method="text" omit-xml-declaration="yes"/>
     
     
+    <xsl:include href="global-parameters.xsl"/>
+    
+    
     <!-- Keys -->    
     <xsl:key name="rs-by-ref" match="*:rs" use="@ref"/>
     <xsl:key name="ptr-by-target" match="*:ptr" use="@target"/>
     
-    <!-- Global variables -->
+    <!-- Global variables -->    
     
-    <!-- directories with TEI files -->
-    <xsl:variable name="collection-dirs" as="xs:string+" select="(  
-        '../../data/JTEI/10_2016-19',
-        '../../data/JTEI/13_2020-22',
-        '../../data/JTEI/7_2014',
-        '../../data/JTEI/rolling_2019',
-        '../../data/JTEI/rolling_2023',
-        '../../data/JTEI/11_2019-20',
-        '../../data/JTEI/12_2019-20',
-        '../../data/JTEI/14_2021-23',
-        '../../data/JTEI/8_2014-15',
-        '../../data/JTEI/rolling_2021',
-        '../../data/JTEI/16_2023_spa',
-        '../../data/JTEI/9_2016-17',
-        '../../data/JTEI/rolling_2022'
-        )"/>
-    
-    <!-- software types -->
-    <xsl:variable name="types" select="document('../../taxonomy/citation-taxonomy.xml')//*:taxonomy/*:category/@xml:id" as="xs:string+"/>
     
     <!-- additional columns for predefined filters (applied to file path, compare directory list above for examples) -->
     <!-- could also be ('/deu/', '/eng/', ...) for instance -->
     <!-- could also be ('/2015/', '/2016/', '/2017/', '/2018/', '/2019/', '/2020/') for instance -->
     <xsl:variable name="path-filters" select="''" as="xs:string+"/>
     
-    <!-- character to be used as CSV separator -->
-    <xsl:variable name="csv-separator" select="','" as="xs:string"/>
-    
-    <!-- newline character -->
-    <xsl:variable name="NEWLINE"><xsl:text>
-</xsl:text></xsl:variable>
     
     <!-- instances of one specific software in one text -->
     <xsl:variable name="instances">
-        <xsl:for-each select="$collection-dirs">            
+        <xsl:for-each select="$COLLECTION-DIRS">            
             <xsl:for-each select="collection(concat(., '?select=*.xml;recurse=yes;on-error=warning'))">
                 <xsl:variable name="path" select="base-uri()" as="xs:string"/>
                 <xsl:variable name="doc" select="/"/>
@@ -60,7 +38,7 @@
                     <xsl:variable name="current-software-target" select="." as="xs:string"/>
                     <xsl:variable name="rs-for-this-software" select="key('rs-by-ref', key('ptr-by-target', $current-software-target, $doc)/concat('#', @xml:id), $doc)"/>
                     <instance text="{$path}" software="{$current-software-target}">
-                        <xsl:for-each select="$types">
+                        <xsl:for-each select="$SOFTWARE-MENTION-TYPES">
                             <!-- counting frequencies -->
                             <!--<xsl:attribute name="{.}" select="count($rs-with-this-key[contains(lower-case(@ana), lower-case(concat('#',current())))])"/>-->
                             <!-- determining presence -->
@@ -91,7 +69,7 @@
         <xsl:value-of select="$NEWLINE"/>
         
         
-        <xsl:for-each select="$types">
+        <xsl:for-each select="$SOFTWARE-MENTION-TYPES">
             <xsl:variable name="citation-type" select="." as="xs:string"/>
             
             <xsl:value-of select="concat($citation-type, ',')"/>
